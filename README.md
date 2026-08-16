@@ -116,7 +116,7 @@ Generates output artifacts:
 ### 1. Installation
 Clone the repository and install required dependencies:
 ```bash
-git clone https://github.com/daad-harvester/daad-harvester.git
+git clone https://github.com/boolforge/daad-harvester.git
 cd daad-harvester
 pip install -r requirements.txt
 ```
