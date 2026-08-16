@@ -22,11 +22,17 @@ try:
     import rarfile
 except ImportError:
     rarfile = None
+
+try:
+    import zipfile_deflate64
+except ImportError:
+    zipfile_deflate64 = None
+
 import structlog
 
 from daad_harvester.config import settings
 from daad_harvester.db import Database
-from daad_harvester.models import ArtifactRecord, SourceRecord
+from daad_harvester.models import ArtifactRecord, SourceRecord, SourceStatus
 from daad_harvester.exceptions import UnpackError
 
 logger = structlog.get_logger(__name__)
@@ -129,62 +135,66 @@ class Unpacker:
         return (uncompressed_size / compressed_size) > settings.zip_bomb_max_ratio
 
     def _unpack_via_cli(self, file_path: Path, archive_type: str = "7z") -> List[Tuple[str, bytes]]:
-        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, bsdtar, unrar)."""
-        extracted = []
+        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, unzip, unar, bsdtar, unrar, cabextract)."""
         tools = []
-        if archive_type == "7z":
-            tools = ["7z", "7za", "7zr", "bsdtar"]
+        if archive_type in ("7z", "zip"):
+            tools = ["7z", "7za", "7zr", "unzip", "unar", "bsdtar"]
         elif archive_type == "rar":
-            tools = ["unrar", "7z", "7za", "7zr", "bsdtar"]
+            tools = ["unrar", "7z", "7za", "7zr", "unar", "bsdtar"]
 
-        exe = None
-        for t in tools:
-            if shutil.which(t):
-                exe = t
-                break
+        for exe in tools:
+            if not shutil.which(exe):
+                continue
 
-        if not exe:
-            logger.warning("cli_unpack_tool_not_found", file=str(file_path), archive_type=archive_type)
-            return extracted
+            try:
+                with tempfile.TemporaryDirectory() as tmpdir:
+                    tmp_path = Path(tmpdir)
+                    if exe in ("7z", "7za", "7zr"):
+                        cmd = [exe, "x", "-y", f"-o{tmpdir}", str(file_path)]
+                    elif exe == "unzip":
+                        cmd = [exe, "-q", "-o", str(file_path), "-d", tmpdir]
+                    elif exe == "unar":
+                        cmd = [exe, "-o", tmpdir, "-f", str(file_path)]
+                    elif exe == "bsdtar":
+                        cmd = [exe, "-xf", str(file_path), "-C", tmpdir]
+                    elif exe == "unrar":
+                        cmd = [exe, "x", "-y", str(file_path), f"{tmpdir}/"]
+                    else:
+                        continue
 
-        try:
-            with tempfile.TemporaryDirectory() as tmpdir:
-                tmp_path = Path(tmpdir)
-                if exe in ("7z", "7za", "7zr"):
-                    cmd = [exe, "x", "-y", f"-o{tmpdir}", str(file_path)]
-                elif exe == "bsdtar":
-                    cmd = [exe, "-xf", str(file_path), "-C", tmpdir]
-                elif exe == "unrar":
-                    cmd = [exe, "x", "-y", str(file_path), f"{tmpdir}/"]
-                else:
-                    return extracted
+                    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+                    if res.returncode != 0:
+                        logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=res.stderr.decode('utf-8', errors='ignore'))
+                        continue
 
-                res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
-                if res.returncode != 0:
-                    logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=res.stderr.decode('utf-8', errors='ignore'))
-                    return extracted
+                    extracted = []
+                    for p in tmp_path.rglob("*"):
+                        if p.is_file():
+                            rel_name = p.relative_to(tmp_path).as_posix()
+                            extracted.append((rel_name, p.read_bytes()))
 
-                for p in tmp_path.rglob("*"):
-                    if p.is_file():
-                        rel_name = p.relative_to(tmp_path).as_posix()
-                        extracted.append((rel_name, p.read_bytes()))
-        except Exception as exc:
-            logger.warning("cli_unpack_exception", file=str(file_path), error=str(exc))
+                    if extracted:
+                        return extracted
+            except Exception as exc:
+                logger.warning("cli_unpack_exception", file=str(file_path), exe=exe, error=str(exc))
 
-        return extracted
+        logger.warning("cli_unpack_tool_not_found_or_failed", file=str(file_path), archive_type=archive_type)
+        return []
 
     # --- Layer 1: Standard Archives ---
 
     def unpack_zip(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
         compressed_size = file_path.stat().st_size
+        has_read_error = False
+
         try:
             with zipfile.ZipFile(file_path, 'r') as zf:
                 total_uncompressed = sum(info.file_size for info in zf.infolist())
                 if self._is_zip_bomb(compressed_size, total_uncompressed):
                     logger.warning("zip_bomb_detected", file=str(file_path))
                     return []
-                has_read_error = False
+
                 for info in zf.infolist():
                     if info.is_dir():
                         continue
@@ -199,21 +209,26 @@ class Unpacker:
                     return extracted
         except Exception as exc:
             logger.warning("zipfile_open_failed_trying_cli", file=str(file_path), error=str(exc))
+            has_read_error = True
 
-        # Fall back to CLI tools (7z, bsdtar, unzip) or py7zr
-        cli_extracted = self._unpack_via_cli(file_path, archive_type="7z")
+        # If zipfile had errors or failed, attempt CLI tools and py7zr for complete extraction
+        cli_extracted = self._unpack_via_cli(file_path, archive_type="zip")
         if cli_extracted:
             return cli_extracted
 
         if py7zr is not None:
             try:
+                py7zr_extracted = []
                 with py7zr.SevenZipFile(file_path, mode='r') as archive:
                     all_files = archive.readall()
                     for fname, bio in all_files.items():
-                        extracted.append((fname, bio.read()))
+                        py7zr_extracted.append((fname, bio.read()))
+                if py7zr_extracted:
+                    return py7zr_extracted
             except Exception as exc:
                 logger.warning("zip_py7zr_fallback_failed", file=str(file_path), error=str(exc))
 
+        # Return whatever python zipfile managed to extract if fallback methods couldn't get anything better
         return extracted
 
     def unpack_tar(self, file_path: Path) -> List[Tuple[str, bytes]]:
