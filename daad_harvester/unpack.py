@@ -5,6 +5,9 @@ import io
 import zipfile
 import tarfile
 import hashlib
+import subprocess
+import shutil
+import tempfile
 from pathlib import Path
 from typing import List, Tuple, Optional
 try:
@@ -48,6 +51,51 @@ class Unpacker:
             return False
         return (uncompressed_size / compressed_size) > settings.zip_bomb_max_ratio
 
+    def _unpack_via_cli(self, file_path: Path, archive_type: str = "7z") -> List[Tuple[str, bytes]]:
+        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, bsdtar, unrar)."""
+        extracted = []
+        tools = []
+        if archive_type == "7z":
+            tools = ["7z", "7za", "7zr", "bsdtar"]
+        elif archive_type == "rar":
+            tools = ["unrar", "7z", "7za", "7zr", "bsdtar"]
+
+        exe = None
+        for t in tools:
+            if shutil.which(t):
+                exe = t
+                break
+
+        if not exe:
+            logger.warning("cli_unpack_tool_not_found", file=str(file_path), archive_type=archive_type)
+            return extracted
+
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                tmp_path = Path(tmpdir)
+                if exe in ("7z", "7za", "7zr"):
+                    cmd = [exe, "x", "-y", f"-o{tmpdir}", str(file_path)]
+                elif exe == "bsdtar":
+                    cmd = [exe, "-xf", str(file_path), "-C", tmpdir]
+                elif exe == "unrar":
+                    cmd = [exe, "x", "-y", str(file_path), f"{tmpdir}/"]
+                else:
+                    return extracted
+
+                res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+                if res.returncode != 0:
+                    logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=res.stderr.decode('utf-8', errors='ignore'))
+                    return extracted
+
+                for p in tmp_path.rglob("*"):
+                    if p.is_file():
+                        rel_name = p.relative_to(tmp_path).as_posix()
+                        extracted.append((rel_name, p.read_bytes()))
+        except Exception as exc:
+            logger.warning("cli_unpack_exception", file=str(file_path), error=str(exc))
+
+        return extracted
+
     # --- Layer 1: Standard Archives ---
 
     def unpack_zip(self, file_path: Path) -> List[Tuple[str, bytes]]:
@@ -90,37 +138,43 @@ class Unpacker:
 
     def unpack_7z(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
-        if py7zr is None:
-            logger.warning("py7zr_not_available", file=str(file_path))
-            return extracted
-        try:
-            with py7zr.SevenZipFile(file_path, mode='r') as archive:
-                all_files = archive.readall()
-                for fname, bio in all_files.items():
-                    data = bio.read()
-                    extracted.append((fname, data))
-        except Exception as exc:
-            logger.warning("7z_read_error", file=str(file_path), error=str(exc))
-        return extracted
+        if py7zr is not None:
+            try:
+                with py7zr.SevenZipFile(file_path, mode='r') as archive:
+                    all_files = archive.readall()
+                    for fname, bio in all_files.items():
+                        data = bio.read()
+                        extracted.append((fname, data))
+                if extracted:
+                    return extracted
+            except Exception as exc:
+                logger.warning("7z_py7zr_error_trying_cli", file=str(file_path), error=str(exc))
+        else:
+            logger.warning("py7zr_not_available_using_cli", file=str(file_path))
+
+        return self._unpack_via_cli(file_path, archive_type="7z")
 
     def unpack_rar(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
-        if rarfile is None:
-            logger.warning("rarfile_not_available", file=str(file_path))
-            return extracted
-        try:
-            with rarfile.RarFile(file_path) as rf:
-                for info in rf.infolist():
-                    if info.isdir():
-                        continue
-                    try:
-                        data = rf.read(info.filename)
-                        extracted.append((info.filename, data))
-                    except Exception as exc:
-                        logger.warning("rar_read_error", file=str(file_path), member=info.filename, error=str(exc))
-        except Exception as exc:
-            logger.warning("rar_open_error", file=str(file_path), error=str(exc))
-        return extracted
+        if rarfile is not None:
+            try:
+                with rarfile.RarFile(file_path) as rf:
+                    for info in rf.infolist():
+                        if info.isdir():
+                            continue
+                        try:
+                            data = rf.read(info.filename)
+                            extracted.append((info.filename, data))
+                        except Exception as exc:
+                            logger.warning("rar_read_error", file=str(file_path), member=info.filename, error=str(exc))
+                if extracted:
+                    return extracted
+            except Exception as exc:
+                logger.warning("rar_rarfile_error_trying_cli", file=str(file_path), error=str(exc))
+        else:
+            logger.warning("rarfile_not_available_using_cli", file=str(file_path))
+
+        return self._unpack_via_cli(file_path, archive_type="rar")
 
     # --- Layer 2: Disk Images ---
 
