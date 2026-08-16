@@ -31,7 +31,10 @@ CREATE TABLE IF NOT EXISTS artifacts (
     md5_full TEXT,
     md5_5000 TEXT,           -- First 5000 bytes for ScummVM fast detection
     sha256 TEXT,
-    is_daad_payload BOOLEAN,
+    sha1 TEXT,
+    crc32 TEXT,
+    unpacked BOOLEAN DEFAULT 0,
+    is_daad_payload BOOLEAN DEFAULT 0,
     daad_version_guess TEXT,
     platform_hint TEXT,
     FOREIGN KEY (source_id) REFERENCES sources(id)
@@ -66,9 +69,18 @@ class Database:
         return conn
 
     def init_db(self) -> None:
-        """Initialize database tables."""
+        """Initialize database tables and run migrations if columns are missing."""
         with self.get_connection() as conn:
             conn.executescript(SCHEMA_SQL)
+            # Add missing columns if database was created by older schema version
+            cursor = conn.execute("PRAGMA table_info(artifacts)")
+            cols = {row["name"] for row in cursor.fetchall()}
+            if "sha1" not in cols:
+                conn.execute("ALTER TABLE artifacts ADD COLUMN sha1 TEXT;")
+            if "crc32" not in cols:
+                conn.execute("ALTER TABLE artifacts ADD COLUMN crc32 TEXT;")
+            if "unpacked" not in cols:
+                conn.execute("ALTER TABLE artifacts ADD COLUMN unpacked BOOLEAN DEFAULT 0;")
             conn.commit()
 
     # --- Sources operations ---
@@ -156,13 +168,22 @@ class Database:
 
     def add_artifact(self, artifact: ArtifactRecord) -> int:
         with self.get_connection() as conn:
+            # Deduplication check
+            cursor = conn.execute(
+                "SELECT id FROM artifacts WHERE source_id = ? AND sha256 = ? AND archive_depth = ?",
+                (artifact.source_id, artifact.sha256, artifact.archive_depth)
+            )
+            row = cursor.fetchone()
+            if row:
+                return row["id"]
+
             cursor = conn.execute(
                 """
                 INSERT INTO artifacts (
                     source_id, original_filename, extracted_path, archive_depth,
-                    file_size, md5_full, md5_5000, sha256, is_daad_payload,
-                    daad_version_guess, platform_hint
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    file_size, md5_full, md5_5000, sha256, sha1, crc32,
+                    unpacked, is_daad_payload, daad_version_guess, platform_hint
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     artifact.source_id,
@@ -173,6 +194,9 @@ class Database:
                     artifact.md5_full,
                     artifact.md5_5000,
                     artifact.sha256,
+                    artifact.sha1,
+                    artifact.crc32,
+                    artifact.unpacked,
                     artifact.is_daad_payload,
                     artifact.daad_version_guess,
                     artifact.platform_hint
@@ -180,6 +204,14 @@ class Database:
             )
             conn.commit()
             return cursor.lastrowid
+
+    def update_artifact_unpacked(self, artifact_id: int, unpacked: bool = True) -> None:
+        with self.get_connection() as conn:
+            conn.execute(
+                "UPDATE artifacts SET unpacked = ? WHERE id = ?",
+                (unpacked, artifact_id)
+            )
+            conn.commit()
 
     def update_artifact_fingerprint(
         self,
@@ -199,47 +231,35 @@ class Database:
             )
             conn.commit()
 
+    def _row_to_artifact(self, row: sqlite3.Row) -> ArtifactRecord:
+        keys = row.keys()
+        return ArtifactRecord(
+            id=row["id"],
+            source_id=row["source_id"],
+            original_filename=row["original_filename"],
+            extracted_path=row["extracted_path"],
+            archive_depth=row["archive_depth"],
+            file_size=row["file_size"],
+            md5_full=row["md5_full"],
+            md5_5000=row["md5_5000"],
+            sha256=row["sha256"],
+            sha1=row["sha1"] if "sha1" in keys else None,
+            crc32=row["crc32"] if "crc32" in keys else None,
+            unpacked=bool(row["unpacked"]) if "unpacked" in keys else False,
+            is_daad_payload=bool(row["is_daad_payload"]),
+            daad_version_guess=row["daad_version_guess"],
+            platform_hint=row["platform_hint"]
+        )
+
     def get_all_artifacts(self) -> List[ArtifactRecord]:
         with self.get_connection() as conn:
             cursor = conn.execute("SELECT * FROM artifacts")
-            return [
-                ArtifactRecord(
-                    id=row["id"],
-                    source_id=row["source_id"],
-                    original_filename=row["original_filename"],
-                    extracted_path=row["extracted_path"],
-                    archive_depth=row["archive_depth"],
-                    file_size=row["file_size"],
-                    md5_full=row["md5_full"],
-                    md5_5000=row["md5_5000"],
-                    sha256=row["sha256"],
-                    is_daad_payload=bool(row["is_daad_payload"]),
-                    daad_version_guess=row["daad_version_guess"],
-                    platform_hint=row["platform_hint"]
-                )
-                for row in cursor.fetchall()
-            ]
+            return [self._row_to_artifact(row) for row in cursor.fetchall()]
 
     def get_daad_artifacts(self) -> List[ArtifactRecord]:
         with self.get_connection() as conn:
             cursor = conn.execute("SELECT * FROM artifacts WHERE is_daad_payload = 1")
-            return [
-                ArtifactRecord(
-                    id=row["id"],
-                    source_id=row["source_id"],
-                    original_filename=row["original_filename"],
-                    extracted_path=row["extracted_path"],
-                    archive_depth=row["archive_depth"],
-                    file_size=row["file_size"],
-                    md5_full=row["md5_full"],
-                    md5_5000=row["md5_5000"],
-                    sha256=row["sha256"],
-                    is_daad_payload=bool(row["is_daad_payload"]),
-                    daad_version_guess=row["daad_version_guess"],
-                    platform_hint=row["platform_hint"]
-                )
-                for row in cursor.fetchall()
-            ]
+            return [self._row_to_artifact(row) for row in cursor.fetchall()]
 
     # --- Games operations ---
 

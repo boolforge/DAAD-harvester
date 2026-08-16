@@ -94,7 +94,7 @@ def main() -> None:
         if phase in ("unpack", "all"):
             logger.info("executing_phase_unpack")
             unpacker = Unpacker(db, extract_dir=settings.output_dir / "extracted")
-            unpacker.unpack_all_downloaded_sources()
+            unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
 
         # Phase 4: Fingerprint
         if phase in ("fingerprint", "all"):

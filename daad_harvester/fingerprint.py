@@ -93,26 +93,42 @@ class Fingerprinter:
             if not version_guess:
                 version_guess = "DAAD DDB"
 
-        # Check Vocabulary & Action Verbs / Keywords
-        vocab_keywords = [b"COGER", b"DEJAR", b"MIRAR", b"IR", b"NORTE", b"SUR", b"ESTE", b"OESTE", b"TAKE", b"DROP", b"LOOK"]
+        # Check DAADconds / DAADacts opcode sequence signatures or strings
+        daad_signatures = [
+            b"DAAD", b"D.A.A.D", b"Gilsoft", b"Aventuras AD", b"Tim Gilberts",
+            b"DAADREADY", b"DAAD System", b"Proceso", b"PROCESO"
+        ]
+        if any(sig in data for sig in daad_signatures):
+            score += 0.20
+
+        # Check Vocabulary & Action Verbs / Keywords across Spanish and English DAAD releases
+        vocab_keywords = [
+            b"COGER", b"DEJAR", b"MIRAR", b"IR", b"NORTE", b"SUR", b"ESTE", b"OESTE",
+            b"TAKE", b"DROP", b"LOOK", b"EXAMINE", b"INVENTARIO", b"INVENTORY",
+            b"EMPUJAR", b"TIRAR", b"ABRIR", b"CERRAR", b"METER", b"SACAR"
+        ]
         matching_keywords = sum(1 for kw in vocab_keywords if kw in data)
-        if matching_keywords >= 3:
-            score += 0.25
+        if matching_keywords >= 4:
+            score += 0.30
+        elif matching_keywords >= 2:
+            score += 0.20
         elif matching_keywords >= 1:
-            score += 0.15
+            score += 0.10
 
         # Platform heuristics based on file headers / sizes / binary signatures
-        if data.startswith(b"MV - CPCEMU") or data.startswith(b"EXTENDED CPC DSK"):
+        if data.startswith(b"MV - CPCEMU") or data.startswith(b"EXTENDED CPC DSK") or ext in (".dsk", ".cpc"):
             platform_hint = Platform.CPC.value
         elif data.startswith(b"Z80") or ext in (".z80", ".sna", ".tap", ".tzx"):
             platform_hint = Platform.ZX.value
-        elif ext == ".d64":
+        elif ext in (".d64", ".t64", ".prg"):
             platform_hint = Platform.C64.value
-        elif ext == ".adf":
+        elif ext in (".adf", ".adz") or b"DOS\x00" in data[:10]:
             platform_hint = Platform.AMIGA.value
-        elif ext in (".st", ".msa"):
+        elif ext in (".st", ".msa", ".stx"):
             platform_hint = Platform.ATARIST.value
-        elif ext in (".exe", ".com") or b"MS-DOS" in data:
+        elif ext in (".msx", ".dsk") and b"AB80" in data[:100]:
+            platform_hint = Platform.MSX.value
+        elif ext in (".exe", ".com", ".dat", ".ddb") or b"MS-DOS" in data:
             platform_hint = Platform.PC.value
 
         # Cap score between 0.0 and 1.0

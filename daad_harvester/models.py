@@ -16,6 +16,8 @@ class SourceTier(str, Enum):
 class SourceStatus(str, Enum):
     PENDING = "pending"
     DOWNLOADED = "downloaded"
+    UNPACKED = "unpacked"
+    PARTIALLY_UNPACKED = "partially_unpacked"
     ERROR = "error"
     DEAD = "dead"
 
@@ -56,6 +58,9 @@ class ArtifactRecord:
     md5_full: str
     md5_5000: str
     sha256: str
+    sha1: Optional[str] = None
+    crc32: Optional[str] = None
+    unpacked: bool = False
     is_daad_payload: bool = False
     daad_version_guess: Optional[str] = None
     platform_hint: Optional[str] = None
