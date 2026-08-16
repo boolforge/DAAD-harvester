@@ -112,6 +112,21 @@ Generates output artifacts:
 ### Prerequisites
 - Python 3.10 or higher
 - `pip`
+- (Recommended) System archive decompression CLI utilities for maximum archive format support (ZIP, Deflate64, 7Z, RAR, ARJ, LHA/LZH, ZOO, ARC, CAB):
+
+#### Recommended System Packages:
+- **Debian / Ubuntu**:
+  ```bash
+  sudo apt-get install p7zip-full unzip unar libarchive-tools unrar cabextract arj lhasa zoo nomarch
+  ```
+- **Termux (Android)**:
+  ```bash
+  pkg install p7zip unzip unar libarchive unrar cabextract arj lhasa zoo nomarch
+  ```
+- **macOS (Homebrew)**:
+  ```bash
+  brew install p7zip unzip unar libarchive unrar cabextract arj lhasa zoo nomarch
+  ```
 
 ### 1. Installation
 Clone the repository and install required dependencies:

@@ -186,8 +186,7 @@ def test_unpack_zip_error_cli_fallback(tmp_path):
     bad_zip.write_bytes(b"PK\x03\x04 corrupt or unsupported zip file")
 
     def mock_subprocess_run(cmd, **kwargs):
-        # cmd: ['unzip', '-q', '-o', '<file_path>', '-d', '<tmpdir>']
-        out_dir = Path(cmd[5])
+        out_dir = Path(kwargs.get("cwd") or tmp_path)
         (out_dir / "unzipped.ddb").write_bytes(b"unzipped content")
         res = MagicMock()
         res.returncode = 0
@@ -199,3 +198,47 @@ def test_unpack_zip_error_cli_fallback(tmp_path):
         assert len(items) == 1
         assert items[0][0] == "unzipped.ddb"
         assert items[0][1] == b"unzipped content"
+
+def test_unpack_arj_cli_fallback(tmp_path):
+    db = Database(tmp_path / "test.db")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    arj_path = tmp_path / "game.arj"
+    arj_bytes = b"\x60\xea" + b"arj header payload"
+    arj_path.write_bytes(arj_bytes)
+
+    def mock_subprocess_run(cmd, **kwargs):
+        out_dir = Path(kwargs.get("cwd"))
+        (out_dir / "game.ddb").write_bytes(b"arj extracted data")
+        res = MagicMock()
+        res.returncode = 0
+        return res
+
+    with patch("shutil.which", side_effect=lambda t: "/usr/bin/arj" if t == "arj" else None), \
+         patch("subprocess.run", side_effect=mock_subprocess_run):
+        items = unpacker.extract_container(arj_path, arj_path.name, arj_bytes)
+        assert len(items) == 1
+        assert items[0][0] == "game.ddb"
+        assert items[0][1] == b"arj extracted data"
+
+def test_unpack_retry_failed_and_partially_unpacked_sources(tmp_path):
+    from daad_harvester.models import SourceRecord, SourceStatus
+
+    db = Database(tmp_path / "test.db")
+    src_failed_id = db.add_source("http://example.com/failed.zip", "archive")
+    src_partial_id = db.add_source("http://example.com/partial.zip", "archive")
+
+    zip_file = tmp_path / "test.zip"
+    with zipfile.ZipFile(zip_file, "w") as zf:
+        zf.writestr("data.ddb", b"retry data")
+
+    db.update_source_status(src_failed_id, status="failed", local_path=str(zip_file))
+    db.update_source_status(src_partial_id, status="partially_unpacked", local_path=str(zip_file))
+
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    total_artifacts = unpacker.unpack_all_downloaded_sources(parallel=1)
+
+    assert total_artifacts > 0
+    updated_failed = next(s for s in db.get_all_sources() if s.id == src_failed_id)
+    updated_partial = next(s for s in db.get_all_sources() if s.id == src_partial_id)
+    assert updated_failed.status == SourceStatus.UNPACKED.value
+    assert updated_partial.status == SourceStatus.UNPACKED.value
