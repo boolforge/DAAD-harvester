@@ -135,17 +135,27 @@ class Unpacker:
         return (uncompressed_size / compressed_size) > settings.zip_bomb_max_ratio
 
     def _unpack_via_cli(self, file_path: Path, archive_type: str = "7z") -> List[Tuple[str, bytes]]:
-        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, unzip, unar, bsdtar, unrar, cabextract)."""
-        tools = []
-        if archive_type in ("7z", "zip"):
-            tools = ["7z", "7za", "7zr", "unzip", "unar", "bsdtar"]
-        elif archive_type == "rar":
-            tools = ["unrar", "7z", "7za", "7zr", "unar", "bsdtar"]
+        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, unzip, unar, bsdtar, unrar, arj, unarj, lha, lhasa, zoo, nomarch, arc, cabextract)."""
+        tool_map = {
+            "zip": ["7z", "7za", "7zr", "unzip", "unar", "bsdtar"],
+            "7z": ["7z", "7za", "7zr", "unar", "bsdtar"],
+            "rar": ["unrar", "7z", "7za", "7zr", "unar", "bsdtar"],
+            "arj": ["arj", "unarj", "7z", "7za", "unar", "bsdtar"],
+            "lha": ["lha", "lhasa", "7z", "7za", "unar", "bsdtar"],
+            "lzh": ["lha", "lhasa", "7z", "7za", "unar", "bsdtar"],
+            "zoo": ["zoo", "unar"],
+            "arc": ["nomarch", "arc", "unar"],
+            "cab": ["cabextract", "7z", "7za", "unar"],
+            "tar": ["bsdtar", "tar", "7z", "7za", "unar"],
+        }
+        tools = tool_map.get(archive_type, ["7z", "7za", "7zr", "unar", "bsdtar"])
 
+        tested_tools = []
         for exe in tools:
             if not shutil.which(exe):
                 continue
 
+            tested_tools.append(exe)
             try:
                 with tempfile.TemporaryDirectory() as tmpdir:
                     tmp_path = Path(tmpdir)
@@ -155,14 +165,24 @@ class Unpacker:
                         cmd = [exe, "-q", "-o", str(file_path), "-d", tmpdir]
                     elif exe == "unar":
                         cmd = [exe, "-o", tmpdir, "-f", str(file_path)]
-                    elif exe == "bsdtar":
+                    elif exe in ("bsdtar", "tar"):
                         cmd = [exe, "-xf", str(file_path), "-C", tmpdir]
-                    elif exe == "unrar":
+                    elif exe in ("unrar", "arj"):
                         cmd = [exe, "x", "-y", str(file_path), f"{tmpdir}/"]
+                    elif exe == "unarj":
+                        cmd = [exe, "x", str(file_path)]
+                    elif exe in ("lha", "lhasa"):
+                        cmd = [exe, "xI", f"-w={tmpdir}", str(file_path)]
+                    elif exe == "zoo":
+                        cmd = [exe, "x//", str(file_path)]
+                    elif exe in ("nomarch", "arc"):
+                        cmd = [exe, "-x", str(file_path)]
+                    elif exe == "cabextract":
+                        cmd = [exe, "-q", "-d", tmpdir, str(file_path)]
                     else:
                         continue
 
-                    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=60)
+                    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=tmpdir, timeout=60)
                     if res.returncode != 0:
                         logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=res.stderr.decode('utf-8', errors='ignore'))
                         continue
@@ -178,7 +198,14 @@ class Unpacker:
             except Exception as exc:
                 logger.warning("cli_unpack_exception", file=str(file_path), exe=exe, error=str(exc))
 
-        logger.warning("cli_unpack_tool_not_found_or_failed", file=str(file_path), archive_type=archive_type)
+        missing_tools = [exe for exe in tools if not shutil.which(exe)]
+        logger.warning(
+            "cli_unpack_tool_not_found_or_failed",
+            file=str(file_path),
+            archive_type=archive_type,
+            tested_tools=tested_tools,
+            recommended_install=f"Consider installing system packages for {archive_type}: {', '.join(missing_tools)}" if missing_tools else "All candidate tools were tried but failed."
+        )
         return []
 
     # --- Layer 1: Standard Archives ---
@@ -187,9 +214,12 @@ class Unpacker:
         extracted = []
         compressed_size = file_path.stat().st_size
         has_read_error = False
+        read_errors = []
+
+        zip_cls = zipfile_deflate64.ZipFile if zipfile_deflate64 is not None else zipfile.ZipFile
 
         try:
-            with zipfile.ZipFile(file_path, 'r') as zf:
+            with zip_cls(file_path, 'r') as zf:
                 total_uncompressed = sum(info.file_size for info in zf.infolist())
                 if self._is_zip_bomb(compressed_size, total_uncompressed):
                     logger.warning("zip_bomb_detected", file=str(file_path))
@@ -202,16 +232,16 @@ class Unpacker:
                         data = zf.read(info.filename)
                         extracted.append((info.filename, data))
                     except Exception as exc:
-                        logger.warning("zip_read_error", file=str(file_path), member=info.filename, error=str(exc))
+                        read_errors.append((info.filename, str(exc)))
                         has_read_error = True
 
                 if not has_read_error and extracted:
                     return extracted
         except Exception as exc:
-            logger.warning("zipfile_open_failed_trying_cli", file=str(file_path), error=str(exc))
+            read_errors.append(("*archive_open*", str(exc)))
             has_read_error = True
 
-        # If zipfile had errors or failed, attempt CLI tools and py7zr for complete extraction
+        # Fallback to CLI tools and py7zr
         cli_extracted = self._unpack_via_cli(file_path, archive_type="zip")
         if cli_extracted:
             return cli_extracted
@@ -228,7 +258,10 @@ class Unpacker:
             except Exception as exc:
                 logger.warning("zip_py7zr_fallback_failed", file=str(file_path), error=str(exc))
 
-        # Return whatever python zipfile managed to extract if fallback methods couldn't get anything better
+        # If fallbacks failed as well, log member read errors that occurred earlier
+        for member, err in read_errors:
+            logger.warning("zip_read_error", file=str(file_path), member=member, error=err)
+
         return extracted
 
     def unpack_tar(self, file_path: Path) -> List[Tuple[str, bytes]]:
@@ -271,6 +304,7 @@ class Unpacker:
 
     def unpack_rar(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
+        rar_errors = []
         if rarfile is not None:
             try:
                 with rarfile.RarFile(file_path) as rf:
@@ -281,15 +315,20 @@ class Unpacker:
                             data = rf.read(info.filename)
                             extracted.append((info.filename, data))
                         except Exception as exc:
-                            logger.warning("rar_read_error", file=str(file_path), member=info.filename, error=str(exc))
-                if extracted:
+                            rar_errors.append((info.filename, str(exc)))
+                if extracted and not rar_errors:
                     return extracted
             except Exception as exc:
-                logger.warning("rar_rarfile_error_trying_cli", file=str(file_path), error=str(exc))
-        else:
-            logger.warning("rarfile_not_available_using_cli", file=str(file_path))
+                rar_errors.append(("*archive_open*", str(exc)))
 
-        return self._unpack_via_cli(file_path, archive_type="rar")
+        cli_extracted = self._unpack_via_cli(file_path, archive_type="rar")
+        if cli_extracted:
+            return cli_extracted
+
+        for member, err in rar_errors:
+            logger.warning("rar_read_error", file=str(file_path), member=member, error=err)
+
+        return extracted
 
     # --- Layer 2: Disk Images ---
 
@@ -441,6 +480,11 @@ class Unpacker:
         is_7z = data.startswith(b"7z\xbc\xaf\x27\x1c") or ext == '.7z'
         is_rar = data.startswith(b"Rar!\x1a\x07") or ext == '.rar'
         is_tar = (len(data) >= 512 and data[257:262] in (b"ustar", b"GNUtar")) or ext in ('.tar', '.gz', '.tgz', '.bz2', '.xz') or filename.endswith(('.tar.gz', '.tar.bz2', '.tar.xz'))
+        is_arj = data.startswith(b"\x60\xea") or ext == '.arj'
+        is_lha = (len(data) >= 7 and data[2:7] in (b"-lh0-", b"-lh1-", b"-lh2-", b"-lh3-", b"-lh4-", b"-lh5-", b"-lh6-", b"-lh7-", b"-lzs-", b"-lz5-")) or ext in ('.lha', '.lzh')
+        is_zoo = data.startswith(b"ZOO ") or ext == '.zoo'
+        is_arc = data.startswith(b"\x1a") or ext == '.arc'
+        is_cab = data.startswith(b"MSCF") or ext == '.cab'
         is_dsk = len(data) >= 0x100 and (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU"))
         is_d64 = len(data) in (174848, 196608, 175531, 197371) or ext == '.d64'
         is_tap = ext == '.tap'
@@ -459,6 +503,26 @@ class Unpacker:
                 return res
         if is_tar:
             res = self.unpack_tar(file_path)
+            if res:
+                return res
+        if is_arj:
+            res = self._unpack_via_cli(file_path, archive_type="arj")
+            if res:
+                return res
+        if is_lha:
+            res = self._unpack_via_cli(file_path, archive_type="lha")
+            if res:
+                return res
+        if is_zoo:
+            res = self._unpack_via_cli(file_path, archive_type="zoo")
+            if res:
+                return res
+        if is_arc:
+            res = self._unpack_via_cli(file_path, archive_type="arc")
+            if res:
+                return res
+        if is_cab:
+            res = self._unpack_via_cli(file_path, archive_type="cab")
             if res:
                 return res
         if is_dsk:
@@ -570,7 +634,7 @@ class Unpacker:
         sources = self.db.get_all_sources()
         pending_sources = [
             src for src in sources
-            if src.status in ("downloaded", "partially_unpacked") and src.local_path
+            if src.status in ("downloaded", "partially_unpacked", "failed") and src.local_path
         ]
 
         if not pending_sources:

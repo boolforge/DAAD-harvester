@@ -7,7 +7,7 @@ from pathlib import Path
 import structlog
 
 from daad_harvester import __version__
-from daad_harvester.config import settings
+from daad_harvester.config import settings, setup_logging
 from daad_harvester.db import Database
 from daad_harvester.discover import Discoverer
 from daad_harvester.fetch import Fetcher
@@ -53,6 +53,18 @@ def main() -> None:
         help="Path to proxy list text file"
     )
     parser.add_argument(
+        "--log-file",
+        type=Path,
+        default=settings.log_file,
+        help=f"Path to log file (default: {settings.log_file})"
+    )
+    parser.add_argument(
+        "--log-level",
+        type=str,
+        default=settings.log_level,
+        help=f"Log level (default: {settings.log_level})"
+    )
+    parser.add_argument(
         "--version",
         action="version",
         version=f"%(prog)s {__version__}"
@@ -67,6 +79,11 @@ def main() -> None:
     if args.proxy_list:
         settings.proxy_list_file = args.proxy_list.resolve()
         settings.load_proxies()
+    if args.log_file:
+        settings.log_file = args.log_file.resolve()
+    settings.log_level = args.log_level
+
+    setup_logging(log_file=settings.log_file, log_level=settings.log_level)
 
     settings.output_dir.mkdir(parents=True, exist_ok=True)
 

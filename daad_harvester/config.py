@@ -1,9 +1,12 @@
 """Configuration management for DAAD Harvester using pydantic-settings."""
 
+import sys
+import logging
 from pathlib import Path
 from typing import List, Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
+import structlog
 
 
 DEFAULT_USER_AGENTS = [
@@ -55,6 +58,8 @@ class Settings(BaseSettings):
     zip_bomb_max_ratio: float = Field(default=10.0, description="Max extracted/compressed file ratio limit")
 
     parallel_workers: int = Field(default=8, description="Number of parallel execution workers")
+    log_file: Path = Field(default=Path("./daad-harvester.log"), description="Path to log file")
+    log_level: str = Field(default="INFO", description="Logging level")
 
     def load_proxies(self) -> None:
         """Loads proxy list from file if specified."""
@@ -64,3 +69,38 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+def setup_logging(log_file: Optional[Path] = None, log_level: str = "INFO") -> None:
+    """Configures logging to both stdout and a file using structlog."""
+    level = getattr(logging, log_level.upper(), logging.INFO)
+    handlers: List[logging.Handler] = [logging.StreamHandler(sys.stdout)]
+
+    if log_file:
+        log_file = Path(log_file)
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        handlers.append(file_handler)
+
+    logging.basicConfig(
+        format="%(message)s",
+        level=level,
+        handlers=handlers,
+        force=True
+    )
+
+    structlog.configure(
+        processors=[
+            structlog.stdlib.add_logger_name,
+            structlog.stdlib.add_log_level,
+            structlog.stdlib.PositionalArgumentsFormatter(),
+            structlog.processors.TimeStamper(fmt="iso"),
+            structlog.processors.StackInfoRenderer(),
+            structlog.processors.format_exc_info,
+            structlog.processors.KeyValueRenderer()
+        ],
+        context_class=dict,
+        logger_factory=structlog.stdlib.LoggerFactory(),
+        wrapper_class=structlog.stdlib.BoundLogger,
+        cache_logger_on_first_use=True,
+    )
