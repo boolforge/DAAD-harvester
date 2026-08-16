@@ -2,12 +2,15 @@
 
 import os
 import io
+import re
+import zlib
 import zipfile
 import tarfile
 import hashlib
 import subprocess
 import shutil
 import tempfile
+import concurrent.futures
 from pathlib import Path
 from typing import List, Tuple, Optional
 try:
@@ -29,12 +32,86 @@ from daad_harvester.exceptions import UnpackError
 logger = structlog.get_logger(__name__)
 
 
-def compute_hashes(data: bytes) -> Tuple[str, str, str]:
-    """Computes full MD5, MD5 of first 5000 bytes, and SHA256 of data."""
+SPECIAL_SYMBOLS = set(r'\/:*?"<>|')
+
+
+def escape_string(s: str) -> str:
+    r"""
+    Escape strings inspired by ScummVM dumper-companion.py:
+    - escape char: \x81
+    - unallowed filename chars (\/:*?"<>|)
+    - control chars < 0x20 and non-printable ranges
+    """
+    new_name = ""
+    for char in s:
+        if char == "\x81":
+            new_name += "\x81\x79"
+        elif char in SPECIAL_SYMBOLS or ord(char) < 0x20 or ord(char) == 0x7F or (0x80 <= ord(char) <= 0x9F):
+            new_name += "\x81" + chr(0x80 + (ord(char) & 0x7F))
+        else:
+            new_name += char
+    return new_name
+
+
+def punyencode(orig: str) -> str:
+    """Punyencode strings to sanitize non-ASCII or reserved characters safely."""
+    s = escape_string(orig)
+    try:
+        encoded = s.encode("punycode").decode("ascii")
+    except Exception:
+        encoded = "".join(c if c.isalnum() or c in "._-" else "_" for c in orig)
+
+    if len(encoded) == 0:
+        return orig
+
+    compare = encoded
+    if encoded[-1] == "-":
+        compare = encoded[:-1]
+    if orig != compare or (compare and compare[-1] in " ."):
+        return "xn--" + encoded
+    return orig
+
+
+def sanitize_filename(filename: str) -> str:
+    """Sanitize filename using ScummVM punycode rules and filesystem cleaning."""
+    if not filename:
+        return "unnamed"
+
+    clean_name = filename.replace("\\", "/").split("/")[-1]
+    sanitized = punyencode(clean_name)
+    sanitized = re.sub(r'[\x00-\x1f\x7f-\x9f\\/:*?"<>|]', '_', sanitized)
+    sanitized = sanitized.strip(" .")
+    if not sanitized:
+        sanitized = "unnamed"
+    return sanitized
+
+
+def safe_write_bytes(dest_path: Path, data: bytes) -> Path:
+    """Writes bytes to dest_path safely. If write fails due to OS/filesystem errors, falls back to safe hash name."""
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        dest_path.write_bytes(data)
+        return dest_path
+    except (OSError, PermissionError) as exc:
+        logger.warning("disk_write_error_trying_fallback", path=str(dest_path), error=str(exc))
+        md5_hash = hashlib.md5(data).hexdigest()[:12]
+        fallback_path = dest_path.parent / f"fallback_{md5_hash}.bin"
+        try:
+            fallback_path.write_bytes(data)
+            return fallback_path
+        except Exception as exc2:
+            logger.error("fallback_disk_write_failed", path=str(fallback_path), error=str(exc2))
+            raise exc2
+
+
+def compute_hashes(data: bytes) -> Tuple[str, str, str, str, str]:
+    """Computes full MD5, MD5 of first 5000 bytes, SHA256, SHA1, and CRC32 of data."""
     md5_full = hashlib.md5(data).hexdigest()
     md5_5000 = hashlib.md5(data[:5000]).hexdigest()
     sha256 = hashlib.sha256(data).hexdigest()
-    return md5_full, md5_5000, sha256
+    sha1 = hashlib.sha1(data).hexdigest()
+    crc32 = f"{zlib.crc32(data) & 0xFFFFFFFF:08x}" if 'zlib' in globals() else ""
+    return md5_full, md5_5000, sha256, sha1, crc32
 
 
 class Unpacker:
@@ -101,19 +178,42 @@ class Unpacker:
     def unpack_zip(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
         compressed_size = file_path.stat().st_size
-        with zipfile.ZipFile(file_path, 'r') as zf:
-            total_uncompressed = sum(info.file_size for info in zf.infolist())
-            if self._is_zip_bomb(compressed_size, total_uncompressed):
-                logger.warning("zip_bomb_detected", file=str(file_path))
-                return []
-            for info in zf.infolist():
-                if info.is_dir():
-                    continue
-                try:
-                    data = zf.read(info.filename)
-                    extracted.append((info.filename, data))
-                except Exception as exc:
-                    logger.warning("zip_read_error", file=str(file_path), member=info.filename, error=str(exc))
+        try:
+            with zipfile.ZipFile(file_path, 'r') as zf:
+                total_uncompressed = sum(info.file_size for info in zf.infolist())
+                if self._is_zip_bomb(compressed_size, total_uncompressed):
+                    logger.warning("zip_bomb_detected", file=str(file_path))
+                    return []
+                has_read_error = False
+                for info in zf.infolist():
+                    if info.is_dir():
+                        continue
+                    try:
+                        data = zf.read(info.filename)
+                        extracted.append((info.filename, data))
+                    except Exception as exc:
+                        logger.warning("zip_read_error", file=str(file_path), member=info.filename, error=str(exc))
+                        has_read_error = True
+
+                if not has_read_error and extracted:
+                    return extracted
+        except Exception as exc:
+            logger.warning("zipfile_open_failed_trying_cli", file=str(file_path), error=str(exc))
+
+        # Fall back to CLI tools (7z, bsdtar, unzip) or py7zr
+        cli_extracted = self._unpack_via_cli(file_path, archive_type="7z")
+        if cli_extracted:
+            return cli_extracted
+
+        if py7zr is not None:
+            try:
+                with py7zr.SevenZipFile(file_path, mode='r') as archive:
+                    all_files = archive.readall()
+                    for fname, bio in all_files.items():
+                        extracted.append((fname, bio.read()))
+            except Exception as exc:
+                logger.warning("zip_py7zr_fallback_failed", file=str(file_path), error=str(exc))
+
         return extracted
 
     def unpack_tar(self, file_path: Path) -> List[Tuple[str, bytes]]:
@@ -318,23 +418,46 @@ class Unpacker:
     # --- Container Router ---
 
     def extract_container(self, file_path: Path, filename: str, data: bytes) -> List[Tuple[str, bytes]]:
-        """Routes container data to proper unpacker based on extension/magic bytes."""
+        """Routes container data to proper unpacker based on extension and magic byte sniffing."""
         ext = Path(filename).suffix.lower()
 
-        if ext == '.zip':
-            return self.unpack_zip(file_path)
-        elif ext in ('.tar', '.gz', '.tgz', '.bz2', '.xz') or filename.endswith(('.tar.gz', '.tar.bz2', '.tar.xz')):
-            return self.unpack_tar(file_path)
-        elif ext == '.7z':
-            return self.unpack_7z(file_path)
-        elif ext == '.rar':
-            return self.unpack_rar(file_path)
-        elif ext == '.dsk':
-            return self.unpack_dsk(data)
-        elif ext == '.d64':
-            return self.unpack_d64(data)
-        elif ext == '.tap':
-            return self.unpack_tap(data)
+        # Magic byte sniffing
+        is_zip = data.startswith(b"PK\x03\x04") or data.startswith(b"PK\x05\x06") or data.startswith(b"PK\x07\x08") or ext == '.zip'
+        is_7z = data.startswith(b"7z\xbc\xaf\x27\x1c") or ext == '.7z'
+        is_rar = data.startswith(b"Rar!\x1a\x07") or ext == '.rar'
+        is_tar = (len(data) >= 512 and data[257:262] in (b"ustar", b"GNUtar")) or ext in ('.tar', '.gz', '.tgz', '.bz2', '.xz') or filename.endswith(('.tar.gz', '.tar.bz2', '.tar.xz'))
+        is_dsk = len(data) >= 0x100 and (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU"))
+        is_d64 = len(data) in (174848, 196608, 175531, 197371) or ext == '.d64'
+        is_tap = ext == '.tap'
+
+        if is_zip:
+            res = self.unpack_zip(file_path)
+            if res:
+                return res
+        if is_7z:
+            res = self.unpack_7z(file_path)
+            if res:
+                return res
+        if is_rar:
+            res = self.unpack_rar(file_path)
+            if res:
+                return res
+        if is_tar:
+            res = self.unpack_tar(file_path)
+            if res:
+                return res
+        if is_dsk:
+            res = self.unpack_dsk(data)
+            if res:
+                return res
+        if is_d64:
+            res = self.unpack_d64(data)
+            if res:
+                return res
+        if is_tap:
+            res = self.unpack_tap(data)
+            if res:
+                return res
 
         return []
 
@@ -348,14 +471,23 @@ class Unpacker:
         """Recursively unpacks files up to settings.max_unpack_depth (5 levels)."""
         artifact_ids = []
 
-        md5_full, md5_5000, sha256 = compute_hashes(data)
+        md5_full, md5_5000, sha256, sha1, crc32 = compute_hashes(data)
         file_size = len(data)
 
-        clean_filename = Path(filename).name or f"artifact_{md5_full[:8]}.bin"
+        clean_filename = sanitize_filename(filename)
         dest_filename = f"depth{depth}_{md5_full[:8]}_{clean_filename}"
         dest_path = self.extract_dir / dest_filename
-        dest_path.parent.mkdir(parents=True, exist_ok=True)
-        dest_path.write_bytes(data)
+
+        # If file exists on disk with matching file size, skip re-writing to disk
+        if dest_path.exists() and dest_path.stat().st_size == file_size:
+            try:
+                existing_sha256 = hashlib.sha256(dest_path.read_bytes()).hexdigest()
+                if existing_sha256 != sha256:
+                    dest_path = safe_write_bytes(dest_path, data)
+            except Exception:
+                dest_path = safe_write_bytes(dest_path, data)
+        else:
+            dest_path = safe_write_bytes(dest_path, data)
 
         artifact = ArtifactRecord(
             id=None,
@@ -367,43 +499,78 @@ class Unpacker:
             md5_full=md5_full,
             md5_5000=md5_5000,
             sha256=sha256,
+            sha1=sha1,
+            crc32=crc32,
+            unpacked=False,
             is_daad_payload=False
         )
         artifact_id = self.db.add_artifact(artifact)
         artifact_ids.append(artifact_id)
 
         if depth >= settings.max_unpack_depth:
+            self.db.update_artifact_unpacked(artifact_id, unpacked=True)
             return artifact_ids
 
-        sub_items = self.extract_container(dest_path, filename, data)
-        for sub_fname, sub_data in sub_items:
-            sub_ids = self.unpack_artifact_recursive(
-                source_id=source_id,
-                filename=sub_fname,
-                data=sub_data,
-                depth=depth + 1
-            )
-            artifact_ids.extend(sub_ids)
+        try:
+            sub_items = self.extract_container(dest_path, filename, data)
+            for sub_fname, sub_data in sub_items:
+                sub_ids = self.unpack_artifact_recursive(
+                    source_id=source_id,
+                    filename=sub_fname,
+                    data=sub_data,
+                    depth=depth + 1
+                )
+                artifact_ids.extend(sub_ids)
+            self.db.update_artifact_unpacked(artifact_id, unpacked=True)
+        except Exception as exc:
+            logger.warning("artifact_unpack_exception", artifact_id=artifact_id, error=str(exc))
 
         return artifact_ids
 
-    def unpack_all_downloaded_sources(self) -> int:
-        """Process all downloaded sources from DB."""
+    def unpack_source_single(self, src: SourceRecord) -> int:
+        if not src.local_path:
+            return 0
+        src_path = Path(src.local_path)
+        if not src_path.exists():
+            return 0
+
+        logger.info("unpacking_source", source_id=src.id, path=src.local_path)
+        try:
+            data = src_path.read_bytes()
+            ids = self.unpack_artifact_recursive(
+                source_id=src.id,
+                filename=src_path.name,
+                data=data,
+                depth=0
+            )
+            self.db.update_source_status(src.id, status=SourceStatus.UNPACKED.value)
+            return len(ids)
+        except Exception as exc:
+            logger.error("source_unpack_failed", source_id=src.id, error=str(exc))
+            self.db.update_source_status(src.id, status=SourceStatus.PARTIALLY_UNPACKED.value)
+            return 0
+
+    def unpack_all_downloaded_sources(self, parallel: int = 4) -> int:
+        """Process all downloaded sources from DB in parallel, skipping already unpacked sources."""
         sources = self.db.get_all_sources()
+        pending_sources = [
+            src for src in sources
+            if src.status in ("downloaded", "partially_unpacked") and src.local_path
+        ]
+
+        if not pending_sources:
+            logger.info("no_downloaded_sources_to_unpack")
+            return 0
+
         total_artifacts = 0
-        for src in sources:
-            if src.status == "downloaded" and src.local_path:
-                src_path = Path(src.local_path)
-                if src_path.exists():
-                    logger.info("unpacking_source", source_id=src.id, path=src.local_path)
-                    data = src_path.read_bytes()
-                    ids = self.unpack_artifact_recursive(
-                        source_id=src.id,
-                        filename=src_path.name,
-                        data=data,
-                        depth=0
-                    )
-                    total_artifacts += len(ids)
+        max_workers = min(parallel, max(1, len(pending_sources)))
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [executor.submit(self.unpack_source_single, src) for src in pending_sources]
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    total_artifacts += future.result()
+                except Exception as exc:
+                    logger.error("parallel_unpack_exception", error=str(exc))
 
         logger.info("unpack_phase_completed", total_artifacts=total_artifacts)
         return total_artifacts

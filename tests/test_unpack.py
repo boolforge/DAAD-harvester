@@ -10,10 +10,12 @@ from daad_harvester.unpack import Unpacker, compute_hashes
 
 def test_compute_hashes():
     data = b"Hello DAAD Harvester " * 500
-    m_full, m_5000, sha = compute_hashes(data)
+    m_full, m_5000, sha, sha1, crc = compute_hashes(data)
     assert len(m_full) == 32
     assert len(m_5000) == 32
     assert len(sha) == 64
+    assert len(sha1) == 40
+    assert len(crc) == 8
 
 def test_unpack_zip(tmp_path):
     db = Database(tmp_path / "test.db")
@@ -114,3 +116,40 @@ def test_unpack_rar_cli_fallback(tmp_path):
         assert len(items) == 1
         assert items[0][0] == "rar_extracted.txt"
         assert items[0][1] == b"rar payload"
+
+def test_sanitize_filename_punycode():
+    from daad_harvester.unpack import sanitize_filename, safe_write_bytes
+
+    # Test non-printable / control character filename sanitization
+    raw = "\x01WERNER'S QUEST"
+    clean = sanitize_filename(raw)
+    assert "\x01" not in clean
+    assert "WERNER" in clean or "xn--" in clean
+
+    raw_path = "subfolder/test?\x02file.txt"
+    clean_path = sanitize_filename(raw_path)
+    assert "?" not in clean_path
+    assert "\x02" not in clean_path
+
+def test_safe_write_bytes_fallback(tmp_path):
+    from daad_harvester.unpack import safe_write_bytes
+
+    normal_file = tmp_path / "valid.bin"
+    res_path = safe_write_bytes(normal_file, b"test bytes")
+    assert res_path.exists()
+    assert res_path.read_bytes() == b"test bytes"
+
+    # Simulate permission error on primary path
+    bad_file = tmp_path / "protected" / "file.bin"
+    bad_file.parent.mkdir(parents=True, exist_ok=True)
+    orig_write = Path.write_bytes
+
+    def mock_write(self, data):
+        if self == bad_file:
+            raise PermissionError("No permission")
+        return orig_write(self, data)
+
+    with patch.object(Path, "write_bytes", autospec=True, side_effect=mock_write):
+        fallback_res = safe_write_bytes(bad_file, b"fallback content")
+        assert fallback_res.exists()
+        assert "fallback_" in fallback_res.name
