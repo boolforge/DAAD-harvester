@@ -7,7 +7,10 @@ import tarfile
 import hashlib
 from pathlib import Path
 from typing import List, Tuple, Optional
-import py7zr
+try:
+    import py7zr
+except ImportError:
+    py7zr = None
 import rarfile
 import structlog
 
