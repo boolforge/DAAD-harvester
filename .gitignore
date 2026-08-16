@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Output and database state
+output/
+downloads/
+extracted/
+*.db
+*.sqlite
+
+# Testing leftovers
+test_output/
+.pytest_cache/
