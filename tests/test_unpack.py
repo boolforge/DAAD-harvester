@@ -2,8 +2,10 @@ import pytest
 import io
 import zipfile
 import tarfile
+from unittest.mock import patch, MagicMock
 from pathlib import Path
 from daad_harvester.db import Database
+from daad_harvester import unpack as unpack_module
 from daad_harvester.unpack import Unpacker, compute_hashes
 
 def test_compute_hashes():
@@ -69,3 +71,46 @@ def test_unpack_zip_bomb_protection(tmp_path):
 
     assert unpacker._is_zip_bomb(compressed_size=10, uncompressed_size=200) is True
     assert unpacker._is_zip_bomb(compressed_size=100, uncompressed_size=500) is False
+
+def test_unpack_cli_fallback(tmp_path):
+    db = Database(tmp_path / "test.db")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    sample_file = tmp_path / "sample.7z"
+    sample_file.write_bytes(b"mock 7z data")
+
+    def mock_subprocess_run(cmd, **kwargs):
+        # cmd: ['7z', 'x', '-y', '-o<tmpdir>', '<file_path>']
+        out_dir = Path(cmd[3][2:])
+        (out_dir / "extracted_file.txt").write_bytes(b"uncompressed payload")
+        res = MagicMock()
+        res.returncode = 0
+        return res
+
+    with patch.object(unpack_module, "py7zr", None), \
+         patch("shutil.which", return_value="/usr/bin/7z"), \
+         patch("subprocess.run", side_effect=mock_subprocess_run):
+        items = unpacker.unpack_7z(sample_file)
+        assert len(items) == 1
+        assert items[0][0] == "extracted_file.txt"
+        assert items[0][1] == b"uncompressed payload"
+
+def test_unpack_rar_cli_fallback(tmp_path):
+    db = Database(tmp_path / "test.db")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    sample_file = tmp_path / "sample.rar"
+    sample_file.write_bytes(b"mock rar data")
+
+    def mock_subprocess_run(cmd, **kwargs):
+        out_dir = Path(cmd[4].rstrip("/"))
+        (out_dir / "rar_extracted.txt").write_bytes(b"rar payload")
+        res = MagicMock()
+        res.returncode = 0
+        return res
+
+    with patch.object(unpack_module, "rarfile", None), \
+         patch("shutil.which", side_effect=lambda t: "/usr/bin/unrar" if t == "unrar" else None), \
+         patch("subprocess.run", side_effect=mock_subprocess_run):
+        items = unpacker.unpack_rar(sample_file)
+        assert len(items) == 1
+        assert items[0][0] == "rar_extracted.txt"
+        assert items[0][1] == b"rar payload"
