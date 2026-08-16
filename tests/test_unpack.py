@@ -153,3 +153,49 @@ def test_safe_write_bytes_fallback(tmp_path):
         fallback_res = safe_write_bytes(bad_file, b"fallback content")
         assert fallback_res.exists()
         assert "fallback_" in fallback_res.name
+
+def test_unpack_source_single_status_update(tmp_path):
+    from daad_harvester.models import SourceRecord, SourceStatus
+
+    db = Database(tmp_path / "test.db")
+    src_id = db.add_source("http://example.com/test.zip", "archive")
+
+    src_zip = tmp_path / "test.zip"
+    with zipfile.ZipFile(src_zip, "w") as zf:
+        zf.writestr("game.ddb", b"DAAD mock data " * 10)
+
+    db.update_source_status(src_id, status=SourceStatus.DOWNLOADED.value, local_path=str(src_zip))
+
+    sources = db.get_all_sources()
+    src_record = next(s for s in sources if s.id == src_id)
+
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    count = unpacker.unpack_source_single(src_record)
+
+    # 2 artifacts recorded: depth0 (test.zip itself) + depth1 (game.ddb extracted)
+    assert count == 2
+    updated_sources = db.get_all_sources()
+    updated_src = next(s for s in updated_sources if s.id == src_id)
+    assert updated_src.status == SourceStatus.UNPACKED.value
+
+def test_unpack_zip_error_cli_fallback(tmp_path):
+    db = Database(tmp_path / "test.db")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+
+    bad_zip = tmp_path / "unsupported_method.zip"
+    bad_zip.write_bytes(b"PK\x03\x04 corrupt or unsupported zip file")
+
+    def mock_subprocess_run(cmd, **kwargs):
+        # cmd: ['unzip', '-q', '-o', '<file_path>', '-d', '<tmpdir>']
+        out_dir = Path(cmd[5])
+        (out_dir / "unzipped.ddb").write_bytes(b"unzipped content")
+        res = MagicMock()
+        res.returncode = 0
+        return res
+
+    with patch("shutil.which", side_effect=lambda t: "/usr/bin/unzip" if t == "unzip" else None), \
+         patch("subprocess.run", side_effect=mock_subprocess_run):
+        items = unpacker.unpack_zip(bad_zip)
+        assert len(items) == 1
+        assert items[0][0] == "unzipped.ddb"
+        assert items[0][1] == b"unzipped content"
