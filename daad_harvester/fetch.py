@@ -67,9 +67,21 @@ class Fetcher:
                     if resp.status_code == 200:
                         content_type = resp.headers.get("Content-Type", "application/octet-stream")
 
-                        # Determine file name
-                        parsed = urlparse(source.url)
-                        filename = Path(parsed.path).name or f"source_{source.id}.bin"
+                        # Determine file name from Content-Disposition header or URL path
+                        filename = None
+                        cd_header = resp.headers.get("Content-Disposition", "")
+                        if "filename=" in cd_header:
+                            parts = cd_header.split("filename=")
+                            if len(parts) > 1:
+                                filename = parts[1].strip("\"' ;")
+
+                        if not filename:
+                            parsed_path = urlparse(source.url).path.split('#')[0].rstrip('/')
+                            filename = Path(parsed_path).name
+
+                        if not filename or '.' not in filename or len(filename) > 80:
+                            filename = f"source_{source.id}.bin"
+
                         target_path = self.download_dir / f"{source.id}_{filename}"
 
                         sha256_hash = hashlib.sha256()

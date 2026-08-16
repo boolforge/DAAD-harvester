@@ -11,7 +11,11 @@ try:
     import py7zr
 except ImportError:
     py7zr = None
-import rarfile
+
+try:
+    import rarfile
+except ImportError:
+    rarfile = None
 import structlog
 
 from daad_harvester.config import settings
@@ -86,6 +90,9 @@ class Unpacker:
 
     def unpack_7z(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
+        if py7zr is None:
+            logger.warning("py7zr_not_available", file=str(file_path))
+            return extracted
         try:
             with py7zr.SevenZipFile(file_path, mode='r') as archive:
                 all_files = archive.readall()
@@ -98,6 +105,9 @@ class Unpacker:
 
     def unpack_rar(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
+        if rarfile is None:
+            logger.warning("rarfile_not_available", file=str(file_path))
+            return extracted
         try:
             with rarfile.RarFile(file_path) as rf:
                 for info in rf.infolist():
@@ -287,8 +297,10 @@ class Unpacker:
         md5_full, md5_5000, sha256 = compute_hashes(data)
         file_size = len(data)
 
-        dest_filename = f"depth{depth}_{md5_full[:8]}_{filename}"
+        clean_filename = Path(filename).name or f"artifact_{md5_full[:8]}.bin"
+        dest_filename = f"depth{depth}_{md5_full[:8]}_{clean_filename}"
         dest_path = self.extract_dir / dest_filename
+        dest_path.parent.mkdir(parents=True, exist_ok=True)
         dest_path.write_bytes(data)
 
         artifact = ArtifactRecord(

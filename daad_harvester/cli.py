@@ -66,7 +66,7 @@ def main() -> None:
     settings.parallel_workers = args.parallel
     if args.proxy_list:
         settings.proxy_list_file = args.proxy_list.resolve()
-        settings.load_proxies()()
+        settings.load_proxies()
 
     settings.output_dir.mkdir(parents=True, exist_ok=True)
 

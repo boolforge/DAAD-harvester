@@ -157,20 +157,21 @@ class Discoverer:
     async def discover_ifarchive(self, client: httpx.AsyncClient) -> None:
         """Traverse IF Archive directories for DAAD files."""
         dirs = [
-            "https://www.ifarchive.org/indexes/if-archive/games/spanish/",
-            "https://www.ifarchive.org/indexes/if-archive/games/pc/",
-            "https://www.ifarchive.org/indexes/if-archive/programming/daad/"
+            "https://ifarchive.org/indexes/if-archive/games/spanish/",
+            "https://ifarchive.org/indexes/if-archive/games/pc/",
+            "https://ifarchive.org/indexes/if-archive/programming/daad/"
         ]
         for base_url in dirs:
             content = await self._fetch_url(client, base_url)
             if content:
                 soup = BeautifulSoup(content, "html.parser")
                 for a in soup.find_all("a", href=True):
-                    href = a["href"]
-                    if not href.startswith("?") and not href.startswith("/"):
-                        full_url = urljoin(base_url, href)
-                        if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z"]):
-                            self._add_source(full_url, SourceTier.ARCHIVE)
+                    href = a["href"].strip()
+                    if href.startswith("?") or href.startswith("#") or "unbox.ifarchive.org" in href:
+                        continue
+                    if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z"]):
+                        full_url = urljoin(base_url, href).split("#")[0]
+                        self._add_source(full_url, SourceTier.ARCHIVE)
 
     async def run_all_discovery(self) -> None:
         """Executes all discovery tasks asynchronously."""
