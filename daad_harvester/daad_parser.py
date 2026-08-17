@@ -112,9 +112,14 @@ class DAADBytecodeParser:
         fn_lower = filename.lower()
         ext = Path(filename).suffix.lower()
 
-        # Reject non-binary code / web / archive source extensions
-        if ext in (".php", ".html", ".htm", ".xml", ".json", ".css", ".js", ".py", ".cpp", ".h", ".c", ".txt", ".md", ".rpy", ".rpyc"):
-            return True, "web_or_source_extension"
+        # Reject non-binary code / web / source / media / console ROM extensions
+        rejected_exts = (
+            ".php", ".html", ".htm", ".xml", ".json", ".css", ".js", ".py", ".cpp", ".h", ".c", ".txt", ".md", ".rpy", ".rpyc",
+            ".nes", ".sfc", ".smc", ".z64", ".v64", ".n64", ".gba", ".gbc", ".gb", ".nds", ".3ds", ".iso", ".cue",
+            ".mp3", ".mp4", ".wav", ".flac", ".ogg", ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".avi", ".mkv"
+        )
+        if ext in rejected_exts:
+            return True, f"explicit_non_daad_extension_{ext.lstrip('.')}"
 
         # Reject RenPy data/archives strictly regardless of embedded strings
         if "renpy" in fn_lower or ext in (".data", ".rpyc") or b"renpy" in data[:4096].lower() or b"Ren'Py" in data[:4096] or data.startswith(b"RPYC"):
@@ -235,6 +240,24 @@ class DAADBytecodeParser:
         # Require both valid pointer range AND successful bytecode opcode stream disassembly
         is_valid = (p0_valid or p1_valid) and (p0_ops + p1_ops >= 3)
         return is_valid, valid_ptrs, pointers, total_disassembled
+
+    def find_embedded_ddb(self, data: bytes) -> Optional[Tuple[int, bytes]]:
+        """
+        Scans data for embedded DAAD DDB process table header and returns (offset, ddb_bytes) if found.
+        Scans at 16-byte aligned boundaries up to 512KB offset.
+        """
+        max_scan = min(len(data) - 64, 524288)
+        for offset in range(0, max_scan, 16):
+            sub_data = data[offset:]
+            if len(sub_data) < 64:
+                break
+            is_valid, _, pointers, _ = self.validate_process_table(sub_data)
+            if is_valid and len(pointers) >= 3:
+                # Calculate likely DDB length from max process pointer or scan limit
+                max_ptr = max(pointers[:8]) if pointers else 1024
+                estimated_len = min(len(sub_data), max_ptr + 4096)
+                return offset, sub_data[:estimated_len]
+        return None
 
     def check_vocabulary(self, data: bytes) -> Tuple[int, str]:
         """Scans byte stream for DAAD vocabulary verb/noun tokens with length bounds."""

@@ -28,6 +28,43 @@ def test_html_php_rejection():
     assert res["reason"] == "html_php_content"
 
 
+def test_console_rom_and_media_rejection():
+    parser = DAADBytecodeParser()
+
+    rom_data = b"NES\x1a\x02\x01\x01\x00" + b"\x00" * 100
+    res = parser.parse_ddb(rom_data, "game.nes")
+    assert res["is_daad"] is False
+    assert "explicit_non_daad_extension" in res["reason"]
+
+    mp3_data = b"ID3\x03\x00\x00\x00" + b"\x00" * 100
+    res = parser.parse_ddb(mp3_data, "song.mp3")
+    assert res["is_daad"] is False
+    assert "explicit_non_daad_extension" in res["reason"]
+
+
+def test_find_embedded_ddb():
+    parser = DAADBytecodeParser()
+
+    # Create dummy container with padding and embedded DDB at offset 64
+    header = bytearray(32)
+    header[0], header[1] = 0x20, 0x00 # P0 = 32
+    header[2], header[3] = 0x30, 0x00 # P1 = 48
+    header[4], header[5] = 0x40, 0x00 # P2 = 64
+
+    ddb_payload = bytearray(128)
+    ddb_payload[:32] = header
+    p0_bytes = bytes([0x01, 0x01, 0x01, 0x05, 0x09, 0x0A, 0x81, 0x02, 0xFE])
+    ddb_payload[32:32 + len(p0_bytes)] = p0_bytes
+    p1_bytes = bytes([0x00, 0x00, 0x0B, 0x01, 0x8C, 0x01, 0xFE])
+    ddb_payload[48:48 + len(p1_bytes)] = p1_bytes
+
+    container = b"\x00" * 64 + bytes(ddb_payload)
+    found = parser.find_embedded_ddb(container)
+    assert found is not None
+    offset, extracted = found
+    assert offset == 64
+
+
 def test_bytecode_disassembly_valid_ddb():
     parser = DAADBytecodeParser()
 

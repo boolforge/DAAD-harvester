@@ -94,6 +94,16 @@ class Discoverer:
         author: Optional[str] = None,
         language: Optional[str] = None
     ) -> None:
+        url_lower = url.lower().split('?')[0].split('#')[0]
+        rejected_exts = (
+            ".php", ".html", ".htm", ".xml", ".json", ".css", ".js", ".py", ".cpp", ".h", ".c",
+            ".nes", ".sfc", ".smc", ".z64", ".v64", ".n64", ".gba", ".gbc", ".gb", ".nds", ".3ds", ".iso",
+            ".mp3", ".mp4", ".wav", ".flac", ".ogg", ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".avi", ".mkv"
+        )
+        if any(url_lower.endswith(ext) for ext in rejected_exts):
+            logger.info("skipping_rejected_extension_source", url=url)
+            return
+
         if url not in self.discovered_urls:
             self.discovered_urls.add(url)
             self.db.add_source(
