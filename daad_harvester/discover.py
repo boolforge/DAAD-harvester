@@ -4,14 +4,14 @@ import asyncio
 import random
 import re
 from urllib.parse import urljoin, urlparse, quote, unquote
-from typing import List, Set, Optional, Dict, Any
+from typing import Set, Optional, Dict, Any
 import httpx
 from bs4 import BeautifulSoup
 import structlog
 
 from daad_harvester.config import settings
 from daad_harvester.db import Database
-from daad_harvester.models import SourceTier, SourceStatus
+from daad_harvester.models import SourceTier
 from daad_harvester.seeds import CANONICAL_DAAD_SEEDS
 from daad_harvester.daad_logger import LoggerSuite
 

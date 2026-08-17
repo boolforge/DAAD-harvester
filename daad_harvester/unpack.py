@@ -1,7 +1,5 @@
 """Recursive unpacker module supporting archives, disk images, tape dumps, and memory snapshots."""
 
-import os
-import io
 import re
 import zlib
 import zipfile
@@ -39,7 +37,6 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, SourceRecord, SourceStatus
 from daad_harvester.daad_logger import LoggerSuite
-from daad_harvester.exceptions import UnpackError
 
 logger = structlog.get_logger(__name__)
 

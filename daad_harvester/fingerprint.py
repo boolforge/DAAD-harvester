@@ -1,15 +1,14 @@
 """Byte-level fingerprinting module for DAAD payloads using DAADParser."""
 
 from pathlib import Path
-from typing import Tuple, Optional, Dict
+from typing import Tuple, Optional
 import structlog
 
 from daad_harvester.config import settings
 from daad_harvester.db import Database
-from daad_harvester.models import ArtifactRecord, Platform
+from daad_harvester.models import ArtifactRecord
 from daad_harvester.daad_parser import DAADParser
 from daad_harvester.daad_logger import LoggerSuite
-from daad_harvester.exceptions import FingerprintError
 
 logger = structlog.get_logger(__name__)
 

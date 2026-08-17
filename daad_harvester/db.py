@@ -3,7 +3,7 @@
 import sqlite3
 import structlog
 from pathlib import Path
-from typing import List, Optional, Tuple, Dict, Any
+from typing import List, Optional, Dict
 from datetime import datetime
 
 from daad_harvester.models import SourceRecord, ArtifactRecord, GameRecord

@@ -4,7 +4,7 @@ import asyncio
 import hashlib
 import random
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional
 from urllib.parse import urlparse, quote
 import httpx
 import aiofiles
@@ -12,9 +12,8 @@ import structlog
 
 from daad_harvester.config import settings
 from daad_harvester.db import Database
-from daad_harvester.models import SourceRecord, SourceStatus, SourceTier
+from daad_harvester.models import SourceRecord, SourceStatus
 from daad_harvester.daad_logger import LoggerSuite
-from daad_harvester.exceptions import FetchError
 
 logger = structlog.get_logger(__name__)
 

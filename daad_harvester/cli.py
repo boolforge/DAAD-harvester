@@ -2,10 +2,7 @@
 
 import argparse
 import asyncio
-import sys
-import time
 from pathlib import Path
-from rich.live import Live
 import structlog
 
 from daad_harvester import __version__

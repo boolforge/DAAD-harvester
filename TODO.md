@@ -1,5 +1,72 @@
 # DAAD Harvester - Forensic Audit, Brutal Reality & Roadmap (TODO.md)
 
+## ✅ Stability fixes (branch `fix/tui-crash-and-fingerprint-hang`)
+
+Everything below this section is the original roadmap (accuracy/feature
+work). This section documents a separate, prior problem: across the ~15
+commits that produced that roadmap, the app itself never actually ran
+correctly, despite a fully green test suite at every step. Root causes and
+fixes, in order of severity:
+
+1. **`--tui` crashed on every single run** (`rich.errors.MarkupError` in
+   `tui.py`'s footer). The key-hint labels (`[Tab]`, `[/]`, `[C]`, `[P]`...)
+   were unescaped, so Rich's markup parser tried to interpret them as style
+   tags instead of literal text; `[/]` in particular is Rich's "close last
+   tag" instruction, which closed a span early and crashed the next explicit
+   close tag. Since `--tui` is the flagship mode shown in the README, this
+   alone made the app "not work" as experienced by a real user. Fixed by
+   escaping literal brackets (`\[Tab]`) and by wrapping all harvested/
+   dynamic content (game titles, source titles, URLs, the search filter) in
+   `rich.text.Text(...)` or `rich.markup.escape(...)` before it reaches any
+   Rich-rendered string, since archive filenames routinely contain brackets
+   too (`Game [1988] [Cracked].zip`) and would have hit the same crash the
+   moment a real game was catalogued.
+2. **Fingerprint phase could hang for minutes on realistic files**
+   (`daad_parser.py::find_embedded_ddb`). It sliced `data[offset:]` (to the
+   *end* of the buffer) on every one of its ~32k scan iterations instead of
+   a bounded window, so cost scaled with file size: a 20MB file alone took
+   ~48s, worse than linearly. A 93MB real download from this session's test
+   run would have taken minutes on this step alone. Fixed by bounding the
+   slice to a fixed window (justified by the 16-bit pointer format itself,
+   which can't reference beyond 65535 bytes from its own header) -- now
+   flat at ~0.1s regardless of file size.
+3. **`synthesize.py::generate_cpp_entry` could emit invalid C++.** Titles/
+   filenames are external, untrusted strings embedded directly into C++
+   `"..."` literals with no escaping; a `"` or `\` in a title (both common
+   in the wild) would silently produce a `detection_tables.h` that fails to
+   compile, with nothing in the Python pipeline ever raising an error.
+   Fixed with a `cpp_escape()` helper, covered by a test that checks quote
+   balance in the generated output.
+4. **Zip-bomb threshold (10x) was rejecting legitimate retro disk images**
+   as false-positive bombs -- .dsk/.tap images are mostly zero-padding and
+   routinely compress 20-50x+. Raised to 100x (still far below genuine
+   bombs, which are typically 1000x+); `max_unpack_depth` bounds worst-case
+   expansion regardless.
+5. **Test suite gave false confidence.** All 38 original tests passed
+   throughout, including on the exact commit that shipped the TUI crash,
+   because `test_tui.py` only drove `handle_key_input()` (pure state logic)
+   and never called `.render()` -- the method that actually touches Rich's
+   markup parser. Added `tests/test_tui_rendering.py` (renders through a
+   real `Console`, including with bracket-laden titles/filenames/search
+   input -- confirmed to fail against the pre-fix code, not just pass
+   trivially against the post-fix code) plus a performance regression test
+   for `find_embedded_ddb` and C++-escaping tests for `synthesize.py`.
+6. **No CI existed.** Added `.github/workflows/tests.yml` (lint + full test
+   suite + a CLI smoke test, on every push and PR).
+
+Not done in this pass, and worth knowing about before relying on it: the
+**live discovery scrapers' correctness against the real, current ZXDB/IFDB/
+itch.io/Internet Archive/WikiCAAD sites could not be exercised** from the
+sandboxed environment this fix was developed in (only github.com and a few
+package-registry domains were reachable). The pipeline was verified
+end-to-end against real downloads that *were* reachable (GitHub-hosted DAAD
+repos), including the fingerprint phase against a real 93MB artifact, and
+that path is solid. If any of the non-GitHub discovery sources are still
+returning bad results, that needs checking with normal internet access.
+
+---
+
+
 This document provides a brutally honest, technically exhaustive critique of `daad_harvester`'s codebase, contrasting the **Tragic Reality** of the current state with the **Ideal Architectural Spec**, followed by a concrete, actionable forensic roadmap.
 
 ---

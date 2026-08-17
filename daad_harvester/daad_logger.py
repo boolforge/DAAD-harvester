@@ -1,11 +1,9 @@
 """Dedicated log management suite for DAAD Harvester with rotating, tagged logs in a dedicated logs directory."""
 
 import logging
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
-import structlog
 
 
 # Global run timestamp tag for the active harvester session
@@ -75,7 +73,7 @@ class LoggerSuite:
         """Appends a structured, timestamped block tagged with the session ID."""
         now = datetime.now().isoformat()
         lines = [
-            f"================================================================================",
+            "================================================================================",
             f"SESSION TAG:     {self.session_tag}",
             f"CATEGORY:        {header}",
             f"TIMESTAMP:       {now}"
