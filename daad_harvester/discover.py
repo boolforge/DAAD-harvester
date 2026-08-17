@@ -58,7 +58,6 @@ class Discoverer:
         await self.rate_limiter.acquire(domain)
 
         headers = {"User-Agent": self._get_random_user_agent()}
-        proxy = self._get_proxy()
 
         attempt = 0
         backoff = settings.backoff_base
@@ -128,8 +127,9 @@ class Discoverer:
     async def discover_internet_archive(self, client: httpx.AsyncClient) -> None:
         """Query Internet Archive Advanced Search API for DAAD games and collections."""
         queries = [
-            'q=daad+OR+"aventuras+ad"+OR+"daad+ready"',
-            'q=title:(DAAD)+AND+mediatype:(software)'
+            'q=title:(DAAD)+AND+mediatype:(software)',
+            'q=title:("Aventuras AD")+AND+mediatype:(software)',
+            'q=title:("DAAD Ready")+AND+mediatype:(software)'
         ]
         for q in queries:
             url = f"https://archive.org/advancedsearch.php?{q}&fl[]=identifier,title,mediatype&sort[]=downloads+desc&rows=50&page=1&output=json"
@@ -139,7 +139,6 @@ class Discoverer:
                     identifier = doc.get("identifier")
                     title = doc.get("title")
                     if identifier:
-                        # Query files metadata for direct zip/dsk/tap download links
                         files_url = f"https://archive.org/metadata/{identifier}/files"
                         files_data = await self._fetch_url(client, files_url, is_json=True)
                         if files_data and "result" in files_data:
@@ -163,18 +162,29 @@ class Discoverer:
                         self._add_source(full_url, SourceTier.ARCHIVE, platform="amiga")
 
     async def discover_github(self, client: httpx.AsyncClient) -> None:
-        """Query GitHub Search API for open source DAAD Ready games and toolchains."""
-        url = "https://api.github.com/search/repositories?q=daad+ready+in:name,description,readme&sort=updated"
-        data = await self._fetch_url(client, url, is_json=True)
-        if data and "items" in data:
-            for repo in data["items"]:
-                repo_name = repo.get("name")
-                owner = repo.get("owner", {}).get("login")
-                if owner and repo_name:
-                    zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/main.zip"
-                    self._add_source(zip_url, SourceTier.API, title=repo_name)
-                    zip_url_master = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/master.zip"
-                    self._add_source(zip_url_master, SourceTier.API, title=repo_name)
+        """Query GitHub Search API for open source DAAD Ready games and compilers, with strict filtering."""
+        queries = [
+            "%22DAAD+Ready%22",
+            "daad+aventura",
+            "topic:daad",
+            "topic:daad-ready",
+            "topic:aventuras-ad"
+        ]
+        for q in queries:
+            url = f"https://api.github.com/search/repositories?q={q}&sort=updated"
+            data = await self._fetch_url(client, url, is_json=True)
+            if data and "items" in data:
+                for repo in data["items"]:
+                    repo_name = repo.get("name", "")
+                    description = repo.get("description", "") or ""
+                    owner = repo.get("owner", {}).get("login")
+
+                    # Strict filter: Must contain DAAD keywords in name, description, or topics
+                    text = f"{repo_name} {description}".lower()
+                    if any(kw in text for kw in ["daad", "ddb", "aventuras ad", "gilsoft", "drc", "undaad", "maluva"]):
+                        if owner and repo_name:
+                            zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/main.zip"
+                            self._add_source(zip_url, SourceTier.API, title=repo_name)
 
     async def discover_itchio(self, client: httpx.AsyncClient) -> None:
         """Query itch.io for DAAD adventure game entries."""
@@ -186,8 +196,9 @@ class Discoverer:
                 soup = BeautifulSoup(content, "html.parser")
                 for a in soup.find_all("a", href=True):
                     href = a["href"]
-                    if "itch.io/" in href and not href.endswith("/community") and not href.endswith("/comments"):
-                        self._add_source(href, SourceTier.FORUM)
+                    if "itch.io/" in href and not href.endswith(("/community", "/comments", "/devlog")):
+                        if any(term in href.lower() for term in ["game", "daad", "aventura", "download"]):
+                            self._add_source(href, SourceTier.FORUM)
 
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:
         """Query IFDB API for DAAD tags."""
