@@ -6,13 +6,14 @@ import time
 import termios
 import tty
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Callable
+from typing import Any, Callable
 from rich.console import Console
 from rich.layout import Layout
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 from rich.live import Live
+from rich.markup import escape
 
 from daad_harvester import __version__
 from daad_harvester.config import settings
@@ -92,7 +93,7 @@ class TUIDashboard:
         )
         grid.add_row(
             Text.from_markup(tabs_str),
-            f"[bold magenta]Filter: '{self.search_filter}'[/bold magenta]" if self.search_filter else "[dim]Filter: (none)[/dim]"
+            f"[bold magenta]Filter: '{escape(self.search_filter)}'[/bold magenta]" if self.search_filter else "[dim]Filter: (none)[/dim]"
         )
 
         return Panel(grid, style="bold white on blue")
@@ -183,11 +184,13 @@ class TUIDashboard:
 
             actual_idx = daad_arts.index(art)
             style = "bold white on blue" if actual_idx == self.selected_index else None
-            table.add_row(str(art.id), title, platform, version, md5_short, size_str, style=style)
+            # Wrap in Text() (not raw str) so titles/filenames pulled from harvested
+            # archives can never be misparsed as Rich markup (e.g. "Game [1988].zip").
+            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(md5_short), Text(size_str), style=style)
 
         title_str = "[bold gold1]DAAD Games Forensic Feed[/bold gold1]"
         if self.in_search_mode:
-            title_str += f" | [bold red]SEARCH MODE: {self.search_filter}_[/bold red]"
+            title_str += f" | [bold red]SEARCH MODE: {escape(self.search_filter)}_[/bold red]"
         return Panel(table, title=title_str, border_style="gold1")
 
     def _make_sources_table(self) -> Panel:
@@ -219,7 +222,9 @@ class TUIDashboard:
             title = s.title or "Discovered Resource"
             actual_idx = sources.index(s)
             style = "bold white on blue" if actual_idx == self.selected_index else None
-            table.add_row(str(s.id), title, s.url[:45] + "...", s.source_tier, s.status, style=style)
+            # Text() wrapping: titles/URLs are external, untrusted content and must
+            # never be interpreted as Rich markup (see _make_daad_games_table).
+            table.add_row(str(s.id), Text(title), Text(s.url[:45] + "..."), Text(s.source_tier), Text(s.status), style=style)
 
         return Panel(table, title="[bold cyan]Discovered Sources Feed[/bold cyan]", border_style="cyan")
 
@@ -242,7 +247,19 @@ class TUIDashboard:
                 Layout(self._make_stats_panel(), ratio=1)
             )
 
-        footer_text = "[bold yellow][Tab][/bold yellow] Switch Tab  |  [bold yellow][Up/Down][/bold yellow] Select/Scroll  |  [bold yellow][/][/bold yellow] Search  |  [bold yellow][C][/bold yellow] Clear Filter  |  [bold yellow][P][/bold yellow] Pause"
+        # NOTE: the key-hint labels ([Tab], [/], etc.) must escape their literal
+        # brackets with a backslash. Rich's markup parser treats *any* unescaped
+        # "[...]" as a style tag -- "[/]" in particular is the bare "close last
+        # tag" instruction, so an unescaped version here closes "bold yellow"
+        # early and the trailing explicit [/bold yellow] then has nothing left
+        # to close, raising rich.errors.MarkupError and crashing the whole TUI.
+        footer_text = (
+            r"[bold yellow]\[Tab][/bold yellow] Switch Tab  |  "
+            r"[bold yellow]\[Up/Down][/bold yellow] Select/Scroll  |  "
+            r"[bold yellow]\[/][/bold yellow] Search  |  "
+            r"[bold yellow]\[C][/bold yellow] Clear Filter  |  "
+            r"[bold yellow]\[P][/bold yellow] Pause"
+        )
         layout["footer"].update(Panel(Text.from_markup(footer_text, justify="center"), style="bold white on black"))
         return layout
 
