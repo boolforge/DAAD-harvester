@@ -17,6 +17,28 @@ class Fingerprinter:
     def __init__(self, db: Database):
         self.db = db
 
+    def check_file_type_rejections(self, data: bytes, filename: str) -> bool:
+        """Rejects non-binary files (HTML/PHP/text/RenPy), graphics, and container archives."""
+        ext = Path(filename).suffix.lower()
+        if ext in (".php", ".html", ".htm", ".xml", ".json", ".css", ".js", ".png", ".jpg", ".gif", ".py", ".cpp", ".h"):
+            return True
+
+        # Reject web / text tags
+        data_start = data[:512].lower()
+        if b"<?php" in data_start or b"<!doctype html" in data_start or b"<html" in data_start or b"<head" in data_start:
+            return True
+
+        # Reject RenPy / Non-DAAD engine payloads
+        if b"renpy" in data_start or "renpy.data" in filename.lower() or filename.lower().endswith(".data"):
+            if b"DAAD" not in data:
+                return True
+
+        # Reject direct archive magic bytes (should be extracted first)
+        if data.startswith(b"PK\x03\x04") or data.startswith(b"7z\xbc\xaf\x27\x1c") or data.startswith(b"Rar!"):
+            return True
+
+        return False
+
     def check_paws_rejection(self, data: bytes) -> bool:
         """Returns True if file matches PAWS / The Quill signatures (should be rejected)."""
         if b"PAWS" in data or b"The Quill" in data or b"QUILL" in data or b"PAW" in data[:100]:
@@ -41,18 +63,21 @@ class Fingerprinter:
         DAAD databases start with header offsets pointing to Proceso 0, Proceso 1, Proceso 2, etc.
         Check if header values form plausible, ascending 16-bit offset pointers into file.
         """
-        if len(data) < 32:
+        if len(data) < 32 or len(data) > 300000:
             return False
 
-        # Inspect first 16 bytes for 16-bit little-endian offset pointers
-        p0 = data[0] | (data[1] << 8)
-        p1 = data[2] | (data[3] << 8)
-        p2 = data[4] | (data[5] << 8)
+        # Inspect first 16 bytes for 16-bit little-endian offset pointers (Proceso 0 .. 7)
+        pointers = []
+        for i in range(0, 16, 2):
+            ptr = data[i] | (data[i+1] << 8)
+            pointers.append(ptr)
 
-        # Check if pointers fall within reasonable boundaries of file size
+        p0, p1, p2 = pointers[0], pointers[1], pointers[2]
         file_len = len(data)
+
+        # Check if pointers fall within reasonable boundaries of file size and are non-decreasing
         if 0 < p0 < file_len and 0 < p1 < file_len and 0 < p2 < file_len:
-            if p0 <= p1 <= p2 or (p0 < p1 and p1 < file_len):
+            if p0 <= p1 <= p2 and all(p <= file_len for p in pointers):
                 return True
 
         return False
@@ -66,6 +91,9 @@ class Fingerprinter:
             return 0.0, None, None
 
         # Step 1: Explicit rejection checks
+        if self.check_file_type_rejections(data, filename):
+            return 0.0, None, None
+
         if self.check_paws_rejection(data) or self.check_swan_rejection(data) or self.check_gac_rejection(data):
             return 0.0, None, None
 

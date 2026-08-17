@@ -12,11 +12,17 @@ SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS sources (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     url TEXT UNIQUE,
-    source_tier TEXT,        -- 'api', 'archive', 'forum', 'wayback'
-    status TEXT,             -- 'pending', 'downloaded', 'error', 'dead'
+    source_tier TEXT,        -- 'api', 'archive', 'forum', 'wayback', 'seed'
+    status TEXT,             -- 'pending', 'downloaded', 'error', 'dead', 'unpacked'
     http_status INTEGER,
     content_type TEXT,
     local_path TEXT,
+    title TEXT,
+    platform TEXT,
+    year INTEGER,
+    publisher TEXT,
+    author TEXT,
+    language TEXT,
     discovered_at TIMESTAMP,
     processed_at TIMESTAMP
 );
@@ -37,6 +43,11 @@ CREATE TABLE IF NOT EXISTS artifacts (
     is_daad_payload BOOLEAN DEFAULT 0,
     daad_version_guess TEXT,
     platform_hint TEXT,
+    title TEXT,
+    year INTEGER,
+    publisher TEXT,
+    author TEXT,
+    language TEXT,
     FOREIGN KEY (source_id) REFERENCES sources(id)
 );
 
@@ -53,18 +64,29 @@ CREATE TABLE IF NOT EXISTS games (
     detection_entry TEXT,    -- Serialized C++ struct
     FOREIGN KEY (artifact_id) REFERENCES artifacts(id)
 );
+
+CREATE INDEX IF NOT EXISTS idx_sources_url ON sources(url);
+CREATE INDEX IF NOT EXISTS idx_sources_status ON sources(status);
+CREATE INDEX IF NOT EXISTS idx_artifacts_sha256 ON artifacts(sha256);
+CREATE INDEX IF NOT EXISTS idx_artifacts_md5_full ON artifacts(md5_full);
+CREATE INDEX IF NOT EXISTS idx_artifacts_is_daad ON artifacts(is_daad_payload);
+CREATE INDEX IF NOT EXISTS idx_games_game_id ON games(game_id);
 """
 
 
 class Database:
     def __init__(self, db_path: Path):
         self.db_path = db_path
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        if self.db_path != Path(":memory:") and str(self.db_path) != ":memory:":
+            self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self.init_db()
 
     def get_connection(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.db_path)
         conn.execute("PRAGMA foreign_keys = ON;")
+        if self.db_path != Path(":memory:") and str(self.db_path) != ":memory:":
+            conn.execute("PRAGMA journal_mode = WAL;")
+            conn.execute("PRAGMA busy_timeout = 10000;")
         conn.row_factory = sqlite3.Row
         return conn
 
@@ -81,49 +103,91 @@ class Database:
                 conn.execute("ALTER TABLE artifacts ADD COLUMN crc32 TEXT;")
             if "unpacked" not in cols:
                 conn.execute("ALTER TABLE artifacts ADD COLUMN unpacked BOOLEAN DEFAULT 0;")
+            for col in ["title", "year", "publisher", "author", "language"]:
+                if col not in cols:
+                    conn.execute(f"ALTER TABLE artifacts ADD COLUMN {col} TEXT;")
+
+            cursor_s = conn.execute("PRAGMA table_info(sources)")
+            cols_s = {row["name"] for row in cursor_s.fetchall()}
+            for col in ["title", "platform", "year", "publisher", "author", "language"]:
+                if col not in cols_s:
+                    conn.execute(f"ALTER TABLE sources ADD COLUMN {col} TEXT;")
             conn.commit()
 
     # --- Sources operations ---
 
-    def add_source(self, url: str, source_tier: str) -> Optional[int]:
+    def add_source(
+        self,
+        url: str,
+        source_tier: str,
+        title: Optional[str] = None,
+        platform: Optional[str] = None,
+        year: Optional[int] = None,
+        publisher: Optional[str] = None,
+        author: Optional[str] = None,
+        language: Optional[str] = None
+    ) -> Optional[int]:
         """Insert a new source record if it doesn't already exist."""
         now = datetime.now().isoformat()
         with self.get_connection() as conn:
             try:
                 cursor = conn.execute(
                     """
-                    INSERT INTO sources (url, source_tier, status, discovered_at)
-                    VALUES (?, ?, 'pending', ?)
+                    INSERT INTO sources (
+                        url, source_tier, status, title, platform, year, publisher, author, language, discovered_at
+                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?)
                     """,
-                    (url, source_tier, now)
+                    (url, source_tier, title, platform, year, publisher, author, language, now)
                 )
                 conn.commit()
                 return cursor.lastrowid
             except sqlite3.IntegrityError:
-                # URL already exists
+                # URL already exists - update metadata if provided
                 cursor = conn.execute("SELECT id FROM sources WHERE url = ?", (url,))
                 row = cursor.fetchone()
-                return row["id"] if row else None
+                src_id = row["id"] if row else None
+                if src_id and (title or platform or year or publisher or author or language):
+                    conn.execute(
+                        """
+                        UPDATE sources
+                        SET title = COALESCE(?, title),
+                            platform = COALESCE(?, platform),
+                            year = COALESCE(?, year),
+                            publisher = COALESCE(?, publisher),
+                            author = COALESCE(?, author),
+                            language = COALESCE(?, language)
+                        WHERE id = ?
+                        """,
+                        (title, platform, year, publisher, author, language, src_id)
+                    )
+                    conn.commit()
+                return src_id
+
+    def _row_to_source(self, row: sqlite3.Row) -> SourceRecord:
+        keys = row.keys()
+        return SourceRecord(
+            id=row["id"],
+            url=row["url"],
+            source_tier=row["source_tier"],
+            status=row["status"],
+            http_status=row["http_status"],
+            content_type=row["content_type"],
+            local_path=row["local_path"],
+            title=row["title"] if "title" in keys else None,
+            platform=row["platform"] if "platform" in keys else None,
+            year=row["year"] if "year" in keys else None,
+            publisher=row["publisher"] if "publisher" in keys else None,
+            author=row["author"] if "author" in keys else None,
+            language=row["language"] if "language" in keys else None,
+            discovered_at=row["discovered_at"],
+            processed_at=row["processed_at"],
+        )
 
     def get_pending_sources(self) -> List[SourceRecord]:
         """Fetch all sources with status 'pending'."""
         with self.get_connection() as conn:
             cursor = conn.execute("SELECT * FROM sources WHERE status = 'pending'")
-            rows = cursor.fetchall()
-            return [
-                SourceRecord(
-                    id=row["id"],
-                    url=row["url"],
-                    source_tier=row["source_tier"],
-                    status=row["status"],
-                    http_status=row["http_status"],
-                    content_type=row["content_type"],
-                    local_path=row["local_path"],
-                    discovered_at=row["discovered_at"],
-                    processed_at=row["processed_at"],
-                )
-                for row in rows
-            ]
+            return [self._row_to_source(row) for row in cursor.fetchall()]
 
     def update_source_status(
         self,
@@ -149,20 +213,7 @@ class Database:
     def get_all_sources(self) -> List[SourceRecord]:
         with self.get_connection() as conn:
             cursor = conn.execute("SELECT * FROM sources")
-            return [
-                SourceRecord(
-                    id=row["id"],
-                    url=row["url"],
-                    source_tier=row["source_tier"],
-                    status=row["status"],
-                    http_status=row["http_status"],
-                    content_type=row["content_type"],
-                    local_path=row["local_path"],
-                    discovered_at=row["discovered_at"],
-                    processed_at=row["processed_at"],
-                )
-                for row in cursor.fetchall()
-            ]
+            return [self._row_to_source(row) for row in cursor.fetchall()]
 
     # --- Artifacts operations ---
 
@@ -182,8 +233,9 @@ class Database:
                 INSERT INTO artifacts (
                     source_id, original_filename, extracted_path, archive_depth,
                     file_size, md5_full, md5_5000, sha256, sha1, crc32,
-                    unpacked, is_daad_payload, daad_version_guess, platform_hint
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    unpacked, is_daad_payload, daad_version_guess, platform_hint,
+                    title, year, publisher, author, language
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     artifact.source_id,
@@ -199,7 +251,12 @@ class Database:
                     artifact.unpacked,
                     artifact.is_daad_payload,
                     artifact.daad_version_guess,
-                    artifact.platform_hint
+                    artifact.platform_hint,
+                    artifact.title,
+                    artifact.year,
+                    artifact.publisher,
+                    artifact.author,
+                    artifact.language
                 )
             )
             conn.commit()
@@ -248,7 +305,12 @@ class Database:
             unpacked=bool(row["unpacked"]) if "unpacked" in keys else False,
             is_daad_payload=bool(row["is_daad_payload"]),
             daad_version_guess=row["daad_version_guess"],
-            platform_hint=row["platform_hint"]
+            platform_hint=row["platform_hint"],
+            title=row["title"] if "title" in keys else None,
+            year=row["year"] if "year" in keys else None,
+            publisher=row["publisher"] if "publisher" in keys else None,
+            author=row["author"] if "author" in keys else None,
+            language=row["language"] if "language" in keys else None
         )
 
     def get_all_artifacts(self) -> List[ArtifactRecord]:

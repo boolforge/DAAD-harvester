@@ -58,28 +58,80 @@ class Synthesizer:
 \t}},"""
         return cpp
 
+    def _is_generic_name(self, name: str) -> bool:
+        """Returns True if filename or title looks like generic auto-generated string."""
+        n = name.lower().strip()
+        if re.match(r'^\d+_source_\d+$', n) or re.match(r'^\d+_index', n) or n in ("index", "index.php", "renpy.data", "unnamed"):
+            return True
+        if re.match(r'^file_\d+$', n) or re.match(r'^block_\d+$', n) or re.match(r'^depth\d+_', n):
+            return True
+        return False
+
+    def _determine_title_and_slug(self, art: ArtifactRecord, source: Optional[Any]) -> Tuple[str, str]:
+        """Determines clean game title and game_id slug using artifact, source metadata, or parent URL."""
+        title = art.title
+        if not title and source:
+            title = source.title
+
+        art_stem = Path(art.original_filename).stem
+
+        # If title is missing or generic, check art_stem first if it's meaningful
+        if not title or self._is_generic_name(title):
+            if art_stem and not self._is_generic_name(art_stem) and art_stem.lower() not in ("src", "download", "file", "archive"):
+                title = art_stem.replace('_', ' ').replace('-', ' ').title()
+
+        # Fallback to source URL or local_path filename if still missing or generic
+        if not title or self._is_generic_name(title):
+            if source and source.url:
+                url_filename = Path(source.url.rsplit('#', 1)[0].rsplit('?', 1)[0]).stem
+                if not self._is_generic_name(url_filename):
+                    title = url_filename.replace('_', ' ').replace('-', ' ').title()
+            if (not title or self._is_generic_name(title)) and source and source.local_path:
+                source_stem = Path(source.local_path).stem
+                if not self._is_generic_name(source_stem):
+                    title = source_stem.replace('_', ' ').replace('-', ' ').title()
+
+        if not title or self._is_generic_name(title):
+            title = art_stem.replace('_', ' ').replace('-', ' ').title()
+
+        # Clean title
+        title = re.sub(r'^\d+[\s_-]*', '', title).strip() or "DAAD Game"
+        slug = slugify(title)
+        if not slug.startswith("daad_"):
+            game_slug = f"daad_{slug}"
+        else:
+            game_slug = slug
+
+        return title, game_slug
+
     def synthesize_catalog(self) -> Tuple[Path, Path, List[Dict[str, Any]]]:
         """Reads DAAD payload artifacts from DB, constructs GameRecords, and writes output files."""
         artifacts = self.db.get_daad_artifacts()
+        sources_by_id = {s.id: s for s in self.db.get_all_sources()}
 
         catalog_entries: List[Dict[str, Any]] = []
         collisions: List[Dict[str, Any]] = []
         seen_md5s: Dict[str, Dict[str, Any]] = {}
 
         for art in artifacts:
-            clean_name = Path(art.original_filename).stem
-            game_slug = f"daad_{slugify(clean_name)}"
-            platform = art.platform_hint or Platform.UNKNOWN.value
+            source = sources_by_id.get(art.source_id)
+            title, game_slug = self._determine_title_and_slug(art, source)
+
+            platform = art.platform_hint or (source.platform if source and source.platform else Platform.UNKNOWN.value)
+            year = art.year or (source.year if source else None)
+            publisher = art.publisher or (source.publisher if source else None)
+            author = art.author or (source.author if source else None)
+            language = art.language or (source.language if source else "es")
 
             entry_dict = {
                 "artifact_id": art.id,
                 "game_id": game_slug,
-                "title": clean_name.replace('_', ' ').replace('-', ' ').title(),
+                "title": title,
                 "platform": platform,
-                "language": "es",
-                "year": None,
-                "publisher": "Aventuras AD" if "ad" in clean_name.lower() else None,
-                "author": None,
+                "language": language,
+                "year": year,
+                "publisher": publisher,
+                "author": author,
                 "filename": art.original_filename,
                 "md5_full": art.md5_full,
                 "md5_5000": art.md5_5000,
