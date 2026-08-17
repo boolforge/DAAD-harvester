@@ -15,6 +15,7 @@ from daad_harvester.unpack import Unpacker
 from daad_harvester.fingerprint import Fingerprinter
 from daad_harvester.synthesize import Synthesizer
 from daad_harvester.report import ReportGenerator
+from daad_harvester.tui import TUIDashboard
 
 logger = structlog.get_logger(__name__)
 
@@ -63,6 +64,11 @@ def main() -> None:
         type=str,
         default=settings.log_level,
         help=f"Log level (default: {settings.log_level})"
+    )
+    parser.add_argument(
+        "--tui",
+        action="store_true",
+        help="Launch live interactive TUI dashboard display"
     )
     parser.add_argument(
         "--version",
@@ -129,6 +135,10 @@ def main() -> None:
             report_path = reporter.generate_report(collisions=collisions)
 
             logger.info("pipeline_completed_successfully", catalog=str(json_path), header=str(header_path), report=str(report_path))
+
+        if args.tui:
+            dashboard = TUIDashboard(db)
+            dashboard.run_live_dashboard(duration_sec=3)
 
     asyncio.run(run_pipeline())
 

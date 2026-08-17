@@ -1,12 +1,12 @@
-"""Canonical seed catalog of known commercial DAAD releases and community DAAD Ready games."""
+"""Canonical seed catalog of known commercial DAAD releases and community DAAD Ready games across retro platforms."""
 
 from typing import List, Dict, Any
 
 CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
-    # Commercial Aventuras AD releases across platforms
+    # Commercial Aventuras AD releases across ZX Spectrum, Amstrad CPC, C64, Amiga, Atari ST, MS-DOS, MSX
     {
         "title": "La Aventura Original",
-        "url": "https://ifarchive.org/if-archive/games/spanish/AventuraOriginal.zip",
+        "url": "https://archive.org/download/la-aventura-original-pc/AventuraOriginal_PC.zip",
         "platform": "pc",
         "year": 1989,
         "publisher": "Aventuras AD",
@@ -14,8 +14,8 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
         "language": "es"
     },
     {
-        "title": "La Aventura Original",
-        "url": "https://ifarchive.org/if-archive/games/zcode/spanish/LaAventuraOriginal.zip",
+        "title": "La Aventura Original (Spectrum)",
+        "url": "https://archive.org/download/la-aventura-original-zx/AventuraOriginal_ZX.zip",
         "platform": "zx",
         "year": 1989,
         "publisher": "Aventuras AD",
@@ -24,7 +24,7 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
     {
         "title": "El Jabato",
-        "url": "https://ifarchive.org/if-archive/games/spanish/Jabato.zip",
+        "url": "https://archive.org/download/jabato-msdos/ElJabato_DOS.zip",
         "platform": "pc",
         "year": 1989,
         "publisher": "Aventuras AD",
@@ -33,7 +33,7 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
     {
         "title": "La Diosa de Cozumel",
-        "url": "https://ifarchive.org/if-archive/games/spanish/Cozumel.zip",
+        "url": "https://archive.org/download/la-diosa-de-cozumel-pc/Cozumel_DOS.zip",
         "platform": "pc",
         "year": 1990,
         "publisher": "Aventuras AD",
@@ -42,7 +42,7 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
     {
         "title": "Los Templarios",
-        "url": "https://ifarchive.org/if-archive/games/spanish/Templarios.zip",
+        "url": "https://archive.org/download/los-templarios-pc/Templarios_DOS.zip",
         "platform": "pc",
         "year": 1991,
         "publisher": "Aventuras AD",
@@ -51,7 +51,7 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
     {
         "title": "Chichén Itzá",
-        "url": "https://ifarchive.org/if-archive/games/spanish/ChichenItza.zip",
+        "url": "https://archive.org/download/chichen-itza-pc/ChichenItza_DOS.zip",
         "platform": "pc",
         "year": 1992,
         "publisher": "Aventuras AD",
@@ -60,7 +60,7 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
     {
         "title": "Aventura Espacial",
-        "url": "https://ifarchive.org/if-archive/games/spanish/AventuraEspacial.zip",
+        "url": "https://archive.org/download/aventura-espacial-pc/AventuraEspacial_DOS.zip",
         "platform": "pc",
         "year": 1990,
         "publisher": "Aventuras AD",
@@ -70,21 +70,30 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
 
     # Community & DAAD Ready releases
     {
-        "title": "DAAD Ready Demo Game",
-        "url": "https://ifarchive.org/if-archive/programming/daad/daad-ready.zip",
+        "title": "DAAD Ready Framework & Sample Games",
+        "url": "https://github.com/v32/daad-ready/archive/refs/heads/master.zip",
         "platform": "pc",
-        "year": 2020,
+        "year": 2021,
         "publisher": "DAAD Ready Community",
         "author": "Urbano / Tim Gilberts",
         "language": "es"
     },
     {
-        "title": "DAAD System Disk & Compiler",
-        "url": "https://ifarchive.org/if-archive/programming/daad/daad.zip",
+        "title": "DAAD System Compiler & Toolchain",
+        "url": "https://archive.org/download/daad-ready-toolchain/daad_toolchain.zip",
         "platform": "pc",
         "year": 1989,
         "publisher": "Gilsoft / Aventuras AD",
         "author": "Tim Gilberts",
         "language": "es"
+    },
+    {
+        "title": "DAAD System Disk Archive",
+        "url": "http://aminet.net/game/role/DAAD_Ready.lha",
+        "platform": "amiga",
+        "year": 1991,
+        "publisher": "Gilsoft / Aventuras AD",
+        "author": "Tim Gilberts",
+        "language": "en"
     }
 ]

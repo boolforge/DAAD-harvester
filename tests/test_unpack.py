@@ -10,12 +10,23 @@ from daad_harvester.unpack import Unpacker, compute_hashes
 
 def test_compute_hashes():
     data = b"Hello DAAD Harvester " * 500
-    m_full, m_5000, sha, sha1, crc = compute_hashes(data)
-    assert len(m_full) == 32
-    assert len(m_5000) == 32
-    assert len(sha) == 64
-    assert len(sha1) == 40
-    assert len(crc) == 8
+    res = compute_hashes(data)
+    assert len(res["md5_full"]) == 32
+    assert len(res["md5_5000"]) == 32
+    assert len(res["md5_tail5000"]) == 32
+    assert len(res["sha1"]) == 40
+    assert len(res["sha224"]) == 56
+    assert len(res["sha256"]) == 64
+    assert len(res["sha384"]) == 96
+    assert len(res["sha512"]) == 128
+    assert len(res["sha3_256"]) == 64
+    assert len(res["sha3_512"]) == 128
+    assert len(res["crc32"]) == 8
+    assert len(res["adler32"]) == 8
+    if res["xxh32"]:
+        assert len(res["xxh32"]) == 8
+        assert len(res["xxh64"]) == 16
+        assert len(res["xxh128"]) == 32
 
 def test_unpack_zip(tmp_path):
     db = Database(tmp_path / "test.db")

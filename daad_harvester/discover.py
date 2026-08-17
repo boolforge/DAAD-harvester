@@ -1,9 +1,9 @@
-"""Discovery module for crawling retro-computing archives and IF databases for DAAD games."""
+"""Discovery module for crawling retro-computing archives, APIs, and repositories for DAAD games."""
 
 import asyncio
 import random
 import re
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, quote
 from typing import List, Set, Optional, Dict, Any
 import httpx
 from bs4 import BeautifulSoup
@@ -20,7 +20,7 @@ logger = structlog.get_logger(__name__)
 class RateLimiter:
     """Per-domain rate limiter."""
 
-    def __init__(self, rate_limit_per_second: float = 1.0):
+    def __init__(self, rate_limit_per_second: float = 2.0):
         self.interval = 1.0 / max(rate_limit_per_second, 0.1)
         self.last_called: Dict[str, float] = {}
         self._lock = asyncio.Lock()
@@ -36,7 +36,7 @@ class RateLimiter:
 
 
 class Discoverer:
-    """Crawls external databases, archives, and repositories to discover potential DAAD game files."""
+    """Crawls external databases, archives, and repositories across mass retro ecosystems to discover DAAD games."""
 
     def __init__(self, db: Database):
         self.db = db
@@ -66,7 +66,6 @@ class Discoverer:
         while attempt < settings.max_retries:
             try:
                 logger.info("fetching_discovery_url", url=url, attempt=attempt + 1)
-                proxy_mounts = {"all://": proxy} if proxy else None
                 response = await client.get(url, headers=headers, follow_redirects=True, timeout=settings.request_timeout)
                 if response.status_code == 200:
                     return response.json() if is_json else response.text
@@ -126,6 +125,70 @@ class Discoverer:
 
     # --- Discovery Crawlers ---
 
+    async def discover_internet_archive(self, client: httpx.AsyncClient) -> None:
+        """Query Internet Archive Advanced Search API for DAAD games and collections."""
+        queries = [
+            'q=daad+OR+"aventuras+ad"+OR+"daad+ready"',
+            'q=title:(DAAD)+AND+mediatype:(software)'
+        ]
+        for q in queries:
+            url = f"https://archive.org/advancedsearch.php?{q}&fl[]=identifier,title,mediatype&sort[]=downloads+desc&rows=50&page=1&output=json"
+            data = await self._fetch_url(client, url, is_json=True)
+            if data and "response" in data and "docs" in data["response"]:
+                for doc in data["response"]["docs"]:
+                    identifier = doc.get("identifier")
+                    title = doc.get("title")
+                    if identifier:
+                        # Query files metadata for direct zip/dsk/tap download links
+                        files_url = f"https://archive.org/metadata/{identifier}/files"
+                        files_data = await self._fetch_url(client, files_url, is_json=True)
+                        if files_data and "result" in files_data:
+                            for file_info in files_data["result"]:
+                                fname = file_info.get("name", "")
+                                if any(fname.lower().endswith(ext) for ext in [".zip", ".dsk", ".tap", ".tzx", ".d64", ".adf", ".st", ".ddb", ".7z", ".rar", ".lha"]):
+                                    dl_url = f"https://archive.org/download/{identifier}/{fname}"
+                                    self._add_source(dl_url, SourceTier.ARCHIVE, title=title)
+
+    async def discover_aminet(self, client: httpx.AsyncClient) -> None:
+        """Query Aminet Amiga software database for DAAD releases."""
+        url = "http://aminet.net/search?query=daad"
+        content = await self._fetch_url(client, url)
+        if content:
+            soup = BeautifulSoup(content, "html.parser")
+            for a in soup.find_all("a", href=True):
+                href = a["href"]
+                if href.endswith(".lha") or href.endswith(".readme"):
+                    full_url = urljoin("http://aminet.net", href)
+                    if full_url.endswith(".lha"):
+                        self._add_source(full_url, SourceTier.ARCHIVE, platform="amiga")
+
+    async def discover_github(self, client: httpx.AsyncClient) -> None:
+        """Query GitHub Search API for open source DAAD Ready games and toolchains."""
+        url = "https://api.github.com/search/repositories?q=daad+ready+in:name,description,readme&sort=updated"
+        data = await self._fetch_url(client, url, is_json=True)
+        if data and "items" in data:
+            for repo in data["items"]:
+                repo_name = repo.get("name")
+                owner = repo.get("owner", {}).get("login")
+                if owner and repo_name:
+                    zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/main.zip"
+                    self._add_source(zip_url, SourceTier.API, title=repo_name)
+                    zip_url_master = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/master.zip"
+                    self._add_source(zip_url_master, SourceTier.API, title=repo_name)
+
+    async def discover_itchio(self, client: httpx.AsyncClient) -> None:
+        """Query itch.io for DAAD adventure game entries."""
+        tags = ["daad", "daad-ready", "aventuras-ad"]
+        for tag in tags:
+            url = f"https://itch.io/games/tag-{tag}"
+            content = await self._fetch_url(client, url)
+            if content:
+                soup = BeautifulSoup(content, "html.parser")
+                for a in soup.find_all("a", href=True):
+                    href = a["href"]
+                    if "itch.io/" in href and not href.endswith("/community") and not href.endswith("/comments"):
+                        self._add_source(href, SourceTier.FORUM)
+
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:
         """Query IFDB API for DAAD tags."""
         tags = ["daad", "daad ready", "aventuras ad"]
@@ -136,7 +199,7 @@ class Discoverer:
                 soup = BeautifulSoup(content, "xml")
                 for link in soup.find_all("link"):
                     href = link.text or link.get("href")
-                    if href and any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z"]):
+                    if href and any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                         self._add_source(href, SourceTier.API)
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> None:
@@ -145,14 +208,16 @@ class Discoverer:
         data = await self._fetch_url(client, url, is_json=True)
         if isinstance(data, list):
             for entry in data:
+                title = entry.get("title")
                 for dl in entry.get("downloads", []):
                     if "url" in dl:
-                        self._add_source(dl["url"], SourceTier.API)
+                        self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
         elif isinstance(data, dict) and "hits" in data:
             for hit in data["hits"]:
+                title = hit.get("title")
                 for dl in hit.get("downloads", []):
                     if "url" in dl:
-                        self._add_source(dl["url"], SourceTier.API)
+                        self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
 
     async def discover_spectrum_computing(self, client: httpx.AsyncClient) -> None:
         """Query Spectrum Computing for DAAD entries and downloads."""
@@ -168,7 +233,7 @@ class Discoverer:
                     href = a["href"]
                     if any(ext in href.lower() for ext in [".zip", ".tap", ".tzx", ".dsk", ".tzx.zip", ".tap.zip", "download"]):
                         full_url = urljoin(url, href)
-                        self._add_source(full_url, SourceTier.ARCHIVE)
+                        self._add_source(full_url, SourceTier.ARCHIVE, platform="zx")
 
     async def discover_wikicaad(self, client: httpx.AsyncClient) -> None:
         """Query WikiCAAD API for DAAD game entries."""
@@ -184,9 +249,9 @@ class Discoverer:
                         soup = BeautifulSoup(content, "html.parser")
                         for a in soup.find_all("a", href=True):
                             href = a["href"]
-                            if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z"]):
+                            if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                                 full_url = urljoin(page_url, href)
-                                self._add_source(full_url, SourceTier.API)
+                                self._add_source(full_url, SourceTier.API, title=title)
 
     async def discover_ifarchive(self, client: httpx.AsyncClient) -> None:
         """Traverse IF Archive directories for DAAD files."""
@@ -203,18 +268,21 @@ class Discoverer:
                     href = a["href"].strip()
                     if href.startswith("?") or href.startswith("#") or "unbox.ifarchive.org" in href:
                         continue
-                    if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z"]):
+                    if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                         full_url = urljoin(base_url, href).split("#")[0]
                         self._add_source(full_url, SourceTier.ARCHIVE)
 
     async def run_all_discovery(self) -> None:
-        """Executes all discovery tasks asynchronously."""
+        """Executes all discovery tasks asynchronously with high parallel concurrency."""
         logger.info("starting_discovery_phase")
-        # Load canonical seed catalog
         self.load_canonical_seeds()
 
         async with httpx.AsyncClient(follow_redirects=True) as client:
             tasks = [
+                self.discover_internet_archive(client),
+                self.discover_aminet(client),
+                self.discover_github(client),
+                self.discover_itchio(client),
                 self.discover_ifdb(client),
                 self.discover_zxdb(client),
                 self.discover_spectrum_computing(client),
