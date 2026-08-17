@@ -82,8 +82,11 @@ def test_unpack_zip_bomb_protection(tmp_path):
     db = Database(tmp_path / "test.db")
     unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
 
-    assert unpacker._is_zip_bomb(compressed_size=10, uncompressed_size=200) is True
-    assert unpacker._is_zip_bomb(compressed_size=100, uncompressed_size=500) is False
+    # Default ratio is 100x (see config.py: retro disk/tape images are mostly
+    # zero-padding and routinely compress 20-50x+, so a lower threshold was
+    # rejecting legitimate DAAD disk images as false-positive "zip bombs").
+    assert unpacker._is_zip_bomb(compressed_size=1, uncompressed_size=150) is True    # 150x -> bomb
+    assert unpacker._is_zip_bomb(compressed_size=100, uncompressed_size=500) is False  # 5x -> a real, if compressible, disk image
 
 def test_unpack_cli_fallback(tmp_path):
     db = Database(tmp_path / "test.db")

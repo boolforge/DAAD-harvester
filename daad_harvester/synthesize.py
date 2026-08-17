@@ -10,7 +10,6 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, GameRecord, Platform
 from daad_harvester.daad_logger import DAADGamesLogger
-from daad_harvester.exceptions import SynthesizeError
 
 logger = structlog.get_logger(__name__)
 
@@ -26,6 +25,24 @@ PLATFORM_MAP_SCUMMVM = {
     Platform.ORIC.value: "Common::kPlatformOric",
     Platform.UNKNOWN.value: "Common::kPlatformUnknown",
 }
+
+
+def cpp_escape(text: Any) -> str:
+    """Escapes a value for safe embedding inside a C++ double-quoted string literal.
+
+    Harvested titles/filenames are external, untrusted strings (they come from
+    archive metadata and filenames written years ago in the wild). Without this,
+    a title or filename containing a `"` or `\\` -- both of which are common in
+    the wild ("6" Floppy Disk", backslash-laden Windows-style paths, etc.) -- would
+    silently produce a detection_tables.h that fails to compile, since nothing
+    in the Python code would ever raise an error about it.
+    """
+    s = str(text) if text is not None else ""
+    s = s.replace("\\", "\\\\").replace('"', '\\"')
+    # Strip control/newline characters that would break out of the string
+    # literal or corrupt the generated header (e.g. embedded NUL/CR/LF).
+    s = "".join(ch for ch in s if ch >= " " or ch == "\t")
+    return s
 
 
 def slugify(text: str) -> str:
@@ -49,11 +66,19 @@ class Synthesizer:
         """Generates a single C++ ADGameDescription struct block with full hash suite annotations."""
         platform_cpp = PLATFORM_MAP_SCUMMVM.get(record["platform"], "Common::kPlatformUnknown")
 
-        cpp = f"""\t// MD5 Head (5KB): {record.get('md5_5000', 'N/A')} | SHA-256: {record.get('sha256', 'N/A')} | SHA-1: {record.get('sha1', 'N/A')} | CRC32: {record.get('crc32', 'N/A')} | XXH64: {record.get('xxh64', 'N/A')}
+        game_id = cpp_escape(record["game_id"])
+        title = cpp_escape(record["title"])
+        platform_label = cpp_escape(str(record["platform"]).upper())
+        year_label = cpp_escape(record["year"] or "Unknown")
+        filename = cpp_escape(record["filename"])
+        md5_full = cpp_escape(record["md5_full"])
+        file_size = record["file_size"] if isinstance(record["file_size"], int) else 0
+
+        cpp = f"""\t// MD5 Head (5KB): {cpp_escape(record.get('md5_5000', 'N/A'))} | SHA-256: {cpp_escape(record.get('sha256', 'N/A'))} | SHA-1: {cpp_escape(record.get('sha1', 'N/A'))} | CRC32: {cpp_escape(record.get('crc32', 'N/A'))} | XXH64: {cpp_escape(record.get('xxh64', 'N/A'))}
 \t{{
-\t\t"{record['game_id']}",
-\t\t"{record['title']} ({record['platform'].upper()}/{record['year'] or 'Unknown'})",
-\t\tAD_ENTRY1s("{record['filename']}", "{record['md5_full']}", {record['file_size']}),
+\t\t"{game_id}",
+\t\t"{title} ({platform_label}/{year_label})",
+\t\tAD_ENTRY1s("{filename}", "{md5_full}", {file_size}),
 \t\tCommon::ES_ESP,
 \t\t{platform_cpp},
 \t\tADGF_NO_FLAGS,

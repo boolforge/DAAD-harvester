@@ -43,7 +43,14 @@ class Settings(BaseSettings):
     backoff_max: float = Field(default=60.0, description="Max backoff delay in seconds")
 
     max_unpack_depth: int = Field(default=5, description="Max recursion depth for nested unpacking")
-    zip_bomb_max_ratio: float = Field(default=10.0, description="Max extracted/compressed file ratio limit")
+    # Retro disk/tape images (.dsk, .tap, .d64...) are mostly zero-padding and
+    # routinely compress 20-50x+ with plain DEFLATE, so the previous 10x
+    # default was rejecting legitimate DAAD game disk images as "zip bombs" --
+    # actively working against this tool's own purpose. 100x still catches
+    # genuine bombs (typically >1000x) while giving real retro archives
+    # headroom; combined with max_unpack_depth above, worst-case expansion
+    # stays bounded regardless, since DAAD-era games are inherently tiny.
+    zip_bomb_max_ratio: float = Field(default=100.0, description="Max extracted/compressed file ratio limit")
 
     parallel_workers: int = Field(default=8, description="Number of parallel execution workers")
     log_file: Path = Field(default=Path("./output/logs/daad_general.log"), description="Path to main log file")
