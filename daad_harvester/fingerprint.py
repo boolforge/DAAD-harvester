@@ -42,6 +42,20 @@ class Fingerprinter:
             platform_hint = analysis["platform"]
             confidence = analysis["confidence"]
 
+            # If top-level analysis is false, scan for embedded DDB process table
+            if not is_daad:
+                embedded = self.parser.find_embedded_ddb(data)
+                if embedded:
+                    offset, ddb_bytes = embedded
+                    sub_analysis = self.parser.parse_ddb(ddb_bytes, artifact.original_filename)
+                    if sub_analysis["is_daad"]:
+                        is_daad = True
+                        version_guess = sub_analysis["version"] or "Embedded DAAD DDB"
+                        platform_hint = sub_analysis["platform"]
+                        confidence = sub_analysis["confidence"]
+                        analysis = sub_analysis
+                        logger.info("embedded_ddb_found", artifact_id=artifact.id, offset=offset)
+
             self.db.update_artifact_fingerprint(
                 artifact_id=artifact.id,
                 is_daad_payload=is_daad,

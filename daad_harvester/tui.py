@@ -226,12 +226,16 @@ class TUIDashboard:
         """
         stop_event = asyncio.Event()
 
-        # Keyboard event loop using termios raw mode
+        # Keyboard event loop using termios raw mode with safe TTY check
         async def listen_keys():
-            if not sys.stdin.isatty():
+            if not sys.stdin or not hasattr(sys.stdin, "isatty") or not sys.stdin.isatty():
                 return
-            fd = sys.stdin.fileno()
-            old_settings = termios.tcgetattr(fd)
+            try:
+                fd = sys.stdin.fileno()
+                old_settings = termios.tcgetattr(fd)
+            except Exception:
+                return
+
             try:
                 tty.setraw(fd)
                 loop = asyncio.get_event_loop()
@@ -245,10 +249,13 @@ class TUIDashboard:
                         break
                     key = ch.decode("utf-8", errors="ignore")
                     self.handle_key_input(key)
-            except Exception:
+            except Exception as exc:
                 pass
             finally:
-                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+                try:
+                    termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+                except Exception:
+                    pass
 
         async def update_loop():
             with Live(self.render(), console=self.console, refresh_per_second=4, transient=False) as live:
