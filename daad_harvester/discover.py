@@ -13,6 +13,7 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import SourceTier, SourceStatus
 from daad_harvester.seeds import CANONICAL_DAAD_SEEDS
+from daad_harvester.daad_logger import LoggerSuite
 
 logger = structlog.get_logger(__name__)
 
@@ -42,6 +43,7 @@ class Discoverer:
         self.db = db
         self.rate_limiter = RateLimiter(settings.rate_limit_per_domain)
         self.discovered_urls: Set[str] = set()
+        self.logger_suite = LoggerSuite(settings.logs_dir)
 
     def _get_random_user_agent(self) -> str:
         return random.choice(settings.user_agents)
@@ -110,6 +112,7 @@ class Discoverer:
 
     def load_canonical_seeds(self) -> None:
         """Loads built-in canonical DAAD seed releases into database."""
+        count = 0
         for seed in CANONICAL_DAAD_SEEDS:
             self._add_source(
                 url=seed["url"],
@@ -121,6 +124,8 @@ class Discoverer:
                 author=seed.get("author"),
                 language=seed.get("language")
             )
+            count += 1
+        self.logger_suite.log_discovery("CANONICAL SEEDS", "built-in", count, status="LOADED")
 
     # --- Discovery Crawlers ---
 
@@ -131,6 +136,7 @@ class Discoverer:
             'q=title:("Aventuras AD")+AND+mediatype:(software)',
             'q=title:("DAAD Ready")+AND+mediatype:(software)'
         ]
+        found = 0
         for q in queries:
             url = f"https://archive.org/advancedsearch.php?{q}&fl[]=identifier,title,mediatype&sort[]=downloads+desc&rows=50&page=1&output=json"
             data = await self._fetch_url(client, url, is_json=True)
@@ -147,10 +153,13 @@ class Discoverer:
                                 if any(fname.lower().endswith(ext) for ext in [".zip", ".dsk", ".tap", ".tzx", ".d64", ".adf", ".st", ".ddb", ".7z", ".rar", ".lha"]):
                                     dl_url = f"https://archive.org/download/{identifier}/{fname}"
                                     self._add_source(dl_url, SourceTier.ARCHIVE, title=title)
+                                    found += 1
+        self.logger_suite.log_discovery("INTERNET ARCHIVE", "archive.org", found)
 
     async def discover_aminet(self, client: httpx.AsyncClient) -> None:
         """Query Aminet Amiga software database for DAAD releases."""
         url = "http://aminet.net/search?query=daad"
+        found = 0
         content = await self._fetch_url(client, url)
         if content:
             soup = BeautifulSoup(content, "html.parser")
@@ -160,6 +169,8 @@ class Discoverer:
                     full_url = urljoin("http://aminet.net", href)
                     if full_url.endswith(".lha"):
                         self._add_source(full_url, SourceTier.ARCHIVE, platform="amiga")
+                        found += 1
+        self.logger_suite.log_discovery("AMINET AMIGA", url, found)
 
     async def discover_github(self, client: httpx.AsyncClient) -> None:
         """Query GitHub Search API for open source DAAD Ready games and compilers, with strict filtering."""
@@ -170,6 +181,7 @@ class Discoverer:
             "topic:daad-ready",
             "topic:aventuras-ad"
         ]
+        found = 0
         for q in queries:
             url = f"https://api.github.com/search/repositories?q={q}&sort=updated"
             data = await self._fetch_url(client, url, is_json=True)
@@ -179,16 +191,18 @@ class Discoverer:
                     description = repo.get("description", "") or ""
                     owner = repo.get("owner", {}).get("login")
 
-                    # Strict filter: Must contain DAAD keywords in name, description, or topics
                     text = f"{repo_name} {description}".lower()
                     if any(kw in text for kw in ["daad", "ddb", "aventuras ad", "gilsoft", "drc", "undaad", "maluva"]):
                         if owner and repo_name:
                             zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/main.zip"
                             self._add_source(zip_url, SourceTier.API, title=repo_name)
+                            found += 1
+        self.logger_suite.log_discovery("GITHUB REPOSITORIES", "api.github.com", found)
 
     async def discover_itchio(self, client: httpx.AsyncClient) -> None:
         """Query itch.io for DAAD adventure game entries."""
         tags = ["daad", "daad-ready", "aventuras-ad"]
+        found = 0
         for tag in tags:
             url = f"https://itch.io/games/tag-{tag}"
             content = await self._fetch_url(client, url)
@@ -199,10 +213,13 @@ class Discoverer:
                     if "itch.io/" in href and not href.endswith(("/community", "/comments", "/devlog")):
                         if any(term in href.lower() for term in ["game", "daad", "aventura", "download"]):
                             self._add_source(href, SourceTier.FORUM)
+                            found += 1
+        self.logger_suite.log_discovery("ITCH.IO", "itch.io", found)
 
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:
         """Query IFDB API for DAAD tags."""
         tags = ["daad", "daad ready", "aventuras ad"]
+        found = 0
         for tag in tags:
             url = f"https://ifdb.org/search?searchfor=tag:{tag}&xml=1"
             content = await self._fetch_url(client, url)
@@ -212,10 +229,13 @@ class Discoverer:
                     href = link.text or link.get("href")
                     if href and any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                         self._add_source(href, SourceTier.API)
+                        found += 1
+        self.logger_suite.log_discovery("IFDB", "ifdb.org", found)
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> None:
         """Query ZXDB API for DAAD Spectrum games."""
         url = "https://zxdb.zxinfo.org/api/v2/games?engine=DAAD"
+        found = 0
         data = await self._fetch_url(client, url, is_json=True)
         if isinstance(data, list):
             for entry in data:
@@ -223,12 +243,15 @@ class Discoverer:
                 for dl in entry.get("downloads", []):
                     if "url" in dl:
                         self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
+                        found += 1
         elif isinstance(data, dict) and "hits" in data:
             for hit in data["hits"]:
                 title = hit.get("title")
                 for dl in hit.get("downloads", []):
                     if "url" in dl:
                         self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
+                        found += 1
+        self.logger_suite.log_discovery("ZXDB SPECTRUM", url, found)
 
     async def discover_spectrum_computing(self, client: httpx.AsyncClient) -> None:
         """Query Spectrum Computing for DAAD entries and downloads."""
@@ -236,6 +259,7 @@ class Discoverer:
             "https://spectrumcomputing.co.uk/entry/30013/ZX-Spectrum/DAAD",
             "https://spectrumcomputing.co.uk/index.php?cat=96&id=30013"
         ]
+        found = 0
         for url in urls:
             content = await self._fetch_url(client, url)
             if content:
@@ -245,10 +269,13 @@ class Discoverer:
                     if any(ext in href.lower() for ext in [".zip", ".tap", ".tzx", ".dsk", ".tzx.zip", ".tap.zip", "download"]):
                         full_url = urljoin(url, href)
                         self._add_source(full_url, SourceTier.ARCHIVE, platform="zx")
+                        found += 1
+        self.logger_suite.log_discovery("SPECTRUM COMPUTING", "spectrumcomputing.co.uk", found)
 
     async def discover_wikicaad(self, client: httpx.AsyncClient) -> None:
         """Query WikiCAAD API for DAAD game entries."""
         url = "https://wiki.caad.es/api.php?action=query&list=search&srsearch=DAAD&format=json"
+        found = 0
         data = await self._fetch_url(client, url, is_json=True)
         if data and "query" in data and "search" in data["query"]:
             for item in data["query"]["search"]:
@@ -263,6 +290,8 @@ class Discoverer:
                             if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                                 full_url = urljoin(page_url, href)
                                 self._add_source(full_url, SourceTier.API, title=title)
+                                found += 1
+        self.logger_suite.log_discovery("WIKICAAD", url, found)
 
     async def discover_ifarchive(self, client: httpx.AsyncClient) -> None:
         """Traverse IF Archive directories for DAAD files."""
@@ -271,6 +300,7 @@ class Discoverer:
             "https://ifarchive.org/indexes/if-archive/games/pc/",
             "https://ifarchive.org/indexes/if-archive/programming/daad/"
         ]
+        found = 0
         for base_url in dirs:
             content = await self._fetch_url(client, base_url)
             if content:
@@ -282,6 +312,8 @@ class Discoverer:
                     if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
                         full_url = urljoin(base_url, href).split("#")[0]
                         self._add_source(full_url, SourceTier.ARCHIVE)
+                        found += 1
+        self.logger_suite.log_discovery("IF ARCHIVE", "ifarchive.org", found)
 
     async def run_all_discovery(self) -> None:
         """Executes all discovery tasks asynchronously with high parallel concurrency."""

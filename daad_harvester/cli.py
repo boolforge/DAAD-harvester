@@ -83,6 +83,7 @@ def main() -> None:
     # Configure paths and settings
     settings.output_dir = args.output_dir.resolve()
     settings.db_path = settings.output_dir / "state.db"
+    settings.logs_dir = settings.output_dir / "logs"
     settings.parallel_workers = args.parallel
     if args.proxy_list:
         settings.proxy_list_file = args.proxy_list.resolve()
@@ -96,39 +97,52 @@ def main() -> None:
     settings.output_dir.mkdir(parents=True, exist_ok=True)
 
     db = Database(settings.db_path)
+    db.backfill_and_rescan_session()
+
     logger.info("starting_daad_harvester", phase=args.phase, db_path=str(settings.db_path))
 
     phase = args.phase
+    dashboard = TUIDashboard(db) if args.tui else None
 
     async def run_pipeline():
         collisions = []
 
         # Phase 1: Discover
         if phase in ("discover", "all"):
+            if dashboard:
+                dashboard.set_active_phase("1. DISCOVER")
             logger.info("executing_phase_discover")
             discoverer = Discoverer(db)
             await discoverer.run_all_discovery()
 
         # Phase 2: Fetch
         if phase in ("fetch", "all"):
+            if dashboard:
+                dashboard.set_active_phase("2. FETCH")
             logger.info("executing_phase_fetch")
             fetcher = Fetcher(db, download_dir=settings.output_dir / "downloads")
             await fetcher.fetch_pending_sources(parallel=args.parallel)
 
         # Phase 3: Unpack
         if phase in ("unpack", "all"):
+            if dashboard:
+                dashboard.set_active_phase("3. UNPACK")
             logger.info("executing_phase_unpack")
             unpacker = Unpacker(db, extract_dir=settings.output_dir / "extracted")
             unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
 
         # Phase 4: Fingerprint
         if phase in ("fingerprint", "all"):
+            if dashboard:
+                dashboard.set_active_phase("4. FINGERPRINT")
             logger.info("executing_phase_fingerprint")
             fingerprinter = Fingerprinter(db)
             fingerprinter.scan_all_artifacts()
 
         # Phase 5: Synthesize & Report
         if phase in ("synthesize", "all"):
+            if dashboard:
+                dashboard.set_active_phase("5. SYNTHESIZE")
             logger.info("executing_phase_synthesize")
             synthesizer = Synthesizer(db, output_dir=settings.output_dir)
             json_path, header_path, collisions = synthesizer.synthesize_catalog()
@@ -138,26 +152,11 @@ def main() -> None:
 
             logger.info("pipeline_completed_successfully", catalog=str(json_path), header=str(header_path), report=str(report_path))
 
-    async def run_with_tui():
-        dashboard = TUIDashboard(db)
-        stop_event = asyncio.Event()
-
-        async def update_tui_loop():
-            with Live(dashboard.render(), console=dashboard.console, refresh_per_second=4) as live:
-                while not stop_event.is_set():
-                    live.update(dashboard.render())
-                    await asyncio.sleep(0.25)
-                live.update(dashboard.render())
-
-        tui_task = asyncio.create_task(update_tui_loop())
-        try:
-            await run_pipeline()
-        finally:
-            stop_event.set()
-            await tui_task
+        if dashboard:
+            dashboard.set_active_phase("COMPLETED")
 
     if args.tui:
-        asyncio.run(run_with_tui())
+        asyncio.run(dashboard.run_live_tui_async(run_pipeline))
     else:
         asyncio.run(run_pipeline())
 

@@ -1,20 +1,21 @@
-"""Dedicated logger for DAAD game discoveries writing to daad_games.log with automatic timestamped rotation."""
+"""Dedicated log management suite for DAAD Harvester with rotating, tagged logs in a dedicated logs directory."""
 
-import json
+import logging
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional
 import structlog
 
-from daad_harvester.config import settings
 
-logger = structlog.get_logger(__name__)
+# Global run timestamp tag for the active harvester session
+SESSION_TAG = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 
 def rotate_log_file(log_path: Path) -> Optional[Path]:
     """
     If log_path exists and is non-empty, renames it to a timestamped backup file:
-    e.g. daad_games_20260817_123045.log or daad-harvester_20260817_123045.log.
+    e.g. daad_games_20260817_123045.log.
     Returns the rotated path if rotated, else None.
     """
     if log_path.exists() and log_path.stat().st_size > 0:
@@ -24,7 +25,6 @@ def rotate_log_file(log_path: Path) -> Optional[Path]:
         rotated_name = f"{stem}_{now_str}{ext}"
         rotated_path = log_path.parent / rotated_name
 
-        # If rotated path happens to exist, append milliseconds
         if rotated_path.exists():
             ms_str = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
             rotated_path = log_path.parent / f"{stem}_{ms_str}{ext}"
@@ -32,54 +32,143 @@ def rotate_log_file(log_path: Path) -> Optional[Path]:
         try:
             log_path.rename(rotated_path)
             return rotated_path
-        except Exception as exc:
-            logger.warning("failed_to_rotate_log_file", original=str(log_path), error=str(exc))
+        except Exception:
+            pass
     return None
 
 
-class DAADGamesLogger:
-    """Writes dedicated, structured records of verified DAAD games to daad_games.log."""
+class LoggerSuite:
+    """
+    Manages dedicated, tagged rotating log files in a specific logs/ directory:
+      - daad_general.log (Overall system activity & lifecycle)
+      - daad_games.log (Verified DAAD games & metadata)
+      - daad_errors.log (System errors, exceptions & network failures)
+      - daad_compression_errors.log (Archive extraction & container unpack errors)
+      - daad_downloads.log (Download attempts, status HTTP, Wayback fallback & OK/Fail records)
+      - daad_discovery.log (Crawl results, seed loads, found URLs & domain responses)
+    """
 
-    def __init__(self, log_path: Optional[Path] = None, auto_rotate: bool = True):
-        self.log_path = log_path or (settings.output_dir / "daad_games.log")
-        self.log_path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, logs_dir: Path, session_tag: str = SESSION_TAG, auto_rotate: bool = True):
+        self.logs_dir = Path(logs_dir)
+        self.logs_dir.mkdir(parents=True, exist_ok=True)
+        self.session_tag = session_tag
+
+        self.general_log_path = self.logs_dir / "daad_general.log"
+        self.games_log_path = self.logs_dir / "daad_games.log"
+        self.errors_log_path = self.logs_dir / "daad_errors.log"
+        self.compression_errors_log_path = self.logs_dir / "daad_compression_errors.log"
+        self.downloads_log_path = self.logs_dir / "daad_downloads.log"
+        self.discovery_log_path = self.logs_dir / "daad_discovery.log"
+
         if auto_rotate:
-            rotate_log_file(self.log_path)
+            for p in [
+                self.general_log_path,
+                self.games_log_path,
+                self.errors_log_path,
+                self.compression_errors_log_path,
+                self.downloads_log_path,
+                self.discovery_log_path
+            ]:
+                rotate_log_file(p)
 
-    def log_daad_game(self, game_info: Dict[str, Any], status_prefix: str = "VERIFIED DAAD GAME") -> None:
-        """
-        Appends a formatted, timestamped record for a verified DAAD game to daad_games.log.
-        """
+    def _append_record(self, log_path: Path, header: str, data: Dict[str, Any]) -> None:
+        """Appends a structured, timestamped block tagged with the session ID."""
         now = datetime.now().isoformat()
-
-        entry_lines = [
+        lines = [
             f"================================================================================",
-            f"STATUS:          {status_prefix}",
-            f"TIMESTAMP:       {now}",
-            f"GAME ID:         {game_info.get('game_id', 'N/A')}",
-            f"TITLE:           {game_info.get('title', 'Unknown Title')}",
-            f"PLATFORM:        {str(game_info.get('platform', 'unknown')).upper()}",
-            f"VERSION GUESS:   {game_info.get('daad_version_guess', 'DAAD DDB')}",
-            f"LANGUAGE:        {game_info.get('language', 'es')}",
-            f"FILENAME:        {game_info.get('filename', 'N/A')}",
-            f"FILE SIZE:       {game_info.get('file_size', 0)} bytes",
-            f"SOURCE URL:      {game_info.get('source_url', 'N/A')}",
-            f"EXTRACTED PATH:  {game_info.get('extracted_path', 'N/A')}",
-            f"--- HASHES ---",
-            f"MD5 (Full):      {game_info.get('md5_full', 'N/A')}",
-            f"MD5 (5KB Head):  {game_info.get('md5_5000', 'N/A')}",
-            f"SHA-256:         {game_info.get('sha256', 'N/A')}",
-            f"SHA-1:           {game_info.get('sha1', 'N/A')}",
-            f"CRC32:           {game_info.get('crc32', 'N/A')}",
-            f"XXH64:           {game_info.get('xxh64', 'N/A')}",
-            f"================================================================ drop\n"
+            f"SESSION TAG:     {self.session_tag}",
+            f"CATEGORY:        {header}",
+            f"TIMESTAMP:       {now}"
         ]
 
-        text_block = "\n".join(entry_lines)
+        for k, v in data.items():
+            if k == "hashes" and isinstance(v, dict):
+                lines.append("--- HASHES ---")
+                for hk, hv in v.items():
+                    lines.append(f"{hk.upper():<16}: {hv}")
+            else:
+                formatted_key = k.upper().replace("_", " ")
+                lines.append(f"{formatted_key:<16}: {v}")
+
+        lines.append("================================================================ drop\n")
+        text_block = "\n".join(lines)
 
         try:
-            with open(self.log_path, "a", encoding="utf-8") as f:
+            with open(log_path, "a", encoding="utf-8") as f:
                 f.write(text_block)
-            logger.info("daad_game_logged_to_file", title=game_info.get("title"), path=str(self.log_path))
         except Exception as exc:
-            logger.error("failed_to_write_daad_games_log", error=str(exc))
+            logging.error(f"Failed writing to log file {log_path}: {exc}")
+
+    def log_general(self, message: str, level: str = "INFO", **kwargs: Any) -> None:
+        data = {"message": message, "level": level, **kwargs}
+        self._append_record(self.general_log_path, "GENERAL ACTIVITY", data)
+
+    def log_game(self, game_info: Dict[str, Any], status_prefix: str = "VERIFIED DAAD GAME") -> None:
+        game_data = {
+            "game_id": game_info.get("game_id", "N/A"),
+            "title": game_info.get("title", "Unknown Title"),
+            "platform": str(game_info.get("platform", "unknown")).upper(),
+            "version_guess": game_info.get("daad_version_guess", "DAAD DDB"),
+            "language": game_info.get("language", "es"),
+            "filename": game_info.get("filename", "N/A"),
+            "file_size": f"{game_info.get('file_size', 0)} bytes",
+            "source_url": game_info.get("source_url", "N/A"),
+            "extracted_path": game_info.get("extracted_path", "N/A"),
+            "hashes": {
+                "md5_full": game_info.get("md5_full", "N/A"),
+                "md5_5000": game_info.get("md5_5000", "N/A"),
+                "sha256": game_info.get("sha256", "N/A"),
+                "sha1": game_info.get("sha1", "N/A"),
+                "crc32": game_info.get("crc32", "N/A"),
+                "xxh64": game_info.get("xxh64", "N/A")
+            }
+        }
+        self._append_record(self.games_log_path, status_prefix, game_data)
+
+    def log_error(self, component: str, error_msg: str, context: Optional[Dict[str, Any]] = None) -> None:
+        data = {"component": component, "error": error_msg}
+        if context:
+            data.update(context)
+        self._append_record(self.errors_log_path, "SYSTEM ERROR", data)
+
+    def log_compression_error(self, file_path: str, archive_type: str, error_msg: str, tool_used: str = "N/A") -> None:
+        data = {
+            "file_path": file_path,
+            "archive_type": archive_type,
+            "tool_used": tool_used,
+            "error": error_msg
+        }
+        self._append_record(self.compression_errors_log_path, "COMPRESSION / EXTRACTION ERROR", data)
+
+    def log_download(self, url: str, status: str, http_code: Optional[int] = None, local_path: Optional[str] = None, wayback_used: bool = False, error: Optional[str] = None) -> None:
+        data = {
+            "url": url,
+            "status": status,
+            "http_code": http_code if http_code is not None else "N/A",
+            "local_path": local_path or "N/A",
+            "wayback_used": wayback_used
+        }
+        if error:
+            data["error"] = error
+        self._append_record(self.downloads_log_path, "DOWNLOAD STATUS", data)
+
+    def log_discovery(self, source_name: str, url: str, items_found: int, status: str = "OK", details: Optional[str] = None) -> None:
+        data = {
+            "source_name": source_name,
+            "url": url,
+            "items_found": items_found,
+            "status": status
+        }
+        if details:
+            data["details"] = details
+        self._append_record(self.discovery_log_path, "DISCOVERY CRAWL", data)
+
+
+# Backwards compatible alias for DAADGamesLogger
+class DAADGamesLogger:
+    def __init__(self, log_path: Optional[Path] = None, auto_rotate: bool = True):
+        logs_dir = log_path.parent if log_path else Path("./output/logs")
+        self.suite = LoggerSuite(logs_dir=logs_dir, auto_rotate=auto_rotate)
+
+    def log_daad_game(self, game_info: Dict[str, Any], status_prefix: str = "VERIFIED DAAD GAME") -> None:
+        self.suite.log_game(game_info, status_prefix=status_prefix)

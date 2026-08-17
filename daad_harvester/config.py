@@ -31,6 +31,7 @@ class Settings(BaseSettings):
 
     output_dir: Path = Field(default=Path("./output"))
     db_path: Path = Field(default=Path("./output/state.db"))
+    logs_dir: Path = Field(default=Path("./output/logs"))
     proxy_list_file: Optional[Path] = Field(default=None)
     proxy_list: List[str] = Field(default_factory=list)
     user_agents: List[str] = Field(default_factory=lambda: DEFAULT_USER_AGENTS)
@@ -45,7 +46,7 @@ class Settings(BaseSettings):
     zip_bomb_max_ratio: float = Field(default=10.0, description="Max extracted/compressed file ratio limit")
 
     parallel_workers: int = Field(default=8, description="Number of parallel execution workers")
-    log_file: Path = Field(default=Path("./daad-harvester.log"), description="Path to log file")
+    log_file: Path = Field(default=Path("./output/logs/daad_general.log"), description="Path to main log file")
     log_level: str = Field(default="INFO", description="Logging level")
 
     def load_proxies(self) -> None:

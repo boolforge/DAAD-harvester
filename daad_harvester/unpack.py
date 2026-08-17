@@ -38,6 +38,7 @@ import structlog
 from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, SourceRecord, SourceStatus
+from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.exceptions import UnpackError
 
 logger = structlog.get_logger(__name__)
@@ -164,6 +165,7 @@ class Unpacker:
         self.db = db
         self.extract_dir = extract_dir or (settings.output_dir / "extracted")
         self.extract_dir.mkdir(parents=True, exist_ok=True)
+        self.logger_suite = LoggerSuite(settings.logs_dir)
 
     def _is_zip_bomb(self, compressed_size: int, uncompressed_size: int) -> bool:
         """Zip bomb protection check (10x ratio default limit)."""
@@ -221,7 +223,9 @@ class Unpacker:
 
                     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=tmpdir, timeout=60)
                     if res.returncode != 0:
-                        logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=res.stderr.decode('utf-8', errors='ignore'))
+                        err_text = res.stderr.decode('utf-8', errors='ignore')
+                        logger.warning("cli_unpack_failed", file=str(file_path), exe=exe, stderr=err_text)
+                        self.logger_suite.log_compression_error(str(file_path), archive_type, err_text, tool_used=exe)
                         continue
 
                     extracted = []
@@ -234,15 +238,18 @@ class Unpacker:
                         return extracted
             except Exception as exc:
                 logger.warning("cli_unpack_exception", file=str(file_path), exe=exe, error=str(exc))
+                self.logger_suite.log_compression_error(str(file_path), archive_type, str(exc), tool_used=exe)
 
         missing_tools = [exe for exe in tools if not shutil.which(exe)]
+        msg = f"Consider installing system packages for {archive_type}: {', '.join(missing_tools)}" if missing_tools else "All candidate tools were tried but failed."
         logger.warning(
             "cli_unpack_tool_not_found_or_failed",
             file=str(file_path),
             archive_type=archive_type,
             tested_tools=tested_tools,
-            recommended_install=f"Consider installing system packages for {archive_type}: {', '.join(missing_tools)}" if missing_tools else "All candidate tools were tried but failed."
+            recommended_install=msg
         )
+        self.logger_suite.log_compression_error(str(file_path), archive_type, msg, tool_used="CLI Fallback Suite")
         return []
 
     # --- Layer 1: Standard Archives ---
@@ -260,6 +267,7 @@ class Unpacker:
                 total_uncompressed = sum(info.file_size for info in zf.infolist())
                 if self._is_zip_bomb(compressed_size, total_uncompressed):
                     logger.warning("zip_bomb_detected", file=str(file_path))
+                    self.logger_suite.log_compression_error(str(file_path), "zip", "Zip bomb ratio limit exceeded")
                     return []
 
                 for info in zf.infolist():
@@ -295,30 +303,35 @@ class Unpacker:
             except Exception as exc:
                 logger.warning("zip_py7zr_fallback_failed", file=str(file_path), error=str(exc))
 
-        # If fallbacks failed as well, log member read errors that occurred earlier
         for member, err in read_errors:
             logger.warning("zip_read_error", file=str(file_path), member=member, error=err)
+            self.logger_suite.log_compression_error(str(file_path), "zip", f"Member {member}: {err}")
 
         return extracted
 
     def unpack_tar(self, file_path: Path) -> List[Tuple[str, bytes]]:
         extracted = []
         compressed_size = file_path.stat().st_size
-        with tarfile.open(file_path, 'r:*') as tf:
-            total_uncompressed = sum(member.size for member in tf.getmembers() if member.isfile())
-            if self._is_zip_bomb(compressed_size, total_uncompressed):
-                logger.warning("tar_zip_bomb_detected", file=str(file_path))
-                return []
-            for member in tf.getmembers():
-                if not member.isfile():
-                    continue
-                try:
-                    f = tf.extractfile(member)
-                    if f:
-                        data = f.read()
-                        extracted.append((member.name, data))
-                except Exception as exc:
-                    logger.warning("tar_read_error", file=str(file_path), member=member.name, error=str(exc))
+        try:
+            with tarfile.open(file_path, 'r:*') as tf:
+                total_uncompressed = sum(member.size for member in tf.getmembers() if member.isfile())
+                if self._is_zip_bomb(compressed_size, total_uncompressed):
+                    logger.warning("tar_zip_bomb_detected", file=str(file_path))
+                    self.logger_suite.log_compression_error(str(file_path), "tar", "Zip bomb ratio limit exceeded")
+                    return []
+                for member in tf.getmembers():
+                    if not member.isfile():
+                        continue
+                    try:
+                        f = tf.extractfile(member)
+                        if f:
+                            data = f.read()
+                            extracted.append((member.name, data))
+                    except Exception as exc:
+                        logger.warning("tar_read_error", file=str(file_path), member=member.name, error=str(exc))
+                        self.logger_suite.log_compression_error(str(file_path), "tar", f"Member {member.name}: {exc}")
+        except Exception as exc:
+            self.logger_suite.log_compression_error(str(file_path), "tar", str(exc))
         return extracted
 
     def unpack_7z(self, file_path: Path) -> List[Tuple[str, bytes]]:
@@ -334,8 +347,6 @@ class Unpacker:
                     return extracted
             except Exception as exc:
                 logger.warning("7z_py7zr_error_trying_cli", file=str(file_path), error=str(exc))
-        else:
-            logger.warning("py7zr_not_available_using_cli", file=str(file_path))
 
         return self._unpack_via_cli(file_path, archive_type="7z")
 
@@ -364,6 +375,7 @@ class Unpacker:
 
         for member, err in rar_errors:
             logger.warning("rar_read_error", file=str(file_path), member=member, error=err)
+            self.logger_suite.log_compression_error(str(file_path), "rar", f"Member {member}: {err}")
 
         return extracted
 
@@ -510,7 +522,6 @@ class Unpacker:
         """Routes container data to proper unpacker based on extension and magic byte sniffing."""
         ext = Path(filename).suffix.lower()
 
-        # Magic byte sniffing
         is_zip = data.startswith(b"PK\x03\x04") or data.startswith(b"PK\x05\x06") or data.startswith(b"PK\x07\x08") or ext == '.zip'
         is_7z = data.startswith(b"7z\xbc\xaf\x27\x1c") or ext == '.7z'
         is_rar = data.startswith(b"Rar!\x1a\x07") or ext == '.rar'
@@ -649,6 +660,7 @@ class Unpacker:
             self.db.update_artifact_unpacked(artifact_id, unpacked=True)
         except Exception as exc:
             logger.warning("artifact_unpack_exception", artifact_id=artifact_id, error=str(exc))
+            self.logger_suite.log_compression_error(str(dest_path), "recursive", str(exc))
 
         return artifact_ids
 
@@ -672,6 +684,7 @@ class Unpacker:
             return len(ids)
         except Exception as exc:
             logger.error("source_unpack_failed", source_id=src.id, error=str(exc))
+            self.logger_suite.log_compression_error(src.local_path, "source", str(exc))
             self.db.update_source_status(src.id, status=SourceStatus.PARTIALLY_UNPACKED.value)
             return 0
 
