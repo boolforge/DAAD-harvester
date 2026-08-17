@@ -1,9 +1,9 @@
-"""Discovery module for crawling retro-computing archives, APIs, and repositories for DAAD games."""
+"""Discovery module for crawling retro-computing archives, APIs, web search engines, and repositories for DAAD games."""
 
 import asyncio
 import random
 import re
-from urllib.parse import urljoin, urlparse, quote
+from urllib.parse import urljoin, urlparse, quote, unquote
 from typing import List, Set, Optional, Dict, Any
 import httpx
 from bs4 import BeautifulSoup
@@ -37,7 +37,7 @@ class RateLimiter:
 
 
 class Discoverer:
-    """Crawls external databases, archives, and repositories across mass retro ecosystems to discover DAAD games."""
+    """Crawls external databases, retro archives, web search engines, and repositories to discover DAAD games."""
 
     def __init__(self, db: Database):
         self.db = db
@@ -48,18 +48,16 @@ class Discoverer:
     def _get_random_user_agent(self) -> str:
         return random.choice(settings.user_agents)
 
-    def _get_proxy(self) -> Optional[str]:
-        if settings.proxy_list:
-            return random.choice(settings.proxy_list)
-        return None
-
     async def _fetch_url(
         self, client: httpx.AsyncClient, url: str, is_json: bool = False
     ) -> Optional[Any]:
         domain = urlparse(url).netloc
         await self.rate_limiter.acquire(domain)
 
-        headers = {"User-Agent": self._get_random_user_agent()}
+        headers = {
+            "User-Agent": self._get_random_user_agent(),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,json;q=0.8,*/*;q=0.7"
+        }
 
         attempt = 0
         backoff = settings.backoff_base
@@ -173,7 +171,7 @@ class Discoverer:
         self.logger_suite.log_discovery("AMINET AMIGA", url, found)
 
     async def discover_github(self, client: httpx.AsyncClient) -> None:
-        """Query GitHub Search API for open source DAAD Ready games and compilers, with strict filtering."""
+        """Query GitHub Search API for open source DAAD Ready games and compilers."""
         queries = [
             "%22DAAD+Ready%22",
             "daad+aventura",
@@ -210,10 +208,10 @@ class Discoverer:
                 soup = BeautifulSoup(content, "html.parser")
                 for a in soup.find_all("a", href=True):
                     href = a["href"]
-                    if "itch.io/" in href and not href.endswith(("/community", "/comments", "/devlog")):
-                        if any(term in href.lower() for term in ["game", "daad", "aventura", "download"]):
-                            self._add_source(href, SourceTier.FORUM)
-                            found += 1
+                    if "itch.io" in href and not any(href.endswith(ext) for ext in ["/community", "/comments", "/devlog"]):
+                        title = a.get_text(strip=True) or "Itch.io DAAD Game"
+                        self._add_source(href, SourceTier.FORUM, title=title)
+                        found += 1
         self.logger_suite.log_discovery("ITCH.IO", "itch.io", found)
 
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:
@@ -225,52 +223,39 @@ class Discoverer:
             content = await self._fetch_url(client, url)
             if content:
                 soup = BeautifulSoup(content, "xml")
-                for link in soup.find_all("link"):
-                    href = link.text or link.get("href")
-                    if href and any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
-                        self._add_source(href, SourceTier.API)
-                        found += 1
+                for game in soup.find_all("game"):
+                    title = game.find("title").get_text(strip=True) if game.find("title") else "IFDB Game"
+                    for link in game.find_all("url"):
+                        href = link.get_text(strip=True)
+                        if href and any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
+                            self._add_source(href, SourceTier.API, title=title)
+                            found += 1
         self.logger_suite.log_discovery("IFDB", "ifdb.org", found)
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> None:
-        """Query ZXDB API for DAAD Spectrum games."""
-        url = "https://zxdb.zxinfo.org/api/v2/games?engine=DAAD"
-        found = 0
-        data = await self._fetch_url(client, url, is_json=True)
-        if isinstance(data, list):
-            for entry in data:
-                title = entry.get("title")
-                for dl in entry.get("downloads", []):
-                    if "url" in dl:
-                        self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
-                        found += 1
-        elif isinstance(data, dict) and "hits" in data:
-            for hit in data["hits"]:
-                title = hit.get("title")
-                for dl in hit.get("downloads", []):
-                    if "url" in dl:
-                        self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
-                        found += 1
-        self.logger_suite.log_discovery("ZXDB SPECTRUM", url, found)
-
-    async def discover_spectrum_computing(self, client: httpx.AsyncClient) -> None:
-        """Query Spectrum Computing for DAAD entries and downloads."""
+        """Query ZXDB Spectrum Computing API for DAAD Spectrum games."""
         urls = [
-            "https://spectrumcomputing.co.uk/entry/30013/ZX-Spectrum/DAAD",
-            "https://spectrumcomputing.co.uk/index.php?cat=96&id=30013"
+            "https://zxdb.zxinfo.org/api/v2/games?engine=DAAD",
+            "https://zxdb.zxinfo.org/api/v2/games?search=DAAD"
         ]
         found = 0
         for url in urls:
-            content = await self._fetch_url(client, url)
-            if content:
-                soup = BeautifulSoup(content, "html.parser")
-                for a in soup.find_all("a", href=True):
-                    href = a["href"]
-                    if any(ext in href.lower() for ext in [".zip", ".tap", ".tzx", ".dsk", ".tzx.zip", ".tap.zip", "download"]):
-                        full_url = urljoin(url, href)
-                        self._add_source(full_url, SourceTier.ARCHIVE, platform="zx")
-                        found += 1
-        self.logger_suite.log_discovery("SPECTRUM COMPUTING", "spectrumcomputing.co.uk", found)
+            data = await self._fetch_url(client, url, is_json=True)
+            if isinstance(data, list):
+                for entry in data:
+                    title = entry.get("title")
+                    for dl in entry.get("downloads", []):
+                        if "url" in dl:
+                            self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
+                            found += 1
+            elif isinstance(data, dict) and "hits" in data:
+                for hit in data["hits"]:
+                    title = hit.get("title")
+                    for dl in hit.get("downloads", []):
+                        if "url" in dl:
+                            self._add_source(dl["url"], SourceTier.API, title=title, platform="zx")
+                            found += 1
+        self.logger_suite.log_discovery("ZXDB SPECTRUM", "zxdb.zxinfo.org", found)
 
     async def discover_wikicaad(self, client: httpx.AsyncClient) -> None:
         """Query WikiCAAD API for DAAD game entries."""
@@ -281,7 +266,7 @@ class Discoverer:
             for item in data["query"]["search"]:
                 title = item.get("title")
                 if title:
-                    page_url = f"https://wiki.caad.es/{title.replace(' ', '_')}"
+                    page_url = f"https://wiki.caad.es/{quote(title.replace(' ', '_'))}"
                     content = await self._fetch_url(client, page_url)
                     if content:
                         soup = BeautifulSoup(content, "html.parser")
@@ -315,6 +300,33 @@ class Discoverer:
                         found += 1
         self.logger_suite.log_discovery("IF ARCHIVE", "ifarchive.org", found)
 
+    async def discover_web_search(self, client: httpx.AsyncClient) -> None:
+        """Fallback web search engine discovery via DuckDuckGo HTML scraping for DAAD adventure games."""
+        search_queries = [
+            "DAAD adventure game download .dsk .tap .tzx .ddb",
+            "Aventuras AD DAAD games spectrum cpc amiga dos",
+            "DAAD Ready games zip download"
+        ]
+        found = 0
+        for query in search_queries:
+            url = f"https://html.duckduckgo.com/html/?q={quote(query)}"
+            content = await self._fetch_url(client, url)
+            if content:
+                soup = BeautifulSoup(content, "html.parser")
+                for a in soup.find_all("a", class_="result__url", href=True):
+                    href = a["href"]
+                    # Unescape DuckDuckGo link redirect parameter if present
+                    if "/l/?" in href and "uddg=" in href:
+                        match = re.search(r'uddg=([^&]+)', href)
+                        if match:
+                            href = unquote(match.group(1))
+
+                    if any(ext in href.lower() for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".rar", ".7z", ".lha"]):
+                        title = a.get_text(strip=True) or "Web Search Discovered Game"
+                        self._add_source(href, SourceTier.FORUM, title=title)
+                        found += 1
+        self.logger_suite.log_discovery("WEB SEARCH FALLBACK", "duckduckgo.com", found)
+
     async def run_all_discovery(self) -> None:
         """Executes all discovery tasks asynchronously with high parallel concurrency."""
         logger.info("starting_discovery_phase")
@@ -328,9 +340,9 @@ class Discoverer:
                 self.discover_itchio(client),
                 self.discover_ifdb(client),
                 self.discover_zxdb(client),
-                self.discover_spectrum_computing(client),
                 self.discover_wikicaad(client),
-                self.discover_ifarchive(client)
+                self.discover_ifarchive(client),
+                self.discover_web_search(client)
             ]
             await asyncio.gather(*tasks, return_exceptions=True)
         logger.info("discovery_phase_complete", total_discovered=len(self.discovered_urls))

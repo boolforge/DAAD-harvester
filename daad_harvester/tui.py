@@ -1,8 +1,10 @@
-"""Advanced, Termux-friendly Rich TUI Dashboard for DAAD Harvester."""
+"""Interactive, Async, Termux-friendly Rich TUI Dashboard for DAAD Harvester."""
 
 import asyncio
-import time
 import sys
+import time
+import termios
+import tty
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Callable
 from rich.console import Console
@@ -18,7 +20,7 @@ from daad_harvester.db import Database
 
 
 class TUIDashboard:
-    """Termux-friendly, flicker-free Rich TUI Dashboard for real-time ETL monitoring and DAAD game feed."""
+    """Fully interactive, async, non-blocking Rich TUI Dashboard with key bindings and tabs."""
 
     def __init__(self, db: Database):
         self.db = db
@@ -26,17 +28,66 @@ class TUIDashboard:
         self.start_time = time.time()
         self.active_phase = "INIT"
 
+        # Interactive state
+        self.active_tab = 0  # 0: Verified Games, 1: Discovered Sources, 2: Logs/Config
+        self.tabs = ["1. VERIFIED DAAD GAMES", "2. DISCOVERED SOURCES", "3. SYSTEM CONFIG & METRICS"]
+        self.selected_index = 0
+        self.search_filter = ""
+        self.in_search_mode = False
+        self.paused = False
+
     def set_active_phase(self, phase_name: str) -> None:
         self.active_phase = phase_name
+
+    def handle_key_input(self, key: str) -> None:
+        """Processes interactive keyboard shortcuts."""
+        if self.in_search_mode:
+            if key in ("\r", "\n", "\x1b"): # Enter or Escape exits search mode
+                self.in_search_mode = False
+            elif key in ("\x7f", "\x08"): # Backspace
+                self.search_filter = self.search_filter[:-1]
+            elif len(key) == 1 and key.isprintable():
+                self.search_filter += key
+            return
+
+        if key in ("\t", "t", "T"): # Tab key to switch tabs
+            self.active_tab = (self.active_tab + 1) % len(self.tabs)
+            self.selected_index = 0
+        elif key in ("w", "k", "A"): # Up / Arrow Up
+            self.selected_index = max(0, self.selected_index - 1)
+        elif key in ("s", "j", "B"): # Down / Arrow Down
+            self.selected_index += 1
+        elif key in ("/", "f", "F"): # Enter search mode
+            self.in_search_mode = True
+            self.search_filter = ""
+        elif key in ("c", "C"): # Clear search filter
+            self.search_filter = ""
+        elif key in ("p", "P"): # Pause toggle
+            self.paused = not self.paused
 
     def _make_header(self) -> Panel:
         grid = Table.grid(expand=True)
         grid.add_column(justify="left", ratio=1)
         grid.add_column(justify="right", ratio=1)
+
+        tab_headers = []
+        for i, name in enumerate(self.tabs):
+            if i == self.active_tab:
+                tab_headers.append(f"[bold black on yellow] {name} [/bold black on yellow]")
+            else:
+                tab_headers.append(f"[dim white] {name} [/dim white]")
+
+        tabs_str = " | ".join(tab_headers)
+        status_str = f"[bold green]v{__version__}[/bold green] | [bold yellow]Phase: {self.active_phase}[/bold yellow]"
+        if self.paused:
+            status_str += " | [bold red]PAUSED[/bold red]"
+
         grid.add_row(
-            "[bold cyan]🗡️ DAAD ENGINE HARVESTER & FORENSIC SUITE[/bold cyan]",
-            f"[bold green]v{__version__}[/bold green] | [bold yellow]Phase: {self.active_phase}[/bold yellow]"
+            "[bold cyan]🗡️ DAAD HARVESTER & FORENSIC SUITE[/bold cyan]",
+            status_str
         )
+        grid.add_row(Text.from_markup(tabs_str), f"[dim]Filter: '{self.search_filter}'[/dim]" if self.search_filter else "")
+
         return Panel(grid, style="bold white on blue")
 
     def _make_config_panel(self) -> Panel:
@@ -85,7 +136,14 @@ class TUIDashboard:
         daad_arts = self.db.get_daad_artifacts()
         sources_by_id = {s.id: s for s in self.db.get_all_sources()}
 
-        table = Table(title="Verified DAAD Games Feed (Live)", expand=True, show_lines=True)
+        if self.search_filter:
+            sf = self.search_filter.lower()
+            daad_arts = [
+                a for a in daad_arts
+                if sf in (a.title or "").lower() or sf in (a.original_filename or "").lower() or sf in (a.platform_hint or "").lower() or sf in (a.md5_full or "").lower()
+            ]
+
+        table = Table(title=f"Verified DAAD Games Feed (Showing {len(daad_arts)})", expand=True, show_lines=True)
         table.add_column("ID", style="dim", width=5)
         table.add_column("Game Title", style="bold yellow")
         table.add_column("Platform", style="cyan", width=10)
@@ -93,7 +151,12 @@ class TUIDashboard:
         table.add_column("MD5 (Full)", style="magenta", width=18)
         table.add_column("Size", justify="right", width=10)
 
-        for art in daad_arts[-10:]:
+        max_rows = 12
+        self.selected_index = min(self.selected_index, max(0, len(daad_arts) - 1))
+
+        display_arts = daad_arts[-max_rows:] if len(daad_arts) > max_rows else daad_arts
+
+        for idx, art in enumerate(display_arts):
             src = sources_by_id.get(art.source_id)
             title = art.title or (src.title if src else art.original_filename)
             if not title or title.lower() in ("src", "download", "file", "archive", "unnamed"):
@@ -104,42 +167,104 @@ class TUIDashboard:
             md5_short = art.md5_full[:16] + "..." if art.md5_full and len(art.md5_full) > 16 else (art.md5_full or "N/A")
             size_str = f"{art.file_size / 1024:.1f} KB" if art.file_size else "0 KB"
 
-            table.add_row(str(art.id), title, platform, version, md5_short, size_str)
+            style = "bold white on blue" if idx == self.selected_index else None
+            table.add_row(str(art.id), title, platform, version, md5_short, size_str, style=style)
 
-        return Panel(table, title="[bold gold1]DAAD Games Forensic Feed[/bold gold1]", border_style="gold1")
+        title_str = "[bold gold1]DAAD Games Forensic Feed[/bold gold1]"
+        if self.in_search_mode:
+            title_str += f" | [bold red]SEARCH MODE: {self.search_filter}_[/bold red]"
+        return Panel(table, title=title_str, border_style="gold1")
+
+    def _make_sources_table(self) -> Panel:
+        sources = self.db.get_all_sources()
+        if self.search_filter:
+            sf = self.search_filter.lower()
+            sources = [s for s in sources if sf in s.url.lower() or sf in (s.title or "").lower() or sf in s.status.lower()]
+
+        table = Table(title=f"Discovered Sources Catalog (Showing {len(sources)})", expand=True, show_lines=True)
+        table.add_column("ID", style="dim", width=5)
+        table.add_column("Title / Source Name", style="bold cyan")
+        table.add_column("URL", style="dim white")
+        table.add_column("Tier", style="yellow", width=10)
+        table.add_column("Status", style="green", width=12)
+
+        display_sources = sources[-12:] if len(sources) > 12 else sources
+
+        for idx, s in enumerate(display_sources):
+            title = s.title or "Discovered Resource"
+            style = "bold white on blue" if idx == self.selected_index else None
+            table.add_row(str(s.id), title, s.url[:45] + "...", s.source_tier, s.status, style=style)
+
+        return Panel(table, title="[bold cyan]Discovered Sources Feed[/bold cyan]", border_style="cyan")
 
     def render(self) -> Layout:
         layout = Layout()
         layout.split(
-            Layout(name="header", size=3),
+            Layout(name="header", size=4),
             Layout(name="body", ratio=1),
-            Layout(name="footer", size=14)
+            Layout(name="footer", size=3)
         )
         layout["header"].update(self._make_header())
-        layout["body"].split_row(
-            Layout(self._make_config_panel(), ratio=1),
-            Layout(self._make_stats_panel(), ratio=1)
-        )
-        layout["footer"].update(self._make_daad_games_table())
+
+        if self.active_tab == 0:
+            layout["body"].update(self._make_daad_games_table())
+        elif self.active_tab == 1:
+            layout["body"].update(self._make_sources_table())
+        else:
+            layout["body"].split_row(
+                Layout(self._make_config_panel(), ratio=1),
+                Layout(self._make_stats_panel(), ratio=1)
+            )
+
+        footer_text = "[bold yellow][Tab][/bold yellow] Switch Tab  |  [bold yellow][Up/Down][/bold yellow] Select  |  [bold yellow][/][/bold yellow] Filter/Search  |  [bold yellow][P][/bold yellow] Pause"
+        layout["footer"].update(Panel(Text.from_markup(footer_text, justify="center"), style="bold white on black"))
         return layout
 
     async def run_live_tui_async(self, pipeline_coro_fn: Callable[[], Any]) -> None:
         """
-        Runs the live interactive TUI using non-blocking, smooth 2Hz terminal refreshes
-        to eliminate flickering and glibc/Termux C-library thread contention.
+        Runs the live interactive TUI with asynchronous non-blocking keyboard input.
         """
         stop_event = asyncio.Event()
 
-        async def update_loop():
-            with Live(self.render(), console=self.console, refresh_per_second=2, transient=False) as live:
+        # Keyboard event loop using termios raw mode
+        async def listen_keys():
+            if not sys.stdin.isatty():
+                return
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(fd)
+                loop = asyncio.get_event_loop()
+                reader = asyncio.StreamReader()
+                protocol = asyncio.StreamReaderProtocol(reader)
+                await loop.connect_read_pipe(lambda: protocol, sys.stdin)
+
                 while not stop_event.is_set():
+                    ch = await reader.read(1)
+                    if not ch:
+                        break
+                    key = ch.decode("utf-8", errors="ignore")
+                    self.handle_key_input(key)
+            except Exception:
+                pass
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+        async def update_loop():
+            with Live(self.render(), console=self.console, refresh_per_second=4, transient=False) as live:
+                while not stop_event.is_set():
+                    while self.paused and not stop_event.is_set():
+                        live.update(self.render())
+                        await asyncio.sleep(0.2)
                     live.update(self.render())
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(0.25)
                 live.update(self.render())
 
+        key_task = asyncio.create_task(listen_keys())
         update_task = asyncio.create_task(update_loop())
         try:
             await pipeline_coro_fn()
         finally:
             stop_event.set()
+            key_task.cancel()
             await update_task

@@ -26,10 +26,28 @@ def test_full_pipeline_flow(temp_dir):
     # Update source as downloaded
     db.update_source_status(src_id, status=SourceStatus.DOWNLOADED.value, http_status=200, local_path=str(temp_dir / "src.zip"))
 
-    # 2. Mock Zip Data with embedded DAAD payload
+    # 2. Mock Zip Data with embedded valid DAAD payload and a PAWS payload
+    # Construct valid DAAD DDB byte stream
+    header = bytearray(32)
+    header[0], header[1] = 0x20, 0x00 # P0 = 32
+    header[2], header[3] = 0x30, 0x00 # P1 = 48
+    header[4], header[5] = 0x40, 0x00 # P2 = 64
+
+    payload = bytearray(128)
+    payload[:32] = header
+
+    p0_bytes = bytes([0x01, 0x01, 0x01, 0x05, 0x09, 0x0A, 0x81, 0x02, 0xFE])
+    payload[32:32 + len(p0_bytes)] = p0_bytes
+
+    p1_bytes = bytes([0x00, 0x00, 0x0B, 0x01, 0x8C, 0x01, 0xFE])
+    payload[48:48 + len(p1_bytes)] = p1_bytes
+
+    payload.extend(b"Es muy oscuro No ves nada Llevas contigo DAADREADY")
+    payload.extend(b"INVE MIRA COGE DEJA NORT SUR ESTE OEST")
+
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "w") as zf:
-        zf.writestr("aventura.ddb", b"\x00\x01DAAD Database Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE")
+        zf.writestr("aventura.ddb", bytes(payload))
         zf.writestr("paws_game.dat", b"PAWS Header COGER DEJAR")
     zip_bytes = zip_buffer.getvalue()
 
@@ -41,7 +59,7 @@ def test_full_pipeline_flow(temp_dir):
     # 4. Fingerprint
     fingerprinter = Fingerprinter(db)
     daad_count = fingerprinter.scan_all_artifacts()
-    assert daad_count == 1 # Only aventura.ddb should pass >= 0.75
+    assert daad_count == 1 # Only aventura.ddb should pass
 
     # 5. Synthesize
     synth = Synthesizer(db, output_dir=temp_dir / "output")
