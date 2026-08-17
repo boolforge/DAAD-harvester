@@ -4,7 +4,6 @@ This module performs structural validation and opcode bytecode disassembly of DA
 8-bit (ZX Spectrum, Amstrad CPC, Commodore 64, MSX) and 16-bit (Amiga, Atari ST, MS-DOS) releases.
 """
 
-import struct
 from pathlib import Path
 from typing import Dict, Any, Optional, List, Tuple
 import structlog
@@ -160,9 +159,15 @@ class DAADBytecodeParser:
         valid_opcodes_count = 0
 
         while pos < end_pos - 2:
-            # Entry header in DAAD process: Verb ID (1 byte), Noun ID (1 byte)
-            verb_id = data[pos]
-            noun_id = data[pos + 1]
+            # Entry header in DAAD process: Verb ID (1 byte), Noun ID (1 byte).
+            # KNOWN LIMITATION: these are only consumed to advance the byte
+            # position; they are not yet validated against the vocabulary
+            # table's actual verb/noun ID ranges (see TODO.md Phase 1 /
+            # Task 1). Doing that correctly needs the vocabulary table
+            # layout decoded first, so it's left as a follow-up rather than
+            # guessed at here.
+            _verb_id = data[pos]
+            _noun_id = data[pos + 1]
             pos += 2
 
             # Parse condition bytes until an action byte or end marker
@@ -241,6 +246,12 @@ class DAADBytecodeParser:
         is_valid = (p0_valid or p1_valid) and (p0_ops + p1_ops >= 3)
         return is_valid, valid_ptrs, pointers, total_disassembled
 
+    # DAAD process-table pointers are little-endian 16-bit values (see
+    # validate_process_table), so no valid structure can ever reference
+    # anything beyond 65535 bytes from its own header. 4096 bytes of margin
+    # matches the estimated_len calculation below.
+    _EMBEDDED_SCAN_WINDOW = 65536 + 4096
+
     def find_embedded_ddb(self, data: bytes) -> Optional[Tuple[int, bytes]]:
         """
         Scans data for embedded DAAD DDB process table header and returns (offset, ddb_bytes) if found.
@@ -248,7 +259,17 @@ class DAADBytecodeParser:
         """
         max_scan = min(len(data) - 64, 524288)
         for offset in range(0, max_scan, 16):
-            sub_data = data[offset:]
+            # Bound the slice to a fixed-size window instead of slicing to the
+            # end of the buffer. `data[offset:]` on a multi-MB/GB file copies
+            # (len(data) - offset) bytes on *every one of the ~32k iterations*
+            # of this loop, which is O(max_scan * len(data)) overall -- on a
+            # 20MB artifact that alone took ~48s, and real archives/disk
+            # images can be far larger, effectively hanging the whole
+            # fingerprint phase. validate_process_table() below never looks
+            # past _EMBEDDED_SCAN_WINDOW bytes anyway, so this changes no
+            # behavior, only performance.
+            window_end = min(len(data), offset + self._EMBEDDED_SCAN_WINDOW)
+            sub_data = data[offset:window_end]
             if len(sub_data) < 64:
                 break
             is_valid, _, pointers, _ = self.validate_process_table(sub_data)

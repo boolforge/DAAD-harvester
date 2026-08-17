@@ -1,5 +1,7 @@
 """Tests for DAADBytecodeParser & deep structural bytecode validation."""
 
+import time
+
 import pytest
 from daad_harvester.daad_parser import DAADBytecodeParser, DAADParser
 
@@ -108,3 +110,30 @@ def test_bytecode_disassembly_valid_ddb():
     assert res["is_daad"] is True
     assert res["confidence"] >= 0.70
     assert res["details"]["bytecode_disassembly_valid"] is True
+
+
+def test_find_embedded_ddb_stays_fast_on_large_files():
+    """Regression test: find_embedded_ddb used to slice `data[offset:]`
+    (rest-of-buffer) on every one of its ~32k scan iterations instead of a
+    bounded window, making cost scale with file size. On a real 93MB
+    artifact this made the fingerprint phase hang for minutes; a 20MB
+    synthetic buffer alone took ~48s before the fix. Real-world archives and
+    disk images the harvester unpacks are routinely tens of MB, so this
+    guards against the fingerprint phase silently becoming unusable again.
+
+    Bounded at 3s (fixed cost is ~0.1s locally) to comfortably absorb slower
+    or loaded CI runners without masking a real regression.
+    """
+    parser = DAADBytecodeParser()
+    data = b"\x00" * 20_000_000  # non-DAAD padding; exercises the full scan range
+
+    start = time.monotonic()
+    result = parser.find_embedded_ddb(data)
+    elapsed = time.monotonic() - start
+
+    assert result is None
+    assert elapsed < 3.0, (
+        f"find_embedded_ddb took {elapsed:.2f}s on a 20MB buffer "
+        "(expected well under 3s) -- likely a reintroduction of the "
+        "unbounded data[offset:] slicing bug"
+    )
