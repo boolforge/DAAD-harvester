@@ -117,15 +117,15 @@ Generates output artifacts:
 #### Recommended System Packages:
 - **Debian / Ubuntu**:
   ```bash
-  sudo apt-get install p7zip-full unzip unar libarchive-tools unrar cabextract arj lhasa zoo nomarch
+  sudo apt-get install p7zip-full unzip unar libarchive-tools unrar cabextract arj lhasa 7zip
   ```
 - **Termux (Android)**:
   ```bash
-  pkg install p7zip unzip unar libarchive unrar cabextract arj lhasa zoo nomarch
+  pkg install unzip unar libarchive unrar cabextract arj lhasa 7zip
   ```
 - **macOS (Homebrew)**:
   ```bash
-  brew install p7zip unzip unar libarchive unrar cabextract arj lhasa zoo nomarch
+  brew install p7zip unzip unar libarchive unrar cabextract arj lhasa 7zip
   ```
 
 ### 1. Installation

@@ -43,6 +43,12 @@ class SourceRecord:
     http_status: Optional[int] = None
     content_type: Optional[str] = None
     local_path: Optional[str] = None
+    title: Optional[str] = None
+    platform: Optional[str] = None
+    year: Optional[int] = None
+    publisher: Optional[str] = None
+    author: Optional[str] = None
+    language: Optional[str] = None
     discovered_at: Optional[datetime] = None
     processed_at: Optional[datetime] = None
 
@@ -64,6 +70,11 @@ class ArtifactRecord:
     is_daad_payload: bool = False
     daad_version_guess: Optional[str] = None
     platform_hint: Optional[str] = None
+    title: Optional[str] = None
+    year: Optional[int] = None
+    publisher: Optional[str] = None
+    author: Optional[str] = None
+    language: Optional[str] = None
 
 
 @dataclass

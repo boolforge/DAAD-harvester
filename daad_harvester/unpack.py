@@ -135,7 +135,7 @@ class Unpacker:
         return (uncompressed_size / compressed_size) > settings.zip_bomb_max_ratio
 
     def _unpack_via_cli(self, file_path: Path, archive_type: str = "7z") -> List[Tuple[str, bytes]]:
-        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, unzip, unar, bsdtar, unrar, arj, unarj, lha, lhasa, zoo, nomarch, arc, cabextract)."""
+        """Fallback unpacking using system CLI tools (7z, 7za, 7zr, unzip, unar, bsdtar, unrar, arj, unarj, lha, lhasa, cabextract). Note: zoo and arc formats are handled directly via unar."""
         tool_map = {
             "zip": ["7z", "7za", "7zr", "unzip", "unar", "bsdtar"],
             "7z": ["7z", "7za", "7zr", "unar", "bsdtar"],
@@ -143,8 +143,8 @@ class Unpacker:
             "arj": ["arj", "unarj", "7z", "7za", "unar", "bsdtar"],
             "lha": ["lha", "lhasa", "7z", "7za", "unar", "bsdtar"],
             "lzh": ["lha", "lhasa", "7z", "7za", "unar", "bsdtar"],
-            "zoo": ["zoo", "unar"],
-            "arc": ["nomarch", "arc", "unar"],
+            "zoo": ["unar", "7z"],
+            "arc": ["unar", "7z"],
             "cab": ["cabextract", "7z", "7za", "unar"],
             "tar": ["bsdtar", "tar", "7z", "7za", "unar"],
         }

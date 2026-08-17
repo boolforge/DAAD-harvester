@@ -12,6 +12,7 @@ import structlog
 from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import SourceTier, SourceStatus
+from daad_harvester.seeds import CANONICAL_DAAD_SEEDS
 
 logger = structlog.get_logger(__name__)
 
@@ -84,11 +85,44 @@ class Discoverer:
 
         return None
 
-    def _add_source(self, url: str, tier: SourceTier) -> None:
+    def _add_source(
+        self,
+        url: str,
+        tier: SourceTier,
+        title: Optional[str] = None,
+        platform: Optional[str] = None,
+        year: Optional[int] = None,
+        publisher: Optional[str] = None,
+        author: Optional[str] = None,
+        language: Optional[str] = None
+    ) -> None:
         if url not in self.discovered_urls:
             self.discovered_urls.add(url)
-            self.db.add_source(url=url, source_tier=tier.value)
-            logger.info("discovered_source", url=url, tier=tier.value)
+            self.db.add_source(
+                url=url,
+                source_tier=tier.value,
+                title=title,
+                platform=platform,
+                year=year,
+                publisher=publisher,
+                author=author,
+                language=language
+            )
+            logger.info("discovered_source", url=url, tier=tier.value, title=title)
+
+    def load_canonical_seeds(self) -> None:
+        """Loads built-in canonical DAAD seed releases into database."""
+        for seed in CANONICAL_DAAD_SEEDS:
+            self._add_source(
+                url=seed["url"],
+                tier=SourceTier.API,
+                title=seed.get("title"),
+                platform=seed.get("platform"),
+                year=seed.get("year"),
+                publisher=seed.get("publisher"),
+                author=seed.get("author"),
+                language=seed.get("language")
+            )
 
     # --- Discovery Crawlers ---
 
@@ -176,6 +210,9 @@ class Discoverer:
     async def run_all_discovery(self) -> None:
         """Executes all discovery tasks asynchronously."""
         logger.info("starting_discovery_phase")
+        # Load canonical seed catalog
+        self.load_canonical_seeds()
+
         async with httpx.AsyncClient(follow_redirects=True) as client:
             tasks = [
                 self.discover_ifdb(client),
