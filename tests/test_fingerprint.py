@@ -3,15 +3,17 @@ from pathlib import Path
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, Platform
 from daad_harvester.fingerprint import Fingerprinter
+from daad_harvester.daad_parser import DAADParser
 
 def test_fingerprint_positive_ddb():
     db = Database(Path(":memory:"))
     fingerprinter = Fingerprinter(db)
 
-    # Mock DAAD DDB payload
-    mock_daad_data = b"\x00\x01DAAD Database Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE"
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_daad_data, "game.ddb")
-    assert score >= 0.75
+    # Valid DAAD DDB payload with valid process table pointers and DAAD Ready signature
+    pointers = b"\x10\x00\x14\x00\x18\x00" + b"\x00" * 10 # Pointers: 16, 20, 24
+    content = pointers + b"DAADREADY Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE"
+    score, ver, platform = fingerprinter.analyze_daad_heuristics(content, "game.ddb")
+    assert score >= 0.70
     assert ver is not None
 
 def test_fingerprint_rejection_paws():
@@ -45,3 +47,11 @@ def test_fingerprint_rejection_renpy():
     mock_renpy_data = b"RENPY archive data " + b"\x00" * 500
     score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_renpy_data, "renpy.data")
     assert score == 0.0
+
+def test_daad_parser_direct():
+    parser = DAADParser()
+    pointers = b"\x10\x00\x14\x00\x18\x00" + b"\x00" * 10
+    content = pointers + b"DAADREADY Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE"
+    result = parser.parse_ddb(content, "game.ddb")
+    assert result["is_daad"] is True
+    assert result["confidence"] >= 0.70

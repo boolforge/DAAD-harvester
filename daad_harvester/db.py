@@ -12,8 +12,8 @@ SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS sources (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     url TEXT UNIQUE,
-    source_tier TEXT,        -- 'api', 'archive', 'forum', 'wayback', 'seed'
-    status TEXT,             -- 'pending', 'downloaded', 'error', 'dead', 'unpacked'
+    source_tier TEXT,
+    status TEXT,
     http_status INTEGER,
     content_type TEXT,
     local_path TEXT,
@@ -32,13 +32,25 @@ CREATE TABLE IF NOT EXISTS artifacts (
     source_id INTEGER,
     original_filename TEXT,
     extracted_path TEXT,
-    archive_depth INTEGER,   -- Nesting level (0 = direct download)
+    archive_depth INTEGER,
     file_size INTEGER,
     md5_full TEXT,
-    md5_5000 TEXT,           -- First 5000 bytes for ScummVM fast detection
+    md5_5000 TEXT,
     sha256 TEXT,
     sha1 TEXT,
     crc32 TEXT,
+    md5_tail5000 TEXT,
+    sha224 TEXT,
+    sha384 TEXT,
+    sha512 TEXT,
+    sha3_256 TEXT,
+    sha3_512 TEXT,
+    blake2b TEXT,
+    blake2s TEXT,
+    adler32 TEXT,
+    xxh32 TEXT,
+    xxh64 TEXT,
+    xxh128 TEXT,
     unpacked BOOLEAN DEFAULT 0,
     is_daad_payload BOOLEAN DEFAULT 0,
     daad_version_guess TEXT,
@@ -54,14 +66,14 @@ CREATE TABLE IF NOT EXISTS artifacts (
 CREATE TABLE IF NOT EXISTS games (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     artifact_id INTEGER,
-    game_id TEXT,            -- ScummVM game ID slug
+    game_id TEXT,
     title TEXT,
-    platform TEXT,           -- zx, cpc, c64, amiga, atarist, msx, pc, etc.
+    platform TEXT,
     language TEXT,
     year INTEGER,
     publisher TEXT,
     author TEXT,
-    detection_entry TEXT,    -- Serialized C++ struct
+    detection_entry TEXT,
     FOREIGN KEY (artifact_id) REFERENCES artifacts(id)
 );
 
@@ -94,15 +106,20 @@ class Database:
         """Initialize database tables and run migrations if columns are missing."""
         with self.get_connection() as conn:
             conn.executescript(SCHEMA_SQL)
-            # Add missing columns if database was created by older schema version
             cursor = conn.execute("PRAGMA table_info(artifacts)")
             cols = {row["name"] for row in cursor.fetchall()}
-            if "sha1" not in cols:
-                conn.execute("ALTER TABLE artifacts ADD COLUMN sha1 TEXT;")
-            if "crc32" not in cols:
-                conn.execute("ALTER TABLE artifacts ADD COLUMN crc32 TEXT;")
+            extra_cols = [
+                "sha1", "crc32", "md5_tail5000", "sha224", "sha384", "sha512",
+                "sha3_256", "sha3_512", "blake2b", "blake2s", "adler32",
+                "xxh32", "xxh64", "xxh128"
+            ]
+            for col in extra_cols:
+                if col not in cols:
+                    conn.execute(f"ALTER TABLE artifacts ADD COLUMN {col} TEXT;")
+
             if "unpacked" not in cols:
                 conn.execute("ALTER TABLE artifacts ADD COLUMN unpacked BOOLEAN DEFAULT 0;")
+
             for col in ["title", "year", "publisher", "author", "language"]:
                 if col not in cols:
                     conn.execute(f"ALTER TABLE artifacts ADD COLUMN {col} TEXT;")
@@ -127,7 +144,6 @@ class Database:
         author: Optional[str] = None,
         language: Optional[str] = None
     ) -> Optional[int]:
-        """Insert a new source record if it doesn't already exist."""
         now = datetime.now().isoformat()
         with self.get_connection() as conn:
             try:
@@ -142,7 +158,6 @@ class Database:
                 conn.commit()
                 return cursor.lastrowid
             except sqlite3.IntegrityError:
-                # URL already exists - update metadata if provided
                 cursor = conn.execute("SELECT id FROM sources WHERE url = ?", (url,))
                 row = cursor.fetchone()
                 src_id = row["id"] if row else None
@@ -184,7 +199,6 @@ class Database:
         )
 
     def get_pending_sources(self) -> List[SourceRecord]:
-        """Fetch all sources with status 'pending'."""
         with self.get_connection() as conn:
             cursor = conn.execute("SELECT * FROM sources WHERE status = 'pending'")
             return [self._row_to_source(row) for row in cursor.fetchall()]
@@ -197,7 +211,6 @@ class Database:
         content_type: Optional[str] = None,
         local_path: Optional[str] = None
     ) -> None:
-        """Update source download status."""
         now = datetime.now().isoformat()
         with self.get_connection() as conn:
             conn.execute(
@@ -219,7 +232,6 @@ class Database:
 
     def add_artifact(self, artifact: ArtifactRecord) -> int:
         with self.get_connection() as conn:
-            # Deduplication check
             cursor = conn.execute(
                 "SELECT id FROM artifacts WHERE source_id = ? AND sha256 = ? AND archive_depth = ?",
                 (artifact.source_id, artifact.sha256, artifact.archive_depth)
@@ -233,9 +245,13 @@ class Database:
                 INSERT INTO artifacts (
                     source_id, original_filename, extracted_path, archive_depth,
                     file_size, md5_full, md5_5000, sha256, sha1, crc32,
+                    md5_tail5000, sha224, sha384, sha512, sha3_256, sha3_512,
+                    blake2b, blake2s, adler32, xxh32, xxh64, xxh128,
                     unpacked, is_daad_payload, daad_version_guess, platform_hint,
                     title, year, publisher, author, language
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                )
                 """,
                 (
                     artifact.source_id,
@@ -248,6 +264,18 @@ class Database:
                     artifact.sha256,
                     artifact.sha1,
                     artifact.crc32,
+                    artifact.md5_tail5000,
+                    artifact.sha224,
+                    artifact.sha384,
+                    artifact.sha512,
+                    artifact.sha3_256,
+                    artifact.sha3_512,
+                    artifact.blake2b,
+                    artifact.blake2s,
+                    artifact.adler32,
+                    artifact.xxh32,
+                    artifact.xxh64,
+                    artifact.xxh128,
                     artifact.unpacked,
                     artifact.is_daad_payload,
                     artifact.daad_version_guess,
@@ -302,6 +330,18 @@ class Database:
             sha256=row["sha256"],
             sha1=row["sha1"] if "sha1" in keys else None,
             crc32=row["crc32"] if "crc32" in keys else None,
+            md5_tail5000=row["md5_tail5000"] if "md5_tail5000" in keys else None,
+            sha224=row["sha224"] if "sha224" in keys else None,
+            sha384=row["sha384"] if "sha384" in keys else None,
+            sha512=row["sha512"] if "sha512" in keys else None,
+            sha3_256=row["sha3_256"] if "sha3_256" in keys else None,
+            sha3_512=row["sha3_512"] if "sha3_512" in keys else None,
+            blake2b=row["blake2b"] if "blake2b" in keys else None,
+            blake2s=row["blake2s"] if "blake2s" in keys else None,
+            adler32=row["adler32"] if "adler32" in keys else None,
+            xxh32=row["xxh32"] if "xxh32" in keys else None,
+            xxh64=row["xxh64"] if "xxh64" in keys else None,
+            xxh128=row["xxh128"] if "xxh128" in keys else None,
             unpacked=bool(row["unpacked"]) if "unpacked" in keys else False,
             is_daad_payload=bool(row["is_daad_payload"]),
             daad_version_guess=row["daad_version_guess"],

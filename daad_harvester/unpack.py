@@ -12,7 +12,7 @@ import shutil
 import tempfile
 import concurrent.futures
 from pathlib import Path
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict
 try:
     import py7zr
 except ImportError:
@@ -27,6 +27,11 @@ try:
     import zipfile_deflate64
 except ImportError:
     zipfile_deflate64 = None
+
+try:
+    import xxhash
+except ImportError:
+    xxhash = None
 
 import structlog
 
@@ -110,14 +115,46 @@ def safe_write_bytes(dest_path: Path, data: bytes) -> Path:
             raise exc2
 
 
-def compute_hashes(data: bytes) -> Tuple[str, str, str, str, str]:
-    """Computes full MD5, MD5 of first 5000 bytes, SHA256, SHA1, and CRC32 of data."""
+def compute_hashes(data: bytes) -> Dict[str, str]:
+    """Computes full suite of cryptographic, fast xxhash, and checksum algorithms."""
     md5_full = hashlib.md5(data).hexdigest()
     md5_5000 = hashlib.md5(data[:5000]).hexdigest()
-    sha256 = hashlib.sha256(data).hexdigest()
+    md5_tail5000 = hashlib.md5(data[-5000:] if len(data) >= 5000 else data).hexdigest()
     sha1 = hashlib.sha1(data).hexdigest()
-    crc32 = f"{zlib.crc32(data) & 0xFFFFFFFF:08x}" if 'zlib' in globals() else ""
-    return md5_full, md5_5000, sha256, sha1, crc32
+    sha224 = hashlib.sha224(data).hexdigest()
+    sha256 = hashlib.sha256(data).hexdigest()
+    sha384 = hashlib.sha384(data).hexdigest()
+    sha512 = hashlib.sha512(data).hexdigest()
+    sha3_256 = hashlib.sha3_256(data).hexdigest()
+    sha3_512 = hashlib.sha3_512(data).hexdigest()
+    blake2b = hashlib.blake2b(data).hexdigest()
+    blake2s = hashlib.blake2s(data).hexdigest()
+    crc32 = f"{zlib.crc32(data) & 0xFFFFFFFF:08x}"
+    adler32 = f"{zlib.adler32(data) & 0xFFFFFFFF:08x}"
+
+    xxh32 = xxhash.xxh32(data).hexdigest() if xxhash else ""
+    xxh64 = xxhash.xxh64(data).hexdigest() if xxhash else ""
+    xxh128 = xxhash.xxh128(data).hexdigest() if xxhash else ""
+
+    return {
+        "md5_full": md5_full,
+        "md5_5000": md5_5000,
+        "md5_tail5000": md5_tail5000,
+        "sha1": sha1,
+        "sha224": sha224,
+        "sha256": sha256,
+        "sha384": sha384,
+        "sha512": sha512,
+        "sha3_256": sha3_256,
+        "sha3_512": sha3_512,
+        "blake2b": blake2b,
+        "blake2s": blake2s,
+        "crc32": crc32,
+        "adler32": adler32,
+        "xxh32": xxh32,
+        "xxh64": xxh64,
+        "xxh128": xxh128,
+    }
 
 
 class Unpacker:
@@ -342,7 +379,6 @@ class Unpacker:
             sides = data[0x31]
             tracks = data[0x30]
 
-            # Parse track and sector structures to collect filesystem files
             files_map: dict[str, bytearray] = {}
             pos = 0x100
             for t in range(tracks):
@@ -357,7 +393,6 @@ class Unpacker:
                         track_data = data[pos:pos + (sec_count * sector_bytes)]
                         pos += (sec_count * sector_bytes)
 
-                        # Process CP/M catalog on initial tracks
                         if t in (0, 1, 2):
                             for entry_offset in range(0, len(track_data) - 32, 32):
                                 user_num = track_data[entry_offset]
@@ -461,7 +496,7 @@ class Unpacker:
                 pending_header = (filename or f"file_{block_idx}", ext)
             elif pending_header and len(block_data) > 0 and block_data[0] == 0xFF:
                 fname, ext = pending_header
-                extracted.append((f"{fname}.{ext}", block_data[1:-1])) # Strip flag byte & parity checksum
+                extracted.append((f"{fname}.{ext}", block_data[1:-1]))
                 pending_header = None
             else:
                 extracted.append((f"block_{block_idx}.bin", block_data))
@@ -550,18 +585,17 @@ class Unpacker:
         """Recursively unpacks files up to settings.max_unpack_depth (5 levels)."""
         artifact_ids = []
 
-        md5_full, md5_5000, sha256, sha1, crc32 = compute_hashes(data)
+        hashes = compute_hashes(data)
         file_size = len(data)
 
         clean_filename = sanitize_filename(filename)
-        dest_filename = f"depth{depth}_{md5_full[:8]}_{clean_filename}"
+        dest_filename = f"depth{depth}_{hashes['md5_full'][:8]}_{clean_filename}"
         dest_path = self.extract_dir / dest_filename
 
-        # If file exists on disk with matching file size, skip re-writing to disk
         if dest_path.exists() and dest_path.stat().st_size == file_size:
             try:
                 existing_sha256 = hashlib.sha256(dest_path.read_bytes()).hexdigest()
-                if existing_sha256 != sha256:
+                if existing_sha256 != hashes["sha256"]:
                     dest_path = safe_write_bytes(dest_path, data)
             except Exception:
                 dest_path = safe_write_bytes(dest_path, data)
@@ -575,11 +609,23 @@ class Unpacker:
             extracted_path=str(dest_path),
             archive_depth=depth,
             file_size=file_size,
-            md5_full=md5_full,
-            md5_5000=md5_5000,
-            sha256=sha256,
-            sha1=sha1,
-            crc32=crc32,
+            md5_full=hashes["md5_full"],
+            md5_5000=hashes["md5_5000"],
+            sha256=hashes["sha256"],
+            sha1=hashes["sha1"],
+            crc32=hashes["crc32"],
+            md5_tail5000=hashes["md5_tail5000"],
+            sha224=hashes["sha224"],
+            sha384=hashes["sha384"],
+            sha512=hashes["sha512"],
+            sha3_256=hashes["sha3_256"],
+            sha3_512=hashes["sha3_512"],
+            blake2b=hashes["blake2b"],
+            blake2s=hashes["blake2s"],
+            adler32=hashes["adler32"],
+            xxh32=hashes["xxh32"],
+            xxh64=hashes["xxh64"],
+            xxh128=hashes["xxh128"],
             unpacked=False,
             is_daad_payload=False
         )

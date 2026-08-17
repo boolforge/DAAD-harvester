@@ -7,3 +7,5 @@ py7zr>=0.20.0; sys_platform != "android"
 rarfile>=4.0
 lxml>=4.9.0
 zipfile-deflate64>=0.2.0
+rich>=13.0.0
+xxhash>=3.0.0

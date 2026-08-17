@@ -24,17 +24,14 @@ class ReportGenerator:
         failed = sum(1 for s in sources if s.status == SourceStatus.ERROR.value)
         dead = sum(1 for s in sources if s.status == SourceStatus.DEAD.value)
 
-        # Source tier breakdown
         tier_counts: Dict[str, int] = {}
         for s in sources:
             tier_counts[s.source_tier] = tier_counts.get(s.source_tier, 0) + 1
 
-        # Platform distribution histogram
         platform_counts: Dict[str, int] = {}
         for g in games:
             platform_counts[g.platform] = platform_counts.get(g.platform, 0) + 1
 
-        # Unreachable targets
         unreachable = [s for s in sources if s.status in (SourceStatus.ERROR.value, SourceStatus.DEAD.value)]
 
         md_content = f"""# DAAD Engine Harvester - Execution Summary Report
@@ -60,14 +57,31 @@ class ReportGenerator:
         else:
             md_content += "_No DAAD titles discovered in execution run._\n"
 
-        md_content += "\n## 4. MD5 Collision Report (Potential Cross-Platform Ports / Duplicates)\n"
+        md_content += "\n## 4. Verified DAAD Games & Multi-Algorithm Hashes\n"
+        if daad_artifacts:
+            for art in daad_artifacts:
+                md_content += f"### {art.title or art.original_filename} ({art.platform_hint or 'Unknown'})\n"
+                md_content += f"- **Filename:** `{art.original_filename}` ({art.file_size} bytes)\n"
+                md_content += f"- **Version Guess:** `{art.daad_version_guess or 'DAAD DDB'}`\n"
+                md_content += f"- **MD5 Full:** `{art.md5_full}`\n"
+                md_content += f"- **MD5 Head 5KB:** `{art.md5_5000}`\n"
+                md_content += f"- **SHA-256:** `{art.sha256}`\n"
+                md_content += f"- **SHA-1:** `{art.sha1}`\n"
+                md_content += f"- **CRC32:** `{art.crc32}`\n"
+                if art.xxh64:
+                    md_content += f"- **XXH64:** `{art.xxh64}`\n"
+                md_content += "\n"
+        else:
+            md_content += "_No DAAD games identified during this run._\n"
+
+        md_content += "\n## 5. MD5 Collision Report (Potential Cross-Platform Ports / Duplicates)\n"
         if collisions:
             for col in collisions:
                 md_content += f"- MD5 `{col['original']['md5_full']}`: `{col['original']['filename']}` <--> `{col['duplicate']['filename']}`\n"
         else:
             md_content += "_No duplicate MD5 collisions detected._\n"
 
-        md_content += "\n## 5. Coverage Gaps & Unreachable Targets\n"
+        md_content += "\n## 6. Coverage Gaps & Unreachable Targets\n"
         if unreachable:
             for u in unreachable:
                 md_content += f"- `{u.url}` (Status: **{u.status}**, HTTP: {u.http_status or 'N/A'})\n"

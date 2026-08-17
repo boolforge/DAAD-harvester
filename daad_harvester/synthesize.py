@@ -1,4 +1,4 @@
-"""Synthesizer module generating C++ detection tables (detection_tables.h) and JSON catalog (daad_catalog.json)."""
+"""Synthesizer module generating C++ detection tables (detection_tables.h), JSON catalog (daad_catalog.json), and logging to daad_games.log."""
 
 import json
 import re
@@ -9,6 +9,7 @@ import structlog
 from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, GameRecord, Platform
+from daad_harvester.daad_logger import DAADGamesLogger
 from daad_harvester.exceptions import SynthesizeError
 
 logger = structlog.get_logger(__name__)
@@ -36,12 +37,13 @@ def slugify(text: str) -> str:
 
 
 class Synthesizer:
-    """Computes catalog data and serializes output into ScummVM detection_tables.h and daad_catalog.json."""
+    """Computes catalog data and serializes output into ScummVM detection_tables.h, daad_catalog.json, and daad_games.log."""
 
     def __init__(self, db: Database, output_dir: Optional[Path] = None):
         self.db = db
         self.output_dir = output_dir or settings.output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.daad_logger = DAADGamesLogger(self.output_dir / "daad_games.log")
 
     def generate_cpp_entry(self, record: Dict[str, Any]) -> str:
         """Generates a single C++ ADGameDescription struct block."""
@@ -75,12 +77,10 @@ class Synthesizer:
 
         art_stem = Path(art.original_filename).stem
 
-        # If title is missing or generic, check art_stem first if it's meaningful
         if not title or self._is_generic_name(title):
             if art_stem and not self._is_generic_name(art_stem) and art_stem.lower() not in ("src", "download", "file", "archive"):
                 title = art_stem.replace('_', ' ').replace('-', ' ').title()
 
-        # Fallback to source URL or local_path filename if still missing or generic
         if not title or self._is_generic_name(title):
             if source and source.url:
                 url_filename = Path(source.url.rsplit('#', 1)[0].rsplit('?', 1)[0]).stem
@@ -94,7 +94,6 @@ class Synthesizer:
         if not title or self._is_generic_name(title):
             title = art_stem.replace('_', ' ').replace('-', ' ').title()
 
-        # Clean title
         title = re.sub(r'^\d+[\s_-]*', '', title).strip() or "DAAD Game"
         slug = slugify(title)
         if not slug.startswith("daad_"):
@@ -105,7 +104,7 @@ class Synthesizer:
         return title, game_slug
 
     def synthesize_catalog(self) -> Tuple[Path, Path, List[Dict[str, Any]]]:
-        """Reads DAAD payload artifacts from DB, constructs GameRecords, and writes output files."""
+        """Reads DAAD payload artifacts from DB, constructs GameRecords, writes output files, and logs to daad_games.log."""
         artifacts = self.db.get_daad_artifacts()
         sources_by_id = {s.id: s for s in self.db.get_all_sources()}
 
@@ -133,10 +132,27 @@ class Synthesizer:
                 "publisher": publisher,
                 "author": author,
                 "filename": art.original_filename,
+                "file_size": art.file_size,
+                "daad_version_guess": art.daad_version_guess,
+                "extracted_path": art.extracted_path,
+                "source_url": source.url if source else "N/A",
                 "md5_full": art.md5_full,
                 "md5_5000": art.md5_5000,
-                "file_size": art.file_size,
-                "sha256": art.sha256
+                "md5_tail5000": art.md5_tail5000,
+                "sha256": art.sha256,
+                "sha1": art.sha1,
+                "crc32": art.crc32,
+                "sha224": art.sha224,
+                "sha384": art.sha384,
+                "sha512": art.sha512,
+                "sha3_256": art.sha3_256,
+                "sha3_512": art.sha3_512,
+                "blake2b": art.blake2b,
+                "blake2s": art.blake2s,
+                "adler32": art.adler32,
+                "xxh32": art.xxh32,
+                "xxh64": art.xxh64,
+                "xxh128": art.xxh128
             }
 
             if art.md5_full in seen_md5s:
@@ -150,6 +166,9 @@ class Synthesizer:
 
             cpp_code = self.generate_cpp_entry(entry_dict)
             entry_dict["detection_entry"] = cpp_code
+
+            # Log to dedicated daad_games.log
+            self.daad_logger.log_daad_game(entry_dict)
 
             game_record = GameRecord(
                 id=None,
