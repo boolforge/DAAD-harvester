@@ -3,7 +3,9 @@
 import argparse
 import asyncio
 import sys
+import time
 from pathlib import Path
+from rich.live import Live
 import structlog
 
 from daad_harvester import __version__
@@ -68,7 +70,7 @@ def main() -> None:
     parser.add_argument(
         "--tui",
         action="store_true",
-        help="Launch live interactive TUI dashboard display"
+        help="Launch live interactive TUI dashboard display during pipeline execution"
     )
     parser.add_argument(
         "--version",
@@ -89,7 +91,7 @@ def main() -> None:
         settings.log_file = args.log_file.resolve()
     settings.log_level = args.log_level
 
-    setup_logging(log_file=settings.log_file, log_level=settings.log_level)
+    setup_logging(log_file=settings.log_file, log_level=settings.log_level, rotate_old=True)
 
     settings.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -136,11 +138,28 @@ def main() -> None:
 
             logger.info("pipeline_completed_successfully", catalog=str(json_path), header=str(header_path), report=str(report_path))
 
-        if args.tui:
-            dashboard = TUIDashboard(db)
-            dashboard.run_live_dashboard(duration_sec=3)
+    async def run_with_tui():
+        dashboard = TUIDashboard(db)
+        stop_event = asyncio.Event()
 
-    asyncio.run(run_pipeline())
+        async def update_tui_loop():
+            with Live(dashboard.render(), console=dashboard.console, refresh_per_second=4) as live:
+                while not stop_event.is_set():
+                    live.update(dashboard.render())
+                    await asyncio.sleep(0.25)
+                live.update(dashboard.render())
+
+        tui_task = asyncio.create_task(update_tui_loop())
+        try:
+            await run_pipeline()
+        finally:
+            stop_event.set()
+            await tui_task
+
+    if args.tui:
+        asyncio.run(run_with_tui())
+    else:
+        asyncio.run(run_pipeline())
 
 
 if __name__ == "__main__":

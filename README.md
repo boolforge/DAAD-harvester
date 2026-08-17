@@ -1,13 +1,19 @@
-# DAAD Engine Harvester
+# 🗡️ DAAD Harvester
 
-A specialized, resilient ETL pipeline and forensic analysis tool for discovering, downloading, recursively unpacking, fingerprinting, and generating ScummVM detection tables for **DAAD (Designed Action Artwork System)** adventure game artifacts across retro-computing archives.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![ScummVM Detection](https://img.shields.io/badge/ScummVM-Detection%20Tables-orange.svg)](https://www.scummvm.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/status-active-success.svg)](#)
+
+A high-performance, resilient ETL pipeline and forensic analysis tool designed for discovering, downloading, recursively unpacking, fingerprinting, and synthesizing ScummVM detection tables for **DAAD (Designed Action Artwork System)** adventure game artifacts across retro-computing archives.
 
 ---
 
 ## 📖 Overview & Historical Context
 
 ### What is DAAD?
-Created in the late 1980s by Tim Gilberts for Spanish game developer **Aventuras AD**, the **Designed Action Artwork System (DAAD)** was a state-of-the-art text adventure authoring system and virtual machine. As the direct successor to Gilberts' previous authoring systems—*The Quill* and *PAWS (Professional Adventure Writer System)*—DAAD empowered authors to write a single adventure game source file and target multiple 8-bit and 16-bit platforms, including:
+Created in the late 1980s by Tim Gilberts for Spanish game developer **Aventuras AD**, the **Designed Action Artwork System (DAAD)** was a state-of-the-art text adventure authoring system and virtual machine. Successor to *The Quill* and *PAWS*, DAAD allowed authors to write a single adventure game source file and target multiple 8-bit and 16-bit platforms:
+
 - **Sinclair ZX Spectrum** (48K / 128K)
 - **Amstrad CPC**
 - **Commodore 64**
@@ -17,118 +23,88 @@ Created in the late 1980s by Tim Gilberts for Spanish game developer **Aventuras
 - **MSX / MSX2**
 - **Oric / Atmos**
 
-DAAD games played a monumental role in the golden age of Spanish graphic adventure software (*La Aventura Original*, *Jabato*, *Cozumel*, *Los Templarios*), and the engine continues to see active homebrew development today thanks to modern tooling like *DAAD Ready*.
+DAAD powered classic Spanish graphic adventure software (*La Aventura Original*, *El Jabato*, *La Diosa de Cozumel*, *Los Templarios*, *Chichén Itzá*), and continues to see active homebrew development today via modern tools like *DAAD Ready*.
 
 ---
 
-## 🎯 Project Motivation & Purpose
+## 📊 Live Interactive TUI Dashboard Showcase
 
-Integrating historical game engines into [ScummVM](https://www.scummvm.org/) requires **detection tables**—serialized C++ data structures containing metadata (`game_id`, `title`, `platform`, `language`) paired with byte-level forensic hashes (`MD5` of full file, `MD5` of first 5,000 bytes, `SHA-256`, file size) to identify known release versions.
+Launch the harvester with `--tui` to display a real-time interactive Rich dashboard showing live ETL counters, domain status, and identified DAAD game payloads:
 
-Manually collecting, uncompressing multi-layer archives, extracting disk images (`.dsk`, `.d64`), parsing tape dumps (`.tap`), identifying valid DAAD database headers, and constructing C++ structs is slow and error-prone.
-
-**DAAD Harvester** automates this entire pipeline:
-1. **Discovers** DAAD game download links across retro databases (ZXDB, IFDB, Spectrum Computing, WikiCAAD, IF Archive).
-2. **Downloads** artifacts with proxy rotation, domain rate-limiting, and Internet Archive Wayback Machine CDX recovery for dead links.
-3. **Recursively Unpacks** nested archives (`.zip`, `.7z`, `.rar`, `.tar`), disk images (`.dsk`, `.d64`), and tape dumps (`.tap`).
-4. **Fingerprints** extracted binary payloads using byte-level heuristics to identify true DAAD databases while filtering out false positives (PAWS, SWAN, GAC).
-5. **Synthesizes** ready-to-compile ScummVM C++ detection headers (`detection_tables.h`), JSON catalogs (`daad_catalog.json`), and comprehensive markdown reports (`scrape_report.md`).
+```text
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ DAAD ENGINE HARVESTER & FORENSIC SUITE                               v1.0.0 | ETL Status: ACTIVE │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭──────────────── System Config ─────────────────╮╭────────────── Metrics & Counters ──────────────╮
+│             Configuration Settings             ││              Live ETL Statistics               │
+│  Output Directory          ./output            ││  Total Discovered Sources                 184  │
+│  Database Path             ./output/state.db   ││  Downloaded Sources                       128  │
+│  Parallel Workers          8                   ││  Extracted Artifacts                      412  │
+│  Rate Limit / Domain       1.0 req/s           ││  Verified DAAD Payloads                    24  │
+│  Max Unpack Depth          5                   ││  ScummVM Catalog Entries                   24  │
+│  Proxies Loaded            0                   ││  Elapsed Time                           12.4s  │
+╰────────────────────────────────────────────────╯╰────────────────────────────────────────────────╯
+╭──────────────────────────────────── DAAD Games Forensic Feed ────────────────────────────────────╮
+│                                   Discovered DAAD Games (Live)                                   │
+│ ┏━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳──────────────┓ │
+│ ┃ ID ┃ Title                 ┃ Platform ┃ Engine Version  ┃ MD5 Hash            ┃         Size ┃ │
+│ ┡━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩ │
+│ │ 1  │ La Aventura Original  │ DOS      │ DAAD DDB        │ a1b2c3d4e5f67890... │     142.5 KB │ │
+│ │ 2  │ El Jabato             │ ZX       │ DAAD DDB        │ 8f7e6d5c4b3a2109... │      48.0 KB │ │
+│ │ 3  │ La Diosa de Cozumel   │ AMIGA    │ DAAD DDB        │ 1234567890abcdef... │     720.0 KB │ │
+│ └────┴───────────────────────┴──────────┴─────────────────┴─────────────────────┴──────────────┘ │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
 
 ---
 
 ## 🏗️ Architecture & Pipeline Design
 
-DAAD Harvester operates as an idempotent, 5-stage ETL (Extract, Transform, Load) pipeline backed by a local SQLite database (`state.db`) for state persistence and resumability.
+DAAD Harvester operates as an idempotent, 5-stage ETL pipeline backed by a local SQLite state database (`state.db`) for full resumability.
 
-```
-                  ┌──────────────────────────────┐
-                  │    1. Discovery Phase        │
-                  │ (IF Archive, ZXDB, IFDB, etc)│
-                  └──────────────┬───────────────┘
-                                 │
-                                 ▼
-                  ┌──────────────────────────────┐
-                  │      2. Fetch Phase          │
-                  │ (Async HTTP, Wayback CDX)    │
-                  └──────────────┬───────────────┘
-                                 │
-                                 ▼
-                  ┌──────────────────────────────┐
-                  │      3. Unpack Phase         │
-                  │  (ZIP, 7Z, RAR, DSK, TAP)    │
-                  └──────────────┬───────────────┘
-                                 │
-                                 ▼
-                  ┌──────────────────────────────┐
-                  │    4. Fingerprint Phase      │
-                  │ (DDB Process Table Heuristics)│
-                  └──────────────┬───────────────┘
-                                 │
-                                 ▼
-                  ┌──────────────────────────────┐
-                  │ 5. Synthesize & Report Phase │
-                  │(detection_tables.h, Catalog) │
-                  └──────────────────────────────┘
+```mermaid
+graph TD
+    A[1. Discovery Phase] -->|Crawl APIs, Archive.org, GitHub, IF Archive, WikiCAAD| B[2. Fetch Phase]
+    B -->|Async HTTP, Rate Limiting, Wayback CDX Fallback| C[3. Unpack Phase]
+    C -->|Recursive Extraction: ZIP, 7Z, RAR, DSK, TAP, D64, LHA, ARJ| D[4. Fingerprint Phase]
+    D -->|Byte-Level Forensic Parser: Process Table, Vocab, System Msgs| E[5. Synthesize & Report]
+    E -->|Generate detection_tables.h, daad_catalog.json, daad_games.log| F[ScummVM C++ Target]
+
+    style A fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+    style B fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+    style C fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#fff
+    style D fill:#1e293b,stroke:#a855f7,stroke-width:2px,color:#fff
+    style E fill:#1e293b,stroke:#22c55e,stroke-width:2px,color:#fff
+    style F fill:#0f172a,stroke:#eab308,stroke-width:2px,color:#fff
 ```
 
-### 1. Discovery (`daad_harvester.discover`)
-Crawls external retro computing APIs and directory structures for DAAD game entries and archive download links:
-- **ZXDB API**: ZX Spectrum database queries.
-- **IFDB API**: Interactive Fiction Database tags (`daad`, `aventuras ad`).
-- **WikiCAAD**: Spanish adventure gaming wiki API and page parsing.
-- **Spectrum Computing**: Dedicated ZX Spectrum catalog links.
-- **IF Archive**: Deep directory index traversals.
+### Key Pipeline Stages
 
-### 2. Fetch (`daad_harvester.fetch`)
-- Asynchronous parallel downloder using `httpx` and `aiofiles`.
-- **Domain Rate Limiting**: Prevents hitting remote host ban limits.
-- **Wayback Fallback**: Automatically queries the Internet Archive CDX API when encountering `404 Not Found` or `410 Gone` errors to retrieve historical snapshots.
-- **Content-Disposition & Path Resolution**: Extracts original filenames accurately.
-
-### 3. Unpack (`daad_harvester.unpack`)
-Recursively extracts nested containers up to a configurable maximum depth (default: 5 levels):
-- **Archives**: `.zip`, `.7z`, `.rar`, `.tar.gz`, `.tar.bz2`, `.xz`.
-- **Disk Images**: Amstrad CPC / Spectrum +3 `.dsk` (parsing track/sector CP/M catalog entries), Commodore 64 `.d64` (parsing BAM track 18 sector 1 directory entries).
-- **Tape Dumps**: ZX Spectrum `.tap` (parsing header blocks and extracting data blocks).
-- **Zip Bomb Protection**: Enforces compressed-to-uncompressed expansion ratio limits (default: 10x).
-
-### 4. Fingerprint (`daad_harvester.fingerprint`)
-Performs byte-level forensic inspection on unpacked files:
-- **Rejection Engine**: Explicitly filters out PAWS, SWAN, and Graphic Adventure Creator (GAC) files.
-- **Process Table Verification**: Inspects the first 16 bytes for 16-bit little-endian offset pointers pointing to Proceso 0, Proceso 1, and Proceso 2, ensuring ascending order and valid file boundary offsets.
-- **Keyword & String Scoring**: Analyzes presence of DAAD vocabulary strings (`COGER`, `DEJAR`, `MIRAR`, `NORTE`, `SUR`, `ESTE`, `OESTE`).
-- **Platform Detection**: Classifies targets as ZX Spectrum, Amstrad CPC, C64, Amiga, Atari ST, MS-DOS, or MSX.
-
-### 5. Synthesize & Report (`daad_harvester.synthesize`, `daad_harvester.report`)
-Generates output artifacts:
-- `detection_tables.h`: Ready-to-use C++ `ADGameDescription` entries formatted for ScummVM engine registration.
-- `daad_catalog.json`: Machine-readable JSON summary of all identified games and metadata.
-- `scrape_report.md`: Markdown summary highlighting total URLs, download success rates, platform distribution, MD5 duplicate/collision reports, and coverage gaps.
+1. **Discovery (`daad_harvester.discover`)**: Crawls high-yield retro archives (Internet Archive, GitHub DAAD Ready repos, IF Archive, WikiCAAD, Aminet, IFDB, ZXDB, Spectrum Computing) using strict filters to eliminate non-game software.
+2. **Fetch (`daad_harvester.fetch`)**: Asynchronous downloader with per-domain rate limiting, user-agent randomization, proxy rotation, and Wayback Machine CDX API fallback for broken links.
+3. **Unpack (`daad_harvester.unpack`)**: Multi-layer recursive container extraction (ZIP, 7Z, RAR, DSK disk images, TAP/TZX tape dumps, D64, ARJ, LHA, CAB, TAR) with zip-bomb protection.
+4. **Fingerprint (`daad_harvester.fingerprint`)**: Deep binary inspection checking 16-bit process table offset pointers (Proceso 0, 1, 2), DAAD vocabulary tokens, and system strings while rejecting non-DAAD binaries.
+5. **Synthesize & Report (`daad_harvester.synthesize`)**: Generates ScummVM C++ `ADGameDescription` entries (`detection_tables.h`), JSON catalogs (`daad_catalog.json`), and structured real-time discovery logs (`daad_games.log`).
 
 ---
 
-## 🚀 Installation & Usage
+## 🛠️ System Requirements & Installation
 
 ### Prerequisites
-- Python 3.10 or higher
-- `pip`
-- (Recommended) System archive decompression CLI utilities for maximum archive format support (ZIP, Deflate64, 7Z, RAR, ARJ, LHA/LZH, ZOO, ARC, CAB):
+- **Python 3.10+**
+- Recommended system archive extraction tools for maximum multi-format support:
 
-#### Recommended System Packages:
-- **Debian / Ubuntu**:
-  ```bash
-  sudo apt-get install p7zip-full unzip unar libarchive-tools unrar cabextract arj lhasa 7zip
-  ```
-- **Termux (Android)**:
-  ```bash
-  pkg install unzip unar libarchive unrar cabextract arj lhasa 7zip
-  ```
-- **macOS (Homebrew)**:
-  ```bash
-  brew install p7zip unzip unar libarchive unrar cabextract arj lhasa 7zip
-  ```
+#### Ubuntu / Debian:
+```bash
+sudo apt-get update && sudo apt-get install -y p7zip-full unzip unar libarchive-tools unrar cabextract arj lhasa 7zip
+```
 
-### 1. Installation
+#### macOS (Homebrew):
+```bash
+brew install p7zip unzip unar libarchive unrar cabextract arj lhasa 7zip
+```
+
+### Installation
 Clone the repository and install required dependencies:
 ```bash
 git clone https://github.com/boolforge/daad-harvester.git
@@ -136,13 +112,37 @@ cd daad-harvester
 pip install -r requirements.txt
 ```
 
-### 2. Running the Pipeline
-By default, running the harvester executes all pipeline phases sequentially:
+---
+
+## 🚀 Usage Guide
+
+### Run Full Harvester Pipeline with Live TUI
 ```bash
-python3 -m daad_harvester.cli --phase all --output-dir ./output
+python3 -m daad_harvester --tui --output-dir ./output
 ```
 
-### 3. Command Line Arguments
+### Run Specific Phase
+```bash
+# Run discovery phase only
+python3 -m daad_harvester --phase discover --output-dir ./output
+
+# Run download phase only with 8 parallel workers
+python3 -m daad_harvester --phase fetch --parallel 8 --output-dir ./output
+
+# Run recursive unpacking phase
+python3 -m daad_harvester --phase unpack --output-dir ./output
+
+# Run byte-level fingerprinting
+python3 -m daad_harvester --phase fingerprint --output-dir ./output
+
+# Generate ScummVM C++ detection tables & report
+python3 -m daad_harvester --phase synthesize --output-dir ./output
+```
+
+---
+
+## 📋 CLI Reference Options
+
 ```
 options:
   -h, --help            Show this help message and exit
@@ -151,62 +151,34 @@ options:
   --resume              Resume pipeline using existing state database
   --parallel PARALLEL   Number of parallel download workers (default: 8)
   --output-dir OUTPUT_DIR
-                        Output directory for state database, downloads, and catalog reports
+                        Output directory for catalog and reports (default: ./output)
   --proxy-list PROXY_LIST
-                        Path to proxy list text file (one proxy URL per line)
-  --version             Show program version number and exit
-```
-
-### 4. Step-by-Step Phase Execution Example
-You can run phases independently:
-```bash
-# 1. Discover sources
-python3 -m daad_harvester.cli --phase discover --output-dir ./my_catalog
-
-# 2. Download discovered sources
-python3 -m daad_harvester.cli --phase fetch --parallel 4 --output-dir ./my_catalog
-
-# 3. Recursively unpack archives and disk images
-python3 -m daad_harvester.cli --phase unpack --output-dir ./my_catalog
-
-# 4. Fingerprint extracted files
-python3 -m daad_harvester.cli --phase fingerprint --output-dir ./my_catalog
-
-# 5. Synthesize ScummVM C++ detection tables & report
-python3 -m daad_harvester.cli --phase synthesize --output-dir ./my_catalog
+                        Path to proxy list text file
+  --log-file LOG_FILE   Path to log file (default: ./daad-harvester.log)
+  --log-level LOG_LEVEL Log level (default: INFO)
+  --tui                 Launch live interactive TUI dashboard display
+  --version             Show program version number
 ```
 
 ---
 
-## ⚙️ Configuration & Environment Variables
+## 🪵 Log Management & History Preservation
 
-Settings can be customized via environment variables or a `.env` file in the root directory:
-
-| Environment Variable | Default Value | Description |
-| :--- | :--- | :--- |
-| `DAAD_OUTPUT_DIR` | `./output` | Base output directory |
-| `DAAD_DB_PATH` | `./output/state.db` | Path to SQLite state database |
-| `DAAD_RATE_LIMIT_PER_DOMAIN` | `1.0` | Allowed requests per second per domain |
-| `DAAD_REQUEST_TIMEOUT` | `30.0` | HTTP request timeout in seconds |
-| `DAAD_MAX_RETRIES` | `3` | Maximum HTTP retry attempts |
-| `DAAD_BACKOFF_BASE` | `1.0` | Base exponential backoff delay (seconds) |
-| `DAAD_MAX_UNPACK_DEPTH` | `5` | Max nesting level for recursive unpacking |
-| `DAAD_ZIP_BOMB_MAX_RATIO` | `10.0` | Max uncompressed/compressed size ratio limit |
-| `DAAD_PARALLEL_WORKERS` | `8` | Parallel download worker concurrency |
+To ensure historical execution logs are never lost:
+- When starting a run, any existing `daad-harvester.log` or `daad_games.log` files are automatically renamed with a timestamp backup (e.g., `daad_games_20260817_120000.log`).
+- Verified DAAD games are appended immediately to `daad_games.log` during the fingerprinting phase in real-time, recording title, platform, engine version, source URL, extracted path, and multi-algorithm cryptographic hashes (`MD5`, `SHA-256`, `SHA-1`, `CRC32`, `XXH64`).
 
 ---
 
 ## 🧪 Testing
 
-The test suite covers unit tests for database operations, configuration, discovery crawlers, recursive unpacking, fingerprinting heuristics, C++ table synthesis, and full pipeline execution.
-
-Run tests using `pytest`:
+Run unit and integration tests using `pytest`:
 ```bash
-python3 -m pytest tests/
+PYTHONPATH=. python3 -m pytest tests/
 ```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the `LICENSE` file for details.

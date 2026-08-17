@@ -4,3 +4,4 @@ __pycache__/
 output/
 live_output/
 *.db
+*.log

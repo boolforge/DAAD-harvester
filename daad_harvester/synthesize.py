@@ -43,13 +43,14 @@ class Synthesizer:
         self.db = db
         self.output_dir = output_dir or settings.output_dir
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.daad_logger = DAADGamesLogger(self.output_dir / "daad_games.log")
+        self.daad_logger = DAADGamesLogger(self.output_dir / "daad_games.log", auto_rotate=False)
 
     def generate_cpp_entry(self, record: Dict[str, Any]) -> str:
-        """Generates a single C++ ADGameDescription struct block."""
+        """Generates a single C++ ADGameDescription struct block with full hash suite annotations."""
         platform_cpp = PLATFORM_MAP_SCUMMVM.get(record["platform"], "Common::kPlatformUnknown")
 
-        cpp = f"""\t{{
+        cpp = f"""\t// MD5 Head (5KB): {record.get('md5_5000', 'N/A')} | SHA-256: {record.get('sha256', 'N/A')} | SHA-1: {record.get('sha1', 'N/A')} | CRC32: {record.get('crc32', 'N/A')} | XXH64: {record.get('xxh64', 'N/A')}
+\t{{
 \t\t"{record['game_id']}",
 \t\t"{record['title']} ({record['platform'].upper()}/{record['year'] or 'Unknown'})",
 \t\tAD_ENTRY1s("{record['filename']}", "{record['md5_full']}", {record['file_size']}),
@@ -168,7 +169,7 @@ class Synthesizer:
             entry_dict["detection_entry"] = cpp_code
 
             # Log to dedicated daad_games.log
-            self.daad_logger.log_daad_game(entry_dict)
+            self.daad_logger.log_daad_game(entry_dict, status_prefix="VERIFIED CATALOG ENTRY")
 
             game_record = GameRecord(
                 id=None,

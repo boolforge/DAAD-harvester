@@ -4,9 +4,11 @@ from pathlib import Path
 from typing import Tuple, Optional, Dict
 import structlog
 
+from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, Platform
 from daad_harvester.daad_parser import DAADParser
+from daad_harvester.daad_logger import DAADGamesLogger
 from daad_harvester.exceptions import FingerprintError
 
 logger = structlog.get_logger(__name__)
@@ -18,6 +20,7 @@ class Fingerprinter:
     def __init__(self, db: Database):
         self.db = db
         self.parser = DAADParser()
+        self.daad_logger = DAADGamesLogger(settings.output_dir / "daad_games.log", auto_rotate=False)
 
     def analyze_daad_heuristics(self, data: bytes, filename: str) -> Tuple[float, Optional[str], Optional[str]]:
         """Backwards-compatible interface returning (confidence_score, version_guess, platform_hint)."""
@@ -56,6 +59,29 @@ class Fingerprinter:
                     platform=platform_hint,
                     details=analysis["details"]
                 )
+
+                # Real-time log entry
+                sources = {s.id: s for s in self.db.get_all_sources()}
+                source = sources.get(artifact.source_id)
+                game_info = {
+                    "game_id": f"art_{artifact.id}",
+                    "title": artifact.title or (source.title if source else artifact.original_filename),
+                    "platform": platform_hint or "unknown",
+                    "daad_version_guess": version_guess or "DAAD DDB",
+                    "language": artifact.language or "es",
+                    "filename": artifact.original_filename,
+                    "file_size": artifact.file_size,
+                    "source_url": source.url if source else "N/A",
+                    "extracted_path": artifact.extracted_path,
+                    "md5_full": artifact.md5_full,
+                    "md5_5000": artifact.md5_5000,
+                    "sha256": artifact.sha256,
+                    "sha1": artifact.sha1,
+                    "crc32": artifact.crc32,
+                    "xxh64": artifact.xxh64
+                }
+                self.daad_logger.log_daad_game(game_info, status_prefix="IDENTIFIED DAAD PAYLOAD")
+
             return is_daad
         except Exception as exc:
             logger.warning("scan_artifact_failed", artifact_id=artifact.id, error=str(exc))

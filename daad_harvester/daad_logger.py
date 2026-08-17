@@ -1,4 +1,4 @@
-"""Dedicated logger for DAAD game discoveries writing to daad_games.log."""
+"""Dedicated logger for DAAD game discoveries writing to daad_games.log with automatic timestamped rotation."""
 
 import json
 from datetime import datetime
@@ -11,14 +11,42 @@ from daad_harvester.config import settings
 logger = structlog.get_logger(__name__)
 
 
+def rotate_log_file(log_path: Path) -> Optional[Path]:
+    """
+    If log_path exists and is non-empty, renames it to a timestamped backup file:
+    e.g. daad_games_20260817_123045.log or daad-harvester_20260817_123045.log.
+    Returns the rotated path if rotated, else None.
+    """
+    if log_path.exists() and log_path.stat().st_size > 0:
+        now_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+        stem = log_path.stem
+        ext = log_path.suffix or ".log"
+        rotated_name = f"{stem}_{now_str}{ext}"
+        rotated_path = log_path.parent / rotated_name
+
+        # If rotated path happens to exist, append milliseconds
+        if rotated_path.exists():
+            ms_str = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+            rotated_path = log_path.parent / f"{stem}_{ms_str}{ext}"
+
+        try:
+            log_path.rename(rotated_path)
+            return rotated_path
+        except Exception as exc:
+            logger.warning("failed_to_rotate_log_file", original=str(log_path), error=str(exc))
+    return None
+
+
 class DAADGamesLogger:
     """Writes dedicated, structured records of verified DAAD games to daad_games.log."""
 
-    def __init__(self, log_path: Optional[Path] = None):
+    def __init__(self, log_path: Optional[Path] = None, auto_rotate: bool = True):
         self.log_path = log_path or (settings.output_dir / "daad_games.log")
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
+        if auto_rotate:
+            rotate_log_file(self.log_path)
 
-    def log_daad_game(self, game_info: Dict[str, Any]) -> None:
+    def log_daad_game(self, game_info: Dict[str, Any], status_prefix: str = "VERIFIED DAAD GAME") -> None:
         """
         Appends a formatted, timestamped record for a verified DAAD game to daad_games.log.
         """
@@ -26,10 +54,11 @@ class DAADGamesLogger:
 
         entry_lines = [
             f"================================================================================",
+            f"STATUS:          {status_prefix}",
             f"TIMESTAMP:       {now}",
             f"GAME ID:         {game_info.get('game_id', 'N/A')}",
             f"TITLE:           {game_info.get('title', 'Unknown Title')}",
-            f"PLATFORM:        {game_info.get('platform', 'unknown').upper()}",
+            f"PLATFORM:        {str(game_info.get('platform', 'unknown')).upper()}",
             f"VERSION GUESS:   {game_info.get('daad_version_guess', 'DAAD DDB')}",
             f"LANGUAGE:        {game_info.get('language', 'es')}",
             f"FILENAME:        {game_info.get('filename', 'N/A')}",
@@ -43,7 +72,7 @@ class DAADGamesLogger:
             f"SHA-1:           {game_info.get('sha1', 'N/A')}",
             f"CRC32:           {game_info.get('crc32', 'N/A')}",
             f"XXH64:           {game_info.get('xxh64', 'N/A')}",
-            f"================================================================================\n"
+            f"================================================================ drop\n"
         ]
 
         text_block = "\n".join(entry_lines)
