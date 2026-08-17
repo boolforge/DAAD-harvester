@@ -13,6 +13,7 @@ import structlog
 from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import SourceRecord, SourceStatus, SourceTier
+from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.exceptions import FetchError
 
 logger = structlog.get_logger(__name__)
@@ -25,6 +26,7 @@ class Fetcher:
         self.db = db
         self.download_dir = download_dir or (settings.output_dir / "downloads")
         self.download_dir.mkdir(parents=True, exist_ok=True)
+        self.logger_suite = LoggerSuite(settings.logs_dir)
 
     def _get_random_user_agent(self) -> str:
         return random.choice(settings.user_agents)
@@ -67,7 +69,6 @@ class Fetcher:
                     if resp.status_code == 200:
                         content_type = resp.headers.get("Content-Type", "application/octet-stream")
 
-                        # Determine file name from Content-Disposition header or URL path
                         filename = None
                         cd_header = resp.headers.get("Content-Disposition", "")
                         if "filename=" in cd_header:
@@ -99,6 +100,13 @@ class Fetcher:
                             content_type=content_type,
                             local_path=str(target_path)
                         )
+                        self.logger_suite.log_download(
+                            url=source.url,
+                            status="DOWNLOADED_OK",
+                            http_code=resp.status_code,
+                            local_path=str(target_path),
+                            wayback_used=is_wayback
+                        )
                         return True
 
                     elif resp.status_code in (404, 410) and not is_wayback:
@@ -107,13 +115,19 @@ class Fetcher:
                         if wayback_url:
                             url_to_fetch = wayback_url
                             is_wayback = True
-                            attempt = 0 # reset retries for wayback
+                            attempt = 0
                             continue
                         else:
                             self.db.update_source_status(
                                 source_id=source.id,
                                 status=SourceStatus.DEAD.value,
                                 http_status=resp.status_code
+                            )
+                            self.logger_suite.log_download(
+                                url=source.url,
+                                status="DEAD_404",
+                                http_code=resp.status_code,
+                                wayback_used=False
                             )
                             return False
                     else:
@@ -129,6 +143,11 @@ class Fetcher:
         self.db.update_source_status(
             source_id=source.id,
             status=SourceStatus.ERROR.value
+        )
+        self.logger_suite.log_download(
+            url=source.url,
+            status="FAILED_ERROR",
+            error="Max retries exceeded"
         )
         return False
 

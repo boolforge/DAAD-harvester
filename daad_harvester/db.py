@@ -1,12 +1,14 @@
 """SQLite state database interface for DAAD Harvester."""
 
 import sqlite3
+import structlog
 from pathlib import Path
 from typing import List, Optional, Tuple, Dict, Any
 from datetime import datetime
 
 from daad_harvester.models import SourceRecord, ArtifactRecord, GameRecord
 
+logger = structlog.get_logger(__name__)
 
 SCHEMA_SQL = """
 CREATE TABLE IF NOT EXISTS sources (
@@ -94,11 +96,12 @@ class Database:
         self.init_db()
 
     def get_connection(self) -> sqlite3.Connection:
-        conn = sqlite3.connect(self.db_path)
+        conn = sqlite3.connect(self.db_path, timeout=30.0)
         conn.execute("PRAGMA foreign_keys = ON;")
         if self.db_path != Path(":memory:") and str(self.db_path) != ":memory:":
             conn.execute("PRAGMA journal_mode = WAL;")
-            conn.execute("PRAGMA busy_timeout = 10000;")
+            conn.execute("PRAGMA synchronous = NORMAL;")
+            conn.execute("PRAGMA busy_timeout = 30000;")
         conn.row_factory = sqlite3.Row
         return conn
 
@@ -130,6 +133,43 @@ class Database:
                 if col not in cols_s:
                     conn.execute(f"ALTER TABLE sources ADD COLUMN {col} TEXT;")
             conn.commit()
+
+    def backfill_and_rescan_session(self) -> Dict[str, int]:
+        """
+        Scans existing records for missing/incomplete fields due to software changes or interrupted runs.
+        Resets failed sources for retry if local files exist, and ensures authentic data backfilling.
+        """
+        stats = {"reset_sources": 0, "backfilled_artifacts": 0, "cleared_stale_games": 0}
+        with self.get_connection() as conn:
+            # 1. Reset 'error' status for sources that actually have local files downloaded
+            cursor = conn.execute("SELECT id, local_path FROM sources WHERE status = 'error' AND local_path IS NOT NULL")
+            for row in cursor.fetchall():
+                p = Path(row["local_path"])
+                if p.exists() and p.stat().st_size > 0:
+                    conn.execute("UPDATE sources SET status = 'downloaded' WHERE id = ?", (row["id"],))
+                    stats["reset_sources"] += 1
+
+            # 2. Re-link artifact metadata from source records if artifact metadata is missing
+            conn.execute("""
+                UPDATE artifacts
+                SET title = COALESCE(artifacts.title, sources.title),
+                    year = COALESCE(artifacts.year, sources.year),
+                    publisher = COALESCE(artifacts.publisher, sources.publisher),
+                    author = COALESCE(artifacts.author, sources.author),
+                    language = COALESCE(artifacts.language, sources.language)
+                FROM sources
+                WHERE artifacts.source_id = sources.id
+                  AND (artifacts.title IS NULL OR artifacts.year IS NULL OR artifacts.publisher IS NULL)
+            """)
+
+            # 3. Clear games table to ensure synthesized catalog is fresh during new pipeline run
+            cursor_g = conn.execute("DELETE FROM games")
+            stats["cleared_stale_games"] = cursor_g.rowcount
+
+            conn.commit()
+
+        logger.info("database_backfill_and_rescan_completed", **stats)
+        return stats
 
     # --- Sources operations ---
 
@@ -200,7 +240,7 @@ class Database:
 
     def get_pending_sources(self) -> List[SourceRecord]:
         with self.get_connection() as conn:
-            cursor = conn.execute("SELECT * FROM sources WHERE status = 'pending'")
+            cursor = conn.execute("SELECT * FROM sources WHERE status IN ('pending', 'error')")
             return [self._row_to_source(row) for row in cursor.fetchall()]
 
     def update_source_status(

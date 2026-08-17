@@ -8,7 +8,7 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, Platform
 from daad_harvester.daad_parser import DAADParser
-from daad_harvester.daad_logger import DAADGamesLogger
+from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.exceptions import FingerprintError
 
 logger = structlog.get_logger(__name__)
@@ -20,7 +20,7 @@ class Fingerprinter:
     def __init__(self, db: Database):
         self.db = db
         self.parser = DAADParser()
-        self.daad_logger = DAADGamesLogger(settings.output_dir / "daad_games.log", auto_rotate=False)
+        self.logger_suite = LoggerSuite(settings.logs_dir)
 
     def analyze_daad_heuristics(self, data: bytes, filename: str) -> Tuple[float, Optional[str], Optional[str]]:
         """Backwards-compatible interface returning (confidence_score, version_guess, platform_hint)."""
@@ -60,12 +60,16 @@ class Fingerprinter:
                     details=analysis["details"]
                 )
 
-                # Real-time log entry
                 sources = {s.id: s for s in self.db.get_all_sources()}
                 source = sources.get(artifact.source_id)
+
+                title = artifact.title or (source.title if source else artifact.original_filename)
+                if not title or title.lower() in ("src", "download", "file", "archive", "unnamed"):
+                    title = Path(artifact.original_filename).stem.replace("_", " ").title()
+
                 game_info = {
                     "game_id": f"art_{artifact.id}",
-                    "title": artifact.title or (source.title if source else artifact.original_filename),
+                    "title": title,
                     "platform": platform_hint or "unknown",
                     "daad_version_guess": version_guess or "DAAD DDB",
                     "language": artifact.language or "es",
@@ -80,11 +84,12 @@ class Fingerprinter:
                     "crc32": artifact.crc32,
                     "xxh64": artifact.xxh64
                 }
-                self.daad_logger.log_daad_game(game_info, status_prefix="IDENTIFIED DAAD PAYLOAD")
+                self.logger_suite.log_game(game_info, status_prefix="IDENTIFIED DAAD PAYLOAD")
 
             return is_daad
         except Exception as exc:
             logger.warning("scan_artifact_failed", artifact_id=artifact.id, error=str(exc))
+            self.logger_suite.log_error("FINGERPRINTER", str(exc), {"artifact_id": artifact.id})
             return False
 
     def scan_all_artifacts(self) -> int:
@@ -95,4 +100,5 @@ class Fingerprinter:
             if self.scan_artifact(art):
                 daad_count += 1
         logger.info("fingerprint_phase_completed", total_scanned=len(artifacts), daad_detected=daad_count)
+        self.logger_suite.log_general(f"Fingerprint phase complete: {daad_count}/{len(artifacts)} DAAD games detected")
         return daad_count
