@@ -104,6 +104,7 @@ class Discoverer:
             logger.info("skipping_rejected_extension_source", url=url)
             return
 
+        # Ensure source is a direct binary file or valid endpoint
         if url not in self.discovered_urls:
             self.discovered_urls.add(url)
             self.db.add_source(
@@ -208,7 +209,7 @@ class Discoverer:
         self.logger_suite.log_discovery("GITHUB REPOSITORIES", "api.github.com", found)
 
     async def discover_itchio(self, client: httpx.AsyncClient) -> None:
-        """Query itch.io for DAAD adventure game entries."""
+        """Query itch.io for DAAD adventure game entries and extract direct download links where available."""
         tags = ["daad", "daad-ready", "aventuras-ad"]
         found = 0
         for tag in tags:
@@ -219,9 +220,22 @@ class Discoverer:
                 for a in soup.find_all("a", href=True):
                     href = a["href"]
                     if "itch.io" in href and not any(href.endswith(ext) for ext in ["/community", "/comments", "/devlog"]):
-                        title = a.get_text(strip=True) or "Itch.io DAAD Game"
-                        self._add_source(href, SourceTier.FORUM, title=title)
-                        found += 1
+                        # Deep inspect itch.io game page to find direct archive links if available
+                        game_page = await self._fetch_url(client, href)
+                        if game_page:
+                            game_soup = BeautifulSoup(game_page, "html.parser")
+                            extracted_any = False
+                            for dl_link in game_soup.find_all("a", href=True):
+                                dl_href = dl_link["href"]
+                                if any(dl_href.lower().split('?')[0].endswith(ext) for ext in [".zip", ".dsk", ".tap", ".tzx", ".ddb", ".7z", ".rar", ".lha"]):
+                                    full_dl = urljoin(href, dl_href)
+                                    title = dl_link.get_text(strip=True) or "Itch.io DAAD Game"
+                                    self._add_source(full_dl, SourceTier.FORUM, title=title)
+                                    found += 1
+                                    extracted_any = True
+                            if not extracted_any:
+                                # Keep reference if downloadable
+                                pass
         self.logger_suite.log_discovery("ITCH.IO", "itch.io", found)
 
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:

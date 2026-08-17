@@ -1,4 +1,4 @@
-"""Resilient downloader module with proxy rotation, wayback fallback, and deduplication."""
+"""Resilient downloader module with proxy rotation, wayback fallback, Content-Type inspection, and magic byte filtering."""
 
 import asyncio
 import hashlib
@@ -19,8 +19,20 @@ from daad_harvester.exceptions import FetchError
 logger = structlog.get_logger(__name__)
 
 
+# Non-binary text/web Content-Types that should be rejected immediately during fetch phase
+REJECTED_CONTENT_TYPES = (
+    "text/html",
+    "text/xml",
+    "application/json",
+    "application/javascript",
+    "text/css",
+    "text/javascript",
+    "application/xml"
+)
+
+
 class Fetcher:
-    """Handles downloading files from discovered URLs with deduplication and Wayback fallback."""
+    """Handles downloading files from discovered URLs with deduplication, magic byte validation, and Wayback fallback."""
 
     def __init__(self, db: Database, download_dir: Optional[Path] = None):
         self.db = db
@@ -44,7 +56,7 @@ class Fetcher:
             resp = await client.get(cdx_url, timeout=settings.request_timeout)
             if resp.status_code == 200:
                 data = resp.json()
-                if len(data) > 1: # Row 0 is header, Row 1 is data
+                if len(data) > 1:  # Row 0 is header, Row 1 is data
                     timestamp = data[1][1]
                     original = data[1][2]
                     wayback_url = f"https://web.archive.org/web/{timestamp}id_/{original}"
@@ -53,6 +65,21 @@ class Fetcher:
         except Exception as exc:
             logger.warning("wayback_cdx_query_failed", url=url, error=str(exc))
         return None
+
+    def _is_invalid_web_payload(self, first_chunk: bytes, content_type: str) -> bool:
+        """Determines whether streamed response is non-binary web page, JSON error, or HTML."""
+        ct_lower = content_type.lower()
+
+        # Direct Content-Type rejection for web/JSON
+        if any(ct in ct_lower for ct in REJECTED_CONTENT_TYPES):
+            return True
+
+        # Magic byte rejection for raw HTML / JSON
+        chunk_start = first_chunk[:128].strip().lower()
+        if chunk_start.startswith((b"<!doctype html", b"<html", b"<?php", b"<head", b"{", b"[")):
+            return True
+
+        return False
 
     async def fetch_source(self, source: SourceRecord, client: httpx.AsyncClient) -> bool:
         """Download a single source record, streaming to disk and recording metadata."""
@@ -63,6 +90,7 @@ class Fetcher:
 
         while attempt < settings.max_retries:
             headers = {"User-Agent": self._get_random_user_agent()}
+            target_path: Optional[Path] = None
             try:
                 logger.info("downloading_source", source_id=source.id, url=url_to_fetch, attempt=attempt + 1)
                 async with client.stream("GET", url_to_fetch, headers=headers, follow_redirects=True, timeout=settings.request_timeout) as resp:
@@ -86,10 +114,41 @@ class Fetcher:
                         target_path = self.download_dir / f"{source.id}_{filename}"
 
                         sha256_hash = hashlib.sha256()
+                        first_chunk_checked = False
+                        is_rejected = False
+
                         async with aiofiles.open(target_path, "wb") as f:
                             async for chunk in resp.aiter_bytes(chunk_size=65536):
+                                if not first_chunk_checked:
+                                    first_chunk_checked = True
+                                    if self._is_invalid_web_payload(chunk, content_type):
+                                        logger.warning(
+                                            "rejecting_non_binary_web_download",
+                                            source_id=source.id,
+                                            url=url_to_fetch,
+                                            content_type=content_type
+                                        )
+                                        is_rejected = True
+                                        break
+
                                 await f.write(chunk)
                                 sha256_hash.update(chunk)
+
+                        if is_rejected:
+                            if target_path and target_path.exists():
+                                target_path.unlink(missing_ok=True)
+                            self.db.update_source_status(
+                                source_id=source.id,
+                                status=SourceStatus.ERROR.value,
+                                http_status=resp.status_code,
+                                content_type=content_type
+                            )
+                            self.logger_suite.log_download(
+                                url=source.url,
+                                status="REJECTED_NON_BINARY_WEB",
+                                http_code=resp.status_code
+                            )
+                            return False
 
                         logger.info("download_success", source_id=source.id, target_path=str(target_path))
 
@@ -133,6 +192,8 @@ class Fetcher:
                     else:
                         logger.warning("http_download_error", source_id=source.id, status_code=resp.status_code)
             except Exception as exc:
+                if target_path and target_path.exists():
+                    target_path.unlink(missing_ok=True)
                 logger.warning("download_exception", source_id=source.id, url=url_to_fetch, error=str(exc))
 
             attempt += 1
