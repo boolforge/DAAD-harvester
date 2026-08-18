@@ -160,14 +160,11 @@ class DAADBytecodeParser:
 
         while pos < end_pos - 2:
             # Entry header in DAAD process: Verb ID (1 byte), Noun ID (1 byte).
-            # KNOWN LIMITATION: these are only consumed to advance the byte
-            # position; they are not yet validated against the vocabulary
-            # table's actual verb/noun ID ranges (see TODO.md Phase 1 /
-            # Task 1). Doing that correctly needs the vocabulary table
-            # layout decoded first, so it's left as a follow-up rather than
-            # guessed at here.
-            _verb_id = data[pos]
-            _noun_id = data[pos + 1]
+            # KNOWN LIMITATION: these two bytes are only consumed to advance
+            # the position; they are not yet validated against the
+            # vocabulary table's actual verb/noun ID ranges (see TODO.md).
+            # Doing that correctly needs the vocabulary table layout decoded
+            # first, so it's left as a follow-up rather than guessed at here.
             pos += 2
 
             # Parse condition bytes until an action byte or end marker

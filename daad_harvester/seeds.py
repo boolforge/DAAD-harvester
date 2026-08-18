@@ -1,4 +1,28 @@
-"""Canonical seed catalog of known commercial DAAD releases and community DAAD Ready games across retro platforms."""
+"""Canonical seed catalog of known commercial DAAD releases and community DAAD Ready games across retro platforms.
+
+AUDIT NOTE (verified against live sources, see scripts/validate_seeds.py):
+Most of the archive.org identifiers below follow a plausible-looking
+"{game-slug}-{platform}" pattern (e.g. "la-aventura-original-zx") that does
+NOT match how Internet Archive actually names these items. Spot-checking
+"La Aventura Original" turned up the item's real identifier is
+"zx_Aventura_Original_La_Part_1_La_Busqueda_1989_Aventuras_AD_es" (it's
+split into two tape parts, "La Busqueda" / "El Encuentro", under the
+"zx_..." naming convention Archive.org's Software Library actually uses) --
+nothing like the guessed slug. That strongly suggests this list was
+generated rather than sourced from confirmed items, and every archive.org
+entry here needs re-verification before being trusted (run
+scripts/validate_seeds.py with real internet access; this sandbox's network
+can't reach archive.org to do it here). The one entry that WAS fully
+confirmed dead (the GitHub repo below) has been removed rather than
+guess-replaced, for the same reason.
+
+This is lower-risk than it looks: discover_internet_archive() in discover.py
+already searches archive.org for `title:("Aventuras AD") AND
+mediatype:(software)` and resolves each result's real files through
+archive.org's own /metadata/{id}/files API (not a guessed filename), so it
+should independently surface these same commercial releases without relying
+on this static list being correct.
+"""
 
 from typing import List, Dict, Any
 
@@ -195,15 +219,13 @@ CANONICAL_DAAD_SEEDS: List[Dict[str, Any]] = [
     },
 
     # Community & DAAD Ready releases
-    {
-        "title": "DAAD Ready Framework & Sample Games",
-        "url": "https://github.com/v32/daad-ready/archive/refs/heads/master.zip",
-        "platform": "pc",
-        "year": 2021,
-        "publisher": "DAAD Ready Community",
-        "author": "Urbano / Tim Gilberts",
-        "language": "es"
-    },
+    # NOTE: "DAAD Ready Framework & Sample Games" (github.com/v32/daad-ready)
+    # was removed here -- confirmed via a live GitHub API call
+    # (api.github.com/repos/v32/daad-ready -> 404 "Not Found") that this
+    # repository does not exist. discover_github() in discover.py covers this
+    # ground live instead (queries topic:daad / topic:daad-ready and reads
+    # each match's real default_branch), so nothing is lost by dropping the
+    # static entry rather than guessing a replacement repo name.
     {
         "title": "DAAD System Compiler & Toolchain",
         "url": "https://archive.org/download/daad-ready-toolchain/daad_toolchain.zip",

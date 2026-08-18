@@ -48,6 +48,15 @@ class Discoverer:
     def _get_random_user_agent(self) -> str:
         return random.choice(settings.user_agents)
 
+    def _get_proxy(self) -> Optional[str]:
+        # Mirrors Fetcher._get_proxy() in fetch.py -- see the note there on
+        # why this is "one proxy per run" rather than true per-request
+        # rotation. Was previously never wired into the AsyncClient at all,
+        # so --proxy-list had zero effect on the discovery phase either.
+        if settings.proxy_list:
+            return random.choice(settings.proxy_list)
+        return None
+
     async def _fetch_url(
         self, client: httpx.AsyncClient, url: str, is_json: bool = False
     ) -> Optional[Any]:
@@ -199,11 +208,16 @@ class Discoverer:
                     repo_name = repo.get("name", "")
                     description = repo.get("description", "") or ""
                     owner = repo.get("owner", {}).get("login")
+                    # The search API returns each repo's actual default branch;
+                    # hardcoding "main" 404s on every repo still using "master"
+                    # (verified live: 2 of 5 real DAAD-topic repos are on
+                    # "master", e.g. nataliapc/msx2daad, haseebcheema/daadminer).
+                    default_branch = repo.get("default_branch") or "main"
 
                     text = f"{repo_name} {description}".lower()
                     if any(kw in text for kw in ["daad", "ddb", "aventuras ad", "gilsoft", "drc", "undaad", "maluva"]):
                         if owner and repo_name:
-                            zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/main.zip"
+                            zip_url = f"https://github.com/{owner}/{repo_name}/archive/refs/heads/{default_branch}.zip"
                             self._add_source(zip_url, SourceTier.API, title=repo_name)
                             found += 1
         self.logger_suite.log_discovery("GITHUB REPOSITORIES", "api.github.com", found)
@@ -257,10 +271,19 @@ class Discoverer:
         self.logger_suite.log_discovery("IFDB", "ifdb.org", found)
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> None:
-        """Query ZXDB Spectrum Computing API for DAAD Spectrum games."""
+        """Query the ZXInfo API (Thomas Kolbeck's open front-end for ZXDB) for DAAD Spectrum games.
+
+        NOTE: "zxdb.zxinfo.org" (the previous host here) does not correspond to
+        any documented ZXDB/ZXInfo service; the real, currently-live API lives
+        at api.zxinfo.dk (v3). Verified via web search that the domain and a
+        legacy `/api/zxinfo/games/{id}` path exist; the exact v3 search query
+        parameters below are a best-effort guess and should be spot-checked
+        against https://api.zxinfo.dk/v3/ (Swagger UI) since that page needs a
+        browser to render and couldn't be fully inspected from here.
+        """
         urls = [
-            "https://zxdb.zxinfo.org/api/v2/games?engine=DAAD",
-            "https://zxdb.zxinfo.org/api/v2/games?search=DAAD"
+            "https://api.zxinfo.dk/v3/games/search?search=DAAD",
+            "https://api.zxinfo.dk/v3/games/search?search=Aventuras+AD",
         ]
         found = 0
         for url in urls:
@@ -356,7 +379,7 @@ class Discoverer:
         logger.info("starting_discovery_phase")
         self.load_canonical_seeds()
 
-        async with httpx.AsyncClient(follow_redirects=True) as client:
+        async with httpx.AsyncClient(follow_redirects=True, proxy=self._get_proxy()) as client:
             tasks = [
                 self.discover_internet_archive(client),
                 self.discover_aminet(client),
