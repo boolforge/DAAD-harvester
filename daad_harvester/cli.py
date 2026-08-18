@@ -21,6 +21,7 @@ logger = structlog.get_logger(__name__)
 
 def main() -> None:
     parser = argparse.ArgumentParser(
+        prog="daad-harvester",
         description="DAAD Engine Game Harvester & Forensic Analysis Pipeline"
     )
     parser.add_argument(

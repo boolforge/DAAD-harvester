@@ -1,8 +1,13 @@
 """Tests for Fetcher Content-Type and web payload rejection."""
 
 import pytest
+import httpx
+from unittest.mock import AsyncMock, patch
+
+from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.fetch import Fetcher
+from daad_harvester.models import SourceStatus
 
 
 def test_fetcher_rejects_html_and_json(tmp_path):
@@ -16,3 +21,157 @@ def test_fetcher_rejects_html_and_json(tmp_path):
     assert fetcher._is_invalid_web_payload(html_chunk, "text/html") is True
     assert fetcher._is_invalid_web_payload(json_chunk, "application/json") is True
     assert fetcher._is_invalid_web_payload(binary_chunk, "application/octet-stream") is False
+
+
+class _FakeStreamResponse:
+    """Minimal stand-in for the object `async with client.stream(...) as resp` yields."""
+
+    def __init__(self, status_code, content_type="application/octet-stream", body=b"DAAD" + b"\x00" * 60):
+        self.status_code = status_code
+        self.headers = {"Content-Type": content_type}
+        self._body = body
+
+    async def aiter_bytes(self, chunk_size=65536):
+        yield self._body
+
+
+class _FakeStreamCM:
+    """Stand-in for the context manager client.stream(...) returns: real httpx
+    only attempts the connection inside __aenter__, not when stream() itself
+    is called, so failures must raise there to behave like the real thing."""
+
+    def __init__(self, *, error: Exception | None = None, response: "_FakeStreamResponse | None" = None):
+        self._error = error
+        self._response = response
+
+    async def __aenter__(self):
+        if self._error is not None:
+            raise self._error
+        return self._response
+
+    async def __aexit__(self, *exc_info):
+        return False
+
+
+class _FakeWaybackClient:
+    """Fails every direct request; succeeds once the wayback fallback fires."""
+
+    def __init__(self, dead_url: str, wayback_ok_url: str):
+        self.dead_url = dead_url
+        self.wayback_ok_url = wayback_ok_url
+        self.stream_urls: list[str] = []
+        self.cdx_calls = 0
+
+    def stream(self, method, url, **kwargs):
+        self.stream_urls.append(url)
+        if url == self.wayback_ok_url:
+            return _FakeStreamCM(response=_FakeStreamResponse(200))
+        return _FakeStreamCM(error=httpx.ConnectError("simulated: domain does not resolve"))
+
+    async def get(self, url, **kwargs):
+        # _query_wayback_cdx's target; only the CDX API is fetched via .get()
+        self.cdx_calls += 1
+        return httpx.Response(
+            200,
+            json=[["urlkey", "timestamp", "original"], ["x", "20200101000000", self.dead_url]],
+            request=httpx.Request("GET", url),
+        )
+
+
+@pytest.mark.anyio
+async def test_fetch_source_falls_back_to_wayback_after_connection_errors_exhausted(tmp_path, monkeypatch):
+    """Regression test: wayback fallback used to only trigger on an explicit
+    HTTP 404/410 response. Most dead retro-computing sites fail with a
+    connection/DNS error instead (the domain itself is gone), which never
+    got a wayback attempt at all. This locks in that connection failures now
+    get ONE wayback attempt, made only after direct retries are exhausted
+    (not on every transient blip)."""
+    monkeypatch.setattr(settings, "max_retries", 3)
+    monkeypatch.setattr(settings, "backoff_base", 0.001)
+    monkeypatch.setattr(settings, "backoff_max", 0.002)
+
+    db = Database(tmp_path / "test.db")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+
+    dead_url = "https://this-domain-does-not-resolve-anymore.example/game.zip"
+    wayback_url = f"https://web.archive.org/web/20200101000000id_/{dead_url}"
+    source_id = db.add_source(url=dead_url, source_tier="archive")
+    source = db.get_pending_sources()[0]
+
+    fake_client = _FakeWaybackClient(dead_url=dead_url, wayback_ok_url=wayback_url)
+    ok = await fetcher.fetch_source(source, fake_client)
+
+    assert ok is True
+    # Exactly 3 failed attempts on the dead URL, then the wayback attempt --
+    # not a wayback attempt after every single failure.
+    assert fake_client.stream_urls == [dead_url, dead_url, dead_url, wayback_url]
+    assert fake_client.cdx_calls == 1
+
+    updated = db.get_all_sources()
+    match = [s for s in updated if s.id == source_id][0]
+    assert match.status == SourceStatus.DOWNLOADED.value
+
+
+@pytest.mark.anyio
+async def test_fetch_source_falls_back_to_wayback_on_dead_link_http_status(tmp_path, monkeypatch):
+    """Coverage for the *original* wayback path (HTTP 404/410), which had no
+    dedicated test before this session despite being the primary fallback
+    mechanism -- added alongside the connection-error path above so both
+    triggers for the same fallback are actually verified, not just one."""
+    monkeypatch.setattr(settings, "max_retries", 3)
+    monkeypatch.setattr(settings, "backoff_base", 0.001)
+    monkeypatch.setattr(settings, "backoff_max", 0.002)
+
+    db = Database(tmp_path / "test.db")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+
+    dead_url = "https://still-online-but-file-removed.example/game.zip"
+    wayback_url = f"https://web.archive.org/web/20200101000000id_/{dead_url}"
+    source_id = db.add_source(url=dead_url, source_tier="archive")
+    source = db.get_pending_sources()[0]
+
+    class _Fake404Client(_FakeWaybackClient):
+        def stream(self, method, url, **kwargs):
+            self.stream_urls.append(url)
+            if url == self.wayback_ok_url:
+                return _FakeStreamCM(response=_FakeStreamResponse(200))
+            return _FakeStreamCM(response=_FakeStreamResponse(404))
+
+    fake_client = _Fake404Client(dead_url=dead_url, wayback_ok_url=wayback_url)
+    ok = await fetcher.fetch_source(source, fake_client)
+
+    assert ok is True
+    # A 404 is definitive -- wayback should be tried immediately, not only
+    # after burning through all direct retries like the connection-error case.
+    assert fake_client.stream_urls == [dead_url, wayback_url]
+    assert fake_client.cdx_calls == 1
+
+    updated = db.get_all_sources()
+    match = [s for s in updated if s.id == source_id][0]
+    assert match.status == SourceStatus.DOWNLOADED.value
+
+
+@pytest.mark.anyio
+async def test_fetch_pending_sources_wires_proxy_into_client(tmp_path, monkeypatch):
+    """Regression test: Fetcher._get_proxy() existed but was never passed to
+    httpx.AsyncClient, so --proxy-list had zero effect on the fetch phase."""
+    monkeypatch.setattr(settings, "proxy_list", ["http://proxy.example:9999"])
+
+    db = Database(tmp_path / "test.db")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+    db.add_source(url="https://example.com/proxy-wiring-test.zip", source_tier="archive")
+
+    captured_kwargs = {}
+    real_async_client = httpx.AsyncClient
+
+    class RecordingClient(real_async_client):
+        def __init__(self, *args, **kwargs):
+            captured_kwargs.update(kwargs)
+            super().__init__(*args, **kwargs)
+
+    with patch("daad_harvester.fetch.httpx.AsyncClient", RecordingClient), \
+         patch.object(fetcher, "fetch_source", new=AsyncMock(return_value=True)):
+        await fetcher.fetch_pending_sources(parallel=1)
+
+    assert captured_kwargs.get("proxy") == "http://proxy.example:9999"
+

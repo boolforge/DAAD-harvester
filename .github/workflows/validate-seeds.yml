@@ -1,0 +1,32 @@
+name: Validate canonical seeds
+
+# Separate from tests.yml on purpose: this hits real third-party sites
+# (archive.org, GitHub, IF Archive...) so it's slow and can fail for reasons
+# that have nothing to do with this repo (a site being briefly down). Running
+# it on a schedule instead of every push means it can't block a PR, while
+# still catching seed rot automatically instead of relying on someone
+# noticing the harvester quietly returns nothing.
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # weekly, Monday 06:00 UTC
+  workflow_dispatch: {}   # allow running it manually from the Actions tab
+
+jobs:
+  validate-seeds:
+    runs-on: ubuntu-latest
+    continue-on-error: true  # informational -- never block anything else on this
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate seed URLs against the real internet
+        run: python -m scripts.validate_seeds --timeout 20
