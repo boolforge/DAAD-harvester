@@ -8,3 +8,8 @@ live_output/
 
 *.egg-info/
 .audit/
+
+# Local GitHub Pages viewer products; CI regenerates report data and build output.
+web/report-viewer/node_modules/
+web/report-viewer/dist/
+web/report-viewer/public/report_data.json
