@@ -75,6 +75,45 @@ def test_fingerprint_correlates_neighbouring_interpreter_filename_without_overcl
     assert interpreter.confidence == "strong"
 
 
+def test_historical_plus4_runtime_name_is_qualified_interpreter_evidence_only(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    runtime_path = tmp_path / "depth2_a4aff539_EDIPLUS4"
+    runtime_path.write_bytes(b"historical plus4 runtime")
+    artifact = _artifact(db, runtime_path, filename="EDIPLUS4")
+    artifact.id = db.add_artifact(artifact)
+
+    assert Fingerprinter(db).scan_artifact(artifact) is False
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.is_daad_payload is False
+    assert persisted.interpreter_identity == "daad-plus4-ediplus4-historical"
+    assert persisted.fingerprint_confidence == "strong"
+    evidence = db.get_version_evidence(artifact_id=artifact.id)
+    assert evidence[0].kind == EvidenceKind.INTERPRETER_IDENTITY.value
+    assert evidence[0].confidence == "strong"
+
+
+def test_interpreter_alias_upgrades_only_on_same_platform_official_hash(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import daad_harvester.interpreter_profiles as profiles
+
+    runtime_path = tmp_path / "stored_member"
+    runtime_path.write_bytes(b"verified historical alias")
+    digest = sha256(runtime_path.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        profiles,
+        "OFFICIAL_INTERPRETER_PROFILES",
+        (
+            InterpreterProfile("official-plus4", "plus4", ("ediplus4.prg",), digest),
+            InterpreterProfile("historical-plus4-alias", "plus4", ("ediplus4",)),
+            InterpreterProfile("unrelated-zx", "zx", ("ediplus4",), digest),
+        ),
+    )
+
+    match = identify_interpreter_file(runtime_path, observed_filename="EDIPLUS4")
+    assert match is not None
+    assert match.profile_id == "official-plus4"
+    assert match.confidence == "verified"
+
+
 def test_fingerprint_finds_embedded_structural_ddb(tmp_path: Path) -> None:
     db = Database(tmp_path / "state.db")
     path = tmp_path / "disk_member.bin"

@@ -7,7 +7,7 @@ import time
 import pytest
 
 from daad_harvester.daad_parser import DAADBytecodeParser
-from tests.ddb_fixtures import make_ddb, wrap_commodore, wrap_plus3dos
+from tests.ddb_fixtures import make_ddb, make_legacy_ddb, wrap_commodore, wrap_plus3dos
 
 
 @pytest.mark.parametrize("platform", ("zx", "cpc", "c64", "plus4", "msx", "pcw", "atarist", "amiga", "dos"))
@@ -25,6 +25,47 @@ def test_drc_header_verifies_every_official_daad_target(platform: str, major: in
     assert result["details"]["structural_validation"] == "verified"
     assert result["details"]["header"]["platform"] == platform
     assert result["details"]["process_validation"]["terminated_streams"] == 1
+
+
+@pytest.mark.parametrize("platform", ("zx", "cpc", "c64", "plus4", "msx", "pcw", "atarist", "amiga", "dos"))
+def test_historical_v2_header_verifies_every_official_daad_target(platform: str) -> None:
+    result = DAADBytecodeParser().parse_ddb(make_legacy_ddb(platform), "legacy.ddb")
+
+    assert result["is_daad"] is True
+    assert result["confidence"] == 1.0
+    assert result["platform"] == platform
+    assert result["ddb_format"] == "daad-v2-legacy"
+    assert result["ddb_major_version"] == 2
+    assert result["reason"] == "verified_structural_legacy_ddb"
+    assert result["details"]["header"]["layout"] == "legacy"
+
+
+def test_historical_v1_database_is_distinguished_from_v2_without_toolchain_guess() -> None:
+    result = DAADBytecodeParser().parse_ddb(make_legacy_ddb("zx", major=1, spanish=True), "original.ddb")
+
+    assert result["is_daad"] is True
+    assert result["ddb_format"] == "daad-v1-legacy"
+    assert result["version"] == "DAAD DDB v1"
+    assert result["platform"] == "zx"
+    assert result["language"] == "es"
+
+
+def test_historical_header_rejects_bad_marker_and_unterminated_condact_stream() -> None:
+    bad_marker = bytearray(make_legacy_ddb("c64"))
+    bad_marker[2] = 0
+    unterminated = bytearray(make_legacy_ddb("c64"))
+    unterminated[65] = 0
+
+    parser = DAADBytecodeParser()
+    assert parser.parse_ddb(bytes(bad_marker), "legacy.ddb")["is_daad"] is False
+    assert parser.parse_ddb(bytes(unterminated), "legacy.ddb")["is_daad"] is False
+
+
+def test_embedded_historical_ddb_is_recovered_at_exact_declared_size() -> None:
+    payload = make_legacy_ddb("plus4")
+    found = DAADBytecodeParser().find_embedded_ddb(b"LOADER" + payload + b"TRAILER")
+
+    assert found == (6, payload)
 
 
 def test_structural_parser_recognizes_spanish_language_bit() -> None:

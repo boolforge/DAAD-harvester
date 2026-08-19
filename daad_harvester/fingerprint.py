@@ -18,7 +18,7 @@ from daad_harvester.config import settings
 from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.daad_parser import DAADParser
 from daad_harvester.db import Database
-from daad_harvester.interpreter_profiles import InterpreterMatch, identify_interpreters
+from daad_harvester.interpreter_profiles import InterpreterMatch, identify_interpreter_file, identify_interpreters
 from daad_harvester.models import ArtifactRecord
 from daad_harvester.provenance import EvidenceConfidence, EvidenceKind, VersionEvidence
 
@@ -115,6 +115,13 @@ class Fingerprinter:
                     analysis = self.parser.parse_ddb(embedded_data, f"embedded_{artifact.original_filename}.ddb")
 
             matches = identify_interpreters(self._candidate_interpreter_paths(path))
+            own_match = identify_interpreter_file(path, observed_filename=artifact.original_filename)
+            if own_match is not None and all(
+                (match.profile_id, match.sha256) != (own_match.profile_id, own_match.sha256)
+                for match in matches
+            ):
+                matches.append(own_match)
+                matches.sort(key=lambda item: (item.platform, item.profile_id, item.filename))
             if not analysis["is_daad"]:
                 self._record_interpreter_only(artifact, matches)
                 return False

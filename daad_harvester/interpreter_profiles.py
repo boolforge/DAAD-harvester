@@ -51,6 +51,11 @@ OFFICIAL_INTERPRETER_PROFILES: tuple[InterpreterProfile, ...] = (
         "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523",
         language="en",
     ),
+    # Historical Plus/4 disk releases conventionally store the runtime without
+    # an extension. This name was observed in a real public release, but it is
+    # deliberately only qualified filename evidence until an exact hash anchor
+    # can be measured from an official historical distribution.
+    InterpreterProfile("daad-plus4-ediplus4-historical", "plus4", ("ediplus4",)),
     InterpreterProfile(
         "daad-msx-msxedi-official", "msx", ("msxedi.z80",),
         "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
@@ -104,18 +109,32 @@ class InterpreterMatch:
     language: Optional[str]
 
 
-def identify_interpreter_file(path: Path) -> Optional[InterpreterMatch]:
-    """Identify one interpreter file by exact hash or conservative filename match."""
+def identify_interpreter_file(path: Path, *, observed_filename: Optional[str] = None) -> Optional[InterpreterMatch]:
+    """Identify one interpreter by actual bytes and its preserved media filename.
+
+    Unpackers prefix stored paths with depth/hash information to prevent
+    collisions. `observed_filename` therefore carries the original member name
+    when it differs from the storage filename; the SHA-256 is always computed
+    from the supplied physical path.
+    """
 
     if not path.is_file():
         return None
-    filename = path.name.casefold()
+    filename = (observed_filename or path.name).casefold()
     candidates = [profile for profile in OFFICIAL_INTERPRETER_PROFILES if filename in profile.filenames]
     if not candidates:
         return None
     digest = sha256(path.read_bytes()).hexdigest()
-    for profile in candidates:
-        if profile.sha256 and digest == profile.sha256:
+    candidate_platforms = {profile.platform for profile in candidates}
+    # A historical filename alias may carry a byte-identical official runtime.
+    # Resolve that only through an exact same-platform profile hash, never from
+    # a cross-platform or text/filename resemblance.
+    for profile in OFFICIAL_INTERPRETER_PROFILES:
+        if (
+            profile.platform in candidate_platforms
+            and profile.sha256
+            and digest == profile.sha256
+        ):
             return InterpreterMatch(
                 profile.profile_id, profile.platform, "verified", path.name, digest,
                 profile.interpreter_version, profile.language,

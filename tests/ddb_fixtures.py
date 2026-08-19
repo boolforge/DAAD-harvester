@@ -6,7 +6,7 @@ Fixtures intentionally model database structure, not a made-up DAAD signature.
 
 from __future__ import annotations
 
-from daad_harvester.daad_parser import HEADER_SIZE, MACHINE_IDS
+from daad_harvester.daad_parser import HEADER_SIZE, LEGACY_HEADER_SIZE, MACHINE_IDS
 
 
 PLATFORM_MACHINE_IDS = {
@@ -53,6 +53,40 @@ def make_ddb(platform: str, *, major: int = 2, spanish: bool = False) -> bytes:
     data[224] = 0
     # Final process pointer table, one pointer because process_count is 1.
     _write_word(data, 240, base_address + 220, endianness)
+    return bytes(data)
+
+
+def make_legacy_ddb(platform: str, *, major: int = 2, spanish: bool = False) -> bytes:
+    """Return a compact V1/V2 DDB matching the MSX2DAAD interpreter header.
+
+    The historical header has file-relative offsets and a literal 0x5F control
+    marker. The fixture includes an in-bounds token stream, vocabulary pointer,
+    process table, entry, and 0xFF-terminated condact stream.
+    """
+
+    machine_id = PLATFORM_MACHINE_IDS[platform]
+    _, _, modern_endianness = MACHINE_IDS[machine_id]
+    endianness = "big" if platform in {"atarist", "amiga"} else "little"
+    size = 96
+    data = bytearray(size)
+    data[0] = major
+    data[1] = (machine_id << 4) | int(spanish)
+    data[2] = 0x5F
+    data[3:8] = bytes((1, 1, 1, 1, 1))
+    assert modern_endianness in {"big", "little"}
+
+    # Pointer order from the historical interpreter's DDB_Header definition.
+    # Tokens, process list, and vocabulary are mandatory for the validator;
+    # remaining zero offsets are legal absent optional sections.
+    pointers = [LEGACY_HEADER_SIZE, 72, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, size]
+    for index, value in enumerate(pointers):
+        _write_word(data, 8 + (index * 2), value, endianness)
+    data[LEGACY_HEADER_SIZE] = 0x80  # minimal compressed-token terminator
+    data[40] = 0x80  # bounded vocabulary placeholder
+    data[56:60] = bytes((1, 1)) + (64).to_bytes(2, endianness)
+    data[60] = 0  # end of process-entry list
+    data[64:66] = b"\x01\xff"
+    _write_word(data, 72, 56, endianness)
     return bytes(data)
 
 

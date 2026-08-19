@@ -1,10 +1,11 @@
 """Structural DAAD DDB recognition.
 
-Recognition is based on the public DRC backend's emitted database layout, not
-on filenames or incidental text.  A verified candidate must pass target-aware
+Recognition is based on actual DAAD interpreter/database contracts, not on
+filenames or incidental text. A verified candidate must pass target-aware
 header, length, offset, process-table, entry-reference, and bytecode-boundary
-validation.  The historical official interpreter sources are not public, so
-runtime identity is handled separately through binary profiles.
+validation. The modern DRC layout and the compact historical V1/V2 layout
+implemented by the open-source MSX2DAAD interpreter are validated separately;
+runtime identity is handled through binary profiles.
 """
 
 from __future__ import annotations
@@ -29,6 +30,8 @@ MACHINE_IDS = {
 
 HEADER_SIZE = 60
 HEADER_POINTER_COUNT = 13
+LEGACY_HEADER_SIZE = 34
+LEGACY_POINTER_COUNT = 13
 MAX_EMBEDDED_SCAN = 524_288
 MAX_PROCESS_ENTRIES = 256
 MAX_BYTECODE_LENGTH = 1024
@@ -52,6 +55,8 @@ class DDBHeader:
     process_count: int
     pointers: tuple[int, ...]
     file_length: int
+    header_size: int = HEADER_SIZE
+    layout: str = "drc"
 
     @property
     def expected_size(self) -> int:
@@ -166,6 +171,52 @@ class DAADBytecodeParser:
             file_length=file_length,
         )
 
+    def _parse_legacy_header(self, data: bytes, offset: int) -> Optional[DDBHeader]:
+        """Parse the compact V1/V2 DDB header used by historical interpreters.
+
+        MSX2DAAD's `DDB_Header` declares this 34-byte structure: version,
+        target/language, literal 0x5F control marker, five counts, twelve
+        relative section offsets, and a relative file length. The interpreter
+        relocates each offset after loading the DDB, so this validator treats
+        them as bounded file-relative positions rather than DRC base addresses.
+        """
+        if offset < 0 or len(data) - offset < LEGACY_HEADER_SIZE:
+            return None
+        major = data[offset]
+        machine_language = data[offset + 1]
+        machine_id = machine_language >> 4
+        target = MACHINE_IDS.get(machine_id)
+        if major not in {1, 2} or target is None or data[offset + 2] != 0x5F:
+            return None
+        platform, _, _ = target
+        # MSX2DAAD documents little-endian offsets for its V2 target.  68000
+        # historical targets store 16-bit values in Motorola order; the other
+        # original 8-bit and DOS targets are little-endian.
+        endianness = "big" if platform in {"atarist", "amiga"} else "little"
+        pointers = tuple(
+            self._read_word(data, offset + 8 + (index * 2), endianness)
+            for index in range(LEGACY_POINTER_COUNT)
+        )
+        file_length = pointers[12]
+        return DDBHeader(
+            major_version=major,
+            machine_id=machine_id,
+            platform=platform,
+            base_address=0,
+            endianness=endianness,
+            language="es" if machine_language & 0x01 else "en",
+            submachine=data[offset + 2],
+            object_count=data[offset + 3],
+            location_count=data[offset + 4],
+            message_count=data[offset + 5],
+            system_message_count=data[offset + 6],
+            process_count=data[offset + 7],
+            pointers=pointers,
+            file_length=file_length,
+            header_size=LEGACY_HEADER_SIZE,
+            layout="legacy",
+        )
+
     def _validate_process_entries(
         self,
         data: bytes,
@@ -188,7 +239,7 @@ class DAADBytecodeParser:
             return {"valid": False, "reason": "missing_process_table"}
         if header.process_count == 0 or header.process_count > 64:
             return {"valid": False, "reason": "invalid_process_count"}
-        if process_table < HEADER_SIZE or process_table + (header.process_count * 2) > payload_size:
+        if process_table < header.header_size or process_table + (header.process_count * 2) > payload_size:
             return {"valid": False, "reason": "process_table_out_of_bounds"}
 
         process_offsets = [
@@ -198,7 +249,7 @@ class DAADBytecodeParser:
             )
             for index in range(header.process_count)
         ]
-        if any(item is None or item < HEADER_SIZE or item >= payload_size for item in process_offsets):
+        if any(item is None or item < header.header_size or item >= payload_size for item in process_offsets):
             return {"valid": False, "reason": "process_entry_pointer_out_of_bounds"}
 
         referenced_streams = 0
@@ -216,7 +267,7 @@ class DAADBytecodeParser:
                     return {"valid": False, "reason": "truncated_process_entry"}
                 condact_address = self._read_word(data, offset + entry_position + 2, header.endianness)
                 condact_offset = self._pointer_index(condact_address, header)
-                if condact_offset is None or condact_offset < HEADER_SIZE or condact_offset >= payload_size:
+                if condact_offset is None or condact_offset < header.header_size or condact_offset >= payload_size:
                     return {"valid": False, "reason": "condact_pointer_out_of_bounds"}
                 end = min(payload_size, condact_offset + MAX_BYTECODE_LENGTH)
                 stream = data[offset + condact_offset:offset + end]
@@ -251,18 +302,19 @@ class DAADBytecodeParser:
         wrapper: Dict[str, Any],
         *,
         allow_trailing: bool = False,
+        legacy: bool = False,
     ) -> Optional[Dict[str, Any]]:
-        header = self._parse_header(data, offset)
+        header = self._parse_legacy_header(data, offset) if legacy else self._parse_header(data, offset)
         if header is None:
             return None
         available_size = len(data) - offset
         expected_size = header.expected_size
-        if expected_size < HEADER_SIZE or expected_size > available_size:
+        if expected_size < header.header_size or expected_size > available_size:
             return None
         if not allow_trailing and expected_size != available_size:
             return None
         payload_size = expected_size
-        if header.submachine != 95 and header.machine_id != 0xF:
+        if not legacy and header.submachine != 95 and header.machine_id != 0xF:
             return None
 
         pointer_offsets = [self._pointer_index(pointer, header) for pointer in header.pointers[:12]]
@@ -270,11 +322,12 @@ class DAADBytecodeParser:
         if any(pointer_offsets[index] is None for index in required):
             return None
         concrete_offsets = [item for item in pointer_offsets if item is not None]
-        if any(item < HEADER_SIZE or item >= payload_size for item in concrete_offsets):
+        if any(item < header.header_size or item >= payload_size for item in concrete_offsets):
             return None
-        # DRC emits the process-pointer table after all other normal DDB
-        # sections, so it must be the highest populated header pointer.
-        if pointer_offsets[1] != max(concrete_offsets):
+        # DRC emits the process-pointer table after all normal sections. The
+        # older interpreter does not document that ordering, so it is enforced
+        # only for the modern layout.
+        if not legacy and pointer_offsets[1] != max(concrete_offsets):
             return None
 
         process = self._validate_process_entries(data, offset, header, payload_size)
@@ -296,9 +349,11 @@ class DAADBytecodeParser:
         for offset, wrapper in self._candidate_offsets(data, filename):
             validated = self._validate_at(data, offset, wrapper)
             if validated is None:
+                validated = self._validate_at(data, offset, wrapper, legacy=True)
+            if validated is None:
                 continue
             header: DDBHeader = validated["header"]
-            format_name = f"daad-v{header.major_version}"
+            format_name = f"daad-v{header.major_version}" if header.layout == "drc" else f"daad-v{header.major_version}-legacy"
             details = {
                 "structural_validation": "verified",
                 "header": asdict(header),
@@ -317,7 +372,7 @@ class DAADBytecodeParser:
                 "ddb_encoding": None,
                 "platform": header.platform,
                 "language": header.language,
-                "reason": "verified_structural_ddb",
+                "reason": f"verified_structural_{header.layout}_ddb",
                 "details": details,
             }
         return self._failure("no_valid_target_aware_ddb_structure")
@@ -343,13 +398,17 @@ class DAADBytecodeParser:
 
         limit = min(len(data) - HEADER_SIZE, MAX_EMBEDDED_SCAN)
         for offset in range(max(0, limit + 1)):
-            if data[offset] not in {2, 3}:
+            if data[offset] not in {1, 2, 3}:
                 continue
             if (data[offset + 1] >> 4) not in MACHINE_IDS:
                 continue
             validated = self._validate_at(
                 data, offset, {"format": "embedded"}, allow_trailing=True
             )
+            if validated is None:
+                validated = self._validate_at(
+                    data, offset, {"format": "embedded"}, allow_trailing=True, legacy=True
+                )
             if validated is None:
                 continue
             size = validated["payload_size"]
