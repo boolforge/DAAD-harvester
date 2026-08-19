@@ -1,0 +1,10 @@
+flowchart TD
+  A[Candidate artifact] --> B[Record origin, SHA-256, class, platform, architecture]
+  B --> C{Authorization state documented?}
+  C -- no --> M[Manifest-only; no original bytes published]
+  C -- yes --> D{Scope permits this storage/publication?}
+  D -- no --> M
+  D -- yes --> O[Store immutable original]
+  O --> T[Reproducible tool analysis]
+  T --> V[Independent verification]
+  V --> R[Qualified derived documentation]

@@ -14,6 +14,7 @@ docs/
 ├── derivatives/                      # one derivative/project per document
 ├── platforms/                        # one canonical DAAD target per dossier
 ├── formats/                          # one media or container family per document
+├── reverse_engineering/               # authorization-gated artifact and analysis dossiers
 ├── schemas/                          # persisted evidence and byte-layout schemas
 ├── diagrams/                         # standalone Mermaid sources and rendered assets
 ├── sources/                          # one primary source ledger entry per source family
@@ -30,6 +31,7 @@ docs/
 | `derivatives/` | What does one named project state it implements, and how does that differ from original DAAD? | Generalized claims about all DAAD historical releases. |
 | `platforms/` | What does one machine target require for runtime/media provenance? | Full repeated binary layout definitions held in `formats/` or `schemas/`. |
 | `formats/` | How is one container/media family recognized, validated, and preserved? | Platform history unrelated to that media family. |
+| `reverse_engineering/` | What authorization, artifact class, tool-derived result, and cross-check support one analysis claim? | Undifferentiated binaries, unsourced pseudocode, or a claim that generated output is original source. |
 | `schemas/` | What fields or bytes have defined semantics? | Narrative release history. |
 | `diagrams/` | What visual model supports one named module? | Uncited prose explanations. |
 | `sources/` | What exact source supports what claim, with access and legal boundary? | Unattributed interpretation. |

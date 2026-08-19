@@ -75,3 +75,12 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 - [x] Update `README.md`, this roadmap, modular docs, and the generated report truthfully from final evidence.
 - [x] Publish in small, reviewable commits to `main`; verify `HEAD == origin/main` after every milestone.
 - [x] Record the modular-documentation audit, report build, CLI/report smoke test, and remaining native-archive release gate in `docs/audits/2026-08-19_DOCUMENTATION_EXPANSION_AUDIT.md`.
+
+### 7. Authorization-gated reverse-engineering corpus
+
+- [ ] Record per-artifact authorization, license, source URL, acquisition date, checksum, platform/architecture, and redistribution status before storing any original binary or derived analysis.
+- [ ] Create a machine-readable inventory that distinguishes original binary, public original source, public derivative source, disassembly, decompiler output, symbol map, and analytical notes.
+- [ ] Define reproducible, architecture-specific workflows for Z80, 6502/8501, 68000, and 8086-class DAAD artifacts, including tool version pins, load addresses, memory maps, and command logs.
+- [ ] Analyze only artifacts whose provenance/authorization gate is satisfied; preserve immutable originals separately from disassembly/decompilation output and never label generated pseudocode as recovered source.
+- [ ] Cross-check each derived interpretation with independent tools, known DDB/runtime behavior, checksums, entry-point mappings, and reproducible test fixtures before documentation claims are promoted.
+- [ ] Add focused reverse-engineering dossiers, schema/provenance contracts, audit records, and CI-safe integrity checks without redistributing restricted original binaries or proprietary-source equivalents.

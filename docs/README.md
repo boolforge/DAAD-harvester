@@ -10,6 +10,7 @@ This documentation corpus describes **what DAAD Harvester can measure**, the evi
 | [Version chronology](versions/DAAD_CHRONOLOGY.md) | DAAD R2–R5, historical V1/V2 layouts, and DRC V2/V3 evidence. |
 | [Platform runtime and media guide](platforms/PLATFORM_RUNTIME_MEDIA.md) | The nine canonical targets, runtime evidence, and native media handling. |
 | [Derivative taxonomy](derivatives/COMPATIBILITY_TAXONOMY.md) | Original DAAD, DRC, Maluva, MSX2DAAD, PCDAAD, UnDAAD, and related tools. |
+| [Reverse-engineering corpus](reverse_engineering/README.md) | Authorization-gated originals, public source, disassembly, decompilation, and verification methodology. |
 | [Source register](sources/SOURCE_REGISTER.md) | Provenance, access boundaries, coverage, and use of every primary source. |
 | [TUI demonstration capture](tui/DEMONSTRATION_CAPTURE.md) | Reproducible authentic terminal recording, interaction sequence, and aspect-ratio rationale. |
 | [Final bounded live audit](audits/2026-08-19_FINAL_LIVE_AUDIT.md) | Fresh source discovery, bounded acquisition, native extraction, and negative verification result. |

@@ -18,6 +18,7 @@ FOCUSED_DIRECTORIES = (
     "derivatives",
     "platforms",
     "formats",
+    "reverse_engineering",
     "schemas",
     "sources",
 )
