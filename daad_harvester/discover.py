@@ -280,11 +280,19 @@ class Discoverer:
                     continue
                 metadata_url = ARCHIVE_METADATA_URL.format(identifier=quote(identifier, safe=""))
                 metadata = await self._fetch_url(client, metadata_url, is_json=True)
+                metadata_fields = (metadata or {}).get("metadata") or {}
+                collections = set(metadata_fields.get("collection") or [])
+                archive_platform = (
+                    "cpc"
+                    if {"softwarelibrary_cpc", "softwarelibrary_cpc_games"} & collections
+                    or str(metadata_fields.get("emulator", "")).lower().startswith("cpc")
+                    else None
+                )
                 files = (metadata or {}).get("files") or (metadata or {}).get("result") or []
                 for file_info in files:
                     filename = file_info.get("name") or ""
                     download_url = f"https://archive.org/download/{quote(identifier, safe='')}/{quote(filename, safe='/')}"
-                    if self._add_source(download_url, SourceTier.ARCHIVE, title=title):
+                    if self._add_source(download_url, SourceTier.ARCHIVE, title=title, platform=archive_platform):
                         inserted += 1
         self.logger_suite.log_discovery("INTERNET ARCHIVE", "archive.org", inserted)
         return inserted

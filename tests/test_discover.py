@@ -302,3 +302,34 @@ async def test_discover_world_of_spectrum_uses_publisher_catalog_and_verified_de
     assert sources[0].url == "https://worldofspectrum.org/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip"
     assert sources[0].title == "La Aventura Original"
     assert sources[0].platform == "zx"
+
+
+@pytest.mark.anyio
+async def test_internet_archive_cpc_metadata_sets_verified_cpc_priority(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    search_result = {
+        "response": {
+            "docs": [
+                {
+                    "identifier": "chichen-cpc",
+                    "title": "Ci-U-Than Trilogy III Chichen Itza (Aventuras AD)",
+                }
+            ]
+        }
+    }
+    metadata_result = {
+        "metadata": {"collection": ["softwarelibrary_cpc_games"], "emulator": "cpc6128"},
+        "files": [{"name": "ChichenItza.dsk"}],
+    }
+
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [search_result, metadata_result] * 3
+        async with httpx.AsyncClient() as client:
+            inserted = await discoverer.discover_internet_archive(client)
+
+    assert inserted == 1
+    source = db.get_pending_sources()[0]
+    assert source.known_game_id == "chichen_itza"
+    assert source.platform == "cpc"
+    assert source.acquisition_priority == 1200

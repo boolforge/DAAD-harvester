@@ -126,8 +126,24 @@ _GAME_BY_NORMALIZED_TITLE: Dict[str, KnownGame] = {
 
 
 def find_known_game(title: Optional[str]) -> Optional[KnownGame]:
-    """Return the catalog entry for an exact canonical or alias title match."""
-    return _GAME_BY_NORMALIZED_TITLE.get(normalize_title(title))
+    """Return a catalog entry for an exact or unambiguous embedded title match.
+
+    Archive titles often add a series name, year, publisher, language, or dump
+    label around a canonical game name. Matching a complete canonical/alias
+    token sequence handles that common structure without falling back to a
+    broad fuzzy search.
+    """
+    normalized = normalize_title(title)
+    exact = _GAME_BY_NORMALIZED_TITLE.get(normalized)
+    if exact:
+        return exact
+
+    candidates = {
+        game.game_id: game
+        for name, game in _GAME_BY_NORMALIZED_TITLE.items()
+        if len(name) >= 6 and f" {name} " in f" {normalized} "
+    }
+    return next(iter(candidates.values())) if len(candidates) == 1 else None
 
 
 def acquisition_priority(game: Optional[KnownGame], platform: Optional[str]) -> int:
