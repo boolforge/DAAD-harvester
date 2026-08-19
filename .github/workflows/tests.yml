@@ -55,6 +55,9 @@ jobs:
       - name: Verify reverse-engineering corpus
         run: python scripts/verify_reverse_corpus.py
 
+      - name: Verify retained game corpus
+        run: python scripts/verify_game_corpus.py
+
       - name: Run test suite
         run: PYTHONPATH=. python -m pytest tests/ -v
 

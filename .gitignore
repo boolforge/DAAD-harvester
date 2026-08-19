@@ -6,6 +6,14 @@ live_output/
 *.db
 *.log
 
+# Authorized, self-contained preservation corpus. Its state database and logs
+# are evidence records and must be retained with originals and extracts.
+!preservation_corpus/
+!preservation_corpus/**
+!preservation_corpus/state.db
+!preservation_corpus/logs/
+!preservation_corpus/logs/*.log
+
 *.egg-info/
 .audit/
 

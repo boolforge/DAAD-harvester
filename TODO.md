@@ -96,6 +96,7 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 8. All-platform retained game corpus and regression suite
 
+- [ ] Apply the global completion rule to every parser, media format, loader, runtime variant, DDB structure, companion asset, and decompiler construct: an unsupported observation must enter a retained-sample research, implementation, differential-check, and regression loop until verified support exists; no terminal unsupported omission is permitted.
 - [ ] Define an artifact-level authorization/retention gate for DAAD game downloads that is independent from interpreter authorization and records source terms, rights evidence, download URL, timestamps, and SHA-256.
 - [ ] Run Harvester discovery/acquisition across ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS sources; preserve every candidate and outcome in a resumable source ledger.
 - [ ] Compare every retained original/extracted game member and executable neighbor against official interpreter hashes and structural runtime evidence; retain every differing or unmatched interpreter candidate as a new immutable variant for separate analysis.

@@ -1,0 +1,145 @@
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:08.585907
+SOURCE NAME     : MANUAL VERIFIED SEEDS
+URL             : built-in
+ITEMS FOUND     : 0
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:08.823185
+SOURCE NAME     : IF ARCHIVE
+URL             : ifarchive.org
+ITEMS FOUND     : 0
+STATUS          : SKIPPED_UNVERIFIED_INDEX
+DETAILS         : No maintained DAAD-specific IF Archive index is currently configured.
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:10.956373
+SOURCE NAME     : COMPUTER EMUZONE
+URL             : https://computeremuzone.com/engine/daad?l=en
+ITEMS FOUND     : 73
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:11.840212
+SOURCE NAME     : AMINET AMIGA
+URL             : https://aminet.net/search?query=daad
+ITEMS FOUND     : 3
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:12.294700
+SOURCE NAME     : IFDB
+URL             : ifdb.org
+ITEMS FOUND     : 0
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:12.979928
+SOURCE NAME     : GITHUB REPOSITORIES
+URL             : api.github.com
+ITEMS FOUND     : 11
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:13.774074
+SOURCE NAME     : CSDB C64
+URL             : https://csdb.dk/search/?search=daad
+ITEMS FOUND     : 0
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:13.950755
+SOURCE NAME     : WEB SEARCH FALLBACK
+URL             : duckduckgo.com
+ITEMS FOUND     : 0
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:14.003815
+SOURCE NAME     : ATARIMANIA ST
+URL             : bounded DAAD records
+ITEMS FOUND     : 4
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:14.701739
+SOURCE NAME     : GENERATION MSX
+URL             : https://www.generation-msx.nl/company/aventuras-ad/292/software/
+ITEMS FOUND     : 19
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:14.911634
+SOURCE NAME     : WIKICAAD
+URL             : https://wiki.caad.es/api.php?action=query&list=search&srsearch=DAAD&format=json
+ITEMS FOUND     : 0
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:15.106287
+SOURCE NAME     : ZXINFO ZXDB
+URL             : api.zxinfo.dk
+ITEMS FOUND     : 50
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:18.856356
+SOURCE NAME     : PLUS/4 WORLD
+URL             : https://plus4world.powweb.com/search/notes/DAAD
+ITEMS FOUND     : 45
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:23.887524
+SOURCE NAME     : WORLD OF SPECTRUM
+URL             : https://worldofspectrum.org/archive/publishers/Aventuras-AD-SA
+ITEMS FOUND     : 21
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:26.366668
+SOURCE NAME     : INTERNET ARCHIVE
+URL             : archive.org
+ITEMS FOUND     : 11
+STATUS          : OK
+================================================================ drop
+================================================================================
+SESSION TAG:     20260819_105508
+CATEGORY:        DISCOVERY CRAWL
+TIMESTAMP:       2026-08-19T10:55:27.726136
+SOURCE NAME     : ITCH.IO
+URL             : itch.io
+ITEMS FOUND     : 10
+STATUS          : OK
+================================================================ drop
