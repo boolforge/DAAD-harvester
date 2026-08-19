@@ -218,6 +218,12 @@ class Database:
                     conn.commit()
                 return src_id
 
+    def source_exists(self, url: str) -> bool:
+        """Return whether a source URL is already persisted, regardless of status."""
+        with self.get_connection() as conn:
+            row = conn.execute("SELECT 1 FROM sources WHERE url = ?", (url,)).fetchone()
+        return row is not None
+
     def _row_to_source(self, row: sqlite3.Row) -> SourceRecord:
         keys = row.keys()
         return SourceRecord(
