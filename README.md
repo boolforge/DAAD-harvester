@@ -6,9 +6,9 @@ DAAD, the *Diseñador de Aventuras AD*, was created for Aventuras AD and support
 
 > **Trust boundary:** A catalog can prove that a game belongs to the DAAD family. A source record can prove that a public archive associates a file with a platform. Only a downloaded artifact and the local fingerprinting stage can support a binary-level DAAD claim or an exact engine-version label.
 
-![Authentic DAAD Harvester priority-queue capture](docs/assets/tui-priority-queue.png)
+![Authentic DAAD Harvester interactive TUI demonstration](docs/assets/tui-live-demo.gif)
 
-*This is a capture from the production TUI renderer against a completed live Internet Archive run. It shows six catalog-backed Amstrad CPC candidates selected before lower-priority sources; it is not a mockup or fabricated interface.*
+*This animated capture is generated from the production `TUIDashboard` against a completed live Internet Archive run. It drives the real priority queue, selection movement, search, filter clearing, tab navigation, system metrics, and pause handlers. The run has completed its classified-library stage, and the six catalog-backed Amstrad CPC candidates shown in the queue are persisted records—not mock data or a fabricated interface.*
 
 ## Platform coverage
 
@@ -195,6 +195,12 @@ The TUI is optional and should be run from a real terminal.
 
 ```bash
 daad-harvester --phase fetch --max-sources 6 --parallel 2 --tui --output-dir ./output
+```
+
+Maintainers can reproduce the documentation GIF only after completing a real run. The capture utility renders the production dashboard from the persisted database and drives the same key handlers used by the interactive terminal.
+
+```bash
+python scripts/capture_tui_demo_gif.py --db ./output/state.db --output ./docs/assets/tui-live-demo.gif
 ```
 
 ## Outputs
