@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daad-harvester"
+version = "1.0.0"
+description = "A resilient discovery, acquisition, and forensic analysis pipeline for DAAD game artifacts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "DAAD Harvester contributors" },
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "aiofiles>=23.0.0",
+  "beautifulsoup4>=4.12.0",
+  "httpx>=0.25.0",
+  "pydantic-settings>=2.0.0",
+  "structlog>=23.0.0",
+  "py7zr>=0.20.0; sys_platform != 'android'",
+  "rarfile>=4.0",
+  "lxml>=4.9.0",
+  "zipfile-deflate64>=0.2.0",
+  "rich>=13.0.0",
+  "xxhash>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23.0",
+  "pyflakes>=3.0.0",
+]
+
+[project.scripts]
+daad-harvester = "daad_harvester.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["daad_harvester*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -5,3 +5,6 @@ output/
 live_output/
 *.db
 *.log
+
+*.egg-info/
+.audit/
