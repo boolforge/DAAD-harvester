@@ -64,6 +64,6 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 ### 6. Deep audit and release gate
 
 - [x] Run the complete deterministic suite, corruption regressions, CLI report smoke test, static analysis, documentation-link checks, and report build.
-- [ ] Run bounded real public-media audits across every platform where an unattended direct-media contract is presently available; preserve results and failures as evidence.
+- [x] Run a fresh bounded public-media audit through discovery, fetch, native unpack, fingerprint, organization, and report export; preserve the `174`-source, five-download, 37-artifact, zero-verified-DDB outcome and source failure in `docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md`.
 - [x] Update `README.md`, this roadmap, modular docs, and the generated report truthfully from final evidence.
 - [x] Publish in small, reviewable commits to `main`; verify `HEAD == origin/main` after every milestone.
