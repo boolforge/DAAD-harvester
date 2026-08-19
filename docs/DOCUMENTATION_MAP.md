@@ -40,6 +40,7 @@ docs/
 | Existing document | Retained role | Focused destination modules | Migration status |
 | --- | --- | --- | --- |
 | `versions/DAAD_CHRONOLOGY.md` | Chronology index | `versions/RELEASE_LINEAGE.md`, `versions/DDB_GENERATIONS.md`, `versions/COMPATIBILITY_BOUNDARIES.md` | Focused modules available; legacy retained as migration source |
+| `interpreter_profiles.py` and runtime-identification tests | Runtime identity implementation source | `interpreters/IDENTITY_PROTOCOL.md`, `interpreters/OFFICIAL_PROFILE_LEDGER.md`, `interpreters/PUBLIC_IMPLEMENTATIONS.md` | Focused modules available |
 | `platforms/PLATFORM_RUNTIME_MEDIA.md` | Nine-target platform index | `platforms/ZX_SPECTRUM.md` through `platforms/IBM_PC_DOS.md` | Planned |
 | `derivatives/COMPATIBILITY_TAXONOMY.md` | Derivative index and comparison table | `derivatives/DRC.md`, `derivatives/MSX2DAAD.md`, `derivatives/MALUVA.md`, `derivatives/PCDAAD.md`, `derivatives/UNDAAD.md` | Planned |
 | `formats/FORMAT_CAPABILITY_MATRIX.md` | Release-gate matrix | `formats/TAPE_STREAMS.md`, `formats/CBM_DISK_AND_PROGRAM.md`, `formats/CPM_DSK.md`, `formats/FAT_MEDIA.md`, `formats/AMIGA_MEDIA.md`, `formats/ATARI_PROTECTED_MEDIA.md`, `formats/ARCHIVE_WRAPPERS.md`, `formats/EXECUTABLE_AND_SNAPSHOT_EVIDENCE.md` | Planned |
