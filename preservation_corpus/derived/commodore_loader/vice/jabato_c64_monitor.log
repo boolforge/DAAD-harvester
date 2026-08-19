@@ -1,0 +1,5 @@
+(C:$ff48)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;ff48 00 19 01 e3 2f 36 00100111 000 012  104373372
+(C:$ff48) Saving file `/home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/vice/jabato_c64_runtime.bin' from $0000 to $ffff
+(C:$ff48) (C:$ff48) monitor_exit_status=0
+emulator_exit_status=0

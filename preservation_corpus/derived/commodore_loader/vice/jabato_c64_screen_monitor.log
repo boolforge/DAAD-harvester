@@ -1,0 +1,28 @@
+(C:$ff48) Displaying 40x25 screen at $cc00:
+cc00  pppppppppppppppppgggggpppppppppppppppppp
+cc28  ppppppppppppppppggggggpppppppppppppppppp
+cc50  ppppppppppppppppgggggggppppppppppppppppp
+cc78  ppppppppppppppppgggggggppppppppppppppppp
+cca0  ppppppppppppppppggggggpppppppppppppppppp
+ccc8  pppppppppppppppppggggppppppppppppppppppp
+ccf0  ppppppppppppppppppggpppppppppppppppppppp
+cd18  pppppppppppppppppppppppppppppppppppppppp
+cd40  pppppppppppppppppppppppppppppppppppppppp
+cd68  pppppppppppppppppppppppppppppppppppppppp
+cd90  pppppppppppppppppppppppppppppppppppppppp
+cdb8  pppppppppppppppppppppppppppppppppppppppp
+cde0  pppppppppppppppppppppppppppppppppppppppp
+ce08  pppppppppppppppppppppppppppppppppppppppp
+ce30  pppppppppppppppppppppppppppppppppppppppp
+ce58  pppppppppppppppppppppppppppppppppppppppp
+ce80  pppppppppppppppppppppppppppppppppppppppp
+cea8  pppppppppppppppppppppppppppppppppppppppp
+ced0  pppppppppppppppppppppppppppppppppppppppp
+cef8  pppppppppppppppppppppppppppppppppppppppp
+cf20  pppppppppppppppppppppppppppppppppppppppp
+cf48  pppppppppppppppppppppppppppppppppppppppp
+cf70  pppppppppppppppppppppppppppppppppppppppp
+cf98  pppppppppppppppppppppppppppppppppppppppp
+cfc0  pppppppppppppppppppppppppppppppppppppppp
+(C:$ff48) (C:$ff48) monitor_exit_status=0
+emulator_exit_status=0

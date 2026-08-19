@@ -1,0 +1,4 @@
+(C:$ff48)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;ff48 00 ff 00 ec 2f 36 00100111 000 011  165464219
+(C:$ff48) (C:$ff48) (C:$ff48) monitor_exit_status=0
+emulator_exit_status=0

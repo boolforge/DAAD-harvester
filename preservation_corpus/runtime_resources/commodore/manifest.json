@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "purpose": "Authorized, hash-verified C64 and Plus/4 runtime resources for deterministic DAAD loader reconstruction",
+  "authorization_context": "institutional_authorized",
+  "authorization_directive": "Universal institutional authorization covers acquisition, retention, execution, analysis, disassembly, decompilation, recompilation, comparison, verification, and publication of every supporting runtime resource required by the scientific DAAD preservation mission.",
+  "policy_reference": "../../../docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+  "emulator": {
+    "name": "VICE x64sc",
+    "version": "3.7.1",
+    "documentation": "https://vice-emu.sourceforge.io/vice_12.html",
+    "c64_search_root": ".",
+    "c64_machine_directory": "C64",
+    "c64_machine_directory_target": "c64",
+    "virtual_drive_mode": "drive8 true-drive emulation disabled; virtual IEC traps used for retained D64 loading"
+  },
+  "source_mirrors": [
+    {
+      "path": "source/c64rom",
+      "upstream_url": "https://github.com/mist64/c64rom",
+      "upstream_revision": "5af165d73077625cbb0ebde68c603d7927a6110f",
+      "purpose": "source-controlled C64 BASIC and KERNAL build input retained with the resulting firmware resources"
+    }
+  ],
+  "resources": [
+    {
+      "platform": "c64",
+      "path": "c64/basic.901226-01.bin",
+      "role": "BASIC V2 ROM at $A000-$BFFF",
+      "size": 8192,
+      "sha256": "89878cea0a268734696de11c4bae593eaaa506465d2029d619c0e0cbccdfa62d",
+      "provenance": {
+        "method": "build_from_source_then_independent_byte_comparison",
+        "source_url": "https://github.com/mist64/c64rom",
+        "source_revision": "5af165d73077625cbb0ebde68c603d7927a6110f",
+        "build_command": "make",
+        "independent_comparison_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/basic.901226-01.bin",
+        "independent_comparison_result": "byte_identical"
+      }
+    },
+    {
+      "platform": "c64",
+      "path": "c64/kernal.901227-03.bin",
+      "role": "KERNAL ROM at $E000-$FFFF",
+      "size": 8192,
+      "sha256": "83c60d47047d7beab8e5b7bf6f67f80daa088b7a6a27de0d7e016f6484042721",
+      "provenance": {
+        "method": "build_from_source_then_independent_byte_comparison",
+        "source_url": "https://github.com/mist64/c64rom",
+        "source_revision": "5af165d73077625cbb0ebde68c603d7927a6110f",
+        "build_command": "make",
+        "independent_comparison_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/kernal.901227-03.bin",
+        "independent_comparison_result": "byte_identical"
+      }
+    },
+    {
+      "platform": "c64",
+      "path": "c64/chargen.901225-01.bin",
+      "role": "character generator ROM",
+      "size": 4096,
+      "sha256": "fd0d53b8480e86163ac98998976c72cc58d5dd8eb824ed7b829774e74213b420",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/c64/characters.901225-01.bin"
+      }
+    },
+    {
+      "platform": "plus4",
+      "path": "plus4/basic.318006-01.bin",
+      "role": "BASIC V3.5 ROM",
+      "size": 16384,
+      "sha256": "cbf0c4dec44e3e203beaf09690e5c7f859b0eca164e789884161c8cb0e596567",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/plus4/basic.318006-01.bin"
+      }
+    },
+    {
+      "platform": "plus4",
+      "path": "plus4/kernal.318004-05.bin",
+      "role": "PAL KERNAL, machine-language monitor, and character set",
+      "size": 16384,
+      "sha256": "1f07270c43fc84d1556978e5bb3a6b08aa7b1253f2e46d1a452c89c972ae506b",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/plus4/kernal.318004-05.bin"
+      }
+    }
+  ],
+  "captures": [
+    {
+      "platform": "c64",
+      "source_artifact_sha256": "4f2c17a2324f539dbf0c121b88fb1101602ffed0473481be61800571424c157f",
+      "title": "Jabato vs Imperio",
+      "interaction": "virtual-drive autostart followed by one space character at the title screen",
+      "snapshot": "../../derived/commodore_loader/vice/jabato_c64_after_space.vsf",
+      "snapshot_sha256": "015c96ed3c8421a43f6c728076342331379e5f2195199d4b6d8460275f246199",
+      "ram": "../../derived/commodore_loader/vice/jabato_c64_after_space.bin",
+      "ram_sha256": "ac3f383442d28b668cf76e6c22707511372c77406cbafcc597f68c138badcf89",
+      "result": "Game introduction reached; no structurally validated DDB range detected in the captured RAM image."
+    }
+  ]
+}
