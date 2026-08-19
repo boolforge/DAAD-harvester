@@ -41,7 +41,7 @@ def test_library_builder_classifies_and_materializes_artifacts(tmp_path):
     archive = tmp_path / "candidate.zip"
     archive.write_bytes(b"PK\x03\x04example")
 
-    _add_artifact(db, cpc_source, dsk, "CHICHEN.DSK", is_daad=True, platform_hint="cpc")
+    _add_artifact(db, cpc_source, dsk, "79_CHICHEN.DSK", is_daad=True, platform_hint="unknown")
     _add_artifact(db, unknown_source, archive, "candidate.zip")
 
     manifest_path = LibraryBuilder(db, tmp_path).build()
@@ -53,6 +53,7 @@ def test_library_builder_classifies_and_materializes_artifacts(tmp_path):
     assert ready["classification"] == "ready_to_use"
     assert ready["ready_to_use"] is True
     assert ready["binary_verified_daad"] is True
+    assert ready["platform"] == "cpc"
     assert ready["library_path"] == "library/CPC/chichen_itza/ready_to_use/CHICHEN.DSK"
     assert (tmp_path / ready["library_path"]).read_bytes() == dsk.read_bytes()
     assert container["classification"] == "archive"

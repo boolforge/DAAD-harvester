@@ -51,7 +51,10 @@ class LibraryBuilder:
 
     @staticmethod
     def _source_platform(artifact: ArtifactRecord, source: Optional[SourceRecord]) -> str:
-        return artifact.platform_hint or (source.platform if source and source.platform else Platform.UNKNOWN.value)
+        hint = artifact.platform_hint
+        if hint and hint != Platform.UNKNOWN.value:
+            return hint
+        return source.platform if source and source.platform else Platform.UNKNOWN.value
 
     @staticmethod
     def _game_identity(artifact: ArtifactRecord, source: Optional[SourceRecord]) -> tuple[str, str]:
@@ -94,7 +97,8 @@ class LibraryBuilder:
             game_id, title = self._game_identity(artifact, source)
             platform_component = _path_component(platform.upper(), "UNKNOWN")
             game_component = _path_component(game_id, "unmatched_candidate")
-            artifact_component = _path_component(artifact.original_filename, f"artifact_{artifact.id}")
+            display_filename = re.sub(r"^\d+_", "", artifact.original_filename)
+            artifact_component = _path_component(display_filename, f"artifact_{artifact.id}")
             destination = self.library_dir / platform_component / game_component / classification / artifact_component
 
             entry: Dict[str, Any] = {
