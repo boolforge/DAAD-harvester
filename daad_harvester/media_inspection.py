@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from daad_harvester.dms import crc16_arc
+from daad_harvester.platform_media import parse_tzx_blocks
 
 
 @dataclass(frozen=True)
@@ -127,7 +128,22 @@ def _inspect_tzx(data: bytes) -> MediaInspection:
     major, minor = data[8], data[9]
     if major != 1:
         return _result("tzx-cdt", "recognized_evidence", "unknown_major_version", major=major, minor=minor)
-    return _result("tzx-cdt", "recognized_evidence", "valid_header", major=major, minor=minor)
+    blocks = parse_tzx_blocks(data)
+    if blocks is None:
+        return _result("tzx-cdt", "rejected", "invalid_or_truncated_block_stream", major=major, minor=minor)
+    data_blocks = [block for block in blocks if block.data is not None]
+    control_blocks = [block for block in blocks if block.relative_targets]
+    return _result(
+        "tzx-cdt",
+        "recognized_evidence",
+        "validated_tzx_v1_block_stream",
+        major=major,
+        minor=minor,
+        block_count=len(blocks),
+        data_block_count=len(data_blocks),
+        control_block_count=len(control_blocks),
+        block_types=sorted({block.kind for block in blocks}),
+    )
 
 
 def _inspect_msa(data: bytes) -> MediaInspection:

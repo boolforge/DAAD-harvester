@@ -91,6 +91,18 @@ def test_dms_header_crc_failure_is_rejected_before_unpacking() -> None:
     assert result.validation == "archive_header_crc_mismatch"
 
 
+def test_tzx_inspection_requires_validated_block_stream() -> None:
+    valid = b"ZXTape!\x1a\x01\x14" + b"\x20\x00\x00"
+    result = inspect_native_media("tape.cdt", valid)
+    assert result.validation == "validated_tzx_v1_block_stream"
+    assert result.evidence["block_count"] == 1
+
+    invalid = b"ZXTape!\x1a\x01\x14\x99"
+    result = inspect_native_media("tape.tzx", invalid)
+    assert result.status == "rejected"
+    assert result.validation == "invalid_or_truncated_block_stream"
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)

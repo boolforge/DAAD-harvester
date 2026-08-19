@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import gzip
 import re
+from dataclasses import dataclass
 from typing import Iterable, List, Optional, Tuple
 
 from daad_harvester.dms import DmsDecodeError, decompress_dms as _decompress_dms
@@ -16,6 +17,19 @@ from daad_harvester.dms import DmsDecodeError, decompress_dms as _decompress_dms
 
 Member = Tuple[str, bytes]
 _MSX_CAS_HEADER = b"\x1f\xa6\xde\xba\xcc\x13\x7d\x74"
+
+
+@dataclass(frozen=True)
+class TzxBlock:
+    """A fully bounded TZX v1.20 block, retaining control-flow evidence."""
+
+    index: int
+    block_id: int
+    kind: str
+    offset: int
+    body: bytes
+    data: Optional[bytes] = None
+    relative_targets: Tuple[int, ...] = ()
 
 
 def _clean_name(value: bytes, fallback: str) -> str:
@@ -44,87 +58,165 @@ def extract_spectrum_blocks(blocks: Iterable[bytes], prefix: str = "block") -> L
     return extracted
 
 
-def extract_tzx(data: bytes) -> List[Member]:
-    """Extract standard/turbo/pure-data blocks from a TZX or CPC CDT tape."""
+def parse_tzx_blocks(data: bytes) -> Optional[List[TzxBlock]]:
+    """Parse every standardized TZX v1.20/CDT block without desynchronization.
+
+    The scanner preserves data and relative control-flow targets as evidence. It
+    deliberately does not execute loops, jumps, calls, or selections: recursive
+    unpacking should inspect a tape once rather than replay arbitrary control
+    graphs or duplicate preservation payloads.
+    """
 
     if len(data) < 10 or not data.startswith(b"ZXTape!\x1a"):
-        return []
+        return None
     pos = 10
-    blocks: List[bytes] = []
+    blocks: List[TzxBlock] = []
+
+    def take(start: int, size: int) -> Optional[bytes]:
+        if size < 0 or start + size > len(data):
+            return None
+        return data[start:start + size]
+
+    def u24(start: int) -> Optional[int]:
+        raw = take(start, 3)
+        return int.from_bytes(raw, "little") if raw is not None else None
+
+    def u32(start: int) -> Optional[int]:
+        raw = take(start, 4)
+        return int.from_bytes(raw, "little") if raw is not None else None
+
     while pos < len(data):
+        start = pos
         block_id = data[pos]
         pos += 1
-        try:
-            if block_id == 0x10:  # standard speed data
-                size = int.from_bytes(data[pos + 2:pos + 4], "little")
-                pos += 4
-                block = data[pos:pos + size]
-                if len(block) != size:
-                    return []
-                blocks.append(block)
-                pos += size
-            elif block_id == 0x11:  # turbo data
-                size = int.from_bytes(data[pos + 15:pos + 18], "little")
-                pos += 18
-                block = data[pos:pos + size]
-                if len(block) != size:
-                    return []
-                blocks.append(block)
-                pos += size
-            elif block_id == 0x14:  # pure data
-                size = int.from_bytes(data[pos + 7:pos + 10], "little")
-                pos += 10
-                block = data[pos:pos + size]
-                if len(block) != size:
-                    return []
-                blocks.append(block)
-                pos += size
-            elif block_id == 0x15:  # direct recording
-                size = int.from_bytes(data[pos + 5:pos + 8], "little")
-                pos += 8 + size
-            elif block_id == 0x12:
-                pos += 4
-            elif block_id == 0x13:
-                if pos >= len(data):
-                    return []
-                pos += 1 + (data[pos] * 2)
-            elif block_id == 0x20:
-                pos += 2
-            elif block_id == 0x21:
-                if pos >= len(data):
-                    return []
-                pos += 1 + data[pos]
-            elif block_id == 0x22:
-                pass
-            elif block_id == 0x30:
-                if pos >= len(data):
-                    return []
-                pos += 1 + data[pos]
-            elif block_id == 0x31:
-                if pos + 1 >= len(data):
-                    return []
-                pos += 2 + data[pos + 1]
-            elif block_id == 0x32:
-                size = int.from_bytes(data[pos:pos + 2], "little")
-                pos += 2 + size
-            elif block_id == 0x33:
-                if pos >= len(data):
-                    return []
-                pos += 1 + (data[pos] * 3)
-            elif block_id == 0x35:
-                size = int.from_bytes(data[pos + 16:pos + 20], "little")
-                pos += 20 + size
-            elif block_id == 0x5A:
-                pos += 9
-            else:
-                # Unknown TZX blocks have format-specific lengths. Stopping is
-                # safer than desynchronizing and emitting invented payloads.
-                break
-            if pos > len(data):
-                return []
-        except (IndexError, ValueError):
-            return []
-    return extract_spectrum_blocks(blocks, prefix="tzx")
+        body: Optional[bytes] = None
+        payload: Optional[bytes] = None
+        kind = ""
+        targets: Tuple[int, ...] = ()
+        if block_id == 0x10:  # standard speed data
+            header = take(pos, 4)
+            if header is None:
+                return None
+            size = int.from_bytes(header[2:4], "little")
+            body = take(pos, 4 + size)
+            payload = body[4:] if body is not None else None
+            kind = "standard_data"
+        elif block_id == 0x11:  # turbo data
+            header = take(pos, 18)
+            if header is None:
+                return None
+            size = int.from_bytes(header[15:18], "little")
+            body = take(pos, 18 + size)
+            payload = body[18:] if body is not None else None
+            kind = "turbo_data"
+        elif block_id == 0x12:
+            body, kind = take(pos, 4), "pure_tone"
+        elif block_id == 0x13:
+            count = take(pos, 1)
+            body = take(pos, 1 + (count[0] * 2)) if count is not None else None
+            kind = "pulse_sequence"
+        elif block_id == 0x14:  # pure data
+            header = take(pos, 10)
+            if header is None:
+                return None
+            size = int.from_bytes(header[7:10], "little")
+            body = take(pos, 10 + size)
+            payload = body[10:] if body is not None else None
+            kind = "pure_data"
+        elif block_id == 0x15:
+            header = take(pos, 8)
+            if header is None:
+                return None
+            size = int.from_bytes(header[5:8], "little")
+            body, kind = take(pos, 8 + size), "direct_recording"
+        elif block_id in {0x18, 0x19}:
+            size = u32(pos)
+            body = take(pos, 4 + size) if size is not None else None
+            kind = "csw_recording" if block_id == 0x18 else "generalized_data"
+        elif block_id == 0x20:
+            body, kind = take(pos, 2), "pause_or_stop"
+        elif block_id == 0x21:
+            count = take(pos, 1)
+            body = take(pos, 1 + count[0]) if count is not None else None
+            kind = "group_start"
+        elif block_id == 0x22:
+            body, kind = b"", "group_end"
+        elif block_id == 0x23:
+            body, kind = take(pos, 2), "jump"
+            if body is not None:
+                targets = (int.from_bytes(body, "little", signed=True),)
+        elif block_id == 0x24:
+            body, kind = take(pos, 2), "loop_start"
+        elif block_id == 0x25:
+            body, kind = b"", "loop_end"
+        elif block_id == 0x26:
+            count_raw = take(pos, 2)
+            count = int.from_bytes(count_raw, "little") if count_raw is not None else None
+            body = take(pos, 2 + (count * 2)) if count is not None else None
+            kind = "call_sequence"
+            if body is not None:
+                targets = tuple(int.from_bytes(body[index:index + 2], "little", signed=True) for index in range(2, len(body), 2))
+        elif block_id == 0x27:
+            body, kind = b"", "return"
+        elif block_id == 0x28:
+            size_raw = take(pos, 2)
+            size = int.from_bytes(size_raw, "little") if size_raw is not None else None
+            body, kind = (take(pos, 2 + size) if size is not None else None), "select"
+        elif block_id in {0x2A, 0x2B}:
+            size = u32(pos)
+            body = take(pos, 4 + size) if size is not None else None
+            kind = "stop_48k" if block_id == 0x2A else "set_signal_level"
+            if block_id == 0x2A and body is not None and size != 0:
+                return None
+            if block_id == 0x2B and body is not None and (size != 1 or body[-1] not in {0, 1}):
+                return None
+        elif block_id == 0x30:
+            count = take(pos, 1)
+            body = take(pos, 1 + count[0]) if count is not None else None
+            kind = "text_description"
+        elif block_id == 0x31:
+            header = take(pos, 2)
+            body = take(pos, 2 + header[1]) if header is not None else None
+            kind = "message"
+        elif block_id == 0x32:
+            size_raw = take(pos, 2)
+            size = int.from_bytes(size_raw, "little") if size_raw is not None else None
+            body, kind = (take(pos, 2 + size) if size is not None else None), "archive_info"
+        elif block_id == 0x33:
+            count = take(pos, 1)
+            body = take(pos, 1 + (count[0] * 3)) if count is not None else None
+            kind = "hardware_info"
+        elif block_id == 0x35:
+            header = take(pos, 20)
+            if header is None:
+                return None
+            size = int.from_bytes(header[16:20], "little")
+            body, kind = take(pos, 20 + size), "custom_info"
+        elif block_id == 0x5A:
+            body, kind = take(pos, 9), "glue"
+            if body is not None and not body.startswith(b"XTape!\x1a"):
+                return None
+        else:
+            return None
+        if body is None:
+            return None
+        blocks.append(TzxBlock(len(blocks), block_id, kind, start, body, payload, targets))
+        pos += len(body)
+
+    total = len(blocks)
+    for block in blocks:
+        if any(not 0 <= block.index + target < total for target in block.relative_targets):
+            return None
+    return blocks
+
+
+def extract_tzx(data: bytes) -> List[Member]:
+    """Extract validated Spectrum-compatible payloads from a TZX or CPC CDT tape."""
+
+    parsed = parse_tzx_blocks(data)
+    if parsed is None:
+        return []
+    return extract_spectrum_blocks((block.data for block in parsed if block.data is not None), prefix="tzx")
 
 
 def extract_t64(data: bytes) -> List[Member]:

@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from daad_harvester.db import Database
-from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12
+from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12, parse_tzx_blocks
 from daad_harvester.unpack import Unpacker
 
 
@@ -146,6 +146,39 @@ def test_extracts_tzx_and_cdt_standard_blocks(tmp_path: Path) -> None:
     unpacker = _unpacker(tmp_path)
     assert unpacker.unpack_tzx(_tzx()) == [("GAME.bas", b"PAYLOAD")]
     assert unpacker.extract_container(tmp_path / "game.cdt", "game.cdt", _tzx()) == [("GAME.bas", b"PAYLOAD")]
+
+
+def test_tzx_scans_standardized_timing_control_metadata_and_extension_blocks() -> None:
+    tape = bytearray(b"ZXTape!\x1a\x01\x14")
+    tape += b"\x12\x00\x00\x00\x00"  # pure tone
+    tape += b"\x13\x02\x01\x00\x02\x00"  # pulse sequence
+    tape += b"\x15" + b"\x00" * 5 + b"\x01\x00\x00\x80"  # direct recording
+    tape += b"\x18" + (0).to_bytes(4, "little")  # CSW block boundary
+    tape += b"\x19" + (0).to_bytes(4, "little")  # generalized block boundary
+    tape += b"\x20\x00\x00\x21\x01G\x22"  # pause and group
+    tape += b"\x24\x02\x00\x25"  # loop markers
+    tape += b"\x26\x01\x00\x01\x00\x27"  # call/return target
+    tape += b"\x28\x01\x00\x00"  # empty selector record
+    tape += b"\x2a\x00\x00\x00\x00\x2b\x01\x00\x00\x00\x01"
+    tape += b"\x30\x01T\x31\x00\x01M\x32\x01\x00\x00\x33\x01\x00\x00\x00"
+    tape += b"\x35" + b"DAAD-HARVESTER  " + (0).to_bytes(4, "little")
+    tape += b"\x5aXTape!\x1a\x01\x14"
+    blocks = parse_tzx_blocks(bytes(tape))
+    assert blocks is not None
+    assert [block.kind for block in blocks] == [
+        "pure_tone", "pulse_sequence", "direct_recording", "csw_recording", "generalized_data",
+        "pause_or_stop", "group_start", "group_end", "loop_start", "loop_end", "call_sequence",
+        "return", "select", "stop_48k", "set_signal_level", "text_description", "message",
+        "archive_info", "hardware_info", "custom_info", "glue",
+    ]
+    assert blocks[10].relative_targets == (1,)
+
+
+def test_tzx_rejects_unknown_truncated_and_invalid_control_target_blocks() -> None:
+    header = b"ZXTape!\x1a\x01\x14"
+    assert parse_tzx_blocks(header + b"\x99") is None
+    assert parse_tzx_blocks(header + b"\x11" + b"\x00" * 17) is None
+    assert parse_tzx_blocks(header + b"\x23\xff\xff") is None
 
 
 def test_extracts_msx_and_dos_fat12_images(tmp_path: Path) -> None:
