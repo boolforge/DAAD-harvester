@@ -131,6 +131,7 @@ def test_extracts_msx_and_dos_fat12_images(tmp_path: Path) -> None:
     assert extract_fat12(image) == [("DAAD.DDB", b"DAAD.DDB")]
     unpacker = _unpacker(tmp_path)
     assert unpacker.extract_container(tmp_path / "game.dsk", "game.img", image) == [("DAAD.DDB", b"DAAD.DDB")]
+    assert unpacker.extract_container(tmp_path / "game.dsk", "game.dsk", image) == [("DAAD.DDB", b"DAAD.DDB")]
     assert unpacker.extract_container(tmp_path / "game.st", "game.st", image) == [("DAAD.DDB", b"DAAD.DDB")]
 
 
@@ -159,6 +160,19 @@ def test_splits_msx_cas_records(tmp_path: Path) -> None:
         ("ADVENTURE.casbin", b"ADVENTURE DDB-A"),
         ("SECOND.casbin", b"SECOND    DDB-B"),
     ]
+
+
+def test_recursive_unpack_records_media_and_member_provenance(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/game.dsk", "fixture", platform="msx")
+    assert source_id is not None
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    ids = unpacker.unpack_artifact_recursive(source_id, "game.dsk", _fat12_image())
+    assert len(ids) == 2
+    root, member = db.get_all_artifacts()
+    assert root.container_format == "disk-image"
+    assert root.container_member is None
+    assert member.container_member == "DAAD.DDB"
 
 
 def test_rejects_corrupt_platform_containers(tmp_path: Path) -> None:

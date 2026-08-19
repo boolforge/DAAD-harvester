@@ -621,6 +621,40 @@ class Unpacker:
 
     # --- Container Router ---
 
+    @staticmethod
+    def identify_container_format(filename: str, data: bytes) -> Optional[str]:
+        """Classify a persisted media/container member for provenance metadata."""
+        ext = Path(filename).suffix.casefold()
+        if data.startswith((b"PK\x03\x04", b"PK\x05\x06", b"PK\x07\x08")) or ext == ".zip":
+            return "zip"
+        if data.startswith(b"ZXTape!\x1a") or ext in {".tzx", ".cdt"}:
+            return "tzx" if ext != ".cdt" else "cdt"
+        if data.startswith((b"EXTENDED CPC DSK", b"MV - CPCEMU")):
+            return "cpc-dsk"
+        if len(data) in (174848, 196608, 175531, 197371) or ext == ".d64":
+            return "c64-d64"
+        if ext == ".t64":
+            return "c64-t64"
+        if data.startswith(b"\x0e\x0f") or ext == ".msa":
+            return "atari-msa"
+        if data.startswith(b"DOS") and len(data) % 512 == 0:
+            return "amiga-adf"
+        if data.startswith(b"\x1f\x8b") and ext == ".adz":
+            return "amiga-adz"
+        if ext == ".tap":
+            return "zx-tap"
+        if ext == ".cas":
+            return "msx-cas"
+        if ext == ".st":
+            return "atari-st"
+        if ext == ".dsk":
+            return "disk-image"
+        if ext in {".prg", ".p00"}:
+            return "commodore-prg"
+        if ext in {".com", ".exe"}:
+            return "dos-executable"
+        return None
+
     def extract_container(self, file_path: Path, filename: str, data: bytes) -> List[Tuple[str, bytes]]:
         """Routes container data to proper unpacker based on extension and magic byte sniffing."""
         ext = Path(filename).suffix.lower()
@@ -643,7 +677,7 @@ class Unpacker:
         is_adf = ext == '.adf' or (len(data) % 512 == 0 and data.startswith(b"DOS"))
         is_adz = ext == '.adz'
         is_cas = ext == '.cas'
-        is_fat12 = ext in {'.st', '.img'} or (len(data) >= 512 and data[510:512] == b"\x55\xaa")
+        is_fat12 = ext in {'.st', '.img', '.dsk'} or (len(data) >= 512 and data[510:512] == b"\x55\xaa")
 
         if is_zip:
             res = self.unpack_zip(file_path)
@@ -776,7 +810,9 @@ class Unpacker:
             xxh64=hashes["xxh64"],
             xxh128=hashes["xxh128"],
             unpacked=False,
-            is_daad_payload=False
+            is_daad_payload=False,
+            container_format=self.identify_container_format(filename, data),
+            container_member=filename if depth else None,
         )
         artifact_id = self.db.add_artifact(artifact)
         artifact_ids.append(artifact_id)
