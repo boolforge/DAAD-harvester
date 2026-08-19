@@ -78,9 +78,13 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 7. Authorization-gated reverse-engineering corpus
 
-- [ ] Record per-artifact authorization, license, source URL, acquisition date, checksum, platform/architecture, and redistribution status before storing any original binary or derived analysis.
-- [ ] Create a machine-readable inventory that distinguishes original binary, public original source, public derivative source, disassembly, decompiler output, symbol map, and analytical notes.
+- [x] Record per-artifact authorization, license, source URL, acquisition date, checksum, platform/architecture, and redistribution status for the retained official interpreter profile corpus.
+- [x] Ingest the user-documented authorization record by reference into each official original-binary manifest and record its scope without placing sensitive permission correspondence in generated reports.
+- [x] Create a machine-readable inventory that distinguishes original binary, public original source, public derivative source, disassembly, decompiler output, symbol map, and analytical notes.
 - [ ] Define reproducible, architecture-specific workflows for Z80, 6502/8501, 68000, and 8086-class DAAD artifacts, including tool version pins, load addresses, memory maps, and command logs.
 - [ ] Analyze only artifacts whose provenance/authorization gate is satisfied; preserve immutable originals separately from disassembly/decompilation output and never label generated pseudocode as recovered source.
 - [ ] Cross-check each derived interpretation with independent tools, known DDB/runtime behavior, checksums, entry-point mappings, and reproducible test fixtures before documentation claims are promoted.
+- [ ] Discover public third-party disassemblies/decompilations by platform and version; retain their provenance and verify input-byte hashes, architecture/load assumptions, and claimed ranges against locally generated analysis before use.
+- [ ] Commit every accepted third-party comparison artifact, raw local disassembly, decompiler output, symbol/control-flow export, tool configuration, command log, and output hash in the self-contained reverse-engineering corpus.
+- [ ] Retain comparative inputs in immutable `third_party/` paths and generated local outputs in separate tool/version-qualified paths; no documentation-only reference may substitute for an accepted artifact.
 - [ ] Add focused reverse-engineering dossiers, schema/provenance contracts, audit records, and CI-safe integrity checks without redistributing restricted original binaries or proprietary-source equivalents.

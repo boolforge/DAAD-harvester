@@ -1,0 +1,1142 @@
+{
+  "artifacts": [
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-zx-ds48ie-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 8192,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/Spectrum/DS48IE.P3F",
+        "observed_filename": "DS48IE.P3F",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "zx",
+      "sha256": "d599b14576cb46f72b34b106f6ad1079cdf0d346ed9ac44e89db7dbd0c0eb3d6",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-cpc-dcpcie-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 7523,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/CPC/DCPCIE.Z80",
+        "observed_filename": "DCPCIE.Z80",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "cpc",
+      "sha256": "7447b56073a6e65242214c505496742346a35de0e81777ed91ea44a2f115ee41",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "mos6502",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-c64-edi64-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 11720,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/C64/edi64.prg",
+        "observed_filename": "edi64.prg",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "c64",
+      "sha256": "c462192db2a552f079aa7d521f3ae23a3d5c066120b42108a905085e923932c5",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/c64/daad-c64-edi64-official/edi64.prg",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "mos8501",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-plus4-ediplus4-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 12102,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/Plus4/ediplus4.prg",
+        "observed_filename": "ediplus4.prg",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "plus4",
+      "sha256": "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/plus4/daad-plus4-ediplus4-official/ediplus4.prg",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-msx-msxedi-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 8400,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/MSX/MSXEDI.Z80",
+        "observed_filename": "MSXEDI.Z80",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "msx",
+      "sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-pcw-pcwedi-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 8692,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/PCW/PCWEDI.BIN",
+        "observed_filename": "PCWEDI.BIN",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "pcw",
+      "sha256": "358eb0d236db0a2b43fdc66f843eb8e2eed097f77db24e195c14bae5fbb309a2",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/pcw/daad-pcw-pcwedi-official/PCWEDI.BIN",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-atarist-edi1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 21022,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/ST/EDI1.PRG",
+        "observed_filename": "EDI1.PRG",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "atarist",
+      "sha256": "ecc25e01611b1b3f2546c63b67220011f1793809cb177543030d5b626520c7fd",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-inte1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13952,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTE1.EXE",
+        "observed_filename": "INTE1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "1070941c6fa8e73a3b5357be72db97d1f1a6b48ab01fbe895470586ef3a47617",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-inte1-official/INTE1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-amiga-edi1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 18680,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/Amiga/edi1",
+        "observed_filename": "edi1",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "amiga",
+      "sha256": "5f3bd8275d500d44fc41d7ae2a77e86593bd7075b6ad9fffde639265c0990952",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/amiga/daad-amiga-edi1-official/edi1",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-amiga-edi2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 18680,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/Amiga/edi2",
+        "observed_filename": "edi2",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "amiga",
+      "sha256": "6926ca43824c00098dcb6267a639aede2ae0640b2640be03fa9a1be965f37664",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/amiga/daad-amiga-edi2-official/edi2",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-amiga-sdi1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 19000,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/Amiga/sdi1",
+        "observed_filename": "sdi1",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "amiga",
+      "sha256": "105c27fc80bcb9183409d9774792a8486ec34207d9a29e21efc53e475558c7f7",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-amiga-sdi2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 19000,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/Amiga/sdi2",
+        "observed_filename": "sdi2",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "amiga",
+      "sha256": "e083dcd70726c97204404fa48eea9db49d839a6af4218408c4d40520dd8ec338",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/amiga/daad-amiga-sdi2-official/sdi2",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-zx-ds48is-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 9216,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/Spectrum/DS48IS.P3F",
+        "observed_filename": "DS48IS.P3F",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "zx",
+      "sha256": "e1e0f8ab8e2907eebeb24ada1bf2bb2d27b0622972239827eeb70f56ff5e0566",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/zx/daad-zx-ds48is-official/DS48IS.P3F",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-cpc-dcpcis-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 7621,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/CPC/DCPCIS.Z80",
+        "observed_filename": "DCPCIS.Z80",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "cpc",
+      "sha256": "8d312860b4ce8596b9f6152c1fbc0aa5f3525189daa564dc413bf3173a19659c",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcis-official/DCPCIS.Z80",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "mos6502",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-c64-sdi64-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 11985,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/C64/sdi64.prg",
+        "observed_filename": "sdi64.prg",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "c64",
+      "sha256": "767aa97d411ea025d20e25282ae0ac90360b4fb99af01392c38d2721aa7033ec",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/c64/daad-c64-sdi64-official/sdi64.prg",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "mos8501",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-plus4-sdiplus4-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 12367,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/Plus4/sdiplus4.prg",
+        "observed_filename": "sdiplus4.prg",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "plus4",
+      "sha256": "f29050dfe9331634b985a8c5b8cb4ee3b164a4340e355c044284168b8610258c",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-msx-msxsdi-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 8551,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/MSX/MSXSDI.Z80",
+        "observed_filename": "MSXSDI.Z80",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "msx",
+      "sha256": "fcae12bd09bc949e1e6cf75b3d1ef87e66c322efe2de005e771fa3b5dd8ddbf8",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/msx/daad-msx-msxsdi-official/MSXSDI.Z80",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "z80",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-pcw-pcwsdi-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 8919,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/PCW/PCWSDI.BIN",
+        "observed_filename": "PCWSDI.BIN",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "pcw",
+      "sha256": "e52e2a8cc9e720805c7c6c7f8fe9fd706933c73696e695d7c1132063d4e52a7d",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-atarist-edi2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 21022,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/ST/EDI2.PRG",
+        "observed_filename": "EDI2.PRG",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "atarist",
+      "sha256": "6e1c18327066ead24985d6b9033353f16ca7e70e39863af5320d933194b38a72",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/atarist/daad-atarist-edi2-official/EDI2.PRG",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-atarist-sdi1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 21039,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/ST/SDI1.PRG",
+        "observed_filename": "SDI1.PRG",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "atarist",
+      "sha256": "35a0c10701e59739e1bf7e701e1e1aa7f5bb5112f79445e8038be0502360a9f2",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/atarist/daad-atarist-sdi1-official/SDI1.PRG",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "m68000",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-atarist-sdi2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 21039,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/ST/SDI2.PRG",
+        "observed_filename": "SDI2.PRG",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "atarist",
+      "sha256": "04ac433d70777dc15434ec5d7c7002f28b30bc8f1f3ed5c0eef01ea6c245a9b1",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/atarist/daad-atarist-sdi2-official/SDI2.PRG",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-inte2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13952,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTE2.EXE",
+        "observed_filename": "INTE2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "4cb3a608f331c20402ab1ad3c13968e86f3c909dc1ebad31d7a3e3b50312837f",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-inte2-official/INTE2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-inte3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13968,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTE3.EXE",
+        "observed_filename": "INTE3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "ea2494b657626db967f36d608b8cabe9ab82832f5d38266c8f1b6e40b9eb7aa3",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-inte3-official/INTE3.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intecga1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13232,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTECGA1.EXE",
+        "observed_filename": "INTECGA1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "665ed57b5ad4b4168a70cc11634159081fc4f1f7ab57b49c75245755efb261c7",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intecga1-official/INTECGA1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intecga2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13232,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTECGA2.EXE",
+        "observed_filename": "INTECGA2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "ddc34e84977308c3f592d304473d8398c84b4d70666f0c35aed74e3b88b76d6d",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intecga2-official/INTECGA2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intecga3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13248,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTECGA3.EXE",
+        "observed_filename": "INTECGA3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "bdaaafe615ec073d81757e81504b3ffbed337a9bd4729d0aff203a4cbabadb4a",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intecga3-official/INTECGA3.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-inted-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14272,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTED.EXE",
+        "observed_filename": "INTED.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "d683e9c9a023e9996d811aa1a803bcc98d0fb3c91055f68ad3ceca4a59d1f9c9",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-inted-official/INTED.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intedm-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15296,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTEDM.EXE",
+        "observed_filename": "INTEDM.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "3e0d786ce8abdd3225af8f290a19fb3b9ba2fdc32106b401b6c7028e3e5065e1",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intedm-official/INTEDM.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intem1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14992,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTEM1.EXE",
+        "observed_filename": "INTEM1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "6b50665f29c1024cbad8fe7ee5be42e0eb3ad49e1db8071119bf0e9e1ed57594",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intem1-official/INTEM1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intem2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14992,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTEM2.EXE",
+        "observed_filename": "INTEM2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "2ca22c899432c1ab0d96418961f91638ffd3438a8cf4e8f69b8f9419a0dec765",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intem2-official/INTEM2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intem3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15008,
+      "interpreter_version": null,
+      "language": "en",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTEM3.EXE",
+        "observed_filename": "INTEM3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "a430e15fe634157eae3fc45324787a3e6b79fa15814cb98e709c71407d55c5fc",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intem3-official/INTEM3.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-ints1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14240,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTS1.EXE",
+        "observed_filename": "INTS1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "af5a3b732f53ee75042715f618e8a3daec77833491b8582d428ad2ba203129b5",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-ints1-official/INTS1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-ints2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14240,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTS2.EXE",
+        "observed_filename": "INTS2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "39d7d99a40d77f466e648ded927b3c02bdef779411f7151ca51219be360a6455",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-ints2-official/INTS2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-ints3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14256,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTS3.EXE",
+        "observed_filename": "INTS3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "fef8c5eabf256094da57dae6787884243ca3dec98dbe7a3c7438c93509903de3",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-ints3-official/INTS3.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intscga1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13536,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSCGA1.EXE",
+        "observed_filename": "INTSCGA1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "bd36734b7909453a3784dfd9f819ba505a82df21f973a9992e58bec58f1e6191",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intscga1-official/INTSCGA1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intscga2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13536,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSCGA2.EXE",
+        "observed_filename": "INTSCGA2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "c478647bba2a3330c89c4233d3b51ba36d6357d7d7d30c7fe270287eab9034e6",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intscga2-official/INTSCGA2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intscga3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 13552,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSCGA3.EXE",
+        "observed_filename": "INTSCGA3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "6a8f60d5dcbf5e650934eb452ddfd215325bc5a02fdaf3b9ddf4937afb765cb9",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intscga3-official/INTSCGA3.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intsd-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 14560,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSD.EXE",
+        "observed_filename": "INTSD.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "797fcca14224a71cd03a02f476d12513f1d360921b24db2502544841b90a0567",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intsd-official/INTSD.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intsdm-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15600,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSDM.EXE",
+        "observed_filename": "INTSDM.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "3a8187daf5ab46d3b6deaba955128477e13b5d62713e06f607fa040273514937",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intsdm-official/INTSDM.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intsm1-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15280,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSM1.EXE",
+        "observed_filename": "INTSM1.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "b17f78e22dd71961a21eb94e7afbd85cc1ec104e3860339f40d1e1877db5be51",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intsm1-official/INTSM1.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intsm2-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15280,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSM2.EXE",
+        "observed_filename": "INTSM2.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "27531111a82e9f5f62c6eae7efcc03175542a5ffe6f8d85677e88b3d4db16dab",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intsm2-official/INTSM2.EXE",
+        "status": "authorized_retained"
+      }
+    },
+    {
+      "analysis": [],
+      "architecture": "i8086",
+      "artifact_class": "original_binary",
+      "artifact_id": "daad-dos-intsm3-official",
+      "authorization": {
+        "decision_date": "2026-08-19",
+        "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
+        "redistribution": "authorized_by_documented_permission",
+        "state": "permission_recorded"
+      },
+      "file_size": 15296,
+      "interpreter_version": null,
+      "language": "es",
+      "origin": {
+        "member_path": "Interpreters/DOS/INTSM3.EXE",
+        "observed_filename": "INTSM3.EXE",
+        "repository": "https://github.com/daad-adventure-writer/daad",
+        "revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+      },
+      "platform": "dos",
+      "sha256": "54baa0b227cd2c1849c90d6727de130c58cda3a8c0d8c2f8adf50585d3246f01",
+      "storage": {
+        "path": "reverse_engineering/artifacts/original/dos/daad-dos-intsm3-official/INTSM3.EXE",
+        "status": "authorized_retained"
+      }
+    }
+  ],
+  "entry_count": 42,
+  "purpose": "Documented-authorized official DAAD interpreter artifact inventory",
+  "schema_version": 1,
+  "source_revision": "4a7e745235a12af5b397902dbd9214bc930c7680"
+}

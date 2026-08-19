@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "Public third-party DAAD interpreter disassembly/decompilation comparison candidates",
+  "search_date": "2026-08-19",
+  "queries": [
+    "DAAD interpreter disassembly source code",
+    "DAAD decompiler interpreter reverse engineering",
+    "DAAD Z80 6502 68000 disassembly",
+    "GitHub code DS48IE",
+    "GitHub code INTE1.EXE"
+  ],
+  "result": "No independently published disassembly or decompilation of an exact SHA-256-matched official interpreter profile was identified by the initial public search.",
+  "candidates": [
+    {
+      "kind": "public_derivative_source",
+      "repository": "https://github.com/nataliapc/msx2daad",
+      "revision": "afdd6d21406107bd2fcb969cbf2f06f234717ecf",
+      "reason": "Source-level independent MSX2/MSX2+ interpreter implementation; not a decompilation of a matched official binary.",
+      "verification_status": "source_comparison_only"
+    },
+    {
+      "kind": "public_project_source",
+      "repository": "https://github.com/ByteProject/Rabenstein",
+      "revision": "8fec1f400bbfcb317dbdc8c7a77789fb781492dc",
+      "reason": "Public DAAD game project returned by artifact-name search; not established as an official-interpreter disassembly.",
+      "verification_status": "not_accepted_as_comparative_decompilation"
+    }
+  ],
+  "acceptance_rule": "A third-party output becomes a comparative decompilation only after its stated input hash matches a retained original artifact and its architecture/load model is independently reproduced locally."
+}

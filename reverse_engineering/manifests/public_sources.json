@@ -1,0 +1,3160 @@
+{
+  "non_claim": "These are public derivative/source materials, not recovered original interpreter source.",
+  "official_original_source": {
+    "repository": "https://github.com/daad-adventure-writer/daad",
+    "revision": "4a7e745235a12af5b397902dbd9214bc930c7680",
+    "status": "not_provided_in_public_distribution"
+  },
+  "purpose": "Public DAAD-related source mirrors for reverse-engineering comparison",
+  "schema_version": 1,
+  "sources": [
+    {
+      "classification": "public_derivative_source",
+      "file_count": 26,
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "path": "README",
+          "sha256": "77f486b8ae7fae43f28d7f491e9a565407071bf356b94d3bb37d48fba7dc4f0d"
+        },
+        {
+          "path": "src/UCTLExtern.pas",
+          "sha256": "018a3754dbfc7a9443893dcfd253240ea5a56c25f51b76dc92bca36134adacbc"
+        },
+        {
+          "path": "src/UCodeGeneration.pas",
+          "sha256": "acdcd56238978da93652ba060b268b0b23f4f1d136128b7de73d254f222538e0"
+        },
+        {
+          "path": "src/UCondacts.pas",
+          "sha256": "8a4f8d2b9ced61a05e830229e1f951d2e52ff15ea7daf1fde1abf61466eb183a"
+        },
+        {
+          "path": "src/UConnections.pas",
+          "sha256": "c518b9246f2214e19cf11e3e3cbb3f7d97efad10483fcec349a833ef06965702"
+        },
+        {
+          "path": "src/UConstants.pas",
+          "sha256": "b830628c7aeaf4713b534fcf58a7bf4e9dd11a739dd78b4b59beca9234f90ae5"
+        },
+        {
+          "path": "src/UInclude.pas",
+          "sha256": "1466ad417e741979f682b554865f1bed89fcf8e49a2ee715fbd893bf9343f8b4"
+        },
+        {
+          "path": "src/UJSONExport.pas",
+          "sha256": "a8093afa76551660a470548ce8b7edcbb24f7f6675c754d00c15771e7c73bfea"
+        },
+        {
+          "path": "src/ULabelList.pas",
+          "sha256": "25da5ae4e5ac84c4bce4017cd94571035cc16e0cf2094c0656bd677c91d22821"
+        },
+        {
+          "path": "src/ULexLib.pas",
+          "sha256": "ffac8c835ca07651d87ab58a62a3a955ea7545527c44cb273bcf30ad0efe2f16"
+        },
+        {
+          "path": "src/ULexTokens.pas",
+          "sha256": "383d474203eb2b71d65801d6f1f23a50dc83a37a52fd8871c4ff40a611c7bde9"
+        },
+        {
+          "path": "src/UMessageList.pas",
+          "sha256": "e145c65e3e5f3adae618a93d4abbc9213cf9d44ce9ff9ab09a206ad263171f4a"
+        },
+        {
+          "path": "src/UObjects.pas",
+          "sha256": "c0c97fa41fcaf264ddf8d843949ed03bf366dee7e002a57788262641b6d18961"
+        },
+        {
+          "path": "src/UProcess.pas",
+          "sha256": "72423b003eaaf2bff3078a8bd45cc2d7d4dcc91e0516fca303f5c413f5025e11"
+        },
+        {
+          "path": "src/UProcessCondactList.pas",
+          "sha256": "b828ef5cb2bd29fe2d40cdedb34b49f43d80cc5e39cbf9d94d51cd18cc1d2b2c"
+        },
+        {
+          "path": "src/USintactic.pas",
+          "sha256": "f7b588878f4430320f937073f338483f6cfbc332592f922f16700739f4bc6543"
+        },
+        {
+          "path": "src/USymbolList.pas",
+          "sha256": "91ec85b120e9460b1f8bd8af8cb5cd72c70ea87bdbc10b32c5cd16b1e743559a"
+        },
+        {
+          "path": "src/UTokenList.pas",
+          "sha256": "4c580520efb10c905db1a518026745bdb2a7c26780b2fe5fa8d28e1e07975063"
+        },
+        {
+          "path": "src/UVocabularyTree.pas",
+          "sha256": "5e0c5f29ed844a5ceb6819e612378446fa67a40c745058af2d2e1ee0e4d27464"
+        },
+        {
+          "path": "src/daadmaker.pas",
+          "sha256": "ff262e15c10dba26b87b446e41f1e75971ee29e0d74b596c9ae7ecb8175caa42"
+        },
+        {
+          "path": "src/drb.php",
+          "sha256": "22102535ee4d003df417105bfabed8ad79eb5f228c79f19183a330f247a9e56a"
+        },
+        {
+          "path": "src/drf.pas",
+          "sha256": "951e99e73e770cdab937a298cd6fd8db43c22694a2f18d1316e3bd136c689f8e"
+        },
+        {
+          "path": "src/file2pas.pas",
+          "sha256": "77e4f296555fcf9fdcf27179067349590585041ee52431d3710fe363b1bd020b"
+        },
+        {
+          "path": "src/lexer.pas",
+          "sha256": "97550dba34be81dfd96163f6ccc702bf426a2ae1d2d8be3fd3a8d2960e10148f"
+        },
+        {
+          "path": "src/mcrf.pas",
+          "sha256": "390d7cd38df566a8a03f861942d943c6fe8d3928be654c43861c3b434382e4e4"
+        }
+      ],
+      "id": "drc-public-source",
+      "license": "GPL-3.0",
+      "repository": "https://github.com/daad-adventure-writer/daad",
+      "revision": "e7bb170ef94e7b4965c0719b497638cec7aeaca9",
+      "storage": "reverse_engineering/public_sources/drc-public-source",
+      "workspace": "upstream-drc"
+    },
+    {
+      "classification": "public_derivative_source",
+      "file_count": 129,
+      "files": [
+        {
+          "path": ".agents/skills/daad-system/SKILL.md",
+          "sha256": "efba83d8bdae22a597d0f30e36d63564e50ce07ba1ad01e46e3a0fc1f9bed370"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/condacts.md",
+          "sha256": "b25fbf5a7d8877b9501fa59aa5cd235363e33d4dc97e2cc2b6d937883744580b"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/ddb-format.md",
+          "sha256": "5d40e701675820fb6b637c683480404ccd0c5e0f88f4880b5cb4a3b9b96c49b7"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/drc-compiler.md",
+          "sha256": "13b29fc3342b15c42bb97ea00a564779654ceefbc28aad795b9fe86d48e1b56c"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/dsf-source-format.md",
+          "sha256": "b43174a0289d35483c0dd08d0c5bfdfe69a735d32d7814190e7ba9cdd3ac4a66"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/engine-architecture.md",
+          "sha256": "5ed7f2c6cae8fc09da0f8126f90d9a9709d9b0fb8432d4d69c4c783517e45cad"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/flags-and-objects.md",
+          "sha256": "fac181cb2706c1f93e2fa164477f19f50f559b16c2662414d9b0f910c4f1051f"
+        },
+        {
+          "path": ".agents/skills/daad-system/references/maluva-extensions.md",
+          "sha256": "90dd0bc84e51d32e560f86d168c49deff6e731e6645a7ae7aa70c00a8613e556"
+        },
+        {
+          "path": ".github/FUNDING.yml",
+          "sha256": "11ec7dbc4b587c9010c843636ab3bc03489462cfd0052ede85f5e65f6c4c13df"
+        },
+        {
+          "path": ".opencode/opencode.json",
+          "sha256": "a9931d5bc2a52a2eb3e73ad1d583588613c7dd912e283f38738ea3656a24be26"
+        },
+        {
+          "path": "AGENTS.md",
+          "sha256": "51e732e135be628a949738ff542874907fdbc1862999502c803bf9ff5e9b0644"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "d0895049a40c27be8b204f1ad14042bf90b3dd87bb981e00b086fa2791096185"
+        },
+        {
+          "path": "Makefile",
+          "sha256": "8c20200b5900bdebc13562a59eab8678289acf98cb6190eb5c7006ab70e3e3f6"
+        },
+        {
+          "path": "README.md",
+          "sha256": "42f0cb6fcfff86e9eda20e8ab5e7391e7440025afa21b7734eb7a7c9f8039bbc"
+        },
+        {
+          "path": "bin/boot.asm",
+          "sha256": "47cb8828c46bcdfd5a11709af2ab3e9d7dc647c110e32c66af81e4b778b29cd7"
+        },
+        {
+          "path": "bin/imgwizard.php",
+          "sha256": "973adbd344bbddb52f603bbc4db5e4091e3008a98a66feb85ae700421fa4367b"
+        },
+        {
+          "path": "bin/precomp.php",
+          "sha256": "c20891b2d6f3690aff972c425cda3ea025b563cd69da6822141017cac99b2d7e"
+        },
+        {
+          "path": "bin/rle.php",
+          "sha256": "64575faf32b184e540157b366402e04deccf3e3e235fd287bbcdd80cfbfd8140"
+        },
+        {
+          "path": "bin/testdaad.c",
+          "sha256": "2377ca0942f30c9e7f7e48d11862eab6039a55cc1758321fcc94c6754d398202"
+        },
+        {
+          "path": "docs/DAAD_Manual_1991.md",
+          "sha256": "c53ee7e87e95bb1bb67549a15386c1932fc0c099c8abf0891a3323bd88c48ea3"
+        },
+        {
+          "path": "docs/DAAD_Manual_2018.md",
+          "sha256": "d57d4001356fb69a3c889e3346ee9fbf2c3cffe7bbe203fe7e1aaae00f31969e"
+        },
+        {
+          "path": "docs/DAAD_Ready_Documentation_V2.md",
+          "sha256": "0ea1a6b1de1d634f92aae7eb7d2d1302a0d13e5175c3cdfa606c3bdaca36a256"
+        },
+        {
+          "path": "docs/Flags_for_Quill_PAWS_SWAN_and_DAAD.md",
+          "sha256": "667a0104508a411ac61bd0e58927d2d8375b86dee8ee2b75b63007cd111dd704"
+        },
+        {
+          "path": "docs/GFX.md",
+          "sha256": "fe63f0354d6f0ecb282a30c636b5e2ed0217dfa477e9f29216c33e53ed2ad39d"
+        },
+        {
+          "path": "dsk/AUTOEXEC.BAT",
+          "sha256": "9fa9b725cbfbd30ade21bd4561fb5e35b56afb590f37643e5c2c7508f07e95e8"
+        },
+        {
+          "path": "include/daad.h",
+          "sha256": "2259739c648e5df12e77bfdb0d25b08bc4230570909809d79b44675b1a21ad2b"
+        },
+        {
+          "path": "include/daad_condacts.h",
+          "sha256": "eb5f67f0e6d25dd1847b6bc733bbe725e5c8da3b2635c9ad1d29200d481eb585"
+        },
+        {
+          "path": "include/daad_defines.h",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "include/daad_platform_api.h",
+          "sha256": "a5f492ded4ca0d02d10f051aa8be1582529a9b2003ef9c951ca31153fc72bc29"
+        },
+        {
+          "path": "include/daad_platform_msx2.h",
+          "sha256": "c23c4fb208489c6ee4342cf2d24068111b019fc53248c391d528b554348c511e"
+        },
+        {
+          "path": "include/debug.h",
+          "sha256": "b1492b5fab2f0f9043d372d775b0a6f42d3f183a6810322ebe36443591a245e3"
+        },
+        {
+          "path": "include/dos.h",
+          "sha256": "55cc109ad8a8d4a662f66bc025be1a97f35a9e3b15cefbb04b32e74d68f5b904"
+        },
+        {
+          "path": "include/heap.h",
+          "sha256": "de6cb210bca585bf4b5e54092925f15eaecb2e207b874c7cea0e22622052ce22"
+        },
+        {
+          "path": "include/sdcc_compat.h",
+          "sha256": "a276ce3ed2bbc0cd95b1afee2ba97f3b6888f7d8154903514ee37db1bc77be77"
+        },
+        {
+          "path": "include/utils.h",
+          "sha256": "c9d905c8ac9335e9fe94f85dc4bc63e85b5b4bbbbd5056512127a5a28eca88f4"
+        },
+        {
+          "path": "include/vdp.h",
+          "sha256": "8e0eaf1b78d1cadb53c4fe61efe82d9c1cfad10f24d66b05d0aeb9080458bcf1"
+        },
+        {
+          "path": "plan/PRP001_Fix_do_CHANCE.md",
+          "sha256": "8bdd0fe994156c2eac4fbe41aa30e45b5a86e32f4f449bca5798c1838918fb18"
+        },
+        {
+          "path": "plan/PRP002_Fix_do_DROPALL.md",
+          "sha256": "14554508422a04917e0de244c37cc78418e15e04a7564a7a4921a5c199be6c7c"
+        },
+        {
+          "path": "plan/PRP003_Fix_RAMSAVE_RAMLOAD.md",
+          "sha256": "dbd5fb0e05bd98110922f13d9e83507671beeb7766708903de9e12e91e210eb8"
+        },
+        {
+          "path": "plan/PRP004_Fix_initDAAD_memset.md",
+          "sha256": "caf1aa88121c4ce791f9208bb3f1deef33769c504463d9ffb590109e2fc226ef"
+        },
+        {
+          "path": "plan/PRP005_Fix_initFlags_memset.md",
+          "sha256": "ac182a98ba85527482b11145b2ece3d236553261c0d400d30e0b0a5469fc60dc"
+        },
+        {
+          "path": "plan/PRP006_Fix_getObjectWeight.md",
+          "sha256": "fb9d2d8af1e38352fa20049b63cb6149854b0865280922d0acd713d6308822ba"
+        },
+        {
+          "path": "plan/PRP007_Migrate_SDCC_4.5.0.md",
+          "sha256": "13aea8b69b5e44aa393a81a3d79264b2a0314d837272af0dc3869b7fd0ed794c"
+        },
+        {
+          "path": "plan/PRP008_Unit_Test_Infrastructure.md",
+          "sha256": "41914c2516daccbbfc67937bfac37e03c0918940202091838660955cd7d8245a"
+        },
+        {
+          "path": "plan/PRP009_Unit_Test_Object_Location_Coverage.md",
+          "sha256": "ccd44672974363d2b5988d6112d31f2fd55bef253d2f8ad7a101aa39ca6508cd"
+        },
+        {
+          "path": "plan/PRP010_Unit_Test_UI_Mocks.md",
+          "sha256": "81dc393a27589a3cfd9ebb78b1040b6e60989ca3a4c92cf498318cfda509d1b9"
+        },
+        {
+          "path": "plan/PRP011_Optimize_platform_msx2.md",
+          "sha256": "9c835654de75ee77223168a1b1c87830bd8116607820bd17b093163a59a0b2c0"
+        },
+        {
+          "path": "plan/PRP012_Optimize_daad_condacts.md",
+          "sha256": "e00f943ee62afd8cd3972fe0bdef21faaec4c29692b52f7037c1b7e868b46eea"
+        },
+        {
+          "path": "plan/PRP013_DAAD_V3_Support.md",
+          "sha256": "dff0f1b20da4479fdef7319ae72130819631db95231d8f8debf6b0bc05a56990"
+        },
+        {
+          "path": "plan/PRP014_Fix_nextLogicalSentence.md",
+          "sha256": "1774f0203d1f21b6af38c2810e16a0c91d9864f995f89bfff27f52cf65cd54de"
+        },
+        {
+          "path": "plan/PRP015_Fix_Parser_Inconsistencies.md",
+          "sha256": "432f4c33eb0217810969116228796327372d6060a937c8769fd19d7006b2c8b1"
+        },
+        {
+          "path": "plan/PRP016_Spanish_Enclitic_Pronouns.md",
+          "sha256": "0f1d003dcfbde532e02b050e54978d0126dbe7122ea0ff07a871d14ce326791b"
+        },
+        {
+          "path": "plan/PRP017_Fix_Adjective2_Parser.md",
+          "sha256": "30a9cbc6ecd13f90a2db2e338194a30bd470f8540470952d4d0017d7b6c0d7d7"
+        },
+        {
+          "path": "plan/PRP018_Fix_Minor_Issues.md",
+          "sha256": "cadf13318132e04103934524ee67db697e9edf9f20ce10c73679c6842f262e56"
+        },
+        {
+          "path": "plan/PRP019_V3_EXTERN_SYNONYM.md",
+          "sha256": "60daa6d1f92260e205f9155172aee06992f81726dea2423ea621eed694ca62d1"
+        },
+        {
+          "path": "plan/PRP020_GFX_Palette.md",
+          "sha256": "0000724cdf51ef7a394ee50bb715efd081d8d6f995ddde24676f86e42a7a4964"
+        },
+        {
+          "path": "plan/PRP021_GFX_Text_Phys_Back.md",
+          "sha256": "3e8fd0fd1f3c0fc733c8bde9bc6ee7d7162eee749a920cc14576ec5c3924da23"
+        },
+        {
+          "path": "plan/PRP022_ImgWizard_V9938_Chunks.md",
+          "sha256": "cc3691224d48581d310aefa2797c6ba304d9f14c91f808ee0a99d80abb0c665f"
+        },
+        {
+          "path": "plan/PRP023_V9938CmdData_Decompressors.md",
+          "sha256": "c75ee015de64476d392adce66a9ee22136965199a351d932db4808cb56e9798e"
+        },
+        {
+          "path": "plan/PRP024_CXL_Transparency.md",
+          "sha256": "bd1a0f06ad5d1b0189838189bf6db38daa5e822100a80c0ac9eaca0a514b27a7"
+        },
+        {
+          "path": "plan/PRP025_DZX0_VRAM_Decompressor.md",
+          "sha256": "3b3e7cf8f71b777f99d5698b05834e98655924b90728c177662cc19d8b201269"
+        },
+        {
+          "path": "plan/PRP026_SC10_Paletted_Transparency.md",
+          "sha256": "2de45a102ad201ed83a6f94c44cd8cfc5f6e1b52a11f8ee10234f07354777654"
+        },
+        {
+          "path": "plan/PRP027_FixedImg_CX_Argument.md",
+          "sha256": "9cf2d53bf05aaba239f95dc4c77b801e30f3c0cdd96dc1388859843bbbddb30f"
+        },
+        {
+          "path": "plan/PRP028_DOALL_Cancel_NOTDONE_NEWTEXT.md",
+          "sha256": "f90cf7fb6ff34ef0012e17d1845ffb0e6455f351cf0462e394aae3f9a8fd44b3"
+        },
+        {
+          "path": "src/daad/daad_getObjectWeight.c",
+          "sha256": "334e0f1968d65ef981c5ddf41f8cef396c889fa71873cc6996657eb13af07b54"
+        },
+        {
+          "path": "src/daad/daad_getToken.c",
+          "sha256": "124a68c958bd48660f06255ebbb5716a81b76c662c225d4dbfdf451e9a7a7675"
+        },
+        {
+          "path": "src/daad/daad_global_vars.c",
+          "sha256": "133652bfaeb74e1e6aaca1138696fac698645a236bf35e4c767811a13a87227b"
+        },
+        {
+          "path": "src/daad/daad_init.c",
+          "sha256": "fe7b58d132cd9de5a7ce06002be413d147b461a030556c48cc1283923538f597"
+        },
+        {
+          "path": "src/daad/daad_mainLoop.c",
+          "sha256": "89cd4b8a799e8e734dbab226fd3e6e3df2ab43e9a265382088543252c89dccde"
+        },
+        {
+          "path": "src/daad/daad_msg.c",
+          "sha256": "db5807e1313e9ba7a1f0075b3bf8c6f12af39e68b631e8171465e34766d8ed99"
+        },
+        {
+          "path": "src/daad/daad_objects.c",
+          "sha256": "b912e13e61287aef44fdb983426c1005de7b7c8538a2d471052a9f1757ca4bbc"
+        },
+        {
+          "path": "src/daad/daad_parser_sentences.c",
+          "sha256": "20799253c9317ce5f431d1309109733107a343b9181cad421dac686aee683d1c"
+        },
+        {
+          "path": "src/daad/daad_print.c",
+          "sha256": "05d7302e1e023e6bb6e72e08714c2ab7be3694ac62d9e4952ffc1da032795f14"
+        },
+        {
+          "path": "src/daad/daad_prompt.c",
+          "sha256": "563d3b8003d90feb479efea65bff4ff9d29631df2cd05161c8716a6fcfca3e93"
+        },
+        {
+          "path": "src/daad/daad_transcript.c",
+          "sha256": "a32fd2e86a7248734f742e757dd84e7e633107dcb74c4f58f7fd57b5e62e9c0c"
+        },
+        {
+          "path": "src/daad/daad_utils.c",
+          "sha256": "2948f29e264715cd7923365b7d03b247730ab6caf1980ce9b2fd91de49734e3a"
+        },
+        {
+          "path": "src/daad_condacts.c",
+          "sha256": "3e8a0196b184bc6895c801e35215a1ae5e079af90d5e214e90712e3fd2f48b32"
+        },
+        {
+          "path": "src/daad_platform_msx2.c",
+          "sha256": "6c6cd73c2dba7d05115dfd02a3c8c2627417d7035de47d57a4b41cf4a1fc59d6"
+        },
+        {
+          "path": "src/heap.c",
+          "sha256": "ec79cec713fc344358f9685eb744e078920e875ceac69f3e0598b4c0909f2caf"
+        },
+        {
+          "path": "src/libs/dos_cprintf.c",
+          "sha256": "a635b9e8696f86fb22e1610f4cc289203ac616f530ba47651b5b16f46240d2ce"
+        },
+        {
+          "path": "src/libs/dos_cputs.c",
+          "sha256": "c3e0e5fa712389b3922a2973ca9a24bb564397cf31806542241d752ff3d72de9"
+        },
+        {
+          "path": "src/libs/dos_dosver.c",
+          "sha256": "492cbbbbecd0175bbb187b82775d36e802bc20466cf096d93c6a0e7f1a9bc611"
+        },
+        {
+          "path": "src/libs/dos_exit0.c",
+          "sha256": "c0a8daf050a3735ae7790290ce1e27a8ace703000ffbcb43ef9ef6f427ba9881"
+        },
+        {
+          "path": "src/libs/dos_fclose.c",
+          "sha256": "8c298ff56f69226c789327ed89b204f55066353a0cfcb7c56753c54880488707"
+        },
+        {
+          "path": "src/libs/dos_fcreate.c",
+          "sha256": "eeed9d79878c74e63f9343a9d4edc54dcecefc6b893c15092626e239673cf304"
+        },
+        {
+          "path": "src/libs/dos_fgets.c",
+          "sha256": "7218541dcdc8eab3e2b577e54030e7160cdb4265550cf323c6e98df9e9408ffc"
+        },
+        {
+          "path": "src/libs/dos_fileexists.c",
+          "sha256": "afb1d7d142828b143b764a0077af8333dec326048d1603ea75a164b22343f6a6"
+        },
+        {
+          "path": "src/libs/dos_filesize.c",
+          "sha256": "89f68582f292beb4a4937297e52d29f293f1d7600d954fbdc782b6f913ec6a4a"
+        },
+        {
+          "path": "src/libs/dos_findfirst.c",
+          "sha256": "152ba7f5fe06f05237714850a46a39e001ce72eef8f3d4e75e4964cde19bec76"
+        },
+        {
+          "path": "src/libs/dos_findnext.c",
+          "sha256": "dfe56784588f5ca561f0c130529419ccd1da1d2c4d81849401f0144e579eb439"
+        },
+        {
+          "path": "src/libs/dos_fopen.c",
+          "sha256": "ef59d8c52f3d1dc51bd6d6829d6a416da5f3ece57dfdc7632580d50b6764190f"
+        },
+        {
+          "path": "src/libs/dos_fputs.c",
+          "sha256": "d56269edbaf8f913fd263182823c3f7408340013355de8c292a0e24c1eba64d2"
+        },
+        {
+          "path": "src/libs/dos_fread.c",
+          "sha256": "3e00d6850473f77e6f3d1c7386cf9fd953191d94d9d7aec1609b2e9fadad593d"
+        },
+        {
+          "path": "src/libs/dos_fseek.c",
+          "sha256": "7579e4aa117565bba136e9cfcf6fbae4a5a4240b8856bdd3f3f5da1e83a9d0d2"
+        },
+        {
+          "path": "src/libs/dos_fwrite.c",
+          "sha256": "48c37f661b64a8feeabd69d903aa0e42d954d24318535e5bfab2ac02d13470e5"
+        },
+        {
+          "path": "src/libs/dos_get_screen_size.c",
+          "sha256": "abe1bc5e2e72d3006f2a1a365989b010defbf0eadcd1142144e0c4a8131fd9be"
+        },
+        {
+          "path": "src/libs/dos_getchar.c",
+          "sha256": "84fb4c79821476871949362dc94a195b49ebdf37dddfee3c2c724a13057a3dab"
+        },
+        {
+          "path": "src/libs/dos_kbhit.c",
+          "sha256": "20a0e1166885bfabfa4f8c5a9b7c4a9e08ab079515404ea5799ccf6de5e2daca"
+        },
+        {
+          "path": "src/libs/dos_putchar.c",
+          "sha256": "8a05de9b1102dc3c629f70aceba88b61864459fa5dcee061e0c4b12063c039e5"
+        },
+        {
+          "path": "src/libs/dos_remove.c",
+          "sha256": "68d85ba7d71714f54348c8234b231599fa7c8f1dfc510689740567816ef85559"
+        },
+        {
+          "path": "src/libs/utils_die.c",
+          "sha256": "4bbabc3548a59e0cb150f3ca445253657849f763663f3876f81d24bc141e4133"
+        },
+        {
+          "path": "src/libs/utils_dzx0data.c",
+          "sha256": "1dab3813647301de92d18198b5df34699d6409ca0c425e48b929e29480209b86"
+        },
+        {
+          "path": "src/libs/utils_dzx7b.c",
+          "sha256": "93356d82ab9251c51461eabe6186a63d77e24446430481edadc7ec30a7168354"
+        },
+        {
+          "path": "src/libs/utils_dzx7bvram.c",
+          "sha256": "84854817a229b8d6d6eebc65c8c84dabc7af94981bd11b8b9f141f071e7bd9d1"
+        },
+        {
+          "path": "src/libs/utils_pletter2data.c",
+          "sha256": "b38c686c17595749d5df6cc01ebc6ca4567af456d7b4dd1af369a04a8624155f"
+        },
+        {
+          "path": "src/libs/utils_strnicmp.c",
+          "sha256": "7eec757f4d13112b360ae9d1a3932be8f6a816ed3d3981942796844273103f0e"
+        },
+        {
+          "path": "src/msx2daad.c",
+          "sha256": "009184129537a1047ad932256e18354b341caeb569fee9dd867800da0023e581"
+        },
+        {
+          "path": "unitTests/Makefile",
+          "sha256": "55b43d27e8ecdbb686673abc99b1e00859b4c620959911eb30962273e53aabc2"
+        },
+        {
+          "path": "unitTests/dsk/AUTOEXEC.BAT",
+          "sha256": "b6fc2826451037ece199790c736955512810112dbaa4f5a1111a34a57e21b0ee"
+        },
+        {
+          "path": "unitTests/src/assert.c",
+          "sha256": "3762b701bec767005c4cb47a1b8b4087eae06e3e4ea0c48dbcbb64f5749f2c1b"
+        },
+        {
+          "path": "unitTests/src/assert.h",
+          "sha256": "1761294d772360c76bf83c7ae186e5b93d82f4f2bbc318b1ca244e9c6d0118b7"
+        },
+        {
+          "path": "unitTests/src/condacts_stubs.c",
+          "sha256": "5bca5367773a83e6f66bd0997921cbb8ef4a869513392c9b93d9c50930c46bf5"
+        },
+        {
+          "path": "unitTests/src/condacts_stubs.h",
+          "sha256": "72575510b625b88a058e57c0785bcbf0292f9902377752a896bae8638d830f36"
+        },
+        {
+          "path": "unitTests/src/daad_stubs.c",
+          "sha256": "9d2e4ac43ff42efef8e9b52a9c666147f7e43b3d021ea36c2f24765099d86a86"
+        },
+        {
+          "path": "unitTests/src/daad_stubs.h",
+          "sha256": "b34532d9a4af0f5c74285cdfdeceabbb9fefc772d52c9dc383cf16270e526271"
+        },
+        {
+          "path": "unitTests/src/parser_stubs.c",
+          "sha256": "bc942147a3ff87926d7100d0ece24a14924d5925fd0832907e2bcb1e60ca6303"
+        },
+        {
+          "path": "unitTests/src/tests_condacts1.c",
+          "sha256": "95c28b959a7b450fb78dea653512a2c22eac3cb60a733435b0835a4ac1f4bab2"
+        },
+        {
+          "path": "unitTests/src/tests_condacts2.c",
+          "sha256": "ce2789d0b6e4a705594e3a98a0d1cffecafb3a02f30b6758d78ceb2b0a7dfa49"
+        },
+        {
+          "path": "unitTests/src/tests_condacts3.c",
+          "sha256": "c256d8a4a4ed570a757967549f57f282eda3fb2d52d64ab617117bc0206d3d3a"
+        },
+        {
+          "path": "unitTests/src/tests_condacts4.c",
+          "sha256": "d2922f4cea7ff856ecec572eea2fa28ef3de5fb51f21a7259df9d6aa63244136"
+        },
+        {
+          "path": "unitTests/src/tests_condacts5.c",
+          "sha256": "4837a8f9a31aa3d4699f05e6fe6b6faf3cd6c44eb56235d781413eadd0d5fcf5"
+        },
+        {
+          "path": "unitTests/src/tests_condacts6.c",
+          "sha256": "6b8f70a2ede1f638e5358c71bb02c4f156ccd39ee82ae0717b720946d514ab91"
+        },
+        {
+          "path": "unitTests/src/tests_condacts_v3.c",
+          "sha256": "7f9e2eef9f8452f9d59d991d6255f5897b7952b06c6c4e9e76a3048e43370847"
+        },
+        {
+          "path": "unitTests/src/tests_daad_getObjectWeight.c",
+          "sha256": "157c5862319e24b7433747c45464a38a970d846f8c873e5dd24fb2014a5c5861"
+        },
+        {
+          "path": "unitTests/src/tests_daad_getToken.c",
+          "sha256": "1bf19c87ab6e77efedaf77412eef4e827ae4a1716548fe81aacf94aa7607229f"
+        },
+        {
+          "path": "unitTests/src/tests_daad_init.c",
+          "sha256": "bf0a5579c732ab26d9b17ec4b7042966035f25b3b634f72a8eb2b800cd9ab9c5"
+        },
+        {
+          "path": "unitTests/src/tests_daad_objects.c",
+          "sha256": "726c47da8928a4252cd26055c547e15b70b7e019f9f735fb7c0ddc4829aa010e"
+        },
+        {
+          "path": "unitTests/src/tests_daad_parser_sentences.c",
+          "sha256": "2201a11434a43125c5de68c3647af173431738bd30af003a11f0c9a69c1675f5"
+        },
+        {
+          "path": "unitTests/src/tests_dos.c",
+          "sha256": "b570fd1ca31c99b6867b4512d0a60efad71334772913e4e45008dd4143affa84"
+        }
+      ],
+      "id": "msx2daad-public-source",
+      "license": "project license; retained verbatim in source mirror",
+      "repository": "https://github.com/nataliapc/msx2daad",
+      "revision": "afdd6d21406107bd2fcb969cbf2f06f234717ecf",
+      "storage": "reverse_engineering/public_sources/msx2daad-public-source",
+      "workspace": "upstream-msx2daad"
+    },
+    {
+      "classification": "public_derivative_source",
+      "file_count": 29,
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118"
+        },
+        {
+          "path": "README",
+          "sha256": "8097639ad0a3ee4b80ecae03a16447fc1edfbac8e9b5ae1284f310e81e644e59"
+        },
+        {
+          "path": "SC2DAAD.PAS",
+          "sha256": "2144d66bca1cfbf3165974bba3c6f201bada9d025ffed195272ba70300bba5c2"
+        },
+        {
+          "path": "bamiga.sh",
+          "sha256": "a9db44df444a8a2198b370b9b891c11eead5522994684ebd4e0ef03fd12a5c10"
+        },
+        {
+          "path": "bc64.sh",
+          "sha256": "109fe87fef329231b28d3796b9517f4a2f160f74c2006d32019d166a7c6bc3ac"
+        },
+        {
+          "path": "bcp4.sh",
+          "sha256": "da13a2d29513231a1380ad2fd4ac9920aecb5163430783b77e9da617abda79a3"
+        },
+        {
+          "path": "bcpc.sh",
+          "sha256": "9c34c5c9856a85307e34fce42bf5fd07187eb5b0782c8bf19b27786cf04f67e4"
+        },
+        {
+          "path": "bdandanator.sh",
+          "sha256": "cbff8669eb37e88f95a5c3138a29f6c126b4b6169c31464aca21a0d7c4147087"
+        },
+        {
+          "path": "besxdos.sh",
+          "sha256": "25f3c1243a9788c3ed12d39547bce1dec2aa2395493ce780d047a8e46d3cab34"
+        },
+        {
+          "path": "bmsx.sh",
+          "sha256": "26b83c194bb2f2678bc6139ff0e727645457142ec180f5bf02f89abde58632e0"
+        },
+        {
+          "path": "bnext.sh",
+          "sha256": "0e726128c99253dc7b3284ad7d3b08960cd0b3b905759b70c5852c7b897c41ff"
+        },
+        {
+          "path": "bpcw.sh",
+          "sha256": "f2f12defe43a0d8265b6321091603bb793c26c6f2f298a27bd182166e050275a"
+        },
+        {
+          "path": "bplus3.sh",
+          "sha256": "286bf689b426dd1b098f46fb1ffef1ed5d8f31a1ed34a3e25a47e14dbd5ffe06"
+        },
+        {
+          "path": "bsc2daad.sh",
+          "sha256": "85f5b94c2f6bc3354fff243cba63c6a9632bbd03e48d2da7ef4c392f9d679b35"
+        },
+        {
+          "path": "buildall.sh",
+          "sha256": "12ed0e37ac696280633b8aabe931994c6a9c40882c673f365ab2f0c98c93a82b"
+        },
+        {
+          "path": "bzxuno.sh",
+          "sha256": "72c80ade4f9d9a12286a6eed12d54ee431725b2be26d6ed07a1edc7a92e445e7"
+        },
+        {
+          "path": "maluva_amiga.asm",
+          "sha256": "bad24f543b0a7aa9c46dd7b8d30c0c1b90bec0195b27eaf2ebb76c59094ef1de"
+        },
+        {
+          "path": "maluva_c64.asm",
+          "sha256": "fe6584a9a42dbd36921a4764e6abd132f0d7b120146be0db2add19377f96ae10"
+        },
+        {
+          "path": "maluva_cp4.asm",
+          "sha256": "5308c7983bcaa02866e6f86359d71c6fb948a7216911e141df19995201e64fe0"
+        },
+        {
+          "path": "maluva_cpc.asm",
+          "sha256": "fd2c50fa214ed241be2ca04822727177f8e19b3a6174acd4b7d71bce72a90034"
+        },
+        {
+          "path": "maluva_dandanator.asm",
+          "sha256": "52445814eeb0878bd933442963eafc7dd1745e9a86f64e8d6633924372c131a5"
+        },
+        {
+          "path": "maluva_dandanator_API.asm",
+          "sha256": "e33c86d8965c3d8cfb163c591389a88586b776e7dfef7ed1c4c789cc42db1a3f"
+        },
+        {
+          "path": "maluva_esxdos.asm",
+          "sha256": "9d95a43b35011409d15252d45cb2b4071def190ad091d87b3fb4515b6a737c7a"
+        },
+        {
+          "path": "maluva_msx.asm",
+          "sha256": "b48a68e5efe078b569f53595085b60afa1d297077bc834c92f7d334fe8277f24"
+        },
+        {
+          "path": "maluva_next.asm",
+          "sha256": "565ef42abc37b3be4b8f00d68d89113add88b6cd232a1bb1fb202907282b35ac"
+        },
+        {
+          "path": "maluva_pcw.asm",
+          "sha256": "079adc0e1c3844c4edcc7a0c1dfd7ef1577ffef7e5d4b8808f8a121f59eceabb"
+        },
+        {
+          "path": "maluva_plus3.asm",
+          "sha256": "8f34c0a24d8fa5c027da7fbfd52663438b7aba1177d67bdf30a58040f1bb5b61"
+        },
+        {
+          "path": "maluva_uno.asm",
+          "sha256": "aca3e9f78492fe75adaff0e5a857496aba04a5a0762374436d6c6ca49e41180c"
+        },
+        {
+          "path": "msxdos_loader.asm",
+          "sha256": "3365341ca8ad558b51fbe159730542946fe9e19debab9def2bbdd22161ab8b3d"
+        }
+      ],
+      "id": "maluva-public-source",
+      "license": "LGPL-3.0",
+      "repository": "https://github.com/Utodev/MALUVA",
+      "revision": "6f4d1291a0bfb0b000f5cc68922108253218dd18",
+      "storage": "reverse_engineering/public_sources/maluva-public-source",
+      "workspace": "upstream-maluva"
+    },
+    {
+      "classification": "public_derivative_source",
+      "file_count": 36,
+      "files": [
+        {
+          "path": "COMPILE.BAT",
+          "sha256": "5785867eccc9bbfaa0ce6be5fbcf1fe58a84ded119ab680133bb6e7ae9598c81"
+        },
+        {
+          "path": "EXTERN.ASM",
+          "sha256": "e1006b3b96364aafced01b37d64871271c8e0c36fe233859e291601936e57fba"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "dbaab9b3f36054ead3d0f3340c0433fa31714490f7e49fae85e1a97a448a4711"
+        },
+        {
+          "path": "README",
+          "sha256": "809f782ff2325033a94e730995d8a333e7322b0ace7ec1829ae72486a95f3713"
+        },
+        {
+          "path": "RUNTEST.BAT",
+          "sha256": "97cd48c880ec22e10ea4e98cdcc812d86c5d2214dd9e89268c229a3b1b6fa6f7"
+        },
+        {
+          "path": "WHATSNEW.TXT",
+          "sha256": "1a33174deec5c5eb7923e66a61f600b86816206123cf9977b865aec97da889b8"
+        },
+        {
+          "path": "adlib.pas",
+          "sha256": "7850813494ec71c9b00be9a587970b01bfd3417e272764ce76335091d86c8d26"
+        },
+        {
+          "path": "charset.pas",
+          "sha256": "56ca6bf0d83de3798c5e8c420b064d23500506f0386e1cb9174f5aa0c9542923"
+        },
+        {
+          "path": "condacts.pas",
+          "sha256": "5f5de0923dc160a01daeb692e3388a1cff5a6faf295921df54c8a758a448d582"
+        },
+        {
+          "path": "ddb.pas",
+          "sha256": "be8482ebdc7fc9f8ab80c8105122c018e13a3f0c79a1e7b91919d0eae73e69da"
+        },
+        {
+          "path": "errors.pas",
+          "sha256": "73f04a545831991e953a47fb2bffb04ca8714b5e429989991a0582366635b7b3"
+        },
+        {
+          "path": "flags.pas",
+          "sha256": "1bf98f5dc71442eb4aacff5f106e2d4357ccc25c418cde9b6d8030b32d3ae869"
+        },
+        {
+          "path": "fli.pas",
+          "sha256": "9bf95dd8938fae4c93021f08c5af65dd7b11b6b4d4787c6974b7e9a0f52bc71f"
+        },
+        {
+          "path": "global.pas",
+          "sha256": "04a39a6ac7fd2c707dfbb62f2d1946b13b96ce5dab2ee7546adc912161cebafb"
+        },
+        {
+          "path": "ibmpc.pas",
+          "sha256": "38248f9a62e53adeb280937db33972d9449f47221cd5c74e9ef59a4dfdcf1ad2"
+        },
+        {
+          "path": "log.pas",
+          "sha256": "6490c7d89ac2c28f18ff2f45efce14be3623d80aee02b8f767746b01b9a541c3"
+        },
+        {
+          "path": "maluva.pas",
+          "sha256": "7204ba8bc71fa30dc60ac51ba66446d5c53239871682bf6c51a05f7ce8484797"
+        },
+        {
+          "path": "messages.pas",
+          "sha256": "256125d5383da8041e0087a6a17257e1296894b18a8217c7565d752f2df86e4f"
+        },
+        {
+          "path": "mouse.pas",
+          "sha256": "9161fea111aa5c98d8356e893e3b4205d41c0f5145eab54fa9da31a4ff4f7f26"
+        },
+        {
+          "path": "objects.pas",
+          "sha256": "9a27de7bb5f640c0fcd3647e198db6c2b22b2001e99d7d26b8a4068342351908"
+        },
+        {
+          "path": "palette.pas",
+          "sha256": "d31abaaabca4f379f598f1d2972e3f89ec67f926eb7e231201535debfbbe4fe7"
+        },
+        {
+          "path": "parser.pas",
+          "sha256": "a9e7be00829a748fbf793f425b8af876f2b1a7ccc8673bb855bca76104bdab38"
+        },
+        {
+          "path": "pcdaad.pas",
+          "sha256": "1ff35f0862454025975934d3ccaaab2f4911f97d8ad6196bf7d78855838c69ae"
+        },
+        {
+          "path": "pic.pas",
+          "sha256": "c5bd152a23ee52fb026ecbf2ead91fcb39c2e4ea5493e07fce8b947098bfdb94"
+        },
+        {
+          "path": "readbuff.pas",
+          "sha256": "574d4eb42712d84c52bec98e2565ecea4872e44e5036ce5f38b01d0bfa557651"
+        },
+        {
+          "path": "settings.inc",
+          "sha256": "bc54cbde280906259d5c40d17a521fc9c6ef44ce9809e7c5629e06dfc805f9ea"
+        },
+        {
+          "path": "sfx.pas",
+          "sha256": "54b914d03f3fcf6f9aa56a18f3d9999f8d828a08ddd1c63dbb314370bc6f7248"
+        },
+        {
+          "path": "stack.pas",
+          "sha256": "12a98fca64c2bc0c3b0626f3ae0e390ae3e5b48f5e5761412a1b47740508f6e9"
+        },
+        {
+          "path": "timer.pas",
+          "sha256": "def80d1e606786d50bb912dfb8c07bc747b80ce5e95598946164059a48d60f8d"
+        },
+        {
+          "path": "tokens.pas",
+          "sha256": "3152ba4cff5728ed8852eebac452e4102cf434d1488ffc7597ce80d5337de5c2"
+        },
+        {
+          "path": "tool/pcxfixer.pas",
+          "sha256": "252e81fa41b80d7034f22a6b5a1981e8abe7f9fe31e083ee60157ce865709536"
+        },
+        {
+          "path": "tool/wav2sfx.pas",
+          "sha256": "d38774b8a0c21a1474259cc39e16c7ca3322dd64c9ed87dcad2b97b0aaf2eab8"
+        },
+        {
+          "path": "unittest.pas",
+          "sha256": "5206a1366600d35bad9cd714f3824444f346494067ed1584a05656fb4fa82ebb"
+        },
+        {
+          "path": "utils.pas",
+          "sha256": "0a6d8f653827b692924eaba2b6f5c2058a3959bd804de23db18af090bf26a23a"
+        },
+        {
+          "path": "vesa.pas",
+          "sha256": "0a759a0cb23c671930000137272fd9e951aa8dc13c160bf916d24315d955db38"
+        },
+        {
+          "path": "xms.pas",
+          "sha256": "0fa36f318d808d424f74455f190f7c7217c97cdfadab504525dce2b1ffcee322"
+        }
+      ],
+      "id": "pcdaad-public-source",
+      "license": "MIT",
+      "repository": "https://github.com/Utodev/PCDAAD",
+      "revision": "687ef2b67abebc23bdabb903165b372e47970968",
+      "storage": "reverse_engineering/public_sources/pcdaad-public-source",
+      "workspace": "upstream-pcdaad"
+    },
+    {
+      "classification": "public_derivative_source",
+      "file_count": 3,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+        },
+        {
+          "path": "README.md",
+          "sha256": "0f100a48025b70b65779c09c4f118deac3aadc2ad2572cde846cc4618b077568"
+        },
+        {
+          "path": "undaad.php",
+          "sha256": "27e270bb6ede3cda457186c9c6171f495e7e58889d139089414f021a34a6d8d1"
+        }
+      ],
+      "id": "undaad-public-source",
+      "license": "LGPL-3.0",
+      "repository": "https://github.com/Utodev/undaad",
+      "revision": "8918bbff74da6ef2c52c8560657958cd5704e4a8",
+      "storage": "reverse_engineering/public_sources/undaad-public-source",
+      "workspace": "upstream-undaad"
+    },
+    {
+      "classification": "public_derivative_source",
+      "file_count": 546,
+      "files": [
+        {
+          "path": "AMIGA.BAT",
+          "sha256": "230c2a63b16f6fdbf3336c6814db7a2ce262d8fa1d881519a0d212c90d740db2"
+        },
+        {
+          "path": "AMIGA_EXPERIMENTAL.BAT",
+          "sha256": "522c0d971af3e6739f5eb0fb9f075583a575fa8698a86270833b071e655907b5"
+        },
+        {
+          "path": "ASSETS/WINDOWS/patcher.php",
+          "sha256": "ad7940544a5aff9cb2a91c91dbf4bd692e68abec440f22a6b70d6f34ec2ecc41"
+        },
+        {
+          "path": "ATARIST.BAT",
+          "sha256": "7818c34d83566c25f8be05aad260be41494bd94de1e8eee594af0aab7bcb2af9"
+        },
+        {
+          "path": "ATARIST_EXPERIMENTAL.BAT",
+          "sha256": "aa33a5a26a4e4234e0d23504be878cb87ff7f4c6ae7e4000e0d4dabd946c3d10"
+        },
+        {
+          "path": "C64.BAT",
+          "sha256": "857da9d3b259c0758c81fa73c5275a37478ee9f13e560cd6e60732e2fe6604a7"
+        },
+        {
+          "path": "CONFIG.BAT",
+          "sha256": "c81ede3c29d45ebfd136e855c89fc2ed168892f6564148cbce3ce320da41910f"
+        },
+        {
+          "path": "CPC6128.BAT",
+          "sha256": "b84b7f50177e0f34359e1af9cf146e011f72e246e677e7feee80816b39be0f9a"
+        },
+        {
+          "path": "CPC664.BAT",
+          "sha256": "96ea9d62d2e1af74dba58793a96b891bea8fc711784b271ecc90098ce1769041"
+        },
+        {
+          "path": "CPLUS4.BAT",
+          "sha256": "f522f146a2b088c32c4a542431c66927f538afc6e05eb511a7774a75b30eea4d"
+        },
+        {
+          "path": "CPM.BAT",
+          "sha256": "eccf7b9d03a1b2dd967760baaa2d1b62d1a377feb02f4ad36166be82c5ba2595"
+        },
+        {
+          "path": "DOC/MemoryLayoutZX128K.txt",
+          "sha256": "214b227570b1b81ec154134dc67c280fe83449bd92d29a3787374b36ac35e841"
+        },
+        {
+          "path": "HTML.BAT",
+          "sha256": "7a5e74017a33e336d1938b957bc95d34d3f4200eec8b5f2a471ca4e9f504693d"
+        },
+        {
+          "path": "IMAGES/CPC/readme.txt",
+          "sha256": "2cd6f4865d79e0490dd8ba058cd96859a6b420c08f3c3721fabe590af2d1e14a"
+        },
+        {
+          "path": "IMAGES/readme.txt",
+          "sha256": "2cd6f4865d79e0490dd8ba058cd96859a6b420c08f3c3721fabe590af2d1e14a"
+        },
+        {
+          "path": "LINUX_EXPERIMENTAL.BAT",
+          "sha256": "e9f669fb73754287e99b4a707de964ffbe3cfcc02bfc3d77969d84e85a2bf300"
+        },
+        {
+          "path": "MACOS_EXPERIMENTAL.BAT",
+          "sha256": "2d883f4f39dac96afb10ff8c6a50497a178f41949587e7eb1e6c55ee70fd9d6a"
+        },
+        {
+          "path": "MSX1.BAT",
+          "sha256": "dc04017de1a296ecbedc0a2018a0b050bcc36e825b6104ae30a97bc2da7a65f3"
+        },
+        {
+          "path": "MSX2.BAT",
+          "sha256": "76b346c8fb5c83ca04bea1182358ec6dd2e25e927f970fe99715cf6df5171b33"
+        },
+        {
+          "path": "PC.BAT",
+          "sha256": "fa927a6bfb08d3b03f199c32628f3fcfa864e909c0ec0bd7d032dbcc6c2b4652"
+        },
+        {
+          "path": "PCW.BAT",
+          "sha256": "899e5447c90bfe416109ad6830bce66da0ef9e2f083ed68511725bf5b5e706a1"
+        },
+        {
+          "path": "PHP/README.md",
+          "sha256": "a8d83d2cbffca209969689ba16196a89d8c9c493ebbfce6ed12b578fde189c0c"
+        },
+        {
+          "path": "PHP/license.txt",
+          "sha256": "63b32af3c59108743cb955928c536b7d7ccb7434d3dca88818fa3dae28368ecd"
+        },
+        {
+          "path": "PHP/news.txt",
+          "sha256": "9820d716d4dd84bd1947e6eae9f72d27495bfe20bee7a9cccccd589914589172"
+        },
+        {
+          "path": "PHP/phar.phar.bat",
+          "sha256": "ef0f0bd1e919ee96c7d20547f7a823218cd73452f36c47d1a22f2726d5d64308"
+        },
+        {
+          "path": "PHP/php.ini",
+          "sha256": "a1cb617a6d91dd6ce6e00ea6722e6d57628c0844874662963aadd79f4378d26c"
+        },
+        {
+          "path": "PHP/readme-redist-bins.txt",
+          "sha256": "50ef40aca52f14c73bd1e6eb8f418da421a67a27586e1f80bf60ff46fad277cb"
+        },
+        {
+          "path": "PHP/snapshot.txt",
+          "sha256": "a1a98854be2a50e70a0a182369eb6e8f7de28100c4de544150eede669c4d077f"
+        },
+        {
+          "path": "README.md",
+          "sha256": "99b4e3753de92dc45e13874bfdd4263a20e7502928133266e8c2be13dc851e8a"
+        },
+        {
+          "path": "RELEASE/AMIGA/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/ATARIST/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/C64/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/CLEANER.BAT",
+          "sha256": "dc69bb288d812468ce02a9514555bb250de18da2947bfc9150a1a048f7e5befc"
+        },
+        {
+          "path": "RELEASE/CPLUS4/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/HTML/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/MACOS_EXPERIMENTAL/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/MSX1/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/MSX2/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/PC/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/PCW/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/WINDOWS/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/WINDOWS_EXPERIMENTAL/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/ZX48K/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/ZXESXDOS/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/ZXNEXT/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "RELEASE/ZXUNO/readme.txt",
+          "sha256": "1ac6c782c6eeda5b29e75614e62876cdd22ccef6eaf432cd25ba07c543450ecc"
+        },
+        {
+          "path": "TOOLS/ADP/package_linux_appdir.php",
+          "sha256": "65de327a655692978bb73318aede6437a4f8fa216451489d311f9f2cd7150dc2"
+        },
+        {
+          "path": "TOOLS/ADP/package_macos_app.php",
+          "sha256": "266534d9d144786964d6e378f8432a1496a1725f012f7b73a9f06397b5f3e193"
+        },
+        {
+          "path": "TOOLS/ADP/png2amiga.php",
+          "sha256": "530bffd612c5c6badfc7a3dd2a264eff1a770b9f1d6720922b9685d5a4260a49"
+        },
+        {
+          "path": "TOOLS/ADP/png2falcon.php",
+          "sha256": "c42e3c200443aca081c256558ed879acd4382cf2e091117605c579e9fa39f476"
+        },
+        {
+          "path": "TOOLS/ADP/png2pcx.php",
+          "sha256": "1a6d1a6152a1df17eabb93f391b90ac732d4ca96a1b9cb799a0902f01d170682"
+        },
+        {
+          "path": "TOOLS/CH82CHR/README.TXT",
+          "sha256": "108e337f4ca48a577a9e08729836a0f9d5e7372951f9cd68f79a694c2b7ef339"
+        },
+        {
+          "path": "TOOLS/CH82CHR/ch82chr.php",
+          "sha256": "6f8cf8c884f702994d47958c663e8cbd55d8a01da6c5877f48a9ce08ee62bfdf"
+        },
+        {
+          "path": "TOOLS/CHECKVER/checkver.php",
+          "sha256": "d8c5ad81e468e57011976e96021e21c6d5c32d7a057084e47764cd485050e3d6"
+        },
+        {
+          "path": "TOOLS/CPCDiskXP/Leeme.txt",
+          "sha256": "480ffb7990f7ab023d7afe81f407a553350435ef8904caa5800f3af0808e50da"
+        },
+        {
+          "path": "TOOLS/CPCDiskXP/Liesmich.txt",
+          "sha256": "78520485b6c0c6d281c4f914c6527fa7b24bec2caa18b17dfd2991a15b852e1d"
+        },
+        {
+          "path": "TOOLS/CPCDiskXP/Readme.txt",
+          "sha256": "d184dc4294d93ab020b8a71918a2e7ebf32e9cc48e0711821d32a4f1bf1add1b"
+        },
+        {
+          "path": "TOOLS/CPCE/CPCE.INI",
+          "sha256": "3d3ea04e65252cd4e733b85125eb15dd4d38f71b1b69b50e895e48a805c882b1"
+        },
+        {
+          "path": "TOOLS/CPCE/CPCE.TXT",
+          "sha256": "7a589631ab80a9237ba5282e8be0c621239249daecfd8ad7a09b0afb6d0dbf2d"
+        },
+        {
+          "path": "TOOLS/CPCE/LPTCPC.BAS",
+          "sha256": "ee5101b63d809d40bf11966caca318897e813a0096c506c0e218231d750ae70f"
+        },
+        {
+          "path": "TOOLS/CPCE/LPTREC.BAS",
+          "sha256": "57f32f4f1bf76de06055df3d0926bce7b5dc286b0be73bbd2f75a781c91b59a4"
+        },
+        {
+          "path": "TOOLS/CPM/CPMPacker.php",
+          "sha256": "3808884b43e4b51e90bf46f08b663d4e1d60991e775561fc1d87a3b5aa771f43"
+        },
+        {
+          "path": "TOOLS/DD/Copying.txt",
+          "sha256": "65bba83a3620e137656bb065e9268cec66c00f8c8aec0962a3c0cea8d1b4ced9"
+        },
+        {
+          "path": "TOOLS/DD/ddchanges.txt",
+          "sha256": "8341907b86bba590ba430268f211f59be995a7a7369587d6dc8ef13afbfdac3b"
+        },
+        {
+          "path": "TOOLS/DENISE/licence.md",
+          "sha256": "0ace3b2c636fac74aeceff2d9a737ccb30fe44c1c64c34aa3f9967557ab0b052"
+        },
+        {
+          "path": "TOOLS/DENISE/readme.md",
+          "sha256": "8d5bba824c1110c388eec9fc6d94a2ba04968dd16923469871221d51f4dde9cc"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/english.txt",
+          "sha256": "dfbe177e25b9691b9c108b8c05ce744ecae0067ee864ce7a380521198be80d9f"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/esperanto.txt",
+          "sha256": "2b52c0877e7168fb74173679e276ce3ef352ce149602dc3a0ebc72a06372832a"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/french.txt",
+          "sha256": "27e64f7535a148adc16cab9f95a930189059830b29cdb2c71576512ec4911544"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/german.txt",
+          "sha256": "df19b0727c6bfb98e4f1e75e576aa8c304c126aab2db96daa240425cc96fb077"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/hungarian.txt",
+          "sha256": "f62f42aa5914ba9ad68a027e6b95c712c3b01d7ea0e6472dcd1f17987a167e7a"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/italian.txt",
+          "sha256": "1031a51b99a6991561a8df2f6d8107c8232e77b5c662156b81b4844e93d195c5"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/japanese.txt",
+          "sha256": "7cc27de50c6ef1ca39f349cd15278abaf572ee88bb19f1830dd8bc4a5efb5311"
+        },
+        {
+          "path": "TOOLS/DENISE/translation/spanish.txt",
+          "sha256": "7ae298406e7fb729963d32be514d609bdf2a15984704afaf402d9084924fdb14"
+        },
+        {
+          "path": "TOOLS/DRC/CPCsplitter.php",
+          "sha256": "c146f5e68f11aa024286a4723a21ffe513f9a8e997471046bf20ca6c771dd8a8"
+        },
+        {
+          "path": "TOOLS/DRC/ZXsplitter.php",
+          "sha256": "94c2b56dadf516a0c1804194bbbca74a233d54e95f17d18b946319f212a79121"
+        },
+        {
+          "path": "TOOLS/DRC/amsdosheader.php",
+          "sha256": "186e5f080e356c764aeb9f49c2b81c02ea994ab971915118a9b5ae92bc745e35"
+        },
+        {
+          "path": "TOOLS/DRC/drb.php",
+          "sha256": "63a40ea520f407e9a1a07b5c7489af0f586a7ef24af36c323a9738c1b4044bca"
+        },
+        {
+          "path": "TOOLS/DRC/pager128k.php",
+          "sha256": "61e269f94b35c1c5359345817d3a62fe96d6d0417b912bbac7a6e9fe5472fca0"
+        },
+        {
+          "path": "TOOLS/DRC/pager48k.php",
+          "sha256": "e6e3812ece993c79790d219baef4259a7e137dcfd89709ea660104b2faf5b5ac"
+        },
+        {
+          "path": "TOOLS/FLOPGEN/LICENSE.txt",
+          "sha256": "e57f1c320b8cf8798a7d2ff83a6f9e06a33a03585f6e065fea97f1d86db84052"
+        },
+        {
+          "path": "TOOLS/FLOPGEN/cli/LICENSE.txt",
+          "sha256": "51c69badd1cd4ffb036fb2a2efc4d7db8dd8c89905526e7193d57912968efae1"
+        },
+        {
+          "path": "TOOLS/FLOPGEN/fatfs/LICENSE.txt",
+          "sha256": "cb86377725ebd1a706a06d7b7bbf494986f4840490fd191317eb7535bad933fb"
+        },
+        {
+          "path": "TOOLS/GCS/LEEME.txt",
+          "sha256": "2ec32d4e2ad4798e1e5e86dea4f93891f3a1e255e4f3d3cc7d896e75657b21d0"
+        },
+        {
+          "path": "TOOLS/GCS/README.txt",
+          "sha256": "9b3146c92df17764fc29479a03502e5b30eb06180c92d5787e75981a67241ebe"
+        },
+        {
+          "path": "TOOLS/GCS/RUNME_ENGLISH.bat",
+          "sha256": "7fb84a2541ad051718551f20a450daf16dc01af73c2421ef14ca182cc5c4fbae"
+        },
+        {
+          "path": "TOOLS/GCS/RUNME_SPANISH.bat",
+          "sha256": "c1d8261057246a94263d8c4948550cb91e66136a0ce8fe79ca7a6724ca83f2b3"
+        },
+        {
+          "path": "TOOLS/PCW/Macros/cpm.txt",
+          "sha256": "1ffc0382d43c1a19bf8ba0e82b83124d229c1fe575687848de5cdfcc757a09c8"
+        },
+        {
+          "path": "TOOLS/PI12BIT/PI12BIT.php",
+          "sha256": "b8722ef2c43c77332480a1917e01d02ecb32fb998747a1110f5d975d4fd310c2"
+        },
+        {
+          "path": "TOOLS/PLUS4YAPE/Changes.txt",
+          "sha256": "01ce3ba7ad63520b59388aa13bf180637e5cefa0eaaeb329ad63fc5532804739"
+        },
+        {
+          "path": "TOOLS/PLUS4YAPE/todo.txt",
+          "sha256": "39245b82a4af39c98afad104dc7b6a85448d6db5e153d47186c358d7f8764cfd"
+        },
+        {
+          "path": "TOOLS/PLUS4YAPE/yape.ini",
+          "sha256": "67d35c60276fd7766e8c9ffa2c4a299ff7b7dbe9bafa2578a09f9e242289207d"
+        },
+        {
+          "path": "TOOLS/WinUAE/Amiga Programs/amigaprog.txt",
+          "sha256": "0b8c92de18a9452eeac6c9aec10707b53ea118768cb6961b339778d0b4ccd442"
+        },
+        {
+          "path": "TOOLS/WinUAE/Amiga Programs/winuaeclip.txt",
+          "sha256": "0c3dedc14d1aa552a2a5686ad390fe89051b93db5629d706445b6c8b46d828ad"
+        },
+        {
+          "path": "TOOLS/WinUAE/Amiga Programs/winuaeenforcer.txt",
+          "sha256": "ce70992bc1543ff2328bccff155ed4d8432308cd02741163df68d637f35c6951"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/History_old.txt",
+          "sha256": "b7dc9d62ccb6c3d22ed19d12b66e037772547c352216ed693106043109b67166"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/README.JIT-tuning.txt",
+          "sha256": "982b3536c0745d4c14c6728c7001987d4ceff2a556d652d1a981568adf521ae8"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/README.JIT.txt",
+          "sha256": "0c9ba408f1dfe4c5236cbc0e86a2d5f14cccc37593f49e272ff9ec0322fab8c1"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/README.compemu.txt",
+          "sha256": "667bede11eb2e4259fa86211cc87252cfe23aeab7f099d140b4a00a71be07ea1"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/Readme.txt",
+          "sha256": "cdd19412f787e07b29a2e426c89c606e33e1605f8b642464c4b784346e75d81a"
+        },
+        {
+          "path": "TOOLS/WinUAE/Docs/winuaechangelog.txt",
+          "sha256": "1a598259eb65141f1b95b13a3c381fa384e7bd479ff63e9a0ca1b541bf8b0ff4"
+        },
+        {
+          "path": "TOOLS/WinUAE/winuae.ini",
+          "sha256": "993117d073443c9bc164a7c0062572a93abe7750f267fe1faef8da4003dd0f28"
+        },
+        {
+          "path": "TOOLS/ZIP/LICENSE.txt",
+          "sha256": "8ecd6c1bab449127eb665cef1561e73a8bce52e217375f6f466939e137b1e110"
+        },
+        {
+          "path": "TOOLS/cut/cut.php",
+          "sha256": "73c909720b82c2ac778737f30ef78f6071f6d6244d33ae91b41cac27855a2079"
+        },
+        {
+          "path": "TOOLS/dsktool/copying",
+          "sha256": "61b65d8be67f0acb3a370ce0826c073b7c54a5c08b502ed6f7ffec94a300477f"
+        },
+        {
+          "path": "TOOLS/dsktool/readme.txt",
+          "sha256": "d421a97883f69878012a1f09cb62568af6869ef6e2a597fba555679270257b60"
+        },
+        {
+          "path": "TOOLS/exe2adf/AUTHOR.txt",
+          "sha256": "13583300bc340bf26b0d649f0f819674e7ff5dfe24b68a805364cda8cdb94ae6"
+        },
+        {
+          "path": "TOOLS/hatari/README-DLL.txt",
+          "sha256": "82441a836bd0018a3197c95e650b0d2aedbf4dbac482f8cd9cbd65be77b06a0e"
+        },
+        {
+          "path": "TOOLS/hatari/README-SDL.txt",
+          "sha256": "f17d8919136f9627468b4dffbd7bddd188ef2aaa8ed21914d2107d1c759e99d7"
+        },
+        {
+          "path": "TOOLS/hatari/README-first.txt",
+          "sha256": "c5c8e70181aafec37c5469d99923669172577c478e56203ff82a5a5e9e4dd1a1"
+        },
+        {
+          "path": "TOOLS/hatari/doc/authors.txt",
+          "sha256": "7c9bef2edea973da0cf8a7aa11ef0d8dfc5a8370514cd48f3841326506b05298"
+        },
+        {
+          "path": "TOOLS/hatari/doc/emutos.txt",
+          "sha256": "f0c113ce4662448fbec95c1e8a3b123e5e53987abd3dbef20cff477e094a26d4"
+        },
+        {
+          "path": "TOOLS/hatari/doc/keymap-sample.txt",
+          "sha256": "624bf083f5efbde18cf56cb91db660c2ceb9e83397bcf40640104de4a36ece17"
+        },
+        {
+          "path": "TOOLS/hatari/doc/memory-usage.txt",
+          "sha256": "a87a199ee18a1539c0e270e7ee9818b46101805c5cfc4d7908b3c44c233e28c4"
+        },
+        {
+          "path": "TOOLS/hatari/doc/release-notes.txt",
+          "sha256": "7b2231317e21d80cdbedf5858a76bd0f583b4cb642210fcab7a49a0e0dbac26c"
+        },
+        {
+          "path": "TOOLS/hatari/doc/thanks.txt",
+          "sha256": "97701dacd105b2a8c221438e616c5463c28671090060bf31a3c95c5a59c654b3"
+        },
+        {
+          "path": "TOOLS/hatari/doc/todo.txt",
+          "sha256": "9e0a626dbaee6684ef71af8a1a17e33da24875e5ae7bb48810be75fe426a99fb"
+        },
+        {
+          "path": "TOOLS/hatari/doc/video-recording.txt",
+          "sha256": "98ed5efca5f77b2b562212d01525d2e292b546a0030ae590087faf253d937d19"
+        },
+        {
+          "path": "TOOLS/hatari/gpl.txt",
+          "sha256": "ab15fd526bd8dd18a9e77ebc139656bf4d33e97fc7238cd11bf60e2b9b8666c6"
+        },
+        {
+          "path": "TOOLS/hatari/readme.txt",
+          "sha256": "f4b2766c4b9b177a00193172dbbf4eaa81b8bf7d690b7f41c10f2566f526aaae"
+        },
+        {
+          "path": "TOOLS/img2daad/LICENSE",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+        },
+        {
+          "path": "TOOLS/img2daad/README.md",
+          "sha256": "e26787aa62ff39e575904135501fc90e03b8c71bf659dff537420625fb6cb709"
+        },
+        {
+          "path": "TOOLS/img2daad/degas.php",
+          "sha256": "a5b4e9abf6453395101d8a636aced1d19f8281e60bec1fdf0cdc198f8c360757"
+        },
+        {
+          "path": "TOOLS/img2daad/img2daad.php",
+          "sha256": "4e4db90aacddb608f88cb09158538f85be2bbbc8ce4409421530d1c2feec88de"
+        },
+        {
+          "path": "TOOLS/img2daad/png.php",
+          "sha256": "3046efa9be1658b6cc2f828081c7ed597065ea69128dde83cbac3ce696b81eab"
+        },
+        {
+          "path": "TOOLS/img2daad/png2degas.php",
+          "sha256": "114ae3fbc604c317c07105f8e7e555a338da23834f31ccd552e18f39d4108d3e"
+        },
+        {
+          "path": "TOOLS/img2daad/wav.php",
+          "sha256": "a434cd031d4e41df9e2655ccfe14015f97f85b983300fe64e70f72c53fc11afe"
+        },
+        {
+          "path": "TOOLS/imgwizard/chr2png.php",
+          "sha256": "c673464da57699e7282d3f684d6e96832651807e521a1fa02937a94b260c3675"
+        },
+        {
+          "path": "TOOLS/imgwizard/imgwizard.php",
+          "sha256": "b18e2f58229e67a29e607b1e1e043ec37f83b139b8fc6d1ae675f2afe2d72906"
+        },
+        {
+          "path": "TOOLS/imgwizard/pawchr.php",
+          "sha256": "6a7d891359fff02d6e8a12d253fcac422a538cfe37ce07f4fc108c271130d47c"
+        },
+        {
+          "path": "TOOLS/jDAADFontMaker/jDAADFontMaker.php",
+          "sha256": "1325e959bb07d43d5e2f23f1b0ea5fbc3c3e864eeefc4f835999681086a762e2"
+        },
+        {
+          "path": "TOOLS/jDAADImager/jDAADImager.php",
+          "sha256": "b743bcf38c9e2f36c4b7de4b72fdebd19b2f721ab7c9417cbf57c984e93bcda2"
+        },
+        {
+          "path": "TOOLS/jDAADImager/jDAADMultimedia.php",
+          "sha256": "41e77f856d742498f4151f36bb87943fe77a7b143aab9c55e23308d0c07ff45b"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/COPYING",
+          "sha256": "9f2e250993c6206fac643824e05e5a0d7d3e0895d9e09a5ce4b12bc2610afc11"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/msxconv.inc.php",
+          "sha256": "a5e509f8bb57688161ef61b4ec1034741d27448fc223d1786b0e4ca240c0a3ea"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/sc8.php",
+          "sha256": "e1ca8a979a7689323dac8c75a123be4a20e608f8711ac6e0c588a5d207849415"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr12.class.php",
+          "sha256": "2a835e0300f125a1e5a1708e68286338564e15fee42ff634030a577bf4e60bd8"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr2.class.php",
+          "sha256": "23a070e8b32f033a35a4416a8b8b2267a1aa158c6699ae4bd5c895c65481a04a"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr5.class.php",
+          "sha256": "20b3547d37eb9ba6977367d17f0b2b39b8d7031184e27510ad47fa4166c40569"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr6.class.php",
+          "sha256": "a4bb4009642242f0974c3931628c70b99d61b3d0d9b33af8e71c36c87bd3a793"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr7.class.php",
+          "sha256": "5216a83a8f1c49590106905409c10547e25e0240355a8ed529b4fa1daffe5f4f"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scr8.class.php",
+          "sha256": "b1d7b2e7c5523c7ac718782453a8156f68bf39a89ba6080d81f323d17951e727"
+        },
+        {
+          "path": "TOOLS/msx-screen-converter/scrconv.php",
+          "sha256": "eda9b1ac52f03f9d8f5d9b2adc52e4762f28878fe63456260a462d32e878555f"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/GPL.txt",
+          "sha256": "189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/README",
+          "sha256": "532b2070a3c8f9f4f92e21388ec88be6b0b680defc87ad4dd0b14f31d5980751"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/authors.txt",
+          "sha256": "31ebb02fb2cba9faa098d23c76858b88670a8d9e97ef548754fee7f58bfd7b27"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/release-history.txt",
+          "sha256": "0481ba4af1a6f6f2f5b5a3b670834c763eaca299d6d430bdbcba16169a5a56e8"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/release-notes.txt",
+          "sha256": "6c6bd7f529c08757ced81f19ea77fdf7ea27f8478c9c7c97f9f01e24797141e8"
+        },
+        {
+          "path": "TOOLS/openmsx/Catapult/doc/release-process.txt",
+          "sha256": "8338fe70f4b95b78cb23cc0f8504aa05a985fb51b0514d37b47dbc31bde9e263"
+        },
+        {
+          "path": "TOOLS/openmsx/codec/README",
+          "sha256": "0e077b982868cb9a58c25a08d44b26351a8b0bd216288957ee1611dfa90af474"
+        },
+        {
+          "path": "TOOLS/openmsx/doc/GPL.txt",
+          "sha256": "189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b"
+        },
+        {
+          "path": "TOOLS/openmsx/doc/authors.txt",
+          "sha256": "1cd9b2c28d271e07da740fbebca00756aa400cd100121510389df1706adc77cb"
+        },
+        {
+          "path": "TOOLS/openmsx/doc/cbios.txt",
+          "sha256": "fd48643a5b5c62f526be63523dcd2cc037f44071ca4c90a19e3b3d813e52a95a"
+        },
+        {
+          "path": "TOOLS/openmsx/doc/release-history.txt",
+          "sha256": "be873cb04deddcc7fae4093c754293397880e71e2c0ce16570e05bbe5e1f23da"
+        },
+        {
+          "path": "TOOLS/openmsx/doc/release-notes.txt",
+          "sha256": "26ce24e6fc0299511986020497097b55612fb9c2b8116dac1b5c036e3ce97b82"
+        },
+        {
+          "path": "TOOLS/openmsx/init.cfg",
+          "sha256": "a91476114ba878deb3e29ec08047d2a3e037d8bfbb2a5a9bf96eb31f89fb33f0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ASCII_Japanese_MSX-Write.xml",
+          "sha256": "776bb7a0bb4679d152195e553467760497a81effa26d8f415e862fc4e2778674"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ASCII_Japanese_MSX-Write_II.xml",
+          "sha256": "cb4f3407290a9ba23f6fb0def54968035ed97d942ac1afc9143ba6b8b0fe694e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ASCII_MSX-DOS2.xml",
+          "sha256": "76f417889a0a5a6da276ca06db75570b6bbd3fb91bb089ea02f71da00b65b77d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/AVT_DPF-550.xml",
+          "sha256": "0f91b487102cd189e1412e857caccba0ab85626096b6fc06757cba1a53ef28d3"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Beer_IDE.xml",
+          "sha256": "9773407c16087f571bebe13ed2ca3173935c39be7444be8de8f60e1973ac1c92"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Boosted_audio.xml",
+          "sha256": "2d176473955dcd94468ff61de9779399be6f1acf7d1755857ed7a26d4cdf8dc1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Carnivore2.xml",
+          "sha256": "867075947832bb6b34dc5ce929734063bafe738a761f61aa05162ee350877f97"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Casio_KB-10.xml",
+          "sha256": "f71013c833508a7d3bce31b5581e1ad76f94f53754686603aeebee48e0d66856"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Casio_KB-7.xml",
+          "sha256": "425aad954bb847514998dcbe59540e3f92675f77940c2eb4f267c9af9e5cfeae"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Checkmark_FM_Stereo_PAK.xml",
+          "sha256": "70aee81771f660245289f382cec72ad09974d64fb80172fa6ef4fc376137e296"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/DDX_3.0.xml",
+          "sha256": "00eed695cd1d1317b5a5d3c15f998f3828a802d16acbd279abca336a41aa9705"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ESE_MEGA-SCSI.xml",
+          "sha256": "1f79e7d558ffd5162ec996b2773c8d0db4ae3127dfc74594c97a5be2652904ef"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ESE_Ramdisk.xml",
+          "sha256": "4ffe8495f30a0481f4370f06c95637ef47f308dcea663099e780cf9f26c6d48f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ESE_SCC.xml",
+          "sha256": "c52da8f8d5d0beb6a8fd19f21e67e6c1a5d9e4daf4527f9beee11fd4ff819251"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ESE_WAVE-SCSI.xml",
+          "sha256": "536d9787c6735d9c684d9d94aa54ac0a9c3b32065c3ebc9c14f71d9982aa8271"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Epson_Chakkari_Copy.xml",
+          "sha256": "2251745449536db4db36852a3f16c45925923eb83c10cc5d4c6b5af0b5976bbc"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/FAC_MIDI_Interface.xml",
+          "sha256": "d9d43c0411f1255728a70d2745fcae3bfa7969f5ca55e28e72a06c7ce286d9e2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Gouda_SCSI.xml",
+          "sha256": "c3090f5542a13cd4ebba3237bdc01c4c598f6c6dd08a7ad4e84b1812bf44bde1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Gradiente_CT-80E.xml",
+          "sha256": "9524b590c7a04bc7f2742a118b8a1fd8472953117fedd5fec634bb1f054f5d6b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Konami_EC-702.xml",
+          "sha256": "90c47a2ad0a5616b68910c0cdb4518789cac4541e5223522463f809d4db73c64"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Konami_SD-Snatcher_Sound_Cartridge.xml",
+          "sha256": "3459ddf3a40a40e8b2dd0be8ad8aced596151959972f792cf1d134200326cd1e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Konami_Snatcher_Sound_Cartridge.xml",
+          "sha256": "1aae6bb61acfc5ff55d5aa5008fdfdad832d2bb93130a9704747ba8e71e87032"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Konami_Ultimate_Collection.xml",
+          "sha256": "fc0a6861ab33d0b07705052d4c66fa53ba15953f55541d7ea93229ee9ece73a6"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Lascom_Kanji.xml",
+          "sha256": "64ade0586ee5d666794e4293ccf60361f3f90602cabf113bf79772b9c4e7d8df"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MIDI_Interface_3.xml",
+          "sha256": "225fd53adf4ac200788143956f0910f6812818b95c3af850e21a36a894cf2372"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MegaFlashROM_SCC+.xml",
+          "sha256": "527973983a5af3c3783423f418b1dffd27119eb6b5f1c528a78dffd989314717"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MegaFlashROM_SCC+_SD.xml",
+          "sha256": "4309ef001d64d755d91a56342c6442d6653d7676a353b4631cc3b4e115e79467"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MegaFlashROM_SCC.xml",
+          "sha256": "f9cffe0f246caba4b3ae585432c059acd7444930dacdf81720abd9941d1f2a39"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MegaRAM_2MB.xml",
+          "sha256": "31d4533030414c6465777c52bf8b77289295f5963398edbc80949adefc26879a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/MegaRAM_Disk.xml",
+          "sha256": "e001dce768152fb9689d77a21376d206ae304871f1d0c9976fbc89a408d3c2b4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Microsol_CDX-2.xml",
+          "sha256": "72002f3e8a2722b6715380bcb12f1e4aed6e8fc65896e0ca624c3c2b4b01028a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Mitsubishi_ML-30DC_ML-30FD.xml",
+          "sha256": "6707e278a8a0f1534629fd4eee3429954aa3567c66a90cebda33e29026b6bdcc"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Musical_Memory_Mapper.xml",
+          "sha256": "618269696b259d3ad2827d3b08f5d0a66636a46323b9abb314e733b08375e754"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Neos_MA-20R.xml",
+          "sha256": "6e537bf9304ea7f4299bf12d1aca2f7bb06fc3baf064925e21c63fb9956f2c34"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Neos_MA-20V.xml",
+          "sha256": "d4760e6716b2ba77953002ce98bd1fe929754dc8fdd9aca260bcdeec53183c38"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/OPL3Cartridge.xml",
+          "sha256": "e17ec19cebfd4fb996aa92e0754d6a64f9cc57e79e05b5a0590d947b497078ea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/OPL3Cartridge2_mono.xml",
+          "sha256": "d5767aadc39a7f5ae7d08d7c480336df4dcbd0e897983f892429c4b68d45fa87"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/OPL3Cartridge2_stereo.xml",
+          "sha256": "dbe340fd202e0908da801eb25da452b961ebedd3203ddb6c4440bbb11ec0f7b3"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Panasonic_FS-CA1.xml",
+          "sha256": "ae84d07c5004988965ea8c140fbec9e002fd9e18217a57a846e804ce1f2788cd"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Panasonic_FS-FD1A.xml",
+          "sha256": "a4dbb6879d98a2dff3769da985b443ae740e8f76d60a34eb36863261f937ace7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Password_Cartridge.xml",
+          "sha256": "df167011e218b922d958335184e6da0c23fa7a954988ac3725ac9cf166419aa7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Philips_NMS_1200.xml",
+          "sha256": "cb4025d8e0c5095178690a7b1b425246ca756bab3a4f990876160102362f10b4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Philips_NMS_1205.xml",
+          "sha256": "ead3abd1b842bc6f8dee5199d0e7982c725f17e98071ac131df7dba0fc83803e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Philips_VY_0010.xml",
+          "sha256": "ebde4fca0ebbf46c0e441540313b342fb9488c4a767d955871f7bb7845bd72bd"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/README",
+          "sha256": "13368f0d9d7ad411f509ebbfac4a873896832361665459120d2c741368cf3a8d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/SN76489.xml",
+          "sha256": "e4737c0b221227a7d507c077ea93178c42536e6c540c095fb459e066c441752e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sanyo_MFD-001.xml",
+          "sha256": "b24d7eddda8d189dcf8d043cf6901f408ce02b52827af5f37177c3b4d81c2898"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sanyo_MRS-001.xml",
+          "sha256": "1132fb4e467246fb24f66de588a78d05842af4a4fd4f2dc40000500601c64968"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/SensorKid.xml",
+          "sha256": "e010846ee400f2cca2444aac890aaf7d742b5118ace9c5ed04dfa0cdaae2dbac"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sharp_HB-3600.xml",
+          "sha256": "8884c21ee075a5e1039b8d3be090040fd87ed55f94e04ee02383277906670268"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sharp_HB-4000.xml",
+          "sha256": "6a47d5ac404189fd1f1e5d98577a3b5b35b8074c0eeae7dadc7339d5130255c0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sony_HBD-50.xml",
+          "sha256": "801ad3ac5b1c1dc0725a19ba50d38df9de9d01dd6c86bab2ad9c31b5a10ee2e4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sony_HBD-F1.xml",
+          "sha256": "0ca599d73c94780f8563b11c82d593babe8ab215fa2a21136b696e8dd16db526"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sony_HBI-232.xml",
+          "sha256": "a77fd374cc38bb1d98f23f01aafe58fc9ad66c8f4ee4e79c4676e087883b7807"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sony_HBI-55.xml",
+          "sha256": "e088140b36b7360b2957220f8b509c04b02a6baabc1b8e84039e17c67adc9852"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Sony_HBK-30.xml",
+          "sha256": "683f370c566fb22fa506c2f091e800c47df4dd820bac7832073dcdc97f2bec9a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Spectravideo_SVI-707.xml",
+          "sha256": "d7eb289ab47738c9dca3c8aed9f9ffe9c9232647028c1117d2c81b063ff4537e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Talent_DPF-550.xml",
+          "sha256": "14d2463f6c1d6223a5b7da2658f58126deff9ce9d6d388b57057b8016bc3c3a9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Tecall_MSX_RAMFILE_TM220.xml",
+          "sha256": "6b052ebdf665a85cf13e943154c8f8c9e3874353083452f19fcb52d83e4a15eb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Toshiba_HX-MU900.xml",
+          "sha256": "04c92d978f6785d4f01c7d2e87397e68584a9613e4cce45eee11c0a9fb81af1f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Yamaha_SFG-01.xml",
+          "sha256": "c300915c670de2d620cc2624a5bf658b00f4e7b125650302b10c790df7295977"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/Yamaha_SFG-05.xml",
+          "sha256": "25632781031c0d9819735f8902f87cc0dcc530b67cb99d269f9d5912298f496b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/advram.xml",
+          "sha256": "df10e44daf07a00600a35a1a6fa8c4b4d5af269224587b275e8ff4d61fd6fb5f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/audio.xml",
+          "sha256": "053f2bf6ce511002c6d2fc75087b1e4825e03a61fcc9adb1f7ba99315701e5f5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/audio2.xml",
+          "sha256": "5f7b1636cde840779ebf76bc2b3809fed8063234b1f102b0f3b66e01412badb2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/debugdevice.xml",
+          "sha256": "3660a901adac98f1a4b70f83e01da62319cfb103a69b32719e3346c0d26c5f5c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/fmpac.xml",
+          "sha256": "3ac9a6fa212e5ac26e2d47ee387890ac1d35b0f40533eba9ddfac80c82d0698c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/gfx9000.xml",
+          "sha256": "975285297cb5fa3f77173d62124245ceef20da137d24f9fa86963520dd8ef316"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/hirestimer.xml",
+          "sha256": "ba491c6ef7bad38faa2814e9447e11b3ed19504e012c7cf142c025309464e3ea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ide.xml",
+          "sha256": "86803ac095aacff3955278a69b5eee209a4d5da5658e5b90b3dd859e220f2b41"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/mbstereo.xml",
+          "sha256": "2fcb33386eea90901b722abd06c5e1ffdc34dee58bcc35b61e556964ae235288"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/megaram.xml",
+          "sha256": "702deb94d6c860f2a7812ce9fa5ed2fbf3c33e34312964b1f8b58b92c072a5e2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/moonsound.xml",
+          "sha256": "0f9326dd374f177a770771c4ec957303e7c14ea2560b133f7718a234e27293f2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/msxdos2.xml",
+          "sha256": "9313d6403566c9e0e5dc51ec823ce38433705993a7b86435aec32fe6e87fd31f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/mu-PACK.xml",
+          "sha256": "2a1c3d680b223a73613845f589e7efdd0319cd69bfb7ee1cb47f04bd8d961f9d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/nowind.xml",
+          "sha256": "57e8f6409b1e3dc5ee19fc3aab2069eb6b8ac1d58e9d5030cc5837d6c3611e79"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/pac.xml",
+          "sha256": "18519f5582b68499fc3ba2bf82f94b43a1f6c76d2d8a21188b62ceddaba88961"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram16k.xml",
+          "sha256": "6e73a34a2abf6ddbbb7d87850d53288694138330b9b0320b78f64a91e5f1158a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram1mb.xml",
+          "sha256": "1898833efcbb491e4d78de5e8406b2fb996e49acb073ec14f69f31467f8f107a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram2mb.xml",
+          "sha256": "c3e15bdefe901e9bdbad454040a3db50ad21155abd1f5aa298245108a680fe59"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram32k.xml",
+          "sha256": "757a944e249d4d676623ebb23935abf35f7f0b147b92a890ad38f1c436b79fb9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram4mb.xml",
+          "sha256": "d02045f9db4bb78bb1b4596ca66086dc530ca1ad8c3c696d63d5068e6d59348b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram512k.xml",
+          "sha256": "75a162993d74a8b48c08cf9804b75d3c223ea448daefc93c3805164805a92083"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/ram64k.xml",
+          "sha256": "8f78498da6de230c3b0e0340f7b86ffe7ef0d9342aedbf599689e1aa601c4ab3"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/rs232.xml",
+          "sha256": "023a566d66fd54e022bf41c50bea8647a0a884d603f76aea1379376095fbb3e9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/scc+.xml",
+          "sha256": "870acdf606378f16f2c844f50ec24c229d3f24f221ab15eca9338ad055b76a76"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/scc.xml",
+          "sha256": "e586e0c325a13ecedf1b167814b08f2442488541bdf47a3a8f67559fb63f35f6"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/slotexpander.xml",
+          "sha256": "d686d265af3d67074d416f68dac8f1b1cb825a60910a58fbf7db13135996d3d0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/extensions/video9000.xml",
+          "sha256": "063ad57e31bf4bac114ff91821fec283cfd925e3ebfb869648ed4f9fb5105086"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Acid1Test-slots.xml",
+          "sha256": "db6eee97f9d22d2dd48c7a1b8b7742712dd9a96dd3297974a5b1e8e5727ea6fa"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Acid2Test-hardware.xml",
+          "sha256": "ea1848ecec9e6d162a9897e779ea2d0ebf3bbc9d770a65958475f735df11d601"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Acid3Test-mapper.xml",
+          "sha256": "17f0ec4dcc0eaebed372ee5796954b68fed25fb7f4e4336de88a664f5c3c0dfb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Al_Alamiah_AX170.xml",
+          "sha256": "8a0d07b46a3506bb0224f57eac9cce9de0f47fb1f208fc70454166dc93916adf"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Al_Alamiah_AX230.xml",
+          "sha256": "fad8225466c4b1dc1adb034a5bc77420315c552b16365f6569383bf76f61c97a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Al_Alamiah_AX370.xml",
+          "sha256": "f6be559fcca6548ff8f4fc9301b934eefdb4e8a8b056a82c13edd7e7ba216f6d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Aucnet_NIA-2001.xml",
+          "sha256": "00aa4b1537d5359dd7d5fff8dc89d91491f8da2b4d3e160f42c1a758e6a717a0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Bawareth_Perfect_MSX1.xml",
+          "sha256": "0131b2afabdc820c59e7a3db41fd9a63ea5d2847e8b5a5a9a19e31a27bfdc305"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSX2+_JP.txt",
+          "sha256": "d1fb07ac34f5c267600273c8489aec5e8972b011b64215b6af024e0c408756fa"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSX2+_JP.xml",
+          "sha256": "bbcca457ccd71b9b0a251157f6eb9713f20d677c062bb763152d8698b1b75a3c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSX2_EN.txt",
+          "sha256": "f49aa1a6aa94cf9181ab165d5b4f7d8a37699c6987c136cf6599a8b78a47d7a7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSX2_EN.xml",
+          "sha256": "403da21d933d5194df14090578473a3e3c904c594775b50c8e7d77ca765312e2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSXturboR_with_IDE.txt",
+          "sha256": "3518e811758b1231e89e367ca897f776a56566556f138d78388e7b351d25208d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Boosted_MSXturboR_with_IDE.xml",
+          "sha256": "1255575c037f12ba9c09a585a117d7f81171e8ce7cd9cde24378a1d409c33e4e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX1.xml",
+          "sha256": "6f9f9081d1900e7520db0d8552d83a3a442e137b77561f910f7ec8ade67ef9e4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX1_BR.xml",
+          "sha256": "c364c665944557eff7a9c83fcb67c70d26954990263db80b4f5deb14b1dbb98a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX1_EU.xml",
+          "sha256": "fa728331debb9d603b716096ccc9a28a317f0f53ab57f4a0ba0db44d1f85a7b1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX1_JP.xml",
+          "sha256": "719fa2a9c13645498ebd2dfbeb45895686dbc40be6b63c97f6cba5882b96842b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2+.xml",
+          "sha256": "e783c63be111221094a51859498419f64394d5cbfffc1d18827979eea6c0ab3f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2+_BR.xml",
+          "sha256": "25213821ebcdb0a42a63e7f4651958dabf197d0c2e30da4111942f57409708f4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2+_EU.xml",
+          "sha256": "e90a52d94985b9c2a85696d2cb4202c4034e09f1b242eb69d1750f8618ca644b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2+_JP.xml",
+          "sha256": "c7150117fd07fd3ab237c0ceba0511737bfc66ee148e34548ddb04f60fa43585"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2.xml",
+          "sha256": "ba3fcf18a97470402bedd9ecaa77564d55947dd7d111ab4bf902b5a4d21f1ab9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2_BR.xml",
+          "sha256": "c8c4f931767ff63eecf65cdf98a2414a66dea1e11a0ea793d2c6359207b6bae7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2_EU.xml",
+          "sha256": "760efa03e6067ce8e0191513bc3828d7f50f72b681de24b1bc25561d7c5b62cf"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/C-BIOS_MSX2_JP.xml",
+          "sha256": "5e9f154b270f83926ad847a6059ecd399e4228ea0921f2703e5e1a369b791963"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/CIEL_Expert-Turbo.xml",
+          "sha256": "0592890c5281d1607a3449106584f9be264d50f85575f1b688b1d8b36dcbd5b5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Canon_V-10.xml",
+          "sha256": "0d75c4b6c5543aa929e33d292a381f026af8e27c54963bef9de06cf6f6b6c202"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Canon_V-20.xml",
+          "sha256": "7bd335bae88cdcd932c731822f12b4edc130f7794f26381b039aed6efd6ea9cf"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Canon_V-20_JP.xml",
+          "sha256": "b38116ab92cdb0b2496beb0338d10476667431da5b4adeeccdc0cecad5b85798"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Canon_V-25.xml",
+          "sha256": "9979e30b7c4733a56efd6a96b00312b833bd6dbeff2a5832d7ca334a2d6b4d07"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Canon_V-8.xml",
+          "sha256": "b765237651480ab3a39cc00217b03a6b15b54d898417550053773bd352ec7dc1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Casio_MX-10.xml",
+          "sha256": "ae356b6d638272254a991d526093de9c3b61a463ebdc3fa7432c49f30a3dddea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Casio_PV-16.xml",
+          "sha256": "8033491b8b0d71aebc2e13da3b00cac53633b1f7705b529a043b631edf15b648"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Casio_PV-7.xml",
+          "sha256": "cbb332bdcfdc4383010a4da1145c6c2f29b1854706f48c8dc4b7cb604b5756e5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/ColecoVision.xml",
+          "sha256": "1f2d685c9a9d2ff78cb1e70f5272170b0919fba4c1ee93e8105870160a372815"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/ColecoVision_SGM.xml",
+          "sha256": "6f2472875dfe47db24d78a8a90f2a98d6f62e0fe200e4d861da8aadcc9ad0584"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_CPC-300.xml",
+          "sha256": "e3e22d4fa27edfcbff894127b11542b9b415bd427b9ef599c05eeb4ff62b0dbf"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_CPC-300E.xml",
+          "sha256": "890d3f01bb070acc3e22bae0a80e48e42e2fb452e6f764cad80e427493b258ff"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_CPC-400S.xml",
+          "sha256": "7caa9df60742aa0b8eff48aa4adeccfb7faae4638c8bea96ce03e77739e7688a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_CPC-51_Zemmix_V.xml",
+          "sha256": "3647299426bdb2d4177865c556dc6e9204bb875e14714dea522d5b7c89d67929"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_CPC-61_Zemmix_Super_V.xml",
+          "sha256": "399d6f3bd96785b462d4533803e4604842083ada73a950a635d4d92c9813fea1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_DPC-100.xml",
+          "sha256": "2c94ec996441a04e35b42adb1a687bc4532e5cdf8f90df747581a85830a9a243"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_DPC-180.xml",
+          "sha256": "31886e10e8fb8c2cc0a0f701b1243c24f431ccecc6bdf4f8a1d30158f7d6f715"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Daewoo_DPC-200.xml",
+          "sha256": "695616d3d3f439e876989ded88f4b660234b2a47f42e947a13701b760a9a924c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Eurohard_Dragon_MSX.xml",
+          "sha256": "7ebea77be986618f0a4d25661b68236a6256a56f010fd25055f8a63de2df79f6"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Fenner_SPC-800.xml",
+          "sha256": "49b82939ddae8dd42aaa07c1fa36935b09b45d08d2b2c736bef96ef756a40dea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Frael_Bruc_100_1.xml",
+          "sha256": "0a663e5d0540f92fc042ea03ce6d6bed31486d4787d1d9e9af028b3f51facc40"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Frael_Bruc_100_2.xml",
+          "sha256": "d5ce82e4549c186bd9d1f498878da46848e6330ee00ccf90b072428730d8f54a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Fujitsu_FM-X.xml",
+          "sha256": "0b6b36115e3b571cfe8e239301431ddb83357c125b043f8ac972a3433e33626e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Goldstar_FC-200.xml",
+          "sha256": "a022b8bcb77b86710bb820ac95dea0f0136295073b8d678e0078d1ebe6fe149b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Goldstar_FC-80U.xml",
+          "sha256": "83e66d7c72a6f3ad23d18b34cc6562fccb07400f72b5327616fb44914787aac4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Gradiente_Expert_DD_Plus.xml",
+          "sha256": "1c70eaf8ed8f59f5e10965b95cd484830273839f1a2343ddb06ab38cc83e11e8"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Gradiente_Expert_GPC-1.xml",
+          "sha256": "9eb19f7b6848b337a45454a3f94760175d014b53711b9534f9e6a0d1d6d8f16a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Gradiente_Expert_Plus.xml",
+          "sha256": "f55e348a86a671f9e996df2a2524aa01ee637217581a2498241ea80db41054ea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Gradiente_Expert_XP-800.xml",
+          "sha256": "27e77c39d111f80e316ca02e962f0bd44f69283f64aba49f4a78ffe08e8fd292"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Hitachi_MB-H1.xml",
+          "sha256": "7b19669859212e05e4dc08ad1d38b401c80f58fab35595c8569bbc31b4735afc"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Hitachi_MB-H3.xml",
+          "sha256": "d7a28a9ae1f2cc3ab9d5a2b6ba81ea73d2799042072f1556154e337b4bc17e01"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/JVC_HC-7GB.xml",
+          "sha256": "d992e4c69d8f1a71eb933d3cb24d53028bfa6f06e9b0c3cd83e2dc6f5f0940d7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-F110.xml",
+          "sha256": "28068d1ac039bbdb8f464309019b90713cbd1353a950a79158eefc85a90fd5e9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-F120.xml",
+          "sha256": "3b7e7ce3d9cc0892358fccb3af4e24474429811db55763078ea9b000d4704963"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-F80.xml",
+          "sha256": "c775ee5b5c74f2d3d0e7fa055d9cab77e58f2f75f7cb311e87dfbe029a459cbc"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-FX1.xml",
+          "sha256": "a4ea91f1917e925368c67d208e4411f7d1543b9163baedd6750a198ef6efd95f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-G1_ES.xml",
+          "sha256": "562dd094cbd78952897f36d76e9184002a4324251c636f302b7188973ea57240"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Mitsubishi_ML-G3_ES.xml",
+          "sha256": "518416a4472b2006f678dfc350f8376531216f5b39614dbb8448d62a4a291aac"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_CF-1200.xml",
+          "sha256": "cefeecbbad038bc142e079b71b70d2a3317a9323b153dc44aed680d1c113366c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_CF-2000.xml",
+          "sha256": "e13bf70c7d6594bb9542b76f3c5bd5e6411e5d41c546eab4700bec9c0a5984e2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_CF-2700.xml",
+          "sha256": "8bfca0b61bcb54dc6c8778f56411072e7cab04fb52f799cd3dcb8d75a670d556"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_CF-3000.xml",
+          "sha256": "f505646d0baec0648d059d531dfc97dd9555572c5ab40a9ff93f6163a5f4ce33"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_CF-3300.xml",
+          "sha256": "1906836c5f0734a31628b59e9b85cfe0308610f7aca53a3bc3bce5ec5c4acb62"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-1300.xml",
+          "sha256": "26121b36ad60baa39b7628a854e403e57358fa10a09e35fa9d8a056894a1bb27"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-4000.xml",
+          "sha256": "f63201faa7152d4394582df2b45f5e8d7b60253dc58c1fc75ea83eaedaf79988"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-4500.xml",
+          "sha256": "a223a21b969cedc1e6d75a1151c4b9ff11a1c0f140c553e992f65bbe31577343"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-4600.xml",
+          "sha256": "7a221a678b9ce3447911c25afe9d980fea41efc791d6e5e535c4b0aec3489165"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-4700.xml",
+          "sha256": "985362ad7db2c2ab10d48f389085384f56ce70bd1d5dce343e4dbed188730e20"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-5000.xml",
+          "sha256": "612c8db0f1ccff45d22d1ce80c0915d36e8b1d15710fda59bfe5a899a678729c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-5500F1.xml",
+          "sha256": "bbec672e64cb78bba2d661f9b44c795dfc3db3ec285e1fd75437bef3b36f6aef"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/National_FS-5500F2.xml",
+          "sha256": "0da72ca3d6ad3a421ec9d4145a4b233f4e8be8243300810fe201b434963ba248"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_CF-2700_DE.xml",
+          "sha256": "89194f8d09bac754ae0d871183c187d6e72b62b0b3adffd18584354113ebefa5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1.xml",
+          "sha256": "1991f5ce94d0d06cae75e74b953f8e7b09e03525c017d00252103136a75ef105"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1F.xml",
+          "sha256": "eee44c25f0dcba90416212088e095c58e68e60c0efafeebf747d17ea5ef91985"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1FM.xml",
+          "sha256": "95b6481d8491d2cdfd83e6d9fe71fbcb753794fac66c7a9c89f84463a7ea945b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1FX.xml",
+          "sha256": "f64db53bba5e38f9ae6fae71729ef9796d99058d6201c4fd38488faad74fced0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1GT.xml",
+          "sha256": "c176183e1825db75526ad2c587bc3b7bc2680bf94291a831cee2c36489d137b5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1MK2.xml",
+          "sha256": "e2d4991d66178db595ce974125ae69ec293d6bc1c5c0ac1c1097d328579c6d65"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1ST.xml",
+          "sha256": "120d2b71985846b1cb8ef8e7dbd5efb4ce9025f2b10cbaa52df3d0ccdc8844da"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1WSX.xml",
+          "sha256": "3a834d96daecddd998c1611c2fb950773c1beeca85853694f28ea92b44cd6396"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Panasonic_FS-A1WX.xml",
+          "sha256": "c34ead34c74310795a785f0cc12cc1a5f6da41d45a1da5d11acd56ea32c40280"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_NMS_801.xml",
+          "sha256": "ed11cecdef9ca4be9b84c0588e30bbb1ec502de8797754d321ebe714dcb4d142"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_NMS_8220.xml",
+          "sha256": "cbd4f0d52ee6da02487d2a5e1a9c7546ad6b02cec48fcb6c1076d9da735047fa"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_NMS_8245.xml",
+          "sha256": "b0d9ba0d18553b35d50bb55192b0424e6151716846209900c983d40a24397018"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_NMS_8250.xml",
+          "sha256": "83de1cb41a8e3f5d21ebc1a825b6c65bc12e595669a183a0ac65ba8747ed9da4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_NMS_8255.xml",
+          "sha256": "e40b4078587952f97c24d9c6ed93c5deb0e9455bac8c49e35ab2ddcc2043c383"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8000.xml",
+          "sha256": "d074392f224760d4fd205732c6eaf2936dc2f861cd220b62e6978e123455daa1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8010.xml",
+          "sha256": "2c4c1606d0e1c6d357290408bc392a218e21e3a3db0312f56dfe5ba3ec87d839"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8010F.xml",
+          "sha256": "5deff98264ea519315205a23e0dc1e6684d72cb8f860975348fdfdef8ac062bb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8020-20.xml",
+          "sha256": "884db750c7bf1fe78c09f4d2747568b7c1f5f4da055963f9258620e3d93da94c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8020.xml",
+          "sha256": "7e3311890900abc81ff4e7c5933df818d57c4191ac35835b3ff1947b613c1e29"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8020F.xml",
+          "sha256": "4e7d7f9d559e2498bb5727b9cfbbcafa12bcb825361fd9283ad85fe8028bc074"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8230.xml",
+          "sha256": "e494fdca495f0f0ca381b9875efd494fc9251cc996c4be0100fb1139e0214b05"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Philips_VG_8235.xml",
+          "sha256": "fba641de7d83bc3af4c99a3194185fbc0ca3db2a827affe2cd1accac98b93fb8"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Pioneer_PX-7.xml",
+          "sha256": "633fe9618feda39c5be04d8629cb4d40e4a34fb25a24d8d55c07108ba765282f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Pioneer_PX-7UK.xml",
+          "sha256": "10d964b2236e97ee4bece7926bd69f1d8e4b603802a19966966486c4220a9bd0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Pioneer_PX-V60.xml",
+          "sha256": "ca05b474c01ec849780e9054913136108cc3c4127f3dd09e149b3c48e50f8aea"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Pioneer_UC-V102.xml",
+          "sha256": "a5afa2c18f317f2f45152acddf23850f1fda1c08be87be13fde7fb8e2b853b0f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/README",
+          "sha256": "eaba73d136b868326ed63522749adfa04396031434b84cc10ba3252dbea3fa96"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_MPC-10.xml",
+          "sha256": "8466b79796b3b0621a0d973a3d890a7bd5bb8860eb869dbbeeb0eb9bd7f5a4d4"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_MPC-100.xml",
+          "sha256": "6cc0bb9bed0c545d4e5184962999070bdade36af88e34171543a4cd504c6c966"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_MPC-2.xml",
+          "sha256": "82f10c81b7bbe8013df7d3e09c836776755b92ec2b5f49b73f3db63f3df05bcd"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_MPC-25FD.xml",
+          "sha256": "6e9f227e15b2b78c3a0076ada16b709d9fab7101a4fde0228046d325cd0f77e0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_MPC-6.xml",
+          "sha256": "23f5177df1d7b2c7b41a471a72c592628828080f3bd9e90836f442f0b7fc2de0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-23JB.xml",
+          "sha256": "b7f98fca2980d49f838439f2902f8318a83b0ef17c23d1503a5a35cd02287a3e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-28L.xml",
+          "sha256": "4bd7ef740dcf62c886c516edbd0cd7e0cb51c25545522d30a853d7387fc7fae7"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-28S.xml",
+          "sha256": "acf587a08ac7d69acbbfef7e9f42288ca6c4c2a9f6b7fa53744bd1a96badfcd0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-35J.xml",
+          "sha256": "d9eed177b70fc8dd504034d467b7a4a855825b18a1d0a1ab79bb09b481e30c9a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-70FD.xml",
+          "sha256": "d08ed5b54f658681c0e108e6b75ac0c2c9269ba7d473947b8c739b5e90805826"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sanyo_PHC-70FD2.xml",
+          "sha256": "0d6a292bd840415ef48398bffde678befa26b691ffd69e683d622dcddc14cce5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sharp_HB-8000_1.1.xml",
+          "sha256": "1dc3dd0ef774363ef9b505fbb5a34123a38ca4f01a8f130e7309e13485f017bf"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sharp_HB-8000_1.2.xml",
+          "sha256": "e64169e1f1acf4a781b8016f91cc0c622fa74a0b87420909ce134bb27ed98195"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-10.xml",
+          "sha256": "f56be47217dada9b20a1cdfe8a4408489b0eba32d6afef8a36452e076ea24727"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-101.xml",
+          "sha256": "e41bfbc9206b2603b75e1b3d414be3cee8dcf40322341cfcb57bf35da7497d1c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-101P.xml",
+          "sha256": "51d604330a67d282ef5dbde5ee8009b222ab90ec0c46cdda6b71a5aae70c1086"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-10P.xml",
+          "sha256": "a9db687cca51c605be4fc305db42f113b6a99d4c47765aeaa9dd33935f9fa1b9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-201.xml",
+          "sha256": "b1fccef514793cf3076f925f5da931fced62991f8863fe80c19d399c05449e32"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-201P.xml",
+          "sha256": "3b369cf2e262bcd79bdf59743db05aad03854f1aff15e4a4f888a78a01adf789"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-20P.xml",
+          "sha256": "00d53ec3c9b248b7746265ce31b2df9491f6a18585e84bed3189ac7d5b9588e3"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-501P.xml",
+          "sha256": "3b4faa6c64a2dc759d8a1519061b918dac4e42401554a54c899229353c6042bd"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-55P.xml",
+          "sha256": "9a05c9258dca3a594924ad2796664bf563cbc2fe6db5bbf52888e2af765df91e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-75P.xml",
+          "sha256": "61513949aaada42fab262d769ed2c5a30cc3b21e90d01398c7aa4836548953df"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F1.xml",
+          "sha256": "359d410d25a7ab19193864c5509b08edc0907f5d9f59a89a6ddca8a317260b6c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F1II.xml",
+          "sha256": "d2babd47d3cea58639453227d5030b08401f06d980ff42f1f95dc335e5a583fe"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F1XD.xml",
+          "sha256": "bb1d8df58c8af2d9bc9e714e1f9be829ecbd2859dbfd902e810fb3aa710ff92b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F1XDJ.xml",
+          "sha256": "084805cb95e2c6df3dc86bca901a26b088ff2c7a824a29966fb04d808817ab27"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F1XV.xml",
+          "sha256": "5af1be32b620b564293c7c373eaed9e2a77f33e35001f5b7e441b5d013a77b44"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F5.xml",
+          "sha256": "d5af1f06ef4168d1578a3cc2b4de4032e7ff8c416a7fd252c4e67649eb2fab7b"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F500P.xml",
+          "sha256": "84788d6a249838a31994c7f795aafc4f2056f4452b16bfedf4eaf809b45149e0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F700D.xml",
+          "sha256": "bd7335786063d3b99ccd07dc50375bed7b5ab168b726198a079b14157d6e5c87"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F700P.xml",
+          "sha256": "066d7270c44165c80f3fc6639e57d2e0532865f9241248f7a8ef7db59151faee"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F900.xml",
+          "sha256": "8d4b349d62a082582927da2d5eecc2fb43ee5cf34fbc4eda092c82bb9b3216a5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F9P.xml",
+          "sha256": "80c9f319a29af7bcdbbf6d11cf087b586ffbc0be6efb2e9ff9a31184d17160b8"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F9P_Russian.xml",
+          "sha256": "25539551c8e7a89ff1fec21081e32f1a48e4fb9d72099b799d6b65e5f4bb05e2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-F9S.xml",
+          "sha256": "a81250569f414ffbcf364b71ec97b91d753d6667284855647e547662614a25ba"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-G900AP.xml",
+          "sha256": "5452934610677a30fa7dbeb71904d87c156c8ae0703dfdde1d7a845855de6524"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Sony_HB-G900P.xml",
+          "sha256": "20c20a10592a6ee65ccd3a76aa2e9144a1b92aef8e4c00841883d131e9fb6392"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-318.xml",
+          "sha256": "688a1b5cfa9c5c8f27ef0628f5bcc5c241227de1c2146bfa7a07c9458d07388a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-328.xml",
+          "sha256": "cdde43197ea467ca062eaba72559ddbbd727c880640cc037bc724a146c933cf2"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-328_superexpanded.xml",
+          "sha256": "bf898a5a82ed9c8f58ed003f3a82d245562d5b85407c7292f026b7e548f8d30f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-728.xml",
+          "sha256": "69e306e0b115bb98a94ea65268119b4343ff32aab45efd56452cfb7f529a14d0"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-728_ES.xml",
+          "sha256": "8169cd3e4b25933aeab328e6fea3edabfa63eed1ac1b284cc5c185c0bc9f21ae"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Spectravideo_SVI-738.xml",
+          "sha256": "c2d9da4a783953e24597304a9ca2ec3170333e1e26059613190ddd5a95c55c1f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Talent_DPC-200.xml",
+          "sha256": "a8ad74e30f54d984a375628934ec60ba01ce608b7a6d252fcf596f89ca8b6327"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Talent_TPC-310.xml",
+          "sha256": "cca9bc70dd6e0081c03886c52925f4802c5d775bcdd0f075af32f2d9e50e824f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_FS-TM1.xml",
+          "sha256": "5d1d2d1cb56d4d8d0ba347ae42a15f367d415b4dda374cceb833fd212582f351"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-10.xml",
+          "sha256": "ca42e3de60fbc5eadf550300a65ddeea54d39f2fff135a5d30c89307dd775eb9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-10D.xml",
+          "sha256": "d968669537fd18a94c63d57aeb02568bc84e380bbcd14d9300644f1cf5b18f53"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-21.xml",
+          "sha256": "60cabecb92073db72a18f817644255d541a94a5154405319faaffeef32ef9232"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-22.xml",
+          "sha256": "34f92c78ffb2d68d9482fe33742e2c95a94e1f7d4234bfcfb033084e0c58c5c5"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-22I.xml",
+          "sha256": "2cb7669268c26ad4a342b1c26a846e5159a80a9fba997965175d669f10b853f1"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-23.xml",
+          "sha256": "18f9fe5dbdf48393adcb52868b3e368b1435df4a794a6946ff542e96c08c6c71"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-23F.xml",
+          "sha256": "2749e5668a2a0377c86c049466f00de88659b5116782c7653b4e1ce200c36bf9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-32.xml",
+          "sha256": "90cb043393f367f9fc62224040b6984762d548222a0eb0e26cfe46335cf105d3"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Toshiba_HX-51I.xml",
+          "sha256": "014fd81f873d2c63ae3989df821e5efb531dadca01d4697d27115f0be75df35f"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Victor_HC-80.xml",
+          "sha256": "2c623ac9d0473f9e81a731639855fa5240c07e4e9a98b874c6b7e55226f9e23d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Victor_HC-95A.xml",
+          "sha256": "43ad19ae20957a63fb1196beec866e8643743c383ca4ff27c6dd03996927cacb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/WIP_Mitsubishi_ML-TS2.xml",
+          "sha256": "3df0326ed858e52e49969140c803d2a3f3f4a5b8ed44652150314f69d1a13a0a"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_AX350II.xml",
+          "sha256": "cf07051c837c5328c764330cc1dff0c74d946a31f29eeb1f44d2085a8650f995"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_AX350IIF.xml",
+          "sha256": "ffdd6b6c99bfec67b646f7199abc75ab3aa1fb9ab154cda4bb6a3937fcc08f36"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX11.xml",
+          "sha256": "06eaec05a605b46f32e33b23d88347f54e931aea6fac55804922f5ed3bdc6745"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX5M.xml",
+          "sha256": "2bb04aec2e53e92e7fb54b0cca4658ed084438bba339156f3df700b605e44cdb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX5MII-128.xml",
+          "sha256": "5f3a25b1f3311a05963432d40a65d1b5fd68f4c30f9a68df321745c228cd923e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX5MII.xml",
+          "sha256": "0e218e4f9ad9d1e96073ecebce59ec8bfcc6195346b095c6d2aae4ca3e60028c"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX7-128.xml",
+          "sha256": "8dd059fa5accab2e56edd669a097a8b9496f09c56a273f88290a2b2a8215d9ac"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_CX7M-128.xml",
+          "sha256": "522f9e8990db853faf7439c74c5f65afd8c65977eafc6a47fe9a00cf7b9eb7da"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_YIS-503F.xml",
+          "sha256": "9444c7e01313e3c6c60054a826242dd98740096af2a2e2e0e0f3d081edb5c7b9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_YIS-503IIIR.xml",
+          "sha256": "a478df4973b1b880dfac245ad302968199bbfd837b547f18a7c64be833fee2eb"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_YIS-503IIR.xml",
+          "sha256": "16eb34d7b5bbe1f2abb5e8850753c3866ab135b9246b0a97533df5a0a4da51c6"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yamaha_YIS-805-128R2.xml",
+          "sha256": "f6cbe127c67a62f5fa2f1a9bc646508c7e5fa0ec30eca3e458fb32cfb4c873f8"
+        },
+        {
+          "path": "TOOLS/openmsx/share/machines/Yashica_YC-64.xml",
+          "sha256": "d846ab895765fc72853246606a30cb4cd1b6d8a1b1e0416e94184acfa6d58f0d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/nettou_yakyuu/README",
+          "sha256": "d09d5106722d110eadf2e6806be8044597b8ce1114336925f56a47fbaada60ba"
+        },
+        {
+          "path": "TOOLS/openmsx/share/playball/README",
+          "sha256": "5b4ba785a89584d14286527373f44b3b75d565911cd8bedc9a3a90ba622f9828"
+        },
+        {
+          "path": "TOOLS/openmsx/share/settings.xml",
+          "sha256": "9bbb780a6e63f1c6edd9fac5e213acbf164eadb401c1b038ee09ea1f86328a5e"
+        },
+        {
+          "path": "TOOLS/openmsx/share/software/README",
+          "sha256": "94fac9bc197868e976eb52dfa939bd5b41bc79d3ad8faa6c406438334ebd27c9"
+        },
+        {
+          "path": "TOOLS/openmsx/share/softwaredb.xml",
+          "sha256": "44be403c214e7b6b4112f0129a2be51e9125afdd941d63d11ba0fa2f92cc27f6"
+        },
+        {
+          "path": "TOOLS/openmsx/share/systemroms/README",
+          "sha256": "3f82a75c2b4198952c30e32f1f27beed664e266824255ca836d5275a4dc6ea2d"
+        },
+        {
+          "path": "TOOLS/openmsx/share/systemroms/cbios-old/README",
+          "sha256": "59f726fa7718efc2f7d1e38a72a2fbb56791f4fdcaae89cce9ce8e93e749537a"
+        },
+        {
+          "path": "TOOLS/plus3cache/plus3cache.php",
+          "sha256": "cdf85f02e474794a1739d1f4ca0a2c8e729feaa1f4b672b8301872c6e20eec96"
+        },
+        {
+          "path": "TOOLS/zesarux/LICENSE",
+          "sha256": "8c75a9231db8906865e29706ed63aad18fd918c92c15dbefbb13c25fe42850b4"
+        },
+        {
+          "path": "TOOLS/zesarux/README",
+          "sha256": "00d9531527bba85f8dc238f6f8c57f1d90c96178c139986d32e029b30c1168bb"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/README",
+          "sha256": "3747956d52c991ae55b660bd95bc06e262a818d3987244a7dddf6a633910885d"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/accesibilidad_instrucciones.txt",
+          "sha256": "7d44fd7086907cba9b5a8d96a462788e0448bf403944e42f90679ace4a4474a2"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/load_any_flag.txt",
+          "sha256": "a385e341c76e9cc3bdd6df989e77dbd848dbe916d1b5f5c91c3cc9a10f024cf7"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/mac_os_catalina_users_permissions.txt",
+          "sha256": "43cf4c0f460c476054e648853d6056e8af860b86e300a65ace5b00291a17becf"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/man software/README",
+          "sha256": "09353382f479d4562833c19ee27c74d266176f0e9eb5c0d96a3285e695095984"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/pullrequests.txt",
+          "sha256": "38c58efc4890cf2acf328e5f3056c0693325aa07ea1caf5a7b434420c6d63eee"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/sobre_cintas.txt",
+          "sha256": "e20b46fdbbed6bf3322b3eca37c69d6d3ebff6a20b59005d78bd4d1aed26fab1"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/sugerencias_usuarios.txt",
+          "sha256": "96301e6f270e8877a689c4d476986b65176acb689e6d08c348febeeaaa48875a"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/volante.txt",
+          "sha256": "5648fa0766c1071181181f21776775127e642c256444b9377e4c7a080d82eadb"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/zeng_online_add_core.txt",
+          "sha256": "f95cbedf258b236a463ce18b756324f0536e3916a55b28b6cbeae3ff135ef6ff"
+        },
+        {
+          "path": "TOOLS/zesarux/docs/zesarux_zxi_registers.txt",
+          "sha256": "e287808a13322d31c19776bcef8682a6e18af6e1a705c9f2b2f8d986edba221e"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/bitsoft/ql/monopoly_folder/README",
+          "sha256": "eb838b43b56653adbf5780336ab9211b1c261ebe869ba63821aa9bf067caaa48"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/bitsoft/spectrum/README",
+          "sha256": "9cf8b9a467c24a8a701d3673e34417164d6d322bf5d88086aae6a26e10c07e15"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/bitsoft/spectrum/inves_fixed/README",
+          "sha256": "9b847d919caf86255b0d2aa26498fd4a7da02be6c1525863859d043b239d8fa8"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/microbyt/ql/mago_folder/README",
+          "sha256": "2f26b1e28ef052a6c26305f923e03d8986fd786c9545dea67623d221c356287a"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/microbyt/ql/mago_mdv_full_contents/info.txt",
+          "sha256": "53d7be1cf54dca0622fb88dfb40eb70dcbfa948018dc47392e9f35946f4f09fe"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/microbyt/spectrum/alonso micro byt_28031984.txt",
+          "sha256": "c608abb62fa18a8fc1108407d5bb3dc6d42a2fdb2ca18729117b19b4c28523e6"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/microbyt/spectrum/dibujar_10091986.txt",
+          "sha256": "48921a7d0d7fd4f57743fa2ea27ffd3ee3f2ad19c45c50061df1d0de8cdec071"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/microbyt/spectrum/telefonos micro byt 1016.txt",
+          "sha256": "f67abd780eaaa2f02176a1742645fc5732b4fa31c1d7c337082ce6a537894ed6"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/ql/el_marques_kwue/README",
+          "sha256": "3ff488b3bfeb732aec8a79d0cf8f42072daa0a733ef9eac040b66580e6c3eaf5"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/ql/lobos/README",
+          "sha256": "3ff488b3bfeb732aec8a79d0cf8f42072daa0a733ef9eac040b66580e6c3eaf5"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped52en/readmeSPED52.txt",
+          "sha256": "0242c9ad358c2616efd3b214cb266a5ee4af403b2854ca3d7c6c3d6ecd3fb4f2"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped52en/tools/SPED52.BAS",
+          "sha256": "f7530c19b70735dd22570cade6a5969c086efb4081501a10018453b3fb6654b2"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped53en/readmeSPED53.txt",
+          "sha256": "e24a15e5563b3db22177790ec1404eed8579fde18fa970dabcd2ef1173164e72"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped53en/tools/SPED53.BAS",
+          "sha256": "5eb3a7ec5d0fecfe1b0d20118c410016e3fbcce72ee2e73d694ca5598ef2d588"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped54en/sped54en.asm",
+          "sha256": "35de68fc292706d7cbb650623a979842dbdf5fe748cc037856e28395f9ab6f4d"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped54en/sped54en.txt",
+          "sha256": "6c967e435ad4fb5059bc505bbeb4f839665ef4302280b99fe3f308eab6b08a74"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/sped/sped54en/sped54en_paging.asm",
+          "sha256": "fc5cd9fb8abd2cf4336314ad13ca4d48b0b7051901d66e2036a2050920aef4f2"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/README",
+          "sha256": "e0938b9286f505dc03582a191480cee6b373694255c816021dd817e1b07346a6"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/assembler/realdebug.txt",
+          "sha256": "4945f8fa4474ec589b23eefc4af926b3c9062bf5b2e60beebfb15b7a8c71e11b"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/assembler/sped.txt",
+          "sha256": "38a69565108810132f30b6f16dea88502f5065e9fb767f76b4302a0e4c4384b8"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/assembler/sped52.txt",
+          "sha256": "ae32e368306c40f6447de8a6b4da4ace451357c79cb4abe4f3a3a67e85471ca3"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/assembler/sped53.txt",
+          "sha256": "96159a033d10c9ce250ea581c347db6629c2ea8df305241d30c5cebb2e25f039"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/copiers/copion3.txt",
+          "sha256": "9df69380d0b09e936a535810a5919dd96ca8a60a197574a9c1a4c8f1ff5e62ad"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/a.txt",
+          "sha256": "9b253646fa7eba93a575fd4aa7c210607fd7b6d8c53119c346896f22bbf29728"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/artillero-nuevo.txt",
+          "sha256": "1f0a41836808d129b30b4568500beaf9dd1dbca16c40bf22b57bd99cad0dcd27"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/artillero.bas",
+          "sha256": "4ce6856ed54655ec1f3a4155b1b891d4dcee70588385a4d0a238a8c0a0f84bec"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/barco5_paws.txt",
+          "sha256": "d854ecf3d1fa7a5b4eebcaa2f089fabe8de5935300505e4f48b2181750cb9763"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/crashcars.txt",
+          "sha256": "9232ddf71680c7a4e72368c895f832ef33b4d435b99f039aa6351c6dda774841"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/crashcars2-original.txt",
+          "sha256": "6a061dd99e76058bb70d8b1e95c7dfb16ad833e4c61cdf0cc81218b8ed12f7a1"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/crashcars2-other.txt",
+          "sha256": "0c445244808696116d174aa5a8bd973a2d71797a45cc62627e6b141900f20fa9"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/crashcars2.txt",
+          "sha256": "a8b5d2096418d5aa39769cd9a9acd3e034ea9d91bb65ee7d42e26a8f88ddfe6d"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/crashcars3.txt",
+          "sha256": "3d0657613df4fbeeb501fd10760732c9f606fcf4f43b135f2faf01aed10554c1"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/futbol90-presentacion.txt",
+          "sha256": "2d94384158b9bb10882a7753b2fb1a992b8db3d599b10ccd96061faa6d8d6328"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/laber8.txt",
+          "sha256": "4669055434924d5c3c4b481bab56262d3ebbc36ef3d835496a4de8bfcc14c282"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/games/maxima_aventura.txt",
+          "sha256": "78ab1d3d3f1e9579459bfd1f436d468a723025435c7418247980744d8af28bc7"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/artistchb.txt",
+          "sha256": "c74f6c75b1077f9e4b153fc8d4814caa2d9a2f8bb23ca9eb274ecd739c17f8c0"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/dibujador.txt",
+          "sha256": "3776a8ee0f14b0a50589064b656d4a67358d471c85b5b747db92a2b7ef27d333"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/draw_and_sound.txt",
+          "sha256": "24e7a8a6f23b3dc80f34490cb8f9346faa26b9242cb24c552315b3d09fad03d7"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/drawscreen_machinecode/menuventana.txt",
+          "sha256": "7a21ca4b71b1cc7096f2ee387f77219825b7d3148f4f6e40e911d5cf91fd08f2"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/drawscreen_machinecode/tabla.txt",
+          "sha256": "343a1977e028e03d22fac8c56e1340cb28968cfff443f6ad2667f1886a1ba55e"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/drawscreen_pictures/info.txt",
+          "sha256": "2bb68e38fdbd772efa0a02fcadef260dc2d69d6cf8a878461075bfd4adcac9c6"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/drawscreen_v3.txt",
+          "sha256": "3fd326c10daaf63ebff9a7b849898cc483c6f218f466faab640323540c0a5a7f"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/drawscreen_v8.txt",
+          "sha256": "771a1ded0a355b0b6037a45d9ea92da6a1235c672c9ef0c3baecfcd04b64c2cd"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/funciongrafica.txt",
+          "sha256": "ff9d5b4b154d34e6009d2654e230fcf802f3f588a5dadfc5c731736629c29587"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/info.txt",
+          "sha256": "be230176e12d0ea8faf4679a9eee7a88c63e08e27cc531126cafb125a2f6a8ec"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/juegosscreens.txt",
+          "sha256": "ef68725c1e15d66e4ec4207a039ef6903bed80147784b08a8cd0cea508873de2"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/previous_versions/cursordr-oldsources-bins-45-.txt",
+          "sha256": "0c6870d87d8e1f0739b8ff6ccc224a8fbf873b864edae2bc9eacd5e183ffef36"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/previous_versions/drawscreen_v1_7_seguro_betabasic.txt",
+          "sha256": "c299382a3817057aae683ab8701d3e9cc6e10d282402d844a037beac213da94b"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/theliner75.txt",
+          "sha256": "94b07efc23392390f1028edf285f8ddeb79f3df723e779c86c16c2a8625e73ae"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/theliner_machinecode/mayus-gens.txt",
+          "sha256": "c0fc05c42bb89a990dadf986a85fb28fd71425556ecca3b568fbf89345e57288"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/theliner_pictures/info.txt",
+          "sha256": "976e21d15223b0eb5de65b2c57074c92566a6937554b324fe8cd0f9e61e78065"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/graphics/thepainter.txt",
+          "sha256": "848dcf5e05833112ae036a20d3a575f40d7f2554a043248e94b00014294d1d17"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/music/lambada.txt",
+          "sha256": "e1a6883a5a78b3f946d5dcadd015cc05adf733d56e424c79cf0afb31bf965c43"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/music/superpiano-cortado.txt",
+          "sha256": "9bac8993a10a513b012ea7905c798515d5e7823fa883584129bf079917a94b27"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/abreventanas-basic.txt",
+          "sha256": "072d0a3bdb675f14dbf01f88fcaae379a3ab2c2d890bcb31b07ca73418084a94"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/betabasic/README",
+          "sha256": "f5bf3f55eee94eeca8c13570e4be71231b7e1f7cbd7d72d52430fe46f4535721"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/cac.txt",
+          "sha256": "539f25198a233558f022b457ec7bc94123972ebd2e32f49a3a7df0518d6bbba9"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/electro4.txt",
+          "sha256": "ce7ac1e8939b9d5cd7aab9582d5667d02fcd779aa281d6fb8a2f2af68c2f1839"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/electrochrs.txt",
+          "sha256": "814dfc76a318e5901efef94baa676b5b9ad5c4cd27c1864ef659913c1c14bcba"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/grason.txt",
+          "sha256": "54dc32546d41568e1ff9d67cd1a542139ac44ddaa413266642bd8ad0277f6a1e"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/hexload3-modified.txt",
+          "sha256": "139bb4e4b1f9222d86ea97dac51a8f5a412e24b84833c4daa17adffd47533be4"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/inputscreens.txt",
+          "sha256": "1ab34d6a67617cbd58e0f02559406dc677a8b44a50acf1ee9aeb1ed2b14388f9"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/mantransfev2.asm",
+          "sha256": "00620f3d74f6f47c308b1ab9947199d71b9ffc377ed801f050ac93e22f52c499"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/mantransfev3-sp11.asm",
+          "sha256": "0ff701f42a65f5879304f012e747c31a90b5357971ee3236b1863f19c4b0f9ba"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/mantransfev3.txt",
+          "sha256": "99b5ba1ec549861b7d7cb58a1ce43d9ff63c3846140d1d11526287d8aa36492f"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/romfiles/info.txt",
+          "sha256": "369042780c497075465c102554d7431baa5a6682cb96ad9ebf22730250e32f8e"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/romfiles/rom_mantransfer_v3.asm",
+          "sha256": "d91704ee30700cceebb5cfa06b44e105eb6c27a292244c33ca5edadc7ac53853"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/romfiles/rom_mantransfer_v3i.asm",
+          "sha256": "26a21c79481d2d3ac32222efa07db06407155c802657904848ae6fe8626fdd23"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/mantransfer/romfiles/rom_mantransfer_v3z.asm",
+          "sha256": "23c7bc9be4a2af74ced22bdd1179bdd64e41e89a79bed0feee39077c0ef75b1a"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/menu-plus2.txt",
+          "sha256": "48c2b74a6edb57828b46caf1c2d51e42b306ce56663c611a1a4a69884954165c"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/previous_versions/pmanaw.txt",
+          "sha256": "5bc095ab89e8afd328fe08e7796a57bb9b46fb93f180307197a1960f8e281547"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/print.txt",
+          "sha256": "84a822e3957d6f1fec0030f5050006a84f0e1b320d1ee321c46f6974691a8fc9"
+        },
+        {
+          "path": "TOOLS/zesarux/my_soft/spectrum/vintage/utilities_others/programs5_explained.txt",
+          "sha256": "92dd622eac445fdb0e341e2345f92fd1b454ac368c5ec53a1efc43745742fb3c"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/espeak_linux_filter.sh",
+          "sha256": "a7070e6e2a9282cc0a5a32532920ed0fb071a0a8745098ff5d2095376bac652d"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/festival_filter.sh",
+          "sha256": "cfa796d0fc499152500a83ae287f75f4013f931c144f03d57a36110234476ab7"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/festival_filter_alsa.sh",
+          "sha256": "5d325fd63c9ced2c87e1f70fa3331f779bc45a7a9ca66e21bea57e33848bb265"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/festival_filter_pulse.sh",
+          "sha256": "d901103ab8a276fc512060a6eedd1614a5f2bcb0bc9821aff8b41b978b2cd55d"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/festival_spanish_filter.sh",
+          "sha256": "30d198b9a9318120fe639ef8e4fa9404d3b2551ad75f3dc0e66b5159deccd69e"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/festival_wave_filter.sh",
+          "sha256": "7362888c31fc265a0d3a1922db450ef52331bf44ae4cd57ca2261f7ddf984ed3"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/macos_say_filter.sh",
+          "sha256": "891fe67539d211a3f0344234820dcb1129901330532688157b7748cc120acbac"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/macos_translate_to_spanish_say_filter.sh",
+          "sha256": "0dff5ef9b6919c76bf5c5a0740f99442c7b648daa50d3692c76299608a334027"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/stop_espeak_linux_filter.sh",
+          "sha256": "264b9035410bfdd05e4246460e18f890dcbfb7575161d61cc222a8e4adeb4e09"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/stop_festival_filter.sh",
+          "sha256": "cd2820a4e04344032dd49069051bdb4044ed324b589cc70072f514f78b87be19"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/stop_macos_say_filter.sh",
+          "sha256": "57c83805e63e4b22cf2905c580402c2523cfa3c1054f94b8414996d91c2c8bb3"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/stop_win_espeak.bat",
+          "sha256": "fd18fe8f42249c01b9e22a9c489c3f23c9280bc02a116581c2cd2c58ef1e048f"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/win_balabolka.bat",
+          "sha256": "6a271087d32ebe8e700574d6400dcec0748a0fda325d4940d38902423e809722"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/win_clipboard.bat",
+          "sha256": "0822bd118adc9cf91151be9fd7c1a0016b056e3a74edc4e6b4a1df31c58bf12c"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/win_espeak.bat",
+          "sha256": "ddf94fb25d80054027b0b5c2fb8ad4c73d98e62aea60849d7a553de774288042"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/win_espeak_translate.bat",
+          "sha256": "6bbe045478470fb63b0ff8135c35135c9db94e27e4abc06bb2bd4106ae19af18"
+        },
+        {
+          "path": "TOOLS/zesarux/speech_filters/win_jampal.bat",
+          "sha256": "dad6b74e08461deb73ac23a0355fe5ed424d5df30ba31b85d9117de0831e2fc7"
+        },
+        {
+          "path": "TOOLS/zesarux/text_image_filters/dalle_aux_text_to_image.py",
+          "sha256": "a8611844f3bd913a842dd64fb510d9ee4f0231876f28ba5fbc5ef6e301a0633e"
+        },
+        {
+          "path": "TOOLS/zesarux/text_image_filters/dalle_text_to_image.bat",
+          "sha256": "9d55523f6ac6d4a724618c5abd641e6b257d3482330160f5b9f7e98d4c2add36"
+        },
+        {
+          "path": "TOOLS/zesarux/text_image_filters/dalle_text_to_image.sh",
+          "sha256": "8f30f36ffafea3bf5f73279b61eb1fe6a702ef5a531ea26498852bf0dedb0d64"
+        },
+        {
+          "path": "TOOLS/zesarux/text_image_filters/dummy_dalle_text_to_image.sh",
+          "sha256": "e37187d67f015ec45f4c3c01dfaf62b747b25c830c47d069384a07f0eb5265e4"
+        },
+        {
+          "path": "WHATSNEW.TXT",
+          "sha256": "ee1189193e768c1020de91cbbcecdb65ecaff3c5891a1e21a7459e77ca1a9564"
+        },
+        {
+          "path": "WINDOWS_EXPERIMENTAL.BAT",
+          "sha256": "41e6d39633fc92df49ca602b207d14be029ecdc16b4781c2d2e447fb4c9b0256"
+        },
+        {
+          "path": "ZX128K.BAT",
+          "sha256": "f6eb4ab72dc3dfbef2d955b85fbd0b2d87e8468b09d549fd1af79e17ad88f2e3"
+        },
+        {
+          "path": "ZX48.BAT",
+          "sha256": "5197b8cc65612d519dace9b67bc7a1e1134b8e47fddfeb12659ed5d09c1c2311"
+        },
+        {
+          "path": "ZXESXDOS.BAT",
+          "sha256": "3979d5849032ffbf8fb7e3cc46805180894b35c3498df12781c0b29bb409c3cc"
+        },
+        {
+          "path": "ZXNEXT.BAT",
+          "sha256": "efd80cd496209e71c9dfda5629cbbf9fff60261d979a0b4d3a04f6e1606e862e"
+        },
+        {
+          "path": "ZXPLUS3.BAT",
+          "sha256": "4e51e7d65f64a851586203123745295dcf0861f4735f6a3676bc8563b94ae4ec"
+        },
+        {
+          "path": "ZXUNO.BAT",
+          "sha256": "97077c9a3951c0dcf47ec88019377912e28ce0e4437d7d93ede48124f340b83a"
+        }
+      ],
+      "id": "daad-ready-public-source-material",
+      "license": "component-specific; retained license files define scope",
+      "repository": "https://github.com/daad-adventure-writer/daad-ready",
+      "revision": "c2c77580455981de4f2d782fc01aaee0d4bdcb2c",
+      "storage": "reverse_engineering/public_sources/daad-ready-public-source-material",
+      "workspace": "upstream-daad-ready"
+    }
+  ]
+}
