@@ -1,10 +1,12 @@
 # Public Implementations Ledger
 
-**Question:** Which public implementations may be analyzed as source code, and what is the strict scope of each resulting claim?
-
-**Evidence scope:** P0 for the project’s own stated behavior and license; P2 for derivative compatibility behavior.
-
-**Non-claims:** No open derivative source automatically proves behavior of a proprietary original interpreter or a differently revised derivative.
+| Header field | Value |
+| --- | --- |
+| **Question** | Which public implementations may be analyzed as source code, and what is the strict scope of each resulting claim? |
+| **Evidence scope** | P0 for the project’s own stated behavior and license; P2 for derivative compatibility behavior. |
+| **Status** | source-backed |
+| **Implementation links** | [`../../daad_harvester/fingerprint.py`](../../daad_harvester/fingerprint.py), [`../derivatives/README.md`](../derivatives/README.md) |
+| **Non-claims** | No open derivative source automatically proves behavior of a proprietary original interpreter or a differently revised derivative. |
 
 ## Project records
 

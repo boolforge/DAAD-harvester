@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** `main` and `origin/main` were verified identical at `86bcb50` on 2026-08-19. The deterministic suite has **210 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
@@ -22,10 +22,10 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 0. Granular documentation architecture
 
-- [ ] Replace broad topic monographs with a focused-module tree: one technical responsibility per file, with directory indexes and bidirectional cross-references.
-- [ ] Separate conceptual narrative, byte schemas, state/flow diagrams, platform dossiers, source records, reproducible artifact manifests, and dated audit results into distinct documents.
-- [ ] Add a documentation migration map that identifies each legacy broad document, its destination modules, and its retained index role.
-- [ ] Add automated navigation, local-link, reference-definition, Mermaid-diagram, and claim-to-source checks before publication.
+- [x] Replace broad topic monographs with a focused-module tree: one technical responsibility per file, with directory indexes and bidirectional cross-references.
+- [x] Separate conceptual narrative, byte schemas, state/flow diagrams, platform dossiers, source records, reproducible artifact manifests, and dated audit results into distinct documents.
+- [x] Add a documentation migration map that identifies each legacy broad document, its destination modules, and its retained index role.
+- [x] Add permanent automated local-link, focused-header/reference, and Mermaid-declaration checks before publication; source-led claims remain routed through the relevant ledger.
 
 ### 1. Complete format and archive coverage
 
@@ -74,3 +74,4 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 - [x] Run a fresh bounded public-media audit through discovery, fetch, native unpack, fingerprint, organization, and report export; preserve the `174`-source, five-download, 37-artifact, zero-verified-DDB outcome and source failure in `docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md`.
 - [x] Update `README.md`, this roadmap, modular docs, and the generated report truthfully from final evidence.
 - [x] Publish in small, reviewable commits to `main`; verify `HEAD == origin/main` after every milestone.
+- [x] Record the modular-documentation audit, report build, CLI/report smoke test, and remaining native-archive release gate in `docs/audits/2026-08-19_DOCUMENTATION_EXPANSION_AUDIT.md`.

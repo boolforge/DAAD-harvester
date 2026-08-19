@@ -1,10 +1,12 @@
 # Media Specification Sources Ledger
 
-**Question:** Which technical source governs a media-family claim, and what part of a parser/preservation decision may it justify?
-
-**Evidence scope:** P0/P3 technical documentation, upgraded to P1 only when a retained fixture independently reproduces the stated behavior.
-
-**Non-claims:** A source that establishes a magic value or container family does not automatically establish semantic decoding of protected, custom-loader, encrypted, or undocumented content.
+| Header field | Value |
+| --- | --- |
+| **Question** | Which technical source governs a media-family claim, and what part of a parser/preservation decision may it justify? |
+| **Evidence scope** | P0/P3 technical documentation, upgraded to P1 only when a retained fixture independently reproduces the stated behavior. |
+| **Status** | source-backed |
+| **Implementation links** | [`../../daad_harvester/media_inspection.py`](../../daad_harvester/media_inspection.py), [`../formats/README.md`](../formats/README.md) |
+| **Non-claims** | A source that establishes a magic value or container family does not automatically establish semantic decoding of protected, custom-loader, encrypted, or undocumented content. |
 
 | ID | Media family | Source | Supported technical claim | Preservation boundary |
 | --- | --- | --- | --- | --- |

@@ -1,10 +1,12 @@
 # Primary DAAD Sources Ledger
 
-**Question:** Which publicly available first-party or contemporaneous DAAD materials can support historical, structural, and preservation claims?
-
-**Evidence scope:** P0 primary source and P1 reproducible measurement.
-
-**Non-claims:** Availability of public DAAD distribution material does **not** imply publication of the original interpreter source code, completeness of every historical release, or license to redistribute recovered proprietary binaries.
+| Header field | Value |
+| --- | --- |
+| **Question** | Which publicly available first-party or contemporaneous DAAD materials can support historical, structural, and preservation claims? |
+| **Evidence scope** | P0 primary source and P1 reproducible measurement. |
+| **Status** | source-backed |
+| **Implementation links** | [`../../daad_harvester/interpreter_profiles.py`](../../daad_harvester/interpreter_profiles.py), [`../versions/RELEASE_LINEAGE.md`](../versions/RELEASE_LINEAGE.md) |
+| **Non-claims** | Availability of public DAAD distribution material does **not** imply publication of the original interpreter source code, completeness of every historical release, or license to redistribute recovered proprietary binaries. |
 
 ## Source records
 

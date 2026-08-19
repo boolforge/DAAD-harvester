@@ -49,6 +49,9 @@ jobs:
       - name: Lint (pyflakes)
         run: python -m pyflakes daad_harvester/
 
+      - name: Check documentation integrity
+        run: python scripts/check_docs.py
+
       - name: Run test suite
         run: PYTHONPATH=. python -m pytest tests/ -v
 
