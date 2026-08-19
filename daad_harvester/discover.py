@@ -376,7 +376,9 @@ class Discoverer:
                 for file_info in release.get("files", []) or []:
                     path = file_info.get("path")
                     path_lower = unquote(path or "").lower()
-                    if path and not any(engine in path_lower for engine in ("paws", "quill", "gac", "swan")):
+                    is_snapshot = path_lower.endswith((".z80", ".z80.zip", ".sna", ".sna.zip", ".szx", ".szx.zip"))
+                    is_other_engine = any(engine in path_lower for engine in ("paws", "quill", "gac", "swan"))
+                    if path and not is_snapshot and not is_other_engine:
                         yield title, path
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> int:

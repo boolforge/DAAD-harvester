@@ -171,6 +171,7 @@ def test_zxinfo_file_iterator_excludes_other_authoring_engines():
                         "files": [
                             {"path": "/zxdb/daad-game.tap.zip"},
                             {"path": "/zxdb/daad-game-paws.tap.zip"},
+                            {"path": "/zxdb/daad-game.z80.zip"},
                         ]
                     }
                 ],
