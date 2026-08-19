@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Materialize the documented-authorized official interpreter corpus reproducibly.
+"""Materialize the institutionally authorized official interpreter corpus reproducibly.
 
 This script does not execute, modify, or decompile copied inputs. It copies only
 profiles with exact SHA-256 anchors from the retained official distribution and
@@ -86,12 +86,13 @@ def main() -> int:
                     "observed_filename": source.name,
                 },
                 "authorization": {
-                    "state": "permission_recorded",
-                    "evidence_ref": "User-documented authorization received 2026-08-19; retained by repository owner.",
-                    "redistribution": "authorized_by_documented_permission",
+                    "state": "institutional_authorized",
+                    "evidence_ref": "User-confirmed institutional digital-preservation authorization received 2026-08-19; retained by repository owner.",
+                    "provenance_context": "permission_recorded",
+                    "redistribution": "published_under_institutional_authority",
                     "decision_date": str(date.today()),
                 },
-                "storage": {"status": "authorized_retained", "path": str(destination.relative_to(ROOT))},
+                "storage": {"status": "retained_immutable", "path": str(destination.relative_to(ROOT))},
                 "analysis": [],
                 "language": profile.language,
                 "interpreter_version": profile.interpreter_version,
@@ -99,7 +100,7 @@ def main() -> int:
         )
     manifest = {
         "schema_version": 1,
-        "purpose": "Documented-authorized official DAAD interpreter artifact inventory",
+        "purpose": "Institutionally authorized official DAAD interpreter artifact inventory",
         "source_revision": OFFICIAL_REVISION,
         "entry_count": len(entries),
         "artifacts": entries,

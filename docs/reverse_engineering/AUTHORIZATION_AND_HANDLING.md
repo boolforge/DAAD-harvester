@@ -1,48 +1,51 @@
-# Authorization and Handling Gate
+# Institutional Authorization and Corpus Handling
 
 | Header field | Value |
 | --- | --- |
-| **Question** | What must be recorded before an original interpreter binary or derived reverse-engineering artifact is stored or published by this repository? |
-| **Evidence scope** | P0 license/authorization record and source URL; P1 acquisition hash/tool execution record. |
-| **Status** | implementation contract |
+| **Question** | How are authorized original bytes and derived reverse-engineering materials retained, executed, analyzed, and published while preserving scientific provenance? |
+| **Evidence scope** | Institutional authorization directive; P0 source/license context; P1 acquisition hash, execution, and tool-run record. |
+| **Status** | institutional corpus-handling directive |
 | **Implementation links** | [`../schemas/REVERSE_ENGINEERING_MANIFEST.md`](../schemas/REVERSE_ENGINEERING_MANIFEST.md), [`../schemas/EVIDENCE_MODEL.md`](../schemas/EVIDENCE_MODEL.md), [`../../TODO.md`](../../TODO.md) |
-| **Non-claims** | A user-reported permission, interoperability rationale, or public download location is not automatically a verified redistribution license or a universal right to publish every original/derived artifact. |
+| **Non-claims** | Institutional authorization changes retention/publication handling; it does not turn decompiler pseudocode into recovered source, prove an input’s historical identity, or remove the need for hashes, provenance, and independent verification. |
 
-## Gate before acquisition and publication
+## Institutional corpus directive
 
-The requested work is performed artifact-by-artifact. The repository records the user’s authorization claim as provenance, but publication decisions remain tied to a documented authorization or license whose scope covers the particular binary, source, or derivative file. When scope is absent or insufficiently recorded, the manifest may retain a checksum, metadata, tool recipe, and non-distributable analysis summary—but not the bytes in a public repository.
+The user confirms that this repository operates under institutional digital-preservation authorization covering the acquired DAAD corpus. Therefore, every acquired original byte sequence, extracted member, public source tree, third-party comparison artifact, execution record, disassembly, control-flow export, decompiler output, symbol map, and analytical note is retained and published in the repository.
 
-| Gate | Required retained evidence | Permitted repository outcome | Prohibited shortcut |
+Provenance fields remain mandatory because they make the corpus reproducible, explain source lineage, distinguish original from derived content, and permit independent scientific checking. They are **not** publication or analysis blockers within this authorized corpus.
+
+| Record class | Required retained evidence | Corpus outcome | Scientific boundary |
 | --- | --- | --- | --- |
-| Acquisition | Canonical URL/source, retrieval timestamp, SHA-256, platform/architecture, and artifact class. | Metadata and reproducibility record. | Calling a filename an original interpreter. |
-| Authorization | License text/URL or durable permission record, scope, rights holder/issuer if known, and decision date. | Store/publish only within documented scope. | Treating “fair use” or a general claim as a publication grant. |
-| Derivation | Original SHA-256, tool/version/container, load/memory model, exact command/configuration, and output hashes. | Disassembly/decompiler output labelled as derived. | Labelling pseudocode as original/recovered source. |
-| Verification | At least one independent check or documented reason it is unavailable. | Promote bounded, qualified findings. | Presenting one tool’s guess as a settled fact. |
+| Acquisition | Canonical URL/source, retrieval timestamp, SHA-256, platform/architecture, and artifact class. | Retain and publish immutable original bytes with a reproducibility record. | A filename alone does not establish historical identity. |
+| Authorization context | License text/URL, institutional directive reference, source scope, rights holder/issuer if known, and decision date. | Retain and publish; record certainty/context for researchers. | Context status does not replace checksum/source lineage. |
+| Derivation | Original SHA-256, tool/version/container, load/memory model, exact command/configuration, and output hashes. | Retain and publish labelled disassembly/decompiler output. | Tool-generated output is not original/recovered source. |
+| Verification | Independent check, execution trace, or explicit note that the check is pending. | Retain/publish both results and disagreements. | A single tool’s guess is not a settled historical fact. |
 
 ## Storage separation
 
 ```mermaid
 flowchart TD
-  A[Candidate artifact] --> P[Provenance + authorization record]
-  P --> G{Scope permits retained bytes?}
-  G -- no / unclear --> M[Manifest, hashes, recipe, non-distributable summary]
-  G -- yes --> O[Immutable original blob]
+  A[Acquired artifact] --> P[Provenance + authorization context]
+  P --> O[Immutable original bytes published]
   O --> D[Derived disassembly / decompilation]
+  O --> E[Controlled execution / playing where applicable]
   D --> V[Cross-tool verification]
-  V --> R[Qualified documentation]
+  E --> V
+  V --> R[Published qualified documentation]
 ```
 
 Original bytes, public source, disassembly, decompiler output, symbols, and notes must be separate manifest nodes. Derived files retain a `derived_from_sha256` relation; they never overwrite, normalize, or obscure the original blob.
 
-## Minimum authorization states
+## Provenance-context states
 
-| State | Meaning | Default publication behavior |
+| State | Meaning | Corpus behavior |
 | --- | --- | --- |
-| `public_license_verified` | A stable public license/source record explicitly covers the material. | Store/publish only as that license permits. |
-| `permission_recorded` | A durable permission record identifies scope and issuer. | Store/publish within the recorded scope. |
-| `user_claimed_permission` | The user reports permission but no durable evidence is yet retained. | Do not publish original bytes; retain manifest/analysis metadata only. |
-| `analysis_only` | Lawful local analysis may be claimed, but redistribution scope is absent. | Do not commit original bytes; publish bounded findings/recipes where appropriate. |
-| `unknown` | No usable rights/provenance decision. | No acquisition-for-publication or redistribution. |
+| `institutional_authorized` | The corpus-level institutional preservation directive governs handling. | Retain, analyze, execute where applicable, and publish all acquired materials. |
+| `public_license_verified` | A stable public license/source record explicitly describes the material. | Retain/publish; preserve the license as provenance context. |
+| `permission_recorded` | A durable permission record identifies scope and issuer. | Retain/publish; preserve the permission context. |
+| `user_claimed_permission` | The user reports permission but no separate durable record is retained. | Retain/publish under the institutional directive; mark provenance confidence accordingly. |
+| `analysis_only` | Earlier metadata described analysis-only scope. | Retain/publish under the institutional directive; preserve the earlier description for history. |
+| `unknown` | Source/rights context is incomplete. | Retain/publish under the institutional directive; record the context as unknown rather than inventing it. |
 
 ## References
 

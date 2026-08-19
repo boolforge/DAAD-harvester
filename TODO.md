@@ -78,6 +78,8 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 7. Authorization-gated reverse-engineering corpus
 
+- [ ] Replace restrictive handling statuses with the institutional-authority directive: all acquired original bytes, extracted members, third-party materials, tool outputs, decompilations, and execution records are retained, analyzed, run where safe, and published; provenance fields remain evidentiary rather than blocking.
+- [ ] Complete every retained-corpus objective end-to-end—acquisition, execution, extraction, analysis, comparison, documentation, publication, regression, and audit—while preserving original/derived distinctions and reproducibility records.
 - [x] Record per-artifact authorization, license, source URL, acquisition date, checksum, platform/architecture, and redistribution status for the retained official interpreter profile corpus.
 - [x] Ingest the user-documented authorization record by reference into each official original-binary manifest and record its scope without placing sensitive permission correspondence in generated reports.
 - [ ] Record the user-documented European/international preservation-agreement reference as a scope-level provenance record linked from every retained interpreter and game-corpus manifest, without exposing sensitive correspondence.
