@@ -15,6 +15,7 @@ class SourceTier(str, Enum):
 
 class SourceStatus(str, Enum):
     PENDING = "pending"
+    CATALOGED = "cataloged"
     DOWNLOADED = "downloaded"
     UNPACKED = "unpacked"
     PARTIALLY_UNPACKED = "partially_unpacked"

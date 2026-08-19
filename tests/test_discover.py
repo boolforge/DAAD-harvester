@@ -250,8 +250,9 @@ async def test_run_all_discovery_wires_proxy_into_client_and_logs_adapter_except
     no_op_methods = {
         name: AsyncMock(return_value=0)
         for name in [
-            "discover_internet_archive", "discover_aminet", "discover_github",
-            "discover_itchio", "discover_ifdb", "discover_zxdb",
+            "discover_internet_archive", "discover_aminet", "discover_csdb",
+            "discover_plus4world", "discover_generation_msx", "discover_atarimania",
+            "discover_github", "discover_itchio", "discover_ifdb", "discover_zxdb",
             "discover_wikicaad", "discover_world_of_spectrum", "discover_ifarchive", "discover_web_search",
         ]
     }
@@ -304,6 +305,24 @@ async def test_discover_world_of_spectrum_uses_publisher_catalog_and_verified_de
     assert sources[0].platform == "zx"
 
 
+@pytest.mark.parametrize(
+    ("metadata", "expected"),
+    [
+        ({"collection": ["softwarelibrary_sinclair_zx_spectrum"]}, "zx"),
+        ({"collection": ["softwarelibrary_cpc_games"]}, "cpc"),
+        ({"emulator": "vice-c64"}, "c64"),
+        ({"collection": ["softwarelibrary_commodore_plus4"]}, "plus4"),
+        ({"collection": ["softwarelibrary_msx"]}, "msx"),
+        ({"collection": ["softwarelibrary_pcw"]}, "pcw"),
+        ({"collection": ["softwarelibrary_atari_st"]}, "atarist"),
+        ({"collection": ["softwarelibrary_amiga"]}, "amiga"),
+        ({"collection": ["softwarelibrary_dos"]}, "dos"),
+    ],
+)
+def test_internet_archive_platform_metadata_covers_all_official_targets(metadata, expected):
+    assert Discoverer._platform_from_archive_metadata(metadata) == expected
+
+
 @pytest.mark.anyio
 async def test_internet_archive_cpc_metadata_preserves_platform_without_special_priority(tmp_path):
     db = Database(tmp_path / "test.db")
@@ -333,3 +352,100 @@ async def test_internet_archive_cpc_metadata_preserves_platform_without_special_
     assert source.known_game_id == "chichen_itza"
     assert source.platform == "cpc"
     assert source.acquisition_priority == 1000
+
+
+@pytest.mark.anyio
+async def test_csdb_accepts_vetted_download_endpoint_with_visible_d64_name(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    html = """
+    <h1>The Revenge of Moriarty (DAAD) v1.1</h1>
+    <a href="/release/download.php?id=226938">The_Revenge_of_Moriarty.d64</a>
+    <a href="/release/download.php?id=233510">Solution.txt</a>
+    """
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock, return_value=html):
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_csdb(client) == 1
+    source = db.get_all_sources()[0]
+    assert source.platform == "c64"
+    assert source.source_name == "CSDb"
+    assert source.source_role == "game_media"
+    assert source.source_record_url == "https://csdb.dk/search/?search=daad"
+    assert source.url.endswith("release/download.php?id=226938")
+
+
+@pytest.mark.anyio
+async def test_plus4world_records_catalog_page_and_direct_prg_with_provenance(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    search_html = '<a href="/software/EightFeetUnder">Eight Feet Under</a>'
+    detail_html = """
+    <h1>Eight Feet Under</h1><p>DAAD adventure for Commodore Plus/4.</p>
+    <a href="https://downloads.example/EightFeetUnder.prg">EightFeetUnder.prg</a>
+    """
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [search_html, detail_html]
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_plus4world(client) == 2
+    sources = db.get_all_sources()
+    catalog = next(item for item in sources if item.source_role == "release_catalog")
+    media = next(item for item in sources if item.source_role == "game_media")
+    assert catalog.status == "cataloged"
+    assert catalog.platform == "plus4"
+    assert media.platform == "plus4"
+    assert media.url.endswith(".prg")
+
+
+@pytest.mark.anyio
+async def test_generation_msx_and_atarimania_remain_catalog_only(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    msx_html = '<a href="/software/aventuras-ad/chichen-itza/release/2097/">Chichen Itza</a>'
+    st_html = '<a href="/game-atari-st-aventura-espacial-la_9246.html">La Aventura Espacial</a>'
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [msx_html, st_html]
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_generation_msx(client) == 1
+            assert await discoverer.discover_atarimania(client) == 1
+    sources = db.get_all_sources()
+    assert {(source.platform, source.status, source.source_name) for source in sources} == {
+        ("msx", "cataloged", "Generation MSX"),
+        ("atarist", "cataloged", "Atarimania"),
+    }
+
+
+@pytest.mark.anyio
+async def test_aminet_is_retained_as_amiga_tool_provenance_not_download_work(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    html = '<a href="/package/game/role/daad-runtime">DAAD Amiga interpreter</a>'
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock, return_value=html):
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_aminet(client) == 1
+    source = db.get_all_sources()[0]
+    assert source.status == "cataloged"
+    assert source.platform == "amiga"
+    assert source.source_role == "tool_distribution"
+    assert source.toolchain_claim == "DAAD runtime/package"
+
+
+@pytest.mark.anyio
+async def test_itchio_records_all_explicit_platform_claims_without_queuing_purchase_page(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    listing = '<a href="https://maker.itch.io/eight-feet-under">Eight Feet Under</a>'
+    page = """
+    <h1>Eight Feet Under</h1><p>DAAD Release R6 for ZX Spectrum, Amstrad CPC,
+    Commodore 64, Commodore Plus/4, MSX, Amstrad PCW, Atari ST, Amiga and MS-DOS.</p>
+    <a href="/eight-feet-under/purchase">Download now</a>
+    """
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [listing, page, listing, page, listing, page]
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_itchio(client) == 1
+    source = db.get_all_sources()[0]
+    assert source.status == "cataloged"
+    assert source.release_version == "6"
+    evidence = db.get_version_evidence(source_id=source.id)
+    platforms = {item.value for item in evidence if item.kind == "platform_release"}
+    assert platforms == {"zx", "cpc", "c64", "plus4", "msx", "pcw", "atarist", "amiga", "dos"}

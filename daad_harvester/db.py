@@ -238,6 +238,7 @@ class Database:
         url: str,
         source_tier: str,
         title: Optional[str] = None,
+        initial_status: str = "pending",
         platform: Optional[str] = None,
         year: Optional[int] = None,
         publisher: Optional[str] = None,
@@ -264,10 +265,10 @@ class Database:
                         known_game_id, acquisition_priority, source_name, source_role,
                         source_record_url, source_release_id, release_version, toolchain_claim,
                         provenance_json, discovered_at
-                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
-                        url, source_tier, title, platform, year, publisher, author, language,
+                        url, source_tier, initial_status, title, platform, year, publisher, author, language,
                         known_game_id, acquisition_priority, source_name, source_role,
                         source_record_url, source_release_id, release_version, toolchain_claim,
                         provenance_json, now,
