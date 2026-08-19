@@ -20,6 +20,13 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ## Critical work in progress
 
+### 0. Granular documentation architecture
+
+- [ ] Replace broad topic monographs with a focused-module tree: one technical responsibility per file, with directory indexes and bidirectional cross-references.
+- [ ] Separate conceptual narrative, byte schemas, state/flow diagrams, platform dossiers, source records, reproducible artifact manifests, and dated audit results into distinct documents.
+- [ ] Add a documentation migration map that identifies each legacy broad document, its destination modules, and its retained index role.
+- [ ] Add automated navigation, local-link, reference-definition, Mermaid-diagram, and claim-to-source checks before publication.
+
 ### 1. Complete format and archive coverage
 
 - [x] Publish `docs/formats/FORMAT_CAPABILITY_MATRIX.md` listing every input family, extension, magic, platform ambiguity, wrapper, expected member model, implementation owner, test corpus, and real-artifact result.
