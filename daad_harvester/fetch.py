@@ -97,6 +97,8 @@ class Fetcher:
         is_wayback = False
         attempt = 0
         backoff = settings.backoff_base
+        last_http_status: Optional[int] = None
+        last_content_type: Optional[str] = None
 
         while attempt < settings.max_retries:
             headers = {"User-Agent": self._get_random_user_agent()}
@@ -106,6 +108,8 @@ class Fetcher:
                 async with client.stream("GET", url_to_fetch, headers=headers, follow_redirects=True, timeout=settings.request_timeout) as resp:
                     if resp.status_code == 200:
                         content_type = resp.headers.get("Content-Type", "application/octet-stream")
+                        last_http_status = resp.status_code
+                        last_content_type = content_type
 
                         filename = None
                         cd_header = resp.headers.get("Content-Disposition", "")
@@ -126,6 +130,7 @@ class Fetcher:
                         sha256_hash = hashlib.sha256()
                         first_chunk_checked = False
                         is_rejected = False
+                        bytes_written = 0
 
                         async with aiofiles.open(target_path, "wb") as f:
                             async for chunk in resp.aiter_bytes(chunk_size=65536):
@@ -143,6 +148,7 @@ class Fetcher:
 
                                 await f.write(chunk)
                                 sha256_hash.update(chunk)
+                                bytes_written += len(chunk)
 
                         if is_rejected:
                             if target_path and target_path.exists():
@@ -157,6 +163,23 @@ class Fetcher:
                                 url=source.url,
                                 status="REJECTED_NON_BINARY_WEB",
                                 http_code=resp.status_code
+                            )
+                            return False
+
+                        if bytes_written == 0:
+                            if target_path.exists():
+                                target_path.unlink(missing_ok=True)
+                            logger.warning("rejecting_empty_download", source_id=source.id, url=url_to_fetch)
+                            self.db.update_source_status(
+                                source_id=source.id,
+                                status=SourceStatus.ERROR.value,
+                                http_status=resp.status_code,
+                                content_type=content_type,
+                            )
+                            self.logger_suite.log_download(
+                                url=source.url,
+                                status="REJECTED_EMPTY_DOWNLOAD",
+                                http_code=resp.status_code,
                             )
                             return False
 
@@ -179,6 +202,8 @@ class Fetcher:
                         return True
 
                     elif resp.status_code in (404, 410) and not is_wayback:
+                        last_http_status = resp.status_code
+                        last_content_type = resp.headers.get("Content-Type")
                         logger.warning("source_404_dead_trying_wayback", source_id=source.id, url=url_to_fetch)
                         wayback_url = await self._query_wayback_cdx(source.url, client)
                         if wayback_url:
@@ -200,6 +225,8 @@ class Fetcher:
                             )
                             return False
                     else:
+                        last_http_status = resp.status_code
+                        last_content_type = resp.headers.get("Content-Type")
                         logger.warning("http_download_error", source_id=source.id, status_code=resp.status_code)
             except Exception as exc:
                 if target_path and target_path.exists():
@@ -230,7 +257,9 @@ class Fetcher:
 
         self.db.update_source_status(
             source_id=source.id,
-            status=SourceStatus.ERROR.value
+            status=SourceStatus.ERROR.value,
+            http_status=last_http_status,
+            content_type=last_content_type,
         )
         self.logger_suite.log_download(
             url=source.url,

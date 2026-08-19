@@ -175,3 +175,54 @@ async def test_fetch_pending_sources_wires_proxy_into_client(tmp_path, monkeypat
 
     assert captured_kwargs.get("proxy") == "http://proxy.example:9999"
 
+
+
+class _SingleResponseClient:
+    """Minimal stream client that always yields a predefined response."""
+
+    def __init__(self, response: _FakeStreamResponse):
+        self.response = response
+
+    def stream(self, method, url, **kwargs):
+        return _FakeStreamCM(response=self.response)
+
+
+@pytest.mark.anyio
+async def test_fetch_source_rejects_empty_success_response(tmp_path, monkeypatch):
+    monkeypatch.setattr(settings, "max_retries", 1)
+    db = Database(tmp_path / "test.db")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+    source_id = db.add_source("https://example.com/empty.zip", "archive")
+    source = db.get_pending_sources()[0]
+
+    success = await fetcher.fetch_source(
+        source,
+        _SingleResponseClient(_FakeStreamResponse(200, body=b"")),
+    )
+
+    assert success is False
+    updated = next(item for item in db.get_all_sources() if item.id == source_id)
+    assert updated.status == SourceStatus.ERROR.value
+    assert updated.http_status == 200
+    assert updated.content_type == "application/octet-stream"
+    assert list((tmp_path / "downloads").iterdir()) == []
+
+
+@pytest.mark.anyio
+async def test_fetch_source_persists_final_http_failure_status(tmp_path, monkeypatch):
+    monkeypatch.setattr(settings, "max_retries", 1)
+    db = Database(tmp_path / "test.db")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+    source_id = db.add_source("https://example.com/unavailable.zip", "archive")
+    source = db.get_pending_sources()[0]
+
+    success = await fetcher.fetch_source(
+        source,
+        _SingleResponseClient(_FakeStreamResponse(503, content_type="text/plain", body=b"temporarily unavailable")),
+    )
+
+    assert success is False
+    updated = next(item for item in db.get_all_sources() if item.id == source_id)
+    assert updated.status == SourceStatus.ERROR.value
+    assert updated.http_status == 503
+    assert updated.content_type == "text/plain"
