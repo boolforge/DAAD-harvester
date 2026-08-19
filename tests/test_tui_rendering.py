@@ -115,3 +115,22 @@ def test_render_survives_many_update_cycles(tmp_path):
         if i % 4 == 0:
             dash.handle_key_input("p")
         console.print(dash.render())
+
+
+def test_render_priority_queue_exposes_catalog_and_cpc_priority(tmp_path):
+    db = Database(tmp_path / "test.db")
+    db.add_source(
+        "https://example.com/chichen.dsk",
+        "archive",
+        title="Chichén Itzá",
+        platform="cpc",
+        known_game_id="chichen_itza",
+        acquisition_priority=1200,
+    )
+    dash = TUIDashboard(db)
+    text = _render(dash, tabs=(1, 2))
+
+    assert "Priority Acquisition" in text
+    assert "chichen_itza" in text
+    assert "1200" in text
+    assert "Priority CPC Candidates" in text

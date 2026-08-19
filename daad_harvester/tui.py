@@ -30,8 +30,8 @@ class TUIDashboard:
         self.active_phase = "INIT"
 
         # Interactive state
-        self.active_tab = 0  # 0: Verified Games, 1: Discovered Sources, 2: System Config & Metrics
-        self.tabs = ["1. VERIFIED DAAD GAMES", "2. DISCOVERED SOURCES", "3. SYSTEM CONFIG & METRICS"]
+        self.active_tab = 0  # 0: Verified payloads, 1: prioritized acquisition queue, 2: metrics
+        self.tabs = ["1. VERIFIED PAYLOADS", "2. PRIORITY ACQUISITION", "3. SYSTEM CONFIG & METRICS"]
         self.selected_index = 0
         self.search_filter = ""
         self.in_search_mode = False
@@ -117,6 +117,11 @@ class TUIDashboard:
         artifacts = self.db.get_all_artifacts()
         daad_artifacts = [a for a in artifacts if a.is_daad_payload]
         games = self.db.get_all_games()
+        catalog_sources = [source for source in sources if source.known_game_id]
+        priority_cpc_sources = [
+            source for source in catalog_sources
+            if source.platform == "cpc" and source.acquisition_priority >= 1200
+        ]
 
         downloaded_sources = sum(1 for s in sources if s.status == "downloaded")
         unpacked_sources = sum(1 for s in sources if s.status == "unpacked")
@@ -134,7 +139,9 @@ class TUIDashboard:
         table.add_row("Unpacked Sources", f"[blue]{unpacked_sources}[/blue]")
         table.add_row("Failed/Dead Sources", f"[red]{dead_sources + error_sources}[/red]")
         table.add_row("Extracted Artifacts", str(len(artifacts)))
-        table.add_row("Verified DAAD Games", f"[bold gold1]{len(daad_artifacts)}[/bold gold1]")
+        table.add_row("Catalog-backed Candidates", f"[cyan]{len(catalog_sources)}[/cyan]")
+        table.add_row("Priority CPC Candidates", f"[bold yellow]{len(priority_cpc_sources)}[/bold yellow]")
+        table.add_row("Verified DAAD Payloads", f"[bold gold1]{len(daad_artifacts)}[/bold gold1]")
         table.add_row("ScummVM Catalog Entries", f"[green]{len(games)}[/green]")
         table.add_row("Elapsed Time", f"{elapsed:.1f}s")
 
@@ -194,7 +201,10 @@ class TUIDashboard:
         return Panel(table, title=title_str, border_style="gold1")
 
     def _make_sources_table(self) -> Panel:
-        sources = self.db.get_all_sources()
+        sources = sorted(
+            self.db.get_all_sources(),
+            key=lambda source: (-source.acquisition_priority, source.discovered_at or "", source.id or 0),
+        )
         if self.search_filter:
             sf = self.search_filter.lower()
             sources = [s for s in sources if sf in s.url.lower() or sf in (s.title or "").lower() or sf in s.status.lower()]
@@ -211,11 +221,12 @@ class TUIDashboard:
             start_idx = max(0, start_idx)
             display_sources = sources[start_idx:start_idx + page_size]
 
-        table = Table(title=f"Discovered Sources Catalog (Showing {len(display_sources)} of {total_count})", expand=True, show_lines=True)
+        table = Table(title=f"Priority Acquisition Queue (Showing {len(display_sources)} of {total_count})", expand=True, show_lines=True)
         table.add_column("ID", style="dim", width=5)
         table.add_column("Title / Source Name", style="bold cyan")
-        table.add_column("URL", style="dim white")
-        table.add_column("Tier", style="yellow", width=10)
+        table.add_column("Platform", style="cyan", width=9)
+        table.add_column("Priority", style="bold yellow", width=9)
+        table.add_column("Catalog", style="magenta", width=18)
         table.add_column("Status", style="green", width=12)
 
         for s in display_sources:
@@ -224,9 +235,17 @@ class TUIDashboard:
             style = "bold white on blue" if actual_idx == self.selected_index else None
             # Text() wrapping: titles/URLs are external, untrusted content and must
             # never be interpreted as Rich markup (see _make_daad_games_table).
-            table.add_row(str(s.id), Text(title), Text(s.url[:45] + "..."), Text(s.source_tier), Text(s.status), style=style)
+            table.add_row(
+                str(s.id),
+                Text(title),
+                Text((s.platform or "unknown").upper()),
+                Text(str(s.acquisition_priority)),
+                Text(s.known_game_id or "unmatched"),
+                Text(s.status),
+                style=style,
+            )
+        return Panel(table, title="[bold cyan]Evidence-Led Source Queue[/bold cyan]", border_style="cyan")
 
-        return Panel(table, title="[bold cyan]Discovered Sources Feed[/bold cyan]", border_style="cyan")
 
     def render(self) -> Layout:
         layout = Layout()
