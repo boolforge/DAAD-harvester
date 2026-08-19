@@ -126,6 +126,20 @@ def test_fat_and_dos_mz_headers_capture_structured_evidence() -> None:
     assert result.evidence["declared_size"] == 64
 
 
+def test_stx_and_ipf_preservation_media_record_protection_evidence() -> None:
+    stx = bytearray(b"RSY\x00" + (0x0300).to_bytes(2, "little") + (1).to_bytes(2, "little") + b"\x00\x00" + b"\x01\x01" + b"\x00" * 4)
+    stx.extend((32).to_bytes(4, "little") + (0).to_bytes(4, "little") + (1).to_bytes(2, "little") + (1).to_bytes(2, "little") + (0).to_bytes(2, "little") + b"\x00\x00")
+    stx.extend(b"\x00" * 14 + b"\x88\x00")
+    result = inspect_native_media("protected.stx", bytes(stx))
+    assert result.validation == "validated_pasti_track_records"
+    assert result.evidence["protected_tracks"] == 1
+    assert result.evidence["timing_or_status_tracks"] >= 1
+
+    result = inspect_native_media("preservation.ipf", b"CAPS\x00\x00\x00\x0c\x00\x00\x00\x00")
+    assert result.parser == "sps-ipf"
+    assert result.validation == "validated_initial_caps_record"
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)

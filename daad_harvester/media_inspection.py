@@ -264,6 +264,71 @@ def _inspect_mz(data: bytes) -> MediaInspection:
     )
 
 
+def _inspect_stx(data: bytes) -> MediaInspection:
+    """Validate Pasti/STX record boundaries and preserve protection signals."""
+
+    if len(data) < 16 or data[:4] != b"RSY\x00":
+        return _result("atari-stx", "rejected", "truncated_or_missing_rsy_signature")
+    version = int.from_bytes(data[4:6], "little")
+    creator = int.from_bytes(data[6:8], "little")
+    declared_tracks = data[10]
+    if not declared_tracks:
+        return _result("atari-stx", "rejected", "zero_track_count", version=version, creator=creator)
+    pos = 16
+    tracks = 0
+    protected_tracks = 0
+    fuzzy_tracks = 0
+    timing_or_status_tracks = 0
+    while tracks < declared_tracks:
+        if pos + 16 > len(data):
+            return _result("atari-stx", "rejected", "truncated_track_header", parsed_tracks=tracks)
+        track_size = int.from_bytes(data[pos:pos + 4], "little")
+        fuzzy_size = int.from_bytes(data[pos + 4:pos + 8], "little")
+        sector_count = int.from_bytes(data[pos + 8:pos + 10], "little")
+        flags = int.from_bytes(data[pos + 10:pos + 12], "little")
+        image_size = int.from_bytes(data[pos + 12:pos + 14], "little")
+        if track_size < 16 or pos + track_size > len(data):
+            return _result("atari-stx", "rejected", "invalid_track_length", parsed_tracks=tracks, track_size=track_size)
+        header_size = 16 + (sector_count * 16 if flags & 0x0001 else 0)
+        if header_size + fuzzy_size > track_size or image_size > track_size - header_size - fuzzy_size:
+            return _result("atari-stx", "rejected", "inconsistent_track_descriptors", parsed_tracks=tracks)
+        if flags & 0x0001:
+            protected_tracks += 1
+        if fuzzy_size:
+            fuzzy_tracks += 1
+        if flags & 0x00C0:
+            timing_or_status_tracks += 1
+        if flags & 0x0001:
+            sector_start = pos + 16
+            statuses = [data[sector_start + sector * 16 + 14] for sector in range(sector_count)]
+            if any(status & 0x98 for status in statuses):
+                timing_or_status_tracks += 1
+        pos += track_size
+        tracks += 1
+    if pos != len(data):
+        return _result("atari-stx", "rejected", "trailing_or_missing_track_records", parsed_tracks=tracks, trailing=len(data) - pos)
+    return _result(
+        "atari-stx", "recognized_evidence", "validated_pasti_track_records",
+        version=version,
+        creator=creator,
+        track_count=tracks,
+        protected_tracks=protected_tracks,
+        fuzzy_tracks=fuzzy_tracks,
+        timing_or_status_tracks=timing_or_status_tracks,
+    )
+
+
+def _inspect_ipf(data: bytes) -> MediaInspection:
+    """Recognize the initial SPS CAPS record while preserving IPF as opaque media."""
+
+    if len(data) < 12 or data[:4] != b"CAPS":
+        return _result("sps-ipf", "rejected", "truncated_or_missing_caps_record")
+    record_size = int.from_bytes(data[4:8], "big")
+    if record_size != 12:
+        return _result("sps-ipf", "rejected", "invalid_caps_record_size", record_size=record_size)
+    return _result("sps-ipf", "recognized_evidence", "validated_initial_caps_record", record_size=record_size, archive_size=len(data))
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -292,6 +357,10 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_adf(data)
     if data.startswith(b"DMS!") or extension == ".dms":
         return _inspect_dms(data)
+    if data.startswith(b"RSY\x00") or extension == ".stx":
+        return _inspect_stx(data)
+    if data.startswith(b"CAPS") or extension == ".ipf":
+        return _inspect_ipf(data)
     if len(data) >= 512 and data[510:512] == b"\x55\xaa":
         return _inspect_fat(data)
     if data.startswith((b"MZ", b"ZM")) or extension == ".exe":

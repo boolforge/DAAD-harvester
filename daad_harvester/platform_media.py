@@ -570,8 +570,7 @@ def extract_adf(data: bytes) -> List[Member]:
 
     The parser walks root/directory hash chains, validates header types and
     self-keys, prevents pointer cycles, and reads OFS linked blocks or FFS
-    reverse header block lists. Unsupported extension-heavy files are skipped
-    conservatively instead of emitting corrupt bytes.
+    reverse header block lists, including validated file-extension chains.
     """
 
     if len(data) < 512 * 4 or len(data) % 512 or not data.startswith(b"DOS"):
@@ -589,15 +588,37 @@ def extract_adf(data: bytes) -> List[Member]:
         byte_size = _be32(block, 80)
         if byte_size < 0 or byte_size > len(data):
             return
+        header_chain = [block]
         extension = _be32(block, 126)
-        if extension:  # extensions need a full continuation list; do not truncate silently.
-            return
+        extension_seen = {number}
+        while extension:
+            if extension in extension_seen:
+                return
+            extension_seen.add(extension)
+            extension_block = _adf_block(data, extension)
+            if (
+                extension_block is None
+                or _be32(extension_block, 0) != 2
+                or _be32(extension_block, 1) != extension
+                or _be32(extension_block, 127, signed=True) != -3
+            ):
+                return
+            header_chain.append(extension_block)
+            extension = _be32(extension_block, 126)
         if is_ffs:
-            pointers = [_be32(block, index) for index in range(77, 5, -1)]
+            pointers = [
+                _be32(header, index)
+                for header in header_chain
+                for index in range(77, 5, -1)
+            ]
             payload = bytearray()
+            data_seen = set()
             for pointer in pointers:
                 if pointer == 0:
                     continue
+                if pointer in data_seen:
+                    return
+                data_seen.add(pointer)
                 data_block = _adf_block(data, pointer)
                 if data_block is None:
                     return
@@ -608,19 +629,20 @@ def extract_adf(data: bytes) -> List[Member]:
                 return
             members.append((path, bytes(payload[:byte_size])))
             return
-        pointer = _be32(block, 4)
         payload = bytearray()
         chain_seen = set()
-        while pointer and pointer not in chain_seen and len(payload) < byte_size:
-            chain_seen.add(pointer)
-            data_block = _adf_block(data, pointer)
-            if data_block is None or _be32(data_block, 0) != 8:
-                return
-            chunk_size = _be32(data_block, 3)
-            if chunk_size < 0 or chunk_size > 488:
-                return
-            payload.extend(data_block[24:24 + chunk_size])
-            pointer = _be32(data_block, 4)
+        for header in header_chain:
+            pointer = _be32(header, 4)
+            while pointer and pointer not in chain_seen and len(payload) < byte_size:
+                chain_seen.add(pointer)
+                data_block = _adf_block(data, pointer)
+                if data_block is None or _be32(data_block, 0) != 8:
+                    return
+                chunk_size = _be32(data_block, 3)
+                if chunk_size < 0 or chunk_size > 488:
+                    return
+                payload.extend(data_block[24:24 + chunk_size])
+                pointer = _be32(data_block, 4)
         if len(payload) >= byte_size:
             members.append((path, bytes(payload[:byte_size])))
 

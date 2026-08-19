@@ -269,6 +269,20 @@ def test_extracts_amiga_ofs_and_ffs_adf(ffs: bool) -> None:
     assert extract_adf(_adf(ffs=ffs)) == [("DAAD.DDB", b"DAAD.DDB")]
 
 
+def test_extracts_ffs_file_across_validated_extension_block() -> None:
+    image = bytearray(_adf(ffs=True, payload=b"A" * 512))
+    header = memoryview(image)[100 * 512:101 * 512]
+    header[80 * 4:81 * 4] = (1024).to_bytes(4, "big")
+    header[126 * 4:127 * 4] = (102).to_bytes(4, "big")
+    extension = memoryview(image)[102 * 512:103 * 512]
+    extension[:4] = (2).to_bytes(4, "big")
+    extension[1 * 4:2 * 4] = (102).to_bytes(4, "big")
+    extension[77 * 4:78 * 4] = (103).to_bytes(4, "big")
+    extension[127 * 4:128 * 4] = (-3).to_bytes(4, "big", signed=True)
+    image[103 * 512:104 * 512] = b"B" * 512
+    assert extract_adf(bytes(image)) == [("DAAD.DDB", b"A" * 512 + b"B" * 512)]
+
+
 def test_extracts_gzipped_adz(tmp_path: Path) -> None:
     adz = gzip.compress(_adf())
     assert _unpacker(tmp_path).unpack_adz(adz) == [("DAAD.DDB", b"DAAD.DDB")]
