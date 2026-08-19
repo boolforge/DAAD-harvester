@@ -23,12 +23,19 @@ class SourceStatus(str, Enum):
 
 
 class Platform(str, Enum):
+    """Canonical DAAD targets plus retained legacy labels for old state files."""
+
     ZX = "zx"
     CPC = "cpc"
     C64 = "c64"
-    AMIGA = "amiga"
-    ATARIST = "atarist"
+    PLUS4 = "plus4"
     MSX = "msx"
+    PCW = "pcw"
+    ATARIST = "atarist"
+    AMIGA = "amiga"
+    DOS = "dos"
+    # ``pc`` remains readable from prior state databases and is normalized on
+    # new inserts; it is not a canonical all-platform label.
     PC = "pc"
     ORIC = "oric"
     UNKNOWN = "unknown"
@@ -51,6 +58,13 @@ class SourceRecord:
     language: Optional[str] = None
     known_game_id: Optional[str] = None
     acquisition_priority: int = 0
+    source_name: Optional[str] = None
+    source_role: Optional[str] = None
+    source_record_url: Optional[str] = None
+    source_release_id: Optional[str] = None
+    release_version: Optional[str] = None
+    toolchain_claim: Optional[str] = None
+    provenance_json: Optional[str] = None
     discovered_at: Optional[datetime] = None
     processed_at: Optional[datetime] = None
 
@@ -89,6 +103,31 @@ class ArtifactRecord:
     publisher: Optional[str] = None
     author: Optional[str] = None
     language: Optional[str] = None
+    container_format: Optional[str] = None
+    container_member: Optional[str] = None
+    measured_platform: Optional[str] = None
+    ddb_format: Optional[str] = None
+    ddb_major_version: Optional[int] = None
+    ddb_encoding: Optional[str] = None
+    interpreter_identity: Optional[str] = None
+    interpreter_version: Optional[str] = None
+    fingerprint_confidence: Optional[str] = None
+    fingerprint_evidence_json: Optional[str] = None
+
+
+@dataclass
+class VersionEvidenceRecord:
+    """One independently reviewable version/provenance observation."""
+
+    id: Optional[int]
+    kind: str
+    value: str
+    confidence: str
+    source_id: Optional[int] = None
+    artifact_id: Optional[int] = None
+    source_url: Optional[str] = None
+    details_json: Optional[str] = None
+    observed_at: Optional[datetime] = None
 
 
 @dataclass

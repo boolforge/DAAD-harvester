@@ -6,7 +6,8 @@ from pathlib import Path
 from typing import List, Optional, Dict
 from datetime import datetime
 
-from daad_harvester.models import SourceRecord, ArtifactRecord, GameRecord
+from daad_harvester.models import ArtifactRecord, GameRecord, SourceRecord, VersionEvidenceRecord
+from daad_harvester.provenance import VersionEvidence, normalize_platform
 
 logger = structlog.get_logger(__name__)
 
@@ -27,6 +28,13 @@ CREATE TABLE IF NOT EXISTS sources (
     language TEXT,
     known_game_id TEXT,
     acquisition_priority INTEGER NOT NULL DEFAULT 0,
+    source_name TEXT,
+    source_role TEXT,
+    source_record_url TEXT,
+    source_release_id TEXT,
+    release_version TEXT,
+    toolchain_claim TEXT,
+    provenance_json TEXT,
     discovered_at TIMESTAMP,
     processed_at TIMESTAMP
 );
@@ -64,7 +72,34 @@ CREATE TABLE IF NOT EXISTS artifacts (
     publisher TEXT,
     author TEXT,
     language TEXT,
+    container_format TEXT,
+    container_member TEXT,
+    measured_platform TEXT,
+    ddb_format TEXT,
+    ddb_major_version INTEGER,
+    ddb_encoding TEXT,
+    interpreter_identity TEXT,
+    interpreter_version TEXT,
+    fingerprint_confidence TEXT,
+    fingerprint_evidence_json TEXT,
     FOREIGN KEY (source_id) REFERENCES sources(id)
+);
+
+CREATE TABLE IF NOT EXISTS version_evidence (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    source_id INTEGER,
+    artifact_id INTEGER,
+    kind TEXT NOT NULL,
+    value TEXT NOT NULL,
+    confidence TEXT NOT NULL,
+    source_url TEXT,
+    details_json TEXT,
+    observed_at TIMESTAMP NOT NULL,
+    CHECK ((source_id IS NOT NULL AND artifact_id IS NULL) OR
+           (source_id IS NULL AND artifact_id IS NOT NULL)),
+    FOREIGN KEY (source_id) REFERENCES sources(id) ON DELETE CASCADE,
+    FOREIGN KEY (artifact_id) REFERENCES artifacts(id) ON DELETE CASCADE,
+    UNIQUE(source_id, artifact_id, kind, value, source_url)
 );
 
 CREATE TABLE IF NOT EXISTS games (
@@ -87,6 +122,11 @@ CREATE INDEX IF NOT EXISTS idx_artifacts_sha256 ON artifacts(sha256);
 CREATE INDEX IF NOT EXISTS idx_artifacts_md5_full ON artifacts(md5_full);
 CREATE INDEX IF NOT EXISTS idx_artifacts_is_daad ON artifacts(is_daad_payload);
 CREATE INDEX IF NOT EXISTS idx_games_game_id ON games(game_id);
+CREATE INDEX IF NOT EXISTS idx_sources_role ON sources(source_role, status);
+CREATE INDEX IF NOT EXISTS idx_artifacts_measured_platform ON artifacts(measured_platform, is_daad_payload);
+CREATE INDEX IF NOT EXISTS idx_artifacts_ddb_format ON artifacts(ddb_format);
+CREATE INDEX IF NOT EXISTS idx_version_evidence_source ON version_evidence(source_id, kind);
+CREATE INDEX IF NOT EXISTS idx_version_evidence_artifact ON version_evidence(artifact_id, kind);
 """
 
 
@@ -113,14 +153,21 @@ class Database:
             conn.executescript(SCHEMA_SQL)
             cursor = conn.execute("PRAGMA table_info(artifacts)")
             cols = {row["name"] for row in cursor.fetchall()}
-            extra_cols = [
-                "sha1", "crc32", "md5_tail5000", "sha224", "sha384", "sha512",
-                "sha3_256", "sha3_512", "blake2b", "blake2s", "adler32",
-                "xxh32", "xxh64", "xxh128"
-            ]
-            for col in extra_cols:
+            extra_cols = {
+                "sha1": "TEXT", "crc32": "TEXT", "md5_tail5000": "TEXT",
+                "sha224": "TEXT", "sha384": "TEXT", "sha512": "TEXT",
+                "sha3_256": "TEXT", "sha3_512": "TEXT", "blake2b": "TEXT",
+                "blake2s": "TEXT", "adler32": "TEXT", "xxh32": "TEXT",
+                "xxh64": "TEXT", "xxh128": "TEXT",
+                "container_format": "TEXT", "container_member": "TEXT",
+                "measured_platform": "TEXT", "ddb_format": "TEXT",
+                "ddb_major_version": "INTEGER", "ddb_encoding": "TEXT",
+                "interpreter_identity": "TEXT", "interpreter_version": "TEXT",
+                "fingerprint_confidence": "TEXT", "fingerprint_evidence_json": "TEXT",
+            }
+            for col, column_type in extra_cols.items():
                 if col not in cols:
-                    conn.execute(f"ALTER TABLE artifacts ADD COLUMN {col} TEXT;")
+                    conn.execute(f"ALTER TABLE artifacts ADD COLUMN {col} {column_type};")
 
             if "unpacked" not in cols:
                 conn.execute("ALTER TABLE artifacts ADD COLUMN unpacked BOOLEAN DEFAULT 0;")
@@ -131,9 +178,17 @@ class Database:
 
             cursor_s = conn.execute("PRAGMA table_info(sources)")
             cols_s = {row["name"] for row in cursor_s.fetchall()}
-            for col in ["title", "platform", "year", "publisher", "author", "language", "known_game_id"]:
+            source_cols = {
+                "title": "TEXT", "platform": "TEXT", "year": "INTEGER",
+                "publisher": "TEXT", "author": "TEXT", "language": "TEXT",
+                "known_game_id": "TEXT", "source_name": "TEXT",
+                "source_role": "TEXT", "source_record_url": "TEXT",
+                "source_release_id": "TEXT", "release_version": "TEXT",
+                "toolchain_claim": "TEXT", "provenance_json": "TEXT",
+            }
+            for col, column_type in source_cols.items():
                 if col not in cols_s:
-                    conn.execute(f"ALTER TABLE sources ADD COLUMN {col} TEXT;")
+                    conn.execute(f"ALTER TABLE sources ADD COLUMN {col} {column_type};")
             if "acquisition_priority" not in cols_s:
                 conn.execute("ALTER TABLE sources ADD COLUMN acquisition_priority INTEGER NOT NULL DEFAULT 0;")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_sources_priority ON sources(status, acquisition_priority DESC, discovered_at ASC);")
@@ -189,19 +244,34 @@ class Database:
         author: Optional[str] = None,
         language: Optional[str] = None,
         known_game_id: Optional[str] = None,
-        acquisition_priority: int = 0
+        acquisition_priority: int = 0,
+        source_name: Optional[str] = None,
+        source_role: Optional[str] = "game_media",
+        source_record_url: Optional[str] = None,
+        source_release_id: Optional[str] = None,
+        release_version: Optional[str] = None,
+        toolchain_claim: Optional[str] = None,
+        provenance_json: Optional[str] = None,
     ) -> Optional[int]:
         now = datetime.now().isoformat()
+        platform = normalize_platform(platform) or platform
         with self.get_connection() as conn:
             try:
                 cursor = conn.execute(
                     """
                     INSERT INTO sources (
                         url, source_tier, status, title, platform, year, publisher, author, language,
-                        known_game_id, acquisition_priority, discovered_at
-                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        known_game_id, acquisition_priority, source_name, source_role,
+                        source_record_url, source_release_id, release_version, toolchain_claim,
+                        provenance_json, discovered_at
+                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
-                    (url, source_tier, title, platform, year, publisher, author, language, known_game_id, acquisition_priority, now)
+                    (
+                        url, source_tier, title, platform, year, publisher, author, language,
+                        known_game_id, acquisition_priority, source_name, source_role,
+                        source_record_url, source_release_id, release_version, toolchain_claim,
+                        provenance_json, now,
+                    )
                 )
                 conn.commit()
                 return cursor.lastrowid
@@ -209,7 +279,11 @@ class Database:
                 cursor = conn.execute("SELECT id FROM sources WHERE url = ?", (url,))
                 row = cursor.fetchone()
                 src_id = row["id"] if row else None
-                if src_id and (title or platform or year or publisher or author or language or known_game_id or acquisition_priority):
+                if src_id and (
+                    title or platform or year or publisher or author or language or known_game_id
+                    or acquisition_priority or source_name or source_role or source_record_url
+                    or source_release_id or release_version or toolchain_claim or provenance_json
+                ):
                     conn.execute(
                         """
                         UPDATE sources
@@ -220,10 +294,22 @@ class Database:
                             author = COALESCE(?, author),
                             language = COALESCE(?, language),
                             known_game_id = COALESCE(?, known_game_id),
-                            acquisition_priority = MAX(COALESCE(acquisition_priority, 0), ?)
+                            acquisition_priority = MAX(COALESCE(acquisition_priority, 0), ?),
+                            source_name = COALESCE(?, source_name),
+                            source_role = COALESCE(?, source_role),
+                            source_record_url = COALESCE(?, source_record_url),
+                            source_release_id = COALESCE(?, source_release_id),
+                            release_version = COALESCE(?, release_version),
+                            toolchain_claim = COALESCE(?, toolchain_claim),
+                            provenance_json = COALESCE(?, provenance_json)
                         WHERE id = ?
                         """,
-                        (title, platform, year, publisher, author, language, known_game_id, acquisition_priority, src_id)
+                        (
+                            title, platform, year, publisher, author, language, known_game_id,
+                            acquisition_priority, source_name, source_role, source_record_url,
+                            source_release_id, release_version, toolchain_claim, provenance_json,
+                            src_id,
+                        )
                     )
                     conn.commit()
                 return src_id
@@ -252,6 +338,13 @@ class Database:
             language=row["language"] if "language" in keys else None,
             known_game_id=row["known_game_id"] if "known_game_id" in keys else None,
             acquisition_priority=row["acquisition_priority"] if "acquisition_priority" in keys else 0,
+            source_name=row["source_name"] if "source_name" in keys else None,
+            source_role=row["source_role"] if "source_role" in keys else None,
+            source_record_url=row["source_record_url"] if "source_record_url" in keys else None,
+            source_release_id=row["source_release_id"] if "source_release_id" in keys else None,
+            release_version=row["release_version"] if "release_version" in keys else None,
+            toolchain_claim=row["toolchain_claim"] if "toolchain_claim" in keys else None,
+            provenance_json=row["provenance_json"] if "provenance_json" in keys else None,
             discovered_at=row["discovered_at"],
             processed_at=row["processed_at"],
         )
@@ -310,9 +403,13 @@ class Database:
                     md5_tail5000, sha224, sha384, sha512, sha3_256, sha3_512,
                     blake2b, blake2s, adler32, xxh32, xxh64, xxh128,
                     unpacked, is_daad_payload, daad_version_guess, platform_hint,
-                    title, year, publisher, author, language
+                    title, year, publisher, author, language, container_format,
+                    container_member, measured_platform, ddb_format, ddb_major_version,
+                    ddb_encoding, interpreter_identity, interpreter_version,
+                    fingerprint_confidence, fingerprint_evidence_json
                 ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 )
                 """,
                 (
@@ -346,7 +443,17 @@ class Database:
                     artifact.year,
                     artifact.publisher,
                     artifact.author,
-                    artifact.language
+                    artifact.language,
+                    artifact.container_format,
+                    artifact.container_member,
+                    artifact.measured_platform,
+                    artifact.ddb_format,
+                    artifact.ddb_major_version,
+                    artifact.ddb_encoding,
+                    artifact.interpreter_identity,
+                    artifact.interpreter_version,
+                    artifact.fingerprint_confidence,
+                    artifact.fingerprint_evidence_json,
                 )
             )
             conn.commit()
@@ -365,18 +472,120 @@ class Database:
         artifact_id: int,
         is_daad_payload: bool,
         daad_version_guess: Optional[str] = None,
-        platform_hint: Optional[str] = None
+        platform_hint: Optional[str] = None,
+        measured_platform: Optional[str] = None,
+        ddb_format: Optional[str] = None,
+        ddb_major_version: Optional[int] = None,
+        ddb_encoding: Optional[str] = None,
+        interpreter_identity: Optional[str] = None,
+        interpreter_version: Optional[str] = None,
+        fingerprint_confidence: Optional[str] = None,
+        fingerprint_evidence_json: Optional[str] = None,
     ) -> None:
+        """Persist a complete measured fingerprint observation.
+
+        ``daad_version_guess`` and ``platform_hint`` remain available for
+        compatibility with pre-provenance callers.  New code must use the
+        structured fields rather than collapse claims into the legacy guess.
+        """
+        platform_hint = normalize_platform(platform_hint) or platform_hint
+        measured_platform = normalize_platform(measured_platform) or measured_platform
         with self.get_connection() as conn:
             conn.execute(
                 """
                 UPDATE artifacts
-                SET is_daad_payload = ?, daad_version_guess = ?, platform_hint = ?
+                SET is_daad_payload = ?, daad_version_guess = ?, platform_hint = ?,
+                    measured_platform = ?, ddb_format = ?, ddb_major_version = ?,
+                    ddb_encoding = ?, interpreter_identity = ?, interpreter_version = ?,
+                    fingerprint_confidence = ?, fingerprint_evidence_json = ?
                 WHERE id = ?
                 """,
-                (is_daad_payload, daad_version_guess, platform_hint, artifact_id)
+                (
+                    is_daad_payload, daad_version_guess, platform_hint,
+                    measured_platform, ddb_format, ddb_major_version, ddb_encoding,
+                    interpreter_identity, interpreter_version, fingerprint_confidence,
+                    fingerprint_evidence_json, artifact_id,
+                ),
             )
             conn.commit()
+
+    # --- Provenance evidence ledger ---
+
+    def add_version_evidence(self, evidence: VersionEvidence) -> int:
+        """Insert one source- or artifact-scoped provenance assertion idempotently."""
+        now = datetime.now().isoformat()
+        with self.get_connection() as conn:
+            row = conn.execute(
+                """
+                SELECT id FROM version_evidence
+                WHERE source_id IS ? AND artifact_id IS ? AND kind = ? AND value = ?
+                  AND source_url IS ?
+                """,
+                (
+                    evidence.source_id, evidence.artifact_id, evidence.kind,
+                    evidence.value, evidence.source_url,
+                ),
+            ).fetchone()
+            if row is None:
+                conn.execute(
+                    """
+                    INSERT INTO version_evidence (
+                        source_id, artifact_id, kind, value, confidence, source_url,
+                        details_json, observed_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        evidence.source_id, evidence.artifact_id, evidence.kind,
+                        evidence.value, evidence.confidence, evidence.source_url,
+                        evidence.details_json, now,
+                    ),
+                )
+                row = conn.execute(
+                    """
+                    SELECT id FROM version_evidence
+                    WHERE source_id IS ? AND artifact_id IS ? AND kind = ? AND value = ?
+                      AND source_url IS ?
+                    """,
+                    (
+                        evidence.source_id, evidence.artifact_id, evidence.kind,
+                        evidence.value, evidence.source_url,
+                    ),
+                ).fetchone()
+            conn.commit()
+        if row is None:
+            raise RuntimeError("Could not persist version evidence")
+        return int(row["id"])
+
+    def get_version_evidence(
+        self,
+        *,
+        source_id: Optional[int] = None,
+        artifact_id: Optional[int] = None,
+    ) -> List[VersionEvidenceRecord]:
+        """Return evidence for exactly one persisted source or artifact."""
+        if (source_id is None) == (artifact_id is None):
+            raise ValueError("Provide exactly one of source_id or artifact_id")
+        column = "source_id" if source_id is not None else "artifact_id"
+        value = source_id if source_id is not None else artifact_id
+        with self.get_connection() as conn:
+            rows = conn.execute(
+                f"SELECT * FROM version_evidence WHERE {column} = ? ORDER BY kind, id",
+                (value,),
+            ).fetchall()
+        return [
+            VersionEvidenceRecord(
+                id=row["id"],
+                source_id=row["source_id"],
+                artifact_id=row["artifact_id"],
+                kind=row["kind"],
+                value=row["value"],
+                confidence=row["confidence"],
+                source_url=row["source_url"],
+                details_json=row["details_json"],
+                observed_at=row["observed_at"],
+            )
+            for row in rows
+        ]
 
     def _row_to_artifact(self, row: sqlite3.Row) -> ArtifactRecord:
         keys = row.keys()
@@ -412,7 +621,17 @@ class Database:
             year=row["year"] if "year" in keys else None,
             publisher=row["publisher"] if "publisher" in keys else None,
             author=row["author"] if "author" in keys else None,
-            language=row["language"] if "language" in keys else None
+            language=row["language"] if "language" in keys else None,
+            container_format=row["container_format"] if "container_format" in keys else None,
+            container_member=row["container_member"] if "container_member" in keys else None,
+            measured_platform=row["measured_platform"] if "measured_platform" in keys else None,
+            ddb_format=row["ddb_format"] if "ddb_format" in keys else None,
+            ddb_major_version=row["ddb_major_version"] if "ddb_major_version" in keys else None,
+            ddb_encoding=row["ddb_encoding"] if "ddb_encoding" in keys else None,
+            interpreter_identity=row["interpreter_identity"] if "interpreter_identity" in keys else None,
+            interpreter_version=row["interpreter_version"] if "interpreter_version" in keys else None,
+            fingerprint_confidence=row["fingerprint_confidence"] if "fingerprint_confidence" in keys else None,
+            fingerprint_evidence_json=row["fingerprint_evidence_json"] if "fingerprint_evidence_json" in keys else None,
         )
 
     def get_all_artifacts(self) -> List[ArtifactRecord]:
