@@ -57,6 +57,7 @@ DAAD_USER_AGENT = "DAAD-Harvester/1.0 (+https://github.com/boolforge/DAAD-harves
 ARCHIVE_METADATA_URL = "https://archive.org/metadata/{identifier}"
 ZXINFO_SEARCH_URL = "https://api.zxinfo.dk/v3/search"
 SPECTRUM_COMPUTING_BASE_URL = "https://spectrumcomputing.co.uk"
+WORLD_OF_SPECTRUM_PUBLISHER_URL = "https://worldofspectrum.org/archive/publishers/Aventuras-AD-SA"
 
 
 class RateLimiter:
@@ -412,6 +413,55 @@ class Discoverer:
         self.logger_suite.log_discovery("WIKICAAD", api_url, inserted)
         return inserted
 
+    async def discover_world_of_spectrum(self, client: httpx.AsyncClient) -> int:
+        """Discover direct ZX artifacts from World of Spectrum's Aventuras AD catalogue.
+
+        The adapter starts from the publisher's bounded catalogue, then verifies
+        the DAAD authorship statement on every game detail page. It does not
+        crawl general Spectrum directories or queue the page URLs themselves.
+        """
+        content = await self._fetch_url(client, WORLD_OF_SPECTRUM_PUBLISHER_URL)
+        inserted = 0
+        if not content:
+            self.logger_suite.log_discovery(
+                "WORLD OF SPECTRUM", WORLD_OF_SPECTRUM_PUBLISHER_URL, inserted, status="UNAVAILABLE"
+            )
+            return inserted
+
+        publisher_soup = BeautifulSoup(content, "html.parser")
+        game_pages: Dict[str, str] = {}
+        for anchor in publisher_soup.find_all("a", href=True):
+            game_url = self._canonical_url(urljoin(WORLD_OF_SPECTRUM_PUBLISHER_URL, anchor["href"]))
+            if "/archive/software/text-adventures/" not in urlparse(game_url).path:
+                continue
+            title = anchor.get_text(" ", strip=True)
+            if title:
+                game_pages[game_url] = title
+
+        for game_url, title in game_pages.items():
+            game_page = await self._fetch_url(client, game_url)
+            if not game_page:
+                continue
+            game_soup = BeautifulSoup(game_page, "html.parser")
+            if "authored with daad" not in game_soup.get_text(" ", strip=True).lower():
+                continue
+            for anchor in game_soup.find_all("a", href=True):
+                artifact_url = urljoin(game_url, anchor["href"])
+                parsed_artifact = urlparse(artifact_url)
+                artifact_path = unquote(parsed_artifact.path).lower()
+                if (
+                    parsed_artifact.netloc not in {"worldofspectrum.org", "www.worldofspectrum.org"}
+                    or not artifact_path.endswith((".tap.zip", ".tzx.zip", ".dsk.zip"))
+                ):
+                    continue
+                if self._add_source(artifact_url, SourceTier.ARCHIVE, title=title, platform="zx"):
+                    inserted += 1
+
+        self.logger_suite.log_discovery(
+            "WORLD OF SPECTRUM", WORLD_OF_SPECTRUM_PUBLISHER_URL, inserted
+        )
+        return inserted
+
     async def discover_ifarchive(self, client: httpx.AsyncClient) -> int:
         """Do not crawl IF Archive until a DAAD-specific, maintained index is available."""
         del client
@@ -456,6 +506,7 @@ class Discoverer:
             "ifdb": self.discover_ifdb,
             "zxinfo": self.discover_zxdb,
             "wikicaad": self.discover_wikicaad,
+            "world_of_spectrum": self.discover_world_of_spectrum,
             "ifarchive": self.discover_ifarchive,
             "web_search": self.discover_web_search,
         }

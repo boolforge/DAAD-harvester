@@ -251,7 +251,7 @@ async def test_run_all_discovery_wires_proxy_into_client_and_logs_adapter_except
         for name in [
             "discover_internet_archive", "discover_aminet", "discover_github",
             "discover_itchio", "discover_ifdb", "discover_zxdb",
-            "discover_wikicaad", "discover_ifarchive", "discover_web_search",
+            "discover_wikicaad", "discover_world_of_spectrum", "discover_ifarchive", "discover_web_search",
         ]
     }
     with patch.multiple(discoverer, **no_op_methods), patch.object(discoverer, "load_canonical_seeds"), patch(
@@ -272,3 +272,32 @@ def test_canonical_seed_catalog_is_empty_until_urls_are_verified(tmp_path):
 
     assert discoverer.load_canonical_seeds() == 0
     assert db.get_all_sources() == []
+
+
+@pytest.mark.anyio
+async def test_discover_world_of_spectrum_uses_publisher_catalog_and_verified_detail_pages(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    publisher_html = """
+    <a href="/archive/software/text-adventures/la-aventura-original-aventuras-ad-sa">La Aventura Original</a>
+    <a href="/archive/software/games/unrelated">Unrelated game</a>
+    """
+    daad_detail_html = """
+    <p>Comments: Authored with DAAD.</p>
+    <a href="/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip">TZX archive</a>
+    <a href="/pub/sinclair/games/a/AventuraOriginalLa.z80.zip">Snapshot archive</a>
+    <a href="https://www.rzxarchive.co.uk/a/aventuraoriginal.zip">External RZX archive</a>
+    <a href="/pub/sinclair/screens/a/AventuraOriginalLa.scr">Screenshot</a>
+    """
+
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [publisher_html, daad_detail_html]
+        async with httpx.AsyncClient() as client:
+            inserted = await discoverer.discover_world_of_spectrum(client)
+
+    assert inserted == 1
+    sources = db.get_pending_sources()
+    assert len(sources) == 1
+    assert sources[0].url == "https://worldofspectrum.org/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip"
+    assert sources[0].title == "La Aventura Original"
+    assert sources[0].platform == "zx"
