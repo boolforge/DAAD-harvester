@@ -4,7 +4,7 @@
 | --- | --- |
 | **Question** | What reproducibility information must an analysis workflow capture before a DAAD interpreter/disassembly result can be reviewed by architecture? |
 | **Evidence scope** | P0 published tool/processor documentation; P1 retained binary hash, load model, commands, and generated-output checksums. |
-| **Status** | measured implementation contract; one successful exact-hash pilot per processor family |
+| **Status** | measured implementation; every retained official exact-hash profile analyzed by all configured static tools |
 | **Implementation links** | [`../../reverse_engineering/workflows/toolchain.json`](../../reverse_engineering/workflows/toolchain.json), [`../../scripts/run_reverse_analysis.py`](../../scripts/run_reverse_analysis.py), [`../schemas/REVERSE_ENGINEERING_MANIFEST.md`](../schemas/REVERSE_ENGINEERING_MANIFEST.md), [`CROSS_TOOL_VERIFICATION.md`](CROSS_TOOL_VERIFICATION.md) |
 | **Non-claims** | A platform name does not itself establish an executable’s CPU mode, load address, banking behavior, entry point, or correct tool configuration. |
 
@@ -35,17 +35,17 @@ The exact command, processor mode, version, and output hashes are retained in [`
 
 All current pilots intentionally use `raw_binary_base_0_unverified`. That supports deterministic byte-to-instruction comparison, but it does **not** establish correct runtime origin, section layout, relocation handling, hardware mapping, or semantic control flow.
 
-## Measured processor-family pilots
+## Measured all-profile analysis
 
-The runner produced a self-contained output directory for one exact-profile input in every processor family. Every pilot generated seven retained files: radare2 analysis, architecture-specific static disassembly, Ghidra headless log, Ghidra listing, function metadata, decompiler pseudocode, and an output-hash manifest. All three tools returned zero and all generated outputs matched their recorded SHA-256 values.
+The runner produced a self-contained output directory for **all 42 retained exact-profile inputs**. Every input generated seven retained files: radare2 analysis, architecture-specific static disassembly, Ghidra headless log, Ghidra listing, function metadata, decompiler pseudocode, and an output-hash manifest. This yielded **294 retained derived outputs**. All three tool invocations returned zero for every profile, and every generated output matched its recorded SHA-256 value.
 
-| Architecture | Exact-profile pilot | Retained output directory |
+| Architecture | Exact profiles analyzed | Retained output directory |
 | --- | --- | --- |
-| Z80 | `daad-zx-ds48ie-official` | [`derived/z80`](../../reverse_engineering/derived/z80/) |
-| MOS 6502 | `daad-c64-edi64-official` | [`derived/mos6502`](../../reverse_engineering/derived/mos6502/) |
-| MOS 8501 | `daad-plus4-ediplus4-official` | [`derived/mos8501`](../../reverse_engineering/derived/mos8501/) |
-| Motorola 68000 | `daad-atarist-edi1-official` | [`derived/m68000`](../../reverse_engineering/derived/m68000/) |
-| 8086 | `daad-dos-inte1-official` | [`derived/i8086`](../../reverse_engineering/derived/i8086/) |
+| Z80 | 8: ZX, CPC, MSX, and PCW profiles | [`derived/z80`](../../reverse_engineering/derived/z80/) |
+| MOS 6502 | 2: C64 profiles | [`derived/mos6502`](../../reverse_engineering/derived/mos6502/) |
+| MOS 8501 | 2: Plus/4 profiles | [`derived/mos8501`](../../reverse_engineering/derived/mos8501/) |
+| Motorola 68000 | 8: Atari ST and Amiga profiles | [`derived/m68000`](../../reverse_engineering/derived/m68000/) |
+| 8086 | 22: IBM PC/DOS profiles | [`derived/i8086`](../../reverse_engineering/derived/i8086/) |
 
 ## Reproducibility packet
 

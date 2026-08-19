@@ -1,0 +1,108 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "i8086",
+  "artifact_id": "daad-dos-inte3-official",
+  "derived_from_sha256": "ea2494b657626db967f36d608b8cabe9ab82832f5d38266c8f1b6e40b9eb7aa3",
+  "generated_at": "2026-08-19T10:29:26.222096+00:00",
+  "input_path": "reverse_engineering/artifacts/original/dos/daad-dos-inte3-official/INTE3.EXE",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-decompilation.c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-functions.tsv",
+      "sha256": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
+      "size": 45
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-headless.log",
+      "sha256": "418e0e99a7445be7c745bdc43baf9683c109e77bf9b6fd56c6cd09dcdafcbdf0",
+      "size": 6633
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-listing.txt",
+      "sha256": "5cca7d336343a423a05d46578d41cfdb0dabe60ae67d2f756eff78a765e92963",
+      "size": 257159
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-metadata.json",
+      "sha256": "e8954cf43cf490cb7f407d68139ca36c196979a46d1c60f41f4c2711dee33175",
+      "size": 132
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/independent-static-disassembly.txt",
+      "sha256": "643a44750dff928f950d20225a4c8b15806f248a71eb9e216e4275013c864d18",
+      "size": 250409
+    },
+    {
+      "path": "reverse_engineering/derived/i8086/daad-dos-inte3-official/radare2-analysis.txt",
+      "sha256": "5e9c6df450a5fa092495703d07c6c1e6d8209a9b2d704f5d69231078052491e4",
+      "size": 1686274
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "x86",
+        "-b",
+        "16",
+        "-qc",
+        "aaa;afl;pD 13968",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/dos/daad-dos-inte3-official/INTE3.EXE"
+      ],
+      "output": "reverse_engineering/derived/i8086/daad-dos-inte3-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "5e9c6df450a5fa092495703d07c6c1e6d8209a9b2d704f5d69231078052491e4",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "ndisasm",
+        "-b",
+        "16",
+        "-o",
+        "0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/dos/daad-dos-inte3-official/INTE3.EXE"
+      ],
+      "output": "reverse_engineering/derived/i8086/daad-dos-inte3-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "643a44750dff928f950d20225a4c8b15806f248a71eb9e216e4275013c864d18",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-dos-inte3-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/dos/daad-dos-inte3-official/INTE3.EXE",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "x86:LE:16:Real Mode",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/i8086/daad-dos-inte3-official"
+      ],
+      "output": "reverse_engineering/derived/i8086/daad-dos-inte3-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "418e0e99a7445be7c745bdc43baf9683c109e77bf9b6fd56c6cd09dcdafcbdf0",
+      "tool": "ghidra"
+    }
+  ]
+}

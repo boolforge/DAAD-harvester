@@ -1,0 +1,110 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "m68000",
+  "artifact_id": "daad-amiga-edi1-official",
+  "derived_from_sha256": "5f3bd8275d500d44fc41d7ae2a77e86593bd7075b6ad9fffde639265c0990952",
+  "generated_at": "2026-08-19T10:26:20.639086+00:00",
+  "input_path": "reverse_engineering/artifacts/original/amiga/daad-amiga-edi1-official/edi1",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-decompilation.c",
+      "sha256": "dd421354033d6a00b00db982123bf473c53a5c5eb77e120595bb57acd4f61999",
+      "size": 53174
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-functions.tsv",
+      "sha256": "6f6f07485fdf4c64012599f12c02588480132bc431ca0e945b2d99d0d339d73b",
+      "size": 3769
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-headless.log",
+      "sha256": "f9294e7a1d52185398d4cbfad30a268d976fffe6d2da98aab34697383b4a7beb",
+      "size": 7251
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-listing.txt",
+      "sha256": "a70c03356502146ced80d6d64254d59177834329a54f0cc214d307f251e0b61c",
+      "size": 252584
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-metadata.json",
+      "sha256": "02b3989e4a4b60e750c71a889c85af42cfb8967d3a2a66ca5382ade1e13b0d17",
+      "size": 125
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/independent-static-disassembly.txt",
+      "sha256": "215328d98a5103306f37811276d8fd5ea231fbc91dbeb6458a0c6c05ffd423ee",
+      "size": 192746
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/radare2-analysis.txt",
+      "sha256": "5674e3fc7c8d2b7af7779d08ed6d004b05b5ecdd8c52ed6d21efa65f4df52f66",
+      "size": 1536823
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "m68k",
+        "-b",
+        "32",
+        "-qc",
+        "aaa;afl;pD 18680",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-edi1-official/edi1"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "5674e3fc7c8d2b7af7779d08ed6d004b05b5ecdd8c52ed6d21efa65f4df52f66",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "m68k-linux-gnu-objdump",
+        "-D",
+        "-b",
+        "binary",
+        "-m",
+        "m68k:68000",
+        "--adjust-vma=0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-edi1-official/edi1"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "215328d98a5103306f37811276d8fd5ea231fbc91dbeb6458a0c6c05ffd423ee",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-amiga-edi1-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-edi1-official/edi1",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "68000:BE:32:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/m68000/daad-amiga-edi1-official"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-amiga-edi1-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "f9294e7a1d52185398d4cbfad30a268d976fffe6d2da98aab34697383b4a7beb",
+      "tool": "ghidra"
+    }
+  ]
+}

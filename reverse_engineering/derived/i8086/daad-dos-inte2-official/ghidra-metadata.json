@@ -1,0 +1,6 @@
+{
+  "producer": "Ghidra ExportDAADAnalysis",
+  "program": "INTE2.EXE",
+  "min_address": "0000:0000",
+  "max_address": "0000:367f"
+}

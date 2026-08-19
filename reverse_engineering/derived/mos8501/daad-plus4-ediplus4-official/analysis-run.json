@@ -3,7 +3,7 @@
   "architecture": "mos8501",
   "artifact_id": "daad-plus4-ediplus4-official",
   "derived_from_sha256": "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523",
-  "generated_at": "2026-08-19T10:21:31.418364+00:00",
+  "generated_at": "2026-08-19T10:25:39.530609+00:00",
   "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-ediplus4-official/ediplus4.prg",
   "load_model": "raw_binary_base_0_unverified",
   "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
@@ -20,7 +20,7 @@
     },
     {
       "path": "reverse_engineering/derived/mos8501/daad-plus4-ediplus4-official/ghidra-headless.log",
-      "sha256": "e61642b4b591f95c901ac79ff60865ae0dca7d751e4c93c19123c850526c3a40",
+      "sha256": "110466cf975af122b738818e2d450e8f04ea71b5c2207e9e85a6d21d0acd7dc3",
       "size": 6881
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "reverse_engineering/derived/mos8501/daad-plus4-ediplus4-official/independent-static-disassembly.txt",
-      "sha256": "82498bc6ed47b33ec5d7c19e61506dd9749b16564b4e83916ca23aec1d5526c6",
+      "sha256": "868e34587a88cb1ea98bd75bbce02edb4bca15920c291599de65ebb0405db37b",
       "size": 123933
     },
     {
@@ -70,7 +70,7 @@
       ],
       "output": "reverse_engineering/derived/mos8501/daad-plus4-ediplus4-official/independent-static-disassembly.txt",
       "returncode": 0,
-      "sha256": "82498bc6ed47b33ec5d7c19e61506dd9749b16564b4e83916ca23aec1d5526c6",
+      "sha256": "868e34587a88cb1ea98bd75bbce02edb4bca15920c291599de65ebb0405db37b",
       "tool": "architecture_static"
     },
     {
@@ -97,7 +97,7 @@
       ],
       "output": "reverse_engineering/derived/mos8501/daad-plus4-ediplus4-official/ghidra-headless.log",
       "returncode": 0,
-      "sha256": "e61642b4b591f95c901ac79ff60865ae0dca7d751e4c93c19123c850526c3a40",
+      "sha256": "110466cf975af122b738818e2d450e8f04ea71b5c2207e9e85a6d21d0acd7dc3",
       "tool": "ghidra"
     }
   ]

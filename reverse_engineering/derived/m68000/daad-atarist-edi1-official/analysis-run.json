@@ -3,7 +3,7 @@
   "architecture": "m68000",
   "artifact_id": "daad-atarist-edi1-official",
   "derived_from_sha256": "ecc25e01611b1b3f2546c63b67220011f1793809cb177543030d5b626520c7fd",
-  "generated_at": "2026-08-19T10:21:38.324331+00:00",
+  "generated_at": "2026-08-19T10:26:11.284922+00:00",
   "input_path": "reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG",
   "load_model": "raw_binary_base_0_unverified",
   "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
@@ -20,7 +20,7 @@
     },
     {
       "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-headless.log",
-      "sha256": "99aca907fd920eefa2af4120b9dd53bf6eb9baa3b37ebcee1a6dc5d5cab2ecb9",
+      "sha256": "062b539f06dcf7a8be2f189c4e9ea93ea97397d8f93ebee572fde33a1a423b9a",
       "size": 7428
     },
     {
@@ -103,7 +103,7 @@
       ],
       "output": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-headless.log",
       "returncode": 0,
-      "sha256": "99aca907fd920eefa2af4120b9dd53bf6eb9baa3b37ebcee1a6dc5d5cab2ecb9",
+      "sha256": "062b539f06dcf7a8be2f189c4e9ea93ea97397d8f93ebee572fde33a1a423b9a",
       "tool": "ghidra"
     }
   ]

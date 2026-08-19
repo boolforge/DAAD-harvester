@@ -1,0 +1,107 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "z80",
+  "artifact_id": "daad-pcw-pcwsdi-official",
+  "derived_from_sha256": "e52e2a8cc9e720805c7c6c7f8fe9fd706933c73696e695d7c1132063d4e52a7d",
+  "generated_at": "2026-08-19T10:25:12.419747+00:00",
+  "input_path": "reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-decompilation.c",
+      "sha256": "43232b106d044dc9f1749d7822704fe15ede5e34229582acc767388bcec37114",
+      "size": 16421
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-functions.tsv",
+      "sha256": "709fb4d2c50b531a7d743c4f9f8f421ef7beb947721c46552a2fda56986327bb",
+      "size": 497
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-headless.log",
+      "sha256": "77a8faaef6c929f470367e51278c80920c5044b5191bc55102a6bfef54d17d02",
+      "size": 8544
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-listing.txt",
+      "sha256": "65c18b4bb01d0751185ce0156910e46b336db98db5b76f31bcda2ca51b3697c5",
+      "size": 153004
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-metadata.json",
+      "sha256": "ccfa747cd0fb8416fee9e61ef483152e30d279e41add0d29612fd78c567a2b3d",
+      "size": 131
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/independent-static-disassembly.txt",
+      "sha256": "e5a4f43324726870721f8c8c47f3b09360f0b8bcabe371eb14f93c40f7c1eb35",
+      "size": 85821
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/radare2-analysis.txt",
+      "sha256": "64a6b24816825a4e16ac840cc9d450dcbcfa738941609b031750e43e2536a614",
+      "size": 1254595
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "z80",
+        "-b",
+        "8",
+        "-qc",
+        "aaa;afl;pD 8919",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "64a6b24816825a4e16ac840cc9d450dcbcfa738941609b031750e43e2536a614",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "z80dasm",
+        "-a",
+        "-g",
+        "0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "e5a4f43324726870721f8c8c47f3b09360f0b8bcabe371eb14f93c40f7c1eb35",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-pcw-pcwsdi-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "z80:LE:16:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/z80/daad-pcw-pcwsdi-official"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-pcw-pcwsdi-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "77a8faaef6c929f470367e51278c80920c5044b5191bc55102a6bfef54d17d02",
+      "tool": "ghidra"
+    }
+  ]
+}

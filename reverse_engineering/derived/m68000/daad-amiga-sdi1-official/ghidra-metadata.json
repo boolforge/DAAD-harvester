@@ -1,0 +1,6 @@
+{
+  "producer": "Ghidra ExportDAADAnalysis",
+  "program": "sdi1",
+  "min_address": "00000000",
+  "max_address": "00004a37"
+}

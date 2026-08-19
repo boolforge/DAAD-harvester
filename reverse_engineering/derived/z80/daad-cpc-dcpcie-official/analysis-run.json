@@ -1,0 +1,107 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "z80",
+  "artifact_id": "daad-cpc-dcpcie-official",
+  "derived_from_sha256": "7447b56073a6e65242214c505496742346a35de0e81777ed91ea44a2f115ee41",
+  "generated_at": "2026-08-19T10:24:30.267507+00:00",
+  "input_path": "reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-decompilation.c",
+      "sha256": "9768578dee3769ae8a153e1eefc60e7d91ae2ef164416d49f81d5a1b7ead1b73",
+      "size": 2414
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-functions.tsv",
+      "sha256": "634377dfd258956ddbd51b69d2a23e290e459d21ec7ffa3fd3e1e2b163df3c6d",
+      "size": 480
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-headless.log",
+      "sha256": "1c655d56df11cf4650e68f0c0b578f46386cc66fdb42aa6648dc4096af91ee46",
+      "size": 8252
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-listing.txt",
+      "sha256": "79c6c021943d4c5cc199b27430740dfe500bdc04f7754950d797665584cf0c23",
+      "size": 131802
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-metadata.json",
+      "sha256": "79c946d4eff279f1b6931c4efc0bc5ffe1aebcfdb236bb67e3dd7f0f3b2656c8",
+      "size": 131
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/independent-static-disassembly.txt",
+      "sha256": "1c23d35ffa1a7344e283cbb63f04c924b59b794710d95bd5a9d8ded4f36f6429",
+      "size": 73235
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/radare2-analysis.txt",
+      "sha256": "536dbc0d13114be1e84f750913f12addeae01e56ca0286083f4f60bef16a06d4",
+      "size": 1145747
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "z80",
+        "-b",
+        "8",
+        "-qc",
+        "aaa;afl;pD 7523",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "536dbc0d13114be1e84f750913f12addeae01e56ca0286083f4f60bef16a06d4",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "z80dasm",
+        "-a",
+        "-g",
+        "0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "1c23d35ffa1a7344e283cbb63f04c924b59b794710d95bd5a9d8ded4f36f6429",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-cpc-dcpcie-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "z80:LE:16:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/z80/daad-cpc-dcpcie-official"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-cpc-dcpcie-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "1c655d56df11cf4650e68f0c0b578f46386cc66fdb42aa6648dc4096af91ee46",
+      "tool": "ghidra"
+    }
+  ]
+}

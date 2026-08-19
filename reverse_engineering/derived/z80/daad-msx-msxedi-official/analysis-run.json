@@ -1,0 +1,107 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "z80",
+  "artifact_id": "daad-msx-msxedi-official",
+  "derived_from_sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+  "generated_at": "2026-08-19T10:24:36.843720+00:00",
+  "input_path": "reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-decompilation.c",
+      "sha256": "bc482fca1aec80746696ccf3228b6503348136ed12486a7da6d5a55319dc7d26",
+      "size": 4417
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-functions.tsv",
+      "sha256": "d7cec515ec9b41f3538dfbdb155c888ce0f4c1364d9ae2c22263f44f8d9f7d03",
+      "size": 480
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-headless.log",
+      "sha256": "50a6a03895f132543bc035dfa9ae1137151e19f9f096503b74ed9761596f8673",
+      "size": 8252
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-listing.txt",
+      "sha256": "53e56e7e43e83e2418fa2298a1d67b0734b05f980fbb00df112e04091c4c5d2c",
+      "size": 144232
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-metadata.json",
+      "sha256": "fd88473e1caec66e1e9cc74b7053dadce221947404d27dd495d10f5b9040b7dd",
+      "size": 131
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/independent-static-disassembly.txt",
+      "sha256": "84b48687579df6bbffb389e5856bb48f34ea7cf5bb14701a1b3f352bb01ab00d",
+      "size": 80460
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-msx-msxedi-official/radare2-analysis.txt",
+      "sha256": "78b4556d089d5856128bf1e2c84cbde4c91aaac05823bd4d93bb5433e34d96a5",
+      "size": 1189300
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "z80",
+        "-b",
+        "8",
+        "-qc",
+        "aaa;afl;pD 8400",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-msx-msxedi-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "78b4556d089d5856128bf1e2c84cbde4c91aaac05823bd4d93bb5433e34d96a5",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "z80dasm",
+        "-a",
+        "-g",
+        "0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-msx-msxedi-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "84b48687579df6bbffb389e5856bb48f34ea7cf5bb14701a1b3f352bb01ab00d",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-msx-msxedi-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "z80:LE:16:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/z80/daad-msx-msxedi-official"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-msx-msxedi-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "50a6a03895f132543bc035dfa9ae1137151e19f9f096503b74ed9761596f8673",
+      "tool": "ghidra"
+    }
+  ]
+}

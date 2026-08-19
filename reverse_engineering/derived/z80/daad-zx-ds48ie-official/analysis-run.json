@@ -3,7 +3,7 @@
   "architecture": "z80",
   "artifact_id": "daad-zx-ds48ie-official",
   "derived_from_sha256": "d599b14576cb46f72b34b106f6ad1079cdf0d346ed9ac44e89db7dbd0c0eb3d6",
-  "generated_at": "2026-08-19T10:21:19.861945+00:00",
+  "generated_at": "2026-08-19T10:24:23.679900+00:00",
   "input_path": "reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F",
   "load_model": "raw_binary_base_0_unverified",
   "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
@@ -20,8 +20,8 @@
     },
     {
       "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-headless.log",
-      "sha256": "1bab78bd941733a011628e9af72f79cad3490de6edcf0611601e16d3281960f2",
-      "size": 7150
+      "sha256": "f75e247d1f8209b50a4d710768658b03ee2044717e32a9bc592971962e695a0e",
+      "size": 8238
     },
     {
       "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-listing.txt",
@@ -100,7 +100,7 @@
       ],
       "output": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-headless.log",
       "returncode": 0,
-      "sha256": "1bab78bd941733a011628e9af72f79cad3490de6edcf0611601e16d3281960f2",
+      "sha256": "f75e247d1f8209b50a4d710768658b03ee2044717e32a9bc592971962e695a0e",
       "tool": "ghidra"
     }
   ]

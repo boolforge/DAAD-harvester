@@ -1,0 +1,6 @@
+{
+  "producer": "Ghidra ExportDAADAnalysis",
+  "program": "DCPCIS.Z80",
+  "min_address": "ram:0000",
+  "max_address": "ram:1dc4"
+}

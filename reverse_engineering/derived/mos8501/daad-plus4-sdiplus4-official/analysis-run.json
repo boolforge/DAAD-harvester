@@ -1,0 +1,104 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "mos8501",
+  "artifact_id": "daad-plus4-sdiplus4-official",
+  "derived_from_sha256": "f29050dfe9331634b985a8c5b8cb4ee3b164a4340e355c044284168b8610258c",
+  "generated_at": "2026-08-19T10:25:51.912662+00:00",
+  "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-decompilation.c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-functions.tsv",
+      "sha256": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
+      "size": 45
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-headless.log",
+      "sha256": "d7f6b38651f4ced347b848e48efa2e1bcd0a9b966ddd60a706bf7d96a4cce63d",
+      "size": 6881
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-listing.txt",
+      "sha256": "360b12c6a7b02d3096fe4b43fc8018b12c48b5992101d2c37fe7e428f80907a3",
+      "size": 167574
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-metadata.json",
+      "sha256": "8e34b9841820ba2e23421c9323ca96a45fc6b6a1f7cc21291d44038b2906f02a",
+      "size": 125
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/independent-static-disassembly.txt",
+      "sha256": "eed9cf713ec73f2e16ef15fae97997b87c2119f6fd5fec4aa1258e1c922aa6c8",
+      "size": 126490
+    },
+    {
+      "path": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/radare2-analysis.txt",
+      "sha256": "a63d1810d95d3832c0826993207222836127dff38082e7d4e5309f2702b6e8d5",
+      "size": 1491161
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "6502",
+        "-b",
+        "8",
+        "-qc",
+        "aaa;afl;pD 12367",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg"
+      ],
+      "output": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "a63d1810d95d3832c0826993207222836127dff38082e7d4e5309f2702b6e8d5",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "da65",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg"
+      ],
+      "output": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "eed9cf713ec73f2e16ef15fae97997b87c2119f6fd5fec4aa1258e1c922aa6c8",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-plus4-sdiplus4-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "6502:LE:16:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official"
+      ],
+      "output": "reverse_engineering/derived/mos8501/daad-plus4-sdiplus4-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "d7f6b38651f4ced347b848e48efa2e1bcd0a9b966ddd60a706bf7d96a4cce63d",
+      "tool": "ghidra"
+    }
+  ]
+}

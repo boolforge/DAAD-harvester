@@ -1,0 +1,6 @@
+{
+  "producer": "Ghidra ExportDAADAnalysis",
+  "program": "PCWEDI.BIN",
+  "min_address": "ram:0000",
+  "max_address": "ram:21f3"
+}

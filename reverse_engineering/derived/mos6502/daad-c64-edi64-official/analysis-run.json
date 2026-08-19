@@ -3,7 +3,7 @@
   "architecture": "mos6502",
   "artifact_id": "daad-c64-edi64-official",
   "derived_from_sha256": "c462192db2a552f079aa7d521f3ae23a3d5c066120b42108a905085e923932c5",
-  "generated_at": "2026-08-19T10:21:25.560166+00:00",
+  "generated_at": "2026-08-19T10:25:33.540409+00:00",
   "input_path": "reverse_engineering/artifacts/original/c64/daad-c64-edi64-official/edi64.prg",
   "load_model": "raw_binary_base_0_unverified",
   "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
@@ -20,7 +20,7 @@
     },
     {
       "path": "reverse_engineering/derived/mos6502/daad-c64-edi64-official/ghidra-headless.log",
-      "sha256": "7b93c2a3e553e9774d0a84310140840096ab0fe35d187936398e91616fab20d9",
+      "sha256": "a3d09ec335fdfe87ef67ab91b0be24066c8427a8f6b2e1198c063ca1e8f8240a",
       "size": 6802
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "reverse_engineering/derived/mos6502/daad-c64-edi64-official/independent-static-disassembly.txt",
-      "sha256": "a5fd53d9b7bef7420deb72f70426f3dc47914604f81a2824406222a653170fd3",
+      "sha256": "759b7ac2b43f71d3b0be16c0faf2e3d6b99f1e79f639cfb62efc818c8dff7057",
       "size": 119065
     },
     {
@@ -70,7 +70,7 @@
       ],
       "output": "reverse_engineering/derived/mos6502/daad-c64-edi64-official/independent-static-disassembly.txt",
       "returncode": 0,
-      "sha256": "a5fd53d9b7bef7420deb72f70426f3dc47914604f81a2824406222a653170fd3",
+      "sha256": "759b7ac2b43f71d3b0be16c0faf2e3d6b99f1e79f639cfb62efc818c8dff7057",
       "tool": "architecture_static"
     },
     {
@@ -97,7 +97,7 @@
       ],
       "output": "reverse_engineering/derived/mos6502/daad-c64-edi64-official/ghidra-headless.log",
       "returncode": 0,
-      "sha256": "7b93c2a3e553e9774d0a84310140840096ab0fe35d187936398e91616fab20d9",
+      "sha256": "a3d09ec335fdfe87ef67ab91b0be24066c8427a8f6b2e1198c063ca1e8f8240a",
       "tool": "ghidra"
     }
   ]
