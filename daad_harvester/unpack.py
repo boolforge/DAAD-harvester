@@ -379,47 +379,107 @@ class Unpacker:
     # --- Layer 2: Disk Images ---
 
     def unpack_dsk(self, data: bytes) -> List[Tuple[str, bytes]]:
-        """Parse CPC / Spectrum +3 .dsk disk image and extract file payloads."""
-        extracted = []
-        if len(data) < 0x100 or not (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU")):
+        """Extract CP/M files from standard and extended CPC DSK images.
+
+        A DSK track contains a header followed by individual sectors. The old
+        implementation treated each full track as every directory entry's
+        payload, which created garbage filenames and duplicated unrelated
+        sectors. This parser rebuilds the logical sector stream, reads CP/M
+        directory extents, and follows their 1 KiB allocation blocks.
+        """
+        if len(data) < 0x200 or not (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU")):
             return []
 
         try:
-            sides = data[0x31]
-            tracks = data[0x30]
+            tracks, sides = data[0x30], data[0x31]
+            if not tracks or not sides:
+                return []
 
-            files_map: dict[str, bytearray] = {}
+            extended = data.startswith(b"EXTENDED CPC DSK")
+            fixed_track_size = int.from_bytes(data[0x32:0x34], "little")
+            track_sizes = data[0x34:0x34 + tracks * sides] if extended else b""
             pos = 0x100
-            for t in range(tracks):
-                for s in range(sides):
-                    if pos + 0x100 > len(data):
+            logical_sectors = bytearray()
+
+            for track_index in range(tracks * sides):
+                track_size = (track_sizes[track_index] * 256) if extended else fixed_track_size
+                if not track_size:
+                    continue
+                if pos + min(track_size, 0x100) > len(data):
+                    break
+
+                track_header = data[pos:pos + 0x100]
+                if not track_header.startswith(b"Track-Info"):
+                    pos += track_size
+                    continue
+
+                sector_count = track_header[0x15]
+                sector_pos = pos + 0x100
+                track_end = min(pos + track_size, len(data))
+                for sector_index in range(sector_count):
+                    descriptor_offset = 0x18 + sector_index * 8
+                    descriptor = track_header[descriptor_offset:descriptor_offset + 8]
+                    if len(descriptor) != 8:
                         break
-                    if data[pos:pos+10] == b"Track-Info":
-                        sec_size = data[pos+0x14]
-                        sec_count = data[pos+0x15]
-                        pos += 0x100
-                        sector_bytes = (128 << sec_size) if sec_size <= 7 else 512
-                        track_data = data[pos:pos + (sec_count * sector_bytes)]
-                        pos += (sec_count * sector_bytes)
+                    sector_size = descriptor[6] | (descriptor[7] << 8)
+                    if not sector_size:
+                        size_code = descriptor[3]
+                        if size_code > 7:
+                            break
+                        sector_size = 128 << size_code
+                    if sector_pos + sector_size > track_end:
+                        break
+                    logical_sectors.extend(data[sector_pos:sector_pos + sector_size])
+                    sector_pos += sector_size
+                pos += track_size
 
-                        if t in (0, 1, 2):
-                            for entry_offset in range(0, len(track_data) - 32, 32):
-                                user_num = track_data[entry_offset]
-                                if user_num in range(16):
-                                    raw_fname = track_data[entry_offset+1:entry_offset+9].decode('ascii', errors='ignore').strip()
-                                    raw_ext = track_data[entry_offset+9:entry_offset+12].decode('ascii', errors='ignore').strip()
-                                    if raw_fname and not raw_fname.startswith('\xe5'):
-                                        fname = f"{raw_fname}.{raw_ext}" if raw_ext else raw_fname
-                                        if fname not in files_map:
-                                            files_map[fname] = bytearray()
-                                        files_map[fname].extend(track_data)
+            if len(logical_sectors) < 1024:
+                return []
 
-            for fname, fbytes in files_map.items():
-                extracted.append((fname, bytes(fbytes)))
+            def decode_cpm_name(raw: bytes) -> str:
+                cleaned = bytes(byte & 0x7F for byte in raw).decode("ascii", errors="ignore").strip(" \x00")
+                if not cleaned or not re.fullmatch(r"[A-Za-z0-9!#$%&'()@^_`{}~-]+", cleaned):
+                    return ""
+                return cleaned
+
+            file_extents: Dict[str, List[Tuple[int, int, bytes]]] = {}
+            # Standard CPC data formats reserve a small number of initial
+            # directory blocks. Scanning the first 2 KiB covers the common
+            # 64-entry directory while validating every entry before use.
+            for entry_offset in range(0, min(len(logical_sectors), 2048) - 31, 32):
+                entry = logical_sectors[entry_offset:entry_offset + 32]
+                user_number = entry[0]
+                if user_number > 15 or user_number == 0xE5:
+                    continue
+                base_name = decode_cpm_name(entry[1:9])
+                extension = decode_cpm_name(entry[9:12])
+                record_count = entry[15]
+                if not base_name or record_count == 0:
+                    continue
+                filename = f"{base_name}.{extension}" if extension else base_name
+                extent_number = entry[12] + 32 * (entry[14] & 0x3F)
+                blocks = bytes(block for block in entry[16:32] if block)
+                if not blocks:
+                    continue
+                file_extents.setdefault(filename, []).append((extent_number, record_count, blocks))
+
+            extracted: List[Tuple[str, bytes]] = []
+            for filename, extents in file_extents.items():
+                file_data = bytearray()
+                for _, record_count, blocks in sorted(extents):
+                    extent_data = bytearray()
+                    for block_number in blocks:
+                        start = block_number * 1024
+                        if start >= len(logical_sectors):
+                            continue
+                        extent_data.extend(logical_sectors[start:start + 1024])
+                    file_data.extend(extent_data[:record_count * 128])
+                if file_data:
+                    extracted.append((filename, bytes(file_data)))
+            return extracted
         except Exception as exc:
             logger.warning("dsk_parse_error", error=str(exc))
-
-        return extracted
+            return []
 
     def unpack_d64(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Parse C64 .d64 disk image."""

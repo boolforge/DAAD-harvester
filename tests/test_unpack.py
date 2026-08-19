@@ -256,3 +256,40 @@ def test_unpack_retry_failed_and_partially_unpacked_sources(tmp_path):
     updated_partial = next(s for s in db.get_all_sources() if s.id == src_partial_id)
     assert updated_failed.status == SourceStatus.UNPACKED.value
     assert updated_partial.status == SourceStatus.UNPACKED.value
+
+
+def _build_extended_cpc_dsk_with_one_file() -> tuple[bytes, bytes]:
+    """Create a minimal one-track CP/M CPC DSK for parser regression tests."""
+    disk_header = bytearray(0x100)
+    disk_header[:23] = b"EXTENDED CPC DSK File\r\n"
+    disk_header[0x30] = 1
+    disk_header[0x31] = 1
+    disk_header[0x34] = 0x13  # 0x100-byte track header + 9 * 512-byte sectors
+
+    track_header = bytearray(0x100)
+    track_header[:12] = b"Track-Info\r\n"
+    track_header[0x14] = 2
+    track_header[0x15] = 9
+    for index in range(9):
+        offset = 0x18 + index * 8
+        track_header[offset:offset + 8] = bytes([0, 0, 0xC1 + index, 2, 0, 0, 0, 2])
+
+    sectors = bytearray(9 * 512)
+    directory = bytearray(32)
+    directory[0] = 0
+    directory[1:9] = b"GAME    "
+    directory[9:12] = b"BIN"
+    directory[15] = 8  # eight 128-byte records
+    directory[16] = 2  # logical allocation block 2 starts at byte 2048
+    sectors[:32] = directory
+    payload = b"DAAD" + b"\x7f" * 1020
+    sectors[2048:2048 + len(payload)] = payload
+    return bytes(disk_header + track_header + sectors), payload
+
+
+def test_unpack_dsk_reconstructs_cpm_extent_payload(tmp_path):
+    db = Database(tmp_path / "test.db")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    disk, payload = _build_extended_cpc_dsk_with_one_file()
+
+    assert unpacker.unpack_dsk(disk) == [("GAME.BIN", payload)]
