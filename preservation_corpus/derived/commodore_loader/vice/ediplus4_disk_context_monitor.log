@@ -1,0 +1,3 @@
+2026/08/19 11:54:49 socat[50578] E connect(6, AF=2 127.0.0.1:6510, 16): Connection refused
+monitor_exit_status=1
+emulator_exit_status=1

@@ -1,0 +1,30 @@
+(C:$d90f)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;d90f 00 00 00 f2 0f d8 00100011 000 000    2027376
+(C:$d90f) Displaying 40x25 screen at $0c00:
+0c00                                          
+0c28   commodore basic v3.5 60671 bytes free  
+0c50   3-plus-1 on key f1                     
+0c78                                          
+0ca0  ready.                                  
+0cc8                                          
+0cf0                                          
+0d18                                          
+0d40                                          
+0d68                                          
+0d90                                          
+0db8                                          
+0de0                                          
+0e08                                          
+0e30                                          
+0e58                                          
+0e80                                          
+0ea8                                          
+0ed0                                          
+0ef8                                          
+0f20                                          
+0f48                                          
+0f70                                          
+0f98                                          
+0fc0                                          
+(C:$d90f) (C:$d90f) (C:$d90f) monitor_exit_status=0
+emulator_exit_status=0

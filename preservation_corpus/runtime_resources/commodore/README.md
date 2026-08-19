@@ -13,6 +13,10 @@ All firmware, emulator configuration, execution captures, and derived RAM images
 
 The C64 BASIC and KERNAL images are built from the pinned, committed [`source/c64rom/`](source/c64rom/) mirror and were compared byte-for-byte to independent archived binaries. The character ROM and Plus/4 ROMs are retained directly from the primary preservation archive. The `C64` symbolic link exists solely because VICE resolves C64 system files under a machine-named subdirectory of its configured search root.
 
+VICE resolves the retained Plus/4 PAL system files below a `PLUS4` machine directory, using `kernal-318004-05.bin` and `basic-318006-01.bin`. The retained `plus4` directory preserves the primary archive filenames; the corresponding `PLUS4` directory and VICE-default names are symbolic links only. This arrangement keeps byte identity, source naming, and emulator compatibility independently visible. [1] [5]
+
+The Plus/4 path now boots reproducibly with the retained BASIC, KERNAL, and both 3-Plus-1 function ROMs. The project also retains the primary 1541C DOS ROM used for hardware-level serial-drive tests. The retained `EDIPLUS4` loader decodes to `1 SYS2063:REM`, with a machine-code jump from `$080f` to `$356b`. Its D64 directory has been independently listed as containing `EDIPLUS4`; nevertheless, the hardware-emulated Plus/4 run currently reports `FILE NOT FOUND` for that entry. The complete logs, screen captures, snapshots, command transcripts, and static BASIC evidence are retained as a reproducible media/target-interaction loop, not presented as a completed execution result.
+
 ## Bounded C64 loader capture
 
 The Jabato C64 D64 was run with the retained ROM resources, VICE virtual IEC drive traps, a fixed local monitor address, and an explicit cycle ceiling. The title screen was advanced by a single space input. The resulting screenshot, VICE snapshot, exact 64 KiB `C64MEM` RAM range, monitor transcript, and structural DDB-candidate report are retained under [`../../derived/commodore_loader/vice/`](../../derived/commodore_loader/vice/).

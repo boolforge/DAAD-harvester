@@ -11,6 +11,8 @@
     "c64_search_root": ".",
     "c64_machine_directory": "C64",
     "c64_machine_directory_target": "c64",
+    "plus4_machine_directory": "PLUS4",
+    "plus4_machine_directory_target": "plus4",
     "virtual_drive_mode": "drive8 true-drive emulation disabled; virtual IEC traps used for retained D64 loading"
   },
   "source_mirrors": [
@@ -84,6 +86,39 @@
         "method": "primary_preservation_download",
         "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/plus4/kernal.318004-05.bin"
       }
+    },
+    {
+      "platform": "plus4",
+      "path": "plus4/3-plus-1.317053-01.bin",
+      "role": "3-Plus-1 function ROM low",
+      "size": 16384,
+      "sha256": "628eb4b01b8701e6fc5bd4b7e9e6573deae47e0b0f8b150b4022596501d5131d",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/plus4/3-plus-1.317053-01.bin"
+      }
+    },
+    {
+      "platform": "plus4",
+      "path": "plus4/3-plus-1.317054-01.bin",
+      "role": "3-Plus-1 function ROM high",
+      "size": 16384,
+      "sha256": "2e83bfdfd93a2d9e8adfe4bb302869a30eac12015f6b41302c9d1ed3bb83de16",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/computers/plus4/3-plus-1.317054-01.bin"
+      }
+    },
+    {
+      "platform": "commodore_1541",
+      "path": "drives/dos1541.251968-01.bin",
+      "role": "1541C DOS ROM for hardware-level serial-drive emulation",
+      "size": 16384,
+      "sha256": "880350e0b4266bc94d3b1346d5ff993921f9486818f0f419ca968ea0ccb9a2a8",
+      "provenance": {
+        "method": "primary_preservation_download",
+        "source_url": "https://www.zimmers.net/anonftp/pub/cbm/firmware/drives/new/1541/1541C.251968-01.bin"
+      }
     }
   ],
   "captures": [
@@ -97,6 +132,13 @@
       "ram": "../../derived/commodore_loader/vice/jabato_c64_after_space.bin",
       "ram_sha256": "ac3f383442d28b668cf76e6c22707511372c77406cbafcc597f68c138badcf89",
       "result": "Game introduction reached; no structurally validated DDB range detected in the captured RAM image."
+    },
+    {
+      "platform": "plus4",
+      "source_artifact_sha256": "3a9617f03ba18edd2be29abe6dfcc383f47a81b77ab37be98be585aea9c38a49",
+      "title": "Eight Feet Under / EDIPLUS4 loader",
+      "interaction": "Verified Plus/4 BASIC V3.5 boot; direct program injection and hardware-level 1541 D64 load attempts; static bootstrap decodes as `1 SYS2063:REM`, jumping from $080f to $356b.",
+      "result": "The complete Plus/4 and 1541 firmware set initializes successfully. The hardware 1541 reaches the retained D64 but BASIC reports `FILE NOT FOUND` for an independently verified `EDIPLUS4` directory entry. This target/media interaction remains a retained, reproducible reconstruction loop."
     }
   ]
 }

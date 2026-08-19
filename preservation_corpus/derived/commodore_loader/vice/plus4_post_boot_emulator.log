@@ -1,0 +1,74 @@
+Detecting ISA HardSID boards.
+Could not open '/dev/port'.
+Cannot get permission to access $300.
+Detecting PCI HardSID boards.
+No PCI HardSID boards found.
+ 
+*** VICE Version 3.7.1 ***
+ 
+Welcome to xplus4, the free portable PLUS4 Emulator.
+ 
+Current VICE team members:
+Martin Pottendorfer, Marco van den Heuvel, Fabrizio Gennari, Groepaz, 
+Errol Smith, Ingo Korb, Olaf Seibert, Marcus Sutton, Kajtar Zsolt, AreaScout, 
+Bas Wassink, Michael C. Martin, Christopher Phillips, David Hogan, 
+Empathic Qubit, Roberto Muscedere, June Tate-Gans, Pablo Roldan.
+ 
+This is free software with ABSOLUTELY NO WARRANTY.
+See the "About VICE" command for more info.
+ 
+random seed was: 0x6a8599a5
+command line was: xplus4 -console +warp +sound -directory /home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore +drive8truedrive -8 /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_a8315879_eight_feet_under.d64 -remotemonitor -remotemonitoraddress ip4://127.0.0.1:6510 -limitcycles 10000000
+Loading system file `/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore/PLUS4/kernal-318004-05.bin'.
+Loading system file `/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore/PLUS4/basic-318006-01.bin'.
+Loading system file `/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore/PLUS4/3plus1-317053-01.bin'.
+Loading system file `/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore/PLUS4/3plus1-317054-01.bin'.
+GTK3MOUSE: Status changed: 0 (disabled)
+MPS-803: Error - Could not load MPS-803 charset 'mps803.bin'.
+Palette: Error - Palette not found: `mps803.vpl'.
+MPS-803: Error - Cannot load palette file `mps803.vpl'.
+NL10: Error - Could not load NL-10 ROM file 'nl10.bin'.
+Palette: Error - Palette not found: `1520.vpl'.
+plot1520: Error - Cannot load palette file `1520.vpl'.
+DriveROM: Error - 1540 ROM image not found. Hardware-level 1540 emulation is not available.
+DriveROM: Error - 1541 ROM image not found. Hardware-level 1541 emulation is not available.
+DriveROM: Error - 1541-II ROM image not found. Hardware-level 1541-II emulation is not available.
+DriveROM: Error - 1570 ROM image not found. Hardware-level 1570 emulation is not available.
+DriveROM: Error - 1571 ROM image not found. Hardware-level 1571 emulation is not available.
+DriveROM: Error - 1581 ROM image not found. Hardware-level 1581 emulation is not available.
+DriveROM: Error - 2000 ROM image not found. Hardware-level 2000 emulation is not available.
+DriveROM: Error - 4000 ROM image not found. Hardware-level 4000 emulation is not available.
+DriveROM: Error - CMDHD ROM image not found. Hardware-level CMDHD emulation is not available.
+DriveROM: Error - 1551 ROM image not found. Hardware-level 1551 emulation is not available.
+Drive: Finished loading ROM images.
+opening dynamic library libmp3lame.so failed!
+ERROR setting up dynamic lame lib!
+Sound: Available sound devices: pulse alsa dummy fs dump wav voc iff aiff mp3 soundmovie
+Joystick: Linux joystick interface initialization...
+Joystick: Warning - Cannot open joystick device `/dev/input/js0'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js1'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js2'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js3'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js4'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js5'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js6'.
+Joystick: Warning - Cannot open joystick device `/dev/input/js7'.
+Error - Default keymap not found, this should be fixed. Going on anyway...
+Main CPU: starting at ($FFFC).
+Main CPU: RESET.
+Sync reset
+Increasing trap_func array size to 1 with 1 to run
+VICE thread initiating shutdown
+VICE thread is exiting
+
+Resources with non default values:
+Directory="/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore"
+Sound=0
+Drive8TrueEmulation=0
+Drive8Type=0
+MonitorServer=1
+
+reconstructed commandline options (might be incomplete):
+-default -directory "/home/ubuntu/DAAD-harvester/preservation_corpus/runtime_resources/commodore" +sound -drive8type "0" +drive8truedrive -remotemonitor
+
+VICE thread has been joined.

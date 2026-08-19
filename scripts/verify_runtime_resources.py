@@ -62,15 +62,26 @@ def main() -> int:
             errors.append("manifest has a non-object capture entry")
             continue
         for field, checksum_field in (("snapshot", "snapshot_sha256"), ("ram", "ram_sha256")):
-            path = (MANIFEST.parent / str(capture.get(field, ""))).resolve()
+            recorded = capture.get(field)
+            if recorded is None:
+                continue
+            if not capture.get(checksum_field):
+                errors.append(f"capture {field} has no SHA-256")
+                continue
+            path = (MANIFEST.parent / str(recorded)).resolve()
             if not path.is_file():
-                errors.append(f"missing capture {field}: {capture.get(field)!r}")
+                errors.append(f"missing capture {field}: {recorded!r}")
             elif sha256(path) != capture.get(checksum_field):
                 errors.append(f"hash mismatch for capture {field}: {path.relative_to(ROOT)}")
+        if not capture.get("result"):
+            errors.append("capture has no measured result")
 
     c64_link = MANIFEST.parent / "C64"
     if not c64_link.is_symlink() or c64_link.resolve() != (MANIFEST.parent / "c64").resolve():
         errors.append("C64 VICE machine-directory link does not resolve to the retained C64 resources")
+    plus4_link = MANIFEST.parent / "PLUS4"
+    if not plus4_link.is_symlink() or plus4_link.resolve() != (MANIFEST.parent / "plus4").resolve():
+        errors.append("Plus/4 VICE machine-directory link does not resolve to the retained Plus/4 resources")
 
     if errors:
         print("Runtime-resource verification failed:")
