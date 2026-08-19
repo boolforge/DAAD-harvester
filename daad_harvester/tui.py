@@ -118,9 +118,9 @@ class TUIDashboard:
         daad_artifacts = [a for a in artifacts if a.is_daad_payload]
         games = self.db.get_all_games()
         catalog_sources = [source for source in sources if source.known_game_id]
-        priority_cpc_sources = [
+        priority_catalog_sources = [
             source for source in catalog_sources
-            if source.platform == "cpc" and source.acquisition_priority >= 1200
+            if source.acquisition_priority >= 1000
         ]
 
         downloaded_sources = sum(1 for s in sources if s.status == "downloaded")
@@ -140,7 +140,7 @@ class TUIDashboard:
         table.add_row("Failed/Dead Sources", f"[red]{dead_sources + error_sources}[/red]")
         table.add_row("Extracted Artifacts", str(len(artifacts)))
         table.add_row("Catalog-backed Candidates", f"[cyan]{len(catalog_sources)}[/cyan]")
-        table.add_row("Priority CPC Candidates", f"[bold yellow]{len(priority_cpc_sources)}[/bold yellow]")
+        table.add_row("Evidence-Prioritized Candidates", f"[bold yellow]{len(priority_catalog_sources)}[/bold yellow]")
         table.add_row("Verified DAAD Payloads", f"[bold gold1]{len(daad_artifacts)}[/bold gold1]")
         table.add_row("ScummVM Catalog Entries", f"[green]{len(games)}[/green]")
         table.add_row("Elapsed Time", f"{elapsed:.1f}s")

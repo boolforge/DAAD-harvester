@@ -14,6 +14,8 @@ from typing import Dict, Iterable, Optional, Tuple
 import re
 import unicodedata
 
+from daad_harvester.provenance import normalize_platform
+
 
 WIKICAAD_DAAD_URL = "https://wiki.caad.es/DAAD"
 COMPUTER_EMUZONE_DAAD_URL = "https://computeremuzone.com/engine/daad?l=en"
@@ -56,7 +58,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL, CASA_AVENTURA_ORIGINAL_URL),
     ),
     KnownGame(
@@ -67,7 +69,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL),
     ),
     KnownGame(
@@ -78,7 +80,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL),
     ),
     KnownGame(
@@ -89,7 +91,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL),
     ),
     KnownGame(
@@ -100,7 +102,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "pcw", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL),
     ),
     KnownGame(
@@ -111,7 +113,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         publisher="Aventuras AD",
         engine_family="DAAD",
         engine_version_evidence="Exact commercial DAAD build unverified; fingerprint a platform payload before claiming a version.",
-        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "pc"),
+        platforms=("zx", "cpc", "c64", "msx", "atarist", "amiga", "dos"),
         evidence_urls=(WIKICAAD_DAAD_URL, COMPUTER_EMUZONE_DAAD_URL, CASA_CHICHEN_ITZA_URL, CPC_POWER_CHICHEN_ITZA_URL),
         notes="CPC Power also records a dated 1991-10-14 CPC master variant; this is release evidence, not a DAAD compiler-version claim.",
     ),
@@ -147,16 +149,17 @@ def find_known_game(title: Optional[str]) -> Optional[KnownGame]:
 
 
 def acquisition_priority(game: Optional[KnownGame], platform: Optional[str]) -> int:
-    """Prioritize proven historical titles and fill the CPC evidence gap first.
+    """Prioritize evidence-backed releases without privileging one platform.
 
     Priority is an acquisition ordering value, not a quality or historical
-    importance score. Unknown sources remain eligible and receive zero.
+    importance score. A known title with a source-confirmed target receives
+    the same baseline on every official DAAD platform; source-specific evidence
+    strength is applied by discovery adapters in a later stage.
     """
     if not game:
         return 0
-    if platform == "cpc":
-        return 1200
-    if platform in game.platforms:
+    canonical_platform = normalize_platform(platform) or platform
+    if canonical_platform in game.platforms:
         return 1000
     return 900
 

@@ -282,6 +282,8 @@ class Discoverer:
                 metadata = await self._fetch_url(client, metadata_url, is_json=True)
                 metadata_fields = (metadata or {}).get("metadata") or {}
                 collections = set(metadata_fields.get("collection") or [])
+                # Preserve explicit platform metadata when present, but do not
+                # elevate any one target above the other official DAAD machines.
                 archive_platform = (
                     "cpc"
                     if {"softwarelibrary_cpc", "softwarelibrary_cpc_games"} & collections

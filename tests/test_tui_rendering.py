@@ -117,7 +117,7 @@ def test_render_survives_many_update_cycles(tmp_path):
         console.print(dash.render())
 
 
-def test_render_priority_queue_exposes_catalog_and_cpc_priority(tmp_path):
+def test_render_priority_queue_exposes_catalog_and_platform_neutral_priority(tmp_path):
     db = Database(tmp_path / "test.db")
     db.add_source(
         "https://example.com/chichen.dsk",
@@ -125,12 +125,12 @@ def test_render_priority_queue_exposes_catalog_and_cpc_priority(tmp_path):
         title="Chichén Itzá",
         platform="cpc",
         known_game_id="chichen_itza",
-        acquisition_priority=1200,
+        acquisition_priority=1000,
     )
     dash = TUIDashboard(db)
     text = _render(dash, tabs=(1, 2))
 
     assert "Priority Acquisition" in text
     assert "chichen_itza" in text
-    assert "1200" in text
-    assert "Priority CPC Candidates" in text
+    assert "1000" in text
+    assert "Evidence-Prioritized Candidates" in text

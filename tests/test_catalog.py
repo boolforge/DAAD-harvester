@@ -16,7 +16,7 @@ def test_known_game_catalog_matches_aliases_without_claiming_an_exact_engine_bui
     assert chichen is not None
     assert chichen.game_id == "chichen_itza"
     assert "Exact commercial DAAD build unverified" in chichen.engine_version_evidence
-    assert acquisition_priority(chichen, "cpc") > acquisition_priority(chichen, "zx")
+    assert acquisition_priority(chichen, "cpc") == acquisition_priority(chichen, "zx") == 1000
 
 
 def test_discovery_persists_catalog_identity_and_orders_cpc_first(tmp_path):
@@ -35,7 +35,7 @@ def test_discovery_persists_catalog_identity_and_orders_cpc_first(tmp_path):
 
     pending = db.get_pending_sources()
     assert [source.known_game_id for source in pending] == ["chichen_itza", "cozumel", None]
-    assert pending[0].acquisition_priority == 1200
+    assert pending[0].acquisition_priority == 1000
     assert pending[0].title == "Chichén Itzá"
     assert pending[0].year == 1992
     assert pending[0].publisher == "Aventuras AD"
@@ -71,4 +71,4 @@ def test_evidence_catalog_export_keeps_source_evidence_separate_from_binary_veri
     assert aventura["engine"]["family"] == "DAAD"
     assert aventura["engine"]["binary_verification_required"] is True
     assert aventura["queued_sources"][0]["platform"] == "cpc"
-    assert aventura["queued_sources"][0]["priority"] == 1200
+    assert aventura["queued_sources"][0]["priority"] == 1000

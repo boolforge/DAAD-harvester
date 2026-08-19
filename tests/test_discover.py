@@ -305,7 +305,7 @@ async def test_discover_world_of_spectrum_uses_publisher_catalog_and_verified_de
 
 
 @pytest.mark.anyio
-async def test_internet_archive_cpc_metadata_sets_verified_cpc_priority(tmp_path):
+async def test_internet_archive_cpc_metadata_preserves_platform_without_special_priority(tmp_path):
     db = Database(tmp_path / "test.db")
     discoverer = Discoverer(db)
     search_result = {
@@ -332,4 +332,4 @@ async def test_internet_archive_cpc_metadata_sets_verified_cpc_priority(tmp_path
     source = db.get_pending_sources()[0]
     assert source.known_game_id == "chichen_itza"
     assert source.platform == "cpc"
-    assert source.acquisition_priority == 1200
+    assert source.acquisition_priority == 1000
