@@ -162,3 +162,11 @@ def test_interpreter_profile_exact_hash_is_marked_verified(tmp_path: Path, monke
     assert match.confidence == "verified"
     assert match.profile_id == "fixture-dos-runtime"
     assert match.interpreter_version == "fixture-1.0"
+
+
+def test_official_profile_catalog_has_exact_anchors_for_all_platforms() -> None:
+    from daad_harvester.interpreter_profiles import OFFICIAL_INTERPRETER_PROFILES
+
+    platforms = {profile.platform for profile in OFFICIAL_INTERPRETER_PROFILES if profile.sha256}
+    assert platforms == set(PLATFORMS)
+    assert all(len(profile.sha256 or "") == 64 for profile in OFFICIAL_INTERPRETER_PROFILES if profile.sha256)
