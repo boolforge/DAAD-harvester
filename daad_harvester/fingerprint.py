@@ -18,7 +18,7 @@ from daad_harvester.config import settings
 from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.daad_parser import DAADParser
 from daad_harvester.db import Database
-from daad_harvester.interpreter_profiles import InterpreterMatch, identify_interpreter_file, identify_interpreters
+from daad_harvester.interpreter_profiles import InterpreterMatch, identify_interpreter_file
 from daad_harvester.models import ArtifactRecord
 from daad_harvester.provenance import EvidenceConfidence, EvidenceKind, VersionEvidence
 
@@ -72,6 +72,31 @@ class Fingerprinter:
             for match in matches
         ]
 
+    def _identify_candidate_interpreters(self, path: Path) -> list[InterpreterMatch]:
+        """Identify nearby extracted members using persisted original filenames.
+
+        The unpacker deliberately prefixes physical storage names with depth and
+        hash material. Runtime filename evidence must therefore be recovered
+        from artifact provenance, not inferred from that safe storage path.
+        """
+
+        original_names: dict[str, str] = {}
+        for candidate_artifact in self.db.get_all_artifacts():
+            try:
+                original_names[str(Path(candidate_artifact.extracted_path).resolve())] = candidate_artifact.original_filename
+            except OSError:
+                continue
+        found: dict[tuple[str, str], InterpreterMatch] = {}
+        for candidate in self._candidate_interpreter_paths(path):
+            try:
+                observed = original_names.get(str(candidate.resolve()), candidate.name)
+            except OSError:
+                observed = candidate.name
+            match = identify_interpreter_file(candidate, observed_filename=observed)
+            if match is not None:
+                found[(match.profile_id, match.sha256)] = match
+        return sorted(found.values(), key=lambda item: (item.platform, item.profile_id, item.filename))
+
     def _record_interpreter_only(self, artifact: ArtifactRecord, matches: list[InterpreterMatch]) -> None:
         best = self._best_interpreter_match(matches, None)
         if best is None:
@@ -114,7 +139,7 @@ class Fingerprinter:
                     embedded_offset, embedded_data = embedded
                     analysis = self.parser.parse_ddb(embedded_data, f"embedded_{artifact.original_filename}.ddb")
 
-            matches = identify_interpreters(self._candidate_interpreter_paths(path))
+            matches = self._identify_candidate_interpreters(path)
             own_match = identify_interpreter_file(path, observed_filename=artifact.original_filename)
             if own_match is not None and all(
                 (match.profile_id, match.sha256) != (own_match.profile_id, own_match.sha256)

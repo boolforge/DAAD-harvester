@@ -75,6 +75,23 @@ def test_fingerprint_correlates_neighbouring_interpreter_filename_without_overcl
     assert interpreter.confidence == "strong"
 
 
+def test_fingerprint_uses_persisted_original_name_for_prefixed_neighbour_runtime(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    payload_path = tmp_path / "depth2_payload_adventure.ddb"
+    payload_path.write_bytes(make_ddb("cpc"))
+    runtime_path = tmp_path / "depth2_7447b560_DCPCIE.Z80"
+    runtime_path.write_bytes(b"modified interpreter")
+    artifact = _artifact(db, payload_path, filename="ADVENTURE.DDB")
+    artifact.id = db.add_artifact(artifact)
+    runtime_artifact = _artifact(db, runtime_path, filename="DCPCIE.Z80")
+    runtime_artifact.id = db.add_artifact(runtime_artifact)
+
+    assert Fingerprinter(db).scan_artifact(artifact) is True
+    persisted = next(item for item in db.get_all_artifacts() if item.id == artifact.id)
+    assert persisted.interpreter_identity == "daad-cpc-dcpcie-official"
+    assert persisted.fingerprint_confidence == "verified"
+
+
 def test_historical_plus4_runtime_name_is_qualified_interpreter_evidence_only(tmp_path: Path) -> None:
     db = Database(tmp_path / "state.db")
     runtime_path = tmp_path / "depth2_a4aff539_EDIPLUS4"
