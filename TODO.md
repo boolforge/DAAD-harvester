@@ -107,7 +107,8 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 ### 9. DAAD game decompiler research and differential implementation
 
 - [ ] Inventory every reachable public DAAD game decompiler, decompiler-like tool, compiler inverse, source recovery project, and format reader; retain complete pinned source/release inputs and document exact platform/version/format scope.
-- [ ] Build a modular preservation decompiler that accepts measured DDB, runtime, media, and execution-trace evidence; emit structured source-like output, byte-range lineage, confidence, ambiguity, and tool/version metadata for every recovered construct.
+- [ ] Build a modular DAAD game/DDB preservation decompiler, comparable in purpose to UnDAAD but broader and evidence-linked; recover vocabulary, messages, locations, objects, connections, processes, condacts, flags, attributes, graphics/media references, and DSF/SCE-like output with byte-range lineage, confidence, ambiguity, and tool/version metadata.
 - [ ] Implement platform-aware profiles for ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS, separating shared DDB semantics from platform loader/media/runtime differences.
 - [ ] Differentially compare the new decompiler with every retained public implementation/decompiler and independently reproduce disagreements against original bytes, traces, and known game fixtures.
 - [ ] Add exhaustive real-artifact regression tests, deterministic output fixtures, source-map/evidence manifests, documentation, and report integration before promoting any recovered interpretation beyond its evidence level.
+- [ ] Keep the DAAD game/DDB decompiler explicitly separate from interpreter-binary disassembly/decompilation while linking both evidence layers through runtime version, media lineage, and measured execution behavior.
