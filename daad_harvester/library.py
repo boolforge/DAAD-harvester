@@ -90,6 +90,7 @@ class LibraryBuilder:
         sources = {source.id: source for source in self.db.get_all_sources()}
         entries: list[Dict[str, Any]] = []
         summary: Counter[str] = Counter()
+        destinations: set[Path] = set()
 
         for artifact in self.db.get_all_artifacts():
             source = sources.get(artifact.source_id)
@@ -102,6 +103,10 @@ class LibraryBuilder:
             display_filename = re.sub(r"^\d+_", "", artifact.original_filename)
             artifact_component = _path_component(display_filename, f"artifact_{artifact.id}")
             destination = self.library_dir / platform_component / game_component / classification / artifact_component
+            if destination in destinations:
+                artifact_component = f"{artifact_component}__artifact_{artifact.id}"
+                destination = self.library_dir / platform_component / game_component / classification / artifact_component
+            destinations.add(destination)
 
             entry: Dict[str, Any] = {
                 "artifact_id": artifact.id,

@@ -6,7 +6,7 @@ from daad_harvester.library import LibraryBuilder
 from daad_harvester.models import ArtifactRecord
 
 
-def _add_artifact(db, source_id, path, filename, *, is_daad=False, platform_hint=None):
+def _add_artifact(db, source_id, path, filename, *, is_daad=False, platform_hint=None, sha256=None):
     data = path.read_bytes() if path.exists() else b""
     return db.add_artifact(
         ArtifactRecord(
@@ -18,7 +18,7 @@ def _add_artifact(db, source_id, path, filename, *, is_daad=False, platform_hint
             file_size=len(data),
             md5_full="a" * 32,
             md5_5000="b" * 32,
-            sha256=("c" if filename.endswith(".dsk") else "d") * 64,
+            sha256=sha256 or (("c" if filename.endswith(".dsk") else "d") * 64),
             is_daad_payload=is_daad,
             platform_hint=platform_hint,
         )
@@ -73,3 +73,21 @@ def test_library_builder_records_missing_artifacts_without_creating_a_false_libr
     assert entry["classification"] == "ready_to_use"
     assert entry["materialization"] == "missing_source_file"
     assert not (tmp_path / entry["library_path"]).exists()
+
+
+def test_library_builder_retains_duplicate_member_names_as_distinct_paths(tmp_path):
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source(
+        "https://example.com/chichen.tap", "archive", title="Chichén Itzá", platform="zx", known_game_id="chichen_itza"
+    )
+    part1, part2 = tmp_path / "part1.ddb", tmp_path / "part2.ddb"
+    part1.write_bytes(b"part-one")
+    part2.write_bytes(b"part-two")
+    _add_artifact(db, source_id, part1, "CODE__embedded_002400.ddb", is_daad=True, platform_hint="zx", sha256="d" * 64)
+    _add_artifact(db, source_id, part2, "CODE__embedded_002400.ddb", is_daad=True, platform_hint="zx", sha256="e" * 64)
+
+    manifest = json.loads(LibraryBuilder(db, tmp_path).build().read_text(encoding="utf-8"))
+    entries = manifest["artifacts"]
+    assert len({entry["library_path"] for entry in entries}) == 2
+    assert any("__artifact_" in entry["library_path"] for entry in entries)
+    assert {Path(tmp_path / entry["library_path"]).read_bytes() for entry in entries} == {b"part-one", b"part-two"}

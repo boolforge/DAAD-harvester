@@ -176,9 +176,10 @@ class DAADBytecodeParser:
 
         MSX2DAAD's `DDB_Header` declares this 34-byte structure: version,
         target/language, literal 0x5F control marker, five counts, twelve
-        relative section offsets, and a relative file length. The interpreter
-        relocates each offset after loading the DDB, so this validator treats
-        them as bounded file-relative positions rather than DRC base addresses.
+        section offsets, and a file-length word. Public derivative layouts use
+        file-relative values, while retained historical native images can keep
+        the same fields as target-memory addresses. Both forms are accepted
+        only when their complete bounded range validates structurally.
         """
         if offset < 0 or len(data) - offset < LEGACY_HEADER_SIZE:
             return None
@@ -188,7 +189,7 @@ class DAADBytecodeParser:
         target = MACHINE_IDS.get(machine_id)
         if major not in {1, 2} or target is None or data[offset + 2] != 0x5F:
             return None
-        platform, _, _ = target
+        platform, target_base, _ = target
         # MSX2DAAD documents little-endian offsets for its V2 target.  68000
         # historical targets store 16-bit values in Motorola order; the other
         # original 8-bit and DOS targets are little-endian.
@@ -198,11 +199,24 @@ class DAADBytecodeParser:
             for index in range(LEGACY_POINTER_COUNT)
         )
         file_length = pointers[12]
+        available_size = len(data) - offset
+        absolute_size = file_length - target_base
+        # Historical native DDBs may retain machine addresses. Prefer that
+        # model only when its declared end, after target-base subtraction, is a
+        # complete header-sized range inside this candidate. Relative layouts
+        # (including MSX2DAAD) retain base zero.
+        base_address = (
+            target_base
+            if target_base
+            and absolute_size >= LEGACY_HEADER_SIZE
+            and absolute_size <= available_size
+            else 0
+        )
         return DDBHeader(
             major_version=major,
             machine_id=machine_id,
             platform=platform,
-            base_address=0,
+            base_address=base_address,
             endianness=endianness,
             language="es" if machine_language & 0x01 else "en",
             submachine=data[offset + 2],

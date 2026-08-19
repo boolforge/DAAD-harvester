@@ -40,6 +40,22 @@ def test_historical_v2_header_verifies_every_official_daad_target(platform: str)
     assert result["details"]["header"]["layout"] == "legacy"
 
 
+def test_historical_zx_header_accepts_target_absolute_section_addresses() -> None:
+    payload = bytearray(make_legacy_ddb("zx"))
+    base = 0x8400
+    for index in range(13):
+        offset = 8 + index * 2
+        relative = int.from_bytes(payload[offset:offset + 2], "little")
+        if relative:
+            payload[offset:offset + 2] = (base + relative).to_bytes(2, "little")
+    payload[56:60] = bytes((1, 1)) + (base + 64).to_bytes(2, "little")
+    payload[72:74] = (base + 56).to_bytes(2, "little")
+    result = DAADBytecodeParser().parse_ddb(bytes(payload), "native_zx.ddb")
+    assert result["is_daad"] is True
+    assert result["platform"] == "zx"
+    assert result["details"]["header"]["base_address"] == base
+
+
 def test_historical_v1_database_is_distinguished_from_v2_without_toolchain_guess() -> None:
     result = DAADBytecodeParser().parse_ddb(make_legacy_ddb("zx", major=1, spanish=True), "original.ddb")
 

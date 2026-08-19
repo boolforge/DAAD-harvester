@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import asdict
 import json
 from pathlib import Path
 
@@ -22,17 +23,25 @@ def inspect(path: Path) -> dict[str, object]:
         legacy_marker = data[offset + 2] == 0x5F
         mode = "legacy" if legacy_marker else "modern_or_other"
         analysis = parser.parse_ddb(data[offset:], f"embedded_{path.name}.ddb")
-        candidates.append(
-            {
-                "offset": offset,
-                "major_byte": major,
-                "machine_language_byte": data[offset + 1],
-                "legacy_marker": legacy_marker,
-                "mode": mode,
-                "validated": bool(analysis["is_daad"]),
-                "reason": analysis["reason"],
-            }
-        )
+        candidate: dict[str, object] = {
+            "offset": offset,
+            "major_byte": major,
+            "machine_language_byte": data[offset + 1],
+            "legacy_marker": legacy_marker,
+            "mode": mode,
+            "validated": bool(analysis["is_daad"]),
+            "reason": analysis["reason"],
+        }
+        if legacy_marker:
+            header = parser._parse_legacy_header(data, offset)
+            if header is not None:
+                candidate["legacy_header"] = asdict(header)
+                candidate["legacy_available_size"] = len(data) - offset
+                candidate["legacy_expected_size"] = header.expected_size
+                candidate["legacy_pointer_offsets"] = [
+                    parser._pointer_index(pointer, header) for pointer in header.pointers
+                ]
+        candidates.append(candidate)
     embedded = parser.find_embedded_ddb(data)
     direct = parser.parse_ddb(data, path.name)
     return {

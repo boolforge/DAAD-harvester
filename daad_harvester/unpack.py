@@ -50,6 +50,7 @@ from daad_harvester.platform_media import (
     extract_tzx,
 )
 from daad_harvester.media_inspection import inspect_native_media
+from daad_harvester.daad_parser import DAADParser
 
 logger = structlog.get_logger(__name__)
 
@@ -894,6 +895,17 @@ class Unpacker:
 
         try:
             sub_items = self.extract_container(dest_path, filename, data)
+            embedded_ddb = None
+            if not sub_items and len(data) >= 34:
+                embedded_ddb = DAADParser().find_embedded_ddb(data)
+                if embedded_ddb is not None and embedded_ddb[0] > 0:
+                    offset, payload = embedded_ddb
+                    sub_items = [
+                        (
+                            f"{Path(filename).stem}__embedded_{offset:06x}.ddb",
+                            payload,
+                        )
+                    ]
             for sub_fname, sub_data in sub_items:
                 sub_ids = self.unpack_artifact_recursive(
                     source_id=source_id,
@@ -905,6 +917,12 @@ class Unpacker:
             self.db.update_artifact_unpacked(artifact_id, unpacked=True)
             evidence = dict(inspection.evidence)
             evidence["members_emitted"] = len(sub_items)
+            if embedded_ddb is not None and embedded_ddb[0] > 0:
+                evidence["embedded_ddb"] = {
+                    "offset": embedded_ddb[0],
+                    "size": len(embedded_ddb[1]),
+                    "address_model": "container_relative_range",
+                }
             container_format = artifact.container_format
             if sub_items:
                 status = "extracted"

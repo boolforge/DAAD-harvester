@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. Subsequent retained-corpus work added real-Amiga and refresh regressions; the latest complete release gate reports **213 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. Subsequent retained-corpus work added real-Amiga, CPC, and ZX loader regressions; the latest complete release gate reports **217 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
@@ -117,3 +117,19 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 - [ ] Add exhaustive real-artifact regression tests, deterministic output fixtures, source-map/evidence manifests, documentation, and report integration before promoting any recovered interpretation beyond its evidence level.
 - [ ] Keep the DAAD game/DDB decompiler explicitly separate from interpreter-binary disassembly/decompilation while linking both evidence layers through runtime version, media lineage, and measured execution behavior.
 - [ ] Enforce corpus-complete decompiler coverage: every discovered DAAD-ecosystem artifact must have a manifest, multi-axis profile, decompilation output or explicit blocker record, output hashes, and regression status; newly acquired artifacts automatically join the required coverage set.
+
+### 10. Universal decompile–recompile round-trip verification
+
+- [ ] Define a lossless, version-neutral intermediate representation for every measured DDB byte range, including header fields, section ordering, padding, reserved bytes, compiler-specific layout choices, load address, and companion/loader provenance.
+- [ ] Implement a compiler for that representation which can emit each verified historical and modern DAAD/derivative target layout without normalizing away source-byte distinctions.
+- [ ] Require `original bytes → decompile → IR → recompile → byte-for-byte comparison` for every retained DDB and every newly acquired DDB candidate; persist input/output SHA-256 values, differing byte ranges, tool versions, target/load model, and deterministic reproducer commands.
+- [ ] When a round trip differs, automatically classify the discrepancy as unknown structure, semantic ambiguity, compiler-layout choice, companion/load-model dependency, or implementation defect; retain the mismatch and iterate until either byte identity is achieved or the exact blocking construct receives a dedicated support loop.
+- [ ] Add higher-order differential checks: decompile/recompile cycles across supported profiles, semantic process/condact traces where executable evidence is safe, independently derived interpreter behavior, and comparisons against retained public tools such as UnDAAD and ADP.
+- [ ] Make byte identity, or a documented and actively iterated byte-range blocker, a mandatory promotion gate for every decompiler/compiler profile. No variant may be treated as complete solely because it produces plausible text output.
+
+### 11. Future ScummVM DAAD engine
+
+- [ ] After corpus coverage, native-media support, DDB decompiler/compiler round-trip evidence, and interpreter/runtime profiles are mature, conduct a separate ScummVM feasibility and architecture study for a universal DAAD engine.
+- [ ] Research and retain the current ScummVM engine-development documentation, coding standards, comment conventions, build/test requirements, review expectations, merged-engine histories, and comparable parser/VM engine patterns before writing ScummVM-facing code.
+- [ ] Map the DAAD preservation intermediate representation, platform load models, interpreter behavior evidence, graphics/audio companions, and detector metadata to ScummVM subsystems without importing uncertain reverse-engineering claims as runtime behavior.
+- [ ] Build the eventual engine through upstream-quality tests, detector fixtures, save/load validation, cross-platform execution evidence, reviewable commits, and feedback-driven alignment with current ScummVM project practices.

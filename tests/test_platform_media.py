@@ -12,6 +12,7 @@ import pytest
 from daad_harvester.db import Database
 from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12, extract_fat16, parse_tzx_blocks
 from daad_harvester.unpack import Unpacker
+from tests.ddb_fixtures import make_legacy_ddb
 
 
 def _fat12_image(payload: bytes = b"DAAD.DDB") -> bytes:
@@ -320,6 +321,24 @@ def test_recursive_unpack_records_media_and_member_provenance(tmp_path: Path) ->
     assert root.container_format == "disk-image"
     assert root.container_member is None
     assert member.container_member == "DAAD.DDB"
+
+
+def test_recursive_unpack_materializes_verified_embedded_ddb_once(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/loader.bin", "fixture", platform="zx")
+    assert source_id is not None
+    payload = make_legacy_ddb("zx")
+    loader = b"LOADER" + payload + b"TRAILER"
+    artifacts = _unpacker(tmp_path).unpack_artifact_recursive(source_id, "loader.bin", loader)
+
+    assert len(artifacts) == 2
+    parent, child = db.get_all_artifacts()
+    assert parent.original_filename == "loader.bin"
+    assert parent.media_evidence_json is not None and '"embedded_ddb"' in parent.media_evidence_json
+    assert child.original_filename == "loader__embedded_000006.ddb"
+    assert child.archive_depth == 1
+    assert child.container_member == child.original_filename
+    assert Path(child.extracted_path).read_bytes() == payload
 
 
 def test_reunpacks_retained_root_without_source_download_path(tmp_path: Path) -> None:
