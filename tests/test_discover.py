@@ -152,3 +152,16 @@ async def test_run_all_discovery_wires_proxy_into_client(tmp_path, monkeypatch):
         await discoverer.run_all_discovery()
 
     assert captured_kwargs.get("proxy") == "http://proxy.example:8080"
+
+
+def test_canonical_seed_catalog_is_empty_until_urls_are_verified(tmp_path):
+    """A clean run must not enqueue speculative URLs before live discovery."""
+    from daad_harvester.seeds import CANONICAL_DAAD_SEEDS
+
+    assert CANONICAL_DAAD_SEEDS == []
+
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    discoverer.load_canonical_seeds()
+
+    assert db.get_all_sources() == []
