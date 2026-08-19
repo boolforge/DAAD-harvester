@@ -9,6 +9,7 @@ This documentation corpus describes **what DAAD Harvester can measure**, the evi
 | [Platform runtime and media guide](platforms/PLATFORM_RUNTIME_MEDIA.md) | The nine canonical targets, runtime evidence, and native media handling. |
 | [Derivative taxonomy](derivatives/COMPATIBILITY_TAXONOMY.md) | Original DAAD, DRC, Maluva, MSX2DAAD, PCDAAD, UnDAAD, and related tools. |
 | [Source register](sources/SOURCE_REGISTER.md) | Provenance, access boundaries, coverage, and use of every primary source. |
+| [TUI demonstration capture](tui/DEMONSTRATION_CAPTURE.md) | Reproducible authentic terminal recording, interaction sequence, and aspect-ratio rationale. |
 
 > **Preservation rule.** A filename, extension, or archive title is useful discovery context, but it is not binary identity. Harvester records a version, platform, or runtime as verified only when its measured structure or hash supports that exact statement.
 

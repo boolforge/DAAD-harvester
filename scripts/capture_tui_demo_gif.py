@@ -42,7 +42,7 @@ def rasterize(svg_path: Path, png_path: Path, width: int) -> None:
     subprocess.run(
         [
             "chromium", "--headless", "--no-sandbox", "--disable-gpu", "--hide-scrollbars",
-            f"--window-size={pixel_width},720", f"--screenshot={png_path}", svg_path.resolve().as_uri(),
+            f"--window-size={pixel_width},1080", f"--screenshot={png_path}", svg_path.resolve().as_uri(),
         ],
         check=True,
         stdout=subprocess.DEVNULL,
@@ -69,9 +69,9 @@ def add_frame(dashboard: TUIDashboard, frame_dir: Path, index: int, width: int) 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Capture a real interactive DAAD Harvester TUI GIF")
-    parser.add_argument("--db", type=Path, required=True, help="Path to a completed DAAD Harvester state.db")
+    parser.add_argument("--db", type=Path, required=True, help="Path to a real DAAD Harvester state.db with retained artifacts")
     parser.add_argument("--output", type=Path, required=True, help="GIF destination")
-    parser.add_argument("--width", type=int, default=160, help="Terminal width")
+    parser.add_argument("--width", type=int, default=132, help="Terminal width; 132 gives a readable near-16:9 recording")
     args = parser.parse_args()
 
     dashboard = TUIDashboard(Database(args.db))
@@ -81,33 +81,40 @@ def main() -> None:
         frame_dir = Path(temp_dir)
         frame_paths = []
 
-        # 1. Priority queue at the completed real run.
-        dashboard.active_tab = 1
+        # 1. Artifact evidence ledger from the completed real run.
+        dashboard.active_tab = 0
         frame_paths.append(add_frame(dashboard, frame_dir, 1, args.width))
         # 2. Real selection/scroll interaction.
         for _ in range(3):
             dashboard.handle_key_input("s")
         frame_paths.append(add_frame(dashboard, frame_dir, 2, args.width))
-        # 3. Search interaction driven through the same key handler as the live TUI.
+        # 3. Artifact inspector is driven by the same Enter key as a live run.
+        dashboard.handle_key_input("\n")
+        frame_paths.append(add_frame(dashboard, frame_dir, 3, args.width))
+        dashboard.handle_key_input("\x1b")
+        # 4. Platform-inspired theme selection is visible in the production UI.
+        dashboard.handle_key_input("h")
+        frame_paths.append(add_frame(dashboard, frame_dir, 4, args.width))
+        # 5. Search interaction driven through the same key handler as the live TUI.
         dashboard.handle_key_input("/")
         for char in "chichen":
             dashboard.handle_key_input(char)
-        frame_paths.append(add_frame(dashboard, frame_dir, 3, args.width))
-        # 4. Clear the filter and switch to real system metrics.
+        frame_paths.append(add_frame(dashboard, frame_dir, 5, args.width))
+        # 6. Clear the filter and switch to the evidence-led priority queue.
         dashboard.handle_key_input("\n")
         dashboard.handle_key_input("c")
         dashboard.handle_key_input("\t")
-        frame_paths.append(add_frame(dashboard, frame_dir, 4, args.width))
-        # 5. Pause state is also an actual dashboard interaction.
-        dashboard.handle_key_input("p")
-        frame_paths.append(add_frame(dashboard, frame_dir, 5, args.width))
-        # 6. Return to the verified-payload feed.
-        dashboard.handle_key_input("p")
-        dashboard.handle_key_input("\t")
         frame_paths.append(add_frame(dashboard, frame_dir, 6, args.width))
-        # 7. Return to the queue with the library-ready phase visible.
-        dashboard.handle_key_input("\t")
+        # 7. Queue selection remains a real interactive state.
+        for _ in range(2):
+            dashboard.handle_key_input("s")
         frame_paths.append(add_frame(dashboard, frame_dir, 7, args.width))
+        # 8. Real system metrics at the completed pipeline phase.
+        dashboard.handle_key_input("\t")
+        frame_paths.append(add_frame(dashboard, frame_dir, 8, args.width))
+        # 9. Pause state is also an actual dashboard interaction.
+        dashboard.handle_key_input("p")
+        frame_paths.append(add_frame(dashboard, frame_dir, 9, args.width))
 
         frames = [Image.open(path).convert("P", palette=Image.Palette.ADAPTIVE, colors=256) for path in frame_paths]
         args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -115,7 +122,7 @@ def main() -> None:
             args.output,
             save_all=True,
             append_images=frames[1:],
-            duration=[1400, 900, 1300, 1300, 900, 1100, 1400],
+            duration=[1400, 950, 1400, 1100, 1200, 1200, 950, 1200, 1000],
             loop=0,
             disposal=2,
             optimize=True,

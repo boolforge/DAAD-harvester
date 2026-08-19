@@ -16,6 +16,20 @@ def test_db_init_and_tables(tmp_path):
         assert "artifacts" in tables
         assert "games" in tables
 
+
+def test_database_migrates_legacy_sources_before_creating_new_indexes(tmp_path: Path):
+    legacy_path = tmp_path / "legacy.db"
+    with sqlite3.connect(legacy_path) as connection:
+        connection.execute("CREATE TABLE sources (id INTEGER PRIMARY KEY, url TEXT, status TEXT, discovered_at TIMESTAMP)")
+        connection.execute("CREATE TABLE artifacts (id INTEGER PRIMARY KEY, source_id INTEGER, sha256 TEXT, md5_full TEXT, is_daad_payload BOOLEAN)")
+        connection.execute("CREATE TABLE games (id INTEGER PRIMARY KEY, game_id TEXT)")
+    Database(legacy_path)
+    with sqlite3.connect(legacy_path) as connection:
+        source_columns = {row[1] for row in connection.execute("PRAGMA table_info(sources)")}
+        indexes = {row[1] for row in connection.execute("PRAGMA index_list(sources)")}
+    assert "source_role" in source_columns
+    assert "idx_sources_role" in indexes
+
 def test_sources_crud(tmp_path):
     db = Database(tmp_path / "test.db")
 

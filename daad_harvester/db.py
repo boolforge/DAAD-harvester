@@ -126,11 +126,6 @@ CREATE INDEX IF NOT EXISTS idx_artifacts_sha256 ON artifacts(sha256);
 CREATE INDEX IF NOT EXISTS idx_artifacts_md5_full ON artifacts(md5_full);
 CREATE INDEX IF NOT EXISTS idx_artifacts_is_daad ON artifacts(is_daad_payload);
 CREATE INDEX IF NOT EXISTS idx_games_game_id ON games(game_id);
-CREATE INDEX IF NOT EXISTS idx_sources_role ON sources(source_role, status);
-CREATE INDEX IF NOT EXISTS idx_artifacts_measured_platform ON artifacts(measured_platform, is_daad_payload);
-CREATE INDEX IF NOT EXISTS idx_artifacts_ddb_format ON artifacts(ddb_format);
-CREATE INDEX IF NOT EXISTS idx_version_evidence_source ON version_evidence(source_id, kind);
-CREATE INDEX IF NOT EXISTS idx_version_evidence_artifact ON version_evidence(artifact_id, kind);
 """
 
 
@@ -198,6 +193,11 @@ class Database:
             if "acquisition_priority" not in cols_s:
                 conn.execute("ALTER TABLE sources ADD COLUMN acquisition_priority INTEGER NOT NULL DEFAULT 0;")
             conn.execute("CREATE INDEX IF NOT EXISTS idx_sources_priority ON sources(status, acquisition_priority DESC, discovered_at ASC);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_sources_role ON sources(source_role, status);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_artifacts_measured_platform ON artifacts(measured_platform, is_daad_payload);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_artifacts_ddb_format ON artifacts(ddb_format);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_version_evidence_source ON version_evidence(source_id, kind);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_version_evidence_artifact ON version_evidence(artifact_id, kind);")
             conn.commit()
 
     def backfill_and_rescan_session(self) -> Dict[str, int]:

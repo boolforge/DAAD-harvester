@@ -1,6 +1,7 @@
 """Interactive, Async, Termux-friendly Rich TUI Dashboard for DAAD Harvester."""
 
 import asyncio
+import json
 import sys
 import time
 import termios
@@ -20,6 +21,20 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 
 
+TUI_THEMES = (
+    ("FORENSIC", "bright_green", "grey82", "green"),
+    ("SPECTRUM", "bright_yellow", "bright_blue", "bright_magenta"),
+    ("CPC", "bright_cyan", "bright_yellow", "cyan"),
+    ("C64", "bright_blue", "bright_cyan", "blue"),
+    ("PLUS/4", "bright_red", "bright_yellow", "red"),
+    ("MSX", "bright_red", "bright_white", "red"),
+    ("PCW", "bright_green", "grey82", "green"),
+    ("ATARI ST", "bright_cyan", "bright_white", "cyan"),
+    ("AMIGA", "bright_magenta", "bright_cyan", "magenta"),
+    ("DOS", "bright_yellow", "bright_blue", "yellow"),
+)
+
+
 class TUIDashboard:
     """Fully interactive, async, non-blocking Rich TUI Dashboard with key bindings, scrolling, and tabs."""
 
@@ -30,15 +45,76 @@ class TUIDashboard:
         self.active_phase = "INIT"
 
         # Interactive state
-        self.active_tab = 0  # 0: Verified payloads, 1: prioritized acquisition queue, 2: metrics
-        self.tabs = ["1. VERIFIED PAYLOADS", "2. PRIORITY ACQUISITION", "3. SYSTEM CONFIG & METRICS"]
+        self.active_tab = 0  # 0: artifact evidence, 1: prioritized acquisition queue, 2: metrics
+        self.tabs = ["1. ARTIFACT EVIDENCE", "2. PRIORITY ACQUISITION", "3. SYSTEM CONFIG & METRICS"]
         self.selected_index = 0
         self.search_filter = ""
         self.in_search_mode = False
         self.paused = False
+        self.theme_index = 0
+        self.show_detail = False
+
+    @property
+    def theme(self) -> tuple[str, str, str, str]:
+        return TUI_THEMES[self.theme_index]
 
     def set_active_phase(self, phase_name: str) -> None:
         self.active_phase = phase_name
+
+    def _selected_artifact(self):
+        artifacts = self.db.get_all_artifacts()
+        if self.search_filter:
+            filter_text = self.search_filter.lower()
+            artifacts = [
+                artifact for artifact in artifacts
+                if filter_text in (artifact.title or "").lower()
+                or filter_text in (artifact.original_filename or "").lower()
+                or filter_text in (artifact.platform_hint or "").lower()
+                or filter_text in (artifact.md5_full or "").lower()
+            ]
+        if not artifacts:
+            return None
+        self.selected_index = max(0, min(self.selected_index, len(artifacts) - 1))
+        return artifacts[self.selected_index]
+
+    def _make_detail_panel(self) -> Panel:
+        artifact = self._selected_artifact()
+        theme_name, accent, _, border = self.theme
+        if artifact is None:
+            return Panel("No verified DAAD artifact is selected.", title="Artifact Inspector", border_style=border)
+        table = Table.grid(expand=True, padding=(0, 1))
+        table.add_column("Field", style=f"bold {accent}", width=22)
+        table.add_column("Measured value", overflow="fold")
+        fields = (
+            ("Artifact ID", artifact.id),
+            ("Original member", artifact.original_filename),
+            ("Platform", artifact.measured_platform or artifact.platform_hint or "unknown"),
+            ("DDB format", artifact.ddb_format or "not recorded"),
+            ("DDB version", artifact.daad_version_guess or "not recorded"),
+            ("Interpreter", artifact.interpreter_identity or "not correlated"),
+            ("Confidence", artifact.fingerprint_confidence or "not recorded"),
+            ("Media parser", artifact.media_parser or "not recorded"),
+            ("Media validation", artifact.media_validation or "not recorded"),
+            ("SHA-256", artifact.sha256),
+            ("SHA-1", artifact.sha1 or "not recorded"),
+            ("MD5", artifact.md5_full),
+            ("CRC-32", artifact.crc32 or "not recorded"),
+        )
+        for label, value in fields:
+            table.add_row(label, Text(str(value)))
+        evidence = artifact.fingerprint_evidence_json or artifact.media_evidence_json
+        if evidence:
+            try:
+                summary = json.dumps(json.loads(evidence), sort_keys=True, indent=2)
+            except (TypeError, ValueError):
+                summary = evidence
+            table.add_row("Evidence", Text(summary[:1200] + ("…" if len(summary) > 1200 else "")))
+        return Panel(
+            table,
+            title=f"[bold {accent}]ARTIFACT INSPECTOR — {theme_name}[/bold {accent}]",
+            subtitle="Enter/Esc/D closes inspector",
+            border_style=border,
+        )
 
     def handle_key_input(self, key: str) -> None:
         """Processes interactive keyboard shortcuts."""
@@ -53,7 +129,13 @@ class TUIDashboard:
                 self.selected_index = 0
             return
 
-        if key in ("\t", "t", "T"):  # Tab key to switch tabs
+        if self.show_detail and key in ("\r", "\n", "\x1b", "d", "D"):
+            self.show_detail = False
+        elif key in ("\r", "\n", "d", "D") and self.active_tab == 0:
+            self.show_detail = self._selected_artifact() is not None
+        elif key in ("h", "H"):
+            self.theme_index = (self.theme_index + 1) % len(TUI_THEMES)
+        elif key in ("\t", "t", "T"):  # Tab key to switch tabs
             self.active_tab = (self.active_tab + 1) % len(self.tabs)
             self.selected_index = 0
         elif key in ("w", "k", "A", "\x1b[A"):  # Up / Arrow Up
@@ -71,6 +153,7 @@ class TUIDashboard:
             self.paused = not self.paused
 
     def _make_header(self) -> Panel:
+        theme_name, accent, muted, border = self.theme
         grid = Table.grid(expand=True)
         grid.add_column(justify="left", ratio=1)
         grid.add_column(justify="right", ratio=1)
@@ -78,9 +161,9 @@ class TUIDashboard:
         tab_headers = []
         for i, name in enumerate(self.tabs):
             if i == self.active_tab:
-                tab_headers.append(f"[bold black on yellow] {name} [/bold black on yellow]")
+                tab_headers.append(f"[bold black on {accent}] {name} [/bold black on {accent}]")
             else:
-                tab_headers.append(f"[dim white] {name} [/dim white]")
+                tab_headers.append(f"[dim {muted}] {name} [/dim {muted}]")
 
         tabs_str = " | ".join(tab_headers)
         status_str = f"[bold green]v{__version__}[/bold green] | [bold yellow]Phase: {self.active_phase}[/bold yellow]"
@@ -88,7 +171,7 @@ class TUIDashboard:
             status_str += " | [bold red]PAUSED[/bold red]"
 
         grid.add_row(
-            "[bold cyan]🗡️ DAAD HARVESTER & FORENSIC SUITE[/bold cyan]",
+            f"[bold {accent}]DAAD HARVESTER / PRESERVATION CONSOLE[/bold {accent}]",
             status_str
         )
         grid.add_row(
@@ -96,7 +179,7 @@ class TUIDashboard:
             f"[bold magenta]Filter: '{escape(self.search_filter)}'[/bold magenta]" if self.search_filter else "[dim]Filter: (none)[/dim]"
         )
 
-        return Panel(grid, style="bold white on blue")
+        return Panel(grid, title=f"[bold {accent}]{theme_name} TERMINAL PROFILE[/bold {accent}]", border_style=border)
 
     def _make_config_panel(self) -> Panel:
         table = Table(title="Configuration Settings", show_header=False, box=None, expand=True)
@@ -148,7 +231,8 @@ class TUIDashboard:
         return Panel(table, title="[bold green]ETL Statistics[/bold green]", border_style="green")
 
     def _make_daad_games_table(self) -> Panel:
-        daad_arts = self.db.get_daad_artifacts()
+        _, accent, _, border = self.theme
+        daad_arts = self.db.get_all_artifacts()
         sources_by_id = {s.id: s for s in self.db.get_all_sources()}
 
         if self.search_filter:
@@ -170,11 +254,12 @@ class TUIDashboard:
             start_idx = max(0, start_idx)
             display_arts = daad_arts[start_idx:start_idx + page_size]
 
-        table = Table(title=f"Verified DAAD Games Feed (Showing {len(display_arts)} of {total_count})", expand=True, show_lines=True)
+        table = Table(title=f"Artifact Evidence Ledger (Showing {len(display_arts)} of {total_count})", expand=True, show_lines=True)
         table.add_column("ID", style="dim", width=5)
-        table.add_column("Game Title", style="bold yellow")
+        table.add_column("Artifact / Title", style="bold yellow")
         table.add_column("Platform", style="cyan", width=10)
-        table.add_column("Engine Version", style="green", width=14)
+        table.add_column("Evidence", style="green", width=16)
+        table.add_column("Status", width=11)
         table.add_column("MD5 (Full)", style="magenta", width=18)
         table.add_column("Size", justify="right", width=10)
 
@@ -185,22 +270,25 @@ class TUIDashboard:
                 title = Path(art.original_filename).stem.replace("_", " ").title()
 
             platform = (art.platform_hint or "unknown").upper()
-            version = art.daad_version_guess or "DAAD DDB"
+            version = art.daad_version_guess or art.media_validation or art.container_format or "retained"
+            status = "VERIFIED" if art.is_daad_payload else (art.media_status or "retained").upper()
             md5_short = art.md5_full[:16] + "..." if art.md5_full and len(art.md5_full) > 16 else (art.md5_full or "N/A")
             size_str = f"{art.file_size / 1024:.1f} KB" if art.file_size else "0 KB"
 
             actual_idx = daad_arts.index(art)
-            style = "bold white on blue" if actual_idx == self.selected_index else None
+            style = f"bold black on {accent}" if actual_idx == self.selected_index else None
             # Wrap in Text() (not raw str) so titles/filenames pulled from harvested
             # archives can never be misparsed as Rich markup (e.g. "Game [1988].zip").
-            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(md5_short), Text(size_str), style=style)
+            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(status), Text(md5_short), Text(size_str), style=style)
 
-        title_str = "[bold gold1]DAAD Games Forensic Feed[/bold gold1]"
+        verified_count = sum(1 for artifact in daad_arts if artifact.is_daad_payload)
+        title_str = f"[bold {accent}]Artifact Evidence Ledger — {verified_count} Verified DDBs[/bold {accent}]"
         if self.in_search_mode:
             title_str += f" | [bold red]SEARCH MODE: {escape(self.search_filter)}_[/bold red]"
-        return Panel(table, title=title_str, border_style="gold1")
+        return Panel(table, title=title_str, border_style=border)
 
     def _make_sources_table(self) -> Panel:
+        _, accent, _, border = self.theme
         sources = sorted(
             self.db.get_all_sources(),
             key=lambda source: (-source.acquisition_priority, source.discovered_at or "", source.id or 0),
@@ -232,7 +320,7 @@ class TUIDashboard:
         for s in display_sources:
             title = s.title or "Discovered Resource"
             actual_idx = sources.index(s)
-            style = "bold white on blue" if actual_idx == self.selected_index else None
+            style = f"bold black on {accent}" if actual_idx == self.selected_index else None
             # Text() wrapping: titles/URLs are external, untrusted content and must
             # never be interpreted as Rich markup (see _make_daad_games_table).
             table.add_row(
@@ -244,7 +332,7 @@ class TUIDashboard:
                 Text(s.status),
                 style=style,
             )
-        return Panel(table, title="[bold cyan]Evidence-Led Source Queue[/bold cyan]", border_style="cyan")
+        return Panel(table, title=f"[bold {accent}]Evidence-Led Source Queue[/bold {accent}]", border_style=border)
 
 
     def render(self) -> Layout:
@@ -256,7 +344,9 @@ class TUIDashboard:
         )
         layout["header"].update(self._make_header())
 
-        if self.active_tab == 0:
+        if self.show_detail:
+            layout["body"].update(self._make_detail_panel())
+        elif self.active_tab == 0:
             layout["body"].update(self._make_daad_games_table())
         elif self.active_tab == 1:
             layout["body"].update(self._make_sources_table())
@@ -275,6 +365,8 @@ class TUIDashboard:
         footer_text = (
             r"[bold yellow]\[Tab][/bold yellow] Switch Tab  |  "
             r"[bold yellow]\[Up/Down][/bold yellow] Select/Scroll  |  "
+            r"[bold yellow]\[Enter][/bold yellow] Inspect  |  "
+            r"[bold yellow]\[H][/bold yellow] Theme  |  "
             r"[bold yellow]\[/][/bold yellow] Search  |  "
             r"[bold yellow]\[C][/bold yellow] Clear Filter  |  "
             r"[bold yellow]\[P][/bold yellow] Pause"
