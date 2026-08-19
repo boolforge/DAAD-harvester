@@ -268,14 +268,16 @@ class Fetcher:
         )
         return False
 
-    async def fetch_pending_sources(self, parallel: int = 8) -> int:
-        """Fetch all pending sources from database in parallel."""
+    async def fetch_pending_sources(self, parallel: int = 8, max_sources: Optional[int] = None) -> int:
+        """Fetch pending sources in database priority order, optionally with a bounded batch."""
         pending = self.db.get_pending_sources()
+        if max_sources is not None:
+            pending = pending[:max_sources]
         if not pending:
             logger.info("no_pending_sources_to_fetch")
             return 0
 
-        logger.info("starting_fetch_phase", count=len(pending), parallel=parallel)
+        logger.info("starting_fetch_phase", count=len(pending), parallel=parallel, max_sources=max_sources)
         semaphore = asyncio.Semaphore(parallel)
 
         async with httpx.AsyncClient(follow_redirects=True, proxy=self._get_proxy()) as client:

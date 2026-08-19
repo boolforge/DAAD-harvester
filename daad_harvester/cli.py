@@ -43,6 +43,12 @@ def main() -> None:
         help=f"Parallel download workers (default: {settings.parallel_workers})"
     )
     parser.add_argument(
+        "--max-sources",
+        type=int,
+        default=None,
+        help="Maximum pending sources to fetch after priority ordering"
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=settings.output_dir,
@@ -128,7 +134,7 @@ def main() -> None:
                 dashboard.set_active_phase("3. FETCH")
             logger.info("executing_phase_fetch")
             fetcher = Fetcher(db, download_dir=settings.output_dir / "downloads")
-            await fetcher.fetch_pending_sources(parallel=args.parallel)
+            await fetcher.fetch_pending_sources(parallel=args.parallel, max_sources=args.max_sources)
 
         # Phase 4: Unpack
         if phase in ("unpack", "all"):

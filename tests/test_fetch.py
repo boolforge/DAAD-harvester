@@ -226,3 +226,24 @@ async def test_fetch_source_persists_final_http_failure_status(tmp_path, monkeyp
     assert updated.status == SourceStatus.ERROR.value
     assert updated.http_status == 503
     assert updated.content_type == "text/plain"
+
+
+@pytest.mark.anyio
+async def test_fetch_pending_sources_honors_priority_order_and_batch_limit(tmp_path):
+    db = Database(tmp_path / "test.db")
+    low_id = db.add_source("https://example.com/low.zip", "archive", acquisition_priority=0)
+    medium_id = db.add_source("https://example.com/medium.zip", "archive", acquisition_priority=1000)
+    high_id = db.add_source("https://example.com/high.zip", "archive", acquisition_priority=1200)
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+    fetched_ids = []
+
+    async def record_fetch(source, client):
+        fetched_ids.append(source.id)
+        return True
+
+    with patch.object(fetcher, "fetch_source", new=AsyncMock(side_effect=record_fetch)):
+        successful = await fetcher.fetch_pending_sources(parallel=1, max_sources=2)
+
+    assert successful == 2
+    assert fetched_ids == [high_id, medium_id]
+    assert low_id not in fetched_ids
