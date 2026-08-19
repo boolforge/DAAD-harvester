@@ -14,6 +14,7 @@ from daad_harvester.unpack import Unpacker
 from daad_harvester.fingerprint import Fingerprinter
 from daad_harvester.synthesize import Synthesizer
 from daad_harvester.report import ReportGenerator
+from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.tui import TUIDashboard
 
 logger = structlog.get_logger(__name__)
@@ -26,7 +27,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--phase",
-        choices=["discover", "fetch", "unpack", "fingerprint", "synthesize", "all"],
+        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "all"],
         default="all",
         help="Pipeline phase to execute (default: all)"
     )
@@ -113,34 +114,42 @@ def main() -> None:
             discoverer = Discoverer(db)
             await discoverer.run_all_discovery()
 
-        # Phase 2: Fetch
+        # Phase 2: Evidence catalog
+        if phase in ("catalog", "all"):
+            if dashboard:
+                dashboard.set_active_phase("2. CATALOG")
+            logger.info("executing_phase_catalog")
+            catalog_path = EvidenceCatalogExporter(db, output_dir=settings.output_dir).write()
+            logger.info("evidence_catalog_written", catalog=str(catalog_path))
+
+        # Phase 3: Fetch
         if phase in ("fetch", "all"):
             if dashboard:
-                dashboard.set_active_phase("2. FETCH")
+                dashboard.set_active_phase("3. FETCH")
             logger.info("executing_phase_fetch")
             fetcher = Fetcher(db, download_dir=settings.output_dir / "downloads")
             await fetcher.fetch_pending_sources(parallel=args.parallel)
 
-        # Phase 3: Unpack
+        # Phase 4: Unpack
         if phase in ("unpack", "all"):
             if dashboard:
-                dashboard.set_active_phase("3. UNPACK")
+                dashboard.set_active_phase("4. UNPACK")
             logger.info("executing_phase_unpack")
             unpacker = Unpacker(db, extract_dir=settings.output_dir / "extracted")
             unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
 
-        # Phase 4: Fingerprint
+        # Phase 5: Fingerprint
         if phase in ("fingerprint", "all"):
             if dashboard:
-                dashboard.set_active_phase("4. FINGERPRINT")
+                dashboard.set_active_phase("5. FINGERPRINT")
             logger.info("executing_phase_fingerprint")
             fingerprinter = Fingerprinter(db)
             fingerprinter.scan_all_artifacts()
 
-        # Phase 5: Synthesize & Report
+        # Phase 6: Synthesize & Report
         if phase in ("synthesize", "all"):
             if dashboard:
-                dashboard.set_active_phase("5. SYNTHESIZE")
+                dashboard.set_active_phase("6. SYNTHESIZE")
             logger.info("executing_phase_synthesize")
             synthesizer = Synthesizer(db, output_dir=settings.output_dir)
             json_path, header_path, collisions = synthesizer.synthesize_catalog()

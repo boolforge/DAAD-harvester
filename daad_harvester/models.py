@@ -49,6 +49,8 @@ class SourceRecord:
     publisher: Optional[str] = None
     author: Optional[str] = None
     language: Optional[str] = None
+    known_game_id: Optional[str] = None
+    acquisition_priority: int = 0
     discovered_at: Optional[datetime] = None
     processed_at: Optional[datetime] = None
 

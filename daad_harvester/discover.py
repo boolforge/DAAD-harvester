@@ -23,6 +23,7 @@ from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.db import Database
 from daad_harvester.models import SourceTier
 from daad_harvester.seeds import CANONICAL_DAAD_SEEDS
+from daad_harvester.known_games import acquisition_priority as catalog_priority, find_known_game
 
 logger = structlog.get_logger(__name__)
 
@@ -197,6 +198,12 @@ class Discoverer:
             logger.info("skipping_duplicate_source", url=canonical_url)
             return False
 
+        known_game = find_known_game(title)
+        if known_game:
+            title = known_game.title
+            year = year or known_game.year
+            publisher = publisher or known_game.publisher
+
         self.db.add_source(
             url=canonical_url,
             source_tier=tier.value,
@@ -206,6 +213,8 @@ class Discoverer:
             publisher=publisher,
             author=author,
             language=language,
+            known_game_id=known_game.game_id if known_game else None,
+            acquisition_priority=catalog_priority(known_game, platform),
         )
         self.discovered_urls.add(canonical_url)
         logger.info("discovered_source", url=canonical_url, tier=tier.value, title=title)

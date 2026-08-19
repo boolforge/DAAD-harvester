@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS sources (
     publisher TEXT,
     author TEXT,
     language TEXT,
+    known_game_id TEXT,
+    acquisition_priority INTEGER NOT NULL DEFAULT 0,
     discovered_at TIMESTAMP,
     processed_at TIMESTAMP
 );
@@ -129,9 +131,12 @@ class Database:
 
             cursor_s = conn.execute("PRAGMA table_info(sources)")
             cols_s = {row["name"] for row in cursor_s.fetchall()}
-            for col in ["title", "platform", "year", "publisher", "author", "language"]:
+            for col in ["title", "platform", "year", "publisher", "author", "language", "known_game_id"]:
                 if col not in cols_s:
                     conn.execute(f"ALTER TABLE sources ADD COLUMN {col} TEXT;")
+            if "acquisition_priority" not in cols_s:
+                conn.execute("ALTER TABLE sources ADD COLUMN acquisition_priority INTEGER NOT NULL DEFAULT 0;")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_sources_priority ON sources(status, acquisition_priority DESC, discovered_at ASC);")
             conn.commit()
 
     def backfill_and_rescan_session(self) -> Dict[str, int]:
@@ -182,7 +187,9 @@ class Database:
         year: Optional[int] = None,
         publisher: Optional[str] = None,
         author: Optional[str] = None,
-        language: Optional[str] = None
+        language: Optional[str] = None,
+        known_game_id: Optional[str] = None,
+        acquisition_priority: int = 0
     ) -> Optional[int]:
         now = datetime.now().isoformat()
         with self.get_connection() as conn:
@@ -190,10 +197,11 @@ class Database:
                 cursor = conn.execute(
                     """
                     INSERT INTO sources (
-                        url, source_tier, status, title, platform, year, publisher, author, language, discovered_at
-                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?)
+                        url, source_tier, status, title, platform, year, publisher, author, language,
+                        known_game_id, acquisition_priority, discovered_at
+                    ) VALUES (?, ?, 'pending', ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
-                    (url, source_tier, title, platform, year, publisher, author, language, now)
+                    (url, source_tier, title, platform, year, publisher, author, language, known_game_id, acquisition_priority, now)
                 )
                 conn.commit()
                 return cursor.lastrowid
@@ -201,7 +209,7 @@ class Database:
                 cursor = conn.execute("SELECT id FROM sources WHERE url = ?", (url,))
                 row = cursor.fetchone()
                 src_id = row["id"] if row else None
-                if src_id and (title or platform or year or publisher or author or language):
+                if src_id and (title or platform or year or publisher or author or language or known_game_id or acquisition_priority):
                     conn.execute(
                         """
                         UPDATE sources
@@ -210,10 +218,12 @@ class Database:
                             year = COALESCE(?, year),
                             publisher = COALESCE(?, publisher),
                             author = COALESCE(?, author),
-                            language = COALESCE(?, language)
+                            language = COALESCE(?, language),
+                            known_game_id = COALESCE(?, known_game_id),
+                            acquisition_priority = MAX(COALESCE(acquisition_priority, 0), ?)
                         WHERE id = ?
                         """,
-                        (title, platform, year, publisher, author, language, src_id)
+                        (title, platform, year, publisher, author, language, known_game_id, acquisition_priority, src_id)
                     )
                     conn.commit()
                 return src_id
@@ -240,13 +250,19 @@ class Database:
             publisher=row["publisher"] if "publisher" in keys else None,
             author=row["author"] if "author" in keys else None,
             language=row["language"] if "language" in keys else None,
+            known_game_id=row["known_game_id"] if "known_game_id" in keys else None,
+            acquisition_priority=row["acquisition_priority"] if "acquisition_priority" in keys else 0,
             discovered_at=row["discovered_at"],
             processed_at=row["processed_at"],
         )
 
     def get_pending_sources(self) -> List[SourceRecord]:
         with self.get_connection() as conn:
-            cursor = conn.execute("SELECT * FROM sources WHERE status IN ('pending', 'error')")
+            cursor = conn.execute("""
+                SELECT * FROM sources
+                WHERE status IN ('pending', 'error')
+                ORDER BY acquisition_priority DESC, discovered_at ASC, id ASC
+            """)
             return [self._row_to_source(row) for row in cursor.fetchall()]
 
     def update_source_status(
