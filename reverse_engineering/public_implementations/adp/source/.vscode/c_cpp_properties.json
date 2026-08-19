@@ -1,0 +1,97 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include-tools"
+            ],
+            "customConfigurationVariables": {
+                "make": "make",
+                "makefile": "Makefile-linux",
+                "makeExtraArg": ""
+            },
+            "defines": [
+                "HAS_CLIPBOARD",
+                "HAS_SNAPSHOTS",
+                "HAS_DRAWSTRING",
+                "HAS_FULLSCREEN",
+                "HAS_VIRTUALFILESYSTEM",
+                "HAS_PAWS",
+                "HAS_PCX",
+                "HAS_XMSG",
+                "TRACE_ON",
+                "_UNIX"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "DOS",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "/usr/include",
+                "/opt/watcom/h"
+            ],
+            "defines": [
+                "HAS_PAWS",
+                "HAS_PCX",
+                "HAS_XMSG",
+                "NO_BUFFERING",
+                "_STDCLIB",
+                "_DOS",
+                "_WCRTLINK=",
+                "_M_IX86"
+            ],
+            "customConfigurationVariables": {
+                "make": "wmake",
+                "makefile": "Makefile-dos",
+                "makeExtraArg": "program=out/amiga/adp"
+            }
+        },
+        {
+            "name": "Amiga",
+            "configurationProvider": "BartmanAbyss.amiga-debug",
+            "customConfigurationVariables": {
+                "makefile": "Makefile-amiga",
+                "makeExtraArg": "program=out/amiga/adp"
+            }
+        },
+        {
+            "name": "Atari ST",
+            "includePath": [
+                "${LIBCMINI}/include",
+                "${LIBCMINI}/include/mint",
+                "${workspaceFolder}/include"
+            ],
+            "customConfigurationVariables": {
+                "make": "make",
+                "makefile": "Makefile-atarist",
+                "makeExtraArg": ""
+            },
+            "defines": [                
+                "VERSION=ADP",
+                "_STDCLIB",
+                "_ATARIST",
+                "HAS_ASM_RLE",
+                "HAS_DRAWTEXT",
+                "HAS_XMSG",
+                "NO_PRINTF",
+                "NO_SAMPLES",
+                "DEBUG_ALLOCS=1",
+                "DEBUG_MEMORY=0",
+                "NO_BUFFERING",
+                "_BIG_ENDIAN",
+                "stricmp=strcasecmp",
+                "strnicmp=strncasecmp"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

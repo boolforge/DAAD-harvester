@@ -1,0 +1,188 @@
+ifndef VERSION
+include $(dir $(lastword $(MAKEFILE_LIST)))version.mk
+endif
+
+# Build configuration: 'release' (default) produces optimized binaries and
+# refreshes the canonical DAAD Ready player; 'debug' enables diagnostics and
+# keeps its objects separate so configuration changes cannot reuse stale files.
+CONFIG ?= release
+ifeq ($(CONFIG),debug)
+DEBUGPRINT ?= 1
+DEBUGALLOC ?= 1
+DEBUG      ?= 1
+else ifeq ($(CONFIG),release)
+DEBUGPRINT ?= 0
+DEBUGALLOC ?= 0
+DEBUG      ?= 0
+else
+$(error CONFIG must be 'release' or 'debug')
+endif
+
+DEBUGCACHE ?= 0
+DEBUGLTIME ?= 0
+TRACE      ?= 0
+OPTIM      ?= -O2
+DEPFLAGS   := -MMD -MP
+GCC8_COMPAT ?= 1
+
+# Conservative language baseline for older GCC-era ports.
+CPPFLAGS += -std=gnu++14
+ifeq ($(GCC8_COMPAT),1)
+CPPFLAGS += -fno-rtti -fno-exceptions
+endif
+
+# Platform and feature configuration.
+CPPFLAGS += -Iinclude -Iinclude-tools -Ilib-src/salvador
+CPPFLAGS += -DVERSION=$(VERSION) -D_STDCLIB -D_UNIX
+CPPFLAGS += -DHAS_CLIPBOARD -DHAS_VIRTUALFILESYSTEM -DHAS_FULLSCREEN
+CPPFLAGS += -DHAS_SNAPSHOTS -DHAS_PAWS -DHAS_DRAWSTRING -DHAS_XMSG
+CPPFLAGS += -DHAS_PCX -DHAS_SPECTRUM -DHAS_PSG -DNO_SAMPLES -DHAS_HIRES_FONT=1
+CPPFLAGS += -DHAS_TESTMODE=1 -DHAS_WINDOWTEXT=1
+CPPFLAGS += -Dstricmp=strcasecmp -Dstrnicmp=strncasecmp
+
+ifeq ($(DEBUGPRINT),1)
+CPPFLAGS += -D_DEBUGPRINT
+CPPFLAGS += -DDEBUG_IMAGE_CACHE=$(DEBUGCACHE)
+endif
+ifeq ($(DEBUGALLOC),1)
+CPPFLAGS += -DDEBUG_ALLOCS=1
+endif
+ifeq ($(DEBUGLTIME),1)
+CPPFLAGS += -DDEBUG_RLE -DDEBUG_ZX0
+endif
+ifeq ($(DEBUG),1)
+CPPFLAGS += -g
+endif
+ifeq ($(TRACE),1)
+CPPFLAGS += -DTRACE_DEBUG -DTRACE_ON
+endif
+
+CPPFLAGS += $(OPTIM)
+CPPFLAGS += `libpng-config --cflags`
+CPPFLAGS += `sdl2-config --cflags`
+LDFLAGS += `libpng-config --ldflags`
+LDFLAGS += `sdl2-config --libs`
+
+DIRS := src-common/ lib-src/salvador/
+VPATH := $(DIRS) src-tools/ src-sdl/ src-unix/
+SRCS := $(wildcard $(addsuffix *.cpp,$(DIRS))) src-sdl/video.cpp
+TOOL_SRCS := bas_cpc bas_zx dmg_edit dmg_pack img ddb_writ cli_parser session_commands
+TOOL_MAIN_SRCS := $(wildcard src-tools/tool_*.cpp)
+ADPC_SRCS := dc_main dc_condacts dc_cp437 dc_cp850 dc_cp1252 dc_char dc_symb chr_conv tool_adpc
+ADPC_COMMON_SRCS := dim dim_adf dim_cpc dim_fat os_arena os_char os_file os_lib os_mem files error
+
+OBJDIR := obj/unix/$(CONFIG)
+ifeq ($(CONFIG),debug)
+OUTDIR := out/linux-debug
+else
+OUTDIR := out
+endif
+DISTDIR := daad-ready/dist
+CANONICAL_PLAYER := $(DISTDIR)/ASSETS/LINUX_EXPERIMENTAL/player
+PLAYER_TARGET := $(OUTDIR)/player
+TOOL_TARGETS := $(OUTDIR)/dmg $(OUTDIR)/chr $(OUTDIR)/ddb $(OUTDIR)/dsk
+ADPC_TARGET := $(OUTDIR)/adpc
+
+TOOL_CPPFLAGS = $(CPPFLAGS) -DTRACE_ON
+ADPC_CPPFLAGS = $(filter-out -DDEBUG_ALLOCS=1,$(TOOL_CPPFLAGS)) -DDEBUG_ALLOCS=0
+
+COMMON_OBJS := $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(notdir $(SRCS))))
+COMMON_OBJS += $(OBJDIR)/files.o $(OBJDIR)/error.o
+TRACED_COMMON_OBJS := $(addprefix $(OBJDIR)/trace/,$(patsubst %.cpp,%.o,$(notdir $(SRCS))))
+TRACED_COMMON_OBJS += $(OBJDIR)/trace/files.o $(OBJDIR)/trace/error.o
+PLAYER_OBJ := $(OBJDIR)/player.o
+TOOL_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix .o,$(TOOL_SRCS)))
+TOOL_MAIN_OBJS := $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(notdir $(TOOL_MAIN_SRCS))))
+ADPC_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix _adpc.o,$(ADPC_SRCS)))
+ADPC_COMMON_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix _adpc.o,$(ADPC_COMMON_SRCS)))
+
+.DEFAULT_GOAL := all
+.PHONY: all clean test test-host test-adpc test-dos test-inventory test-game
+
+-include $(COMMON_OBJS:.o=.d) $(TRACED_COMMON_OBJS:.o=.d) $(PLAYER_OBJ:.o=.d) $(TOOL_OBJS:.o=.d) $(TOOL_MAIN_OBJS:.o=.d) $(ADPC_OBJS:_adpc.o=_adpc.d) $(ADPC_COMMON_OBJS:_adpc.o=_adpc.d)
+
+all: $(TOOL_TARGETS) $(PLAYER_TARGET) $(ADPC_TARGET)
+
+# Test defaults (override on the command line, e.g. FAST=0 or JOBS=6).
+# FAST=1 skips finite timed pauses; JOBS=4 runs scenarios in parallel (the
+# suite is CPU/memory-bandwidth bound, so ~4 is the sweet spot on 6 cores).
+FAST ?= 1
+JOBS ?= 4
+
+test: test-adpc test-host
+
+test-adpc: $(ADPC_TARGET) $(OUTDIR)/dmg $(OUTDIR)/dsk
+	python3 scripts/run-adpc-tests.py --adpc $(ADPC_TARGET) --dmg $(OUTDIR)/dmg --dsk $(OUTDIR)/dsk
+
+test-host: test-adpc $(OUTDIR)/ddb
+	python3 scripts/run-game-tests.py --ddb $(OUTDIR)/ddb $(if $(filter 1 yes,$(FAST)),--skip-timed-pauses,) $(if $(JOBS),--jobs $(JOBS),)
+
+test-dos:
+	python3 scripts/run-game-tests.py --ddb $(OUTDIR)/ddb --suite dos $(if $(filter 1 yes,$(FAST)),--skip-timed-pauses,) $(if $(JOBS),--jobs $(JOBS),)
+
+test-inventory: $(OUTDIR)/ddb
+	python3 scripts/run-game-tests.py --ddb $(OUTDIR)/ddb --inventory $(if $(filter 1 yes,$(FAST)),--skip-timed-pauses,) $(if $(JOBS),--jobs $(JOBS),)
+
+test-game: $(OUTDIR)/ddb
+	@test -n "$(SCENARIO)" || (echo "Usage: make -f Makefile-linux test-game SCENARIO=chichen/part1-amiga [FAST=1] [RECORD=1] [TRACE=1] [INTERACTIVE=1]"; exit 2)
+	python3 scripts/run-game-tests.py --ddb $(OUTDIR)/ddb --scenario $(SCENARIO) $(if $(filter 1 yes,$(RECORD)),--record,) $(if $(filter 1 yes,$(TRACE)),--trace,) $(if $(filter 1 yes,$(INTERACTIVE)),--interactive,) $(if $(filter 1 yes,$(FAST)),--skip-timed-pauses,)
+
+$(OUTDIR):
+	@mkdir -p $@
+
+$(OUTDIR)/dmg: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_dmg.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/chr: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_chr.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/ddb: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_ddb.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/dsk: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_dsk.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(ADPC_TARGET): $(ADPC_OBJS) $(ADPC_COMMON_OBJS) | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(PLAYER_TARGET): $(COMMON_OBJS) $(PLAYER_OBJ) | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+ifeq ($(CONFIG),release)
+	@mkdir -p "$(dir $(CANONICAL_PLAYER))"
+	@cp "$@" "$(CANONICAL_PLAYER)"
+endif
+
+clean:
+	rm -rf $(OBJDIR)
+	rm -f $(TOOL_TARGETS) $(PLAYER_TARGET) $(ADPC_TARGET)
+
+$(COMMON_OBJS) $(PLAYER_OBJ) : $(OBJDIR)/%.o : %.cpp Makefile-linux
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CPPFLAGS) $(DEPFLAGS) -c -o $@ $(CURDIR)/$<
+
+$(TOOL_OBJS) : $(OBJDIR)/%.o : %.cpp Makefile-linux
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) $(DEPFLAGS) -c -o $@ $(CURDIR)/$<
+
+$(TOOL_MAIN_OBJS) : $(OBJDIR)/%.o : %.cpp Makefile-linux
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) $(DEPFLAGS) -Iinclude-tools -c -o $@ $(CURDIR)/$<
+
+$(TRACED_COMMON_OBJS) : $(OBJDIR)/trace/%.o : %.cpp Makefile-linux
+	$(info Compiling $< for traced tool runtime)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) $(DEPFLAGS) -c -o $@ $(CURDIR)/$<
+
+$(ADPC_OBJS) $(ADPC_COMMON_OBJS) : $(OBJDIR)/%_adpc.o : %.cpp Makefile-linux
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(ADPC_CPPFLAGS) $(DEPFLAGS) -Iinclude-tools -c -o $@ $(CURDIR)/$<

@@ -1,0 +1,170 @@
+ifndef VERSION
+include $(dir $(lastword $(MAKEFILE_LIST)))version.mk
+endif
+
+# Build configuration: 'release' (default) produces optimized binaries and
+# refreshes the canonical DAAD Ready app; 'debug' enables diagnostics and keeps
+# its objects and outputs separate from release builds.
+CONFIG ?= release
+ifeq ($(CONFIG),debug)
+DEBUGPRINT ?= 1
+DEBUGALLOC ?= 1
+DEBUG      ?= 1
+else ifeq ($(CONFIG),release)
+DEBUGPRINT ?= 0
+DEBUGALLOC ?= 0
+DEBUG      ?= 0
+else
+$(error CONFIG must be 'release' or 'debug')
+endif
+
+DEBUGCACHE ?= 0
+DEBUGLTIME ?= 0
+TRACE      ?= 0
+OPTIM      ?= -O2
+
+OBJDIR := obj/osx/$(CONFIG)
+ifeq ($(CONFIG),debug)
+OUTDIR := out/osx-debug
+else
+OUTDIR := out
+endif
+APPDIR := $(OUTDIR)/ADP.app
+DISTDIR := daad-ready/dist
+CANONICAL_PLAYER := $(DISTDIR)/ASSETS/MACOS_EXPERIMENTAL/ADP-EXPERIMENTAL.app/Contents/MacOS/ADP
+PLAYER_TARGET := $(OUTDIR)/player
+TOOL_TARGETS := $(OUTDIR)/dmg $(OUTDIR)/chr $(OUTDIR)/ddb $(OUTDIR)/dsk
+ADPC_TARGET := $(OUTDIR)/adpc
+
+# Toolchain and macOS SDK/link settings.
+CPPFLAGS += -D_OSX -D_THREAD_SAFE
+CPPFLAGS += -arch arm64 -target macos15.0
+LDFLAGS += -target macos15.0 -arch arm64
+CPPFLAGS += -Ilib/sdl2/include
+LDFLAGS += lib/osx/libSDL2.a lib/osx/libSDL2main.a
+LDFLAGS += -lm -liconv -Wl,-framework,CoreAudio -Wl,-framework,AudioToolbox -Wl,-weak_framework,CoreHaptics -Wl,-weak_framework,GameController -Wl,-framework,ForceFeedback -lobjc -Wl,-framework,CoreVideo -Wl,-framework,Cocoa -Wl,-framework,Carbon -Wl,-framework,IOKit -Wl,-weak_framework,QuartzCore -Wl,-weak_framework,Metal
+
+# Shared platform and feature configuration.
+CPPFLAGS += -Iinclude -Iinclude-tools -Ilib-src/salvador
+CPPFLAGS += -DVERSION=$(VERSION) -D_STDCLIB -D_UNIX
+CPPFLAGS += -DHAS_CLIPBOARD -DHAS_VIRTUALFILESYSTEM -DHAS_FULLSCREEN
+CPPFLAGS += -DHAS_SNAPSHOTS -DHAS_PAWS -DHAS_DRAWSTRING -DHAS_XMSG
+CPPFLAGS += -DHAS_PCX -DHAS_SPECTRUM -DHAS_PSG -DHAS_HIRES_FONT=1
+CPPFLAGS += -Dstricmp=strcasecmp -Dstrnicmp=strncasecmp
+
+ifeq ($(DEBUGPRINT),1)
+CPPFLAGS += -D_DEBUGPRINT
+CPPFLAGS += -DDEBUG_IMAGE_CACHE=$(DEBUGCACHE)
+endif
+ifeq ($(DEBUGALLOC),1)
+CPPFLAGS += -DDEBUG_ALLOCS=1
+endif
+ifeq ($(DEBUGLTIME),1)
+CPPFLAGS += -DDEBUG_RLE -DDEBUG_ZX0
+endif
+ifeq ($(DEBUG),1)
+CPPFLAGS += -g
+endif
+ifeq ($(TRACE),1)
+CPPFLAGS += -DTRACE_DEBUG -DTRACE_ON
+endif
+
+CPPFLAGS += $(OPTIM)
+PNG_CFLAGS ?= -Ilib/libpng
+PNG_LIBS ?= lib/osx/libpng.a lib/osx/libz.a
+CPPFLAGS += $(PNG_CFLAGS)
+LDFLAGS += $(PNG_LIBS)
+
+DIRS := src-common/ lib-src/salvador/
+VPATH := $(DIRS) src-sdl/ src-unix/ src-tools/
+SRCS := $(wildcard $(addsuffix *.cpp,$(DIRS))) src-sdl/video.cpp
+TOOL_SRCS := bas_cpc bas_zx dmg_edit dmg_pack img ddb_writ cli_parser session_commands
+TOOL_MAIN_SRCS := $(wildcard src-tools/tool_*.cpp)
+ADPC_SRCS := dc_main dc_condacts dc_cp437 dc_cp850 dc_cp1252 dc_char dc_symb chr_conv tool_adpc
+ADPC_COMMON_SRCS := dim dim_adf dim_cpc dim_fat os_arena os_char os_file os_lib os_mem files error
+
+TOOL_CPPFLAGS = $(CPPFLAGS) -DTRACE_ON -DHAS_TESTMODE=1 -DHAS_WINDOWTEXT=1
+ADPC_CPPFLAGS = $(filter-out -DDEBUG_ALLOCS=1,$(CPPFLAGS)) -DTRACE_ON -DDEBUG_ALLOCS=0
+
+COMMON_OBJS := $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(notdir $(SRCS))))
+COMMON_OBJS += $(OBJDIR)/files.o $(OBJDIR)/error.o
+TRACED_COMMON_OBJS := $(addprefix $(OBJDIR)/trace/,$(patsubst %.cpp,%.o,$(notdir $(SRCS))))
+TRACED_COMMON_OBJS += $(OBJDIR)/trace/files.o $(OBJDIR)/trace/error.o
+PLAYER_OBJ := $(OBJDIR)/player.o
+TOOL_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix .o,$(TOOL_SRCS)))
+TOOL_MAIN_OBJS := $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(notdir $(TOOL_MAIN_SRCS))))
+ADPC_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix _adpc.o,$(ADPC_SRCS)))
+ADPC_COMMON_OBJS := $(addprefix $(OBJDIR)/,$(addsuffix _adpc.o,$(ADPC_COMMON_SRCS)))
+
+.PHONY: all clean
+
+-include $(COMMON_OBJS:.o=.d) $(TRACED_COMMON_OBJS:.o=.d) $(PLAYER_OBJ:.o=.d) $(TOOL_OBJS:.o=.d) $(TOOL_MAIN_OBJS:.o=.d) $(ADPC_OBJS:_adpc.o=_adpc.d) $(ADPC_COMMON_OBJS:_adpc.o=_adpc.d)
+
+all: $(APPDIR) $(TOOL_TARGETS) $(ADPC_TARGET)
+
+$(OUTDIR):
+	@mkdir -p $@
+
+$(APPDIR): $(PLAYER_TARGET) | $(OUTDIR)
+	@mkdir -p $(APPDIR)/Contents/MacOS
+	@mkdir -p $(APPDIR)/Contents/Resources
+	@cp $(PLAYER_TARGET) $(APPDIR)/Contents/MacOS/ADP
+	@cp lib/logo.icns $(APPDIR)/Contents/Resources/ADP.icns
+	@cp lib/Info.plist $(APPDIR)/Contents/Info.plist
+ifeq ($(CONFIG),release)
+	@mkdir -p "$(dir $(CANONICAL_PLAYER))"
+	@cp $(PLAYER_TARGET) "$(CANONICAL_PLAYER)"
+endif
+
+$(OUTDIR)/dmg: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_dmg.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/chr: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_chr.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/ddb: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_ddb.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(OUTDIR)/dsk: $(TRACED_COMMON_OBJS) $(TOOL_OBJS) $(OBJDIR)/tool_dsk.o | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(ADPC_TARGET): $(ADPC_OBJS) $(ADPC_COMMON_OBJS) | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(PLAYER_TARGET): $(COMMON_OBJS) $(PLAYER_OBJ) | $(OUTDIR)
+	$(info Linking $@)
+	@$(CXX) -o $@ $^ $(LDFLAGS)
+
+clean:
+	rm -rf $(OBJDIR) $(APPDIR)
+	rm -f $(TOOL_TARGETS) $(PLAYER_TARGET) $(ADPC_TARGET)
+
+$(COMMON_OBJS) $(PLAYER_OBJ) : $(OBJDIR)/%.o : %.cpp
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CPPFLAGS) -c -o $@ "$(CURDIR)/$<"
+
+$(TOOL_OBJS) : $(OBJDIR)/%.o : %.cpp
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) -c -o $@ "$(CURDIR)/$<"
+
+$(TOOL_MAIN_OBJS) : $(OBJDIR)/%.o : %.cpp
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) -Iinclude-tools -c -o $@ "$(CURDIR)/$<"
+
+$(TRACED_COMMON_OBJS) : $(OBJDIR)/trace/%.o : %.cpp
+	$(info Compiling $< for traced tool runtime)
+	@mkdir -p $(dir $@)
+	@$(CC) $(TOOL_CPPFLAGS) -c -o $@ "$(CURDIR)/$<"
+
+$(ADPC_OBJS) $(ADPC_COMMON_OBJS) : $(OBJDIR)/%_adpc.o : %.cpp
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(ADPC_CPPFLAGS) -Iinclude-tools -c -o $@ "$(CURDIR)/$<"

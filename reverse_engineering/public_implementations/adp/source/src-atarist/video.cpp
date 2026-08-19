@@ -1,0 +1,1643 @@
+#include <ddb_data.h>
+#include <ddb_scr.h>
+#include <ddb_pal.h>
+#include <ddb_vid.h>
+#include <vid_screen.h>
+#include <ddb_xmsg.h>
+#include <dmg.h>
+#include <dmg_font.h>
+#include <vid_font.h>
+#include <os_char.h>
+#include <os_mem.h>
+
+#include "textdraw.h"
+#include "video.h"
+
+#ifdef _ATARIST
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <osbind.h>
+#include <time.h>
+#include <mint/cookie.h>
+#include <mint/falcon.h>
+
+#ifndef DEBUG_MEMORY
+#define DEBUG_MEMORY 0
+#endif
+
+#ifndef DEBUG_PALERRE
+#define DEBUG_PALETTE 0
+#endif
+
+#ifndef DEBUG_KEYCODES
+#define DEBUG_KEYCODES 0
+#endif
+
+extern "C" void PlaySample (const uint8_t* data, uint32_t dataSize, uint32_t hzMode);
+
+enum
+{
+	FalconModeSTLow = STMODES | COL40 | BPS4,
+};
+
+static bool HasFalconVideo()
+{
+	long cookieValue;
+	return Getcookie(C__VDO, &cookieValue) == C_FOUND && cookieValue >= 0x00030000L;
+}
+
+static void FalconSetScreen(void* logbase, void* physbase, int16_t mode)
+{
+	(void)trap_14_wllww((short)0x05, (long)logbase, (long)physbase,
+		(short)SCR_MODECODE, (short)mode);
+}
+
+// static int16_t FalconGetMode()
+// {
+// 	return VsetMode(VM_INQUIRE);
+// }
+
+static int16_t VID_GetFalcon256Mode(DDB_ScreenMode selectedMode)
+{
+	(void)selectedMode;
+
+	const int16_t rgbMode = (int16_t)(COL40 | BPS8);
+	const int16_t monitor = VgetMonitor();
+	const int16_t candidates[] =
+	{
+		(int16_t)(rgbMode | VGA),
+		(int16_t)(rgbMode | PAL),
+		rgbMode,
+		(int16_t)(rgbMode | PAL | VERTFLAG),
+		(int16_t)(rgbMode | VERTFLAG),
+	};
+
+	if (monitor == MON_VGA)
+	{
+		for (unsigned i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
+		{
+			int16_t mode = candidates[i];
+			if ((mode & VGA) == 0)
+				continue;
+			if (Validmode(mode))
+				return mode;
+		}
+	}
+	else
+	{
+		for (unsigned i = 0; i < sizeof(candidates) / sizeof(candidates[0]); i++)
+		{
+			int16_t mode = candidates[i];
+			if ((mode & VGA) != 0)
+				continue;
+			if (Validmode(mode))
+				return mode;
+		}
+	}
+
+	return monitor == MON_VGA ? (int16_t)(rgbMode | VGA) : (int16_t)(rgbMode | PAL);
+}
+
+static int16_t VID_GetFalconModeCode()
+{
+	return nativeImageMode == ImageMode_PlanarFalcon ?
+		VID_GetFalcon256Mode(ScreenMode_VGA) :
+		FalconModeSTLow;
+}
+
+static bool     quit;
+static uint8_t  palette[256][3];
+static uint16_t colors[16];
+static uint32_t falconColors[256];
+
+static uint16_t Read16BE(const uint8_t* ptr)
+{
+	return (uint16_t)(((uint16_t)ptr[0] << 8) | ptr[1]);
+}
+
+struct STPaletteState
+{
+	uint8_t  palette[256][3];
+	uint16_t colors[16];
+	uint32_t falconColors[256];
+};
+
+static uint16_t VID_GetActivePaletteSize()
+{
+	return nativeImageMode == ImageMode_PlanarFalcon ? 256 : 16;
+}
+
+static uint8_t displayPlanesHint = 4;
+static bool hasFalconVideo = false;
+
+void VID_SetDisplayPlanesHint(uint8_t planes)
+{
+	displayPlanesHint = planes >= 8 ? 8 : 4;
+}
+
+bool exitGame = false;
+
+void VID_SetWindowTitle(const char* title)
+{
+	(void)title;
+}
+
+void VID_SetWindowIcon(const char* fileName)
+{
+	(void)fileName;
+}
+bool supportsOpenFileDialog = false;
+
+DDB_Machine screenMachine = DDB_MACHINE_ATARIST;
+DMG_ImageMode nativeImageMode = ImageMode_PlanarST;	
+	// or ImageMode_PlanarFalcon
+static DDB_ScreenMode selectedScreenMode = ScreenMode_VGA16;
+
+#ifndef MAX_PATH
+#define MAX_PATH 256
+#endif
+
+uint16_t* textScreen = 0;
+uint16_t* screen = 0;
+uint32_t screenBufferSize = 32000;
+uint16_t screenRowBytes = 160;
+uint8_t screenGroupBytes = 8;
+
+static uint16_t* frontBuffer = 0;
+static uint16_t* backBuffer = 0;
+static uint8_t*  backBufferMemory = 0;
+static uint32_t  backBufferAllocationSize = 0;
+static bool      backBufferEnabled = false;
+
+static VID_ScreenAdapter screenAdapter;
+
+static STPaletteState frontPaletteState;
+static STPaletteState backPaletteState;
+
+static bool      displaySwap = false;
+static bool      drawToFront = true;
+static bool      textToFront = true;
+static bool      paletteToFront = true;
+
+static DMG*       pictureOrigin;
+static DMG_Entry* pictureEntry = 0;
+static int        pictureIndex = 0;
+static uint16_t*  pictureData = 0;
+static uint32_t   pictureStride;
+
+static void VID_UpdateScreenPointers();
+
+static bool VID_UseFalconMode(DDB_ScreenMode mode)
+{
+	return displayPlanesHint >= 8 || mode == ScreenMode_VGA;
+}
+
+static void VID_UpdateLayoutFromMode()
+{
+	if (nativeImageMode == ImageMode_PlanarFalcon)
+	{
+		screenBufferSize = 64000;
+		screenRowBytes = 320;
+		screenGroupBytes = 16;
+	}
+	else
+	{
+		screenBufferSize = 32000;
+		screenRowBytes = 160;
+		screenGroupBytes = 8;
+	}
+}
+
+static bool VID_ApplyHardwareMode(DDB_ScreenMode selectedMode)
+{
+	int16_t requestedMode = FalconModeSTLow;
+
+	if (nativeImageMode == ImageMode_PlanarFalcon)
+	{
+		if (!hasFalconVideo)
+		{
+			DDB_SetError(DDB_ERROR_FILE_NOT_SUPPORTED);
+			return false;
+		}
+		requestedMode = VID_GetFalcon256Mode(selectedMode);
+		(void)VsetMode(requestedMode);
+		FalconSetScreen((void*)-1, (void*)-1, requestedMode);
+	}
+	else if (hasFalconVideo)
+	{
+		(void)VsetMode(FalconModeSTLow);
+		FalconSetScreen((void*)-1, (void*)-1, FalconModeSTLow);
+	}
+	else
+	{
+		EsetShift(ST_LOW);
+		Setscreen(-1, -1, ST_LOW);
+	}
+
+	Vsync();
+	return true;
+}
+
+static void VID_SetVisibleScreen(void* buffer)
+{
+	if (hasFalconVideo)
+		FalconSetScreen((void*)-1, buffer, VID_GetFalconModeCode());
+	else
+		Setscreen(-1, buffer, -1);
+}
+
+static bool VID_EnsureBackBufferCapacity()
+{
+	if (!backBufferEnabled)
+		return true;
+
+	uint32_t requiredAllocation = screenBufferSize + 255u;
+	if (backBufferMemory != 0 && backBufferAllocationSize >= requiredAllocation)
+		return true;
+
+	if (backBufferMemory != 0)
+	{
+		Free(backBufferMemory);
+		backBufferMemory = 0;
+		backBuffer = 0;
+		backBufferAllocationSize = 0;
+	}
+
+	backBufferMemory = Allocate<uint8_t>("ST Back Buffer", requiredAllocation, false);
+	if (backBufferMemory == 0)
+		return false;
+
+	backBufferAllocationSize = requiredAllocation;
+	backBuffer = (uint16_t*)((((unsigned long)backBufferMemory) + 255u) & ~255u);
+	memset(backBuffer, 0, screenBufferSize);
+	return true;
+}
+#if 0
+/* Replacement of special DAAD spanish characters -not used- */
+uint8_t DDB_Char2AtariST[16] =
+{
+	0xA6,	// ª
+	0xAD,	// ¡
+	0xA8,	// ¿
+	0xAE,	// «
+	0xAF,	// »
+	0xA0,	// á
+	0x82,	// é
+	0xA1,	// í
+	0xA2,	// ó
+	0xA3,	// ú
+	0xA4,	// ñ
+	0xA5,	// Ñ
+	0x87,	// ç
+	0x80,	// Ç
+	0x81,	// ü
+	0x9A,	// Ü
+};
+#endif
+
+// Charset/font loading lives in the shared src-common/vid_font.cpp; the ST
+// renderer needs no post-load work, so its VID_ActivateCharset hook is empty.
+void VID_ActivateCharset() {}
+
+#define CONSOLE 0x02
+
+static int KeyboardHit()
+{
+	return Bconstat(CONSOLE) == -1;
+}
+
+static int GetKey()
+{
+	return Bconin(CONSOLE);
+}
+
+static uint32_t _getClock(void)
+{
+	return *((volatile unsigned long *) 0x4baL);
+}
+
+static uint32_t _writePaletteRegisters(void)
+{
+	volatile uint16_t* hwPalette = (volatile uint16_t*)0xFFFF8240L;
+	for (int n = 0; n < 16; n++)
+		hwPalette[n] = colors[n];
+	return 0;
+}
+
+static uint32_t VID_FalconColorRegister(uint8_t r, uint8_t g, uint8_t b)
+{
+	return ((uint32_t)r << 24) | ((uint32_t)g << 16) | b;
+}
+
+static uint32_t _writeFalconPaletteRegisters(void)
+{
+	volatile uint32_t* hwPalette = (volatile uint32_t*)0xFFFF9800L;
+	for (int n = 0; n < 256; n++)
+		hwPalette[n] = falconColors[n];
+	return 0;
+}
+
+clock_t Clock(void)
+{
+	return Supexec(_getClock);
+}
+
+static int GetKeyModifiers()
+{
+	uint32_t mod = Kbshift(-1);
+	uint32_t r = 0;
+	if (mod & 0x03) r |= SCR_KEYMOD_SHIFT;
+	if (mod & 0x04) r |= SCR_KEYMOD_CTRL;
+	if (mod & 0x08) r |= SCR_KEYMOD_ALT;
+	return r;
+}
+
+static void HideCursor()
+{
+	asm(".byte 0xA0, 0x0A");
+}
+
+static void ShowCursor()
+{
+	asm(".byte 0xA0, 0x09");
+}
+
+static uint16_t ColorValue(uint8_t r, uint8_t g, uint8_t b)
+{
+	r = ((r >> 5) & 0x07) | ((r & 0x10) >> 1);
+	g = ((g >> 5) & 0x07) | ((g & 0x10) >> 1);
+	b = ((b >> 5) & 0x07) | ((b & 0x10) >> 1);
+	return (uint16_t)b | ((uint16_t)g << 4) | ((uint16_t)r << 8);
+}
+
+static void VID_CopyPaletteState(STPaletteState* dst, const STPaletteState* src)
+{
+	MemCopy(dst, src, sizeof(*dst));
+}
+
+static void VID_LoadHardwarePaletteFromState(const STPaletteState* state)
+{
+	uint16_t paletteSize = VID_GetActivePaletteSize();
+	for (uint16_t n = 0; n < paletteSize; n++)
+	{
+		palette[n][0] = state->palette[n][0];
+		palette[n][1] = state->palette[n][1];
+		palette[n][2] = state->palette[n][2];
+		falconColors[n] = state->falconColors[n];
+		if (n < 16)
+			colors[n] = state->colors[n];
+	}
+}
+
+static void VID_SetPaletteEntry(STPaletteState* state, uint8_t color, uint8_t r, uint8_t g, uint8_t b)
+{
+	state->palette[color][0] = r;
+	state->palette[color][1] = g;
+	state->palette[color][2] = b;
+	state->falconColors[color] = VID_FalconColorRegister(r, g, b);
+	if (color < 16)
+		state->colors[color] = ColorValue(r, g, b);
+}
+
+static void VID_SetPaletteEntry16(STPaletteState* state, uint8_t color, uint16_t c)
+{
+	uint32_t c32 = Pal2RGB(c, false);
+	uint8_t r = (c32 >> 16) & 0xFF;
+	uint8_t g = (c32 >>  8) & 0xFF;
+	uint8_t b = (c32      ) & 0xFF;
+	state->palette[color][0] = r;
+	state->palette[color][1] = g;
+	state->palette[color][2] = b;
+	state->falconColors[color] = VID_FalconColorRegister(r, g, b);
+	if (color < 16)
+		state->colors[color] = c;
+}
+
+static void VID_LoadPaletteFromRGB32(STPaletteState* state, const uint32_t* pal, uint16_t count, uint8_t firstColor)
+{
+	uint16_t paletteSize = VID_GetActivePaletteSize();
+	if (firstColor >= paletteSize)
+		return;
+	if (count > paletteSize - firstColor)
+		count = paletteSize - firstColor;
+	for (uint16_t n = 0; n < count; n++)
+	{
+		uint8_t r = (pal[n] >> 16) & 0xFF;
+		uint8_t g = (pal[n] >>  8) & 0xFF;
+		uint8_t b = (pal[n]      ) & 0xFF;
+		VID_SetPaletteEntry(state, (uint8_t)(firstColor + n), r, g, b);
+	}
+}
+
+static void VID_ClearPaletteRange(STPaletteState* state, uint16_t count, uint8_t firstColor)
+{
+	uint16_t paletteSize = VID_GetActivePaletteSize();
+	if (firstColor >= paletteSize)
+		return;
+	if (count > paletteSize - firstColor)
+		count = paletteSize - firstColor;
+	for (uint16_t n = 0; n < count; n++)
+		VID_SetPaletteEntry(state, (uint8_t)(firstColor + n), 0, 0, 0);
+}
+
+void VID_SetPaletteRangeFast(const uint32_t* pal, uint16_t count, uint16_t firstColor, bool clearOutside, bool waitForVsync)
+{
+	uint16_t paletteSize = VID_GetActivePaletteSize();
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ? visibleState : (displaySwap ? &frontPaletteState : &backPaletteState);
+
+	if (clearOutside)
+	{
+		VID_ClearPaletteRange(state, firstColor, 0);
+		if (firstColor + count < paletteSize)
+			VID_ClearPaletteRange(state, (uint16_t)(paletteSize - (firstColor + count)), (uint8_t)(firstColor + count));
+	}
+
+	VID_LoadPaletteFromRGB32(state, pal, count, (uint8_t)firstColor);
+	if (state == visibleState)
+	{
+		VID_LoadHardwarePaletteFromState(state);
+		VID_ApplyPalette(waitForVsync);
+	}
+}
+
+void VID_ApplyPalette(bool waitForVsync)
+{
+	if (waitForVsync)
+		Vsync();
+
+	if (nativeImageMode == ImageMode_PlanarFalcon)
+		Supexec(_writeFalconPaletteRegisters);
+	else
+		Supexec(_writePaletteRegisters);
+}
+
+static bool VID_PaletteMatches(const uint32_t* pal, uint16_t count, uint8_t firstColor)
+{
+	if (pal == 0)
+		return false;
+	uint16_t paletteSize = VID_GetActivePaletteSize();
+	if (firstColor >= paletteSize)
+		return false;
+	if (count > paletteSize - firstColor)
+		count = paletteSize - firstColor;
+
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ?
+			(displaySwap ? &backPaletteState : &frontPaletteState) :
+			(displaySwap ? &frontPaletteState : &backPaletteState);
+
+	for (uint16_t n = 0; n < count; n++)
+	{
+		uint16_t color = firstColor + n;
+		if (state->palette[color][0] != ((pal[n] >> 16) & 0xFF) ||
+			state->palette[color][1] != ((pal[n] >> 8) & 0xFF) ||
+			state->palette[color][2] != (pal[n] & 0xFF))
+			return false;
+	}
+
+	return true;
+}
+
+static void VID_SetPaletteInternal(uint32_t* pal, bool waitForVsync, uint16_t count = 16, uint8_t firstColor = 0)
+{
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ? visibleState : (displaySwap ? &frontPaletteState : &backPaletteState);
+	VID_LoadPaletteFromRGB32(state, pal, count, firstColor);
+	if (state == visibleState)
+	{
+		VID_LoadHardwarePaletteFromState(state);
+		VID_ApplyPalette(waitForVsync);
+	}
+}
+
+static void VID_Blit(uint16_t* dstBase, const uint16_t* srcBase, uint32_t srcStride, int x, int y, int w, int h)
+{
+	if (nativeImageMode == ImageMode_PlanarST)
+		VID_BlitST(dstBase, srcBase, srcStride, x, y, w, h);
+	else if (nativeImageMode == ImageMode_PlanarFalcon)
+		VID_BlitFalcon(dstBase, srcBase, srcStride, x, y, w, h);
+}
+
+static void VID_BlitScreenNativeImage(const uint8_t* pixels, int srcW, int srcH, int x, int y, int w, int h)
+{
+	if (pixels == 0 || screen == 0 || srcW <= 0 || srcH <= 0)
+		return;
+	if (w > srcW)
+		w = srcW;
+	if (h > srcH)
+		h = srcH;
+	uint32_t stride = (nativeImageMode == ImageMode_PlanarFalcon ? 8u : 4u) * ((srcW + 15u) / 16u);
+	VID_Blit(screen, (const uint16_t*)pixels, stride, x, y, w, h);
+}
+
+static void VID_RegisterScreenAdapter()
+{
+	screenAdapter.info.width = screenWidth;
+	screenAdapter.info.height = screenHeight;
+	screenAdapter.info.cellWidth = columnWidth;
+	screenAdapter.info.cellHeight = lineHeight;
+	screenAdapter.info.colorDepth = nativeImageMode == ImageMode_PlanarFalcon ? 8 : 4;
+	screenAdapter.info.paletteSize = VID_GetActivePaletteSize();
+	screenAdapter.info.nativeImageMode = nativeImageMode;
+	screenAdapter.info.alignmentPixels = 1;
+	screenAdapter.ops.clear = VID_Clear;
+	screenAdapter.ops.scroll = VID_Scroll;
+	screenAdapter.ops.drawTextSpan = VID_DrawTextSpan;
+	screenAdapter.ops.blitNativeImage = VID_BlitScreenNativeImage;
+	screenAdapter.ops.blitIndexedImage = 0;
+	screenAdapter.ops.clearBuffer = VID_ClearBuffer;
+	screenAdapter.ops.saveScreen = VID_SaveScreen;
+	screenAdapter.ops.restoreScreen = VID_RestoreScreen;
+	screenAdapter.ops.setTarget = VID_SetOpBuffer;
+	screenAdapter.ops.swapScreen = VID_SwapScreen;
+	VID_ScreenRegisterAdapter(&screenAdapter);
+}
+
+static bool IsFalconRawScreenFile(const char* fileName)
+{
+	File* file = File_Open(fileName, ReadOnly);
+	if (file == 0)
+		return false;
+
+	uint8_t header[4];
+	uint64_t size = File_GetSize(file);
+	bool ok = size == (uint64_t)(4 + 256 * 3 + 64000) && File_Read(file, header, sizeof(header)) == sizeof(header);
+	File_Close(file);
+	return ok && header[0] == 'F' && header[1] == 'C' && header[2] == 'R' && header[3] == '1';
+}
+
+static const uint16_t kFadeInScale[8] = { 0, 37, 73, 110, 146, 183, 219, 256 };
+
+static void VID_ScalePalette(const uint32_t* sourcePalette, uint32_t* fadedPalette, uint16_t count, uint16_t scale)
+{
+	for (uint16_t i = 0; i < count; i++)
+	{
+		uint32_t color = sourcePalette[i];
+		uint32_t r = ((color >> 16) & 0xFFu) * scale / 256u;
+		uint32_t g = ((color >> 8) & 0xFFu) * scale / 256u;
+		uint32_t b = (color & 0xFFu) * scale / 256u;
+		fadedPalette[i] = (r << 16) | (g << 8) | b;
+	}
+}
+
+static void VID_FadeInPalette(const uint32_t* palette, uint16_t count)
+{
+	if (!VID_IsFadeEnabled())
+	{
+		VID_SetPaletteRangeFast(palette, count, 0, false, true);
+		return;
+	}
+
+	uint32_t fadedPalette[256];
+	for (int frame = 0; frame < 8; frame++)
+	{
+		VID_ScalePalette(palette, fadedPalette, count, kFadeInScale[frame]);
+		VID_SetPaletteRangeFast(fadedPalette, count, 0, false, true);
+	}
+	}
+
+static bool VID_LoadFalconRawScreen(const char* fileName, bool fadeIn)
+{
+	File* file = File_Open(fileName, ReadOnly);
+	if (file == 0)
+		return false;
+
+	if (File_GetSize(file) != (uint64_t)(4 + 256 * 3 + 64000))
+	{
+		File_Close(file);
+		DDB_SetError(DDB_ERROR_INVALID_FILE);
+		return false;
+	}
+
+	uint8_t header[4];
+	if (File_Read(file, header, sizeof(header)) != sizeof(header) ||
+		header[0] != 'F' || header[1] != 'C' || header[2] != 'R' || header[3] != '1')
+	{
+		File_Close(file);
+		DDB_SetError(DDB_ERROR_INVALID_FILE);
+		return false;
+	}
+
+	uint8_t rawPalette[256 * 3];
+	if (File_Read(file, rawPalette, sizeof(rawPalette)) != sizeof(rawPalette))
+	{
+		File_Close(file);
+		DDB_SetError(DDB_ERROR_READING_FILE);
+		return false;
+	}
+
+	uint32_t palette[256];
+	for (int i = 0; i < 256; i++)
+		palette[i] = ((uint32_t)rawPalette[i * 3 + 0] << 16) |
+			((uint32_t)rawPalette[i * 3 + 1] << 8) |
+			(uint32_t)rawPalette[i * 3 + 2];
+
+	uint32_t black[256];
+	MemClear(black, sizeof(black));
+	VID_SetPaletteRangeFast(black, 256, 0, false, true);
+
+	if (File_Read(file, screen, 64000) != 64000)
+	{
+		File_Close(file);
+		DDB_SetError(DDB_ERROR_READING_FILE);
+		return false;
+	}
+	File_Close(file);
+
+	if (fadeIn)
+		VID_FadeInPalette(palette, 256);
+	else
+		VID_SetPaletteRangeFast(palette, 256, 0, false, true);
+	return true;
+}
+
+static bool VID_PresentPictureAtomicallyWithTemporaryBuffer(uint32_t* pal, bool paletteUpdated, int x, int y, int w, int h)
+{
+	if (!drawToFront) {
+		DebugPrintf("Atomic picture present not available: drawing to back buffer\n");
+		return false;
+	}
+	if (!paletteUpdated) {
+		DebugPrintf("Atomic picture present not available: picture contains no palette changes\n");
+		return false;
+	}
+	if (pictureData == 0) {
+		DebugPrintf("Atomic picture present not available: picture data is null\n");
+		return false;
+	}
+
+	uint16_t paletteSize = DMG_GetEntryPaletteSize(dmg, pictureIndex);
+	uint8_t firstColor = DMG_GetEntryFirstColor(dmg, pictureIndex);
+	if (paletteSize == 0)
+	{
+		paletteSize = 16;
+		firstColor = 0;
+	}
+
+	uint8_t* tempBase = DMG_GetTemporaryBufferBase();
+	if (tempBase == 0) {
+		DebugPrintf("Atomic picture present not available: no temporary buffer\n");
+		return false;
+	}
+	if (tempBase == 0 || DMG_GetTemporaryBufferSize() < screenBufferSize) {
+		DebugPrintf("Atomic picture present not available: buffer too small (%u bytes)\n", DMG_GetTemporaryBufferSize());
+		return false;
+	}
+
+	uint16_t* visibleBuffer = displaySwap ? backBuffer : frontBuffer;
+	STPaletteState* visiblePalette = displaySwap ? &backPaletteState : &frontPaletteState;
+	uint16_t* hiddenBuffer = displaySwap ? frontBuffer : backBuffer;
+	STPaletteState* hiddenPalette = displaySwap ? &frontPaletteState : &backPaletteState;
+	uint16_t* tempScreen = (uint16_t*)tempBase;
+	const uint16_t* sourcePicture = pictureData;
+	uint32_t sourceStride = pictureStride;
+
+	if (DMG_IsTemporaryBufferPointer(pictureData)) {
+		DebugPrintf("Atomic picture present not available: picture comes from temporary buffer\n");
+		return false;
+	}
+
+	memcpy(tempScreen, visibleBuffer, screenBufferSize);
+	VID_Blit(tempScreen, sourcePicture, sourceStride, x, y, w, h);
+	VID_LoadPaletteFromRGB32(visiblePalette, pal, paletteSize, firstColor);
+	VID_LoadHardwarePaletteFromState(visiblePalette);
+
+	if (hasFalconVideo)
+	{
+		if (nativeImageMode == ImageMode_PlanarFalcon)
+		{
+			VBL_QueueSwap(tempScreen, (long*)falconColors, 256);
+		}
+		else
+		{
+			VID_ApplyPalette(false);
+			VBL_QueueSwap(tempScreen, 0, 0);
+		}
+		VBL_Wait();
+	}
+	else
+	{
+		// In ST, Setscreen becomes active on the next VBL, so switch first, wait once, then latch the palette.
+		VID_SetVisibleScreen(tempScreen);
+		Vsync();
+		VID_ApplyPalette(false);
+	}
+
+	memcpy(visibleBuffer, tempScreen, screenBufferSize);
+	if (backBufferEnabled)
+	{
+		memcpy(hiddenBuffer, tempScreen, screenBufferSize);
+		VID_CopyPaletteState(hiddenPalette, visiblePalette);
+	}
+	if (hasFalconVideo)
+	{
+		VBL_QueueSwap(visibleBuffer, 0, 0);
+		VBL_Wait();
+	}
+	else
+	{
+		VID_SetVisibleScreen(visibleBuffer);
+	}
+	DebugPrintf("Atomic picture present: success\n");
+	return true;
+}
+
+void VID_WaitForKey()
+{
+	while (KeyboardHit())
+		GetKey();
+	while (!KeyboardHit());
+}
+
+bool VID_AnyKey ()
+{
+	return KeyboardHit();
+}
+
+static bool ProbeDataFileHeader(const char* fileName, uint8_t* requiredPlanes, uint16_t* width, uint16_t* height, uint8_t* colorMode)
+{
+	File* file = File_Open(ChangeExtension(fileName, ".dat"), ReadOnly);
+	if (file == 0)
+		return false;
+
+	uint8_t header[16];
+	bool ok = File_Read(file, header, sizeof(header)) == sizeof(header);
+	File_Close(file);
+	if (!ok)
+		return false;
+
+	if (header[0] == 'D' && header[1] == 'A' && header[2] == 'T' && header[3] == 0 &&
+		header[4] == 0 && header[5] == 5)
+	{
+		if (width) *width = Read16BE(header + 0x06);
+		if (height) *height = Read16BE(header + 0x08);
+		if (colorMode) *colorMode = header[0x0E];
+		if (requiredPlanes)
+		{
+			uint8_t planeCount = DMG_DAT5ModePlaneCount(header[0x0E]);
+			*requiredPlanes = planeCount == 0 ? 4 : planeCount;
+		}
+		return true;
+	}
+
+	if (requiredPlanes) *requiredPlanes = 4;
+	if (width) *width = 0;
+	if (height) *height = 0;
+	if (colorMode) *colorMode = 0;
+	return true;
+}
+
+static bool IsSupportedDAT5ColorMode(uint8_t colorMode)
+{
+	return colorMode == DMG_DAT5_COLORMODE_PLANAR4ST ||
+		(colorMode == DMG_DAT5_COLORMODE_PLANAR8ST && hasFalconVideo);
+}
+
+bool VID_LoadDataFile (const char* fileName)
+{
+	for (int n = 0; n < 256; n++)
+		charWidth[n] = 6;
+	memcpy(charset, DefaultCharset, 1024);
+	memcpy(charset + 1024, DefaultCharset, 1024);
+
+	if (dmg != 0)
+	{
+		DMG_Close(dmg);
+		dmg = 0;
+	}
+
+	uint8_t probePlanes = 4;
+	uint16_t probeWidth = 0;
+	uint16_t probeHeight = 0;
+	uint8_t probeColorMode = 0;
+	if (ProbeDataFileHeader(fileName, &probePlanes, &probeWidth, &probeHeight, &probeColorMode))
+	{
+		if (probeColorMode != 0)
+		{
+			if (!IsSupportedDAT5ColorMode(probeColorMode))
+			{
+				DDB_SetError(DDB_ERROR_FILE_NOT_SUPPORTED);
+				return false;
+			}
+			if (probeWidth != 320 || probeHeight != 200 ||
+				(probePlanes != 4 && probePlanes != 8))
+			{
+				DDB_SetError(DDB_ERROR_FILE_NOT_SUPPORTED);
+				return false;
+			}
+		}
+	}
+
+	// DMG_Open reads V1/V2 directories through the temporary buffer.
+	// On ST the arena allocator must reserve the full-screen buffer first
+	// so later image-cache allocation sees the final layout immediately.
+	if (DMG_GetTemporaryBufferSize() < screenBufferSize)
+		DMG_ReserveTemporaryBuffer(screenBufferSize);
+
+	char resolvedDataFile[FILE_MAX_PATH];
+	DDB_ScreenMode resolvedDataMode = selectedScreenMode;
+	if (DDB_ResolveDataFile(fileName, screenMachine, selectedScreenMode, resolvedDataFile, sizeof(resolvedDataFile), &resolvedDataMode, 0))
+	{
+		dmg = DMG_Open(resolvedDataFile, true);
+		selectedScreenMode = resolvedDataMode;
+	}
+	if (dmg == 0)
+	{
+		DDB_SetError(DDB_ERROR_FILE_NOT_FOUND);
+		return false;
+	}
+	if (dmg->version == DMG_Version5)
+	{
+		if (!IsSupportedDAT5ColorMode(dmg->colorMode) || dmg->targetWidth != 320 || dmg->targetHeight != 200)
+		{
+			DMG_Close(dmg);
+			dmg = 0;
+			DDB_SetError(DDB_ERROR_FILE_NOT_SUPPORTED);
+			return false;
+		}
+	}
+	if (!SCR_LoadSINTACFont(ChangeExtension(fileName, ".FNT")) &&
+		!SCR_LoadSINTACFont(ChangeExtension(fileName, ".fnt")) &&
+		!SCR_LoadCharset(charset, ChangeExtension(fileName, ".ch0")) &&
+		!SCR_LoadCharset(charset, ChangeExtension(fileName, ".chr")))
+	{
+		// Keep the default fixed-width charset restored above.
+	}
+
+	uint32_t freeMemory = (uint32_t)OSGetFree();
+	if (freeMemory == 0)
+		freeMemory = Malloc(-1);
+	uint32_t datSize = File_GetSize(dmg->file);
+
+	#if HAS_XMSG
+	if (xmsgFilePresent)
+	{
+		if (freeMemory > datSize + 65536)
+			DDB_InitializeXMessageCache(16384);
+		else
+			DDB_InitializeXMessageCache(4096);
+	}
+	#endif
+
+	if (OSGetFree() != 0)
+	{
+		// After interpreter creation there are no further permanent allocations,
+		// so on ST we can give the image cache all arena space left after file cache setup.
+		DMG_SetupFileCache(dmg, 0, VID_ShowProgressBar);
+		freeMemory = (uint32_t)GetMaxAllocatableBlockSize();
+		DMG_SetupImageCache(dmg, freeMemory);
+	}
+	else if (freeMemory > datSize + 32768)			// Everything fits
+	{
+		DMG_SetupFileCache(dmg, 0, VID_ShowProgressBar);
+		freeMemory = Malloc(-1);
+		if (freeMemory >= 32768)
+			DMG_SetupImageCache(dmg, freeMemory);
+	}
+	else if (freeMemory > datSize)				// DAT barely fits
+	{
+		DMG_SetupImageCache(dmg, 32768);
+		freeMemory = Malloc(-1);
+		DMG_SetupFileCache(dmg, freeMemory, VID_ShowProgressBar);
+	}
+	else if (freeMemory > 0x40000)				// >256K free
+	{
+		DMG_SetupImageCache(dmg, 0x18000);	// 96K cache
+		freeMemory = Malloc(-1);
+		DMG_SetupFileCache(dmg, freeMemory, VID_ShowProgressBar);
+	}
+	else if (freeMemory > 0x20000)				// >128K free
+	{
+		DMG_SetupImageCache(dmg, 0xC000);	// 48K cache
+		freeMemory = Malloc(-1);
+		DMG_SetupFileCache(dmg, freeMemory, VID_ShowProgressBar);
+	}
+	else 
+	{
+		DMG_SetupImageCache(dmg, 0x8000);	// 32K cache
+		freeMemory = Malloc(-1);
+		DMG_SetupFileCache(dmg, freeMemory, VID_ShowProgressBar);
+	}
+
+	return true;
+}
+
+void VID_Clear (int x, int y, int w, int h, uint8_t color, VID_ClearMode mode)
+{
+	if (nativeImageMode == ImageMode_PlanarST)
+		VID_ClearST(x, y, w, h, color, mode);
+	else if (nativeImageMode == ImageMode_PlanarFalcon)
+		VID_ClearFalcon(x, y, w, h, color, mode);
+}
+
+void VID_ClearBuffer (bool front)
+{
+	if (!front && !backBufferEnabled)
+		return;
+		
+	uint16_t* ptr = frontBuffer;
+	if (backBufferEnabled)
+		ptr = front ?
+			(displaySwap ? backBuffer : frontBuffer) :
+			(displaySwap ? frontBuffer : backBuffer);
+	MemClear(ptr, screenBufferSize);
+}
+
+void VID_Finish ()
+{
+	VID_ScreenRegisterAdapter(0);
+	VID_FinishTextDraw();
+	ShowCursor();
+	VBL_Remove();
+
+	if (backBufferMemory != 0)
+	{
+		Free(backBufferMemory);
+		backBufferMemory = 0;
+		backBuffer = 0;
+		backBufferAllocationSize = 0;
+	}
+}
+
+void VID_SetPalette (uint32_t* pal)
+{
+	VID_SetPaletteInternal(pal, true, VID_GetActivePaletteSize(), 0);
+
+#if DEBUG_PALETTE
+	for (int color = 0; color < 16; color++)
+	{
+		char buf[8];
+		STPaletteState* state = &frontPaletteState;
+		if (backBufferEnabled)
+			state = paletteToFront ?
+				(displaySwap ? &backPaletteState : &frontPaletteState) :
+				(displaySwap ? &frontPaletteState : &backPaletteState);
+		uint16_t v = state->colors[color];
+		sprintf(buf, "%04X", v);
+		VID_DrawCharacter(6 + 40*(color & 3), 8 + 8*(color >> 2), ' ', 15, color);
+		for (int n = 0; n < 4; n++)
+			VID_DrawCharacter(14 + 40*(color & 3)+6*n, 8 + 8*(color >> 2), buf[n], 15, 0);
+	}
+#endif
+}
+
+void VID_SetPaletteColor16 (uint8_t color, uint16_t c)
+{
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ? visibleState : (displaySwap ? &frontPaletteState : &backPaletteState);
+	VID_SetPaletteEntry16(state, color, c);
+	if (state == visibleState)
+	{
+		VID_LoadHardwarePaletteFromState(state);
+		if (nativeImageMode != ImageMode_PlanarFalcon)
+			Setcolor(color, c);
+		else
+			VID_ApplyPalette(false);
+	}
+}
+
+void VID_SetPaletteColor (uint8_t color, uint8_t r, uint8_t g, uint8_t b)
+{
+	uint16_t v = ColorValue(r, g, b);
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ? visibleState : (displaySwap ? &frontPaletteState : &backPaletteState);
+	VID_SetPaletteEntry(state, color, r, g, b);
+
+#if DEBUG_PALETTE
+	char buf[8];
+	sprintf(buf, "%04X", v);
+	VID_DrawCharacter(6 + 40*(color & 3), 8 + 8*(color >> 2), ' ', 15, color);
+	for (int n = 0; n < 4; n++)
+		VID_DrawCharacter(14 + 40*(color & 3)+6*n, 8 + 8*(color >> 2), buf[n], 15, 0);
+#endif
+
+	if (state == visibleState)
+	{
+		VID_LoadHardwarePaletteFromState(state);
+		if (nativeImageMode != ImageMode_PlanarFalcon)
+			Setcolor(color, v);
+		else
+			VID_ApplyPalette(false);
+	}
+}
+
+void VID_ActivatePalette()
+{
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	VID_LoadHardwarePaletteFromState(visibleState);
+	VID_ApplyPalette(true);
+}
+
+bool VID_DisplaySCRFile (const char* fileName, DDB_Machine target, bool fadeIn)
+{
+	if (target == DDB_MACHINE_ATARIST && nativeImageMode == ImageMode_PlanarFalcon && IsFalconRawScreenFile(fileName))
+		return VID_LoadFalconRawScreen(fileName, fadeIn);
+
+	if (target == DDB_MACHINE_ATARIST)
+	{
+		uint16_t palette[16];
+		uint32_t palette32[16];
+		File* file = File_Open(fileName);
+		if (!file)
+			return false;
+
+		uint64_t size = File_GetSize(file);
+		if (size != 32032 && size != 32034 && size != 32066)
+		{
+			File_Close(file);
+			return false;
+		}
+
+		if (fadeIn)
+		{
+			for (int n = 0; n < 16; n++)
+				VID_SetPaletteColor16(n, 0);
+			Vsync();
+		}
+
+		if (size != 32032)
+			File_Seek(file, 2);
+
+		bool ok =
+			File_Read(file, palette, 32) == 32 &&
+			File_Read(file, screen, 32000) == 32000;
+		File_Close(file);
+		if (!ok)
+			return false;
+
+		if (fadeIn)
+		{
+			for (int n = 0; n < 16; n++)
+				palette32[n] = Pal2RGB(palette[n], false);
+			VID_FadeInPalette(palette32, 16);
+		}
+		else
+		{
+			for (int n = 0; n < 16; n++)
+				VID_SetPaletteColor16(n, palette[n]);
+			VID_ApplyPalette(false);
+		}
+		return true;
+	}
+
+	uint32_t palette[16];
+	size_t bufferSize = 32768;
+
+	DMG_ReserveTemporaryBuffer(bufferSize);
+	uint8_t* buffer = DMG_GetTemporaryBufferBase();
+
+	if (SCR_GetScreen(fileName, target, buffer + 160, bufferSize - 160,
+	                  buffer, 320, 200, palette, 0))
+	{
+		uint32_t *out = (uint32_t*)screen;
+		uint8_t *in = buffer;
+
+		if (fadeIn)
+		{
+			for (int n = 0; n < 16; n++)
+				VID_SetPaletteColor(n, 0, 0, 0);
+			Vsync();
+		}
+
+		for (int x = 0; x < 320*200; x += 16)
+		{
+			uint32_t p0 = 0;
+			uint32_t p1 = 0;
+			uint32_t mask0 = 0x00008000;
+			uint32_t mask1 = 0x80000000;
+
+			do
+			{
+				const uint8_t c = *in++;
+				if (c & 0x01) p0 |= mask1;
+				if (c & 0x02) p0 |= mask0;
+				if (c & 0x04) p1 |= mask1;
+				if (c & 0x08) p1 |= mask0;
+				mask0 >>= 1;
+				mask1 >>= 1;
+			}
+			while (mask0);
+
+			*out++ = p0;
+			*out++ = p1;
+		}
+
+		if (fadeIn)
+		{
+			Vsync();
+			for (int n = 0; n < 16; n++)
+			{
+				uint8_t r = (palette[n] >> 16) & 0xFF;
+				uint8_t g = (palette[n] >>  8) & 0xFF;
+				uint8_t b = (palette[n]      ) & 0xFF;
+				VID_SetPaletteColor(n, r, g, b);
+			}
+		}
+
+		return true;
+	}
+	return false;
+}
+
+void VID_GetKey (uint8_t* key, uint8_t* ext, uint8_t* mod)
+{
+	uint32_t in = GetKey();
+	if (key) *key = in;
+	if (ext) *ext = (in >> 16);
+	if (mod) *mod = GetKeyModifiers();
+
+	if (interpreter && (in >> 16) == 0x44) // F10
+	{
+		if (++interpreter->keyClick == 3)
+			interpreter->keyClick = 0;
+	}
+
+#if DEBUG_KEYCODES
+	char buf[16];
+	sprintf(buf, "%08X %04X", in, GetKeyModifiers());
+	for (int n =0; n < 13; n++)
+		VID_DrawCharacter(6*n, 0, buf[n], 0, 15);
+#endif
+
+#if DEBUG_MEMORY
+	if (ext && *ext == 0x3B)
+	{
+		char buf[64];
+		void *allocs[256];
+		int n;
+		for (n = 0; n < 256; n++)
+		{
+			allocs[n] = AllocateBlock("MEMTEST", 1024);
+			if (allocs[n] == 0)
+				break;
+		}
+		for (int i = 0; i < n; i++)
+			Free(allocs[i]);
+		buf[0] = ' ';
+		LongToChar(n, buf+1, 10);
+		strcat(buf, "K free ");
+		for (int n = 0; buf[n]; n++)
+			VID_DrawCharacter(8+6*n, 8, buf[n], 0, 15);
+	
+		for (n = 1 ; n < 256; n++)
+		{
+			void* ptr = AllocateBlock("MEMTEST", n * 1024);
+			if (ptr == 0) break;
+			Free(ptr);
+		}
+		buf[0] = ' ';
+		LongToChar(n, buf+1, 10);
+		strcat(buf, "K maxb ");
+		for (int n = 0; buf[n]; n++)
+			VID_DrawCharacter(8+6*n, 16, buf[n], 15, 0);
+
+		if (key) *key = 0;
+		if (ext) *ext = 0;
+	}
+#endif
+
+#if DEBUG_ALLOCS
+	if (ext && *ext == 0x3C)	// F2
+	{
+		DebugPrintf("Arena total=%lu bytes, arena free=%lu bytes, OS free=%lu bytes\n",
+			(unsigned long)OSGetArenaSize(),
+			(unsigned long)OSGetFree(),
+			(unsigned long)Malloc(-1));
+		DumpMemory(0, Malloc(-1));
+	}
+#endif
+}
+
+void VID_GetMilliseconds (uint32_t* time)
+{
+	*time = Clock() * 5;
+}
+
+void VID_GetPaletteColor (uint8_t color, uint8_t* r, uint8_t* g, uint8_t* b)
+{
+	STPaletteState* state = &frontPaletteState;
+	if (backBufferEnabled)
+		state = paletteToFront ?
+			(displaySwap ? &backPaletteState : &frontPaletteState) :
+			(displaySwap ? &frontPaletteState : &backPaletteState);
+	if (r) *r = state->palette[color][0];
+	if (g) *g = state->palette[color][1];
+	if (b) *b = state->palette[color][2];
+}
+
+uint16_t VID_GetPaletteSize()
+{
+	return VID_GetActivePaletteSize();
+}
+
+void VID_GetPictureInfo (bool* fixed, int16_t* x, int16_t* y, int16_t* w, int16_t* h)
+{
+	if (pictureEntry == 0 || pictureOrigin != dmg)
+	{
+		if (fixed != 0)
+			*fixed = false;
+		if (x != 0)
+			*x = 0;
+		if (y != 0)
+			*y = 0;
+		if (w != 0)
+			*w = 0;
+		if (h != 0)
+			*h = 0;
+	}
+	else
+	{
+		if (fixed != 0)
+			*fixed = (pictureEntry->flags & DMG_FLAG_FIXED) ? 1 : 0;
+		if (x != 0)
+			*x = pictureEntry->x;
+		if (y != 0)
+			*y = pictureEntry->y;
+		if (w != 0)
+			*w = pictureEntry->width;
+		if (h != 0)
+			*h = pictureEntry->height;
+	}
+}
+
+void VID_LoadPicture (uint8_t picno, DDB_ScreenMode mode)
+{
+	(void)mode;
+	if (dmg == 0) 
+	{
+		pictureOrigin = 0;
+		pictureEntry = 0;
+		pictureIndex = 0;
+		pictureStride = 0;
+		pictureData = 0;
+		VID_ShowError("Driver has no DMG");
+		return;
+	}
+
+	DMG_Entry* entry = DMG_GetEntry(dmg, picno);
+	if (entry == 0 || entry->type != DMGEntry_Image)
+	{
+		pictureOrigin = 0;
+		pictureEntry = 0;
+		pictureIndex = 0;
+		pictureStride = 0;
+		pictureData = 0;
+		return;
+	}
+
+	pictureOrigin = dmg;
+	pictureEntry  = entry;
+	pictureIndex  = picno;
+	pictureStride = (nativeImageMode == ImageMode_PlanarFalcon ? 8u : 4u) * ((entry->width + 15u) / 16u);
+	pictureData   = (uint16_t*) DMG_GetEntryDataNative(dmg, picno);
+	if (pictureData == 0)
+	{
+		VID_ShowError(DMG_GetErrorString());
+		pictureEntry = 0;
+		pictureOrigin = 0;
+		pictureIndex = 0;
+		pictureStride = 0;
+	}
+}
+
+void VID_DisplayPicture (int x, int y, int w, int h, DDB_ScreenMode mode)
+{
+	DMG_Entry* entry = pictureEntry;
+	if (entry == 0)
+		return;
+	bool paletteUpdated = false;
+	uint16_t paletteSize = DMG_GetEntryPaletteSize(dmg, pictureIndex);
+	uint8_t firstColor = DMG_GetEntryFirstColor(dmg, pictureIndex);
+	if (paletteSize == 0)
+	{
+		paletteSize = 16;
+		firstColor = 0;
+	}
+
+	if (x < 0)
+	{
+		w += x;
+		x = 0;
+	}
+	if (y < 0)
+	{
+		h += y;
+		y = 0;
+	}
+	if (w <= 0 || h <= 0)
+		return;
+
+	if (h > entry->height)
+		h = entry->height;
+	if (w > entry->width)
+		w = entry->width;
+
+	uint32_t* palette = DMG_GetEntryPalette(dmg, pictureIndex);
+	switch (mode)
+	{
+		default:
+		case ScreenMode_VGA16:
+			if (entry->flags & DMG_FLAG_FIXED)
+			{
+				// TODO: This is a hack to fix the palette for the old version of the game
+				if (dmg->version == DMG_Version1 && entry->RGB32Palette != 0)
+					entry->RGB32Palette[15] = 0xFFFFFFFF;
+				paletteUpdated = !VID_PaletteMatches(palette, paletteSize, firstColor);
+			}
+			break;
+
+		case ScreenMode_EGA:
+			break;
+
+		case ScreenMode_CGA:
+			if (entry->flags & DMG_FLAG_FIXED)
+			{
+				palette = DMG_GetCGAMode(entry) == CGA_Red ? CGAPaletteRed : CGAPaletteCyan;
+				paletteUpdated = !VID_PaletteMatches(palette, 4, 0);
+			}
+			break;
+	}
+
+	if (VID_PresentPictureAtomicallyWithTemporaryBuffer(palette, paletteUpdated, x, y, w, h))
+		return;
+
+	DebugPrintf("Atomic picture present: fallback path (drawToFront=%d paletteUpdated=%d)\n",
+		drawToFront ? 1 : 0,
+		paletteUpdated ? 1 : 0);
+
+	if (drawToFront)
+	{
+		Vsync();
+		if (paletteUpdated)
+			VID_SetPaletteInternal(palette, false, paletteSize, firstColor);
+	}
+	else if (paletteUpdated)
+		VID_SetPaletteInternal(palette, false, paletteSize, firstColor);
+
+	VID_Blit(screen, pictureData, pictureStride, x, y, w, h);
+}
+
+void VID_Scroll (int x, int y, int w, int h, int lines, uint8_t paper)
+{
+	if (nativeImageMode == ImageMode_PlanarST)
+		VID_ScrollST(x, y, w, h, lines, paper);
+	else if (nativeImageMode == ImageMode_PlanarFalcon)
+		VID_ScrollFalcon(x, y, w, h, lines, paper);
+}
+
+void VID_OpenFileDialog (bool existing, char* filename, size_t bufferSize)
+{
+	// Not supported
+}
+
+void VID_PlaySample (uint8_t no, int* duration)
+{
+	DMG_Entry* entry = DMG_GetEntry(dmg, no);
+	if (entry == NULL || entry->type != DMGEntry_Audio)
+		return;
+	// The ST plays 8-bit samples at one of six timer rates up to 30 kHz.
+	// Anything higher (44.1/48 kHz DAT5 samples) or 16-bit is folded down to
+	// that ceiling in place by the shared converter, which also fixes the old
+	// behaviour of silently dropping those entries.
+	DMG_AudioTarget sink;
+	sink.maxRate = 30000;
+	sink.bitDepth = 8;
+	sink.signedOutput = false;
+
+	uint32_t sampleBytes;
+	uint32_t sampleHz;
+	uint8_t* audioData = DMG_GetEntryAudioConverted(dmg, no, &sink, &sampleBytes, &sampleHz);
+	if (audioData == 0)
+		return;
+
+	int rateCode;
+	switch (sampleHz)
+	{
+		case 5000:  rateCode = DMG_5KHZ;   break;
+		case 7000:  rateCode = DMG_7KHZ;   break;
+		case 9500:  rateCode = DMG_9_5KHZ; break;
+		case 15000: rateCode = DMG_15KHZ;  break;
+		case 20000: rateCode = DMG_20KHZ;  break;
+		case 30000: rateCode = DMG_30KHZ;  break;
+		default:    rateCode = DMG_30KHZ;  break;
+	}
+	PlaySample(audioData, sampleBytes, rateCode);
+
+	if (duration != NULL)
+		*duration = sampleBytes * 1000 / sampleHz;
+}
+
+void VID_PlaySampleBuffer (void* buffer, int samples, int hz, int volume)
+{
+	int hzMode = DMG_5KHZ;
+
+	     if (hz <  5000) hzMode = DMG_5KHZ;
+	else if (hz <  8500) hzMode = DMG_7KHZ;
+	else if (hz < 12250) hzMode = DMG_9_5KHZ;
+	else if (hz < 17500) hzMode = DMG_15KHZ;
+	else if (hz < 25000) hzMode = DMG_20KHZ;
+	else hzMode = DMG_30KHZ;
+	
+	PlaySample((uint8_t*)buffer, samples, hzMode);
+}
+
+void VID_StopSampleIfOverlaps(const void* buffer, uint32_t size)
+{
+	(void)buffer;
+	(void)size;
+}
+
+void VID_Quit ()
+{
+	quit = true;
+}
+
+void VID_UpdateScreenPointers()
+{
+	if (!backBufferEnabled)
+	{
+		screen = frontBuffer;
+		textScreen = frontBuffer;
+		return;
+	}
+
+	screen = (drawToFront ^ displaySwap) ? frontBuffer : backBuffer;
+	textScreen = (textToFront ^ displaySwap) ? frontBuffer : backBuffer;
+}
+
+void VID_SetTextInputMode (bool enabled)
+{
+	// Not supported
+}
+
+void VID_SwapScreen ()
+{
+	if (!backBufferEnabled)
+		return;
+
+	displaySwap = !displaySwap;
+	VID_UpdateScreenPointers();
+
+	uint16_t* visibleBuffer = displaySwap ? backBuffer : frontBuffer;
+	STPaletteState* visibleState = displaySwap ? &backPaletteState : &frontPaletteState;
+	VID_LoadHardwarePaletteFromState(visibleState);
+	VID_SetVisibleScreen(visibleBuffer);
+	VID_ApplyPalette(true);
+}
+
+void VID_SetOpBuffer (SCR_Operation op, bool front)
+{
+	if (!backBufferEnabled)
+		return;
+		
+	if (op == SCR_OP_DRAWTEXT)
+		textToFront = front;
+	else if (op == SCR_OP_DRAWPICTURE)
+	{
+		drawToFront = front;
+		paletteToFront = front;
+	}
+	VID_UpdateScreenPointers();
+}
+
+void VID_RestoreScreen ()
+{
+	if (!backBufferEnabled)
+		return;
+
+	VID_SwapScreen();
+
+	uint16_t* front = displaySwap ? backBuffer : frontBuffer;
+	uint16_t* back = displaySwap ? frontBuffer : backBuffer;
+	STPaletteState* frontState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* backState = displaySwap ? &frontPaletteState : &backPaletteState;
+	memcpy(back, front, screenBufferSize);
+	VID_CopyPaletteState(backState, frontState);
+}
+
+void VID_SaveScreen ()
+{
+	if (!backBufferEnabled)
+		return;
+		
+	uint16_t* front = displaySwap ? backBuffer : frontBuffer;
+	uint16_t* back  = displaySwap ? frontBuffer : backBuffer;
+	STPaletteState* frontState = displaySwap ? &backPaletteState : &frontPaletteState;
+	STPaletteState* backState = displaySwap ? &frontPaletteState : &backPaletteState;
+	memcpy(back, front, screenBufferSize);
+	VID_CopyPaletteState(backState, frontState);
+}
+
+void VID_MainLoop (DDB_Interpreter* i, void (*callback)(int elapsed))
+{
+	interpreter = i;
+	
+	while (!quit)
+	{
+		callback(0);
+	}
+
+	quit = false;
+}
+
+void VID_EnableBackBuffer()
+{
+	backBufferEnabled = true;
+
+	if (!VID_EnsureBackBufferCapacity())
+	{
+		backBufferEnabled = false;
+		return;
+	}
+
+	VID_CopyPaletteState(&backPaletteState, &frontPaletteState);
+}
+
+bool VID_IsBackBufferEnabled()
+{
+	return backBufferEnabled;
+}
+
+bool VID_Initialize(DDB_Machine machine, DDB_Version version, DDB_ScreenMode selectedMode)
+{
+	(void)machine;
+	(void)version;
+
+	VBL_Install();
+
+	hasFalconVideo = HasFalconVideo();
+	selectedScreenMode = selectedMode;
+	nativeImageMode = VID_UseFalconMode(selectedMode) ? ImageMode_PlanarFalcon : ImageMode_PlanarST;
+	VID_UpdateLayoutFromMode();
+	if (!VID_ApplyHardwareMode(selectedMode))
+		return false;
+	screenWidth  = 320;
+	screenHeight = 200;
+	lineHeight   = 8;
+	columnWidth  = 6;
+	screenMachine = DDB_MACHINE_ATARIST;
+	screenWidth  = 320;
+	screenHeight = 200;
+	for (int n = 0; n < 256; n++)
+		charWidth[n] = 6;
+	VID_RegisterScreenAdapter();
+
+	memcpy(charset, DefaultCharset, 1024);
+	memcpy(charset + 1024, DefaultCharset, 1024);
+	displaySwap = false;
+	drawToFront = true;
+	textToFront = true;
+	paletteToFront = true;
+	MemClear(&frontPaletteState, sizeof(frontPaletteState));
+	MemClear(&backPaletteState, sizeof(backPaletteState));
+
+	frontBuffer = (uint16_t*)Physbase();
+	memset(frontBuffer, 0, screenBufferSize);
+
+	if (backBufferEnabled)
+	{
+		if (!VID_EnsureBackBufferCapacity())
+			return false;
+		VID_CopyPaletteState(&backPaletteState, &frontPaletteState);
+	}
+
+	VID_UpdateScreenPointers();
+	if (!VID_InitializeTextDraw())
+		return false;
+	VID_SetDefaultPalette();
+	VID_CopyPaletteState(&backPaletteState, &frontPaletteState);
+
+	HideCursor();
+	VID_Clear(0, 0, 320, 200, 0, Clear_All);
+	return true;
+}
+
+void VID_VSync()
+{
+	Vsync();
+}
+
+
+bool VID_BackupScreen()
+{
+	return false;
+}
+
+bool VID_RestoreBackupScreen()
+{
+	return false;
+}
+
+#endif

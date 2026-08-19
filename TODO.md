@@ -103,3 +103,11 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 - [ ] Convert accepted real artifacts into regression fixtures/manifests for media inspection, recursive unpacking, DDB validation, interpreter correlation, organization, and static-report output without fabricating detections.
 - [ ] Publish platform coverage, failures, unavailable items, rights-restricted records, extraction statuses, and test use in dated audit documents and the report corpus.
 - [ ] Produce a source-by-source coverage ledger proving which reachable catalogs, queries, pages, and downloads were exhausted; record inaccessible, missing, duplicate, and unresolved historical items as explicit gaps rather than asserting unverifiable universal completeness.
+
+### 9. DAAD game decompiler research and differential implementation
+
+- [ ] Inventory every reachable public DAAD game decompiler, decompiler-like tool, compiler inverse, source recovery project, and format reader; retain complete pinned source/release inputs and document exact platform/version/format scope.
+- [ ] Build a modular preservation decompiler that accepts measured DDB, runtime, media, and execution-trace evidence; emit structured source-like output, byte-range lineage, confidence, ambiguity, and tool/version metadata for every recovered construct.
+- [ ] Implement platform-aware profiles for ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS, separating shared DDB semantics from platform loader/media/runtime differences.
+- [ ] Differentially compare the new decompiler with every retained public implementation/decompiler and independently reproduce disagreements against original bytes, traces, and known game fixtures.
+- [ ] Add exhaustive real-artifact regression tests, deterministic output fixtures, source-map/evidence manifests, documentation, and report integration before promoting any recovered interpretation beyond its evidence level.

@@ -74,6 +74,48 @@ def verify_third_party_manifest(errors: list[str]) -> int:
     return len(manifest["candidates"])
 
 
+def verify_adp_implementation(errors: list[str]) -> int:
+    manifest = load("adp_implementation.json")
+    checked = 0
+    for category, storage_key, list_key, count_key in (
+        ("ADP source", "source_storage", "source_files", "source_file_count"),
+        ("ADP release", "release_storage", "release_files", "release_file_count"),
+    ):
+        files = manifest.get(list_key, [])
+        if not isinstance(files, list) or len(files) != manifest.get(count_key):
+            errors.append(f"{category} manifest count mismatch")
+            continue
+        root = ROOT / str(manifest.get(storage_key, ""))
+        for item in files:
+            if not isinstance(item, dict):
+                errors.append(f"non-object {category} manifest record")
+                continue
+            path = root / str(item.get("path", ""))
+            checked += 1
+            if not path.is_file():
+                errors.append(f"missing {category} file: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+            elif sha256(path) != item.get("sha256"):
+                errors.append(f"{category} hash mismatch: {path.relative_to(ROOT)}")
+    return checked
+
+
+def verify_adp_verification(errors: list[str]) -> int:
+    manifest = load("adp_verification.json")
+    log = manifest.get("log", {})
+    if not isinstance(log, dict):
+        errors.append("ADP verification log record is not an object")
+        return 0
+    path = ROOT / str(log.get("path", ""))
+    if not path.is_file():
+        errors.append(f"missing ADP verification log: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+    elif sha256(path) != log.get("sha256"):
+        errors.append(f"ADP verification log hash mismatch: {path.relative_to(ROOT)}")
+    summary = manifest.get("scenario_summary", {})
+    if not isinstance(summary, dict) or summary.get("probed") != summary.get("passed", 0) + summary.get("blocked", 0) + summary.get("failed_behavioral_assertions", 0):
+        errors.append("ADP verification scenario summary does not reconcile")
+    return 1
+
+
 def verify_derived_outputs(errors: list[str]) -> int:
     original_manifest = load("official_interpreters.json")
     known_hashes = {
@@ -116,12 +158,14 @@ def main() -> int:
     originals = verify_originals(errors)
     sources = verify_public_sources(errors)
     comparisons = verify_third_party_manifest(errors)
+    adp = verify_adp_implementation(errors)
+    adp_verification = verify_adp_verification(errors)
     derived = verify_derived_outputs(errors)
     if errors:
         print("Reverse-engineering corpus verification failed:")
         print("\n".join(f"- {error}" for error in errors))
         return 1
-    print(f"Reverse-engineering corpus verified: {originals} originals, {sources} public source files, {comparisons} third-party comparison records, {derived} derived outputs.")
+    print(f"Reverse-engineering corpus verified: {originals} originals, {sources} public source files, {adp} ADP mirror files, {adp_verification} ADP verification record, {comparisons} third-party comparison records, {derived} derived outputs.")
     return 0
 
 

@@ -1,0 +1,78 @@
+#ifdef _DOS
+
+#include <os_file.h>
+#include <os_lib.h>
+
+#include <stdio.h>
+#include <direct.h>
+
+struct FindFileInternal
+{
+	DIR *dirp;
+	struct dirent *direntp;
+};
+
+void FillFindFileReults (FindFileResults* results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+
+	StrCopy(results->fileName, sizeof(results->fileName), i->direntp->d_name);
+	results->attributes = 0;
+	results->fileSize = 0;
+	results->description[0] = 0;
+}
+
+bool OS_FindFirstFile(const char *pattern, FindFileResults *results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+
+	i->dirp = opendir(".");
+	return OS_FindNextFile(results);
+}
+
+bool OS_FindNextFile(FindFileResults *results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+
+	if (i->dirp == 0)
+		return false;
+
+	for (;;)
+	{
+		i->direntp = readdir(i->dirp);
+		if (i->direntp == 0)
+			break;
+		FillFindFileReults(results);
+		return true;
+	}
+	closedir(i->dirp);
+	i->dirp = 0;
+	return false;
+}
+
+bool OS_GetCurrentDirectory(char* buffer, size_t bufferSize)
+{
+	if (buffer == NULL || bufferSize == 0)
+		return false;
+	return getcwd(buffer, bufferSize) != 0;
+}
+
+bool OS_ChangeDirectory(const char* path)
+{
+	if (path == NULL)
+		return false;
+	return chdir(path) == 0;
+}
+
+bool OS_RemountBootMedia()
+{
+	// DOS reads the FAT from the medium on every access; a fresh directory
+	// rescan is enough after a floppy change.
+	return true;
+}
+
+void OSSyncFS()
+{
+}
+
+#endif

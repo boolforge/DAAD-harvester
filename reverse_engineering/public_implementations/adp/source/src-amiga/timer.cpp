@@ -1,0 +1,100 @@
+#include <os_types.h>
+#include <os_lib.h>
+
+
+#include <devices/timer.h>
+#include <exec/exec.h>
+#include <exec/devices.h>
+#include <exec/interrupts.h>
+#include <proto/exec.h>
+#include <proto/dos.h>
+
+#include "gcc8_c_support.h"
+#include "old_exec.h"
+
+static bool timerOpened = false;
+
+static timerequest* req;
+static MsgPort* port;
+
+static void PrintTimerError(const char* msg)
+{
+	DebugPrintf("%s", msg);
+}
+
+void OpenTimer()
+{
+	if (timerOpened)
+		return;
+	
+	if (SysBase->SoftVer >= 39)
+	{
+		port = CreateMsgPort();
+		if (port == 0)
+		{
+			DebugPrintf("Error creating timer message port\n");
+			return;
+		}
+
+		req = (timerequest*)CreateIORequest(port, sizeof(timerequest));
+		if (req == 0)
+		{
+			DebugPrintf("Error creating timer IO request\n");
+			return;
+		}
+	}
+	else
+	{
+		if (!OldExec_CreateIORequest(&port, (IORequest**)&req, sizeof(timerequest), PrintTimerError,
+			"Error creating timer message port\n",
+			"Error allocating timer IO request\n"))
+			return;
+	}
+		
+	if (OpenDevice("timer.device", UNIT_MICROHZ, (IORequest *)req, 0) != 0)
+	{
+		DebugPrintf("Error opening timer.device: %ld\n", IoErr());
+		Delay(50);
+		Exit(0);
+	}
+
+	timerOpened = true;
+}
+
+uint32_t GetMilliseconds()
+{
+	if (timerOpened == false)
+		OpenTimer();
+	
+	req->tr_node.io_Message.mn_Node.ln_Type = NT_MESSAGE;
+	req->tr_node.io_Message.mn_Node.ln_Succ = 0;
+	req->tr_node.io_Message.mn_Node.ln_Pred = 0;
+	req->tr_node.io_Flags = 0;
+	req->tr_node.io_Error = 0;
+	req->tr_node.io_Command = TR_GETSYSTIME;
+	DoIO(&req->tr_node);
+	
+	return req->tr_time.tv_secs * 1000 + (req->tr_time.tv_micro / 1000);
+}
+
+void CloseTimer()
+{
+	if (timerOpened == false)
+		return;
+		
+	CloseDevice((IORequest *)req);
+
+	if (SysBase->SoftVer >= 39)
+	{
+		DeleteIORequest(req);
+		DeleteMsgPort(port);
+	}
+	else
+	{
+		OldExec_DeleteIORequest(port, (IORequest *)req, sizeof(timerequest));
+	}
+
+	req = 0;
+	port = 0;
+	timerOpened = false;
+}

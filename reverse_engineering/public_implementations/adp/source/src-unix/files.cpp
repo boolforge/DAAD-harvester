@@ -1,0 +1,100 @@
+#ifdef _UNIX
+
+#include <os_file.h>
+#include <os_lib.h>
+
+#include <stdio.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <sys/stat.h>
+
+struct FindFileInternal
+{
+	DIR *dirp;
+	struct dirent *direntp;
+	char path[FILE_MAX_PATH];
+};
+
+void FillFindFileResults (FindFileResults* results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+	char fullPath[FILE_MAX_PATH * 2];
+
+	StrCopy(results->fileName, sizeof(results->fileName), i->path);
+	StrCat(results->fileName, sizeof(results->fileName), i->direntp->d_name);
+	results->attributes = 0;
+	results->fileSize = 0;
+	results->description[0] = 0;
+
+	StrCopy(fullPath, sizeof(fullPath), results->fileName);
+	struct stat st;
+	if (stat(fullPath, &st) == 0)
+	{
+		if (S_ISDIR(st.st_mode))
+			results->attributes |= FileAttribute_Directory;
+		else
+			results->fileSize = (uint32_t)st.st_size;
+	}
+}
+
+bool OS_FindFirstFile(const char *pattern, FindFileResults *results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+
+	const char* folder = StrRChr(pattern, '/');
+	if (folder != 0)
+	{
+		StrCopy(i->path, folder-pattern, pattern);
+		i->dirp = opendir(i->path);
+		if (i->dirp == 0) {
+			return false;
+		}
+		StrCat(i->path, FILE_MAX_PATH, "/");
+	}
+	else
+	{
+		i->path[0] = 0;
+		i->dirp = opendir(".");
+	}
+	return OS_FindNextFile(results);
+}
+
+bool OS_FindNextFile(FindFileResults *results)
+{
+	FindFileInternal* i = (FindFileInternal*)&results->internalData;
+
+	if (i->dirp == 0)
+		return false;
+
+	for (;;)
+	{
+		i->direntp = readdir(i->dirp);
+		if (i->direntp == 0) {
+			break;
+		}
+
+		FillFindFileResults(results);
+		return true;
+	}
+	closedir(i->dirp);
+	i->dirp = 0;
+	return false;
+}
+
+bool OS_GetCurrentDirectory(char* buffer, size_t bufferSize)
+{
+	return buffer && bufferSize && getcwd(buffer, bufferSize) != 0;
+}
+
+bool OS_ChangeDirectory(const char* path)
+{
+	return path && chdir(path) == 0;
+}
+
+bool OS_RemountBootMedia()
+{
+	// Directory contents are not bound to a mounted volume on this platform.
+	return true;
+}
+
+#endif

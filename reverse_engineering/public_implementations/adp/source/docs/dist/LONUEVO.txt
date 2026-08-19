@@ -1,0 +1,76 @@
+# ¿Qué hay de nuevo?
+
+## ADP 0.3
+
+### Todas las versiones
+
+- Añadido el formato de base de datos gráfica DAT5, con nuevos modos gráficos
+  y resoluciones.
+- Añadido soporte para fuentes proporcionales SINTAC y DAAD V3/XMESS.
+- Añadido un formato portátil de partidas guardadas y mejorada la carga de
+  aventuras con múltiples partes.
+
+### Escritorio y web
+
+- Añadido soporte experimental para PAWS (Spectrum), incluyendo bases de datos de 48K y
+  128K.
+- Añadido soporte de DAAD de 8 bits para Spectrum, CPC, MSX, C64 y PCW.
+- Añadidos snapshots, imágenes de disco y cinta, y gráficos DRAWSTRING de 8 bits.
+- Añadidos juegos PC DAAD VGA/SVGA con imágenes PCX externas.
+- Añadidos efectos PSG de Atari ST, transcripciones y entrada mediante scripts.
+
+### Amiga
+
+- Añadidos gráficos DAT5 con modos de 32 colores, EHB, HAM y 256 colores AGA.
+- Mejorada la estabilidad, la carga y el rendimiento gráfico.
+
+### Atari ST
+
+- Añadidos gráficos DAT5, efectos PSG, paletas extendidas STE/Falcon y modo de
+  256 colores para Falcon.
+- Mejorada la estabilidad y el rendimiento.
+
+### MS-DOS
+
+- Añadidos reproductores de 16 y 32 bits.
+- Añadidos modos nativos CGA, EGA, VGA de 256 colores y SVGA 640x400.
+- Añadido `SETUP.EXE` para seleccionar el modo gráfico y configurar el sonido
+  Sound Blaster.
+- Mejorados el sonido Sound Blaster, la carga y el rendimiento gráfico.
+
+### Herramientas
+
+- Añadido ADPC, un compilador de fuentes DAAD V1/V2 y PAWS.
+- Añadida la extracción y el volcado de bases de datos PAWS.
+- Ampliadas DMG, CHR y DSK para gráficos DAT5, fuentes proporcionales y más
+  formatos de imagen de disco.
+- Añadida una extensa batería de pruebas con juegos originales de 8 y 16 bits.
+
+## ADP 0.2
+
+### Todas las versiones
+
+* Arreglados ciertos problemas relacionados con la pantalla de carga, en especial para juegos de una sola carga. Estos juegos deberían ahora mostrar la pantalla de presentación y esperar a la pulsación de una tecla para continuar.
+* Arreglado un problema por el que INK/PAPER cambiaban el color de textos impresos antes de su ejecución.
+* Arreglado el condacto ANYKEY, que no mostraba el mensaje del sistema 16 antes de esperar.
+* Arreglado el listado de objetos LISTOBJ, que no verificaba correctamente el flag de listado continuo.
+
+### Versiones web y escritorio
+
+* **NUEVO:** Soporte de portapapeles (Ctrl+C/Ctrl+V). Como aún no se soporta la selección de texto, Ctrl+C copia al portapapeles la línea de entrada completa.
+* **NUEVO:** La herramienta DDB de línea de comandos y el reproductor web soportan cargar directamente imágenes de disco Atari ST, Amiga y MS-DOS.
+* **NUEVO:** La versión web puede ejecutar ahora juegos no embebidos, lo que significa que es posible empaquetar cualquier juego nuevo para distribuirlo en la web. Más detalles en el paquete ZIP correspondiente.
+
+### Amiga
+
+* Arreglado el soporte de imágenes de la versión 1 (Original, Jabato)
+* Arreglados diversos problemas que causaban un fallo al salir en Amiga 1200+.
+* **NUEVO:** Esta versión soporta la reproducción de sonidos digitales. Esto incluye el sonido de pulsación de tecla, se puede usar F10 para desactivarlo.
+
+### Atari ST
+
+* **NUEVO:** Esta versión también soporta reproducción de sonidos digitales. Se usa para ello el chip AY, como hacía el intérprete original, así que la calidad es pobre, pero funcionará en cualquier ordenador ST.
+
+## ADP 0.1
+
+Primera versión pública de ADP, con soporte de juegos de 16 bits.

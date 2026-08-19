@@ -1,0 +1,161 @@
+
+#include <os_types.h>
+#include <os_lib.h>
+
+#ifdef _AMIGA
+
+#include <exec/exec.h>
+#include <proto/exec.h>
+#include <proto/dos.h>
+#include <devices/audio.h>
+#include <devices/serial.h>
+
+#include "gcc8_c_support.h"
+#include "audio.h"
+#include "old_exec.h"
+#include "video.h"
+
+static bool     soundOpen = false;
+static bool     playing = false;
+static IOAudio* req;
+static MsgPort* port;
+
+extern void PrintToOutput(const char* msg);
+
+bool OpenAudio()
+{
+	if (!soundOpen)
+	{
+		if (SysBase->SoftVer >= 39)
+		{
+			port = CreateMsgPort();
+			if (port == 0)
+			{
+				DebugPrintf("Error creating audio message port\n");
+				return false;
+			}
+
+			req = (IOAudio*)CreateIORequest(port, sizeof(IOAudio));
+			if (req == 0)
+			{
+				PrintToOutput("Error creating audio IO request\n");
+				return false;
+			}
+		}
+		else
+		{
+			if (!OldExec_CreateIORequest(&port, (IORequest**)&req, sizeof(IOAudio), PrintToOutput,
+				"Error creating audio message port\n",
+				"Error allocating audio IO request\n"))
+				return false;
+		}
+
+		static UBYTE channels[] = {1,2,4,8};
+
+   		req->ioa_Request.io_Command = ADCMD_ALLOCATE;
+   		req->ioa_Request.io_Flags = ADIOF_NOWAIT;
+   		req->ioa_AllocKey = 0;
+   		req->ioa_Data = channels;
+   		req->ioa_Length = sizeof(channels);
+
+		if (OpenDevice("audio.device",0,(IORequest *)req,0) != 0)
+		{
+			PrintToOutput("Error opening audio.device\n"); //, IoErr());
+			return false;
+		}
+
+		DebugPrintf("Opened audio.device\n");
+		soundOpen = true;
+	}
+
+	return soundOpen;
+}
+
+void ConvertSample(uint8_t* sample, uint32_t length)
+{
+	for (uint32_t i = 0; i < length; i++)
+	{
+		sample[i] ^= 0x80;
+	}
+}
+
+void PlaySample(uint8_t* sample, uint32_t length, uint32_t hz, uint32_t volume)
+{
+	if (!soundOpen)
+		return;
+	StopSample();
+
+	if (volume > 63) volume = 63;
+
+	uint32_t period = (isPAL ? 3546895L : 3579545L) / hz;
+	if (period < 124) period = 124;
+
+	req->ioa_Request.io_Command = CMD_WRITE;
+	req->ioa_Request.io_Flags = ADIOF_PERVOL;
+	req->ioa_Data   = sample;
+	req->ioa_Length = length;
+	req->ioa_Period = period;
+	req->ioa_Volume = volume;
+	req->ioa_Cycles = 1;
+	OldExec_BeginIO((struct IORequest *)req);
+	playing = true;
+
+	// DebugPrintf("Playing sample at %p: %ld bytes, %ld hz, %ld period, %ld volume\n", sample, length, hz, period, volume);
+}
+
+void StopSample()
+{
+	if (!soundOpen)
+		return;
+
+	if (playing)
+	{
+		if (!CheckIO((IORequest *)req))
+		{
+			DebugPrintf("Aborting audio playback\n");
+			AbortIO((IORequest *)req);
+		}
+		WaitIO((IORequest *)req);
+		playing = false;
+	}
+}
+
+void StopSampleIfOverlaps(const void* buffer, uint32_t length)
+{
+	if (!soundOpen || !playing)
+		return;
+
+	size_t start = (size_t)buffer;
+	size_t end = start + length;
+	size_t sample = (size_t)req->ioa_Data;
+	size_t sampleEnd = sample + req->ioa_Length;
+	if (sample < end && sampleEnd > start)
+		StopSample();
+}
+
+void CloseAudio()
+{
+	if (soundOpen)
+	{
+		StopSample();
+
+		DebugPrintf("Closing audio.device\n");
+		CloseDevice((IORequest *)req);
+
+		if (SysBase->SoftVer < 39)
+		{
+			OldExec_DeleteIORequest(port, (IORequest *)req, sizeof(IOAudio));
+		}
+		else
+		{
+			DeleteIORequest((IORequest *)req);
+			DeleteMsgPort(port);
+		}
+
+		req = 0;
+		port = 0;
+		soundOpen = false;
+	}
+}
+
+#endif

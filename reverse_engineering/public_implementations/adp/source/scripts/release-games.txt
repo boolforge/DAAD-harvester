@@ -1,0 +1,96 @@
+# Files included in Games-AD.zip, relative to tests/games.
+# This is deliberately curated: do not replace it with a recursive copy.
+
+firfurcio/supervivencia.tap
+
+chichen/amiga/CHICHEN-AMIGA.ADF
+chichen/atarist/CHICHEN-ST.st
+chichen/c64/CHICHEN-C64 1.DDB
+chichen/c64/CHICHEN-C64 1.CDG
+chichen/c64/CHICHEN-C64 2.DDB
+chichen/c64/CHICHEN-C64 2.CDG
+chichen/cpc/CHICHEN-CPC.DSK
+chichen/msx/CHICHEN-MSX 1.CAS
+chichen/msx/CHICHEN-MSX 2.CAS
+chichen/pc/CHICHEN-PC.img
+chichen/spectrum/CHICHEN-SPECTRUM 1.tzx
+chichen/spectrum/CHICHEN-SPECTRUM 2.tzx
+
+cozumel/amiga/COZUMEL-AMIGA.ADF
+cozumel/atarist/COZUMEL-ST.st
+cozumel/c64/COZUMEL-C64 1.DDB
+cozumel/c64/COZUMEL-C64 1.CDG
+cozumel/c64/COZUMEL-C64 2.DDB
+cozumel/c64/COZUMEL-C64 2.CDG
+cozumel/cpc/COZUMEL-CPC 1.CDT
+cozumel/cpc/COZUMEL-CPC 2.CDT
+cozumel/msx/COZUMEL-MSX 1.CAS
+cozumel/msx/COZUMEL-MSX 2.CAS
+cozumel/pc/COZUMEL-PC.img
+cozumel/pcw/COZUMEL-PCW 1 Corregida.dsk
+cozumel/pcw/COZUMEL-PCW 2.dsk
+cozumel/spectrum/COZUMEL-SPECTRUM 1.tzx
+cozumel/spectrum/COZUMEL-SPECTRUM 2.tzx
+
+espacial/amiga/ESPACIAL-AMIGA.ADF
+espacial/atarist/ESPACIAL-ST 1.st
+espacial/atarist/ESPACIAL-ST 2.st
+espacial/atarist/ESPACIAL-ST 3.st
+espacial/c64/ESPACIAL-C64 1.DDB
+espacial/c64/ESPACIAL-C64 1.CDG
+espacial/c64/ESPACIAL-C64 2.DDB
+espacial/c64/ESPACIAL-C64 2.CDG
+espacial/cpc/ESPACIAL-CPC 1.cdt
+espacial/cpc/ESPACIAL-CPC 2.cdt
+espacial/msx/ESPACIAL-MSX.dsk
+espacial/pc/ESPACIAL-PC.img
+espacial/spectrum/ESPACIAL-SPECTRUM 1.tzx
+espacial/spectrum/ESPACIAL-SPECTRUM 1.SDG
+espacial/spectrum/ESPACIAL-SPECTRUM 2.tzx
+espacial/spectrum/ESPACIAL-SPECTRUM 2.SDG
+
+jabato/amiga/JABATO-AMIGA.ADF
+jabato/atarist/JABATO-ST 1.ST
+jabato/atarist/JABATO-ST 2.ST
+jabato/c64/JABATO-C64 1.DDB
+jabato/c64/JABATO-C64 1.CDG
+jabato/c64/JABATO-C64 2.DDB
+jabato/c64/JABATO-C64 2.CDG
+jabato/cpc/JABATO-CPC 1.sna
+jabato/cpc/JABATO-CPC 2.sna
+jabato/msx/JABATO-MSX 1.CAS
+jabato/msx/JABATO-MSX 2.CAS
+jabato/pc/JABATO-PC-CGA.img
+jabato/pc/JABATO-PC-EGA.img
+jabato/spectrum/JABATO-SPECTRUM1.Z80
+jabato/spectrum/JABATO-SPECTRUM2.Z80
+
+original/amiga/ORIGINAL-AMIGA.ADF
+original/atarist/ORIGINAL-ST.ST
+original/c64/ORIGINAL-C64 1.DDB
+original/c64/ORIGINAL-C64 1.CDG
+original/c64/ORIGINAL-C64 2.DDB
+original/c64/ORIGINAL-C64 2.CDG
+original/cpc/ORIGINAL-CPC 1.cdt
+original/cpc/ORIGINAL-CPC 2.cdt
+original/msx/ORIGINAL-MSX 1.CAS
+original/msx/ORIGINAL-MSX 2.CAS
+original/pc/ORIGINAL-PC.img
+original/spectrum/ORIGINAL-SPECTRUM 1.tzx
+original/spectrum/ORIGINAL-SPECTRUM 2.tzx
+
+templos/amiga/TEMPLOS-AMIGA.adf
+templos/atarist/TEMPLOS-ST 1.ST
+templos/atarist/TEMPLOS-ST 2.ST
+templos/c64/TEMPLOS-C64 1.DDB
+templos/c64/TEMPLOS-C64 1.CDG
+templos/c64/TEMPLOS-C64 2.DDB
+templos/c64/TEMPLOS-C64 2.CDG
+templos/cpc/TEMPLOS-CPC 1.cdt
+templos/cpc/TEMPLOS-CPC 2.cdt
+templos/msx/TEMPLOS-MSX 1.CAS
+templos/msx/TEMPLOS-MSX 2.CAS
+templos/pc/TEMPLOS-PC.img
+templos/pcw/TEMPLOS-PCW 1.dsk
+templos/pcw/TEMPLOS-PCW 2.dsk
+templos/spectrum/TEMPLOS-SPECTRUM 1.dsk

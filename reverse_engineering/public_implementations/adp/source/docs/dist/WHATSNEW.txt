@@ -1,0 +1,72 @@
+# What's new?
+
+## ADP 0.3
+
+### All versions
+
+- Added the DAT5 graphics database format, with new color modes and resolutions.
+- Added proportional SINTAC fonts and DAAD V3/XMESS support.
+- Added a portable save format and improved multipart game loading.
+
+### Desktop and web
+
+- Added experimental PAWS support (Spectrum), including 48K and 128K databases.
+- Added 8-bit DAAD support for Spectrum, CPC, MSX, C64, and PCW games.
+- Added 8-bit snapshots, disk and tape images, and DRAWSTRING graphics.
+- Added PC DAAD VGA/SVGA games with external PCX images.
+- Added Atari ST PSG effects, transcript files, and scripted input.
+
+### Amiga
+
+- Added DAT5 graphics with 32-color, EHB, HAM, and AGA 256-color modes.
+- Improved stability, loading, and graphics performance.
+
+### Atari ST
+
+- Added DAT5 graphics, PSG effects, extended STE/Falcon palettes, and Falcon
+  256-color mode.
+- Improved stability and performance.
+
+### MS-DOS
+
+- Added 16-bit and 32-bit players.
+- Added native CGA, EGA, VGA 256-color, and SVGA 640x400 modes.
+- Added `SETUP.EXE` to select the video mode and configure Sound Blaster sound.
+- Improved Sound Blaster playback, loading, and graphics performance.
+
+### Tools
+
+- Added ADPC, a compiler for DAAD V1/V2 and PAWS source files.
+- Added PAWS database extraction and dumping.
+- Expanded DMG, CHR, and DSK for DAT5 graphics, proportional fonts, and more
+  disk-image formats.
+- Added a broad regression suite using original 8-bit and 16-bit games.
+
+## ADP 0.2
+
+### All versions
+
+* Fixed a number of issues related to the loading screen, especially for single-part games. Those games should now show their loading screen and wait for a keypress to continue.
+* Fixed an issue where INK/PAPER condacts would change the colors of text printed before them.
+* Fixed ANYKEY not printing sysmsg 16 as it should.
+* Fixed continuous LISTOBJ looking for the wrong flag bit.
+
+### Desktop & web versions
+
+* **NEW:** Added clipboard support (Ctrl+C/Ctrl+V). Since character selection is not supported (yet), Ctrl+C copies the entire current line to the clipboard.
+* **NEW:** The command line DDB utility, and the web player, now support loading disk images in Amiga, Atari ST and MS-DOS format.
+* **NEW:** The web player version now supports playing games from non-embedded data, so it can be used to package and release new games to the web. See the web version package for details.
+
+### Amiga
+
+* Fixed image support for version 1 games (Original, Jabato)
+* Fixed a number of issues which were crashing the game on exit in Amiga 1200+
+* **NEW:** This version now supports digital sample playback. This also includes the keypress click, press F10 to toggle it.
+
+### Atari ST
+
+* **NEW:** This version also supports digital sample playback. This uses the AY chip, like the original interpreters, so the quality is limited but it should work on any ST. The keypress click is *not* included because ST DAAD uses the system click sound.
+
+## ADP 0.1
+
+First public release of ADP, with 16-bit DDB file support.

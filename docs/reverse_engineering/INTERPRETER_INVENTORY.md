@@ -36,7 +36,7 @@ The documented-authorization record permitted retention of **42 exact-hash offic
 | IBM PC/DOS | 22 |
 | **Total** | **42** |
 
-Six public source workspaces were mirrored separately under [`../../reverse_engineering/public_sources/`](../../reverse_engineering/public_sources/), with revision and license-scope metadata in [`public_sources.json`](../../reverse_engineering/manifests/public_sources.json). They contain DRC, MSX2DAAD, Maluva, PCDAAD, UnDAAD, and DAAD Ready public material. The manifest explicitly records that the public official DAAD distribution did **not** provide original interpreter source code.
+Six public source workspaces were mirrored separately under [`../../reverse_engineering/public_sources/`](../../reverse_engineering/public_sources/), with revision and license-scope metadata in [`public_sources.json`](../../reverse_engineering/manifests/public_sources.json). They contain DRC, MSX2DAAD, Maluva, PCDAAD, UnDAAD, and DAAD Ready public material. The relevant ADP implementation is retained separately and in full—including source, test/game material, and 20 published release assets—under [`../../reverse_engineering/public_implementations/adp/`](../../reverse_engineering/public_implementations/adp/), with [`adp_implementation.json`](../../reverse_engineering/manifests/adp_implementation.json) and [`adp_verification.json`](../../reverse_engineering/manifests/adp_verification.json) providing per-file and test-run evidence. The official DAAD distribution itself did **not** provide original interpreter source code.
 
 ## Third-party comparison search
 

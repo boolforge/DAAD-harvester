@@ -1,0 +1,126 @@
+ifndef VERSION
+include $(dir $(lastword $(MAKEFILE_LIST)))version.mk
+endif
+
+# Build configuration: 'release' (default) produces optimized web bundles;
+# 'debug' enables diagnostics and keeps its objects and outputs separate.
+CONFIG ?= release
+ifeq ($(CONFIG),debug)
+DEBUGPRINT ?= 1
+DEBUG      ?= 1
+TRACE      ?= 1
+else ifeq ($(CONFIG),release)
+DEBUGPRINT ?= 0
+DEBUG      ?= 0
+TRACE      ?= 0
+else
+$(error CONFIG must be 'release' or 'debug')
+endif
+
+DEBUGCACHE ?= 0
+DEBUGALLOC ?= 0
+DEBUGLTIME ?= 0
+OPTIM      ?= -Os
+
+ifeq ($(OS),Windows_NT)
+SHELL := cmd.exe
+endif
+
+CC := emcc
+CXX := em++
+DEPFLAGS := -MMD -MP
+comma := ,
+.DEFAULT_GOAL := all
+EM_CACHE ?= $(CURDIR)/.cache/emscripten
+export EM_CACHE
+
+CPPFLAGS += -Iinclude -Ilib-src/salvador
+CPPFLAGS += -DVERSION=$(VERSION) -D_STDCLIB -D_UNIX -D_WEB
+CPPFLAGS += -DHAS_CLIPBOARD -DHAS_VIRTUALFILESYSTEM -DHAS_FULLSCREEN
+CPPFLAGS += -DHAS_SNAPSHOTS -DHAS_PAWS -DHAS_DRAWSTRING -DHAS_XMSG
+CPPFLAGS += -DHAS_PCX -DHAS_SPECTRUM -DHAS_PSG -DNO_SAMPLES
+CPPFLAGS += -Dstricmp=strcasecmp -Dstrnicmp=strncasecmp
+CPPFLAGS += -flto=full -fno-rtti -sUSE_SDL=2 -s DISABLE_EXCEPTION_CATCHING
+
+ifeq ($(DEBUGPRINT),1)
+CPPFLAGS += -D_DEBUGPRINT
+CPPFLAGS += -DDEBUG_IMAGE_CACHE=$(DEBUGCACHE)
+endif
+ifeq ($(DEBUGALLOC),1)
+CPPFLAGS += -DDEBUG_ALLOCS=1
+endif
+ifeq ($(DEBUGLTIME),1)
+CPPFLAGS += -DDEBUG_RLE -DDEBUG_ZX0
+endif
+ifeq ($(DEBUG),1)
+CPPFLAGS += -g3
+endif
+ifeq ($(TRACE),1)
+CPPFLAGS += -DTRACE_DEBUG -DTRACE_ON
+endif
+
+CPPFLAGS += $(OPTIM)
+
+LDFLAGS += $(OPTIM) -flto=full
+LDFLAGS += -sUSE_SDL=2 -lidbfs.js -sFORCE_FILESYSTEM
+LDFLAGS += -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap']
+LDFLAGS += -sEXPORTED_FUNCTIONS=_main,_KeyPressed,_RunGame,_RunGameFromTXT,_RunGameFrom,_GetLastDDBError,_SaveFile,_QuitGame,_malloc,_free
+
+ifeq ($(DEBUG),1)
+LDFLAGS += -gsource-map --emit-symbol-map
+endif
+
+DIRS := src-common/ lib-src/salvador/
+VPATH := $(DIRS) src-sdl/ src-unix/
+SRCS := $(wildcard $(addsuffix *.cpp,$(DIRS))) src-sdl/video.cpp src-sdl/player.cpp src-unix/files.cpp src-unix/error.cpp
+
+OBJDIR := obj/web/$(CONFIG)
+ifeq ($(CONFIG),debug)
+OUTDIR := out/web-debug
+else
+OUTDIR := out/web
+endif
+JS_ASSET := src-web/kioskboard-aio-2.3.0.min.js
+
+OBJS := $(addprefix $(OBJDIR)/,$(patsubst %.cpp,%.o,$(notdir $(SRCS))))
+
+-include $(OBJS:.o=.d)
+
+GAMES := $(notdir $(wildcard web-games/*))
+GAME_TARGETS := $(patsubst %,$(OUTDIR)/%/index.html,$(GAMES))
+
+.PHONY: all clean
+
+all: $(OUTDIR)/adp/index.html $(OUTDIR)/dist/index.html $(GAME_TARGETS)
+
+$(OUTDIR):
+	@mkdir -p $@
+
+$(OUTDIR)/kioskboard-aio-2.3.0.min.js: $(JS_ASSET) | $(OUTDIR)
+	@cp $< $@
+
+$(OUTDIR)/dist/index.html: $(OBJS) $(OUTDIR)/kioskboard-aio-2.3.0.min.js src-web/from-files.html
+	$(info Building dist)
+	@mkdir -p $(dir $@)
+	@cp $(OUTDIR)/kioskboard-aio-2.3.0.min.js $(dir $@)
+	@$(CXX) -o $@ $(OBJS) $(LDFLAGS) $(if $(filter 1,$(DEBUG)),-Wl$(comma)-Map$(comma)$(@:.html=.wasm.map)) --shell-file src-web/from-files.html
+
+$(OUTDIR)/adp/index.html: $(OBJS) $(OUTDIR)/kioskboard-aio-2.3.0.min.js src-web/adp.html
+	$(info Building adp)
+	@mkdir -p $(dir $@)
+	@cp $(OUTDIR)/kioskboard-aio-2.3.0.min.js $(dir $@)
+	@$(CXX) -o $@ $(OBJS) $(LDFLAGS) $(if $(filter 1,$(DEBUG)),-Wl$(comma)-Map$(comma)$(@:.html=.wasm.map)) --shell-file src-web/adp.html
+
+$(OUTDIR)/%/index.html: $(OBJS) $(OUTDIR)/kioskboard-aio-2.3.0.min.js src-web/shell.html
+	$(info Building $*)
+	@mkdir -p $(dir $@)
+	@cp $(OUTDIR)/kioskboard-aio-2.3.0.min.js $(dir $@)
+	@$(CXX) -o $@ $(OBJS) $(LDFLAGS) $(if $(filter 1,$(DEBUG)),-Wl$(comma)-Map$(comma)$(@:.html=.wasm.map)) --preload-file web-games/$*@/data/ --shell-file src-web/shell.html
+
+clean:
+	rm -rf $(OUTDIR)/* $(OBJDIR)/*
+
+$(OBJS): $(OBJDIR)/%.o: %.cpp Makefile-web
+	$(info Compiling $<)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CPPFLAGS) $(DEPFLAGS) -c -o $@ $(CURDIR)/$<
