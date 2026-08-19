@@ -1,0 +1,47 @@
+Based on the first three minutes of the video, here is the analysis of the startup and initial gameplay:
+
+### Startup Screens in Order
+1.  **Title Illustration (00:00 – 00:07):** A pixelated graphic featuring the main character, Jabato, a barbarian warrior holding a sword aloft while standing on fallen enemies. In the background, a large, stylized face of a woman is visible.
+2.  **Credits Screen (00:08 – 00:14):** A black screen with yellow text and a small graphic of a Roman-style head at the top. This screen contains the game's title and development credits in Spanish.
+3.  **Playable Interface (00:15 onwards):** The screen transitions to the standard text-adventure layout, featuring a graphical window at the top (illustrating the current location) and descriptive text with a command prompt at the bottom.
+
+### Spanish Text (Credits Screen)
+The following Spanish text is clearly legible on the credits screen:
+*   "JABATO vs IMPERIO"
+*   "LIBERTAD"
+*   "Dirección: Andrés Samudio"
+*   "Programación: Manolo González"
+*   "Gráficos: Carlos Marqués, Juan Antonio Darder, Paco Zarco"
+*   "(C) 1989 Aventuras A.D."
+
+### Interface and Inputs
+The playable text-adventure interface first appears at **00:15**. While no explicit "disk loading" screen is shown, the transition from the credits to the game indicates the start of the session.
+
+Visible keyboard inputs (prompts starting with `>`) within the first three minutes include:
+*   **00:15:** `> EXAMINE STIFF`
+*   **00:21:** `> GET BELT`
+*   **00:28:** `> EXAMINE WALLS`
+*   **00:38:** `> PICK UP COBBLE WITH BELT`
+*   **00:40:** `> HIDE COBBLE`
+*   **00:42:** `> CALL JAILER`
+*   **00:44:** `> HIT JAILER WITH COBBLE`
+*   **00:48:** `> TAKE KEYCHAIN WITH BELT`
+*   **00:51:** `> OPEN DOOR AND EXIT`
+*   **01:00:** `> PICK UP TORCH`
+*   **01:02:** `> OPEN EAST DOOR AND GO IN`
+*   **01:09:** `> GET IT, WEST, GO WEST DOOR`
+*   **01:18:** `> GET IT, EAST`
+*   **01:25:** `> KILL JAILER`
+*   **01:28:** `> GET AND WEAR CLOTHES, SOUTH`
+*   **01:34:** `> LOOK INSIDE FLASK`
+*   **01:42:** `> REMOVE POWDER FROM FLASK, PUT IT IN BEER`
+*   **01:44:** `> WAIT THREE TIMES`
+*   **01:51:** `> GET IT, S, LIGHT TORCH`
+*   **02:00:** `> S, E, S`
+*   **02:04:** `> E`
+*   **02:09:** `> SOUTH`
+*   **02:16:** `> GET IT, N, GIVE ROSE TO VESTAL VIRGIN, ENTER (NOT HER)`
+*   **02:25:** `> "FOLLOW ME", EXIT, WEST, SOUTH`
+*   **02:33:** `> ENTER`
+*   **02:42:** `> WAIT`
+*   **02:58:** `> SAY TO FIDEO "GIVE ME MONEY", EXIT, N, O, ENTER, WAIT`
