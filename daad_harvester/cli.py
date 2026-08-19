@@ -16,6 +16,7 @@ from daad_harvester.synthesize import Synthesizer
 from daad_harvester.report import ReportGenerator
 from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.library import LibraryBuilder
+from daad_harvester.report_export import StaticReportExporter
 from daad_harvester.tui import TUIDashboard
 
 logger = structlog.get_logger(__name__)
@@ -28,7 +29,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--phase",
-        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "organize", "all"],
+        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "organize", "report", "all"],
         default="all",
         help="Pipeline phase to execute (default: all)"
     )
@@ -173,6 +174,15 @@ def main() -> None:
             logger.info("executing_phase_organize")
             library_path = LibraryBuilder(db, output_dir=settings.output_dir).build()
             logger.info("pipeline_completed_successfully", library_manifest=str(library_path))
+
+        # Static viewer export intentionally runs after organization so its
+        # library index contains only materialized relative artifact paths.
+        if phase in ("report", "all"):
+            if dashboard:
+                dashboard.set_active_phase("8. REPORT EXPORT")
+            logger.info("executing_phase_report")
+            report_data_path = StaticReportExporter(db, output_dir=settings.output_dir).write()
+            logger.info("static_report_data_written", report_data=str(report_data_path))
 
         if dashboard:
             dashboard.set_active_phase("COMPLETED")
