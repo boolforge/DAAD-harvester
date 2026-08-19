@@ -146,6 +146,63 @@ def _inspect_tzx(data: bytes) -> MediaInspection:
     )
 
 
+def _inspect_cpc_dsk(data: bytes) -> MediaInspection:
+    """Validate standard or extended CPC DSK record boundaries before extraction."""
+
+    standard = data.startswith(b"MV - CPCEMU Disk-File")
+    extended = data.startswith(b"EXTENDED CPC DSK File")
+    if len(data) < 0x100 or not (standard or extended):
+        return _result("cpc-dsk", "rejected", "truncated_or_missing_dsk_signature")
+    tracks, sides = data[0x30], data[0x31]
+    total_tracks = tracks * sides
+    if not tracks or not sides or total_tracks > 204:
+        return _result("cpc-dsk", "rejected", "invalid_track_geometry", tracks=tracks, sides=sides)
+    fixed_size = int.from_bytes(data[0x32:0x34], "little")
+    track_sizes = data[0x34:0x34 + total_tracks] if extended else ()
+    if not extended and fixed_size < 0x100:
+        return _result("cpc-dsk", "rejected", "invalid_fixed_track_size", fixed_size=fixed_size)
+    pos = 0x100
+    present_tracks = 0
+    sectors = 0
+    for index in range(total_tracks):
+        track_size = track_sizes[index] * 256 if extended else fixed_size
+        if not track_size:
+            continue
+        if track_size < 0x100 or pos + track_size > len(data):
+            return _result("cpc-dsk", "rejected", "truncated_track_record", parsed_tracks=present_tracks)
+        header = data[pos:pos + 0x100]
+        if not header.startswith(b"Track-Info"):
+            return _result("cpc-dsk", "rejected", "missing_track_info_header", parsed_tracks=present_tracks)
+        sector_count = header[0x15]
+        if 0x18 + sector_count * 8 > 0x100:
+            return _result("cpc-dsk", "rejected", "invalid_sector_descriptor_table", parsed_tracks=present_tracks)
+        consumed = 0
+        for sector in range(sector_count):
+            descriptor = header[0x18 + sector * 8:0x20 + sector * 8]
+            sector_size = int.from_bytes(descriptor[6:8], "little")
+            if not sector_size:
+                code = descriptor[3]
+                if code > 7:
+                    return _result("cpc-dsk", "rejected", "invalid_sector_size_code", parsed_tracks=present_tracks)
+                sector_size = 128 << code
+            consumed += sector_size
+        if 0x100 + consumed > track_size:
+            return _result("cpc-dsk", "rejected", "sector_payload_exceeds_track", parsed_tracks=present_tracks)
+        present_tracks += 1
+        sectors += sector_count
+        pos += track_size
+    if pos != len(data):
+        return _result("cpc-dsk", "rejected", "trailing_or_missing_track_data", parsed_tracks=present_tracks, trailing=len(data) - pos)
+    return _result(
+        "cpc-dsk", "recognized_evidence", "validated_cpc_dsk_track_stream",
+        dsk_variant="extended" if extended else "standard",
+        tracks=tracks,
+        sides=sides,
+        present_tracks=present_tracks,
+        sector_count=sectors,
+    )
+
+
 def _inspect_msa(data: bytes) -> MediaInspection:
     if len(data) < 10 or data[:2] != b"\x0e\x0f":
         return _result("atari-msa", "rejected", "signature_mismatch")
@@ -383,6 +440,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_p00(data)
     if data.startswith(b"ZXTape!\x1a"):
         return _inspect_tzx(data)
+    if data.startswith((b"EXTENDED CPC DSK", b"MV - CPCEMU")):
+        return _inspect_cpc_dsk(data)
     if data.startswith(b"\x0e\x0f"):
         return _inspect_msa(data)
     if data.startswith(b"DOS") and len(data) % 512 == 0:

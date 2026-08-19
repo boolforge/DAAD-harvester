@@ -151,6 +151,22 @@ def test_msx_rom_header_records_vectors_and_does_not_guess_mapper() -> None:
     assert result.evidence["mapper_assessment"] == "banked_size_requires_mapper_identification"
 
 
+def test_cpc_dsk_inspection_validates_track_and_sector_boundaries() -> None:
+    dsk = bytearray(0x300)
+    signature = b"EXTENDED CPC DSK File"
+    dsk[:len(signature)] = signature
+    dsk[0x30:0x32] = b"\x01\x01"
+    dsk[0x34] = 2  # 512-byte track record
+    track_signature = b"Track-Info\r\n"
+    dsk[0x100:0x100 + len(track_signature)] = track_signature
+    dsk[0x115] = 1
+    dsk[0x118 + 3] = 2
+    dsk[0x118 + 6:0x118 + 8] = (256).to_bytes(2, "little")
+    result = inspect_native_media("adventure.dsk", bytes(dsk))
+    assert result.validation == "validated_cpc_dsk_track_stream"
+    assert result.evidence["sector_count"] == 1
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)
