@@ -251,7 +251,7 @@ async def test_run_all_discovery_wires_proxy_into_client_and_logs_adapter_except
         name: AsyncMock(return_value=0)
         for name in [
             "discover_internet_archive", "discover_aminet", "discover_csdb",
-            "discover_plus4world", "discover_generation_msx", "discover_atarimania",
+            "discover_plus4world", "discover_generation_msx", "discover_computeremuzone", "discover_atarimania",
             "discover_github", "discover_itchio", "discover_ifdb", "discover_zxdb",
             "discover_wikicaad", "discover_world_of_spectrum", "discover_ifarchive", "discover_web_search",
         ]
@@ -394,6 +394,32 @@ async def test_plus4world_records_catalog_page_and_direct_prg_with_provenance(tm
     assert catalog.platform == "plus4"
     assert media.platform == "plus4"
     assert media.url.endswith(".prg")
+
+
+@pytest.mark.anyio
+async def test_computeremuzone_discovers_vetted_badged_direct_downloads(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    html = """
+    <table><tr>
+      <td><a href="/ficha/36/la-aventura-espacial?l=en">La Aventura Espacial</a></td>
+      <td><a href="/download.php?ind=858">SP</a>
+          <a href="/download.php?ind=286">AMS</a>
+          <a href="/download.php?ind=991">C64</a>
+          <a href="/download.php?ind=287">MSX</a>
+          <a href="/download.php?ind=181">ST</a>
+          <a href="/download.php?ind=650">AG</a>
+          <a href="/download.php?ind=228">PC</a></td>
+    </tr></table>
+    """
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock, return_value=html):
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_computeremuzone(client) == 7
+    sources = db.get_all_sources()
+    assert {source.platform for source in sources} == {"zx", "cpc", "c64", "msx", "atarist", "amiga", "dos"}
+    assert all(source.source_name == "Computer Emuzone" for source in sources)
+    assert all(source.source_record_url.endswith("/ficha/36/la-aventura-espacial?l=en") for source in sources)
+    assert {source.source_release_id for source in sources} == {"858", "286", "991", "287", "181", "650", "228"}
 
 
 @pytest.mark.anyio

@@ -581,6 +581,67 @@ class Discoverer:
         self.logger_suite.log_discovery("GENERATION MSX", catalog_url, inserted)
         return inserted
 
+    async def discover_computeremuzone(self, client: httpx.AsyncClient) -> int:
+        """Discover per-target DAAD media through Computer Emuzone's engine index.
+
+        Its `download.php?ind=` endpoints do not expose a suffix.  They are only
+        admitted when found in the maintained DAAD engine table, with the
+        adjacent platform badge supplying the expected media type and platform.
+        """
+        index_url = "https://computeremuzone.com/engine/daad?l=en"
+        content = await self._fetch_url(client, index_url)
+        if not content:
+            self.logger_suite.log_discovery("COMPUTER EMUZONE", index_url, 0, status="UNAVAILABLE")
+            return 0
+        platform_badges = {
+            "SP": "zx",
+            "AMS": "cpc",
+            "C64": "c64",
+            "MSX": "msx",
+            "MSX2": "msx",
+            "PCW": "pcw",
+            "ST": "atarist",
+            "AG": "amiga",
+            "PC": "dos",
+        }
+        soup = BeautifulSoup(content, "html.parser")
+        inserted = 0
+        seen: Set[tuple[str, str]] = set()
+        for title_anchor in soup.find_all("a", href=True):
+            game_url = self._canonical_url(urljoin(index_url, title_anchor["href"]))
+            if "/ficha/" not in urlparse(game_url).path:
+                continue
+            title = title_anchor.get_text(" ", strip=True)
+            if not title:
+                continue
+            row = title_anchor.find_parent("tr")
+            if row is None:
+                continue
+            for download_anchor in row.find_all("a", href=True):
+                download_url = self._canonical_url(urljoin(index_url, download_anchor["href"]))
+                if "/download.php" not in urlparse(download_url).path:
+                    continue
+                badge = download_anchor.get_text(" ", strip=True).upper()
+                platform = platform_badges.get(badge)
+                if not platform or (download_url, platform) in seen:
+                    continue
+                seen.add((download_url, platform))
+                release_id = (urlparse(download_url).query.split("ind=")[-1] or None)
+                if self._add_source(
+                    download_url,
+                    SourceTier.ARCHIVE,
+                    title=title,
+                    platform=platform,
+                    source_name="Computer Emuzone",
+                    source_record_url=game_url,
+                    source_release_id=release_id,
+                    artifact_filename=f"{platform}.zip",
+                    provenance_json=json.dumps({"adapter": "computeremuzone", "platform_badge": badge}),
+                ):
+                    inserted += 1
+        self.logger_suite.log_discovery("COMPUTER EMUZONE", index_url, inserted)
+        return inserted
+
     async def discover_atarimania(self, client: httpx.AsyncClient) -> int:
         """Catalog public Atari ST DAAD records returned by the maintained site search endpoint."""
         search_url = "https://www.atarimania.com/list_games_atari-st-_DAAD.html"
@@ -882,6 +943,7 @@ class Discoverer:
             "csdb": self.discover_csdb,
             "plus4world": self.discover_plus4world,
             "generation_msx": self.discover_generation_msx,
+            "computeremuzone": self.discover_computeremuzone,
             "atarimania": self.discover_atarimania,
             "github": self.discover_github,
             "itchio": self.discover_itchio,

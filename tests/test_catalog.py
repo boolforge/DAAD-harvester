@@ -3,7 +3,7 @@ import json
 from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.db import Database
 from daad_harvester.discover import Discoverer
-from daad_harvester.known_games import acquisition_priority, find_known_game
+from daad_harvester.known_games import KNOWN_GAMES, acquisition_priority, find_known_game
 from daad_harvester.models import SourceTier
 
 
@@ -17,6 +17,19 @@ def test_known_game_catalog_matches_aliases_without_claiming_an_exact_engine_bui
     assert chichen.game_id == "chichen_itza"
     assert "Exact commercial DAAD build unverified" in chichen.engine_version_evidence
     assert acquisition_priority(chichen, "cpc") == acquisition_priority(chichen, "zx") == 1000
+
+
+def test_expanded_catalog_keeps_release_revision_and_binary_version_distinct():
+    eight_feet = find_known_game("Eight Feet Under")
+    rudolphine = find_known_game("Aventuras de Rudolphine Rur, Las")
+    golden_seas = find_known_game("Golden Seas")
+
+    assert eight_feet is not None
+    assert eight_feet.platforms == ("zx", "cpc", "c64", "plus4", "msx", "atarist", "amiga", "dos")
+    assert "R6" in eight_feet.engine_version_evidence
+    assert rudolphine is not None and "pcw" in rudolphine.platforms
+    assert golden_seas is not None and golden_seas.year is None
+    assert golden_seas.platforms == ()
 
 
 def test_discovery_persists_catalog_identity_and_orders_cpc_first(tmp_path):
@@ -66,7 +79,8 @@ def test_evidence_catalog_export_keeps_source_evidence_separate_from_binary_veri
     payload = json.loads(output_path.read_text(encoding="utf-8"))
     aventura = next(game for game in payload["games"] if game["game_id"] == "la_aventura_original")
 
-    assert payload["summary"]["known_games"] == 6
+    assert payload["summary"]["known_games"] == len(KNOWN_GAMES)
+    assert payload["summary"]["known_games"] > 6
     assert payload["summary"]["queued_known_sources"] == 1
     assert aventura["engine"]["family"] == "DAAD"
     assert aventura["engine"]["binary_verification_required"] is True
