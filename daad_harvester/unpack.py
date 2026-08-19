@@ -40,6 +40,7 @@ from daad_harvester.models import ArtifactRecord, SourceRecord, SourceStatus
 from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.platform_media import (
     decompress_adz,
+    decompress_dms,
     decompress_msa,
     extract_adf,
     extract_fat12,
@@ -597,6 +598,11 @@ class Unpacker:
         decoded = decompress_adz(data)
         return extract_adf(decoded) if decoded is not None else []
 
+    def unpack_dms(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Decode a validated DMS archive and extract its Amiga filesystem members."""
+        decoded = decompress_dms(data)
+        return extract_adf(decoded) if decoded is not None else []
+
     def unpack_cas(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Split MSX CAS tape records into recursively fingerprintable members."""
         return extract_msx_cas(data)
@@ -705,6 +711,7 @@ class Unpacker:
         is_msa = ext == '.msa' or data.startswith(b"\x0e\x0f")
         is_adf = ext == '.adf' or (len(data) % 512 == 0 and data.startswith(b"DOS"))
         is_adz = ext == '.adz'
+        is_dms = data.startswith(b"DMS!") or ext == '.dms'
         is_cas = ext == '.cas'
         is_fat12 = ext in {'.st', '.img', '.dsk'} or (len(data) >= 512 and data[510:512] == b"\x55\xaa")
 
@@ -783,6 +790,10 @@ class Unpacker:
                 return res
         if is_adz:
             res = self.unpack_adz(data)
+            if res:
+                return res
+        if is_dms:
+            res = self.unpack_dms(data)
             if res:
                 return res
         if is_adf:

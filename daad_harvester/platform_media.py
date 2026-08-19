@@ -11,6 +11,8 @@ import gzip
 import re
 from typing import Iterable, List, Optional, Tuple
 
+from daad_harvester.dms import DmsDecodeError, decompress_dms as _decompress_dms
+
 
 Member = Tuple[str, bytes]
 _MSX_CAS_HEADER = b"\x1f\xa6\xde\xba\xcc\x13\x7d\x74"
@@ -335,6 +337,18 @@ def decompress_adz(data: bytes) -> Optional[bytes]:
     except (OSError, EOFError):
         return None
     if len(expanded) % 512 or len(expanded) > 16 * 1024 * 1024:
+        return None
+    return expanded
+
+
+def decompress_dms(data: bytes) -> Optional[bytes]:
+    """Decode a DMS archive to an ADF only when all tracks validate completely."""
+
+    try:
+        expanded = _decompress_dms(data)
+    except DmsDecodeError:
+        return None
+    if len(expanded) % 512 or len(expanded) > 32 * 1024 * 1024:
         return None
     return expanded
 

@@ -13,6 +13,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict
 
+from daad_harvester.dms import crc16_arc
+
 
 @dataclass(frozen=True)
 class MediaInspection:
@@ -156,9 +158,26 @@ def _inspect_adf(data: bytes) -> MediaInspection:
 def _inspect_dms(data: bytes) -> MediaInspection:
     if len(data) < 56 or not data.startswith(b"DMS!"):
         return _result("amiga-dms", "rejected", "signature_or_header_mismatch", size=len(data))
+    stored_crc = int.from_bytes(data[54:56], "big")
+    calculated_crc = crc16_arc(data[4:54])
+    if stored_crc != calculated_crc:
+        return _result(
+            "amiga-dms", "rejected", "archive_header_crc_mismatch",
+            stored_crc=stored_crc, calculated_crc=calculated_crc, archive_size=len(data),
+        )
+    general_info = int.from_bytes(data[10:12], "big")
     return _result(
-        "amiga-dms", "recognized_evidence", "header_present_pending_full_track_decode",
-        header_size=56, archive_size=len(data),
+        "amiga-dms", "recognized_evidence", "validated_archive_header",
+        header_size=56,
+        archive_size=len(data),
+        creator_version=int.from_bytes(data[46:48], "big"),
+        first_track=int.from_bytes(data[16:18], "big"),
+        last_track=int.from_bytes(data[18:20], "big"),
+        disk_type=int.from_bytes(data[50:52], "big"),
+        default_mode=int.from_bytes(data[52:54], "big"),
+        encrypted=bool(general_info & 0x0002),
+        banner=bool(general_info & 0x0008),
+        file_id=bool(general_info & 0x0100),
     )
 
 

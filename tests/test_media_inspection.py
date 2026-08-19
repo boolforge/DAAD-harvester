@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from daad_harvester.db import Database
+from daad_harvester.dms import crc16_arc
 from daad_harvester.media_inspection import inspect_native_media
 from daad_harvester.unpack import Unpacker
 
@@ -66,7 +67,9 @@ def test_g64_invalid_track_offset_is_partial_evidence_not_a_crash() -> None:
 
 def test_p00_and_dms_are_preserved_as_distinct_evidence_families() -> None:
     p00 = b"C64File\x00" + b"DAAD GAME".ljust(17, b"\x00") + b"\x00" + b"\x01\x08PAYLOAD"
-    dms = b"DMS!" + b"\x00" * 52
+    dms_header = bytearray(b"DMS!" + b"\x00" * 52)
+    dms_header[54:56] = crc16_arc(dms_header[4:54]).to_bytes(2, "big")
+    dms = bytes(dms_header)
 
     p00_result = inspect_native_media("game.p00", p00)
     dms_result = inspect_native_media("archive.dms", dms)
@@ -75,6 +78,17 @@ def test_p00_and_dms_are_preserved_as_distinct_evidence_families() -> None:
     assert p00_result.validation == "valid_wrapper"
     assert dms_result.parser == "amiga-dms"
     assert dms_result.status == "recognized_evidence"
+    assert dms_result.validation == "validated_archive_header"
+
+
+def test_dms_header_crc_failure_is_rejected_before_unpacking() -> None:
+    result = inspect_native_media("broken.dms", b"DMS!" + b"\x00" * 52)
+    assert result.status == "recognized_evidence"  # all-zero DMS CRC is valid
+    corrupted = bytearray(b"DMS!" + b"\x00" * 52)
+    corrupted[10] = 1
+    result = inspect_native_media("broken.dms", bytes(corrupted))
+    assert result.status == "rejected"
+    assert result.validation == "archive_header_crc_mismatch"
 
 
 def test_media_evidence_is_json_serializable() -> None:
