@@ -964,6 +964,49 @@ class Unpacker:
             self.db.update_source_status(src.id, status=SourceStatus.PARTIALLY_UNPACKED.value)
             return 0
 
+    def reunpack_retained_source(self, source_id: int) -> int:
+        """Refresh one source from its retained depth-zero artifact.
+
+        Parser improvements must be applicable to a self-contained corpus even
+        when a historical source record has no usable download path. Existing
+        rows are hash-deduplicated; newly recovered members are appended with
+        their measured bytes and the original root is never discarded.
+        """
+
+        roots = [
+            artifact
+            for artifact in self.db.get_all_artifacts()
+            if artifact.source_id == source_id and artifact.archive_depth == 0
+        ]
+        if len(roots) != 1:
+            logger.warning("retained_reunpack_requires_one_root", source_id=source_id, root_count=len(roots))
+            return 0
+        root = roots[0]
+        root_path = Path(root.extracted_path)
+        if not root_path.is_file():
+            logger.warning("retained_reunpack_root_missing", source_id=source_id, path=str(root_path))
+            return 0
+        logger.info("reunpacking_retained_source", source_id=source_id, path=str(root_path))
+        try:
+            root_data = root_path.read_bytes()
+            stale_paths = self.db.clear_derived_artifacts(source_id)
+            extract_root = self.extract_dir.resolve()
+            for stale_path in stale_paths:
+                path = Path(stale_path)
+                try:
+                    path.resolve().relative_to(extract_root)
+                    path.unlink(missing_ok=True)
+                except (OSError, ValueError):
+                    logger.warning("retained_reunpack_stale_path_not_removed", source_id=source_id, path=stale_path)
+            ids = self.unpack_artifact_recursive(source_id, root.original_filename, root_data)
+            self.db.update_source_status(source_id, status=SourceStatus.UNPACKED.value)
+            return len(ids)
+        except Exception as exc:
+            logger.error("retained_reunpack_failed", source_id=source_id, error=str(exc))
+            self.logger_suite.log_compression_error(str(root_path), "retained_reunpack", str(exc))
+            self.db.update_source_status(source_id, status=SourceStatus.PARTIALLY_UNPACKED.value)
+            return 0
+
     def unpack_all_downloaded_sources(self, parallel: int = 4) -> int:
         """Process all downloaded sources from DB in parallel, skipping already unpacked sources."""
         sources = self.db.get_all_sources()

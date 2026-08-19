@@ -84,6 +84,8 @@ class LibraryBuilder:
         A source file is included only when it exists on disk. The manifest
         records omitted rows rather than fabricating a ready-to-use result.
         """
+        if self.library_dir.exists():
+            shutil.rmtree(self.library_dir)
         self.library_dir.mkdir(parents=True, exist_ok=True)
         sources = {source.id: source for source in self.db.get_all_sources()}
         entries: list[Dict[str, Any]] = []

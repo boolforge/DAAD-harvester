@@ -51,6 +51,14 @@ def main() -> None:
         help="Maximum pending sources to fetch after priority ordering"
     )
     parser.add_argument(
+        "--reunpack-source",
+        type=int,
+        action="append",
+        default=[],
+        metavar="SOURCE_ID",
+        help="Reprocess a retained source root with the current media parsers; repeatable"
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=settings.output_dir,
@@ -144,7 +152,11 @@ def main() -> None:
                 dashboard.set_active_phase("4. UNPACK")
             logger.info("executing_phase_unpack")
             unpacker = Unpacker(db, extract_dir=settings.output_dir / "extracted")
-            unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
+            if args.reunpack_source:
+                for source_id in args.reunpack_source:
+                    unpacker.reunpack_retained_source(source_id)
+            else:
+                unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
 
         # Phase 5: Fingerprint
         if phase in ("fingerprint", "all"):

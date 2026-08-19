@@ -1,0 +1,4 @@
+reset_sources=0 backfilled_artifacts=0 cleared_stale_games=0 event='database_backfill_and_rescan_completed' logger='daad_harvester.db' level='info' timestamp='2026-08-19T11:10:12.892162Z'
+phase='unpack' db_path='/home/ubuntu/DAAD-harvester/preservation_corpus/state.db' event='starting_daad_harvester' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:10:12.892387Z'
+event='executing_phase_unpack' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:10:12.892757Z'
+event='no_downloaded_sources_to_unpack' logger='daad_harvester.unpack' level='info' timestamp='2026-08-19T11:10:12.895904Z'

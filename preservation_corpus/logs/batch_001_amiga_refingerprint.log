@@ -1,0 +1,6 @@
+reset_sources=0 backfilled_artifacts=0 cleared_stale_games=0 event='database_backfill_and_rescan_completed' logger='daad_harvester.db' level='info' timestamp='2026-08-19T11:12:57.414108Z'
+phase='fingerprint' db_path='/home/ubuntu/DAAD-harvester/preservation_corpus/state.db' event='starting_daad_harvester' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:12:57.414325Z'
+event='executing_phase_fingerprint' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:12:57.414682Z'
+artifact_id=68 filename='PART1.DDB' ddb_format='daad-v2-legacy' platform='amiga' interpreter=None event='daad_payload_verified' logger='daad_harvester.fingerprint' level='info' timestamp='2026-08-19T11:12:57.790745Z'
+artifact_id=76 filename='PART2.DDB' ddb_format='daad-v2-legacy' platform='amiga' interpreter=None event='daad_payload_verified' logger='daad_harvester.fingerprint' level='info' timestamp='2026-08-19T11:12:57.923085Z'
+total_scanned=43 daad_detected=2 event='fingerprint_phase_completed' logger='daad_harvester.fingerprint' level='info' timestamp='2026-08-19T11:12:58.036630Z'

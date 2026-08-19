@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. Subsequent retained-corpus work added real-Amiga and refresh regressions; the latest complete release gate reports **213 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
@@ -97,6 +97,8 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 ### 8. All-platform retained game corpus and regression suite
 
 - [ ] Apply the global completion rule to every parser, media format, loader, runtime variant, DDB structure, companion asset, and decompiler construct: an unsupported observation must enter a retained-sample research, implementation, differential-check, and regression loop until verified support exists; no terminal unsupported omission is permitted.
+- [x] Retain acquisition batch 001 as committed originals, extracts, source database, command logs, classified library, coverage ledger, structural-candidate evidence, and CI hash verifier; the first slice covers Amiga, C64, CPC, Plus/4, and ZX.
+- [x] Resolve the retained Amiga Chichén Itzá OFS ADF loop: extract all 19 files, preserve equal-byte members with distinct names, verify `PART1.DDB` and `PART2.DDB` as legacy V2 Amiga DDBs, and refresh stale descendants through a tested `--reunpack-source` workflow.
 - [ ] Define an artifact-level authorization/retention gate for DAAD game downloads that is independent from interpreter authorization and records source terms, rights evidence, download URL, timestamps, and SHA-256.
 - [ ] Run Harvester discovery/acquisition across ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS sources; preserve every candidate and outcome in a resumable source ledger.
 - [ ] Compare every retained original/extracted game member and executable neighbor against official interpreter hashes and structural runtime evidence; retain every differing or unmatched interpreter candidate as a new immutable variant for separate analysis.

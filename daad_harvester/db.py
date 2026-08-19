@@ -395,8 +395,8 @@ class Database:
     def add_artifact(self, artifact: ArtifactRecord) -> int:
         with self.get_connection() as conn:
             cursor = conn.execute(
-                "SELECT id FROM artifacts WHERE source_id = ? AND sha256 = ? AND archive_depth = ?",
-                (artifact.source_id, artifact.sha256, artifact.archive_depth)
+                "SELECT id FROM artifacts WHERE source_id = ? AND sha256 = ? AND archive_depth = ? AND original_filename = ?",
+                (artifact.source_id, artifact.sha256, artifact.archive_depth, artifact.original_filename)
             )
             row = cursor.fetchone()
             if row:
@@ -470,6 +470,29 @@ class Database:
             )
             conn.commit()
             return cursor.lastrowid
+
+    def clear_derived_artifacts(self, source_id: int) -> List[str]:
+        """Delete regenerable descendants for one source and return their paths.
+
+        The depth-zero artifact is the retained original. All deeper rows are
+        parser-derived materializations and may be regenerated when support is
+        improved. Artifact-scoped evidence is deleted with those transient rows
+        so a later fingerprint cannot report stale structural measurements.
+        """
+
+        with self.get_connection() as conn:
+            rows = conn.execute(
+                "SELECT id, extracted_path FROM artifacts WHERE source_id = ? AND archive_depth > 0",
+                (source_id,),
+            ).fetchall()
+            artifact_ids = [int(row["id"]) for row in rows]
+            if artifact_ids:
+                placeholders = ", ".join("?" for _ in artifact_ids)
+                conn.execute(f"DELETE FROM games WHERE artifact_id IN ({placeholders})", artifact_ids)
+                conn.execute(f"DELETE FROM version_evidence WHERE artifact_id IN ({placeholders})", artifact_ids)
+                conn.execute(f"DELETE FROM artifacts WHERE id IN ({placeholders})", artifact_ids)
+            conn.commit()
+        return [str(row["extracted_path"]) for row in rows]
 
     def update_artifact_unpacked(self, artifact_id: int, unpacked: bool = True) -> None:
         with self.get_connection() as conn:

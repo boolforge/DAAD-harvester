@@ -585,27 +585,30 @@ def extract_adf(data: bytes) -> List[Member]:
     visited_headers: set[int] = set()
 
     def read_file(number: int, block: bytes, path: str) -> None:
-        byte_size = _be32(block, 80)
+        # FileHeaderBlock::ByteSize is word 81. Word 80 is the reserved
+        # HighSeq field; treating it as a size silently discarded valid OFS
+        # files from real images whose HighSeq is zero.
+        byte_size = _be32(block, 81)
         if byte_size < 0 or byte_size > len(data):
             return
         header_chain = [block]
-        extension = _be32(block, 126)
-        extension_seen = {number}
-        while extension:
-            if extension in extension_seen:
-                return
-            extension_seen.add(extension)
-            extension_block = _adf_block(data, extension)
-            if (
-                extension_block is None
-                or _be32(extension_block, 0) != 2
-                or _be32(extension_block, 1) != extension
-                or _be32(extension_block, 127, signed=True) != -3
-            ):
-                return
-            header_chain.append(extension_block)
-            extension = _be32(extension_block, 126)
         if is_ffs:
+            extension = _be32(block, 126)
+            extension_seen = {number}
+            while extension:
+                if extension in extension_seen:
+                    return
+                extension_seen.add(extension)
+                extension_block = _adf_block(data, extension)
+                if (
+                    extension_block is None
+                    or _be32(extension_block, 0) != 2
+                    or _be32(extension_block, 1) != extension
+                    or _be32(extension_block, 127, signed=True) != -3
+                ):
+                    return
+                header_chain.append(extension_block)
+                extension = _be32(extension_block, 126)
             pointers = [
                 _be32(header, index)
                 for header in header_chain

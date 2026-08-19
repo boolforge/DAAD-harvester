@@ -1,0 +1,4 @@
+reset_sources=0 backfilled_artifacts=0 cleared_stale_games=0 event='database_backfill_and_rescan_completed' logger='daad_harvester.db' level='info' timestamp='2026-08-19T11:12:14.711243Z'
+phase='unpack' db_path='/home/ubuntu/DAAD-harvester/preservation_corpus/state.db' event='starting_daad_harvester' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:12:14.711575Z'
+event='executing_phase_unpack' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T11:12:14.712027Z'
+source_id=245 path='/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth0_00ccb241_245_Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf' event='reunpacking_retained_source' logger='daad_harvester.unpack' level='info' timestamp='2026-08-19T11:12:14.714809Z'

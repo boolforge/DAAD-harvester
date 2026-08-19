@@ -20,9 +20,15 @@ The first discovery pass retained 247 source records: 131 pending acquisition an
 | 110 | CPC | La Aventura Original | `110_Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk` | `2d992299625a7f0a401f8b311cbf7337aeb71c6dbc4a34c9cd3c9fd5ee752937` | CPC DSK recognized as evidence | 0 | 0 |
 | 112 | ZX | Chichén Itzá | `112_ChichenItza.tap.zip` | `cef2fd44c944afa5d27b484a23955872c03615928882711a0ae5a5f058215976` | ZIP and two TAP parts extracted | 7 | 0 |
 | 121 | C64 | Jabato | `121_Jabato_1989_Aventuras_AD_es_cr_ASS.d64` | `4f2c17a2324f539dbf0c121b88fb1101602ffed0473481be61800571424c157f` | D64 extracted | 3 | 0 |
-| 245 | Amiga | Chichén Itzá | `245_Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf` | `75fbdcf572de907da8b7f5eb25129d1ffefe81601ba0b2263b2d9590688f3092` | ADF extracted | 3 | 0 |
+| 245 | Amiga | Chichén Itzá | `245_Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf` | `75fbdcf572de907da8b7f5eb25129d1ffefe81601ba0b2263b2d9590688f3092` | OFS ADF fully traversed | 19 | 2 |
 
-The retained source URLs are canonicalized in the `sources` table. Original bytes reside in [`downloads/`](downloads/), all materialized children in [`extracted/`](extracted/), and the raw structural-candidate report for the C64/Plus/4 members in [`evidence_first_slice_ddb_candidates.json`](evidence_first_slice_ddb_candidates.json).
+The retained source URLs are canonicalized in the `sources` table. Original bytes reside in [`downloads/`](downloads/), all materialized children in [`extracted/`](extracted/), and the raw structural-candidate report for the C64/Plus/4 members in [`evidence_first_slice_ddb_candidates.json`](evidence_first_slice_ddb_candidates.json). The bounded ADF directory/data-chain measurement is retained in [`evidence_amiga_chichen_itza_adf.json`](evidence_amiga_chichen_itza_adf.json).
+
+## Resolved loop — Amiga Chichén Itzá ADF
+
+The original `DOS\0` OFS image declares root block 880. Its complete bounded directory walk reaches 19 files. The production extractor now materializes all 19 paths from retained bytes, preserving distinct filenames even when their payload bytes are equal. In particular, `PART1.DDB` (42,804 bytes) and `PART2.DDB` (43,990 bytes) pass the target-aware recognizer as **Amiga DAAD legacy V2** structures.
+
+The correction was made against the retained image and a real-artifact regression. The implementation reads `FileHeaderBlock::ByteSize` at word 81, follows OFS data blocks through their verified next pointers, and limits file-extension header traversal to FFS. A controlled `--reunpack-source 245` refresh removed earlier partial derived rows, regenerated the 19 children, re-fingerprinted both DDBs, and rebuilt the classified library. This is a parser-resolution result, not a claim that unrelated Amiga loader variants are already complete.
 
 ## Required research and implementation loops
 
@@ -31,7 +37,7 @@ The retained source URLs are canonicalized in the `sources` table. Original byte
 | C64 and Plus/4 game members use load-addressed PRG-like members and loader/runtime packaging rather than a directly validated DDB header. | Retained `EDI64`, `EDIPLUS4`, `JABATO P.1`, and `JABATO P.2` members; candidate report records no validated structural header. | Implement loader-aware memory-map reconstruction and DDB-range discovery; validate against interpreter behavior and emitted runtime bytes. |
 | ZX game parts materialize 40 KiB `CODE.bin` blocks with executable Z80 entry vectors, but no standalone verified DDB block. | Retained TAP parts, `CODE.bin`, BASIC loaders, and byte-level inspection. | Implement TAP-loader execution/load-map reconstruction and bounded embedded-DDB range discovery. |
 | CPC CP/M DSK was recognized structurally but did not materialize files. | `media_parser=cpc-dsk`, `media_status=recognized_evidence`, zero extracted members. | Complete the CP/M DSK filesystem extraction path for this observed geometry; retain fixture and regression test. |
-| Amiga ADF materialized a limited file set without a verified DDB. | Retained ADF and extracted directory/file entries. | Complete filesystem/loader-chain reconstruction, including executable dependency and data-file range analysis. |
+| Amiga ADF extraction was initially partial and contained no verified DDB. | Retained ADF, forensic filesystem report, real-artifact regression, refreshed SQLite records, and two target-aware DDB detections. | **Resolved for this OFS layout.** Future ADF/OFS/FFS observations continue through the same retained-sample regression loop. |
 
 Every row above remains active until the required support iteration produces verified extraction/decompilation evidence and a real-artifact regression. No row may be silently reclassified as unsupported.
 

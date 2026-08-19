@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import gzip
+import io
 from pathlib import Path
+import zipfile
 
 import pytest
 
@@ -123,7 +125,7 @@ def _adf(*, ffs: bool = False, payload: bytes = b"DAAD.DDB") -> bytes:
     header[4:8] = (100).to_bytes(4, "big")
     header[2 * 4:3 * 4] = (1).to_bytes(4, "big")
     header[4 * 4:5 * 4] = (101).to_bytes(4, "big")
-    header[80 * 4:81 * 4] = len(payload).to_bytes(4, "big")
+    header[81 * 4:82 * 4] = len(payload).to_bytes(4, "big")
     name_at = 108 * 4
     header[name_at] = 8
     header[name_at + 1:name_at + 9] = b"DAAD.DDB"
@@ -272,7 +274,7 @@ def test_extracts_amiga_ofs_and_ffs_adf(ffs: bool) -> None:
 def test_extracts_ffs_file_across_validated_extension_block() -> None:
     image = bytearray(_adf(ffs=True, payload=b"A" * 512))
     header = memoryview(image)[100 * 512:101 * 512]
-    header[80 * 4:81 * 4] = (1024).to_bytes(4, "big")
+    header[81 * 4:82 * 4] = (1024).to_bytes(4, "big")
     header[126 * 4:127 * 4] = (102).to_bytes(4, "big")
     extension = memoryview(image)[102 * 512:103 * 512]
     extension[:4] = (2).to_bytes(4, "big")
@@ -281,6 +283,16 @@ def test_extracts_ffs_file_across_validated_extension_block() -> None:
     extension[127 * 4:128 * 4] = (-3).to_bytes(4, "big", signed=True)
     image[103 * 512:104 * 512] = b"B" * 512
     assert extract_adf(bytes(image)) == [("DAAD.DDB", b"A" * 512 + b"B" * 512)]
+
+
+def test_extracts_game_data_from_retained_amiga_chichen_itza_adf() -> None:
+    """Regression: the retained OFS image uses FileHeaderBlock word 81 for size."""
+
+    image = Path(__file__).resolve().parents[1] / "preservation_corpus" / "downloads" / "245_Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf"
+    members = dict(extract_adf(image.read_bytes()))
+    assert len(members) == 19
+    assert len(members["PART1.DDB"]) == 42804
+    assert len(members["PART2.DDB"]) == 43990
 
 
 def test_extracts_gzipped_adz(tmp_path: Path) -> None:
@@ -308,6 +320,34 @@ def test_recursive_unpack_records_media_and_member_provenance(tmp_path: Path) ->
     assert root.container_format == "disk-image"
     assert root.container_member is None
     assert member.container_member == "DAAD.DDB"
+
+
+def test_reunpacks_retained_root_without_source_download_path(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/game.adf", "fixture", platform="amiga")
+    assert source_id is not None
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    first_ids = unpacker.unpack_artifact_recursive(source_id, "game.adf", _adf())
+    assert len(first_ids) == 2
+    derived_path = next(artifact.extracted_path for artifact in db.get_all_artifacts() if artifact.archive_depth == 1)
+    assert unpacker.reunpack_retained_source(source_id) == 2
+    assert len(db.get_all_artifacts()) == 2
+    assert Path(derived_path).is_file()
+
+
+def test_retains_distinct_equal_byte_container_members(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/game.zip", "fixture")
+    assert source_id is not None
+    archive = io.BytesIO()
+    with zipfile.ZipFile(archive, "w") as handle:
+        handle.writestr("PART1.CHR", b"shared-character-data")
+        handle.writestr("PART2.CHR", b"shared-character-data")
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+    unpacker.unpack_artifact_recursive(source_id, "game.zip", archive.getvalue())
+    assert [artifact.original_filename for artifact in db.get_all_artifacts()] == [
+        "game.zip", "PART1.CHR", "PART2.CHR"
+    ]
 
 
 def test_rejects_corrupt_platform_containers(tmp_path: Path) -> None:
