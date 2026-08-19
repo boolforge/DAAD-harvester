@@ -1,0 +1,107 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "z80",
+  "artifact_id": "daad-zx-ds48ie-official",
+  "derived_from_sha256": "d599b14576cb46f72b34b106f6ad1079cdf0d346ed9ac44e89db7dbd0c0eb3d6",
+  "generated_at": "2026-08-19T10:21:19.861945+00:00",
+  "input_path": "reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-decompilation.c",
+      "sha256": "63fecbd453db67414505ce0f802094d64c0a3e93f36121523e2d502dd730649b",
+      "size": 2085
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-functions.tsv",
+      "sha256": "b147e6484fd2b8ed0a5c4d2a763f5069a951f430a04de6fd47a3c982c1838674",
+      "size": 480
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-headless.log",
+      "sha256": "1bab78bd941733a011628e9af72f79cad3490de6edcf0611601e16d3281960f2",
+      "size": 7150
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-listing.txt",
+      "sha256": "ec529234fbbca8e365c1606f1defc65738acd466981fb4584bf19f6882155595",
+      "size": 147447
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-metadata.json",
+      "sha256": "2484c1d548aba24aeb30ad98767025dca20a4d3d51a2623dc30d5ab9afcfc317",
+      "size": 131
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/independent-static-disassembly.txt",
+      "sha256": "281ffca42d2a7e57ec3a85e417ad76d40f6861deebaa7b658185e05d3814717b",
+      "size": 79973
+    },
+    {
+      "path": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/radare2-analysis.txt",
+      "sha256": "3d251abcc91fb41d953447006997fc6e033778eb020e5a106fc65233a7dabd37",
+      "size": 1173653
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "z80",
+        "-b",
+        "8",
+        "-qc",
+        "aaa;afl;pD 8192",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "3d251abcc91fb41d953447006997fc6e033778eb020e5a106fc65233a7dabd37",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "z80dasm",
+        "-a",
+        "-g",
+        "0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "281ffca42d2a7e57ec3a85e417ad76d40f6861deebaa7b658185e05d3814717b",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-zx-ds48ie-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/zx/daad-zx-ds48ie-official/DS48IE.P3F",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "z80:LE:16:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/z80/daad-zx-ds48ie-official"
+      ],
+      "output": "reverse_engineering/derived/z80/daad-zx-ds48ie-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "1bab78bd941733a011628e9af72f79cad3490de6edcf0611601e16d3281960f2",
+      "tool": "ghidra"
+    }
+  ]
+}

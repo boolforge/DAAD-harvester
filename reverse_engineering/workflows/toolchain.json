@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "purpose": "Pinned redundant static-analysis workflow configuration for documented-authorized DAAD interpreter artifacts",
+  "tools": {
+    "ghidra": {
+      "version": "12.1.3",
+      "release_url": "https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.3_build",
+      "local_path": "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless"
+    },
+    "radare2": {"version": "5.5.0", "command": "r2"},
+    "z80dasm": {"version": "1.1.6", "command": "z80dasm"},
+    "da65": {"version": "2.19", "command": "da65"},
+    "m68k_objdump": {"version": "2.42", "command": "m68k-linux-gnu-objdump"},
+    "ndisasm": {"version": "2.16.01", "command": "ndisasm"},
+    "hatari": {"version": "2.4.1", "command": "hatari"},
+    "dosbox_x": {"version": "2024.03.01", "command": "dosbox-x"}
+  },
+  "architectures": {
+    "z80": {
+      "radare2": {"architecture": "z80", "bits": 8},
+      "ghidra_language": "z80:LE:16:default",
+      "independent_static_command": ["z80dasm", "-a", "-g", "0"],
+      "load_model": "raw_binary_base_0_unverified"
+    },
+    "mos6502": {
+      "radare2": {"architecture": "6502", "bits": 8},
+      "ghidra_language": "6502:LE:16:default",
+      "independent_static_command": ["da65"],
+      "load_model": "raw_binary_base_0_unverified"
+    },
+    "mos8501": {
+      "radare2": {"architecture": "6502", "bits": 8},
+      "ghidra_language": "6502:LE:16:default",
+      "independent_static_command": ["da65"],
+      "load_model": "raw_binary_base_0_unverified"
+    },
+    "m68000": {
+      "radare2": {"architecture": "m68k", "bits": 32},
+      "ghidra_language": "68000:BE:32:default",
+      "independent_static_command": ["m68k-linux-gnu-objdump", "-D", "-b", "binary", "-m", "m68k:68000", "--adjust-vma=0"],
+      "load_model": "raw_binary_base_0_unverified"
+    },
+    "i8086": {
+      "radare2": {"architecture": "x86", "bits": 16},
+      "ghidra_language": "x86:LE:16:Real Mode",
+      "independent_static_command": ["ndisasm", "-b", "16", "-o", "0"],
+      "load_model": "raw_binary_base_0_unverified"
+    }
+  },
+  "verification_rule": "All outputs are derived analysis. Raw-byte mode is not a validated executable/load model; it must be replaced by a format-specific model before behavioral claims or high-confidence function boundaries are documented."
+}

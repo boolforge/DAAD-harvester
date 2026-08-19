@@ -1,0 +1,10 @@
+entry	name	body	comment	decompilation_status
+ram:0000	RST0	[[ram:0000, ram:0007]]		completed
+ram:0008	RST1	[[ram:0008, ram:000f]]		completed
+ram:0010	RST2	[[ram:0010, ram:0017]]		completed
+ram:0018	RST3	[[ram:0018, ram:001f]]		completed
+ram:0020	RST4	[[ram:0020, ram:0022]]		completed
+ram:0028	RST5	[[ram:0028, ram:002f]]		completed
+ram:0030	RST6	[[ram:0030, ram:0037]]		completed
+ram:0038	RST7	[[ram:0038, ram:0038]]		completed
+ram:0066	NMI_ISR	[[ram:0066, ram:0076]]		completed

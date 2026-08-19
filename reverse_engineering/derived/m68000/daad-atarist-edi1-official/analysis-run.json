@@ -1,0 +1,110 @@
+{
+  "analysis_state": "generated_unverified_load_model",
+  "architecture": "m68000",
+  "artifact_id": "daad-atarist-edi1-official",
+  "derived_from_sha256": "ecc25e01611b1b3f2546c63b67220011f1793809cb177543030d5b626520c7fd",
+  "generated_at": "2026-08-19T10:21:38.324331+00:00",
+  "input_path": "reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG",
+  "load_model": "raw_binary_base_0_unverified",
+  "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+  "outputs": [
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-decompilation.c",
+      "sha256": "8656cd1b9992329609b6975a3b5d47f1bac74d66ab1531400a6d46b87881063c",
+      "size": 19193
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-functions.tsv",
+      "sha256": "b636221d2b630fb96673da5292c7ca18555dce01047d2bce5cd6f4c1f54ceb84",
+      "size": 1361
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-headless.log",
+      "sha256": "99aca907fd920eefa2af4120b9dd53bf6eb9baa3b37ebcee1a6dc5d5cab2ecb9",
+      "size": 7428
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-listing.txt",
+      "sha256": "a878129bfbfe8c36b2dea2cae3ee34f24dbd2efe7c6670705ad8cd076d0ae4f5",
+      "size": 339360
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-metadata.json",
+      "sha256": "01afc54e87ee45ed7c32103896556133482e9fbd2251c5771e56e6a37beff843",
+      "size": 129
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/independent-static-disassembly.txt",
+      "sha256": "174929db04006a95e395231d305e4320abfff64b3a6bafabd0b497ddced77cdd",
+      "size": 226164
+    },
+    {
+      "path": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/radare2-analysis.txt",
+      "sha256": "81d9079a7f35ee9d4b8c7f077cc4259854af28ec00b87ba9be3e95ce49713974",
+      "size": 1738878
+    }
+  ],
+  "schema_version": 1,
+  "tool_records": [
+    {
+      "command": [
+        "r2",
+        "-N",
+        "-a",
+        "m68k",
+        "-b",
+        "32",
+        "-qc",
+        "aaa;afl;pD 21022",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/radare2-analysis.txt",
+      "returncode": 0,
+      "sha256": "81d9079a7f35ee9d4b8c7f077cc4259854af28ec00b87ba9be3e95ce49713974",
+      "tool": "radare2"
+    },
+    {
+      "command": [
+        "m68k-linux-gnu-objdump",
+        "-D",
+        "-b",
+        "binary",
+        "-m",
+        "m68k:68000",
+        "--adjust-vma=0",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/independent-static-disassembly.txt",
+      "returncode": 0,
+      "sha256": "174929db04006a95e395231d305e4320abfff64b3a6bafabd0b497ddced77cdd",
+      "tool": "architecture_static"
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/support/analyzeHeadless",
+        "/tmp/daad-ghidra-projects/daad-atarist-edi1-official",
+        "analysis",
+        "-import",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/atarist/daad-atarist-edi1-official/EDI1.PRG",
+        "-overwrite",
+        "-loader",
+        "BinaryLoader",
+        "-loader-baseAddr",
+        "0x0",
+        "-processor",
+        "68000:BE:32:default",
+        "-analysisTimeoutPerFile",
+        "120",
+        "-scriptPath",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra",
+        "-postScript",
+        "ExportDAADAnalysis.java",
+        "/home/ubuntu/DAAD-harvester/reverse_engineering/derived/m68000/daad-atarist-edi1-official"
+      ],
+      "output": "reverse_engineering/derived/m68000/daad-atarist-edi1-official/ghidra-headless.log",
+      "returncode": 0,
+      "sha256": "99aca907fd920eefa2af4120b9dd53bf6eb9baa3b37ebcee1a6dc5d5cab2ecb9",
+      "tool": "ghidra"
+    }
+  ]
+}

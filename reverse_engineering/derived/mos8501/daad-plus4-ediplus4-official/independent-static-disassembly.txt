@@ -1,0 +1,6667 @@
+; da65 V2.18 - Ubuntu 2.19-1
+; Created:    2026-08-19 10:21:25
+; Input file: /home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/plus4/daad-plus4-ediplus4-official/ediplus4.prg
+; Page:       1
+
+
+        .setcpu "6502"
+
+L0000           := $0000
+L02BF           := $02BF
+L02DE           := $02DE
+L2E02           := $2E02
+L4019           := $4019
+L401C           := $401C
+L401F           := $401F
+L403A           := $403A
+L403B           := $403B
+L403D           := $403D
+L4045           := $4045
+L40E6           := $40E6
+L40F3           := $40F3
+L4179           := $4179
+L417D           := $417D
+L418E           := $418E
+L4194           := $4194
+L41FC           := $41FC
+L42AE           := $42AE
+L42C2           := $42C2
+L42C5           := $42C5
+L42D3           := $42D3
+L42E5           := $42E5
+L42FD           := $42FD
+L430F           := $430F
+L431B           := $431B
+L4397           := $4397
+L43A1           := $43A1
+L43FA           := $43FA
+L4442           := $4442
+L4452           := $4452
+L4467           := $4467
+L446F           := $446F
+L448E           := $448E
+L44B6           := $44B6
+L44F5           := $44F5
+L44F7           := $44F7
+L4508           := $4508
+L4557           := $4557
+L45CE           := $45CE
+L45F9           := $45F9
+L463C           := $463C
+L463F           := $463F
+L4654           := $4654
+L4663           := $4663
+L4686           := $4686
+L4688           := $4688
+L46B4           := $46B4
+L4715           := $4715
+L4718           := $4718
+L473A           := $473A
+L4742           := $4742
+L478E           := $478E
+L4884           := $4884
+L4933           := $4933
+L499F           := $499F
+L49DD           := $49DD
+L4A13           := $4A13
+L4A55           := $4A55
+L4BC8           := $4BC8
+L4BE7           := $4BE7
+L4C26           := $4C26
+L4C3B           := $4C3B
+L4C3E           := $4C3E
+L4C40           := $4C40
+L4C69           := $4C69
+L4CE1           := $4CE1
+L4CE9           := $4CE9
+L4D03           := $4D03
+L4D17           := $4D17
+L4D1D           := $4D1D
+L4D2A           := $4D2A
+L4D2F           := $4D2F
+L4D4F           := $4D4F
+L4D51           := $4D51
+L4D56           := $4D56
+L4D72           := $4D72
+L4D9E           := $4D9E
+L4DAE           := $4DAE
+L4DC2           := $4DC2
+L4DC3           := $4DC3
+L4E4E           := $4E4E
+L4E50           := $4E50
+L4E67           := $4E67
+L4E8E           := $4E8E
+L4EA6           := $4EA6
+L4EEF           := $4EEF
+L4F2A           := $4F2A
+L4F4C           := $4F4C
+L4F6B           := $4F6B
+L4F88           := $4F88
+L4F9C           := $4F9C
+L4FCC           := $4FCC
+L4FEB           := $4FEB
+L4FF8           := $4FF8
+L501A           := $501A
+L5020           := $5020
+L5028           := $5028
+L5063           := $5063
+L5089           := $5089
+L50D3           := $50D3
+L50E9           := $50E9
+L5103           := $5103
+L5168           := $5168
+L51D0           := $51D0
+L5206           := $5206
+L5240           := $5240
+L524E           := $524E
+L5252           := $5252
+L5261           := $5261
+L526A           := $526A
+L5297           := $5297
+L52A5           := $52A5
+L52BC           := $52BC
+L52E6           := $52E6
+L52EA           := $52EA
+L531F           := $531F
+L5359           := $5359
+L535F           := $535F
+L5367           := $5367
+L5392           := $5392
+L53A0           := $53A0
+L547C           := $547C
+L54C3           := $54C3
+L54DC           := $54DC
+L5604           := $5604
+L5667           := $5667
+L5722           := $5722
+L5755           := $5755
+L576C           := $576C
+L5796           := $5796
+L57AD           := $57AD
+L5811           := $5811
+L5818           := $5818
+L5886           := $5886
+L58AD           := $58AD
+L58C4           := $58C4
+L58FB           := $58FB
+L5939           := $5939
+L5949           := $5949
+L595C           := $595C
+L5992           := $5992
+L5999           := $5999
+L59B9           := $59B9
+L59D5           := $59D5
+L59F4           := $59F4
+L5A3C           := $5A3C
+L5A47           := $5A47
+L5A49           := $5A49
+L5A78           := $5A78
+L5A8C           := $5A8C
+L5AFF           := $5AFF
+L5B34           := $5B34
+L5B6E           := $5B6E
+L5BA6           := $5BA6
+L5BEB           := $5BEB
+L5C00           := $5C00
+L5C09           := $5C09
+L5C10           := $5C10
+L5C15           := $5C15
+L5C63           := $5C63
+L5CA2           := $5CA2
+L5CBD           := $5CBD
+L5CD7           := $5CD7
+L5CDC           := $5CDC
+L5CEE           := $5CEE
+L5D25           := $5D25
+L5D28           := $5D28
+L5D64           := $5D64
+L5DB1           := $5DB1
+L5E0B           := $5E0B
+L5E16           := $5E16
+L5E1F           := $5E1F
+L5E2E           := $5E2E
+L5E37           := $5E37
+L5E3E           := $5E3E
+L5E4C           := $5E4C
+L5E6D           := $5E6D
+L5E70           := $5E70
+L5E93           := $5E93
+L5ECB           := $5ECB
+L5EF4           := $5EF4
+L5F19           := $5F19
+L5F3D           := $5F3D
+L5F66           := $5F66
+L5F76           := $5F76
+L603E           := $603E
+L60A2           := $60A2
+L60D1           := $60D1
+L60EF           := $60EF
+L60FB           := $60FB
+L6130           := $6130
+L619F           := $619F
+L61BE           := $61BE
+L61CD           := $61CD
+L61DA           := $61DA
+L61F0           := $61F0
+L620B           := $620B
+L6254           := $6254
+L626D           := $626D
+L62D2           := $62D2
+L6300           := $6300
+L6304           := $6304
+L6306           := $6306
+L6312           := $6312
+L636D           := $636D
+L6490           := $6490
+L64A0           := $64A0
+L653D           := $653D
+L653F           := $653F
+L6570           := $6570
+L6595           := $6595
+L65B6           := $65B6
+L6617           := $6617
+L6624           := $6624
+L6625           := $6625
+L6649           := $6649
+L666D           := $666D
+L66CB           := $66CB
+L66D6           := $66D6
+L6719           := $6719
+L6792           := $6792
+L67F0           := $67F0
+L67FF           := $67FF
+L6808           := $6808
+L6853           := $6853
+L6863           := $6863
+L688D           := $688D
+L6892           := $6892
+L68D1           := $68D1
+L6913           := $6913
+L693C           := $693C
+L6954           := $6954
+L696C           := $696C
+L698F           := $698F
+L69A3           := $69A3
+L6A46           := $6A46
+L6A55           := $6A55
+L6A6D           := $6A6D
+L6A7F           := $6A7F
+L6AA7           := $6AA7
+L6AED           := $6AED
+L6AF3           := $6AF3
+L6B26           := $6B26
+L6B89           := $6B89
+L6BB1           := $6BB1
+L6BB8           := $6BB8
+L6BBF           := $6BBF
+L6BC6           := $6BC6
+L6BD3           := $6BD3
+L6BE0           := $6BE0
+L6C05           := $6C05
+L6C42           := $6C42
+L6C68           := $6C68
+L6C78           := $6C78
+L6C89           := $6C89
+L6D5C           := $6D5C
+L6DEA           := $6DEA
+L7802           := $7802
+        ora     ($40,x)
+        ora     $0140
+        brk
+        .byte   $9E
+        .byte   $32
+        bmi     LD0FA
+        .byte   $33
+        .byte   $3A
+        .byte   $8F
+        brk
+        brk
+        brk
+        jmp     L6D5C
+
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        rts
+
+        brk
+        brk
+        jmp     L403A
+
+        rts
+
+        brk
+        brk
+        jmp     L403A
+
+        rts
+
+        brk
+        brk
+        jmp     L5EF4
+
+        jmp     L5A49
+
+        jmp     L5BA6
+
+        jmp     L5E3E
+
+        jmp     L5E4C
+
+        jmp     L403D
+
+        rts
+
+        ldx     #$03
+        pla
+        .byte   $8D
+LD0FA:  inc     $6802
+        sta     $02EF
+        stx     $02AD
+        jsr     L6C89
+        jsr     LFFE7
+        jsr     L6C78
+        lda     $02C0
+        bne     LD119
+        lda     #$08
+        jsr     L5EF4
+        jsr     L603E
+LD119:  jsr     L5A47
+        ldx     $02AD
+        lda     #$3A
+        sta     $41
+        lda     #$6D
+        sta     $42
+        cpx     #$65
+        beq     LD19E
+        lda     #$40
+        sta     $41
+        lda     #$6D
+        sta     $42
+        cpx     #$64
+        beq     LD19E
+        txa
+        pha
+        lda     #$4B
+        sta     $41
+        lda     #$6D
+        sta     $42
+        jsr     L5367
+        pla
+        sta     $8B
+        lda     #$00
+        sta     $8C
+        jsr     L52EA
+        ldx     $02AD
+        cpx     #$64
+        bcs     LD1A1
+        lda     #$57
+        sta     $41
+        lda     #$6D
+        sta     $42
+        jsr     L5367
+        lda     $02E9
+        sta     $8B
+        jsr     L52E6
+        lda     #$3A
+        jsr     L5A49
+        lda     $02EE
+        sta     $06
+        lda     $02EF
+        sta     $07
+        ldx     #$00
+        lda     ($06,x)
+        sta     $8B
+        jsr     L52E6
+        lda     #$2C
+        jsr     L5A49
+        ldy     #$01
+        lda     ($06),y
+        sta     $8B
+        jsr     L52E6
+        lda     #$3E
+        jsr     L5A49
+        lda     $02EA
+        sta     $8B
+        jsr     L52E6
+        jmp     L40E6
+
+LD19E:  jsr     L5367
+LD1A1:  jsr     L5BA6
+        ldy     #$00
+        sty     $EF
+LD1A8:  lda     $EF
+        beq     LD1A8
+        sty     $EF
+        jsr     L6A55
+        jsr     L6C78
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+        lda     #$00
+        sta     $02AD
+        sta     $02C4
+        sta     $02C5
+        sta     $02C6
+        lda     #$0D
+        sta     L6D5C
+        lda     #$78
+        sta     $02C8
+        lda     $02C0
+        beq     LD1DC
+        jmp     (L02BF)
+
+LD1DC:  ldx     #$F7
+        txs
+        lda     $A3
+        sta     $02B4
+        jsr     L6130
+        lda     #$AA
+        sta     $8D
+        lda     #$6C
+        sta     $8E
+        ldx     #$08
+LD1F1:  ldy     #$0F
+LD1F3:  lda     $6C9A,y
+        sta     ($8D),y
+        dey
+        bpl     LD1F3
+        clc
+        lda     #$10
+        adc     $8D
+        sta     $8D
+        lda     #$00
+        adc     $8E
+        sta     $8E
+        dex
+        bne     LD1F1
+        lda     #$00
+        jsr     L5F19
+        jsr     L603E
+        lda     #$08
+        sta     LFF11
+        lda     #$00
+        tay
+LD21B:  sta     $6E7E,y
+        dey
+        bne     LD21B
+        sta     $02A7
+        lda     #$80
+        sta     $6E9B
+        jsr     L4179
+        beq     LD231
+        jmp     L40F3
+
+LD231:  jmp     L6C42
+
+        tsx
+        stx     $02E7
+        lda     #$00
+        sta     $02E9
+        jsr     L61BE
+        lda     #$00
+        pha
+        sta     $02EB
+        sta     $02E8
+        ldx     #$00
+        lda     ($06,x)
+        bne     LD280
+        pla
+        beq     LD264
+        pla
+        sta     $8B
+        pla
+        sta     $06
+        pla
+        sta     $07
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L4884
+
+LD264:  lda     $02E8
+        beq     LD27F
+        pla
+        sta     $02E9
+        dec     $02E8
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L41FC
+
+LD27F:  rts
+
+LD280:  jsr     L6BB1
+        tay
+        cpy     #$FF
+        beq     LD28D
+        cpy     $6E9F
+        bne     LD298
+LD28D:  lda     ($06,x)
+        cmp     #$FF
+        beq     LD2A4
+        cmp     $6EA0
+        beq     LD2A4
+LD298:  jsr     L6BB1
+        jsr     L6BB1
+        jsr     L6BB1
+LD2A1:  jmp     L418E
+
+LD2A4:  jsr     L6BB1
+        ldx     #$00
+        lda     ($06,x)
+        sta     $FD
+        jsr     L6BB1
+        lda     ($06,x)
+        sta     $FE
+        jsr     L6BB1
+        ldx     #$00
+        lda     ($FD,x)
+        cmp     #$FF
+        beq     LD2A1
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     ($FD,x)
+        sta     $02EA
+        asl     a
+        tay
+        iny
+        lda     $4AC8,y
+        pha
+        dey
+        lda     $4AC8,y
+        pha
+        jsr     L6BB8
+        lda     ($FD,x)
+        bit     $02EA
+        bpl     LD2E4
+        tay
+        lda     $6E7E,y
+LD2E4:  tay
+        clc
+        adc     #$7E
+        sta     $8B
+        lda     #$6F
+        adc     #$00
+        sta     $8C
+        tya
+        clc
+        adc     #$7E
+        sta     $06
+        lda     #$6E
+        adc     #$00
+        sta     $07
+        tya
+        rts
+
+        cmp     $6EA4
+        beq     LD37D
+        jmp     L42AE
+
+        cmp     $6EA4
+        bne     LD37D
+        jmp     L42AE
+
+        cmp     $6EA4
+        bcc     LD37D
+        jmp     L42AE
+
+        cmp     $6EA4
+        bcc     LD369
+        beq     LD369
+        jmp     L42C2
+
+        lda     ($8B,x)
+        cmp     $6EA4
+        beq     LD37D
+        cmp     #$FD
+        bcs     LD37D
+        jmp     L42AE
+
+        lda     ($8B,x)
+        cmp     $6EA4
+        beq     LD369
+        cmp     #$FD
+        bcs     LD369
+        jmp     L42C2
+
+        lda     ($8B,x)
+        cmp     #$FD
+        beq     LD37D
+        jmp     L42AE
+
+        lda     ($8B,x)
+        cmp     #$FD
+        beq     LD369
+        jmp     L42C2
+
+        lda     ($8B,x)
+        cmp     #$FE
+        bne     LD369
+        jmp     L42C2
+
+        lda     ($8B,x)
+        cmp     #$FE
+        beq     LD369
+        jmp     L42C2
+
+        sta     $3F
+        jsr     L52BC
+        cmp     $3F
+        bcc     LD37D
+LD369:  pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L418E
+
+        lda     ($06,x)
+        bne     LD369
+        jmp     L42C2
+
+        lda     ($06,x)
+        beq     LD369
+LD37D:  jsr     L6BB8
+        pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L41FC
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     ($06,x)
+        bne     LD369
+        jmp     L42C2
+
+        jsr     L473A
+        jmp     L42D3
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     ($06,x)
+        beq     LD369
+        jmp     L42C2
+
+        jsr     L473A
+        jmp     L42E5
+
+        jsr     L473A
+        jmp     L42FD
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     ($06,x)
+        bcc     LD37D
+        jmp     L42AE
+
+        jsr     L473A
+        jmp     L430F
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     ($06,x)
+        bcc     LD369
+        beq     LD369
+        jmp     L42C2
+
+        cmp     $6EA1
+        beq     LD37D
+        jmp     L42AE
+
+        cmp     $6EA2
+        jmp     L431B
+
+        cmp     $6EA9
+        jmp     L431B
+
+        cmp     $6EAA
+        jmp     L431B
+
+        cmp     $6EAB
+        jmp     L431B
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$0C
+        jsr     L5796
+        ldx     #$00
+        lda     ($06,x)
+        tay
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        tya
+        pha
+        lda     #$1E
+        jsr     L61DA
+        pla
+        eor     #$FF
+        cmp     ($06,x)
+        bne     LD41A
+        jmp     L463F
+
+LD41A:  jmp     L42AE
+
+        lda     #$00
+        sta     LFE98
+        sta     $EF
+        lda     #$0D
+        jsr     L5796
+        ldx     #$00
+        lda     ($06,x)
+        pha
+        lda     #$1F
+        jsr     L61DA
+        pla
+        eor     #$FF
+        ldx     $02E7
+        txs
+        ldx     #$00
+        sec
+        sbc     ($06,x)
+        beq     LD44B
+        stx     $6EA4
+        ldx     $02E7
+        txs
+        jmp     L417D
+
+LD44B:  ldx     $02E7
+        txs
+        cmp     #$00
+        rts
+
+        pha
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+        pla
+        jsr     L5359
+        pla
+        sta     $06
+        pla
+        sta     $07
+        lda     #$FF
+        sta     $02AC
+        jmp     L4194
+
+        lda     #$0F
+        jmp     L43A1
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        jsr     L5E1F
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L463F
+
+        jsr     L6BB8
+        pha
+        lda     ($FD,x)
+        tay
+        pla
+        jsr     L4019
+        jmp     L463C
+
+        jsr     L6BB8
+        pha
+        lda     ($FD,x)
+        tay
+        pla
+        jsr     L401C
+        jmp     L463C
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        jsr     L5F66
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L463F
+
+        stx     $6E7F
+        lda     $6F7E,x
+        cmp     #$FF
+        beq     LD4CA
+        cmp     #$FD
+        bcc     LD4C6
+        lda     $6EA4
+        sta     $6F7E,x
+LD4C6:  inx
+        jmp     L43FA
+
+LD4CA:  jmp     L463F
+
+LD4CD:  pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     #$1A
+        jmp     L44F5
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$FD
+        sta     $FD
+        lda     #$FE
+        sta     $FE
+        lda     $6EA4
+        jsr     L4D56
+        beq     LD4CD
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jsr     L6BC6
+        jmp     L4442
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     #$19
+        cpy     #$FD
+        bcs     LD560
+        lda     #$1A
+        cpy     $6EA4
+        bne     LD560
+        lda     $6EB1
+        jsr     L4C3E
+        jsr     L4BE7
+        clc
+        adc     $07
+        cmp     $6EB2
+        beq     LD522
+        lda     #$2B
+        bcs     LD560
+LD522:  lda     #$24
+        sta     $06
+        lda     #$1B
+        sta     $07
+        lda     $07
+        pha
+        lda     $06
+        pha
+        ldy     $6E7F
+        cpy     $6EA3
+        bcs     LD54F
+        lda     #$FE
+        ldx     #$00
+        sta     ($8B,x)
+        inc     $6E7F
+        pla
+        sta     $06
+        pla
+        sta     $07
+        lda     $06
+        jsr     L5359
+        jmp     L463C
+
+LD54F:  pla
+        sta     $06
+        pla
+        sta     $07
+        ldx     $02EB
+        beq     LD560
+        ldx     $7083
+        stx     $02EB
+LD560:  jmp     L4397
+
+        jsr     L4D2F
+        beq     LD5B0
+        jsr     L6BC6
+        jmp     L44B6
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     #$18
+        cpy     #$FD
+        beq     LD560
+        lda     #$31
+        cpy     $6EA4
+        beq     LD560
+        lda     #$1C
+        cpy     #$FE
+        bne     LD560
+        dec     $6E7F
+        lda     $6EA4
+        sta     ($8B,x)
+        lda     #$27
+        jmp     L448E
+
+        jsr     L6BC6
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$FE
+        sta     $FE
+        lda     #$FD
+        jsr     L4D51
+        bne     LD5B7
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     #$17
+LD5B0:  bcs     LD5B4
+        lda     #$08
+LD5B4:  jmp     L4397
+
+LD5B7:  pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L4508
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     #$32
+        cpy     #$FE
+        beq     LD5B4
+        cpy     $6EA4
+        beq     LD5B4
+        lda     #$17
+        cpy     #$FD
+        bne     LD5B4
+        jsr     L4CE9
+        lda     #$18
+        bcc     LD5B4
+        lda     #$26
+        sta     $06
+        lda     #$2A
+        sta     $07
+        jmp     L446F
+
+LD5E9:  pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     #$1C
+        jmp     L44F5
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$FD
+        jsr     L4D4F
+        beq     LD5E9
+        tay
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jsr     L6BC6
+        tya
+        jmp     L4557
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     #$31
+        cpy     $6EA4
+        beq     LD5B4
+        lda     #$1D
+        cpy     #$FD
+        beq     LD5B4
+        lda     #$1C
+        bcc     LD5B4
+        jsr     L4CE9
+        bcc     LD5B4
+        lda     #$FD
+        sta     ($8B,x)
+        dec     $6E7F
+        lda     #$25
+        jmp     L448E
+
+        tax
+LD638:  jsr     L5A3C
+        dex
+        bne     LD638
+        jmp     L463C
+
+        sta     $6EA4
+        jmp     L463C
+
+        cmp     $7084
+        bcs     LD675
+        ldx     $708E
+        stx     $8D
+        ldx     $708F
+        stx     $8E
+        jmp     L45CE
+
+        pha
+        lda     $02A7
+        ora     #$40
+        sta     $02A7
+        pla
+        cmp     $7085
+        bcs     LD675
+        ldx     $7090
+        stx     $8D
+        ldx     $7091
+        stx     $8E
+        jmp     L45CE
+
+LD675:  ldx     #$07
+        jmp     L403D
+
+        cmp     $7086
+        bcs     LD675
+        ldx     $7092
+        stx     $8D
+        ldx     $7093
+        stx     $8E
+        asl     a
+        php
+        clc
+        adc     $8D
+        sta     $8D
+        lda     $8E
+        adc     #$00
+        plp
+        adc     #$00
+        sta     $8E
+        ldy     #$00
+        lda     ($8D),y
+        sta     $41
+        iny
+        lda     ($8D),y
+        sta     $42
+        jsr     L5367
+        jmp     L463C
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     #$FC
+        sta     ($8B,x)
+        cpy     #$FE
+        bne     LD6F7
+        dec     $6E7F
+        jmp     L463C
+
+        jsr     L4DC2
+        lda     ($8B,x)
+        tay
+        lda     $6EA4
+        sta     ($8B,x)
+        jmp     L45F9
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        jsr     L4DC2
+        tay
+        lda     ($8B,x)
+        pha
+        lda     $6F7E,y
+        sta     ($8B,x)
+        pla
+        sta     $6F7E,y
+        jmp     L463C
+
+        cmp     #$26
+        beq     LD6EF
+        lda     #$FF
+        sta     ($06,x)
+        jmp     L463C
+
+LD6EF:  ldx     #$09
+        jmp     L403D
+
+        txa
+        sta     ($06,x)
+LD6F7:  jsr     L6BB8
+        pla
+        sta     $06
+        pla
+        sta     $07
+        lda     #$FF
+        sta     $02AC
+        jmp     L41FC
+
+        jsr     L6BB8
+        sta     $8C
+        lda     ($FD,x)
+        clc
+        adc     ($06,x)
+        bcc     LD741
+        lda     #$FF
+        jmp     L4686
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $8C
+        lda     ($06,x)
+        sec
+        sbc     $8C
+        bcs     LD728
+        txa
+LD728:  sta     ($06,x)
+        jmp     L463C
+
+        sta     $8C
+        inc     $FD
+        lda     ($FD,x)
+        tay
+        lda     $6E7E,y
+        jmp     L4686
+
+        jsr     L6BB8
+        sta     $8C
+        lda     ($FD,x)
+LD741:  sta     $8B
+        lda     $8C
+        cmp     #$26
+        bne     LD752
+        lda     $7084
+        cmp     $8B
+        bcc     LD759
+        beq     LD759
+LD752:  lda     $8B
+        sta     ($06,x)
+        jmp     L463C
+
+LD759:  ldx     #$01
+        jmp     L403D
+
+        jsr     L53A0
+        jmp     L463F
+
+        ldy     #$01
+        lda     ($06),y
+        sta     $8C
+        jmp     L46B4
+
+        stx     $8C
+        lda     ($06,x)
+        sta     $8B
+        jsr     L52EA
+        jmp     L463C
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        jsr     L4CE1
+        cmp     ($8B,x)
+        bne     LD794
+LD785:  jmp     L42C2
+
+        jsr     L6BB8
+        lda     ($FD,x)
+        jsr     L4CE1
+        cmp     ($8B,x)
+        bne     LD785
+LD794:  jmp     L42AE
+
+        jsr     L4DC2
+        jsr     L6BB8
+        lda     $8B
+        sta     $06
+        lda     $8C
+        sta     $07
+        lda     ($FD,x)
+        jsr     L4CE1
+        pha
+        lda     ($06,x)
+        jmp     L4718
+
+        jsr     L4CE1
+        pha
+        lda     $6EB1
+        jmp     L4715
+
+        lda     ($06,x)
+        cmp     #$FF
+        bne     LD7C7
+        ldx     #$02
+        jmp     L403D
+
+        lda     ($8B,x)
+LD7C7:  pha
+        jsr     L6BB8
+        lda     ($FD,x)
+        jsr     L4DC2
+        jsr     L4D17
+        cmp     #$FE
+        bne     LD7DA
+        dec     $6E7F
+LD7DA:  pla
+        cmp     #$FE
+        bne     LD7E2
+        inc     $6E7F
+LD7E2:  sta     ($06,x)
+        jmp     L463C
+
+        lda     $06
+        sta     $8B
+        lda     $07
+        sta     $8C
+        jsr     L4742
+        jmp     L4686
+
+        lda     $06
+        sta     $8B
+        lda     $07
+        sta     $8C
+        jsr     L6BB8
+        lda     ($8B,x)
+        sta     $8B
+        pha
+        lda     ($FD,x)
+        sta     $8C
+        clc
+        adc     #$7E
+        sta     $06
+        lda     #$6E
+        adc     #$00
+        sta     $07
+        pla
+        rts
+
+        jsr     L473A
+        jmp     L4654
+
+        jsr     L473A
+        jmp     L4663
+
+        lda     $6EA4
+        sta     $8C
+        lda     $02A7
+        ora     #$02
+        sta     $02A7
+        jsr     L4E8E
+        jmp     L463F
+
+        tay
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        cpy     #$00
+        bne     LD846
+        jsr     L4F9C
+        jmp     L478E
+
+LD846:  jsr     L4F88
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        bcs     LD85C
+        lda     $02A7
+        ora     #$10
+        sta     $02A7
+        jmp     L42AE
+
+LD85C:  jmp     L42C2
+
+        jsr     L4CE1
+        sta     $8C
+        lda     $02A7
+        and     #$FD
+        sta     $02A7
+        jsr     L4E8E
+        jmp     L463C
+
+        jsr     L6BB8
+        cmp     $7087
+        bcs     LD8AE
+        cmp     #$00
+        beq     LD8AE
+        pha
+        jsr     L61BE
+        pla
+        inc     $02E8
+        ldx     $02E8
+        cpx     #$0A
+        beq     LD8AB
+        ldx     $02E9
+        stx     $8C
+        ldx     #$00
+        stx     $8B
+        stx     $02AC
+        sta     $02E9
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        jmp     L418E
+
+LD8AB:  jmp     L403B
+
+LD8AE:  ldx     #$06
+        jmp     L403D
+
+        lda     $02E9
+        jsr     L61BE
+        pla
+        pla
+        jmp     L418E
+
+        sta     $6EAE
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $8B
+        lda     #$F8
+        bne     LD8FA
+        jsr     L6BB8
+        jmp     L463C
+
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+        jmp     L463F
+
+        sta     $6EA3
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $6EB2
+        jmp     L463C
+
+        sta     $6EA7
+        jsr     L6BB8
+        lda     ($FD,x)
+        asl     a
+        asl     a
+        asl     a
+        sta     $8B
+        lda     #$C7
+LD8FA:  sta     $8C
+        lda     $6EAF
+        eor     $8B
+        and     $8C
+        eor     $8B
+        sta     $6EAF
+        jmp     L463C
+
+        sta     $485F
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $4860
+        jsr     L6BB8
+        jsr     L0000
+        jmp     L463F
+
+        ldx     #$05
+LD921:  jmp     L403D
+
+        jsr     L4CE1
+        sta     $6EB0
+        ldx     #$04
+        lda     $02EB
+        bne     LD921
+        pla
+        sta     $06
+        pla
+        sta     $07
+        lda     $02A7
+        and     #$EF
+        sta     $02A7
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     #$FF
+        sta     $8B
+        lda     #$00
+        sta     $8C
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     $FE
+        pha
+        lda     $02EB
+        sta     $8B
+LD967:  lda     $6EB0
+        jsr     L4E4E
+        bcc     LD99B
+        sta     $6EA0
+        cmp     $6EAA
+        php
+        jsr     L6BB1
+        lda     ($06,x)
+        sta     $6EA1
+        plp
+        bne     LD98C
+        lda     $6EAB
+        cmp     #$FF
+        beq     LD967
+        cmp     ($06,x)
+        beq     LD967
+LD98C:  lda     $8B
+        sta     $02EB
+        tya
+        jsr     L4DC2
+        pla
+        sta     $FE
+        jmp     L463C
+
+LD99B:  lda     #$00
+        sta     $02EB
+        ldx     #$09
+LD9A2:  pla
+        dex
+        bne     LD9A2
+        jmp     L4194
+
+        sta     $02B0
+        jsr     L4742
+        lda     $07
+        pha
+        lda     $06
+        pha
+        jsr     L4C3B
+        lda     $07
+        sta     $8B
+        pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L4688
+
+        sta     $8C
+        jsr     L4BE7
+        jmp     L4686
+
+        sta     $8C
+        jsr     L52BC
+        jmp     L4686
+
+LD9D5:  jmp     L44F5
+
+        sta     $02FE
+        jsr     L4D2F
+        beq     LD9D5
+        jmp     L4933
+
+        jsr     L4DC2
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $02FE
+        lda     ($8B,x)
+        tay
+        lda     #$18
+        cpy     #$FD
+        beq     LDA14
+        lda     #$31
+        cpy     $6EA4
+        beq     LDA14
+        lda     #$1C
+        cpy     #$FE
+        .byte   $D0
+LDA03:  bpl     $D9B2
+        inc     $8102,x
+        .byte   $8B
+        dec     $6E7F
+        ldy     #$2C
+        jsr     L49DD
+        jmp     L448E
+
+LDA14:  jmp     L4397
+
+        sta     $02FE
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$FE
+        sta     $FE
+        lda     #$FD
+        sta     $FD
+        lda     $02FE
+        jsr     L4D56
+        bne     LDA46
+        lda     $6EA4
+        jsr     L4D72
+        bne     LDA46
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     $02FE
+        bcs     LDA90
+        jmp     L44F7
+
+LDA46:  pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     $02FE
+        jmp     L499F
+
+        jsr     L4DC2
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $07
+        lda     ($8B,x)
+        tay
+        lda     #$19
+        cpy     #$FD
+        bcs     LDA14
+        cpy     $07
+        bne     LDA85
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $07
+        jsr     L4D17
+        tay
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        cpy     #$FD
+        bcc     LDA82
+        jmp     L4452
+
+LDA82:  jmp     L4467
+
+LDA85:  cpy     $6EA4
+        php
+        ldy     #$2D
+        lda     $07
+        plp
+        beq     LDA92
+LDA90:  ldy     #$34
+LDA92:  jsr     L49DD
+        jmp     L4397
+
+        pha
+        tya
+        jsr     L5359
+        lda     $02A9
+        ora     #$10
+        sta     $02A9
+        pla
+        jsr     L526A
+        lda     #$33
+        rts
+
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$FD
+        sta     $FE
+        jsr     L4D4F
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+LDABF:  jmp     L463F
+
+        ldy     #$00
+        lda     $7098
+        sta     $06
+        lda     $7099
+        sta     $07
+LDACE:  lda     ($06),y
+        sta     $6F7E,y
+        iny
+        cmp     #$FE
+        bcc     LDACE
+        bne     LDABF
+        inc     $6E7F
+        jmp     L4A13
+
+        stx     $02AC
+        pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L4194
+
+        lda     ($06,x)
+        cmp     $7084
+        bcs     LDB19
+        tay
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     $07
+        pha
+        lda     $06
+        pha
+        tya
+        jsr     L4F4C
+        tay
+        pla
+        sta     $06
+        pla
+        sta     $07
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+LDB11:  tya
+        bcc     LDB19
+        sta     ($06,x)
+        jmp     L463C
+
+LDB19:  jmp     L42AE
+
+        lda     $02AC
+        bne     LDB29
+LDB21:  jmp     L42AE
+
+        lda     $02AC
+        bne     LDB21
+LDB29:  jmp     L42C5
+
+        stx     $07
+        asl     a
+        sta     $06
+        bcc     LDB35
+        dec     $07
+LDB35:  asl     $06
+        rol     $07
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        clc
+        lda     $8B
+        adc     $06
+        sta     $06
+        lda     $8C
+        adc     $07
+        sta     $07
+        jmp     L418E
+
+        cmp     #$FF
+        beq     LDB56
+        sta     $6E9F
+LDB56:  jsr     L6BB8
+        lda     ($FD,x)
+        cmp     #$FF
+        beq     LDB62
+        sta     $6EA0
+LDB62:  jmp     L463C
+
+        jsr     L4DC2
+        jmp     L463C
+
+        lda     #$20
+        jsr     L5A49
+        jmp     L463F
+
+        jsr     L4BC8
+        bne     LDB80
+LDB78:  jmp     L42AE
+
+        jsr     L4BC8
+        bne     LDB78
+LDB80:  jmp     L42C2
+
+        .byte   $42
+        .byte   $42
+        lsr     a
+        .byte   $42
+        .byte   $52
+        .byte   $42
+        .byte   $5A
+        .byte   $42
+        .byte   $64
+        .byte   $42
+        .byte   $72
+        .byte   $42
+        .byte   $80
+        .byte   $42
+        .byte   $89
+        .byte   $42
+        .byte   $92
+        .byte   $42
+        .byte   $9B
+        .byte   $42
+        ldy     $42
+        ldx     $42,y
+        lda     $CD42,x
+        .byte   $42
+        .byte   $F7
+        .byte   $42
+        ora     #$43
+        .byte   $17
+        .byte   $43
+        .byte   $1F
+        .byte   $43
+        dec     $43,x
+        .byte   $8B
+        eor     $37
+        .byte   $43
+        adc     ($43,x)
+        .byte   $A3
+        .byte   $43
+        lda     ($43),y
+        ldx     $43,y
+        ora     #$56
+        .byte   $97
+        lsr     $A8,x
+        lsr     $D7
+        .byte   $53
+        cpx     $43
+        inc     $43,x
+        .byte   $1C
+        .byte   $44
+        .byte   $A7
+        .byte   $44
+        sec
+        eor     $D8
+        .byte   $44
+        .byte   $7B
+        eor     $93
+        lsr     a
+        sta     $45
+        sta     $0445,x
+        eor     $3E
+        .byte   $44
+        .byte   $B2
+        .byte   $44
+        .byte   $53
+        eor     $EE
+        eor     $02
+        lsr     $10
+        lsr     $DB
+        lsr     $28
+        lsr     $38
+        lsr     $4C
+        lsr     $5D
+        lsr     $7E
+        lsr     $A2
+        lsr     $B1
+        lsr     $BE
+        eor     $BD
+        lsr     $A9
+        lsr     a
+        .byte   $AF
+        lsr     a
+        .byte   $B7
+        lsr     a
+        .byte   $BF
+        lsr     a
+        ror     $47
+        iny
+        .byte   $43
+        .byte   $9B
+        eor     $BD,x
+        eor     $EA,x
+        .byte   $54
+        jsr     L4A55
+        eor     $78,x
+        eor     $25,x
+        .byte   $43
+        .byte   $2B
+        .byte   $43
+        and     ($43),y
+        .byte   $5A
+        .byte   $47
+        rts
+
+        .byte   $47
+        adc     $A347,y
+        .byte   $47
+        ldx     $47,y
+        cmp     $A742,y
+        eor     $8F
+        .byte   $54
+        .byte   $DF
+        .byte   $42
+        .byte   $EB
+        .byte   $42
+        bcs     LDC7A
+        lda     #$54
+        .byte   $02
+        pha
+        cmp     ($53,x)
+        pla
+        pha
+        bpl     LDC79
+        bpl     LDC7B
+        cpy     LED46
+        pha
+        .byte   $27
+        eor     #$96
+        eor     #$16
+        pha
+        and     ($48,x)
+        ora     #$49
+        ora     ($49),y
+        .byte   $2F
+        pha
+        and     #$54
+        .byte   $43
+        .byte   $54
+        .byte   $6B
+        .byte   $54
+        beq     LDC96
+        .byte   $4F
+        pha
+        .byte   $F4
+        lsr     $24
+        lsr     a
+        .byte   $1C
+        eor     #$5B
+        eor     #$30
+        lsr     a
+        iny
+        .byte   $54
+        .byte   $F7
+        .byte   $47
+        sta     $54,x
+        .byte   $8F
+        .byte   $43
+        sta     ($55,x)
+        .byte   $03
+        .byte   $43
+        sbc     ($42),y
+        rts
+
+        lsr     a
+        pla
+        lsr     a
+        bvs     LDCB7
+        dey
+        .byte   $43
+        lsr     $3354,x
+        .byte   $47
+        .byte   $63
+        pha
+        ora     #$47
+        .byte   $63
+        pha
+LDC79:  .byte   $FE
+LDC7A:  .byte   $46
+LDC7B:  .byte   $63
+        pha
+        .byte   $2B
+        .byte   $47
+        adc     ($46),y
+        asl     $4A
+        tax
+        lsr     a
+        lsr     a
+        lsr     a
+        sta     $06
+        lda     #$3B
+        sec
+        sbc     $06
+        tay
+        txa
+        and     #$07
+        tax
+        lda     $4BDF,x
+LDC96:  and     $6E7E,y
+        rts
+
+        ora     ($02,x)
+        .byte   $04
+        php
+        bpl     LDCC0
+        rti
+
+        .byte   $80
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     $7083
+LDCB7:  sta     $FE
+        lda     #$00
+        sta     $FD
+LDCBD:  pha
+        lda     #$00
+LDCC0:  sta     $07
+        ldy     $FD
+        lda     $6F7E,y
+        cmp     #$FD
+        bcc     LDCD0
+        sty     $06
+        jsr     L4C40
+LDCD0:  pla
+        clc
+        adc     $07
+        bcc     LDCDB
+        lda     #$FF
+        jmp     L4C26
+
+LDCDB:  inc     $FD
+        dec     $FE
+        bne     LDCBD
+        tay
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        pla
+        sta     $06
+        pla
+        sta     $07
+        tya
+        rts
+
+        lda     $02B0
+        sta     $06
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     #$00
+        sta     $8C
+        lda     #$0A
+        sta     $02B0
+        lda     $06
+        sta     $8B
+        jsr     L4C69
+        lda     $8B
+        sta     $06
+        lda     $8C
+        sta     $07
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        ldx     #$00
+        lda     $06
+        rts
+
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        jsr     L4D03
+        and     #$7F
+        clc
+        adc     #$C0
+        and     #$3F
+        bcc     LDD7A
+        beq     LDD79
+        dec     $02B0
+        beq     LDD74
+        ldx     $7083
+        stx     $FE
+        ldx     $8B
+        stx     $FD
+        ldx     #$00
+        stx     $8B
+        sta     $8C
+        lda     #$7E
+        sta     $06
+        lda     #$6F
+        sta     $07
+LDD60:  ldx     #$00
+        lda     ($06,x)
+        cmp     $FD
+        bne     LDD6B
+        jsr     L4C69
+LDD6B:  jsr     L6BB1
+        inc     $8B
+        dec     $FE
+        bne     LDD60
+LDD74:  inc     $02B0
+        lda     $8C
+LDD79:  sec
+LDD7A:  tax
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        pla
+        sta     $06
+        pla
+        sta     $07
+        php
+        txa
+        clc
+        adc     $8C
+        sta     $8C
+        bcc     LDD9A
+        lda     #$FF
+        sta     $8C
+LDD9A:  plp
+        rts
+
+        cmp     #$FF
+        bne     LDDA3
+        lda     $6EA4
+LDDA3:  rts
+
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $6EB1
+        sta     $8B
+        jsr     L4D03
+        asl     a
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        lda     #$28
+        sta     $06
+        rts
+
+        lda     $8B
+        clc
+        adc     $709C
+        sta     $06
+        lda     #$00
+        sta     $8C
+        adc     $709D
+        sta     $07
+        jmp     L4D2A
+
+        sta     $8B
+        lda     #$00
+        sta     $8C
+        lda     #$7E
+        clc
+        adc     $8B
+        sta     $06
+        lda     $8C
+        adc     #$6F
+        sta     $07
+        ldx     #$00
+        lda     ($06,x)
+        rts
+
+        lda     $FE
+        sta     $02B3
+        lda     $FD
+        sta     $02B2
+        lda     #$FD
+        sta     $FE
+        jsr     L4D4F
+        php
+        lda     $02B2
+        sta     $FD
+        .byte   $AD
+        .byte   $B3
+LDE03:  .byte   $02
+        sta     $FE
+        lda     #$1C
+        plp
+        rts
+
+        lda     #$FE
+        ldy     $6EA4
+        sty     $FD
+        ldy     $6EA0
+        iny
+        sec
+        beq     LDE3F
+        ldy     $FE
+        sta     $FE
+        tya
+        pha
+        jsr     L4D9E
+        bcs     LDE45
+        pla
+        sta     $FE
+        jsr     L4D9E
+        bcs     LDE46
+        lda     $FD
+        sta     $FE
+        jsr     L4D9E
+        bcs     LDE46
+        lda     #$FF
+        sta     $FE
+        jsr     L4D9E
+        lda     #$00
+        bcs     LDE48
+LDE3F:  php
+        lda     #$FF
+        jmp     L4DC3
+
+LDE45:  pla
+LDE46:  lda     #$FF
+LDE48:  php
+        tya
+        clc
+        adc     #$7E
+        sta     $8B
+        lda     #$00
+        adc     #$6F
+        sta     $8C
+        tya
+        jmp     L4DC3
+
+        lda     #$00
+        sta     $8B
+LDE5D:  jsr     L4E50
+        bcc     LDE68
+        jsr     L4DAE
+        bne     LDE5D
+        sec
+LDE68:  rts
+
+        cmp     $6EA0
+        bne     LDE7C
+        lda     $6EA1
+        cmp     #$FF
+        beq     LDE7C
+        jsr     L6BB1
+        ldx     #$00
+        cmp     ($06,x)
+LDE7C:  rts
+
+        php
+        pha
+        tax
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     #$00
+        sta     $6EB4
+        sta     $6EB5
+        sta     $6EB6
+        sta     $6EB7
+        sta     $6EB8
+        sta     $6EB9
+        stx     $8B
+        stx     $6EB1
+        cpx     #$FF
+        beq     LDEED
+        cpx     $7083
+        bcs     LDEFE
+        stx     $8B
+        jsr     L4D03
+        asl     a
+        ror     $6EB7
+        asl     a
+        ror     $6EB6
+        jsr     L4D1D
+        sta     $6EB4
+        lda     $8B
+        sta     $06
+        jsr     L4C40
+        lda     $07
+        sta     $6EB5
+        asl     $8B
+        rol     $8C
+        lda     $8B
+        clc
+        adc     $709E
+        sta     $06
+        lda     $8C
+        adc     $709F
+        sta     $07
+        ldy     #$00
+        lda     ($06),y
+        sta     $6EB9
+        iny
+        lda     ($06),y
+        sta     $6EB8
+LDEED:  pla
+        sta     $8B
+        pla
+        sta     $8C
+        pla
+        sta     $06
+        pla
+        sta     $07
+        ldx     #$00
+        pla
+        plp
+        rts
+
+LDEFE:  pla
+        pla
+        pla
+        pla
+        pla
+        plp
+        ldx     #$00
+        jmp     L403D
+
+        sta     $FE
+        lda     $8B
+        asl     a
+        php
+        clc
+        adc     $709A
+        sta     $06
+        lda     #$00
+        sta     $8C
+        tax
+        adc     $709B
+        plp
+        adc     #$00
+        sta     $07
+        ldy     $8B
+        cpy     $7083
+        beq     LDF47
+        inc     $8B
+        lda     $FE
+        cmp     #$FF
+        beq     LDF36
+        cmp     $6F7E,y
+        bne     LDF3E
+LDF36:  lda     ($06,x)
+        cmp     #$FF
+        beq     LDF3E
+        sec
+        rts
+
+LDF3E:  jsr     L6BB1
+        jsr     L6BB1
+        jmp     L4E67
+
+LDF47:  clc
+        rts
+
+        lda     $6EB3
+        and     #$7F
+        sta     $6EB3
+        lda     $02A9
+        and     #$EF
+        sta     $02A9
+        ldy     #$00
+        sty     $02B3
+        sty     $02B2
+        sty     $02B0
+        lda     $6F7E,y
+        cmp     #$FF
+        beq     LDFB1
+        cmp     $8C
+        bne     LDFAA
+        lda     $02B3
+        sty     $02B3
+        ldx     $02B2
+        stx     $02B1
+        ldx     #$00
+        stx     $02B2
+        bit     $6EB3
+        bmi     LDFA7
+        lda     $6EB3
+        ora     #$80
+        sta     $6EB3
+        lda     #$02
+        bit     $02A7
+        beq     LDFA1
+        lda     #$01
+        jsr     L5359
+        bit     $6EB3
+        bvs     LDFA1
+        jsr     L5A47
+LDFA1:  inc     $02B2
+        jmp     L4EEF
+
+LDFA7:  jsr     L4F2A
+LDFAA:  ldy     $02B0
+        iny
+        jmp     L4EA6
+
+LDFB1:  lda     $02B3
+        ldx     $02B2
+        stx     $02B1
+        bit     $6EB3
+        bpl     LDFD8
+        bvc     LDFE5
+        ldx     $02B1
+        bne     LDFD0
+        pha
+        lda     #$2F
+        jsr     L5359
+        inc     $02B1
+        pla
+LDFD0:  jsr     L4F2A
+        lda     #$30
+        jmp     L5359
+
+LDFD8:  lda     #$02
+        bit     $02A7
+        bne     LDFE4
+        lda     #$35
+        jsr     L5359
+LDFE4:  rts
+
+LDFE5:  bit     $6EB3
+        bvs     LDFF8
+        jsr     L61CD
+        lda     $06
+        sta     $41
+        lda     $07
+        sta     $42
+        jmp     L535F
+
+LDFF8:  pha
+        lda     $02B1
+        bne     LE003
+        lda     #$2E
+        jsr     L5359
+LE003:  pla
+        jmp     L526A
+
+        asl     a
+        php
+        clc
+        adc     $7094
+        sta     $8D
+        lda     $7095
+        adc     #$00
+        plp
+        adc     #$00
+        sta     $8E
+        ldy     #$00
+        lda     ($8D),y
+        sta     $06
+        iny
+        lda     ($8D),y
+        sta     $07
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$FF
+        bne     LE02E
+        clc
+        rts
+
+LE02E:  cmp     $6E9F
+        bne     LE03A
+        jsr     L6BB1
+        lda     ($06,x)
+        sec
+        rts
+
+LE03A:  jsr     L6BB1
+        jsr     L6BB1
+        jmp     L4F6B
+
+        lda     $02E5
+        sta     $06
+        ora     $02E6
+        beq     LE0A6
+        lda     $02E6
+        sta     $07
+        ldx     #$01
+        jmp     L4FCC
+
+        lda     #$04
+        bit     $02A7
+        beq     LE070
+        lda     $02E3
+        sta     $06
+        lda     $02E4
+        sta     $07
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$0D
+        bne     LE08F
+LE070:  jsr     L576C
+        bcc     LE0A6
+        lda     $06
+        sta     $02E3
+        lda     $07
+        sta     $02E4
+        ldx     #$00
+        stx     $02E5
+        stx     $02E6
+        lda     #$FF
+        sta     $6E9F
+        sta     $6EA2
+LE08F:  stx     $02A8
+        lda     #$FF
+        sta     $6EA0
+        sta     $6EA1
+        sta     $6EA9
+        sta     $6EAA
+        sta     $6EAB
+        jmp     L4FF8
+
+LE0A6:  lda     $02A7
+        and     #$FB
+        sta     $02A7
+        sec
+        rts
+
+LE0B0:  jsr     L6BB1
+        jsr     L5240
+        cmp     #$22
+        beq     LE0A6
+        jsr     L5252
+        bcs     LE0DB
+        cmp     #$0D
+        bne     LE0B0
+        lda     #$04
+        bit     $02A7
+        beq     LE0A6
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+        jmp     L4F9C
+
+        pla
+        sta     $06
+        pla
+        sta     $07
+LE0DB:  jsr     L51D0
+        beq     LE0E3
+        jmp     L50E9
+
+LE0E3:  jsr     L524E
+        bcs     LE0DB
+        cmp     #$22
+        bne     LE11E
+        lda     #$01
+        bit     $02A8
+        bne     LE11E
+        lda     $02E5
+        ora     $02E6
+        beq     LE0FE
+LE0FB:  jmp     L4FEB
+
+LE0FE:  jsr     L6BB1
+        lda     $06
+        sta     $02E5
+        lda     $07
+        sta     $02E6
+LE10B:  lda     ($06,x)
+        cmp     #$0D
+        beq     LE0FB
+        jsr     L6BB1
+        cmp     #$22
+        bne     LE10B
+        jsr     L5240
+        jmp     L5028
+
+LE11E:  lda     $02A7
+        ora     #$04
+        sta     $02A7
+        lda     #$01
+        bit     $02A8
+        bne     LE13A
+        lda     $06
+        sta     $02E3
+        lda     $07
+        sta     $02E4
+        jmp     L5089
+
+LE13A:  lda     $06
+        sta     $02E5
+        lda     $07
+        sta     $02E6
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$0D
+        bne     LE154
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+LE154:  lda     #$02
+        bit     $02A8
+        bne     LE16B
+        lda     $6EA0
+        cmp     #$FF
+        beq     LE0FB
+        cmp     #$28
+        bcs     LE169
+        sta     $6E9F
+LE169:  clc
+        rts
+
+LE16B:  lda     #$20
+        bit     $02A8
+        bne     LE177
+        lda     #$FF
+        sta     $6EA2
+LE177:  lda     $6EAA
+        sta     $8B
+        lda     $6EAB
+        sta     $8C
+        jsr     L50D3
+        lda     $6EA0
+        sta     $8B
+        lda     $6EA1
+        sta     $8C
+        lda     $8B
+        cmp     #$FF
+        beq     LE1A2
+        cmp     #$32
+        bcc     LE1A2
+        lda     $8B
+        sta     $6EAC
+        lda     $8C
+        sta     $6EAD
+LE1A2:  clc
+        rts
+
+        tay
+        ldx     #$00
+        lda     ($FD,x)
+        cmp     #$05
+        bne     LE1B0
+        jmp     L5063
+
+LE1B0:  cmp     #$00
+        bne     LE1C9
+        lda     #$02
+        bit     $02A8
+        bne     LE1C6
+        sty     $6E9F
+        lda     $02A8
+        ora     #$02
+        sta     $02A8
+LE1C6:  jmp     L5020
+
+LE1C9:  cmp     #$01
+        bne     LE1E2
+        lda     #$20
+        bit     $02A8
+        bne     LE1C6
+        sty     $6EA2
+        lda     $02A8
+        ora     #$20
+        sta     $02A8
+        jmp     L5020
+
+LE1E2:  cmp     #$04
+        bne     LE1F3
+        lda     $6EA9
+        cmp     #$FF
+        bne     LE1C6
+        sty     $6EA9
+        jmp     L5020
+
+LE1F3:  tax
+        lda     #$08
+        bit     $02A8
+        bne     LE1C6
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     #$A0
+        sta     $06
+        lda     #$6E
+        sta     $07
+        lda     #$04
+        bit     $02A8
+        beq     LE218
+        lda     #$AA
+        sta     $06
+        lda     #$6E
+        sta     $07
+LE218:  txa
+        ldx     #$00
+        cmp     #$06
+        beq     LE275
+        cmp     #$02
+        bne     LE25F
+        lda     #$04
+        bit     $02A8
+        beq     LE24F
+        cpy     $6EA0
+        bne     LE247
+        jsr     L6BB1
+        lda     ($06,x)
+        jsr     L6BD3
+        cmp     #$FF
+        beq     LE252
+        cmp     $6EA1
+        beq     LE252
+        lda     $6EA1
+        cmp     #$FF
+        beq     LE252
+LE247:  lda     $02A8
+        ora     #$08
+        sta     $02A8
+LE24F:  tya
+        sta     ($06,x)
+LE252:  lda     $02A8
+        ora     #$04
+        and     #$7F
+        sta     $02A8
+LE25C:  jmp     L501A
+
+LE25F:  bit     $02A8
+        bmi     LE25C
+        jsr     L6BB1
+        tya
+        sta     ($06,x)
+        lda     $02A8
+        ora     #$80
+        sta     $02A8
+        jmp     L501A
+
+LE275:  lda     $6EAC
+        cmp     #$FF
+        beq     LE25C
+        tay
+        jsr     L6BB1
+        lda     $6EAD
+        sta     ($06,x)
+        jsr     L6BD3
+        jmp     L5168
+
+        ldx     #$00
+        lda     #$DF
+        ldy     #$04
+LE291:  sta     $02B8,y
+        dey
+        bpl     LE291
+        iny
+LE298:  jsr     L524E
+        bcc     LE2B4
+        eor     #$FF
+        sta     $02B8,y
+        jsr     L6BB1
+        iny
+        cpy     #$05
+        bne     LE298
+        beq     LE2AF
+LE2AC:  jsr     L6BB1
+LE2AF:  jsr     L524E
+        bcs     LE2AC
+LE2B4:  jsr     L5240
+        lda     $7096
+        sta     $FD
+        lda     $7097
+        sta     $FE
+        lda     $02A7
+        and     #$DF
+        sta     $02A7
+        ldy     #$00
+LE2CB:  lda     ($FD,x)
+        bne     LE2D0
+        rts
+
+LE2D0:  cmp     $02B8,y
+        beq     LE2DD
+        lda     $02A7
+        ora     #$20
+        sta     $02A7
+LE2DD:  jsr     L6BB8
+        iny
+        cpy     #$05
+        bne     LE2CB
+        lda     #$20
+        bit     $02A7
+        bne     LE2F2
+        lda     ($FD,x)
+        jsr     L6BB8
+        rts
+
+LE2F2:  jsr     L6BB8
+        jsr     L6BB8
+        jmp     L5206
+
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$20
+        bne     LE31B
+        jsr     L6BB1
+        jmp     L5240
+
+        ldx     #$00
+        lda     ($06,x)
+        jsr     L5261
+        bcc     LE323
+        cmp     #$41
+        bcc     LE31B
+        cmp     #$5B
+        bcc     LE323
+        clc
+LE31B:  rts
+
+        cmp     #$30
+        bcc     LE323
+        cmp     #$3A
+        rts
+
+LE323:  sec
+        rts
+
+        cmp     $7083
+        bcs     LE376
+        tay
+        lda     $07
+        pha
+        lda     $06
+        pha
+        tya
+        jsr     L61CD
+LE335:  jsr     L52A5
+        beq     LE335
+        tay
+        lda     #$10
+        bit     $02A9
+        bne     LE348
+        tya
+        and     #$DF
+        jmp     L5297
+
+LE348:  jsr     L52A5
+        bne     LE348
+LE34D:  jsr     L52A5
+        beq     LE34D
+LE352:  eor     #$FF
+        jsr     L5A49
+        jsr     L52A5
+        cmp     #$D1
+        bne     LE352
+        beq     LE370
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$F5
+        beq     LE36E
+        jsr     L6BB1
+        cmp     #$DF
+        rts
+
+LE36E:  pla
+        pla
+LE370:  pla
+        sta     $06
+        pla
+        sta     $07
+LE376:  rts
+
+LE377:  lda     $02B4
+        clc
+        adc     #$01
+        sta     $02B0
+        lda     #$65
+        sta     $02B1
+        lda     #$00
+        sta     $02B4
+        ldx     #$08
+LE38C:  lsr     $02B0
+        bcc     LE395
+        clc
+        adc     $02B1
+LE395:  ror     a
+        ror     $02B4
+        dex
+        bne     LE38C
+        cmp     #$00
+        beq     LE377
+        rts
+
+        lda     #$00
+        sta     $8C
+        lda     #$00
+        sta     $02B2
+        lda     #$10
+        sta     $41
+        lda     #$27
+        sta     $42
+        jsr     L531F
+        lda     #$E8
+        sta     $41
+        lda     #$03
+        sta     $42
+        jsr     L531F
+        lda     #$64
+        sta     $41
+        lda     #$00
+        sta     $42
+        jsr     L531F
+        lda     #$0A
+        sta     $41
+        jsr     L531F
+        lda     $8B
+        clc
+        adc     #$30
+        jmp     L5A49
+
+        ldx     #$00
+LE3DC:  inx
+        lda     $8B
+        sec
+        sbc     $41
+        sta     $8B
+        lda     $8C
+        sbc     $42
+        sta     $8C
+        bcs     LE3DC
+        dex
+        lda     $8B
+        clc
+        adc     $41
+        sta     $8B
+        lda     $8C
+        adc     $42
+        sta     $8C
+        txa
+        bne     LE403
+        ldx     $02B2
+        bne     LE403
+        rts
+
+LE403:  ldx     #$01
+        stx     $02B2
+        clc
+        adc     #$30
+        jmp     L5A49
+
+        jsr     L61DA
+        jmp     L535F
+
+        jsr     L61DA
+        jmp     L5367
+
+        lda     $02A7
+        ora     #$40
+        sta     $02A7
+LE422:  ldx     #$00
+        lda     $02A9
+        ora     #$20
+        sta     $02A9
+        lda     ($41,x)
+        eor     #$FF
+        cmp     #$0A
+        beq     LE456
+        cmp     $7082
+        bne     LE44A
+        lda     $02A9
+        ora     #$10
+        sta     $02A9
+        lda     $6EB1
+        jsr     L526A
+        jmp     L5392
+
+LE44A:  jsr     L5A49
+        inc     $41
+        bne     LE422
+        inc     $42
+        jmp     L5367
+
+LE456:  bit     $02A7
+        bvc     LE46B
+        jsr     L5A47
+        jsr     L619F
+        lda     $02A7
+        and     #$BF
+        sta     $02A7
+        ldx     #$00
+LE46B:  rts
+
+        and     #$07
+        sta     $8B
+        lda     $02D5
+        and     #$F8
+        ora     $8B
+        sta     $02D5
+        jmp     L463C
+
+        cmp     LFCFD
+        bcs     LE490
+        sta     $02FF
+        tay
+        jsr     L62D2
+        lda     ($06,x)
+        bmi     LE490
+        jmp     L42C2
+
+LE490:  jmp     L42AE
+
+        tax
+        lda     $02AA
+        and     #$7F
+        sta     $02AA
+        txa
+        beq     LE4A7
+        lda     $02AA
+        ora     #$80
+        sta     $02AA
+LE4A7:  lda     $FE
+        pha
+        lda     $FD
+        pha
+        jsr     L5BA6
+        jsr     L619F
+        lda     $02D5
+        pha
+        lda     #$00
+        sta     $02D5
+        lda     $02D3
+        pha
+        lda     $02D2
+        pha
+        ldy     $02FF
+        jsr     L620B
+        jsr     L619F
+        pla
+        sta     $02D2
+        pla
+        sta     $02D3
+        jsr     L60FB
+        pla
+        sta     $02D5
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L463C
+
+        jsr     L5BA6
+        lda     $02D5
+        and     #$5F
+        sta     $02D5
+        lda     $02D2
+        sta     $02D6
+        lda     $02D3
+        sta     $02D7
+        jmp     L463F
+
+        jsr     L5BA6
+        lda     $02D5
+        and     #$5F
+        sta     $02D5
+        lda     $02D6
+        sta     $8B
+        lda     $02D7
+        sta     $8C
+        jsr     L5E93
+        jmp     L463F
+
+        pha
+        jsr     L5BA6
+        lda     $02D3
+        sta     $8C
+        pla
+        jmp     L547C
+
+        pha
+        jsr     L5BA6
+        pla
+        clc
+        adc     $02D0
+        sta     $8C
+        jsr     L6BB8
+        lda     ($FD,x)
+        clc
+        adc     $02D1
+        sta     $8B
+        jsr     L5E93
+        lda     $02D5
+        and     #$5F
+        sta     $02D5
+        jmp     L463C
+
+        jsr     L5EF4
+        jmp     L463C
+
+        jsr     L5BA6
+        jsr     L6BC6
+        lda     $02CE
+        lsr     a
+        sta     $07
+        lda     #$14
+        sec
+        sbc     $07
+        jmp     L54C3
+
+        pha
+        jsr     L5BA6
+        pla
+        cmp     #$19
+        bcc     LE570
+        lda     #$00
+LE570:  sta     $02D0
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     #$28
+        bcc     LE57E
+        lda     #$00
+LE57E:  sta     $02D1
+        jmp     L54DC
+
+        pha
+        jsr     L5BA6
+        pla
+        sec
+        sbc     #$01
+        sta     $02CF
+        jsr     L6BB8
+        lda     ($FD,x)
+        sta     $02CE
+        jsr     L5ECB
+        jsr     L60EF
+        lda     $02CF
+        sta     $02CC
+        jmp     L463C
+
+        pha
+        jsr     L6BB8
+        lda     ($FD,x)
+        cmp     #$D5
+        bcc     LE5B2
+        lda     #$D5
+LE5B2:  cmp     #$5A
+        bcs     LE5B8
+        lda     #$D6
+LE5B8:  sec
+        sbc     #$5A
+        asl     a
+        tay
+        lda     $1510,y
+        sta     LFF0E
+        lda     $1511,y
+        sta     LFF10
+        pla
+        tay
+        lda     #$18
+        sta     LFF11
+LE5D0:  jsr     L5A3C
+        dey
+        bne     LE5D0
+        stx     LFF11
+        jmp     L463C
+
+        jsr     L5755
+        pha
+        and     #$F0
+        sta     $8B
+        pla
+        and     #$0F
+        sta     $8C
+        lda     $02CA
+        and     #$F0
+        ora     $8C
+        sta     $02CA
+        sta     $02DA
+        lda     $02D8
+        and     #$0F
+        ora     $8B
+        sta     $02D8
+        sta     $02A5
+        jmp     L463C
+
+        jsr     L5755
+        pha
+        lsr     a
+        lsr     a
+        lsr     a
+        lsr     a
+        sta     $8B
+        pla
+        asl     a
+        asl     a
+        asl     a
+        asl     a
+        sta     $8C
+        lda     $02CA
+        and     #$0F
+        ora     $8C
+        sta     $02CA
+        sta     $02DA
+        lda     $02D8
+        and     #$F0
+        ora     $8B
+        sta     $02D8
+        sta     $02A5
+        jmp     L463C
+
+        jsr     L5755
+        sta     LFF19
+        jmp     L463C
+
+        jsr     L6C89
+        jsr     LFFE4
+        jsr     L6C78
+        beq     LE654
+        sta     $6EBA
+        lda     $02CF
+        jsr     L5E6D
+        jmp     L42C5
+
+LE654:  jmp     L42AE
+
+        lda     #$FF
+        sta     $02C1
+        lda     #$00
+        sta     $1D
+        lda     #$10
+        sta     $1E
+        lda     #$7E
+        sta     $1B
+        lda     #$6E
+        sta     $1C
+        lda     #$00
+        sta     $02B6
+        lda     #$02
+        sta     $02B7
+        jmp     L5604
+
+        ldy     $02C1
+        bne     LE681
+        jmp     L42AE
+
+LE681:  jsr     L6BB8
+        sta     $02B6
+        stx     $02B7
+        inc     $02B6
+        bne     LE692
+        inc     $02B7
+LE692:  lda     #$7E
+        sta     $1D
+        lda     #$6E
+        sta     $1E
+        lda     #$00
+        sta     $1B
+        lda     #$10
+        sta     $1C
+        jsr     L6BE0
+        lda     #$7E
+        sta     $1D
+        lda     #$6F
+        sta     $1E
+        lda     #$00
+        sta     $02B6
+        lda     #$01
+        sta     $02B7
+        lda     #$00
+        sta     $1B
+        lda     #$11
+        sta     $1C
+        jsr     L6BE0
+        jmp     L463F
+
+        tay
+        lda     L02BF
+        sta     $02AE
+        lda     $02C0
+        sta     $02AF
+        lda     #$67
+        sta     L02BF
+        lda     #$56
+        sta     $02C0
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        tya
+        pha
+        jsr     L6B89
+        pla
+        jsr     L6AF3
+        lda     $02B0
+        beq     LE749
+        jsr     L6C89
+        tax
+        ldy     #$01
+        jsr     LFFBA
+        ldx     #$5C
+        ldy     #$6D
+        lda     $02B1
+        jsr     LFFBD
+        lda     #$7E
+        sta     $06
+        lda     #$6E
+        sta     $07
+        ldx     #$80
+        ldy     #$70
+        lda     #$06
+        jsr     LFFD8
+        php
+        jsr     L6A55
+        ldy     $02B0
+        cpy     #$01
+        bne     LE73A
+        plp
+        bcs     LE749
+        jsr     L6C78
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        lda     $02AE
+        sta     L02BF
+        lda     $02AF
+        sta     $02C0
+        jmp     L463C
+
+LE73A:  plp
+        bcs     LE749
+        jsr     L6A7F
+        ldx     #$64
+        cmp     #$00
+        bne     LE750
+        jmp     L5667
+
+LE749:  ldx     #$65
+        cmp     #$00
+        beq     LE750
+        dex
+LE750:  jmp     L4045
+
+        tay
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        lda     #$00
+        sta     $707F
+        sta     $707E
+        tya
+        jsr     L6AF3
+        jsr     L6C89
+        lda     $02B0
+        beq     LE79D
+        ldy     #$00
+        tax
+        jsr     LFFBA
+        ldx     #$5C
+        ldy     #$6D
+        lda     $02B1
+        jsr     LFFBD
+        lda     #$00
+        ldx     #$7E
+        ldy     #$6E
+        jsr     LFFD5
+        php
+        jsr     L6A55
+        stx     $3F
+        sty     $40
+        ldy     $02B0
+        cpy     #$01
+        bne     LE7AC
+        plp
+        bcc     LE7A2
+        cmp     #$00
+        bne     LE7D8
+LE79D:  ldx     #$65
+        jmp     L4045
+
+LE7A2:  jsr     LFFB7
+        cmp     #$00
+        bne     LE7D8
+        jmp     L5722
+
+LE7AC:  plp
+        bcc     LE7BC
+        cmp     #$04
+        beq     LE7BC
+        cmp     #$00
+        bne     LE7D8
+        ldx     #$65
+        jmp     L4045
+
+LE7BC:  jsr     LFFB7
+        pha
+        lda     $40
+        pha
+        lda     $3F
+        pha
+        jsr     L6A7F
+        cmp     #$00
+        bne     LE7D8
+        pla
+        sta     $3F
+        pla
+        sta     $40
+        pla
+        cmp     #$40
+        beq     LE7DD
+LE7D8:  ldx     #$64
+        jmp     L4045
+
+LE7DD:  lda     #$80
+        ldy     #$70
+        cmp     $3F
+        bne     LE7D8
+        cpy     $40
+        bne     LE7D8
+        lda     $707E
+        sta     $3F
+        lda     $707F
+        sta     $40
+        jsr     L6B89
+        lda     $707E
+        cmp     $3F
+        bne     LE7D8
+        lda     $707F
+        cmp     $40
+        bne     LE7D8
+        jsr     L6C78
+        pla
+        sta     $FD
+        pla
+        sta     $FE
+        jmp     L463C
+
+        and     #$0F
+        tay
+        lda     LFCF9
+        sta     $06
+        lda     LFCFA
+        sta     $07
+        jsr     L6BB1
+        lda     ($06),y
+        tay
+        lda     $1500,y
+        rts
+
+        lda     $02A8
+        and     #$EF
+        sta     $02A8
+        lda     $6EA8
+        beq     LE839
+        cmp     $7086
+        bcc     LE868
+LE839:  jsr     L52BC
+        ldy     #$02
+        cmp     #$1E
+        bcc     LE84D
+        iny
+        cmp     #$3C
+        bcc     LE84D
+        iny
+        cmp     #$5A
+        bcc     LE84D
+        iny
+LE84D:  tya
+        jmp     L57AD
+
+        pha
+        lda     $02A7
+        and     #$FB
+        sta     $02A7
+        lda     $02A8
+        ora     #$10
+        sta     $02A8
+        lda     #$0C
+        sta     $02C8
+        pla
+LE868:  pha
+        lda     $02C9
+        sta     $02C3
+        lda     $6EA7
+        and     #$07
+        beq     LE879
+        jsr     L5EF4
+LE879:  pla
+        jsr     L5359
+        jsr     L5BA6
+        lda     $02D5
+        and     #$BF
+        sta     $02D5
+        lda     #$80
+        sta     $02CC
+        lda     #$21
+        jsr     L5359
+        jsr     L59F4
+        jsr     L5E0B
+        lda     $02D2
+        sta     $02C7
+        lda     #$10
+        bit     $02A8
+        bne     LE8BC
+        lda     $6EAF
+        asl     a
+        bcc     LE8BC
+        asl     a
+        bcc     LE8BC
+        asl     a
+        bcc     LE8BC
+        ldy     #$00
+        jsr     L5992
+        jsr     L59B9
+        jmp     L5818
+
+LE8BC:  lda     #$00
+        sta     $02C6
+        sta     $02C5
+        lda     #$0D
+        sta     L6D5C
+        jmp     L5818
+
+        lda     #$01
+        bit     $6EAF
+        bne     LE8F6
+        lda     #$10
+        bit     $02A8
+        bne     LE8F6
+        lda     $6EAE
+        beq     LE8F6
+        jsr     L5E4C
+        bcs     LE8F9
+        ldy     $02C5
+        jsr     L5992
+        jsr     L59D5
+        lda     $6EAF
+        ora     #$C0
+        clc
+        jmp     L58C4
+
+LE8F6:  jsr     L5E3E
+LE8F9:  cmp     #$14
+        bne     LE900
+        jmp     L595C
+
+LE900:  cmp     #$9D
+        bne     LE907
+        jmp     L5939
+
+LE907:  cmp     #$1D
+        bne     LE90E
+        jmp     L5949
+
+LE90E:  cmp     #$0D
+        bne     LE91D
+        lda     $02C6
+        beq     LE91A
+        jmp     L58AD
+
+LE91A:  jmp     L5811
+
+LE91D:  ldy     $02C6
+        cpy     $02C8
+        beq     LE91A
+        cmp     #$20
+        bcc     LE91A
+        cmp     #$41
+        bcc     LE941
+        cmp     #$5B
+        bcs     LE937
+        clc
+        adc     #$20
+        jmp     L5886
+
+LE937:  cmp     #$C1
+        bcc     LE91A
+        cmp     #$DB
+        bcs     LE91A
+        sbc     #$7F
+LE941:  pha
+        lda     $02C6
+        tax
+        tay
+        iny
+LE948:  lda     L6D5C,x
+        sta     L6D5C,y
+        dex
+        dey
+        cpy     $02C5
+        bne     LE948
+        pla
+        sta     L6D5C,y
+        inc     $02C5
+        inc     $02C6
+        jsr     L5992
+        jsr     L59B9
+        jmp     L5811
+
+        ldy     $02C5
+        jsr     L5992
+        jsr     L59D5
+        jsr     L5A47
+        lda     #$78
+        sta     $02C8
+        lda     $6EAF
+        and     #$3F
+        sec
+        sta     $6EAF
+        php
+        jsr     L5E16
+        lda     #$08
+        bit     $6EAF
+        beq     LE990
+        jsr     L5F66
+LE990:  lda     $02D5
+        ora     #$40
+        sta     $02D5
+        lda     $02C3
+        jsr     L5EF4
+        plp
+        php
+        bcc     LE9EA
+        lda     #$10
+        bit     $6EAF
+        beq     LE9AE
+        lda     #$21
+        jsr     L5359
+LE9AE:  lda     #$5C
+        sta     $06
+        lda     #$6D
+        sta     $07
+        ldx     #$00
+        lda     ($06,x)
+        cmp     #$0D
+        beq     LE9E0
+        pha
+        lda     #$10
+        bit     $6EAF
+        beq     LE9CB
+        pla
+        pha
+        jsr     L5A49
+LE9CB:  pla
+        cmp     #$61
+        bcc     LE9DA
+        cmp     #$7B
+        bcs     LE9DA
+        and     #$DF
+        ldx     #$00
+        sta     ($06,x)
+LE9DA:  jsr     L6BB1
+        jmp     L58FB
+
+LE9E0:  lda     #$10
+        bit     $6EAF
+        beq     LE9EA
+        jsr     L5A47
+LE9EA:  lda     #$5C
+        sta     $06
+        lda     #$6D
+        sta     $07
+        plp
+        rts
+
+        ldy     $02C5
+        beq     LEA01
+        dec     $02C5
+        lda     #$08
+        jsr     L5CBD
+LEA01:  jmp     L5811
+
+        ldy     $02C5
+        lda     L6D5C,y
+        cmp     #$0D
+        beq     LEA01
+        inc     $02C5
+        jsr     L5CBD
+        jmp     L5811
+
+        lda     $02C5
+        beq     LEA01
+        tay
+        dey
+        tax
+LEA1F:  lda     L6D5C,x
+        sta     L6D5C,y
+        inx
+        iny
+        cpy     $02C6
+        bne     LEA1F
+        lda     #$08
+        jsr     L5CBD
+        dec     $02C6
+        dec     $02C5
+        ldy     $02C5
+        jsr     L5992
+        lda     #$20
+        jsr     L5CBD
+        lda     #$08
+        jsr     L5CBD
+        jsr     L59B9
+        jmp     L5811
+
+        tya
+        pha
+        jsr     L5E16
+        pla
+        tay
+        tya
+        pha
+        lda     L6D5C,y
+        cmp     #$0D
+        bne     LEA6B
+        lda     #$20
+        jsr     L5CBD
+        lda     #$08
+        jsr     L5CBD
+        pla
+        jmp     L5E0B
+
+LEA6B:  jsr     L5CBD
+        pla
+        tay
+        iny
+        jmp     L5999
+
+        jsr     L5E16
+        lda     $02C6
+        sec
+        sbc     $02C5
+        beq     LEA8D
+        tay
+LEA81:  tya
+        pha
+        lda     #$08
+        jsr     L5CBD
+        pla
+        tay
+        dey
+        bne     LEA81
+LEA8D:  jmp     L5E0B
+
+        lda     $02C6
+        clc
+        adc     $02C7
+        sec
+        sbc     $02D1
+        ldx     $02CF
+LEA9E:  sec
+        sbc     $02CE
+        bcc     LEAAB
+        dex
+        bne     LEA9E
+        ldx     $02CF
+        inx
+LEAAB:  txa
+        jmp     L5E6D
+
+        lda     $02CE
+        sta     $8B
+        lda     #$00
+        sta     $8C
+        sta     $06
+        sta     $07
+        ldx     $02CF
+LEABF:  clc
+        lda     $8B
+        adc     $06
+        sta     $06
+        lda     $8C
+        adc     $07
+        sta     $07
+        dex
+        bpl     LEABF
+        lda     $02D2
+        clc
+        adc     #$01
+        sec
+        sbc     $02D1
+        sta     $8B
+        sec
+        lda     $06
+        sbc     $8B
+        sta     $06
+        lda     $07
+        sbc     $8C
+        sta     $07
+        lda     $07
+        bne     LEAF6
+        lda     $06
+        cmp     $02C8
+        bcs     LEAF6
+        sta     $02C8
+LEAF6:  rts
+
+        lda     #$01
+        sta     $02E2
+LEAFC:  lda     $02E2
+        bne     LEAFC
+        rts
+
+        lda     #$0D
+        cmp     #$80
+        bcc     LEB47
+        tay
+        lda     #$04
+        bit     $02A9
+        beq     LEB47
+        lda     $07
+        pha
+        lda     $06
+        pha
+        lda     $7088
+        sta     $06
+        lda     $7089
+        sta     $07
+        tya
+        sec
+        sbc     #$7F
+        tax
+        ldy     #$00
+LEB27:  lda     ($06),y
+        php
+        jsr     L6BB1
+        plp
+        bpl     LEB27
+        dex
+        bne     LEB27
+        ldy     #$00
+        lda     ($06),y
+        php
+        and     #$7F
+        plp
+        bmi     LEB4F
+        jsr     L5A8C
+        jsr     L6BB1
+        jmp     L5A78
+
+        tya
+LEB47:  tay
+        lda     $07
+        pha
+        lda     $06
+        pha
+        tya
+LEB4F:  tay
+        lda     $8C
+        pha
+        lda     $8B
+        pha
+        lda     $FE
+        pha
+        lda     $FD
+        pha
+        tya
+        cmp     #$0D
+        beq     LEBCD
+        cmp     #$10
+        bcc     LEB7C
+        lda     #$01
+        bit     $02D5
+        beq     LEB70
+        tya
+        ora     #$80
+        tay
+LEB70:  tya
+        bit     $02D5
+        bvs     LEB7F
+        jsr     L5B6E
+        jmp     L5AFF
+
+LEB7C:  jmp     L5B34
+
+LEB7F:  cmp     #$20
+        beq     LEBA8
+        cmp     #$A0
+        beq     LEBA8
+        pha
+        lda     $02C4
+        cmp     #$28
+        bne     LEB92
+        jsr     L5BA6
+LEB92:  lda     $02D5
+        and     #$7F
+        sta     $02D5
+        pla
+        ldy     $02C4
+        sta     $6DD4,y
+        iny
+        sty     $02C4
+        jmp     L5AFF
+
+LEBA8:  bit     $02D5
+        bmi     LEBBA
+        pha
+        jsr     L5BA6
+        pla
+        bit     $02D5
+        bmi     LEBBA
+        jsr     L5B6E
+LEBBA:  pla
+        sta     $FD
+        pla
+        sta     $FE
+        pla
+        sta     $8B
+        pla
+        sta     $8C
+        pla
+        sta     $06
+        pla
+        sta     $07
+        rts
+
+LEBCD:  jsr     L5BA6
+        lda     #$20
+        bit     $02D5
+        php
+        lda     $02D5
+        and     #$DF
+        sta     $02D5
+        plp
+        beq     LEBE9
+        lda     #$0D
+        jsr     L5CBD
+        jmp     L5AFF
+
+LEBE9:  jsr     L5C10
+        jmp     L5AFF
+
+        cmp     #$0F
+        bne     LEBFE
+        lda     $02D5
+        and     #$FE
+        sta     $02D5
+        jmp     L5AFF
+
+LEBFE:  cmp     #$0E
+        bne     LEC0D
+        lda     $02D5
+        ora     #$01
+        sta     $02D5
+        jmp     L5AFF
+
+LEC0D:  pha
+        jsr     L5BA6
+        pla
+        cmp     #$0B
+        bne     LEC1C
+        jsr     L5F66
+        jmp     L5AFF
+
+LEC1C:  cmp     #$0C
+        bne     LEC26
+        ldx     $02CF
+        jsr     L5E2E
+LEC26:  jmp     L5AFF
+
+        pha
+        jsr     L5CBD
+        lda     $02D5
+        and     #$DF
+        sta     $02D5
+        lda     $02D1
+        clc
+        adc     $02CE
+        cmp     $02D2
+        beq     LEC43
+        pla
+        rts
+
+LEC43:  pla
+        cmp     #$20
+        bne     LEC55
+        bit     $02D5
+        bvc     LEC55
+        lda     $02D5
+        ora     #$80
+        sta     $02D5
+LEC55:  jmp     L5C15
+
+        lda     $02D5
+        ora     #$20
+        sta     $02D5
+        rts
+
+        pha
+        bit     $02D5
+        bvc     LEC6C
+        lda     $02C4
+        bne     LEC6E
+LEC6C:  pla
+        rts
+
+LEC6E:  lda     $02D1
+        clc
+        adc     $02CE
+        sec
+        sbc     $02D2
+        cmp     $02C4
+        beq     LEC9E
+        bcs     LECA6
+        lda     $02D1
+        clc
+        adc     $02CE
+        cmp     $02D2
+        beq     LECA6
+        lda     $07
+        pha
+        lda     $06
+        pha
+        jsr     L5C10
+        pla
+        sta     $06
+        pla
+        sta     $07
+        jmp     L5BEB
+
+LEC9E:  lda     $02D5
+        ora     #$80
+        sta     $02D5
+LECA6:  ldy     #$00
+LECA8:  tya
+        pha
+        lda     $6DD4,y
+        jsr     L5B6E
+        pla
+        tay
+        iny
+        cpy     $02C4
+        bne     LECA8
+        jmp     L5C09
+
+        pha
+        lda     $02D5
+        and     #$7F
+        sta     $02D5
+        lda     #$00
+        sta     $02C4
+        pla
+        rts
+
+        lda     #$0D
+        jsr     L5CBD
+        dec     $02CC
+        beq     LECD6
+LECD5:  rts
+
+LECD6:  lda     $02CF
+        sta     $02CC
+        lda     $02F0
+        bne     LECD5
+        lda     #$02
+        bit     $02D5
+        bne     LECD5
+        jsr     L5E70
+        lda     $42
+        pha
+        lda     $41
+        pha
+        lda     #$20
+        jsr     L61DA
+        lda     $02DC
+        pha
+        and     #$3F
+        sta     $02DC
+        lda     $02DA
+        pha
+        lda     $02DB
+        pha
+        lda     $02A5
+        pha
+        lda     $02A6
+        pha
+        lda     $02D5
+        pha
+        lda     #$00
+        sta     $02D5
+        dec     $02F0
+        jsr     L619F
+        ldy     #$00
+        lda     ($41),y
+        eor     #$FF
+        cmp     #$0A
+        beq     LED34
+        jsr     L5A49
+        inc     $41
+        bne     LED31
+        inc     $42
+LED31:  jmp     L5C63
+
+LED34:  inc     $02F0
+        pla
+        sta     $02D5
+        pla
+        sta     $02A6
+        pla
+        sta     $02A5
+        pla
+        .byte   $8D
+        .byte   $DB
+LED46:  .byte   $02
+        pla
+        sta     $02DA
+        pla
+        sta     $02DC
+        pla
+        sta     $41
+        pla
+        sta     $42
+        lda     #$02
+        bit     $6EAF
+        jsr     L5E37
+        lda     $02D2
+        cmp     $02D1
+        bne     LED66
+        rts
+
+LED66:  lda     #$08
+        jsr     L5CBD
+        lda     #$20
+        jsr     L5CBD
+        lda     #$08
+        jsr     L5CBD
+        jmp     L5CA2
+
+        pha
+        jsr     L5CD7
+        pla
+        cmp     #$08
+        bne     LED86
+        jsr     L5CEE
+        beq     LED92
+LED86:  cmp     #$0D
+        bne     LED8F
+        jsr     L5D28
+        beq     LED92
+LED8F:  jsr     L5D64
+LED92:  lda     $02CD
+        beq     LEDE0
+        lda     $02DC
+        pha
+        lda     #$80
+        sta     $02DC
+        lda     #$5F
+        jsr     L5D64
+        pla
+        sta     $02DC
+        lda     $02D2
+        cmp     $02D1
+        beq     LEDC4
+        dec     $02D2
+        sec
+        lda     $35
+        sbc     #$08
+        sta     $35
+        lda     $36
+        sbc     #$00
+        sta     $36
+        jmp     L5D25
+
+LEDC4:  ldx     $02D3
+        cpx     $02D0
+        beq     LEDE0
+        dex
+        stx     $02D3
+        lda     $02D1
+        clc
+        adc     $02CE
+        sec
+        sbc     #$01
+        sta     $02D2
+        jsr     L60FB
+LEDE0:  lda     #$00
+        rts
+
+        lda     $02D1
+        clc
+        adc     $02CE
+        cmp     $02D2
+        beq     LEDF7
+        lda     #$20
+        jsr     L5D64
+        jmp     L5D28
+
+LEDF7:  lda     $02D0
+        clc
+        adc     $02CF
+        cmp     $02D3
+        beq     LEE08
+        inc     $02D3
+        bne     LEE13
+LEE08:  lda     $02D3
+        pha
+        jsr     L5F76
+        pla
+        sta     $02D3
+LEE13:  lda     $02D1
+        sta     $02D2
+        jsr     L60FB
+        lda     #$00
+        rts
+
+        ldx     #$00
+        stx     $8E
+        asl     a
+        rol     $8E
+        asl     a
+        rol     $8E
+        asl     a
+        rol     $8E
+        sta     $8D
+        clc
+        lda     LFCF7
+        adc     $8D
+        sta     $8D
+        lda     LFCF8
+        adc     $8E
+        sta     $8E
+        lda     $02D1
+        clc
+        adc     $02CE
+        cmp     $02D2
+        bne     LEE58
+        lda     $8E
+        pha
+        lda     $8D
+        pha
+        jsr     L5D28
+        pla
+        sta     $8D
+        pla
+        sta     $8E
+LEE58:  jsr     L5DB1
+        inc     $02D2
+        clc
+        lda     #$08
+        adc     $35
+        sta     $35
+        lda     #$00
+        adc     $36
+        sta     $36
+        rts
+
+        ldx     #$00
+        ldy     #$00
+        bit     $02DC
+        bpl     LEE76
+        dex
+LEE76:  bvc     LEE79
+        dey
+LEE79:  stx     $40
+        sty     $3F
+        ldy     #$07
+LEE7F:  lda     ($35),y
+        and     $40
+        eor     ($8D),y
+        eor     $3F
+        sta     ($35),y
+        dey
+        bpl     LEE7F
+        lda     $35
+        sta     $8D
+        lda     $36
+        lsr     a
+        ror     $8D
+        lsr     a
+        ror     $8D
+        lsr     a
+        ror     $8D
+        and     #$03
+        ora     #$0C
+        sta     $8E
+        and     #$FB
+        sta     $40
+        lda     $8D
+        sta     $3F
+        ldy     #$00
+        lda     ($8D),y
+        eor     $02DA
+        and     $02DB
+        eor     $02DA
+        sta     ($8D),y
+        lda     ($3F),y
+        eor     $02A5
+        and     $02A6
+        eor     $02A5
+        sta     ($3F),y
+        rts
+
+        lda     $02CD
+        bne     LEED9
+        dec     $02CD
+        jmp     L5CDC
+
+        jsr     L5CD7
+        lda     #$00
+        sta     $02CD
+LEED9:  rts
+
+        jsr     L5BA6
+        lda     #$10
+        jsr     L5359
+        jsr     L5BA6
+        ldx     $02CF
+        inx
+        txa
+        jsr     L5E6D
+        lda     #$04
+        bit     $6EAF
+        beq     LEEF9
+        lda     $6EAE
+        bne     LEF07
+LEEF9:  jsr     L6C89
+        jsr     LFFE4
+        jsr     L6C78
+        cmp     #$00
+        beq     LEEF9
+        rts
+
+LEF07:  lda     #$00
+        sta     $02E0
+        sta     $02E1
+LEF0F:  jsr     L6C89
+        jsr     LFFE4
+        jsr     L6C78
+        cmp     #$00
+        bne     LEF26
+        lda     $02E1
+        cmp     $6EAE
+        bcc     LEF0F
+        clc
+        rts
+
+LEF26:  sec
+        rts
+
+        sta     $02CC
+        lda     #$AA
+        sta     $1D
+        lda     #$6C
+        sta     $1E
+        ldx     #$08
+LEF35:  ldy     #$05
+        lda     ($1D),y
+        ldy     #$02
+        sta     ($1D),y
+        clc
+        lda     #$10
+        adc     $1D
+        sta     $1D
+        lda     #$00
+        adc     $1E
+        sta     $1E
+        dex
+        bne     LEF35
+        rts
+
+        ldx     $8C
+        ldy     $8B
+        txa
+        cmp     $02D0
+        bcc     LEF77
+        lda     $02D0
+        clc
+        adc     $02CF
+        cmp     $8C
+        bcc     LEF77
+        tya
+        cmp     $02D1
+        bcc     LEF77
+        lda     $02D1
+        clc
+        adc     $02CE
+        sec
+        sbc     #$01
+        cmp     $8B
+        bcs     LEF7D
+LEF77:  ldy     $02D1
+        ldx     $02D0
+LEF7D:  sty     $02D2
+        stx     $02D3
+        jmp     L60FB
+
+        lda     $02D0
+        clc
+        adc     $02CF
+        cmp     #$19
+        bcc     LEF9A
+        lda     #$18
+        sec
+        sbc     $02D0
+        sta     $02CF
+LEF9A:  lda     $02D1
+        clc
+        adc     $02CE
+        cmp     #$29
+        bcc     LEFAE
+        lda     #$28
+        sec
+        sbc     $02D1
+        sta     $02CE
+LEFAE:  rts
+
+        cmp     $02C9
+        beq     LEFAE
+        pha
+        jsr     L5BA6
+        lda     $02C9
+        jsr     L5F3D
+        lda     #$CA
+        sta     $1B
+        lda     #$02
+        sta     $1C
+        lda     #$10
+        sta     $02B6
+        lda     #$00
+        sta     $02B7
+        jsr     L6BE0
+        pla
+        pha
+        sta     $02C9
+        jsr     L5F3D
+        lda     #$CA
+        sta     $1D
+        lda     #$02
+        sta     $1E
+        lda     #$10
+        sta     $02B6
+        lda     #$00
+        sta     $02B7
+        jsr     L6BE0
+        jsr     L60FB
+        jsr     L619F
+        pla
+        rts
+
+        pha
+        lda     #$00
+        sta     $1E
+        pla
+        asl     a
+        .byte   $26
+LF000:  asl     $260A,x
+        asl     $260A,x
+        asl     $260A,x
+        asl     $6918,x
+        tax
+        sta     $1D
+        sta     $1B
+        lda     $1E
+        adc     #$6C
+        sta     $1E
+        sta     $1C
+        rts
+
+        lda     #$40
+        bit     $6E9B
+        bne     LF030
+        jsr     L5C00
+        jsr     L60EF
+        lda     $02CF
+        sta     $02CC
+        jsr     L603E
+LF030:  rts
+
+        lda     $02CF
+        sta     $FE
+        lda     $02CE
+        asl     a
+        asl     a
+        asl     a
+        sta     $02B6
+        lda     #$00
+        adc     #$00
+        sta     $02B7
+        jsr     L60EF
+        lda     $35
+        sta     $1B
+        lda     $36
+        sta     $1C
+        lda     $FE
+        beq     LF07D
+LF055:  lda     $35
+        sta     $1D
+        lda     $36
+        sta     $1E
+        clc
+        lda     #$40
+        adc     $35
+        sta     $35
+        lda     #$01
+        adc     $36
+        sta     $36
+        lda     $35
+        sta     $1B
+        lda     $36
+        sta     $1C
+        pha
+        jsr     L6BE0
+        pla
+        sta     $1C
+        dec     $FE
+        bne     LF055
+LF07D:  jsr     L60D1
+        lda     $02CF
+        sta     $FE
+        lda     $02CE
+        sta     $02B6
+        lda     #$00
+        sta     $02B7
+        lda     $02D0
+        jsr     L6C05
+        clc
+        adc     $02D1
+        sta     $1D
+        tya
+        adc     #$0C
+        sta     $1E
+        lda     $1D
+        sta     $1B
+        lda     $1E
+        sta     $1C
+        lda     $FE
+        beq     LF0EE
+LF0AD:  lda     #$28
+        sta     $1B
+        lda     #$00
+        sta     $1C
+        clc
+        lda     $1D
+        adc     $1B
+        sta     $1B
+        lda     $1E
+        adc     $1C
+        sta     $1C
+        pha
+        lda     $1E
+        pha
+        jsr     L6BE0
+        lda     $1C
+        and     #$FB
+        sta     $1C
+        lda     $1E
+        and     #$FB
+        sta     $1E
+        jsr     L6BE0
+        pla
+        sta     $1E
+        pla
+        sta     $1C
+        lda     #$28
+        adc     $1D
+        sta     $1D
+        lda     #$00
+        adc     $1E
+        sta     $1E
+        dec     $FE
+        bne     LF0AD
+LF0EE:  ldy     $02CE
+        dey
+        lda     #$01
+        sta     $FE
+        jmp     L60A2
+
+        ldx     $02CF
+        inx
+        stx     $FE
+        lda     #$00
+        sta     $02B7
+        lda     $02CE
+        asl     a
+        rol     $02B7
+        asl     a
+        rol     $02B7
+        asl     a
+        rol     $02B7
+        sta     $02B6
+        jsr     L60EF
+        lda     $35
+        sta     $1B
+        lda     $36
+        sta     $1C
+LF121:  pha
+        jsr     L60D1
+        pla
+        sta     $1C
+        clc
+        lda     #$40
+        adc     $1B
+        sta     $1B
+        lda     #$01
+        adc     $1C
+        sta     $1C
+        dec     $FE
+        bne     LF121
+        lda     $02CE
+        sta     $FD
+        ldx     $02CF
+        inx
+        stx     $FE
+        lda     $02D1
+        sta     $06
+        lda     $02D0
+        jsr     L6C05
+        clc
+        adc     $06
+        sta     $1B
+        tya
+        adc     #$0C
+        sta     $1C
+        dec     $FD
+LF15B:  ldy     $FD
+        tya
+        pha
+        lda     $1B
+        sta     $1D
+        lda     $1C
+        and     #$FB
+        sta     $1E
+        lda     $02CA
+LF16C:  sta     ($1B),y
+        dey
+        bpl     LF16C
+        pla
+        tay
+        lda     $02D8
+LF176:  sta     ($1D),y
+        dey
+        bpl     LF176
+        lda     #$28
+        adc     $1B
+        sta     $1B
+        lda     #$00
+        adc     $1C
+        sta     $1C
+        dec     $FE
+        bne     LF15B
+        rts
+
+        ldy     #$00
+        tya
+        ldx     $02B7
+        beq     LF19E
+LF194:  sta     ($1B),y
+        iny
+        bne     LF194
+        inc     $1C
+        dex
+        bne     LF194
+LF19E:  ldx     $02B6
+        beq     LF1A9
+LF1A3:  sta     ($1B),y
+        iny
+        dex
+        bne     LF1A3
+LF1A9:  rts
+
+        lda     $02D0
+        sta     $02D3
+        lda     $02D1
+        sta     $02D2
+        lda     $02D3
+        jsr     L6C05
+        sty     $36
+        asl     a
+        rol     $36
+        asl     a
+        rol     $36
+        asl     a
+        rol     $36
+        sta     $35
+        lda     $02D2
+        asl     a
+        asl     a
+        asl     a
+        bcc     LF1D4
+        inc     $36
+        clc
+LF1D4:  adc     $35
+        sta     $35
+        lda     #$00
+        adc     $36
+        sta     $36
+        lda     #$00
+        adc     $35
+        sta     $35
+        lda     #$20
+        adc     $36
+        sta     $36
+        rts
+
+        lda     LFCF9
+        sta     $3F
+        lda     LFCFA
+        sta     $40
+        ldy     #$00
+        lda     ($3F),y
+        tax
+        lda     $1500,x
+        sta     LFF19
+        iny
+        lda     ($3F),y
+        tax
+        lda     $1500,x
+        pha
+        and     #$F0
+        sta     $02A5
+        pla
+        and     #$0F
+        sta     $02DA
+        iny
+        lda     ($3F),y
+        tax
+        lda     $1500,x
+        pha
+        asl     a
+        asl     a
+        asl     a
+        asl     a
+        ora     $02DA
+        sta     $02DA
+        pla
+        lsr     a
+        lsr     a
+        lsr     a
+        lsr     a
+        ora     $02A5
+        sta     $02A5
+        lda     #$00
+        sta     $02DB
+        sta     $02A6
+        lda     $02DB
+        sta     $02CB
+        lda     $02DA
+        sta     $02CA
+        lda     $02A6
+        sta     $02D9
+        lda     $02A5
+        sta     $02D8
+        lda     $02DC
+        sta     $02D4
+        rts
+
+        jsr     L5BA6
+        lda     $02CB
+        sta     $02DB
+        lda     $02CA
+        sta     $02DA
+        lda     $02D9
+        sta     $02A6
+        lda     $02D8
+        sta     $02A5
+        lda     $02D4
+        sta     $02DC
+        rts
+
+        ldy     $708A
+        sty     $8D
+        ldy     $708B
+        sty     $8E
+        jmp     L61F0
+
+        lda     $06
+        ldy     $708C
+        sty     $8D
+        ldy     $708D
+        sty     $8E
+        jmp     L61F0
+
+        ldy     $7092
+        sty     $8D
+        ldy     $7093
+        sty     $8E
+        jsr     L61F0
+        lda     $06
+        sta     $41
+        lda     $07
+        sta     $42
+        rts
+
+        asl     a
+        php
+        clc
+        adc     $8D
+        sta     $8D
+        lda     #$00
+        tay
+        adc     $8E
+        plp
+        adc     #$00
+        sta     $8E
+        lda     ($8D),y
+        sta     $06
+        iny
+        lda     ($8D),y
+        sta     $07
+        rts
+
+        lda     $6E9B
+        and     #$20
+        bne     LF30B
+        jsr     L62D2
+        lda     ($06,x)
+        bmi     LF30F
+        jsr     L626D
+        lda     #$08
+        bit     $6E9B
+        beq     LF2EA
+        lda     $02DA
+        and     #$0F
+        tay
+        lda     $1500,y
+        sta     LFF19
+LF2EA:  lda     $02AA
+        bmi     LF2F2
+        jsr     L6254
+LF2F2:  lda     #$10
+        bit     $6E9B
+        beq     LF305
+        lda     #$00
+        sta     $EF
+LF2FD:  lda     $EF
+        beq     LF2FD
+        lda     #$00
+        sta     $EF
+LF305:  lda     $02C2
+        sta     LFF19
+LF30B:  jsr     L619F
+        rts
+
+LF30F:  jsr     L6624
+        clc
+        lda     $1A
+        adc     #$31
+        sta     $1A
+        lda     #$00
+        sta     $02F6
+        sta     $02FB
+        sta     $02F9
+        jsr     L6312
+        rts
+
+        tya
+        pha
+        lda     $02CA
+        pha
+        lda     $02CB
+        pha
+        lda     $02D8
+        pha
+        lda     $02D9
+        pha
+        ldy     #$01
+        lda     ($06),y
+        sta     $02CA
+        lda     #$00
+        sta     $02CB
+        iny
+        lda     ($06),y
+        sta     $02D0
+        iny
+        lda     ($06),y
+        sta     $02D1
+        iny
+        lda     ($06),y
+        sec
+        sbc     #$01
+        sta     $02CF
+        iny
+        lda     ($06),y
+        sta     $02CE
+        jsr     L5ECB
+        jsr     L619F
+        jsr     L5F66
+        lda     LFF19
+        sta     $02C2
+        pla
+        sta     $02D9
+        pla
+        sta     $02D8
+        pla
+        sta     $02CB
+        pla
+        sta     $02CA
+        lda     #$00
+        sta     $22
+        sta     $23
+        sta     $24
+        sta     $25
+        pla
+        tay
+        rts
+
+        ldx     #$00
+        stx     $07
+        tya
+        asl     a
+        php
+        pha
+        rol     $07
+        asl     a
+        rol     $07
+        sta     $06
+        pla
+        clc
+        adc     $06
+        sta     $06
+        bcc     LF3A6
+        inc     $07
+LF3A6:  plp
+        bcc     LF3AB
+        inc     $07
+LF3AB:  clc
+        lda     LFCF3
+        adc     $06
+        sta     $06
+        lda     LFCF4
+        adc     $07
+        sta     $07
+        rts
+
+        lda     #$03
+        bne     LF3C1
+        lda     #$01
+LF3C1:  sta     $02F7
+        clc
+        adc     $19
+        sta     $19
+        bcc     LF3CD
+        inc     $1A
+LF3CD:  ldy     #$00
+        lda     ($19),y
+        and     #$07
+        asl     a
+        tax
+        lda     $6324,x
+        pha
+        lda     $6323,x
+        pha
+        rts
+
+        .byte   $32
+        .byte   $63
+        eor     $63,x
+        .byte   $CF
+        .byte   $63
+        .byte   $80
+        .byte   $63
+        beq     LF44B
+        .byte   $17
+        .byte   $64
+        .byte   $3F
+        .byte   $64
+        cpx     $64
+        lda     ($19),y
+        asl     a
+        bcs     LF406
+        sta     $06
+        lda     $02DA
+        eor     $06
+        and     #$0F
+        eor     $06
+        sta     $02DA
+        lda     #$0F
+        jmp     L636D
+
+LF406:  lda     $02DB
+        ora     #$F0
+        sta     $02DB
+        jmp     L6304
+
+        lda     ($19),y
+        bmi     LF431
+        lsr     a
+        lsr     a
+        lsr     a
+        sta     $06
+        lda     $02DA
+        eor     $06
+        and     #$F0
+        eor     $06
+        sta     $02DA
+        lda     #$F0
+        and     $02DB
+        sta     $02DB
+        jmp     L6304
+
+LF431:  lda     $02DB
+        ora     #$0F
+        sta     $02DB
+        jmp     L6304
+
+        lda     $02FA
+        cmp     #$0A
+        bne     LF450
+        lda     #$00
+        sta     $02F6
+        sta     $02FB
+LF44B:  ldx     #$03
+        jmp     L4045
+
+LF450:  cmp     #$00
+        bne     LF45E
+        lda     $19
+        sta     $02F8
+        lda     $1A
+        sta     $02F9
+LF45E:  inc     $02FA
+        lda     $1A
+        pha
+        lda     $19
+        pha
+        lda     $02F6
+        ora     $02FB
+        pha
+        lda     ($19),y
+        lsr     a
+        lsr     a
+        lsr     a
+        and     #$07
+        sta     $02F6
+        lda     $02FB
+        eor     ($19),y
+        and     #$C0
+        sta     $02FB
+        iny
+        lda     ($19),y
+        jsr     L6625
+        jmp     L6312
+
+        lda     $02FA
+        beq     LF4AB
+        pla
+        pha
+        and     #$07
+        sta     $02F6
+        pla
+        and     #$C0
+        sta     $02FB
+        pla
+        sta     $19
+        pla
+        sta     $1A
+        dec     $02FA
+        lda     #$02
+        jmp     L6306
+
+LF4AB:  rts
+
+        lda     ($19),y
+        sta     $02DC
+        jsr     L6649
+        lda     $8B
+        sta     $22
+        lda     $8C
+        sta     $23
+        lda     $06
+        sta     $24
+        lda     $07
+        sta     $25
+        lda     $02DC
+        and     #$C0
+        cmp     #$C0
+        beq     LF4D0
+        jsr     L6954
+LF4D0:  jmp     L6300
+
+        lda     ($19),y
+        and     #$C0
+        cmp     #$C0
+        beq     LF4F5
+        sta     $02DC
+        jsr     L65B6
+        iny
+        ldx     #$01
+        bit     $02FC
+        bpl     LF4EB
+        ldx     #$FF
+LF4EB:  bvc     LF4EF
+        ldy     #$FF
+LF4EF:  jsr     L6892
+        jmp     L6300
+
+LF4F5:  jsr     L6570
+        jmp     L6300
+
+        lda     $23
+        pha
+        lda     $22
+        pha
+        lda     $25
+        pha
+        lda     $24
+        pha
+        jsr     L6570
+        lda     ($19),y
+        bmi     LF52C
+        lda     #$69
+        sta     $06
+        sta     $8B
+        lda     #$64
+        sta     $07
+        sta     $8C
+        lda     #$00
+        jsr     L666D
+        ldy     #$03
+        jmp     L6490
+
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+        .byte   $FF
+LF52C:  ldy     #$03
+        lda     ($19),y
+        ldy     #$00
+        jsr     L64A0
+        lda     $06
+        sta     $8B
+        lda     $07
+        sta     $8C
+        lda     ($19),y
+        and     #$40
+        beq     LF545
+        ldy     #$FF
+LF545:  tya
+        jsr     L666D
+        ldy     #$04
+        pla
+        sta     $24
+        pla
+        sta     $25
+        pla
+        sta     $22
+        pla
+        sta     $23
+        tya
+        jmp     L6306
+
+        sty     $07
+        asl     a
+        rol     $07
+        asl     a
+        rol     $07
+        asl     a
+        rol     $07
+        adc     LFCF7
+        sta     $06
+        lda     LFCF8
+        adc     $07
+        sta     $07
+        rts
+
+LF573:  asl     a
+        and     #$C0
+        sta     $02DC
+        iny
+        lda     ($19),y
+        sta     $02D3
+        iny
+        lda     ($19),y
+        sta     $02D2
+        iny
+        lda     ($19),y
+        pha
+        jsr     L60FB
+        ldy     #$00
+        pla
+        jsr     L64A0
+        sta     $8E
+        lda     $06
+        sta     $8D
+        jsr     L5DB1
+        lda     #$04
+        jmp     L6306
+
+        lda     ($19),y
+        bpl     LF573
+        lda     #$00
+        sta     $8C
+        iny
+        lda     ($19),y
+        sta     $8B
+        asl     $8B
+        rol     $8C
+        asl     $8B
+        .byte   $26
+LF5B4:  sty     $8B06
+        rol     $8C
+        lda     $8B
+        sta     $06
+        lda     $8C
+        sta     $07
+        asl     $8B
+        rol     $8C
+        asl     $8B
+        rol     $8C
+        clc
+        lda     $8B
+        adc     $06
+        sta     $06
+        lda     $8C
+        adc     $07
+        sta     $07
+        iny
+        lda     ($19),y
+        clc
+        adc     $06
+        sta     $06
+        .byte   $A9
+LF5DF:  brk
+        adc     $07
+        sta     $07
+        clc
+        lda     #$00
+        adc     $06
+        sta     $06
+        lda     #$0C
+        adc     $07
+        sta     $07
+        iny
+        lda     ($19),y
+        tax
+        iny
+        lda     ($19),y
+        pha
+        tay
+        lda     ($06),y
+        eor     $02DA
+        and     $02DB
+        eor     $02DA
+        sta     ($06),y
+        cpy     #$00
+        beq     LF60F
+        dey
+        jmp     L653F
+
+LF60F:  cpx     #$00
+        beq     LF625
+        dex
+        clc
+        lda     #$28
+        adc     $06
+        sta     $06
+        lda     #$00
+        adc     $07
+        sta     $07
+        pla
+        jmp     L653D
+
+LF625:  pla
+        lda     #$05
+        jmp     L6306
+
+        jsr     L65B6
+        bit     $02FC
+        bpl     LF643
+        sec
+        lda     $22
+        sbc     $8B
+        sta     $22
+        lda     $23
+        sbc     $8C
+        sta     $23
+        jmp     L6595
+
+LF643:  clc
+        lda     $8B
+        adc     $22
+        sta     $22
+        lda     $8C
+        adc     $23
+        sta     $23
+        bit     $02FC
+        bvc     LF663
+        sec
+        lda     $24
+        sbc     $06
+        sta     $24
+        lda     $25
+        sbc     $07
+        sta     $25
+        rts
+
+LF663:  clc
+        lda     $06
+        adc     $24
+        sta     $24
+        lda     $07
+        adc     $25
+        sta     $25
+        rts
+
+        jsr     L6649
+        lda     $02F6
+        beq     LF6C5
+        lda     #$00
+        sta     $8D
+        lda     #$00
+        sta     $8E
+        ldy     $02F6
+LF684:  clc
+        lda     $8B
+        adc     $8D
+        sta     $8D
+        lda     $8C
+        adc     $8E
+        sta     $8E
+        dey
+        bne     LF684
+        jsr     L6617
+        lda     $8D
+        sta     $8B
+        lda     $8E
+        sta     $8C
+        lda     #$00
+        sta     $8D
+        lda     #$00
+        sta     $8E
+        ldy     $02F6
+LF6AA:  clc
+        lda     $06
+        adc     $8D
+        sta     $8D
+        lda     $07
+        adc     $8E
+        sta     $8E
+        dey
+        bne     LF6AA
+        jsr     L6617
+        lda     $8D
+        sta     $06
+        lda     $8E
+        sta     $07
+LF6C5:  ldy     #$00
+        lda     ($19),y
+        asl     a
+        asl     a
+        eor     $02FB
+        sta     $02FC
+        rts
+
+        lsr     $8E
+        ror     $8D
+        lsr     $8E
+        ror     $8D
+        lsr     $8E
+        ror     $8D
+        rts
+
+        tya
+        asl     a
+        php
+        clc
+        adc     LFCF1
+        sta     $19
+        lda     LFCF2
+        adc     #$00
+        plp
+        adc     #$00
+        sta     $1A
+        tya
+        pha
+        ldy     #$00
+        lda     ($19),y
+        pha
+        iny
+        lda     ($19),y
+        sta     $1A
+        pla
+        sta     $19
+        pla
+        tay
+        rts
+
+        lda     #$00
+        sta     $07
+        tay
+        lda     ($19),y
+        lsr     a
+        lsr     a
+        lsr     a
+        and     #$01
+        sta     $8C
+        iny
+        lda     ($19),y
+        sta     $8B
+        iny
+        lda     ($19),y
+        sta     $06
+        rts
+
+        pha
+        jsr     L6C78
+        pla
+        jsr     L666D
+        jmp     L6C89
+
+        tsx
+        stx     $02FD
+        sta     $8E
+        ldy     #$00
+        sty     $8D
+LF732:  lda     ($8B),y
+        ora     ($06),y
+        eor     $8E
+        sta     $1400,y
+        iny
+        cpy     #$08
+        bne     LF732
+        lda     $22
+        sta     $02F2
+        lda     $23
+        sta     $02F3
+        lda     $24
+        sta     $02F4
+        lda     $25
+        sta     $02F5
+        ldx     $02F1
+        inx
+        ldy     #$00
+        lda     #$08
+        sta     $06
+        lda     #$14
+        sta     $07
+        lda     #$FF
+LF764:  sta     ($06),y
+        inc     $06
+        bne     LF76C
+        inc     $07
+LF76C:  sta     ($06),y
+        inc     $06
+        bne     LF774
+        inc     $07
+LF774:  dex
+        bne     LF764
+        sta     ($06),y
+        inc     $06
+        bne     LF77F
+        inc     $07
+LF77F:  lda     #$7F
+        sta     ($06),y
+        sta     $1409
+        jsr     L693C
+        beq     LF78E
+        jmp     L688D
+
+LF78E:  lda     #$FF
+        pha
+        clc
+        ror     $8E
+        lda     $8D
+        and     #$BF
+        sta     $8D
+        lda     $24
+        asl     a
+        php
+        clc
+        adc     #$08
+        sta     $0D
+        lda     #$14
+        adc     #$00
+        plp
+        adc     #$00
+        sta     $0E
+        lda     $24
+        jsr     L69A3
+        lda     $694C,x
+        eor     #$FF
+        sta     $40
+        tya
+        pha
+        clc
+        adc     $06
+        sta     $8B
+        lda     $07
+        adc     #$00
+        sta     $8C
+        bit     $8D
+        bpl     LF7D0
+        dec     $24
+        ldy     #$00
+        jmp     L6719
+
+LF7D0:  inc     $24
+        ldy     #$04
+        lda     ($0D),y
+        sta     $FD
+        iny
+        lda     ($0D),y
+        sta     $FE
+        lda     $24
+        jsr     L69A3
+        tya
+        clc
+        adc     $06
+        sta     $3D
+        lda     $07
+        adc     #$00
+        sta     $3E
+        pla
+        tax
+        lda     $1400,x
+        sta     $3F
+        ldy     #$00
+LF7F7:  lsr     $40
+        bcc     LF817
+        ror     $40
+        clc
+        lda     #$08
+        adc     $3D
+        sta     $3D
+        lda     #$00
+        adc     $3E
+        sta     $3E
+        clc
+        lda     #$08
+        adc     $8B
+        sta     $8B
+        lda     #$00
+        adc     $8C
+        sta     $8C
+LF817:  inc     $22
+        bne     LF81D
+        inc     $23
+LF81D:  lda     $22
+        cmp     #$40
+        lda     $23
+        sbc     #$01
+        beq     LF82D
+        lda     ($8B),y
+        and     $40
+        beq     LF7F7
+LF82D:  sec
+        lda     $22
+        sbc     #$01
+        sta     $22
+        lda     $23
+        sbc     #$00
+        sta     $23
+        ldy     #$02
+        lda     $22
+        sta     ($0D),y
+        iny
+        lda     $23
+        sta     ($0D),y
+        ldy     #$00
+        jmp     L67FF
+
+LF84A:  jmp     L6853
+
+        lda     ($8B),y
+        and     $40
+        bne     LF84A
+        lda     $3F
+        and     $40
+        ora     ($8B),y
+        sta     ($8B),y
+        lda     $8B
+        sta     $06
+        lda     $8C
+        sta     $07
+        jsr     L696C
+        bit     $8D
+        bvs     LF87E
+        bit     $FE
+        bmi     LF881
+        lda     $FD
+        cmp     $22
+        lda     $FE
+        sbc     $23
+        bcc     LF881
+        lda     $8D
+        ora     #$40
+        sta     $8D
+LF87E:  jmp     L67F0
+
+LF881:  lda     ($3D),y
+        and     $40
+        clc
+        bne     LF889
+        sec
+LF889:  bit     $8E
+        bmi     LF8A6
+        bcc     LF8AB
+        tsx
+        cpx     #$12
+        bcs     LF897
+        jmp     L6863
+
+LF897:  lda     $23
+        pha
+        lda     $22
+        pha
+        lda     $24
+        pha
+        sec
+        ror     $8E
+        jmp     L67F0
+
+LF8A6:  bcs     LF8AB
+        clc
+        ror     $8E
+LF8AB:  sec
+        lda     $22
+        sbc     #$01
+        sta     $22
+        lda     $23
+        sbc     #$00
+        sta     $23
+        bcc     LF90E
+        asl     $40
+        bcs     LF8C1
+LF8BE:  jmp     L6792
+
+LF8C1:  rol     $40
+        sec
+        lda     $3D
+        sbc     #$08
+        sta     $3D
+        lda     $3E
+        sbc     #$00
+        sta     $3E
+        sec
+        lda     $8B
+        sbc     #$08
+        sta     $8B
+        lda     $8C
+        sbc     #$00
+        sta     $8C
+        lda     ($8B),y
+        bne     LF8BE
+        bit     $8D
+        bvs     LF8ED
+        lda     ($3D),y
+        bne     LF8BE
+        bit     $8E
+        bpl     LF8BE
+LF8ED:  lda     $3F
+        sta     ($8B),y
+        lda     $8B
+        sta     $06
+        lda     $8C
+        sta     $07
+        jsr     L696C
+        sec
+        lda     $22
+        sbc     #$08
+        sta     $22
+        lda     $23
+        sbc     #$00
+        sta     $23
+        bcc     LF90E
+        jmp     L6808
+
+LF90E:  pla
+        cmp     #$FF
+        beq     LF91E
+        sta     $24
+        pla
+        sta     $22
+        pla
+        sta     $23
+        jmp     L66D6
+
+LF91E:  lda     $02F2
+        sta     $22
+        lda     $02F3
+        sta     $23
+        lda     $02F4
+        sta     $24
+        lda     $02F5
+        sta     $25
+        ldx     $02FD
+        txs
+        bit     $8D
+        bmi     LF948
+        dec     $24
+        lda     $24
+        cmp     #$FF
+        beq     LF948
+        sec
+        ror     $8D
+        jmp     L66CB
+
+LF948:  ldx     $02FD
+        txs
+LF94C:  rts
+
+        stx     $8D
+        sty     $8E
+        lda     $8B
+        cmp     $06
+        lda     $8C
+        sbc     $07
+        bcs     LF96C
+        lda     #$00
+        sta     $3F
+        sty     $40
+        lda     $06
+        sta     $FD
+        lda     $07
+        sta     $FE
+        jmp     L68D1
+
+LF96C:  lda     $8B
+        ora     $8C
+        ora     $06
+        ora     $07
+        beq     LF94C
+        lda     #$00
+        sta     $40
+        stx     $3F
+        lda     $8B
+        sta     $FD
+        lda     $8C
+        sta     $FE
+        lda     $06
+        sta     $8B
+        lda     $07
+        sta     $8C
+        lda     $FE
+        lsr     a
+        sta     $1C
+        lda     $FD
+        ror     a
+        sta     $1B
+        lda     #$00
+        sec
+        sbc     $FD
+        sta     $1D
+        lda     #$00
+        sbc     $FE
+        sta     $1E
+LF9A3:  jsr     L6954
+        clc
+        lda     $8B
+        adc     $1B
+        sta     $1B
+        lda     $8C
+        adc     $1C
+        sta     $1C
+        sec
+        lda     $1B
+        sbc     $FD
+        tax
+        lda     $1C
+        sbc     $FE
+        bcc     LF9CA
+        sta     $1C
+        stx     $1B
+        ldy     $8E
+        ldx     $8D
+        jmp     L6913
+
+LF9CA:  ldy     $40
+        ldx     $3F
+        txa
+        beq     LF9DE
+        bmi     LF9D4
+        dex
+LF9D4:  clc
+        adc     $22
+        sta     $22
+        txa
+        adc     $23
+        sta     $23
+LF9DE:  tya
+        beq     LF9EE
+        bmi     LF9E4
+        dey
+LF9E4:  clc
+        adc     $24
+        sta     $24
+        tya
+        adc     $25
+        sta     $25
+LF9EE:  inc     $1D
+        bne     LF9A3
+        inc     $1E
+        bne     LF9A3
+        rts
+
+        jsr     L698F
+        bcc     LF9FF
+        lda     #$FF
+        rts
+
+LF9FF:  lda     $694C,x
+        eor     #$FF
+        and     ($06),y
+        rts
+
+        .byte   $7F
+        .byte   $BF
+        .byte   $DF
+        .byte   $EF
+        .byte   $F7
+        .byte   $FB
+        sbc     $20FE,x
+        .byte   $8F
+        adc     #$B0
+        .byte   $33
+        lda     ($06),y
+        bit     $02DC
+        bmi     LFA1E
+        and     $694C,x
+LFA1E:  bvs     LFA25
+        eor     $694C,x
+        eor     #$FF
+LFA25:  sta     ($06),y
+        lda     $07
+        lsr     a
+        ror     $06
+        lsr     a
+        ror     $06
+        lsr     a
+        ror     $06
+        and     #$03
+        ora     #$0C
+        sta     $07
+        ldy     #$00
+        lda     ($06),y
+        eor     $02DA
+        and     $02DB
+        eor     $02DA
+        sta     ($06),y
+        rts
+
+LFA48:  sec
+        rts
+
+        lda     $22
+        cmp     #$40
+        lda     $23
+        sbc     #$01
+        bcs     LFA48
+        lda     $25
+        bne     LFA48
+        lda     $24
+        cmp     #$C0
+        bcs     LFA48
+        and     #$F8
+        asl     a
+        rol     $25
+        asl     a
+        rol     $25
+        asl     a
+        rol     $25
+        tay
+        adc     #$00
+        sta     $06
+        lda     $25
+        adc     #$20
+        sta     $07
+        tya
+        asl     a
+        rol     $25
+        asl     a
+        rol     $25
+        adc     $06
+        sta     $06
+        lda     $25
+        adc     $07
+        sta     $07
+        lda     $22
+        and     #$F8
+        adc     $06
+        sta     $06
+        lda     $23
+        adc     $07
+        sta     $07
+        ldy     #$00
+        sty     $25
+        lda     $24
+        and     #$07
+        tay
+        lda     $22
+        and     #$07
+        tax
+        rts
+
+        pha
+        txa
+        pha
+        tya
+        pha
+        bit     $02DD
+        bvs     LFAD7
+        inc     $02E0
+        lda     $02E0
+        cmp     #$40
+        bne     LFABE
+        inc     $02E1
+        lda     #$00
+        sta     $02E0
+LFABE:  lda     $02DD
+        ora     #$40
+        sta     $02DD
+        lda     $02F1
+        jsr     L6A46
+        jsr     L401F
+        bit     $02DD
+        bmi     LFAEA
+        jmp     (L02DE)
+
+LFAD7:  lda     $02DD
+        and     #$BF
+        sta     $02DD
+        lda     #$00
+        sta     $02E2
+        lda     LFF09
+        sta     LFF09
+LFAEA:  lda     LFF13
+        pha
+        sta     LFF3E
+        jsr     LDB11
+        pla
+        lsr     a
+        bcs     LFAFB
+        sta     LFF3F
+LFAFB:  pla
+        tay
+        pla
+        tax
+        pla
+        rti
+
+        sta     LFF0B
+        lda     #$02
+        sta     LFF0A
+        lda     LFF09
+        sta     LFF09
+        rts
+
+        php
+        pha
+        sei
+        lda     #$EC
+        sta     $0314
+        lda     #$69
+        sta     $0315
+        lda     #$00
+        sta     $02DD
+        jsr     L6A46
+        pla
+        plp
+        rts
+
+        php
+        pha
+        sei
+        lda     L02DE
+        sta     $0314
+        lda     $02DF
+        sta     $0315
+        pla
+        plp
+        rts
+
+        lda     #$02
+        sta     $02B2
+        jsr     LFFE7
+        lda     #$00
+        sta     $3E
+        jsr     LFFBD
+        lda     #$0F
+        ldx     #$08
+        tay
+        jsr     LFFBA
+        jsr     LFFC0
+        bcs     LFB9D
+        jsr     L6AED
+        bcc     LFB9D
+        ldx     #$0F
+        jsr     LFFC6
+        bcs     LFB9D
+LFB62:  jsr     LFFCF
+        bcs     LFB9D
+        pha
+        jsr     L6AED
+        pla
+        bcc     LFB9D
+        pha
+        sei
+        sta     LFF3F
+        jsr     L5A49
+        sta     LFF3E
+        cli
+        pla
+        cmp     #$0D
+        beq     LFBA2
+        ldx     $02B2
+        dex
+        bmi     LFB62
+        stx     $02B2
+        sec
+        sbc     #$30
+        sta     $3D
+        lda     $3E
+        asl     a
+        sta     $3E
+        asl     a
+        asl     a
+        adc     $3E
+        adc     $3D
+        sta     $3E
+        jmp     L6AA7
+
+LFB9D:  ldx     #$64
+        jmp     L4045
+
+LFBA2:  jsr     LFFE7
+        lda     $3E
+        rts
+
+        jsr     LFFB7
+        cmp     #$00
+        rts
+
+LFBAE:  cmp     #$00
+        beq     LFBBC
+        tay
+        cmp     #$01
+        beq     LFBE1
+        ldy     #$08
+        jmp     L6B26
+
+LFBBC:  lda     #$3E
+        jsr     L5796
+        ldx     #$00
+        lda     ($06,x)
+        pha
+        lda     #$36
+        jsr     L61DA
+        pla
+        eor     #$FF
+        ldy     #$01
+        cmp     ($06,x)
+        beq     LFBE1
+        pha
+        lda     #$37
+        jsr     L61DA
+        pla
+        ldy     #$08
+        cmp     ($06,x)
+        bne     LFBAE
+LFBE1:  sty     $02B0
+        lda     #$3C
+        jsr     L5796
+        ldy     #$07
+        ldx     #$01
+        stx     $02B1
+        dex
+LFBF1:  lda     ($06,x)
+        sta     $02B2
+        tya
+        sta     ($06,x)
+        lda     $02B2
+        cmp     #$0D
+        beq     LFC18
+        cmp     #$41
+        bcc     LFC07
+        clc
+        adc     #$80
+LFC07:  tay
+        jsr     L6BB1
+        inc     $02B1
+        lda     $02B1
+        cmp     #$11
+        bne     LFBF1
+        dec     $02B1
+LFC18:  lda     $02B0
+        cmp     #$01
+        bne     LFC3F
+        lda     #$3D
+        jsr     L5359
+LFC24:  ldy     #$00
+        jsr     LFFE1
+        bne     LFC31
+        lda     #$00
+        sta     $02B0
+        rts
+
+LFC31:  lda     $01
+        and     #$10
+        bne     LFC24
+        ldx     #$00
+LFC39:  dex
+        bne     LFC39
+        dey
+        bne     LFC31
+LFC3F:  jsr     L6A6D
+        sec
+        rts
+
+        lda     #$7E
+        sta     $06
+        lda     #$6E
+        sta     $07
+        lda     #$FE
+        sta     $FE
+        lda     #$00
+        sta     $FD
+        tax
+        sta     $707F
+LFC58:  clc
+        adc     ($06,x)
+        bcc     LFC60
+        inc     $707F
+LFC60:  jsr     L6BB1
+        jsr     L6BB8
+        bne     LFC58
+        sta     $707E
+        rts
+
+        inc     $06
+        bne     LFC80
+        inc     $07
+        rts
+
+        inc     $FD
+        bne     LFC80
+        inc     $FE
+        rts
+
+        inc     $8B
+        bne     LFC80
+        inc     $8C
+LFC80:  rts
+
+        pha
+        dec     $FD
+        lda     $FD
+        cmp     #$FF
+        bne     LFC8C
+        dec     $FE
+LFC8C:  pla
+        rts
+
+        pha
+        dec     $06
+        lda     $06
+        cmp     #$FF
+        bne     LFC99
+        dec     $07
+LFC99:  pla
+        rts
+
+        ldx     $02B7
+        beq     LFCB0
+        ldy     #$00
+LFCA2:  lda     ($1B),y
+        sta     ($1D),y
+        iny
+        bne     LFCA2
+        inc     $1C
+        inc     $1E
+        dex
+        bne     LFCA2
+LFCB0:  ldx     $02B6
+        beq     LFCBF
+        ldy     #$00
+LFCB7:  lda     ($1B),y
+        sta     ($1D),y
+        iny
+        dex
+        bne     LFCB7
+LFCBF:  rts
+
+        asl     a
+        tax
+        lda     $6C0E,x
+        ldy     $6C0F,x
+        rts
+
+        brk
+        brk
+        plp
+        brk
+        bvc     LFCCF
+LFCCF:  sei
+        brk
+        ldy     #$00
+        iny
+        brk
+        beq     LFCD7
+LFCD7:  clc
+        ora     ($40,x)
+        ora     ($68,x)
+        ora     ($90,x)
+        ora     ($B8,x)
+        ora     ($E0,x)
+        ora     ($08,x)
+        .byte   $02
+        bmi     LFCE9
+        cli
+        .byte   $02
+LFCE9:  .byte   $80
+        .byte   $02
+        tay
+        .byte   $02
+        bne     LFCF1
+        sed
+        .byte   $02
+LFCF1:  .byte   $20
+LFCF2:  .byte   $03
+LFCF3:  pha
+LFCF4:  .byte   $03
+        bvs     LFCFA
+LFCF7:  tya
+LFCF8:  .byte   $03
+LFCF9:  .byte   $C0
+LFCFA:  .byte   $03
+        inx
+        .byte   $03
+LFCFD:  sei
+        lda     #$0B
+        sta     LFF06
+        sta     LFF3E
+        lda     #$00
+        sta     $06
+        lda     #$10
+        sta     $07
+        ldy     #$6C
+        jsr     L6C68
+        lda     #$78
+        sta     $06
+        lda     #$6C
+        sta     $07
+        ldy     #$FD
+        jsr     L6C68
+        jmp     (LFFFC)
+
+LFD23:  lda     #$00
+        tax
+        sta     ($06,x)
+        inc     $06
+        bne     LFD2E
+        inc     $07
+LFD2E:  cpy     $07
+        bne     LFD23
+        rts
+
+        php
+        sei
+        pha
+        lda     $02DD
+        ora     #$80
+        sta     $02DD
+        sta     LFF3F
+        pla
+        plp
+        rts
+
+        php
+        sei
+        pha
+        sta     LFF3E
+        lda     $02DD
+        and     #$7F
+        sta     $02DD
+        pla
+        plp
+        rts
+
+        bpl     LFD57
+LFD57:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFD67
+LFD67:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFD77
+LFD77:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFD87
+LFD87:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFD97
+LFD97:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFDA7
+LFDA7:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFDB7
+LFDB7:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFDC7
+LFDC7:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+        brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        bpl     LFDD7
+LFDD7:  clc
+        brk
+        plp
+        clc
+        brk
+        brk
+        brk
+LFDDE:  brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $07
+        brk
+        .byte   $12
+        brk
+        .byte   $03
+        brk
+        bpl     LFDEE
+        brk
+        brk
+        brk
+LFDEE:  brk
+        brk
+        rti
+
+        brk
+        brk
+        .byte   $37
+        brk
+        lda     $BAAD,x
+        ldx     LF5B4,y
+        ldx     $D0,y
+        bcs     LFDDE
+        tsx
+        sta     $908D
+        sta     LF5DF
+        clv
+        .byte   $9E
+        .byte   $92
+        txs
+        .byte   $DF
+        tsx
+        sta     $908D
+        sta     LF5DF
+        .byte   $DF
+        stx     $91,y
+        .byte   $DF
+        sbc     $20,x
+        txa
+        .byte   $FF
+        jsr     LFF84
+        lda     #$00
+        tay
+LFE20:  sta     $02A7,y
+        iny
+        cpy     #$59
+        bne     LFE20
+        jsr     LFF90
+        php
+        sei
+        lda     #$E7
+        sta     LFFFE
+        lda     #$69
+        sta     LFFFF
+        lda     $0315
+        cmp     #$69
+        beq     LFE47
+        sta     $02DF
+        lda     $0314
+        sta     L02DE
+LFE47:  ldy     #$00
+        lda     #$00
+        sta     $06
+        lda     #$08
+        sta     $07
+        tya
+LFE52:  sta     ($06),y
+        jsr     L6BB1
+        ldx     $07
+        cpx     #$10
+        bne     LFE52
+        lda     #$A2
+        sta     $06
+        lda     #$70
+        sta     $07
+        lda     #$19
+        sta     $8B
+        lda     #$40
+        sta     $8C
+        ldy     #$03
+        ldx     #$00
+LFE71:  lda     ($06,x)
+        sta     $FD
+        jsr     L6BB1
+        lda     ($06,x)
+        sta     $FE
+        ora     $FD
+        beq     LFE98
+        lda     #$4C
+        sta     ($8B,x)
+        jsr     L6BBF
+        lda     $FD
+        sta     ($8B,x)
+        jsr     L6BBF
+        lda     $FE
+        sta     ($8B,x)
+        jsr     L6BBF
+        jmp     L6DEA
+
+LFE98:  clc
+        lda     #$03
+        adc     $8B
+        sta     $8B
+        lda     #$00
+        adc     $8C
+        sta     $8C
+        jsr     L6BB1
+        dey
+        bne     LFE71
+        plp
+        lda     #$08
+        sta     LFF14
+        lda     #$08
+        sta     LFF12
+        lda     #$3B
+        sta     LFF06
+        lda     LFF07
+        and     #$40
+        ora     #$08
+        sta     LFF07
+        lda     $02A9
+        and     #$FB
+        sta     $02A9
+        lda     $7088
+        ora     $7089
+        beq     LFEDD
+        lda     $02A9
+        ora     #$04
+        sta     $02A9
+LFEDD:  lda     #$D2
+        sta     $02F1
+        ldx     #$00
+LFEE4:  lda     $6E3B,x
+        sta     $1500,x
+        lda     $6F3B,x
+        sta     $1600,x
+        inx
+        bne     LFEE4
+        jmp     L40F3
+
+        brk
+        adc     ($32),y
+        .byte   $43
+        .byte   $34
+        eor     $16
+        .byte   $67
+        sec
+        ora     #$42
+        and     ($41,x)
+        adc     $4E
+        .byte   $51
+LFF06:  .byte   $07
+LFF07:  brk
+        .byte   $24
+LFF09:  brk
+LFF0A:  rti
+
+LFF0B:  brk
+        .byte   $5B
+        brk
+LFF0E:  ror     L0000,x
+LFF10:  .byte   $90
+LFF11:  brk
+LFF12:  .byte   $A9
+LFF13:  brk
+LFF14:  cmp     (L0000,x)
+        cmp     LF000,y
+LFF19:  brk
+        asl     $01
+        .byte   $1C
+        ora     ($31,x)
+        ora     ($45,x)
+        ora     ($59,x)
+        ora     ($6D,x)
+        ora     ($7F,x)
+        ora     ($92,x)
+        ora     ($A3,x)
+        ora     ($B5,x)
+        ora     ($C5,x)
+        ora     ($D6,x)
+        ora     ($E5,x)
+        ora     ($F5,x)
+        ora     ($04,x)
+        .byte   $02
+        .byte   $12
+        .byte   $02
+        jsr     L2E02
+        .byte   $02
+LFF3E:  .byte   $3B
+LFF3F:  .byte   $02
+        pha
+        .byte   $02
+        .byte   $54
+        .byte   $02
+        adc     ($02,x)
+        jmp     (L7802)
+
+        .byte   $02
+        .byte   $83
+        .byte   $02
+        stx     $9802
+        .byte   $02
+        .byte   $A3
+        .byte   $02
+        lda     $B602
+        .byte   $02
+        cpy     #$02
+        cmp     #$02
+        .byte   $D2
+        .byte   $02
+        .byte   $DA
+        .byte   $02
+        .byte   $E3
+        .byte   $02
+        .byte   $EB
+        .byte   $02
+        .byte   $F3
+        .byte   $02
+        .byte   $FA
+        .byte   $02
+        .byte   $02
+        .byte   $03
+        ora     #$03
+        bpl     LFF6F
+        .byte   $17
+        .byte   $03
+        .byte   $1E
+LFF6F:  .byte   $03
+        bit     $03
+        rol     a
+        .byte   $03
+        bmi     LFF79
+        rol     $03,x
+        .byte   $3C
+LFF79:  .byte   $03
+        .byte   $42
+        .byte   $03
+        .byte   $47
+        .byte   $03
+        jmp     L5103
+
+        .byte   $03
+        lsr     $03,x
+LFF84:  .byte   $5B
+        .byte   $03
+        rts
+
+        .byte   $03
+        .byte   $64
+        .byte   $03
+        adc     #$03
+        adc     $7103
+        .byte   $03
+LFF90:  adc     $03,x
+        adc     $7D03,y
+        .byte   $03
+        sta     ($03,x)
+        sta     $03
+        dey
+        .byte   $03
+        .byte   $8B
+        .byte   $03
+        .byte   $8F
+        .byte   $03
+        .byte   $92
+        .byte   $03
+        sta     $03,x
+        tya
+        .byte   $03
+        .byte   $9B
+        .byte   $03
+        .byte   $9E
+        .byte   $03
+        lda     ($03,x)
+        .byte   $A3
+        .byte   $03
+        ldx     $03
+        lda     #$03
+        .byte   $AB
+        .byte   $03
+        ldx     $B003
+LFFB7:  .byte   $03
+        .byte   $B2
+        .byte   $03
+LFFBA:  ldy     $03,x
+        .byte   $B7
+LFFBD:  .byte   $03
+        .byte   $B9
+        .byte   $03
+LFFC0:  .byte   $BB
+        .byte   $03
+        lda     $BF03,x
+        .byte   $03
+LFFC6:  cpy     #$03
+        .byte   $C2
+        .byte   $03
+        cpy     $03
+        dec     $03
+        .byte   $C7
+LFFCF:  .byte   $03
+        cmp     #$03
+        .byte   $CB
+        .byte   $03
+        .byte   $CC
+LFFD5:  .byte   $03
+        .byte   $CE
+        .byte   $03
+LFFD8:  .byte   $CF
+        .byte   $03
+        bne     LFFDF
+        .byte   $D2
+        .byte   $03
+        .byte   $D3
+LFFDF:  .byte   $03
+        .byte   $D4
+LFFE1:  .byte   $03
+        dec     $03,x
+LFFE4:  .byte   $D7
+        .byte   $03
+        cld
+LFFE7:  .byte   $03
+        cmp     LDA03,y
+        .byte   $03
+        .byte   $DB
+        .byte   $03
+        .byte   $DC
+        .byte   $03
+        cmp     LDE03,x
+        .byte   $03
+        .byte   $DF
+        .byte   $03
+        cpx     #$03
+        sbc     ($03,x)
+        .byte   $E2
+        .byte   $03
+LFFFC:  .byte   $E3
+        .byte   $03
+LFFFE:  .byte   $FF
+LFFFF:  .byte   $03

@@ -74,16 +74,54 @@ def verify_third_party_manifest(errors: list[str]) -> int:
     return len(manifest["candidates"])
 
 
+def verify_derived_outputs(errors: list[str]) -> int:
+    original_manifest = load("official_interpreters.json")
+    known_hashes = {
+        artifact.get("artifact_id"): artifact.get("sha256")
+        for artifact in original_manifest.get("artifacts", [])
+        if isinstance(artifact, dict)
+    }
+    checked = 0
+    for run_path in sorted((ROOT / "reverse_engineering" / "derived").glob("**/analysis-run.json")):
+        run = json.loads(run_path.read_text(encoding="utf-8"))
+        artifact_id = run.get("artifact_id")
+        if artifact_id not in known_hashes:
+            errors.append(f"derived run has unknown artifact ID: {run_path.relative_to(ROOT)}")
+        elif run.get("derived_from_sha256") != known_hashes[artifact_id]:
+            errors.append(f"derived run input hash mismatch: {run_path.relative_to(ROOT)}")
+        for output in run.get("outputs", []):
+            if not isinstance(output, dict):
+                errors.append(f"non-object derived output record: {run_path.relative_to(ROOT)}")
+                continue
+            path = ROOT / str(output.get("path", ""))
+            checked += 1
+            if not path.is_file():
+                errors.append(f"missing derived output: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+            elif sha256(path) != output.get("sha256"):
+                errors.append(f"derived output hash mismatch: {path.relative_to(ROOT)}")
+        for record in run.get("tool_records", []):
+            if not isinstance(record, dict):
+                errors.append(f"non-object tool record: {run_path.relative_to(ROOT)}")
+                continue
+            path = ROOT / str(record.get("output", ""))
+            if not path.is_file():
+                errors.append(f"missing tool record output: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+            elif sha256(path) != record.get("sha256"):
+                errors.append(f"tool record hash mismatch: {path.relative_to(ROOT)}")
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     originals = verify_originals(errors)
     sources = verify_public_sources(errors)
     comparisons = verify_third_party_manifest(errors)
+    derived = verify_derived_outputs(errors)
     if errors:
         print("Reverse-engineering corpus verification failed:")
         print("\n".join(f"- {error}" for error in errors))
         return 1
-    print(f"Reverse-engineering corpus verified: {originals} originals, {sources} public source files, {comparisons} third-party comparison records.")
+    print(f"Reverse-engineering corpus verified: {originals} originals, {sources} public source files, {comparisons} third-party comparison records, {derived} derived outputs.")
     return 0
 
 

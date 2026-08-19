@@ -1,0 +1,6 @@
+{
+  "producer": "Ghidra ExportDAADAnalysis",
+  "program": "DS48IE.P3F",
+  "min_address": "ram:0000",
+  "max_address": "ram:1fff"
+}
