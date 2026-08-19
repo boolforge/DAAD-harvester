@@ -10,6 +10,36 @@ DAAD, the *Diseñador de Aventuras AD*, was created for Aventuras AD and support
 
 *This is a capture from the production TUI renderer against a completed live Internet Archive run. It shows six catalog-backed Amstrad CPC candidates selected before lower-priority sources; it is not a mockup or fabricated interface.*
 
+## Platform coverage
+
+DAAD’s official target scope is broader than any single archive, and the harvester keeps that distinction visible. The first column describes systems targeted by the DAAD toolchain; the second describes what the harvester currently recognizes, prioritizes, or organizes. A disk-image suffix alone never proves a platform.
+
+| Target system | DAAD target support | Harvester handling today | Classified-library folder |
+| --- | --- | --- | --- |
+| ZX Spectrum | Official target. | Discovers TAP, TZX, and source-specific disk archives; Spectrum sources are catalog-aware. | `library/ZX/` |
+| Amstrad CPC | Official target. | Uses Internet Archive CPC metadata, extracts CP/M files from CPC DSK images, and prioritizes evidenced known-title releases. | `library/CPC/` |
+| Commodore 64 | Official target. | Handles D64 artifacts and platform metadata. | `library/C64/` |
+| Commodore Plus/4 and C16 with 64K | Official target. | Catalog and source evidence can be retained; a dedicated container parser is not yet implemented. | `library/UNKNOWN/` until source evidence maps it. |
+| MSX | Official target. | Catalog and source metadata are retained; MSX disk-layout extraction remains a future parser task. | `library/MSX/` when source evidence is available. |
+| Amstrad PCW | Official target. | Catalog evidence is retained; no dedicated PCW media parser is claimed. | `library/UNKNOWN/` until source evidence maps it. |
+| Atari ST | Official target. | Classifies ST and MSA artifacts; source metadata takes precedence. | `library/ATARIST/` |
+| Amiga | Official target. | Classifies ADF and ADZ artifacts and queries Amiga-oriented sources. | `library/AMIGA/` |
+| IBM PC / DOS | Official target. | Classifies executable and database candidates where source evidence supports PC/DOS. | `library/PC/` |
+
+The official DAAD repository lists all of the target systems above.[1] The library’s platform name reflects the evidence stored with an artifact, not a promise that the project can emulate or play it.
+
+## One-line installation
+
+Use the line matching your environment. These commands install the repository directly from GitHub; Git is required. The detailed section below explains optional legacy extraction tools.
+
+| Environment | One-line installation |
+| --- | --- |
+| Linux / macOS with Python and Git | `python3 -m pip install --user --upgrade "git+https://github.com/boolforge/DAAD-harvester.git"` |
+| Debian / Ubuntu, including common legacy extractors | `sudo apt-get update && sudo apt-get install -y python3-pip git 7zip unzip unar libarchive-tools unrar-free cabextract arj lhasa && python3 -m pip install --user --upgrade "git+https://github.com/boolforge/DAAD-harvester.git"` |
+| macOS with Homebrew | `brew install python git p7zip unar unrar cabextract arj lhasa && python3 -m pip install --user --upgrade "git+https://github.com/boolforge/DAAD-harvester.git"` |
+| Windows PowerShell with Python and Git | `py -m pip install --user --upgrade "git+https://github.com/boolforge/DAAD-harvester.git"` |
+| Android with Termux | `pkg update -y && pkg upgrade -y && pkg install -y python git clang make pkg-config libffi && python -m pip install --upgrade pip setuptools wheel && python -m pip install "git+https://github.com/boolforge/DAAD-harvester.git"` |
+
 ## What problem does it solve?
 
 Retro-game preservation needs more than a broad scraper. A naïve crawler accumulates HTML pages, purchase gates, dead links, screenshots, files for other authoring systems, and disconnected copies of a title. That creates a false appearance of coverage while wasting bandwidth and making provenance impossible to audit.
@@ -67,9 +97,9 @@ Each adapter is evaluated by its direct-artifact contract, not merely whether a 
 | Planet Emulation | CPC metadata and individual-file pages. | Its own FAQ states that browser download is the supported method and that temporary links are user-specific; it is not automated.[9] |
 | itch.io, IFDB, web search, and IF Archive | Opportunistic evidence or discovery. | A page, account, payment, or gated link is never queued as an artifact. Broad IF Archive crawling is intentionally disabled. |
 
-## Installation
+## Detailed installation and Android Termux
 
-DAAD Harvester is a Python package with a console entry point. Python 3.10 or newer is required.
+DAAD Harvester is a Python package with a console entry point. Python 3.10 or newer is required. The one-line commands above are the fastest path; cloning the repository remains the preferred development workflow.
 
 ```bash
 git clone https://github.com/boolforge/DAAD-harvester.git
@@ -85,6 +115,22 @@ daad-harvester --help
 ```
 
 Install `.` instead of `.[dev]` when test dependencies are not needed.
+
+### Android with Termux
+
+[Termux][10] is an Android terminal and Linux environment that uses APT-style package management without requiring root. Its Python documentation supports `pkg install python` and recommends a native build toolchain for packages with compiled components.[11] Install the official Termux build from its linked F-Droid or GitHub distribution, not an abandoned third-party package source.
+
+The one-line command above installs the app-local runtime. After installation, verify the command and, if you want output visible to Android file managers, grant storage access once and choose a shared output directory.
+
+```bash
+termux-setup-storage
+daad-harvester --version
+daad-harvester --phase discover --output-dir ~/storage/shared/DAAD-Harvester
+```
+
+A Bluetooth keyboard and a reasonably wide terminal viewport make the optional Rich TUI more comfortable. The core pipeline remains fully usable without the TUI. Optional legacy extractor packages vary by Termux repository and device architecture; install only available packages after the base pipeline works.
+
+### Ubuntu or Debian legacy extractors
 
 For broad legacy-archive support on Debian or Ubuntu, install the optional system extractors.
 
@@ -116,12 +162,13 @@ Next, acquire only the highest-priority low-hanging fruit. The following command
 daad-harvester --phase fetch --parallel 2 --max-sources 6 --output-dir ./output
 ```
 
-Then extract, fingerprint, and synthesize the bounded batch.
+Then extract, fingerprint, synthesize, and organize the bounded batch. The final organization step creates a platform/game tree with runnable media under `ready_to_use/` and keeps auxiliary files in a separate labeled folder.
 
 ```bash
 daad-harvester --phase unpack --parallel 2 --output-dir ./output
 daad-harvester --phase fingerprint --output-dir ./output
 daad-harvester --phase synthesize --output-dir ./output
+daad-harvester --phase organize --output-dir ./output
 ```
 
 Run the complete pipeline only after reviewing the queue and selecting a rate appropriate for each archive.
@@ -140,7 +187,8 @@ daad-harvester --phase all --parallel 2 --output-dir ./output
 | `--phase unpack` | Files have downloaded. | Reconstructs CPC CP/M files from CPC DSK images instead of copying track data into every entry. |
 | `--phase fingerprint` | You need binary-level DAAD evidence. | A non-match is retained as a useful result; no version is fabricated. |
 | `--phase synthesize` | You need outputs for verified artifacts. | Produces the normal catalog, detection candidates, and report. |
-| `--phase all` | The queue and network settings are already reviewed. | Runs discover → catalog → fetch → unpack → fingerprint → synthesize. |
+| `--phase organize` | Processing has completed and you want usable folders. | Builds `library/<PLATFORM>/<GAME>/` and preserves both runnable artifacts and provenance. |
+| `--phase all` | The queue and network settings are already reviewed. | Runs discover → catalog → fetch → unpack → fingerprint → synthesize → organize. |
 | `--tui` | You are in an interactive terminal. | Starts the real Rich dashboard. Tab 2 displays the priority acquisition queue. |
 
 The TUI is optional and should be run from a real terminal.
@@ -160,6 +208,8 @@ daad-harvester --phase fetch --max-sources 6 --parallel 2 --tui --output-dir ./o
 | `daad_catalog.json` | Catalog synthesized from binary-verified DAAD artifacts. |
 | `detection_tables.h` | Candidate C++ detection entries generated from verified artifacts. |
 | `report.md` | Human-readable summary from persisted state. |
+| `library/` | Classified platform/game folders. Direct disk, tape, executable, ROM, and program-image artifacts are placed in `ready_to_use/`; archive and support files remain clearly labeled. |
+| `library/manifest.json` | Provenance manifest with original paths, source URL, hash, platform evidence, classification, and materialization method. |
 | `logs/` | Discovery, download, compression, error, and game-identification logs. |
 
 ## Validation and current boundary
@@ -185,6 +235,7 @@ This distinction is intentional. The catalog establishes that the six titles are
 | The fingerprint stage reports zero matches. | The artifact may be non-DAAD, wrapped, compressed, or not yet supported by the parser. | Keep the result and hashes; do not re-label it manually as verified. |
 | A response is rejected as HTML or JSON. | The URL resolved to a page, error, login, or purchase flow. | Treat the rejection as correct behavior and inspect that adapter’s contract. |
 | A historical site has a temporary or gated download. | The site does not provide a safe unattended direct-file contract. | Keep it as catalog evidence, not an automated fetch source. |
+| A file is under `support_or_unknown/` instead of `ready_to_use/`. | It is an auxiliary, archive, or unrecognized format. | Keep it for provenance; only direct runnable formats are promoted automatically. |
 
 ## Responsible use
 
@@ -205,3 +256,5 @@ This repository is licensed under the MIT License. See [LICENSE](LICENSE).
 [7]: https://api.zxinfo.dk/v3/ "ZXInfo API v3"
 [8]: https://worldofspectrum.org/archive/software/text-adventures/la-aventura-original-aventuras-ad-sa "World of Spectrum: La Aventura Original"
 [9]: https://www.planetemu.net/faq/les-telechargements-sur-le-site "Planet Emulation download FAQ"
+[10]: https://termux.dev/en/ "Termux official website"
+[11]: https://wiki.termux.com/wiki/Python "Termux Wiki: Python"
