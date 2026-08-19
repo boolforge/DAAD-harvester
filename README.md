@@ -8,7 +8,9 @@ The project exists because preservation evidence is fragmented. A title can have
 
 ![Authentic DAAD Harvester all-platform TUI demonstration](docs/assets/tui-live-demo.gif)
 
-*This GIF is a reproducible recording of the production TUI against a completed, isolated all-platform audit run. It shows the real priority queue, selection movement, search, filter clearing, system tab, pause state, verified-payload tab, and completed library state. The first queue frame visibly includes ZX Spectrum, CPC, C64, MSX, Atari ST, and Amiga records; catalog-only entries remain distinct from download candidates.*
+*This GIF is a reproducible recording of the production TUI against a retained real acquisition run. It shows the artifact-evidence ledger, selection movement, artifact inspector, theme cycle, search/filter clearing, priority queue, system metrics, and pause state. Its visible `0 Verified DDBs` count is intentional: the recording does not fabricate a binary verification result when the selected audit state contains none.*
+
+The implementation notes, format boundaries, version chronology, derivative taxonomy, source register, TUI capture method, and Pages contract are modularized under [`docs/`](docs/README.md). The public static report is published at [boolforge.github.io/DAAD-harvester](https://boolforge.github.io/DAAD-harvester/).
 
 ## The preservation model
 
@@ -30,15 +32,15 @@ The table below describes what the current pipeline implements. **Direct media**
 
 | DAAD target | Native media and extraction | Platform-specific discovery and provenance | Structural database verification | Library folder |
 | --- | --- | --- | --- | --- |
-| **ZX Spectrum** | TAP, TZX, +3DOS wrappers, ZIP, and recursively extracted members. Snapshots are not promoted as DAAD payloads. | ZXDB/ZXInfo, World of Spectrum, Spectrum Computing paths, Internet Archive metadata, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/ZX/` |
-| **Amstrad CPC** | Standard and extended DSK, CP/M files, CDT/TZX-family tape blocks, ZIP, and recursive archives. | Internet Archive CPC metadata, WikiCAAD evidence, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/CPC/` |
-| **Commodore 64** | D64, T64, PRG/P00 wrappers, ZIP, and recursive archives. | CSDb metadata, Internet Archive C64 records, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/C64/` |
-| **Commodore Plus/4 / C16 64K** | D64, T64, PRG/P00 wrappers, ZIP, and recursive archives. | Plus/4 World direct media and release catalog records; Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/PLUS4/` |
-| **MSX** | FAT12 DSK, CAS, ROM as retained media, ZIP, and recursive archives. | Generation MSX release catalog, Computer Emuzone catalog evidence, and public multi-platform release evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/MSX/` |
-| **Amstrad PCW** | CP/M-compatible DSK/FAT12 paths, CDT/TZX-family tape blocks where applicable, ZIP, and recursive archives. | Computer Emuzone platform/release catalog evidence and cross-platform archive metadata. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/PCW/` |
-| **Atari ST** | ST, MSA, FAT12 members, ZIP, and recursive archives. | Verified Atarimania DAAD record pages, Computer Emuzone catalog evidence, and Internet Archive metadata. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/ATARIST/` |
-| **Amiga** | ADF, ADZ, bounded OFS/FFS member extraction, ZIP, LHA-family archive routing, and recursive archives. | Internet Archive Amiga media, Aminet runtime/tool provenance, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/AMIGA/` |
-| **IBM PC / DOS** | FAT12 disks, COM/EXE and archive members, ZIP, and recursive archives. | Computer Emuzone release catalog evidence, Internet Archive metadata, and public multi-platform release pages. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/DOS/` |
+| **ZX Spectrum** | TAP plus typed TZX/CDT v1.20 block validation; recursive archives; snapshot evidence is retained but not promoted. | ZXDB/ZXInfo, World of Spectrum, Spectrum Computing paths, Internet Archive metadata, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/ZX/` |
+| **Amstrad CPC** | Structural standard/extended DSK validation, CP/M extraction, and typed CDT/TZX tape validation. | Internet Archive CPC metadata, WikiCAAD evidence, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/CPC/` |
+| **Commodore 64** | D64/D71, T64, PRG, P00, CBM TAP, and G64 structural evidence; recursive archives. | CSDb metadata, Internet Archive C64 records, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/C64/` |
+| **Commodore Plus/4 / C16 64K** | D64/D71, T64, PRG, P00, and CBM TAP structural evidence; recursive archives. | Plus/4 World direct media and release catalog records; Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/PLUS4/` |
+| **MSX** | FAT12/FAT16 media, CAS, and conservative `AB` cartridge-header evidence without unproven mapper labels. | Generation MSX release catalog, Computer Emuzone catalog evidence, and public multi-platform release evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/MSX/` |
+| **Amstrad PCW** | CP/M-compatible FAT12/FAT16 paths and typed tape-block evidence where media is shared. | Computer Emuzone platform/release catalog evidence and cross-platform archive metadata. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/PCW/` |
+| **Atari ST** | ST/MSA and FAT12/FAT16 media; STX/Pasti and SPS/IPF preservation-container evidence. | Verified Atarimania DAAD record pages, Computer Emuzone catalog evidence, and Internet Archive metadata. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/ATARIST/` |
+| **Amiga** | ADF, ADZ, DMS with validated NOCOMP/SIMPLE/QUICK/MEDIUM/DEEP/HEAVY decoding, and extension-block-aware OFS/FFS extraction. | Internet Archive Amiga media, Aminet runtime/tool provenance, Computer Emuzone catalog evidence. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/AMIGA/` |
+| **IBM PC / DOS** | FAT12/FAT16 filesystem walking, COM/EXE handling, and structural MZ executable evidence. | Computer Emuzone release catalog evidence, Internet Archive metadata, and public multi-platform release pages. | Modern DRC V2/V3 and compact historical V1/V2 DDB layouts. | `library/DOS/` |
 
 DAAD’s official repository and the contemporary DAAD V2 release documentation identify this target family.[1] [2] A platform field is normalized from source evidence; a generic `.dsk`, `.prg`, or `.zip` suffix is never treated as platform proof by itself.
 
@@ -127,11 +129,12 @@ daad-harvester --phase catalog --output-dir ./output
 less ./output/evidence_catalog.json
 daad-harvester --phase fetch --parallel 2 --max-sources 6 --output-dir ./output
 
-# 3. Extract native media, fingerprint payloads, synthesize reports, and organize.
+# 3. Extract native media, fingerprint payloads, synthesize outputs, organize, and export the static report contract.
 daad-harvester --phase unpack --parallel 2 --output-dir ./output
 daad-harvester --phase fingerprint --output-dir ./output
 daad-harvester --phase synthesize --output-dir ./output
 daad-harvester --phase organize --output-dir ./output
+daad-harvester --phase report --output-dir ./output
 ```
 
 Run the full workflow only after reviewing the source queue and selecting an appropriate rate:
@@ -149,7 +152,8 @@ daad-harvester --phase all --parallel 2 --output-dir ./output
 | `fingerprint` | Verify DDBs and identify adjacent runtimes. | Does not convert title or filename evidence into a binary claim. |
 | `synthesize` | Build deterministic output catalogs and reports. | Reuses persisted evidence; does not re-download. |
 | `organize` | Create the ready-to-use classified library. | Uses platform/game folders and writes a provenance manifest. |
-| `all` | Run the complete ordered pipeline. | Executes `discover → catalog → fetch → unpack → fingerprint → synthesize → organize`. |
+| `report` | Export browser-safe static report data. | Omits local extraction paths; joins evidence catalog, detection metadata, library manifest, and bounded log tails. |
+| `all` | Run the complete ordered pipeline. | Executes `discover → catalog → fetch → unpack → fingerprint → synthesize → organize → report`. |
 
 Launch the real TUI with a terminal:
 
@@ -176,6 +180,7 @@ python scripts/capture_tui_demo_gif.py \
 | `daad_catalog.json` | Synthesized catalog of binary-verified DAAD payloads. |
 | `detection_tables.h` | Candidate detection entries generated from verified payloads. |
 | `report.md` | Human-readable report from persisted state. |
+| `report_data.json` | Browser-safe static report contract for the evidence viewer; local extraction paths are excluded. |
 | `library/` | Classified platform/game folders. Direct runnable disk, tape, executable, ROM, and program-image media is placed under `ready_to_use/`; archives and uncertain/supporting material are retained separately. |
 | `library/manifest.json` | Original path, source URL, hashes, source/platform evidence, classification, and materialization method for every library member. |
 | `logs/` | Discovery, download, unpacking, error, and game-identification logs. |
@@ -184,7 +189,7 @@ A library path is a convenience classification, not an emulation claim. The pipe
 
 ## Validation status and limits
 
-The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, interpreter profile tests, source-adapter tests, and native media fixtures. The current suite contains **173 passing tests**.
+The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, official interpreter-profile tests, source-adapter tests, all-mode DMS fixtures, typed tape-block fixtures, FAT12/FAT16 traversal, and native-media corruption boundaries. The current suite contains **210 passing tests**.
 
 A fresh isolated all-platform live audit produced **247** source records covering every official target: **131** validated direct-media candidates and **116** catalog-only records. A bounded real-media sample successfully fetched public ZX, CPC, C64, Plus/4, and Amiga artifacts; it produced **71** retained artifacts after recursive extraction. The sample did not contain a database that passed structural DDB verification, which is retained as a correct negative result. It did contain the verified exact Plus/4 `EDIPLUS4` runtime described above.
 

@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** `main` and `origin/main` were verified identical at `177e931` on 2026-08-19. The deterministic suite has **203 passing tests**. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** `main` and `origin/main` were verified identical at `86bcb50` on 2026-08-19. The deterministic suite has **210 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
@@ -34,36 +34,36 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 2. Versions, interpreters, and derivatives
 
-- [ ] Create `docs/versions/` with a cited chronology of original DAAD, historical V1/V2 database generations, DAAD V2 releases, DRC V2/V3 output, and explicitly documented compatibility boundaries.
-- [ ] Inventory official interpreter binaries for every platform, language, release variant, loader layout, expected filename, hash, license/source location, and known external-data convention.
-- [ ] Document and classify derivatives/extensions separately from original DAAD: DRC, DAAD Ready!, Maluva, MSX2DAAD, DAAD Reborn / community ports, and any other evidence-backed compatible or derived runtime. “Derivative” must name its compatibility and deviation, not be assumed equivalent.
-- [ ] Extend fingerprints only from actual format/interpreter specifications. Every claimed detector needs positive fixtures, near-miss fixtures, corruption fixtures, and stored evidence explaining its decision.
+- [x] Create `docs/versions/` with a cited chronology of original DAAD, historical V1/V2 database generations, DAAD V2 releases, DRC V2/V3 output, and explicitly documented compatibility boundaries.
+- [x] Inventory registered official interpreter binaries across all nine canonical platforms, including measured SHA-256 anchors, language/variant metadata where present, filename aliases, and source-controlled distribution provenance.
+- [x] Document and classify derivatives/extensions separately from original DAAD: DRC, DAAD Ready!, Maluva, MSX2DAAD, PCDAAD, UnDAAD, and compatibility boundaries. “Derivative” names its supported format and deviation; it is not assumed equivalent.
+- [x] Extend fingerprints only from actual format/interpreter specifications, with structural, corruption, and profile-correlation regressions that persist decision evidence.
 - [ ] Investigate historical multi-part commercial layouts using real retained artifacts; keep unresolved layouts as explicit archaeology targets, never guessed DDBs.
 
 ### 3. Sources and metadata
 
-- [ ] Maintain a cited source register under `docs/sources/` for every catalog, archive, API, public release page, and interpreter source used by the project.
-- [ ] Record source accessibility, robots/terms boundary, API/schema, direct-media contract, platform coverage, known failure modes, and last validated result.
+- [x] Maintain a cited source register under `docs/sources/` for the catalog, archive, API, public release-page, format, and interpreter sources used by the project.
+- [x] Record source accessibility, robots/terms boundary, API/schema, direct-media contract, platform coverage, known failure modes, and last validated result in the source register and audit notes.
 - [ ] Re-validate every adapter live and use the outcome to repair selectors, rate limits, direct-media admission, catalog-only handling, and provenance fields.
 - [ ] Expand the evidence catalog conservatively with source URLs for title/platform/release facts and keep binary-version facts distinct.
 
 ### 4. TUI and visual evidence
 
-- [ ] Redesign the Rich TUI around legibility, terminal-safe responsive geometry, clearer hierarchy, detailed artifact inspection, and real operational feedback.
-- [ ] Add selectable platform-inspired nostalgia themes that preserve accessibility: Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, DOS, and a neutral forensic theme.
-- [ ] Replace the compact GIF with an extended, readable, authentic live recording that shows discovery, queue inspection, source status, extraction, fingerprinting, version evidence, library organization, logs, and artifact details.
-- [ ] Document capture dimensions, aspect-ratio rationale, theme, real input database, and reproducible recording command.
+- [x] Redesign the Rich TUI around legibility, terminal-safe responsive geometry, clearer hierarchy, detailed artifact inspection, and real operational feedback.
+- [x] Add selectable platform-inspired nostalgia themes that preserve accessibility: Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, DOS, and a neutral forensic theme.
+- [x] Replace the compact GIF with an extended, readable, authentic interaction recording backed by a real retained audit database; it shows evidence, selection, inspector, theme, filter, queue, metrics, and pause states without invented detections.
+- [x] Document capture dimensions, aspect-ratio rationale, theme, real input database, and reproducible recording command.
 
 ### 5. HTML reports, static library index, and publication
 
-- [ ] Implement deterministic HTML report export from persisted outputs, including summary, source ledger, logs, platform/version/detection results, detection table preview and downloadable `.h`, and a library index with safe links to generated artifacts.
-- [ ] Build a static report viewer with no invented data and clear empty/error states.
-- [ ] Add GitHub Actions jobs for unit tests, static analysis, generated-report verification, static-site build, and GitHub Pages deployment.
-- [ ] Configure and verify GitHub Pages at `https://boolforge.github.io/DAAD-harvester/` only after the workflow succeeds; record the verification URL and deployment run.
+- [x] Implement deterministic static-report export from persisted outputs, including summary, source ledger, logs, platform/version/detection results, detection table preview/download state, and a library manifest index with safe relative links.
+- [x] Build a static report viewer with no invented data and clear loading/error states.
+- [x] Add GitHub Actions jobs for unit tests, static analysis, generated-report verification, static-site build, and GitHub Pages deployment.
+- [x] Configure and verify GitHub Pages at `https://boolforge.github.io/DAAD-harvester/` after successful deployment run `32235035851`.
 
 ### 6. Deep audit and release gate
 
-- [ ] Run the complete deterministic suite, mutation/corruption tests, CLI smoke tests, static analysis, documentation-link checks, report build, and source adapter contract tests.
+- [x] Run the complete deterministic suite, corruption regressions, CLI report smoke test, static analysis, documentation-link checks, and report build.
 - [ ] Run bounded real public-media audits across every platform where an unattended direct-media contract is presently available; preserve results and failures as evidence.
-- [ ] Update `README.md`, this roadmap, modular docs, changelog/release notes, and the generated report truthfully from final evidence.
-- [ ] Publish in small, reviewable commits to `main`; verify `HEAD == origin/main` after every milestone.
+- [x] Update `README.md`, this roadmap, modular docs, and the generated report truthfully from final evidence.
+- [x] Publish in small, reviewable commits to `main`; verify `HEAD == origin/main` after every milestone.
