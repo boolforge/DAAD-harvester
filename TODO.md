@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** `main` and `origin/main` were verified identical at `d97b608` on 2026-08-19. The deterministic suite has **173 passing tests**. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** `main` and `origin/main` were verified identical at `177e931` on 2026-08-19. The deterministic suite has **203 passing tests**. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
@@ -22,9 +22,13 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 1. Complete format and archive coverage
 
-- [ ] Publish `docs/formats/FORMAT_CAPABILITY_MATRIX.md` listing every input family, extension, magic, platform ambiguity, wrapper, expected member model, implementation owner, test corpus, and real-artifact result.
+- [x] Publish `docs/formats/FORMAT_CAPABILITY_MATRIX.md` listing every input family, extension, magic, platform ambiguity, wrapper, expected member model, implementation owner, test corpus, and real-artifact result.
+- [x] Validate DMS archive and every track through CRC-16/ARC plus additive checksum; decode NOCOMP, SIMPLE, QUICK, MEDIUM, DEEP, HEAVY1, and HEAVY2 with deterministic mode fixtures and bounded failure paths.
+- [x] Validate typed TZX/CDT v1.20 block streams, including all standardized data, control-flow, metadata, and extension boundaries, while retaining control evidence rather than replaying tape control graphs.
+- [x] Extract bounded FAT12/FAT16 filesystems, including validated VFAT short/long-name association and directory chains; validate DOS MZ header structure; inspect DMS, STX/Pasti, and SPS/IPF preservation evidence.
+- [x] Extract FFS files spanning validated Amiga extension-header chains without silently truncating continuation blocks.
 - [ ] Replace any “limited,” heuristic, or filename-dependent path with documented native parsing or a deliberately rejected unsupported state. Do not silently fall back to blind copying.
-- [ ] Cover the complete required family of DAAD-relevant containers and media: TAP/TZX/CDT; +3DOS; CPC standard/extended DSK; C64/Plus4 D64, T64, PRG, P00; MSX/PCW/DOS FAT12 DSK; MSX CAS and ROM; Atari ST ST and MSA; Amiga ADF, ADZ, DMS, LHA/LZH; DOS COM/EXE; and nested ZIP/7z/RAR/LHA/ARJ/cab/gzip/tar where legally and technically applicable.
+- [ ] Cover the complete required family of DAAD-relevant containers and media: TAP/TZX/CDT; +3DOS; CPC standard/extended DSK; C64/Plus4 D64, T64, PRG, P00; MSX/PCW/DOS FAT12/FAT16 DSK; MSX CAS and ROM; Atari ST ST, MSA, STX/IPF evidence; Amiga ADF, ADZ, DMS, LHA/LZH; DOS COM/EXE; and nested ZIP/7z/RAR/LHA/ARJ/cab/gzip/tar where legally and technically applicable.
 - [ ] Add strict bounds, checksum/geometry validation, corruption cases, recursive provenance, decompression limits, and negative controls for every parser.
 - [ ] Add public real-artifact audit fixtures or reproducible acquisition manifests where redistribution is not permitted.
 
