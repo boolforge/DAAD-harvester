@@ -15,6 +15,7 @@ from daad_harvester.fingerprint import Fingerprinter
 from daad_harvester.synthesize import Synthesizer
 from daad_harvester.report import ReportGenerator
 from daad_harvester.catalog import EvidenceCatalogExporter
+from daad_harvester.library import LibraryBuilder
 from daad_harvester.tui import TUIDashboard
 
 logger = structlog.get_logger(__name__)
@@ -27,7 +28,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--phase",
-        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "all"],
+        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "organize", "all"],
         default="all",
         help="Pipeline phase to execute (default: all)"
     )
@@ -163,7 +164,15 @@ def main() -> None:
             reporter = ReportGenerator(db, output_dir=settings.output_dir)
             report_path = reporter.generate_report(collisions=collisions)
 
-            logger.info("pipeline_completed_successfully", catalog=str(json_path), header=str(header_path), report=str(report_path))
+            logger.info("pipeline_synthesis_completed", catalog=str(json_path), header=str(header_path), report=str(report_path))
+
+        # Phase 7: Classify retained artifacts into a ready-to-use library
+        if phase in ("organize", "all"):
+            if dashboard:
+                dashboard.set_active_phase("7. ORGANIZE")
+            logger.info("executing_phase_organize")
+            library_path = LibraryBuilder(db, output_dir=settings.output_dir).build()
+            logger.info("pipeline_completed_successfully", library_manifest=str(library_path))
 
         if dashboard:
             dashboard.set_active_phase("COMPLETED")
