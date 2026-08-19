@@ -108,6 +108,21 @@ def _d64(payload: bytes = b"\x01\x08DAAD") -> bytes:
     return bytes(image)
 
 
+def _d71_second_side(payload: bytes = b"\x01\x08D71") -> bytes:
+    image = bytearray(349696)
+    # The side-one BAM directory points to a normal side-two file chain.
+    directory_offset = (17 * 21 + 1) * 256
+    image[directory_offset:directory_offset + 2] = b"\x00\x00"
+    entry = directory_offset + 2
+    image[entry] = 0x82
+    image[entry + 1:entry + 3] = b"\x24\x00"  # track 36, sector 0
+    image[entry + 3:entry + 19] = b"SECOND SIDE".ljust(16, b"\xa0")
+    side_two = 174848
+    image[side_two + 1] = len(payload) + 1
+    image[side_two + 2:side_two + 2 + len(payload)] = payload
+    return bytes(image)
+
+
 def _unpacker(tmp_path: Path) -> Unpacker:
     return Unpacker(Database(tmp_path / "state.db"), extract_dir=tmp_path / "extracted")
 
@@ -118,6 +133,13 @@ def test_extracts_t64_c64_and_plus4_style_prg(tmp_path: Path) -> None:
 
 def test_extracts_correctly_offset_c64_d64_directory_entry(tmp_path: Path) -> None:
     assert _unpacker(tmp_path).unpack_d64(_d64()) == [("ADVENTURE", b"\x01\x08DAAD")]
+
+
+def test_extracts_d71_file_chain_from_second_side(tmp_path: Path) -> None:
+    unpacker = _unpacker(tmp_path)
+    image = _d71_second_side()
+    assert unpacker.unpack_d71(image) == [("SECOND SIDE", b"\x01\x08D71")]
+    assert unpacker.identify_container_format("adventure.d71", image) == "c64-d71"
 
 
 def test_extracts_tzx_and_cdt_standard_blocks(tmp_path: Path) -> None:

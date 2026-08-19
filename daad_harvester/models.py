@@ -114,6 +114,10 @@ class ArtifactRecord:
     interpreter_version: Optional[str] = None
     fingerprint_confidence: Optional[str] = None
     fingerprint_evidence_json: Optional[str] = None
+    media_parser: Optional[str] = None
+    media_status: Optional[str] = None
+    media_validation: Optional[str] = None
+    media_evidence_json: Optional[str] = None
 
 
 @dataclass

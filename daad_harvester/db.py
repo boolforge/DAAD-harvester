@@ -82,6 +82,10 @@ CREATE TABLE IF NOT EXISTS artifacts (
     interpreter_version TEXT,
     fingerprint_confidence TEXT,
     fingerprint_evidence_json TEXT,
+    media_parser TEXT,
+    media_status TEXT,
+    media_validation TEXT,
+    media_evidence_json TEXT,
     FOREIGN KEY (source_id) REFERENCES sources(id)
 );
 
@@ -164,6 +168,8 @@ class Database:
                 "ddb_major_version": "INTEGER", "ddb_encoding": "TEXT",
                 "interpreter_identity": "TEXT", "interpreter_version": "TEXT",
                 "fingerprint_confidence": "TEXT", "fingerprint_evidence_json": "TEXT",
+                "media_parser": "TEXT", "media_status": "TEXT",
+                "media_validation": "TEXT", "media_evidence_json": "TEXT",
             }
             for col, column_type in extra_cols.items():
                 if col not in cols:
@@ -407,10 +413,11 @@ class Database:
                     title, year, publisher, author, language, container_format,
                     container_member, measured_platform, ddb_format, ddb_major_version,
                     ddb_encoding, interpreter_identity, interpreter_version,
-                    fingerprint_confidence, fingerprint_evidence_json
+                    fingerprint_confidence, fingerprint_evidence_json,
+                    media_parser, media_status, media_validation, media_evidence_json
                 ) VALUES (
                     ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
                 )
                 """,
                 (
@@ -455,6 +462,10 @@ class Database:
                     artifact.interpreter_version,
                     artifact.fingerprint_confidence,
                     artifact.fingerprint_evidence_json,
+                    artifact.media_parser,
+                    artifact.media_status,
+                    artifact.media_validation,
+                    artifact.media_evidence_json,
                 )
             )
             conn.commit()
@@ -465,6 +476,34 @@ class Database:
             conn.execute(
                 "UPDATE artifacts SET unpacked = ? WHERE id = ?",
                 (unpacked, artifact_id)
+            )
+            conn.commit()
+
+    def update_artifact_media(
+        self,
+        artifact_id: int,
+        *,
+        parser: str,
+        status: str,
+        validation: str,
+        evidence_json: Optional[str] = None,
+    ) -> None:
+        """Persist a native-media parser decision for forensic reporting.
+
+        ``status`` is deliberately descriptive rather than Boolean: an image
+        can be structurally recognized, protected, rejected, partially
+        recovered, or fully extracted. Callers must not encode a partial
+        result as ``extracted``.
+        """
+        with self.get_connection() as conn:
+            conn.execute(
+                """
+                UPDATE artifacts
+                SET media_parser = ?, media_status = ?, media_validation = ?,
+                    media_evidence_json = ?
+                WHERE id = ?
+                """,
+                (parser, status, validation, evidence_json, artifact_id),
             )
             conn.commit()
 
@@ -633,6 +672,10 @@ class Database:
             interpreter_version=row["interpreter_version"] if "interpreter_version" in keys else None,
             fingerprint_confidence=row["fingerprint_confidence"] if "fingerprint_confidence" in keys else None,
             fingerprint_evidence_json=row["fingerprint_evidence_json"] if "fingerprint_evidence_json" in keys else None,
+            media_parser=row["media_parser"] if "media_parser" in keys else None,
+            media_status=row["media_status"] if "media_status" in keys else None,
+            media_validation=row["media_validation"] if "media_validation" in keys else None,
+            media_evidence_json=row["media_evidence_json"] if "media_evidence_json" in keys else None,
         )
 
     def get_all_artifacts(self) -> List[ArtifactRecord]:

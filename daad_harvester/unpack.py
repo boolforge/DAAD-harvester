@@ -1,5 +1,6 @@
 """Recursive unpacker module supporting archives, disk images, tape dumps, and memory snapshots."""
 
+import json
 import re
 import zlib
 import zipfile
@@ -43,9 +44,11 @@ from daad_harvester.platform_media import (
     extract_adf,
     extract_fat12,
     extract_msx_cas,
+    extract_p00,
     extract_t64,
     extract_tzx,
 )
+from daad_harvester.media_inspection import inspect_native_media
 
 logger = structlog.get_logger(__name__)
 
@@ -490,75 +493,87 @@ class Unpacker:
             logger.warning("dsk_parse_error", error=str(exc))
             return []
 
-    def unpack_d64(self, data: bytes) -> List[Tuple[str, bytes]]:
-        """Parse C64 .d64 disk image."""
-        extracted = []
-        if len(data) not in (174848, 196608, 175531, 197371):
+    def _unpack_cbm_dos(self, data: bytes, sides: int = 1) -> List[Tuple[str, bytes]]:
+        """Extract bounded CBM DOS file chains from D64 and D71 sector images."""
+        extracted: List[Tuple[str, bytes]] = []
+        base_size = 174848 * sides
+        error_size = base_size + (683 * sides)
+        if len(data) not in {base_size, error_size}:
             return extracted
 
+        def track_sector_offset(track: int, sector: int) -> int:
+            if not (1 <= track <= 35 * sides):
+                raise ValueError("track outside image geometry")
+            if track > 35:
+                return 174848 + track_sector_offset(track - 35, sector)
+            sector_count = 21 if track <= 17 else 19 if track <= 24 else 18 if track <= 30 else 17
+            if not (0 <= sector < sector_count):
+                raise ValueError("sector outside track geometry")
+            sectors_before = sum(
+                21 if current <= 17 else 19 if current <= 24 else 18 if current <= 30 else 17
+                for current in range(1, track)
+            )
+            return (sectors_before + sector) * 256
+
         try:
-            def track_sector_offset(t: int, s: int) -> int:
-                sectors_before = 0
-                for tr in range(1, t):
-                    if tr <= 17:
-                        sectors_before += 21
-                    elif tr <= 24:
-                        sectors_before += 19
-                    elif tr <= 30:
-                        sectors_before += 18
-                    else:
-                        sectors_before += 17
-                return (sectors_before + s) * 256
-
-            curr_t, curr_s = 18, 1
-            visited = set()
-            while curr_t != 0 and (curr_t, curr_s) not in visited:
-                visited.add((curr_t, curr_s))
-                offset = track_sector_offset(curr_t, curr_s)
-                if offset + 256 > len(data):
+            directory_track, directory_sector = 18, 1
+            directory_seen = set()
+            while directory_track and (directory_track, directory_sector) not in directory_seen:
+                directory_seen.add((directory_track, directory_sector))
+                offset = track_sector_offset(directory_track, directory_sector)
+                directory = data[offset:offset + 256]
+                if len(directory) != 256:
                     break
-                sec_data = data[offset:offset+256]
-                curr_t, curr_s = sec_data[0], sec_data[1]
-
-                for entry_idx in range(8):
-                    # C64 directory sectors reserve bytes 0-1 for the next
-                    # directory-sector link; each 32-byte entry starts at 2.
-                    entry_start = 2 + (entry_idx * 32)
-                    entry = sec_data[entry_start:entry_start + 32]
-                    if len(entry) != 32:
+                directory_track, directory_sector = directory[0], directory[1]
+                for entry_index in range(8):
+                    entry = directory[2 + entry_index * 32:34 + entry_index * 32]
+                    if len(entry) != 32 or not (entry[0] & 0x07):
                         continue
-                    file_type = entry[0]
-                    if file_type != 0:
-                        raw_name = entry[3:19].replace(b'\xa0', b' ').decode('ascii', errors='ignore').strip()
-                        file_t, file_s = entry[1], entry[2]
-
-                        file_bytes = bytearray()
-                        ft, fs = file_t, file_s
-                        fvisited = set()
-                        while ft != 0 and (ft, fs) not in fvisited:
-                            fvisited.add((ft, fs))
-                            foff = track_sector_offset(ft, fs)
-                            if foff + 256 > len(data):
+                    filename = entry[3:19].replace(b"\xa0", b" ").decode("ascii", errors="ignore").strip()
+                    file_track, file_sector = entry[1], entry[2]
+                    chain_seen = set()
+                    payload = bytearray()
+                    valid_chain = bool(filename)
+                    while file_track and (file_track, file_sector) not in chain_seen:
+                        chain_seen.add((file_track, file_sector))
+                        sector_offset = track_sector_offset(file_track, file_sector)
+                        sector = data[sector_offset:sector_offset + 256]
+                        if len(sector) != 256:
+                            valid_chain = False
+                            break
+                        file_track, file_sector = sector[0], sector[1]
+                        if file_track == 0:
+                            # Terminal byte one gives the used-byte count plus
+                            # one; only bytes two through count are payload.
+                            if not (1 <= file_sector <= 255):
+                                valid_chain = False
                                 break
-                            fsec = data[foff:foff+256]
-                            ft, fs = fsec[0], fsec[1]
-                            if ft == 0:
-                                # Final C64 sector byte 1 is the terminal
-                                # link/count byte; payload begins at byte 2.
-                                file_bytes.extend(fsec[2:fs+1])
-                            else:
-                                file_bytes.extend(fsec[2:256])
-
-                        if raw_name and len(file_bytes) > 0:
-                            extracted.append((raw_name, bytes(file_bytes)))
-        except Exception as exc:
-            logger.warning("d64_parse_error", error=str(exc))
-
+                            payload.extend(sector[2:file_sector + 1])
+                        else:
+                            payload.extend(sector[2:])
+                    if file_track != 0:
+                        valid_chain = False  # loop or invalid chain
+                    if valid_chain and payload:
+                        extracted.append((filename, bytes(payload)))
+        except (ValueError, IndexError) as exc:
+            logger.warning("cbm_dos_parse_error", error=str(exc), sides=sides)
         return extracted
+
+    def unpack_d64(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Parse a one-sided 35-track C64 D64 sector image."""
+        return self._unpack_cbm_dos(data, sides=1)
+
+    def unpack_d71(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Parse a double-sided 70-track C128/D71 CBM DOS sector image."""
+        return self._unpack_cbm_dos(data, sides=2)
 
     def unpack_t64(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Extract Commodore 64/Plus4 T64 tape members."""
         return extract_t64(data)
+
+    def unpack_p00(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Unwrap a Commodore P00 program image into its original PRG bytes."""
+        return extract_p00(data)
 
     def unpack_tzx(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Extract ZX Spectrum TZX or CPC CDT standard data blocks."""
@@ -631,8 +646,16 @@ class Unpacker:
             return "tzx" if ext != ".cdt" else "cdt"
         if data.startswith((b"EXTENDED CPC DSK", b"MV - CPCEMU")):
             return "cpc-dsk"
-        if len(data) in (174848, 196608, 175531, 197371) or ext == ".d64":
+        if data.startswith((b"C64-TAPE-RAW", b"C16-TAPE-RAW")):
+            return "cbm-tap"
+        if data.startswith((b"GCR-1541", b"GCR-1571")):
+            return "c64-g64"
+        if data.startswith(b"C64File\x00"):
+            return "commodore-p00"
+        if len(data) in (174848, 175531) or ext == ".d64":
             return "c64-d64"
+        if len(data) in (349696, 351062) or ext == ".d71":
+            return "c64-d71"
         if ext == ".t64":
             return "c64-t64"
         if data.startswith(b"\x0e\x0f") or ext == ".msa":
@@ -641,6 +664,8 @@ class Unpacker:
             return "amiga-adf"
         if data.startswith(b"\x1f\x8b") and ext == ".adz":
             return "amiga-adz"
+        if data.startswith(b"DMS!") or ext == ".dms":
+            return "amiga-dms"
         if ext == ".tap":
             return "zx-tap"
         if ext == ".cas":
@@ -669,8 +694,12 @@ class Unpacker:
         is_arc = data.startswith(b"\x1a") or ext == '.arc'
         is_cab = data.startswith(b"MSCF") or ext == '.cab'
         is_dsk = len(data) >= 0x100 and (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU"))
-        is_d64 = len(data) in (174848, 196608, 175531, 197371) or ext == '.d64'
+        is_d64 = len(data) in (174848, 175531) or ext == '.d64'
+        is_d71 = len(data) in (349696, 351062) or ext == '.d71'
         is_t64 = ext == '.t64' or (len(data) >= 40 and b"c64 tape image" in data[:40].lower())
+        is_p00 = data.startswith(b"C64File\x00") or ext == ".p00"
+        is_cbm_tap = data.startswith((b"C64-TAPE-RAW", b"C16-TAPE-RAW"))
+        is_g64 = data.startswith((b"GCR-1541", b"GCR-1571")) or ext in {".g64", ".g71"}
         is_tap = ext == '.tap'
         is_tzx = ext in {'.tzx', '.cdt'} or data.startswith(b"ZXTape!\x1a")
         is_msa = ext == '.msa' or data.startswith(b"\x0e\x0f")
@@ -723,10 +752,23 @@ class Unpacker:
             res = self.unpack_d64(data)
             if res:
                 return res
+        if is_d71:
+            res = self.unpack_d71(data)
+            if res:
+                return res
         if is_t64:
             res = self.unpack_t64(data)
             if res:
                 return res
+        if is_p00:
+            res = self.unpack_p00(data)
+            if res:
+                return res
+        if is_cbm_tap or is_g64:
+            # These are structurally inspected and retained as pulse/GCR
+            # evidence. They are not Spectrum TAP blocks and must never be
+            # passed through the Spectrum extractor.
+            return []
         if is_tap:
             res = self.unpack_tap(data)
             if res:
@@ -770,6 +812,7 @@ class Unpacker:
 
         hashes = compute_hashes(data)
         file_size = len(data)
+        inspection = inspect_native_media(filename, data)
 
         clean_filename = sanitize_filename(filename)
         dest_filename = f"depth{depth}_{hashes['md5_full'][:8]}_{clean_filename}"
@@ -813,12 +856,25 @@ class Unpacker:
             is_daad_payload=False,
             container_format=self.identify_container_format(filename, data),
             container_member=filename if depth else None,
+            media_parser=inspection.parser,
+            media_status=inspection.status,
+            media_validation=inspection.validation,
+            media_evidence_json=json.dumps(inspection.evidence, sort_keys=True),
         )
         artifact_id = self.db.add_artifact(artifact)
         artifact_ids.append(artifact_id)
 
         if depth >= settings.max_unpack_depth:
             self.db.update_artifact_unpacked(artifact_id, unpacked=True)
+            evidence = dict(inspection.evidence)
+            evidence["depth_limit"] = settings.max_unpack_depth
+            self.db.update_artifact_media(
+                artifact_id,
+                parser=inspection.parser,
+                status="recognized_evidence" if inspection.status != "unrecognized" else inspection.status,
+                validation="recursion_depth_limit",
+                evidence_json=json.dumps(evidence, sort_keys=True),
+            )
             return artifact_ids
 
         try:
@@ -832,9 +888,40 @@ class Unpacker:
                 )
                 artifact_ids.extend(sub_ids)
             self.db.update_artifact_unpacked(artifact_id, unpacked=True)
+            evidence = dict(inspection.evidence)
+            evidence["members_emitted"] = len(sub_items)
+            container_format = artifact.container_format
+            if sub_items:
+                status = "extracted"
+                validation = "validated_member_emission"
+            elif inspection.status != "unrecognized":
+                status = inspection.status
+                validation = inspection.validation
+            elif container_format:
+                status = "recognized_evidence"
+                validation = "container_recognized_without_member_emission"
+            else:
+                status = inspection.status
+                validation = inspection.validation
+            self.db.update_artifact_media(
+                artifact_id,
+                parser=inspection.parser if inspection.parser != "none" else (container_format or "none"),
+                status=status,
+                validation=validation,
+                evidence_json=json.dumps(evidence, sort_keys=True),
+            )
         except Exception as exc:
             logger.warning("artifact_unpack_exception", artifact_id=artifact_id, error=str(exc))
             self.logger_suite.log_compression_error(str(dest_path), "recursive", str(exc))
+            evidence = dict(inspection.evidence)
+            evidence["exception"] = str(exc)
+            self.db.update_artifact_media(
+                artifact_id,
+                parser=inspection.parser,
+                status="partial",
+                validation="unpack_exception",
+                evidence_json=json.dumps(evidence, sort_keys=True),
+            )
 
         return artifact_ids
 

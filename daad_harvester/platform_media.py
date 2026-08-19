@@ -155,6 +155,18 @@ def extract_t64(data: bytes) -> List[Member]:
     return entries
 
 
+def extract_p00(data: bytes) -> List[Member]:
+    """Unwrap a validated P00 program image without losing its PRG load bytes."""
+
+    if len(data) <= 26 or data[:8] != b"C64File\x00":
+        return []
+    name = _clean_name(data[8:25], "p00_program")
+    payload = data[26:]
+    if len(payload) < 2:
+        return []
+    return [(f"{name}.prg", payload)]
+
+
 def _fat12_next(table: bytes, cluster: int) -> Optional[int]:
     index = cluster + (cluster // 2)
     if index + 1 >= len(table):
