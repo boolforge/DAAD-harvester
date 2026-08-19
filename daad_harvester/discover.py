@@ -101,6 +101,20 @@ class Discoverer:
         return url.strip().split("#", 1)[0]
 
     @staticmethod
+    def _infer_platform_from_artifact_url(url: str) -> Optional[str]:
+        """Infer only platform hints that are unambiguous from a direct artifact path."""
+        path = unquote(urlparse(url).path).lower()
+        if path.endswith((".tap", ".tap.zip", ".tzx", ".tzx.zip")):
+            return "zx"
+        if path.endswith((".d64", ".d64.zip")):
+            return "c64"
+        if path.endswith((".adf", ".adf.zip")):
+            return "amiga"
+        if path.endswith((".st", ".st.zip", ".msa", ".msa.zip")):
+            return "atarist"
+        return None
+
+    @staticmethod
     def _is_supported_artifact_url(url: str) -> bool:
         parsed = urlparse(url)
         if parsed.scheme not in {"http", "https"} or not parsed.netloc:
@@ -198,6 +212,7 @@ class Discoverer:
             logger.info("skipping_duplicate_source", url=canonical_url)
             return False
 
+        platform = platform or self._infer_platform_from_artifact_url(canonical_url)
         known_game = find_known_game(title)
         if known_game:
             title = known_game.title

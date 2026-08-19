@@ -41,6 +41,20 @@ def test_discovery_persists_catalog_identity_and_orders_cpc_first(tmp_path):
     assert pending[0].publisher == "Aventuras AD"
 
 
+def test_discovery_requires_explicit_cpc_evidence_for_ambiguous_disk_images(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+
+    assert discoverer._add_source(
+        "https://example.com/ChichenItza.dsk.zip", SourceTier.ARCHIVE, title="Chichen Itza"
+    )
+
+    source = db.get_pending_sources()[0]
+    assert source.platform is None
+    assert source.known_game_id == "chichen_itza"
+    assert source.acquisition_priority == 900
+
+
 def test_evidence_catalog_export_keeps_source_evidence_separate_from_binary_verification(tmp_path):
     db = Database(tmp_path / "test.db")
     discoverer = Discoverer(db)
