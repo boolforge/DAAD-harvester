@@ -397,7 +397,7 @@ async def test_plus4world_records_catalog_page_and_direct_prg_with_provenance(tm
 
 
 @pytest.mark.anyio
-async def test_computeremuzone_discovers_vetted_badged_direct_downloads(tmp_path):
+async def test_computeremuzone_catalogs_badged_endpoints_without_queuing_blocked_downloads(tmp_path):
     db = Database(tmp_path / "test.db")
     discoverer = Discoverer(db)
     html = """
@@ -418,7 +418,9 @@ async def test_computeremuzone_discovers_vetted_badged_direct_downloads(tmp_path
     sources = db.get_all_sources()
     assert {source.platform for source in sources} == {"zx", "cpc", "c64", "msx", "atarist", "amiga", "dos"}
     assert all(source.source_name == "Computer Emuzone" for source in sources)
-    assert all(source.source_record_url.endswith("/ficha/36/la-aventura-espacial?l=en") for source in sources)
+    assert all(source.status == "cataloged" for source in sources)
+    assert all(source.source_role == "release_catalog" for source in sources)
+    assert all(source.source_record_url == source.url for source in sources)
     assert {source.source_release_id for source in sources} == {"858", "286", "991", "287", "181", "650", "228"}
 
 
@@ -427,9 +429,9 @@ async def test_generation_msx_and_atarimania_remain_catalog_only(tmp_path):
     db = Database(tmp_path / "test.db")
     discoverer = Discoverer(db)
     msx_html = '<a href="/software/aventuras-ad/chichen-itza/release/2097/">Chichen Itza</a>'
-    st_html = '<a href="/game-atari-st-aventura-espacial-la_9246.html">La Aventura Espacial</a>'
+    st_html = '<h1>La Aventura Espacial</h1><p>Written with DAAD Adventure Writer.</p>'
     with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
-        mock_fetch.side_effect = [msx_html, st_html]
+        mock_fetch.side_effect = [msx_html, st_html, None, None, None]
         async with httpx.AsyncClient() as client:
             assert await discoverer.discover_generation_msx(client) == 1
             assert await discoverer.discover_atarimania(client) == 1

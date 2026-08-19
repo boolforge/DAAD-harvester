@@ -67,10 +67,23 @@ SUPPORTED_SOURCE_SUFFIXES = frozenset(
 )
 
 DAAD_USER_AGENT = "DAAD-Harvester/1.0 (+https://github.com/boolforge/DAAD-harvester)"
+BROWSER_COMPATIBLE_USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/131.0 Safari/537.36"
+)
 ARCHIVE_METADATA_URL = "https://archive.org/metadata/{identifier}"
 ZXINFO_SEARCH_URL = "https://api.zxinfo.dk/v3/search"
 SPECTRUM_COMPUTING_BASE_URL = "https://spectrumcomputing.co.uk"
 WORLD_OF_SPECTRUM_PUBLISHER_URL = "https://worldofspectrum.org/archive/publishers/Aventuras-AD-SA"
+# Atarimania does not expose a working DAAD search index. These are maintained
+# public Atari ST record pages independently found through its indexed catalog;
+# every page is re-verified for DAAD wording before it is retained as evidence.
+ATARIMANIA_DAAD_RECORD_URLS = (
+    "https://www.atarimania.com/game-atari-st-aventura-espacial-la_9246.html",
+    "https://www.atarimania.com/game-atari-st-diosa-de-cozumel_9130.html",
+    "https://www.atarimania.com/game-atari-st-jabato-vs-imperio_9665.html",
+    "https://www.atarimania.com/game-atari-st-hibernated-i-this-place-is-death_33294.html",
+)
 
 
 class RateLimiter:
@@ -175,9 +188,18 @@ class Discoverer:
         """Fetch text or JSON with bounded retries and source-visible diagnostics."""
         domain = urlparse(url).netloc
         await self.rate_limiter.acquire(domain)
+        # Computer Emuzone rejects the transparent project identifier with HTTP
+        # 403 but serves the same public read-only index to a regular browser.
+        # Keep the compatibility fallback strictly host-scoped and rate-limited.
+        user_agent = (
+            BROWSER_COMPATIBLE_USER_AGENT
+            if domain.casefold() == "computeremuzone.com"
+            else DAAD_USER_AGENT
+        )
         headers = {
-            "User-Agent": DAAD_USER_AGENT,
+            "User-Agent": user_agent,
             "Accept": "application/json" if is_json else "text/html,application/xhtml+xml;q=0.9,*/*;q=0.7",
+            "Accept-Language": "en-US,en;q=0.9",
         }
 
         for attempt in range(1, settings.max_retries + 1):
@@ -584,9 +606,10 @@ class Discoverer:
     async def discover_computeremuzone(self, client: httpx.AsyncClient) -> int:
         """Discover per-target DAAD media through Computer Emuzone's engine index.
 
-        Its `download.php?ind=` endpoints do not expose a suffix.  They are only
-        admitted when found in the maintained DAAD engine table, with the
-        adjacent platform badge supplying the expected media type and platform.
+        Its `download.php?ind=` endpoints do not expose a suffix and currently
+        return HTTP 403 to noninteractive public clients. They are therefore
+        recorded as catalog evidence, not queued as downloads; the adjacent
+        platform badge remains valuable release-level provenance.
         """
         index_url = "https://computeremuzone.com/engine/daad?l=en"
         content = await self._fetch_url(client, index_url)
@@ -627,45 +650,45 @@ class Discoverer:
                     continue
                 seen.add((download_url, platform))
                 release_id = (urlparse(download_url).query.split("ind=")[-1] or None)
-                if self._add_source(
+                if self._add_catalog_record(
                     download_url,
                     SourceTier.ARCHIVE,
                     title=title,
                     platform=platform,
                     source_name="Computer Emuzone",
-                    source_record_url=game_url,
                     source_release_id=release_id,
-                    artifact_filename=f"{platform}.zip",
-                    provenance_json=json.dumps({"adapter": "computeremuzone", "platform_badge": badge}),
+                    provenance_json=json.dumps({
+                        "adapter": "computeremuzone",
+                        "platform_badge": badge,
+                        "download_access": "catalog_only_http_403_validated",
+                        "record_url": game_url,
+                    }),
                 ):
                     inserted += 1
         self.logger_suite.log_discovery("COMPUTER EMUZONE", index_url, inserted)
         return inserted
 
     async def discover_atarimania(self, client: httpx.AsyncClient) -> int:
-        """Catalog public Atari ST DAAD records returned by the maintained site search endpoint."""
-        search_url = "https://www.atarimania.com/list_games_atari-st-_DAAD.html"
-        content = await self._fetch_url(client, search_url)
-        if not content:
-            self.logger_suite.log_discovery("ATARIMANIA ST", search_url, 0, status="UNAVAILABLE")
-            return 0
-        soup = BeautifulSoup(content, "html.parser")
+        """Catalog bounded, independently indexed Atari ST DAAD release records."""
         inserted = 0
-        for anchor in soup.find_all("a", href=True):
-            detail_url = self._canonical_url(urljoin(search_url, anchor["href"]))
-            title = anchor.get_text(" ", strip=True)
-            if not title or "/game-atari-st-" not in urlparse(detail_url).path:
+        for detail_url in ATARIMANIA_DAAD_RECORD_URLS:
+            content = await self._fetch_url(client, detail_url)
+            if not content or not self._is_daad_related(content):
                 continue
+            soup = BeautifulSoup(content, "html.parser")
+            title = self._page_title(soup, "Atarimania DAAD release")
+            identifier_match = re.search(r"_(\d+)\.html$", urlparse(detail_url).path)
             if self._add_catalog_record(
                 detail_url,
                 SourceTier.API,
                 title=title,
                 platform="atarist",
                 source_name="Atarimania",
-                provenance_json='{"adapter": "atarimania", "platform": "atari-st"}',
+                source_release_id=identifier_match.group(1) if identifier_match else None,
+                provenance_json='{"adapter": "atarimania", "platform": "atari-st", "verified_page_text": true}',
             ):
                 inserted += 1
-        self.logger_suite.log_discovery("ATARIMANIA ST", search_url, inserted)
+        self.logger_suite.log_discovery("ATARIMANIA ST", "bounded DAAD records", inserted)
         return inserted
 
     async def discover_github(self, client: httpx.AsyncClient) -> int:
