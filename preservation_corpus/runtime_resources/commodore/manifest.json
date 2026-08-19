@@ -134,6 +134,17 @@
       "result": "Game introduction reached; no structurally validated DDB range detected in the captured RAM image."
     },
     {
+      "platform": "c64",
+      "source_artifact_sha256": "4f2c17a2324f539dbf0c121b88fb1101602ffed0473481be61800571424c157f",
+      "title": "Jabato vs Imperio",
+      "interaction": "Clean repeated virtual-drive autostart followed by one monitor `keybuf` space input using the retained C64 firmware set.",
+      "snapshot": "../../derived/commodore_loader/vice/jabato_c64_clean_space.vsf",
+      "snapshot_sha256": "f6a7e49e18c7d6be4d4645355d901fabd1a53c9b30d9ad3fe96b9269de29e2b4",
+      "ram": "../../derived/commodore_loader/vice/jabato_c64_clean_space.bin",
+      "ram_sha256": "badebceba648174c9bf4fde3bc62976a6296d2c9bc527ef1cbb5c0c11121feb5",
+      "result": "The introduction state is reproduced after the verified space input; the extracted 64 KiB RAM range still contains no structurally validated DDB."
+    },
+    {
       "platform": "plus4",
       "source_artifact_sha256": "3a9617f03ba18edd2be29abe6dfcc383f47a81b77ab37be98be585aea9c38a49",
       "title": "Eight Feet Under / EDIPLUS4 loader",
