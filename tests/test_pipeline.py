@@ -1,15 +1,14 @@
-import asyncio
 import io
 import zipfile
-from pathlib import Path
 import pytest
 
 from daad_harvester.db import Database
-from daad_harvester.models import ArtifactRecord, Platform, SourceStatus
+from daad_harvester.models import SourceStatus
 from daad_harvester.unpack import Unpacker
 from daad_harvester.fingerprint import Fingerprinter
 from daad_harvester.synthesize import Synthesizer
 from daad_harvester.report import ReportGenerator
+from tests.ddb_fixtures import make_ddb
 
 @pytest.fixture
 def temp_dir(tmp_path):
@@ -26,28 +25,13 @@ def test_full_pipeline_flow(temp_dir):
     # Update source as downloaded
     db.update_source_status(src_id, status=SourceStatus.DOWNLOADED.value, http_status=200, local_path=str(temp_dir / "src.zip"))
 
-    # 2. Mock Zip Data with embedded valid DAAD payload and a PAWS payload
-    # Construct valid DAAD DDB byte stream
-    header = bytearray(32)
-    header[0], header[1] = 0x20, 0x00 # P0 = 32
-    header[2], header[3] = 0x30, 0x00 # P1 = 48
-    header[4], header[5] = 0x40, 0x00 # P2 = 64
-
-    payload = bytearray(128)
-    payload[:32] = header
-
-    p0_bytes = bytes([0x01, 0x01, 0x01, 0x05, 0x09, 0x0A, 0x81, 0x02, 0xFE])
-    payload[32:32 + len(p0_bytes)] = p0_bytes
-
-    p1_bytes = bytes([0x00, 0x00, 0x0B, 0x01, 0x8C, 0x01, 0xFE])
-    payload[48:48 + len(p1_bytes)] = p1_bytes
-
-    payload.extend(b"Es muy oscuro No ves nada Llevas contigo DAADREADY")
-    payload.extend(b"INVE MIRA COGE DEJA NORT SUR ESTE OEST")
+    # 2. Build a DRC-compatible CPC DDB plus a non-DAAD PAWS payload. The
+    # fixture follows the public compiler's header/process-table layout.
+    payload = make_ddb("cpc", major=2)
 
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, "w") as zf:
-        zf.writestr("aventura.ddb", bytes(payload))
+        zf.writestr("aventura.ddb", payload)
         zf.writestr("paws_game.dat", b"PAWS Header COGER DEJAR")
     zip_bytes = zip_buffer.getvalue()
 

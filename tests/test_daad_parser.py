@@ -1,139 +1,117 @@
-"""Tests for DAADBytecodeParser & deep structural bytecode validation."""
+"""Tests for target-aware, structurally validated DAAD DDB recognition."""
+
+from __future__ import annotations
 
 import time
 
 import pytest
-from daad_harvester.daad_parser import DAADBytecodeParser, DAADParser
+
+from daad_harvester.daad_parser import DAADBytecodeParser
+from tests.ddb_fixtures import make_ddb, wrap_commodore, wrap_plus3dos
 
 
-def test_renpy_payload_rejection():
+@pytest.mark.parametrize("platform", ("zx", "cpc", "c64", "plus4", "msx", "pcw", "atarist", "amiga", "dos"))
+@pytest.mark.parametrize("major", (2, 3))
+def test_drc_header_verifies_every_official_daad_target(platform: str, major: int) -> None:
     parser = DAADBytecodeParser()
+    result = parser.parse_ddb(make_ddb(platform, major=major), "candidate.ddb")
 
-    # Case 1: File named .data containing renpy signature
-    renpy_data = b"renpy_version_8_0_3_data_payload_1234567890" + b"DAAD" * 10
-    res = parser.parse_ddb(renpy_data, "game.data")
-    assert res["is_daad"] is False
-    assert res["reason"] == "renpy_engine_payload"
-
-    # Case 2: File containing RPYC header
-    rpyc_data = b"RPYC\x00\x01\x02\x03some_renpy_compiled_script"
-    res = parser.parse_ddb(rpyc_data, "script.dat")
-    assert res["is_daad"] is False
-    assert res["reason"] == "renpy_engine_payload"
+    assert result["is_daad"] is True
+    assert result["confidence"] == 1.0
+    assert result["confidence_label"] == "verified"
+    assert result["platform"] == platform
+    assert result["ddb_format"] == f"daad-v{major}"
+    assert result["ddb_major_version"] == major
+    assert result["details"]["structural_validation"] == "verified"
+    assert result["details"]["header"]["platform"] == platform
+    assert result["details"]["process_validation"]["terminated_streams"] == 1
 
 
-def test_html_php_rejection():
+def test_structural_parser_recognizes_spanish_language_bit() -> None:
+    result = DAADBytecodeParser().parse_ddb(make_ddb("cpc", spanish=True), "juego.ddb")
+    assert result["is_daad"] is True
+    assert result["language"] == "es"
+
+
+@pytest.mark.parametrize("platform", ("c64", "plus4"))
+def test_structural_parser_unwraps_commodore_prg(platform: str) -> None:
+    result = DAADBytecodeParser().parse_ddb(wrap_commodore(make_ddb(platform), platform), "game.prg")
+    assert result["is_daad"] is True
+    assert result["platform"] == platform
+    assert result["details"]["container_wrapper"]["format"] == "commodore-prg"
+
+
+def test_structural_parser_unwraps_checked_plus3dos_header() -> None:
+    result = DAADBytecodeParser().parse_ddb(wrap_plus3dos(make_ddb("zx")), "game.ddb")
+    assert result["is_daad"] is True
+    assert result["platform"] == "zx"
+    assert result["details"]["container_wrapper"]["format"] == "plus3dos"
+
+
+def test_rejects_plus3dos_with_invalid_checksum() -> None:
+    payload = bytearray(wrap_plus3dos(make_ddb("zx")))
+    payload[127] ^= 0xFF
+    result = DAADBytecodeParser().parse_ddb(bytes(payload), "game.ddb")
+    assert result["is_daad"] is False
+
+
+@pytest.mark.parametrize("mutation", ("bad_size", "bad_process_pointer", "unterminated_stream", "bad_machine"))
+def test_structural_parser_rejects_corrupt_header_invariants(mutation: str) -> None:
+    payload = bytearray(make_ddb("cpc"))
+    if mutation == "bad_size":
+        payload[32:34] = (0xFFFF).to_bytes(2, "big")
+    elif mutation == "bad_process_pointer":
+        payload[10:12] = (0x1000).to_bytes(2, "big")
+    elif mutation == "unterminated_stream":
+        payload[62] = 0
+    else:
+        payload[1] = 0x90
+
+    result = DAADBytecodeParser().parse_ddb(bytes(payload), "broken.ddb")
+    assert result["is_daad"] is False
+    assert result["reason"] == "no_valid_target_aware_ddb_structure"
+
+
+def test_incidental_daad_strings_do_not_verify_a_payload() -> None:
+    content = b"DAADREADY DAAD Aventuras AD " * 30
+    result = DAADBytecodeParser().parse_ddb(content, "not-a-ddb.bin")
+    assert result["is_daad"] is False
+    assert result["confidence"] == 0.0
+
+
+@pytest.mark.parametrize(
+    ("filename", "data", "expected_reason"),
+    [
+        ("game.data", b"renpy_version_8_0" + b"DAAD" * 5, "renpy_engine_payload"),
+        ("response.dat", b"<!DOCTYPE html><html>DAAD</html>", "html_php_content"),
+        ("game.nes", b"NES\x1a" + b"\x00" * 100, "explicit_non_daad_extension_nes"),
+        ("game.zip", b"PK\x03\x04" + b"\x00" * 100, "raw_archive_header"),
+        ("paws.dat", b"PAWS Engine" + b"\x00" * 100, "quill_paws_engine"),
+    ],
+)
+def test_explicit_non_daad_payloads_are_rejected(filename: str, data: bytes, expected_reason: str) -> None:
+    result = DAADBytecodeParser().parse_ddb(data, filename)
+    assert result["is_daad"] is False
+    assert result["reason"] == expected_reason
+
+
+def test_find_embedded_ddb_uses_structural_validation() -> None:
     parser = DAADBytecodeParser()
-    html_data = b"<!DOCTYPE html><html><head><title>404 Not Found</title></head><body>DAAD</body></html>"
-    res = parser.parse_ddb(html_data, "response.dat")
-    assert res["is_daad"] is False
-    assert res["reason"] == "html_php_content"
-
-
-def test_console_rom_and_media_rejection():
-    parser = DAADBytecodeParser()
-
-    rom_data = b"NES\x1a\x02\x01\x01\x00" + b"\x00" * 100
-    res = parser.parse_ddb(rom_data, "game.nes")
-    assert res["is_daad"] is False
-    assert "explicit_non_daad_extension" in res["reason"]
-
-    mp3_data = b"ID3\x03\x00\x00\x00" + b"\x00" * 100
-    res = parser.parse_ddb(mp3_data, "song.mp3")
-    assert res["is_daad"] is False
-    assert "explicit_non_daad_extension" in res["reason"]
-
-
-def test_find_embedded_ddb():
-    parser = DAADBytecodeParser()
-
-    # Create dummy container with padding and embedded DDB at offset 64
-    header = bytearray(32)
-    header[0], header[1] = 0x20, 0x00 # P0 = 32
-    header[2], header[3] = 0x30, 0x00 # P1 = 48
-    header[4], header[5] = 0x40, 0x00 # P2 = 64
-
-    ddb_payload = bytearray(128)
-    ddb_payload[:32] = header
-    p0_bytes = bytes([0x01, 0x01, 0x01, 0x05, 0x09, 0x0A, 0x81, 0x02, 0xFE])
-    ddb_payload[32:32 + len(p0_bytes)] = p0_bytes
-    p1_bytes = bytes([0x00, 0x00, 0x0B, 0x01, 0x8C, 0x01, 0xFE])
-    ddb_payload[48:48 + len(p1_bytes)] = p1_bytes
-
-    container = b"\x00" * 64 + bytes(ddb_payload)
+    container = b"\x00" * 63 + make_ddb("amiga", major=3) + b"ignored trailing bytes"
     found = parser.find_embedded_ddb(container)
     assert found is not None
     offset, extracted = found
-    assert offset == 64
+    assert offset == 63
+    result = parser.parse_ddb(extracted, "embedded.ddb")
+    assert result["is_daad"] is True
+    assert result["platform"] == "amiga"
 
 
-def test_bytecode_disassembly_valid_ddb():
+def test_find_embedded_ddb_stays_fast_on_large_non_candidate_files() -> None:
     parser = DAADBytecodeParser()
-
-    # Construct a valid minimal DAAD DDB byte stream with valid Process Table Pointers and DAAD Opcodes
-    # Process 0 pointer = 0x0020 (32)
-    # Process 1 pointer = 0x0030 (48)
-    # Process 2 pointer = 0x0040 (64)
-    header = bytearray(32)
-    header[0], header[1] = 0x20, 0x00 # P0 = 32
-    header[2], header[3] = 0x30, 0x00 # P1 = 48
-    header[4], header[5] = 0x40, 0x00 # P2 = 64
-
-    # Padding up to 32 bytes
-    payload = bytearray(128)
-    payload[:32] = header
-
-    # At offset 32 (P0): Verb=1, Noun=1, COND:AT(1) [0x01, 0x05], COND:PRESENT(1) [0x09, 0x0A], ACT:GOTO(1) [0x81, 0x02], ACT:DONE [0xFE]
-    p0_bytes = bytes([
-        0x01, 0x01,       # Entry: Verb 1, Noun 1
-        0x01, 0x05,       # COND: AT(5)
-        0x09, 0x0A,       # COND: PRESENT(10)
-        0x81, 0x02,       # ACT: GOTO(2)
-        0xFE              # ACT: DONE
-    ])
-    payload[32:32 + len(p0_bytes)] = p0_bytes
-
-    # At offset 48 (P1): Verb=0, Noun=0, COND:ZERO(1) [0x0B, 0x01], ACT:PRINT(1) [0x8C, 0x01], ACT:DONE [0xFE]
-    p1_bytes = bytes([
-        0x00, 0x00,       # Entry: Verb 0, Noun 0
-        0x0B, 0x01,       # COND: ZERO(1)
-        0x8C, 0x01,       # ACT: PRINT(1)
-        0xFE              # ACT: DONE
-    ])
-    payload[48:48 + len(p1_bytes)] = p1_bytes
-
-    # Append DAAD system strings and vocabulary
-    payload.extend(b"Es muy oscuro No ves nada Llevas contigo DAADREADY")
-    payload.extend(b"INVE MIRA COGE DEJA NORT SUR ESTE OEST")
-
-    res = parser.parse_ddb(bytes(payload), "test_game.ddb")
-    assert res["is_daad"] is True
-    assert res["confidence"] >= 0.70
-    assert res["details"]["bytecode_disassembly_valid"] is True
-
-
-def test_find_embedded_ddb_stays_fast_on_large_files():
-    """Regression test: find_embedded_ddb used to slice `data[offset:]`
-    (rest-of-buffer) on every one of its ~32k scan iterations instead of a
-    bounded window, making cost scale with file size. On a real 93MB
-    artifact this made the fingerprint phase hang for minutes; a 20MB
-    synthetic buffer alone took ~48s before the fix. Real-world archives and
-    disk images the harvester unpacks are routinely tens of MB, so this
-    guards against the fingerprint phase silently becoming unusable again.
-
-    Bounded at 3s (fixed cost is ~0.1s locally) to comfortably absorb slower
-    or loaded CI runners without masking a real regression.
-    """
-    parser = DAADBytecodeParser()
-    data = b"\x00" * 20_000_000  # non-DAAD padding; exercises the full scan range
-
+    data = b"\x00" * 20_000_000
     start = time.monotonic()
     result = parser.find_embedded_ddb(data)
     elapsed = time.monotonic() - start
-
     assert result is None
-    assert elapsed < 3.0, (
-        f"find_embedded_ddb took {elapsed:.2f}s on a 20MB buffer "
-        "(expected well under 3s) -- likely a reintroduction of the "
-        "unbounded data[offset:] slicing bug"
-    )
+    assert elapsed < 3.0

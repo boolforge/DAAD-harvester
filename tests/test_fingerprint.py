@@ -1,57 +1,125 @@
-import pytest
+"""Integration tests for structural DDB and interpreter-aware fingerprinting."""
+
+from __future__ import annotations
+
+from hashlib import md5, sha256
 from pathlib import Path
+
+import pytest
+
 from daad_harvester.db import Database
-from daad_harvester.models import ArtifactRecord, Platform
 from daad_harvester.fingerprint import Fingerprinter
-from daad_harvester.daad_parser import DAADParser
+from daad_harvester.interpreter_profiles import InterpreterProfile, identify_interpreter_file
+from daad_harvester.models import ArtifactRecord
+from daad_harvester.provenance import EvidenceKind
+from tests.ddb_fixtures import make_ddb
 
-def test_fingerprint_positive_ddb():
-    db = Database(Path(":memory:"))
-    fingerprinter = Fingerprinter(db)
 
-    # Valid DAAD DDB payload with valid process table pointers and DAAD Ready signature
-    pointers = b"\x10\x00\x14\x00\x18\x00" + b"\x00" * 10 # Pointers: 16, 20, 24
-    content = pointers + b"DAADREADY Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE"
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(content, "game.ddb")
-    assert score >= 0.70
-    assert ver is not None
+PLATFORMS = ("zx", "cpc", "c64", "plus4", "msx", "pcw", "atarist", "amiga", "dos")
 
-def test_fingerprint_rejection_paws():
-    db = Database(Path(":memory:"))
-    fingerprinter = Fingerprinter(db)
 
-    mock_paws_data = b"PAWS Engine Database Headers COGER DEJAR MIRAR"
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_paws_data, "paws_game.dat")
-    assert score == 0.0
+def _artifact(db: Database, path: Path, *, filename: str | None = None) -> ArtifactRecord:
+    source_id = db.add_source(f"https://example.invalid/{path.name}", "fixture", platform=None)
+    assert source_id is not None
+    data = path.read_bytes()
+    return ArtifactRecord(
+        id=None,
+        source_id=source_id,
+        original_filename=filename or path.name,
+        extracted_path=str(path),
+        archive_depth=1,
+        file_size=len(data),
+        md5_full=md5(data).hexdigest(),
+        md5_5000=md5(data[-5000:]).hexdigest(),
+        sha256=sha256(data).hexdigest(),
+    )
 
-def test_fingerprint_rejection_gac():
-    db = Database(Path(":memory:"))
-    fingerprinter = Fingerprinter(db)
 
-    mock_gac_data = b"Graphic Adventure Creator Incentive Software COGER DEJAR MIRAR"
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_gac_data, "gac_game.dat")
-    assert score == 0.0
+@pytest.mark.parametrize("platform", PLATFORMS)
+def test_fingerprint_persists_verified_target_aware_measurement(tmp_path: Path, platform: str) -> None:
+    db = Database(tmp_path / "state.db")
+    payload_path = tmp_path / f"{platform}.ddb"
+    payload_path.write_bytes(make_ddb(platform, major=3))
+    artifact = _artifact(db, payload_path)
+    artifact.id = db.add_artifact(artifact)
 
-def test_fingerprint_rejection_php_index():
-    db = Database(Path(":memory:"))
-    fingerprinter = Fingerprinter(db)
+    assert Fingerprinter(db).scan_artifact(artifact) is True
 
-    mock_php_data = b"<?php echo 'Hello World'; ?>" + b"\x00" * 100
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_php_data, "index.php")
-    assert score == 0.0
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.is_daad_payload is True
+    assert persisted.measured_platform == platform
+    assert persisted.ddb_format == "daad-v3"
+    assert persisted.ddb_major_version == 3
+    assert persisted.fingerprint_confidence == "verified"
+    assert persisted.daad_version_guess == "DAAD DDB v3"
+    kinds = {item.kind for item in db.get_version_evidence(artifact_id=artifact.id)}
+    assert {EvidenceKind.DDB_FORMAT.value, EvidenceKind.PLATFORM_RELEASE.value} <= kinds
 
-def test_fingerprint_rejection_renpy():
-    db = Database(Path(":memory:"))
-    fingerprinter = Fingerprinter(db)
 
-    mock_renpy_data = b"RENPY archive data " + b"\x00" * 500
-    score, ver, platform = fingerprinter.analyze_daad_heuristics(mock_renpy_data, "renpy.data")
-    assert score == 0.0
+def test_fingerprint_correlates_neighbouring_interpreter_filename_without_overclaiming_exact_hash(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    payload_path = tmp_path / "adventure.ddb"
+    payload_path.write_bytes(make_ddb("cpc"))
+    # A repacked/modified runtime retains useful strong bundle evidence but is
+    # not falsely called an exact official binary without its known SHA-256.
+    (tmp_path / "DCPCIE.Z80").write_bytes(b"modified interpreter")
+    artifact = _artifact(db, payload_path)
+    artifact.id = db.add_artifact(artifact)
 
-def test_daad_parser_direct():
-    parser = DAADParser()
-    pointers = b"\x10\x00\x14\x00\x18\x00" + b"\x00" * 10
-    content = pointers + b"DAADREADY Header Proceso 0 1 2 COGER DEJAR MIRAR NORTE SUR ESTE OESTE"
-    result = parser.parse_ddb(content, "game.ddb")
-    assert result["is_daad"] is True
-    assert result["confidence"] >= 0.70
+    assert Fingerprinter(db).scan_artifact(artifact) is True
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.interpreter_identity == "daad-cpc-dcpcie-official"
+    assert persisted.interpreter_version is None
+    evidence = db.get_version_evidence(artifact_id=artifact.id)
+    interpreter = next(item for item in evidence if item.kind == EvidenceKind.INTERPRETER_IDENTITY.value)
+    assert interpreter.confidence == "strong"
+
+
+def test_fingerprint_finds_embedded_structural_ddb(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    path = tmp_path / "disk_member.bin"
+    path.write_bytes(b"boot sector" * 7 + make_ddb("amiga", major=2) + b"trailer")
+    artifact = _artifact(db, path, filename="game.adf")
+    artifact.id = db.add_artifact(artifact)
+
+    assert Fingerprinter(db).scan_artifact(artifact) is True
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.measured_platform == "amiga"
+    assert '"embedded_offset"' in (persisted.fingerprint_evidence_json or "")
+
+
+@pytest.mark.parametrize(
+    ("name", "payload"),
+    [
+        ("paws.dat", b"PAWS Engine Database"),
+        ("gac.dat", b"Graphic Adventure Creator"),
+        ("index.php", b"<?php echo 'not daad'; ?>"),
+        ("renpy.data", b"RENPY archive data"),
+    ],
+)
+def test_fingerprint_rejects_other_formats(tmp_path: Path, name: str, payload: bytes) -> None:
+    db = Database(tmp_path / "state.db")
+    path = tmp_path / name
+    path.write_bytes(payload + b"\x00" * 500)
+    artifact = _artifact(db, path)
+    artifact.id = db.add_artifact(artifact)
+    assert Fingerprinter(db).scan_artifact(artifact) is False
+    assert db.get_all_artifacts()[0].is_daad_payload is False
+
+
+def test_interpreter_profile_exact_hash_is_marked_verified(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import daad_harvester.interpreter_profiles as profiles
+
+    path = tmp_path / "INTE1.EXE"
+    path.write_bytes(b"official fixture binary")
+    digest = sha256(path.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        profiles,
+        "OFFICIAL_INTERPRETER_PROFILES",
+        (InterpreterProfile("fixture-dos-runtime", "dos", ("inte1.exe",), digest, "fixture-1.0"),),
+    )
+    match = identify_interpreter_file(path)
+    assert match is not None
+    assert match.confidence == "verified"
+    assert match.profile_id == "fixture-dos-runtime"
+    assert match.interpreter_version == "fixture-1.0"
