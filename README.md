@@ -1,88 +1,75 @@
 # DAAD Harvester
 
-**DAAD Harvester** is a local, resumable pipeline for finding public DAAD-related game artifacts, downloading only compatible files, unpacking them safely, and producing evidence that can support downstream ScummVM detection work. It is designed for preservation research, not as a general web crawler or a promise that every discovered file is a verified DAAD game.
+**DAAD Harvester** is an evidence-led preservation pipeline for public DAAD game artifacts. It does not treat a search result, a catalog page, and a downloadable binary as interchangeable. Instead, it uses game databases and preservation wikis to establish **what a title is**, uses platform-specific archive metadata to establish **which release is being acquired**, and uses local byte-level analysis to establish **what the downloaded payload actually contains**.
 
-DAAD (Designed Action Adventure Designer) is the cross-platform adventure authoring system created for Spanish publisher Aventuras AD. It was used on several home-computer platforms and remains relevant to preservation and modern homebrew tooling.[1] The problem this project solves is not merely finding game titles: archive catalogs, metadata pages, purchase pages, snapshots, and direct binary files are fundamentally different resources. Only the last category can safely enter a download-and-analysis pipeline.
+DAAD, the *Diseñador de Aventuras AD*, was created for Aventuras AD and supported a broad family of 8-bit and 16-bit platforms.[1] The project exists because that history is fragmented: a title may have several platform releases, archive re-dumps, named master variants, incomplete metadata, and unrelated files that happen to contain the word “DAAD.” A reliable harvester must preserve those distinctions rather than collapsing them into a speculative download list.
 
-> **Core principle:** Discovery is intentionally conservative. A source URL is admitted only when it is a public HTTP(S) link to a supported archive, tape, disk, or database format. Catalog pages and human-facing download pages are evidence, not download jobs.
+> **Trust boundary:** A catalog can prove that a game belongs to the DAAD family. A source record can prove that a public archive associates a file with a platform. Only a downloaded artifact and the local fingerprinting stage can support a binary-level DAAD claim or an exact engine-version label.
 
-## Why this project exists
+![Authentic DAAD Harvester priority-queue capture](docs/assets/tui-priority-queue.png)
 
-DAAD material is fragmented across retro archives, repository hosts, and community catalogs. Each source has its own search interface, naming conventions, link structure, and failure modes. A naïve scraper produces a large queue of dead URLs, HTML pages, unrelated games, and files from other authoring engines. That wastes bandwidth, obscures evidence, and makes the results impossible to trust.
+*This is a capture from the production TUI renderer against a completed live Internet Archive run. It shows six catalog-backed Amstrad CPC candidates selected before lower-priority sources; it is not a mockup or fabricated interface.*
 
-DAAD Harvester separates those concerns. It uses source-specific adapters to discover candidate files, validates the direct-download contract before queueing them, persists progress in SQLite, and applies increasingly expensive analysis only after acquisition. The design favors **traceability, repeatability, and safe rejection** over speculative coverage.
+## What problem does it solve?
 
-| Design objective | Implementation choice | Practical result |
+Retro-game preservation needs more than a broad scraper. A naïve crawler accumulates HTML pages, purchase gates, dead links, screenshots, files for other authoring systems, and disconnected copies of a title. That creates a false appearance of coverage while wasting bandwidth and making provenance impossible to audit.
+
+DAAD Harvester separates historical knowledge, source discovery, acquisition, extraction, and binary verification. The resulting state database is resumable and reviewable. A run may safely discover nothing from a given website; **zero candidates is preferable to a queue of guessed URLs**.
+
+| Design question | How DAAD Harvester answers it | Result |
 | --- | --- | --- |
-| Avoid guessed inputs | The bundled seed catalog is empty until a maintainer adds a manually verified direct file URL. | A clean run does not begin with stale archive paths or HTML pages. |
-| Keep discovery source-aware | Each adapter knows the public API or bounded catalog it uses. | Internet Archive metadata, GitHub default branches, ZXInfo search results, and World of Spectrum detail pages are handled differently. |
-| Reject non-artifacts early | Discovery accepts only supported filenames and trusted source-specific download patterns. | Catalog pages, screenshots, purchase pages, and unsupported snapshots do not enter the fetch queue. |
-| Preserve diagnostic evidence | Source records, HTTP outcomes, logs, hashes, and outputs are written locally. | A run can be resumed, audited, or compared without repeating successful work. |
-| Limit damage from malformed archives | Recursive extraction is bounded and checks suspicious compression ratios. | The pipeline can inspect retro containers without treating every archive as safe. |
+| Is this a known DAAD title? | Match a title only against an evidence-backed catalog with explicit aliases and source URLs. | Known and unknown discoveries remain distinguishable. |
+| Is this a CPC release? | Require source metadata such as Internet Archive’s CPC collection or emulator tag; never infer CPC from a generic `.dsk` suffix. | CPC priority is evidence-based, not filename-based. |
+| Should it download first? | Order pending work by a persisted acquisition priority. Known commercial DAAD titles receive priority, with evidenced CPC releases first. | The “low-hanging fruit” is acquired before opportunistic search results. |
+| Is it a DAAD binary and which version is it? | Apply byte-level fingerprinting after download and extraction. | The project does not claim exact versions from title metadata alone. |
 
-## Architecture
+## Historical evidence catalog
 
-The pipeline has five ordered stages. The SQLite state database records the state of every source and lets later invocations continue from the last completed stage.
+The initial catalog intentionally starts with the six commercial Aventuras AD titles that wikiCAAD explicitly identifies as DAAD games.[2] Computer Emu Zone and CASA independently provide title, year, and platform evidence for the historical releases.[3] [4]
 
-![DAAD Harvester pipeline architecture](docs/architecture.svg)
+| Canonical title | Year | Catalog-backed platform coverage | Engine statement | CPC acquisition priority |
+| --- | ---: | --- | --- | ---: |
+| *La Aventura Original* | 1989 | ZX Spectrum, CPC, C64, MSX, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
+| *Jabato* | 1989 | ZX Spectrum, CPC, C64, MSX, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
+| *Cozumel* | 1990 | ZX Spectrum, CPC, C64, MSX, PCW, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
+| *La Aventura Espacial* | 1990 | ZX Spectrum, CPC, C64, MSX, PCW, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
+| *Los Templos Sagrados* | 1991 | ZX Spectrum, CPC, C64, MSX, PCW, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
+| *Chichén Itzá* | 1992 | ZX Spectrum, CPC, C64, MSX, Atari ST, Amiga, PC | DAAD family confirmed; exact binary build requires fingerprinting. | 1200 |
 
-| Stage | Module | Input | Output | Why it is separate |
+The catalog is deliberately conservative about version language. For example, CPC Power records both a 1992 original *Chichen Itza* disk and a dated 1991-10-14 master variant.[5] That is useful **release-variant evidence**, but it does not prove a DAAD compiler version. The generated `evidence_catalog.json` preserves this boundary so an exact engine label is emitted only after the artifact itself has been inspected.
+
+## Architecture and data flow
+
+The pipeline stores all mutable state in SQLite and can resume each stage independently. `--phase all` runs the catalog stage after discovery and before fetching, allowing the queue to be inspected or bounded before bulk acquisition.
+
+| Stage | Component | Input | Output | Purpose |
 | --- | --- | --- | --- | --- |
-| Discover | `daad_harvester.discover` | Public catalogs and APIs | Pending direct artifact URLs | Source-specific logic is isolated from downloading. |
-| Fetch | `daad_harvester.fetch` | Pending URLs | Local files plus HTTP metadata | The downloader streams data, rejects HTML/JSON and empty responses, and records final failures. |
-| Unpack | `daad_harvester.unpack` | Downloaded files | Extracted artifacts | Archive handling is isolated from network behavior and supports nested containers. |
-| Fingerprint | `daad_harvester.fingerprint` | Extracted artifacts | DAAD candidate evidence and hashes | Binary heuristics are applied only to local bytes. |
-| Synthesize and report | `daad_harvester.synthesize`, `daad_harvester.report` | Verified records | JSON catalog, C++ detection candidates, and report files | Output generation is deterministic and can be repeated without re-downloading. |
+| 1. Discover | `daad_harvester.discover` | Public APIs and bounded source catalogs | Direct artifact candidates | Adapters enforce source-specific direct-file contracts. |
+| 2. Catalog | `daad_harvester.catalog` | Known-game evidence plus queued sources | `evidence_catalog.json` | Shows canonical titles, platform evidence, priority, and source provenance. |
+| 3. Fetch | `daad_harvester.fetch` | Priority-ordered pending sources | Local files and HTTP evidence | Streams files, rejects empty/HTML/JSON payloads, and records final HTTP outcomes. |
+| 4. Unpack | `daad_harvester.unpack` | Downloaded containers and disk images | Extracted artifacts | Recursively handles supported archives, tape images, C64 disks, and CP/M files in CPC DSK images. |
+| 5. Fingerprint | `daad_harvester.fingerprint` | Local extracted bytes | DAAD evidence, hashes, and platform hints | Performs conservative binary analysis; it is the authority for binary claims. |
+| 6. Synthesize and report | `daad_harvester.synthesize`, `daad_harvester.report` | Verified records | JSON catalog, C++ candidates, and report | Repeats deterministically without another download. |
 
-### Discovery sources and trust boundaries
+### Source contracts
 
-The current adapters are deliberately categorized by what they can prove. A source is not treated as healthy merely because its website responds with HTTP 200.
+Each adapter is evaluated by its direct-artifact contract, not merely whether a site returns HTTP 200.
 
-| Source | Discovery contract | Current behavior |
+| Source | Role | Trust boundary |
 | --- | --- | --- |
-| [Internet Archive][2] | Advanced Search identifies relevant items; the item metadata response supplies the real file names. | Queues supported files from items whose metadata identifies DAAD or Aventuras AD material. |
-| GitHub | Public repository search returns a repository’s actual `default_branch`. | Queues a repository ZIP only when repository metadata is DAAD-related; it does not assume `main`. |
-| Aminet | The public `daad` search page provides Amiga file links. | Queues direct supported files associated with the DAAD query. |
-| [ZXInfo / ZXDB][3] | The documented `/v3/search` API provides release-file paths. | Resolves compatible DAAD release files through Spectrum Computing; excludes PAWS, Quill, GAC, SWAN, and snapshot formats. |
-| [World of Spectrum][4] | The bounded Aventuras AD publisher catalog leads to game pages that explicitly state DAAD authorship. | Queues only host-local TAP, TZX, and DSK ZIP archives from those verified detail pages. |
-| WikiCAAD and IFDB | Public structured search can expose outbound direct artifact links. | Runs conservatively; zero results are valid when no direct downloadable artifact is present. |
-| itch.io | Public tag and game pages may expose direct file URLs. | Does **not** queue game, account, login, or purchase pages. Paid or gated downloads remain out of scope. |
-| DuckDuckGo HTML | A fallback result page may contain direct file links. | Uses the current result selector and queues only direct supported files. HTTP 202 or rate-limited responses are logged rather than disguised as success. |
-| IF Archive | No maintained, DAAD-specific index is currently configured. | Explicitly skipped rather than crawling broad directories full of unrelated interactive fiction. |
-
-World of Spectrum identifies *La Aventura Original* as an available 1989 Aventuras AD text adventure authored with DAAD and exposes direct tape and disk-image archives.[4] ZXInfo documents its v3 API as the public search interface for ZXDB data and identifies the `/search` endpoint as the primary query interface.[3]
-
-### What a successful run means
-
-A successful discovery phase means that adapters completed and persisted a queue of direct candidate files. It does **not** mean every file is DAAD, every remote URL will remain available, or every archive can be unpacked on every operating system. The fingerprint stage is the authority for identifying plausible DAAD payloads. This distinction is essential when working with historical archives.
-
-## Requirements
-
-| Requirement | Minimum | Notes |
-| --- | --- | --- |
-| Python | 3.10 or newer | Tested in the project’s automated suite on Python 3.10 and 3.12. |
-| Network access | Public HTTPS access | Required for discovery and fetching. Source availability can change. |
-| Disk space | Varies by run | Use a dedicated output directory for downloaded and extracted files. |
-| Extraction tools | Recommended on Linux | Needed for broad support of legacy container formats such as LHA, RAR, ARJ, and CAB. |
-
-### Ubuntu or Debian
-
-```bash
-sudo apt-get update
-sudo apt-get install -y 7zip unzip unar libarchive-tools unrar-free cabextract arj lhasa
-```
-
-### macOS
-
-Install the required extraction tools with Homebrew, then install the Python package as shown below. Exact package availability can vary by Homebrew release.
-
-```bash
-brew install p7zip unar libarchive unrar cabextract arj lhasa
-```
+| [Internet Archive][6] | Primary historical archive and CPC source. | Uses Advanced Search and item metadata; CPC priority is assigned only when the collection or emulator metadata identifies CPC. |
+| GitHub | Public project archives and preservation repositories. | Resolves each repository’s actual default branch instead of assuming `main`. |
+| Aminet | Amiga candidates. | Queues only direct compatible files from its DAAD search results. |
+| [ZXInfo / ZXDB][7] | Spectrum release metadata and direct file paths. | Uses the documented API, rejects unsupported engines and snapshots, and resolves compatible files through Spectrum Computing. |
+| [World of Spectrum][8] | Bounded ZX Spectrum source. | Follows the Aventuras AD catalog to pages with explicit DAAD authorship, then accepts only host-local tape or disk archives. |
+| WikiCAAD and CASA | Historical evidence sources. | Inform the catalog; they are not treated as automatic binary download sites. |
+| CPC Power | CPC release-variant evidence. | Its public download handler is session-bound HTML, not a stable direct-file contract, so it is metadata-only. |
+| Planet Emulation | CPC metadata and individual-file pages. | Its own FAQ states that browser download is the supported method and that temporary links are user-specific; it is not automated.[9] |
+| itch.io, IFDB, web search, and IF Archive | Opportunistic evidence or discovery. | A page, account, payment, or gated link is never queued as an artifact. Broad IF Archive crawling is intentionally disabled. |
 
 ## Installation
 
-Clone the repository, create an isolated environment if desired, and install the package. The project includes `pyproject.toml`, so the command-line entry point and tests do not depend on a manually set `PYTHONPATH`.
+DAAD Harvester is a Python package with a console entry point. Python 3.10 or newer is required.
 
 ```bash
 git clone https://github.com/boolforge/DAAD-harvester.git
@@ -92,129 +79,116 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
-```
 
-For runtime use without test tooling, install `.` instead of `.[dev]`.
-
-```bash
-python -m pip install .
-```
-
-Confirm the installation before starting a networked run.
-
-```bash
 daad-harvester --version
 daad-harvester --help
 ```
 
-## Quick start
+Install `.` instead of `.[dev]` when test dependencies are not needed.
 
-Start with discovery in a fresh directory. This is the safest way to inspect the current source queue before downloading anything.
+For broad legacy-archive support on Debian or Ubuntu, install the optional system extractors.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y 7zip unzip unar libarchive-tools unrar-free cabextract arj lhasa
+```
+
+## Recommended first run: catalog, inspect, then acquire
+
+Use a dedicated output directory. It may contain downloaded copyrighted material, logs, and a local SQLite database; it must not be committed.
+
+First, discover current public candidates and write the evidence catalog.
 
 ```bash
 daad-harvester --phase discover --output-dir ./output
+daad-harvester --phase catalog --output-dir ./output
 ```
 
-Inspect `output/logs/daad_discovery.log` and the `sources` table in `output/state.db`. When the source queue looks appropriate, run the complete pipeline.
+Review `output/evidence_catalog.json`. The file states what is catalog-backed, lists each matched source, and makes the version-evidence boundary explicit. A quick inspection can use any JSON viewer or `less`.
 
 ```bash
-daad-harvester --phase all --parallel 4 --output-dir ./output
+less ./output/evidence_catalog.json
 ```
 
-Use a smaller worker count for respectful network behavior or unstable connections. The default is eight download workers; lower values are often more appropriate for a first archival run.
-
-## Running individual phases
-
-Each phase can run independently against the same output directory. This makes failures and source behavior easier to diagnose.
-
-| Command | Intended use |
-| --- | --- |
-| `daad-harvester --phase discover --output-dir ./output` | Query live catalogs and build a direct-file queue. |
-| `daad-harvester --phase fetch --parallel 4 --output-dir ./output` | Download pending sources and record HTTP content metadata. |
-| `daad-harvester --phase unpack --output-dir ./output` | Recursively extract downloaded containers and disk images. |
-| `daad-harvester --phase fingerprint --output-dir ./output` | Analyze extracted artifacts for DAAD evidence. |
-| `daad-harvester --phase synthesize --output-dir ./output` | Generate catalog, detection-table candidates, and report files from stored records. |
-| `daad-harvester --phase all --output-dir ./output` | Execute the full ordered pipeline. |
-
-The terminal dashboard is optional. Use it only in an interactive terminal.
+Next, acquire only the highest-priority low-hanging fruit. The following command fetches the first six priority-ordered records rather than every discovery result.
 
 ```bash
-daad-harvester --phase all --tui --output-dir ./output
+daad-harvester --phase fetch --parallel 2 --max-sources 6 --output-dir ./output
 ```
 
-## Configuration
+Then extract, fingerprint, and synthesize the bounded batch.
 
-Runtime settings are provided through command-line options or environment variables with the `DAAD_` prefix.
+```bash
+daad-harvester --phase unpack --parallel 2 --output-dir ./output
+daad-harvester --phase fingerprint --output-dir ./output
+daad-harvester --phase synthesize --output-dir ./output
+```
 
-| Setting | Default | Purpose |
+Run the complete pipeline only after reviewing the queue and selecting a rate appropriate for each archive.
+
+```bash
+daad-harvester --phase all --parallel 2 --output-dir ./output
+```
+
+## Command reference
+
+| Command | Use it when | Important behavior |
 | --- | --- | --- |
-| `DAAD_REQUEST_TIMEOUT` | `30` seconds | Per-request network timeout. |
-| `DAAD_MAX_RETRIES` | `3` | Maximum attempts for one network operation. |
-| `DAAD_RATE_LIMIT_PER_DOMAIN` | `1.0` | Request rate per hostname. |
-| `DAAD_PARALLEL_WORKERS` | `8` | Default fetch parallelism. |
-| `DAAD_MAX_UNPACK_DEPTH` | `5` | Maximum recursive extraction depth. |
-| `DAAD_ZIP_BOMB_MAX_RATIO` | `100.0` | Maximum extracted/compressed ratio before a container is rejected. |
-| `DAAD_LOG_LEVEL` | `INFO` | Standard logging threshold. |
+| `--phase discover` | You need a fresh live queue. | Does not download. |
+| `--phase catalog` | You need to inspect known titles, source matches, and priority. | Writes `evidence_catalog.json` from current SQLite state. |
+| `--phase fetch --max-sources N` | You want controlled first-batch acquisition. | Fetches the first `N` pending records after priority ordering. |
+| `--phase unpack` | Files have downloaded. | Reconstructs CPC CP/M files from CPC DSK images instead of copying track data into every entry. |
+| `--phase fingerprint` | You need binary-level DAAD evidence. | A non-match is retained as a useful result; no version is fabricated. |
+| `--phase synthesize` | You need outputs for verified artifacts. | Produces the normal catalog, detection candidates, and report. |
+| `--phase all` | The queue and network settings are already reviewed. | Runs discover → catalog → fetch → unpack → fingerprint → synthesize. |
+| `--tui` | You are in an interactive terminal. | Starts the real Rich dashboard. Tab 2 displays the priority acquisition queue. |
 
-A proxy list can be supplied at runtime. The current implementation selects one configured proxy for a run rather than rotating a proxy per request.
+The TUI is optional and should be run from a real terminal.
 
 ```bash
-daad-harvester --phase discover --proxy-list ./proxies.txt --output-dir ./output
+daad-harvester --phase fetch --max-sources 6 --parallel 2 --tui --output-dir ./output
 ```
 
-The file contains one proxy URL per line; blank lines and lines beginning with `#` are ignored.
+## Outputs
 
-## Outputs and logs
-
-A run writes all mutable data below the output directory you choose.
-
-| Path | Contents |
+| Path | Meaning |
 | --- | --- |
-| `state.db` | SQLite source, artifact, and game state. SQLite WAL mode supports resumable local work. |
-| `downloads/` | Files accepted by the fetch stage. |
+| `state.db` | Resumable SQLite source, artifact, and game state. It stores `known_game_id` and `acquisition_priority` per source. |
+| `evidence_catalog.json` | Source-backed title, platform, priority, and version-evidence catalog. |
+| `downloads/` | Bytes accepted by the fetcher after response validation. |
 | `extracted/` | Original and recursively extracted artifact bytes. |
-| `daad_catalog.json` | Serialized catalog generated by synthesis. |
-| `detection_tables.h` | Candidate ScummVM detection entries generated by synthesis. |
-| `report.md` | Human-readable summary produced by the report stage. |
-| `logs/daad_discovery.log` | Adapter-level counts and source status. |
-| `logs/daad_downloads.log` | Download, rejection, and recovery outcomes. |
-| `logs/daad_errors.log` | System and network errors. |
-| `logs/daad_compression_errors.log` | Archive and extraction diagnostics. |
-| `logs/daad_games.log` | Records for artifacts that pass DAAD-oriented fingerprinting. |
+| `daad_catalog.json` | Catalog synthesized from binary-verified DAAD artifacts. |
+| `detection_tables.h` | Candidate C++ detection entries generated from verified artifacts. |
+| `report.md` | Human-readable summary from persisted state. |
+| `logs/` | Discovery, download, compression, error, and game-identification logs. |
 
-Do not commit an output directory. It may contain downloaded copyrighted material, archives, logs, and local state.
+## Validation and current boundary
 
-## Verification and development
-
-Run the complete test suite and static import check after changing code.
+Run deterministic checks after a code change.
 
 ```bash
 python -m pytest
 python -m pyflakes daad_harvester/
 ```
 
-A practical live smoke test should be run separately from the deterministic tests because archive availability is external and time-dependent.
+Live archive tests are separate because websites change. A recent controlled run discovered 95 direct candidates, then selected and downloaded the six highest-priority catalog-backed CPC sources. All six downloads completed, and the corrected CPC DSK parser reconstructed named CP/M files rather than generating malformed track copies. The current fingerprint parser did **not** yet identify a DAAD database payload in that first CPC batch. That is recorded as a limitation, not hidden or converted into a false version claim.
 
-```bash
-DAAD_REQUEST_TIMEOUT=15 DAAD_MAX_RETRIES=1 DAAD_RATE_LIMIT_PER_DOMAIN=5 \
-  daad-harvester --phase discover --output-dir ./live-smoke
-```
-
-Review the discovery log before fetching. A healthy run may legitimately report zero files for opportunistic sources such as IFDB, WikiCAAD, itch.io, or the web-search fallback. It must not silently replace those outcomes with fabricated files.
+This distinction is intentional. The catalog establishes that the six titles are DAAD games; their source metadata establishes that these are CPC candidates; parser support must still recognize the specific executable/data layout before the project marks a binary as a verified DAAD payload. Future parser work should use those saved hashes and extracted files as fixtures only where redistribution is permitted.
 
 ## Troubleshooting
 
-| Symptom | Likely cause | Recommended action |
+| Symptom | Explanation | Action |
 | --- | --- | --- |
-| A source reports zero files | The public page has no direct compatible artifact, is rate-limited, or changed structure. | Read `logs/daad_discovery.log`; do not add page URLs as manual seeds. |
-| A download is rejected as HTML or JSON | The link resolved to a catalog, error, login, or purchase page. | Treat the rejection as correct behavior and inspect the source adapter. |
-| A download ends with `error` and an HTTP status | The remote file was unavailable or transiently failed. | Retry later or use a verified archival path; the recorded status is evidence. |
-| An archive cannot be unpacked | A required system extractor is missing or the container is malformed. | Install the recommended extraction tools and review `daad_compression_errors.log`. |
-| A historical source changes its HTML | Scrapers are source-specific by design. | Add a regression fixture, verify the live contract, then update only that adapter. |
+| A source produces zero files. | The adapter found no direct compatible artifact or the source changed. | Read `logs/daad_discovery.log`; do not add a catalog-page URL as a seed. |
+| A `.dsk` does not receive CPC priority. | Generic DSK is ambiguous across retro platforms. | Add platform evidence in the source adapter or archive metadata; do not infer it from the extension. |
+| A known title has no exact DAAD version. | A title record is not binary-level engine evidence. | Fetch, unpack, and fingerprint a platform release. |
+| The fingerprint stage reports zero matches. | The artifact may be non-DAAD, wrapped, compressed, or not yet supported by the parser. | Keep the result and hashes; do not re-label it manually as verified. |
+| A response is rejected as HTML or JSON. | The URL resolved to a page, error, login, or purchase flow. | Treat the rejection as correct behavior and inspect that adapter’s contract. |
+| A historical site has a temporary or gated download. | The site does not provide a safe unattended direct-file contract. | Keep it as catalog evidence, not an automated fetch source. |
 
 ## Responsible use
 
-This tool accesses public resources. Respect each site’s terms, robots policy, bandwidth, and rate limits. Do not use it to bypass payment, authentication, regional restrictions, or access controls. Preserve provenance: retain the source URL, HTTP status, and hash data alongside any result you distribute.
+Use public sources respectfully. Follow site terms, robots policies, and rate limits; do not bypass payment, authentication, regional restrictions, or access controls. Preserve provenance by keeping the source URL, HTTP response details, hashes, and catalog evidence with any research output.
 
 ## License
 
@@ -223,6 +197,11 @@ This repository is licensed under the MIT License. See [LICENSE](LICENSE).
 ## References
 
 [1]: https://github.com/daad-adventure-writer/daad "DAAD Adventure Writer"
-[2]: https://archive.org/metadata/Aventura_Original_La_1989_Aventuras_AD_es "Internet Archive metadata for La Aventura Original"
-[3]: https://api.zxinfo.dk/v3/ "ZXInfo API v3"
-[4]: https://worldofspectrum.org/archive/software/text-adventures/la-aventura-original-aventuras-ad-sa "World of Spectrum: La Aventura Original"
+[2]: https://wiki.caad.es/DAAD "wikiCAAD: DAAD"
+[3]: https://computeremuzone.com/engine/daad?l=en "Computer Emu Zone: Games made with DAAD"
+[4]: https://solutionarchive.com/game/id%2C2148/Aventura+Original%2C+La.html "CASA: La Aventura Original"
+[5]: https://www.cpc-power.com/index.php?page=detail&onglet=dumps&num=549 "CPC Power: Chichen Itza disk records"
+[6]: https://archive.org/metadata/Ci-U-Than_Trilogy_III_Chichen_Itza_1992_Aventuras_AD_es "Internet Archive: Chichen Itza CPC metadata"
+[7]: https://api.zxinfo.dk/v3/ "ZXInfo API v3"
+[8]: https://worldofspectrum.org/archive/software/text-adventures/la-aventura-original-aventuras-ad-sa "World of Spectrum: La Aventura Original"
+[9]: https://www.planetemu.net/faq/les-telechargements-sur-le-site "Planet Emulation download FAQ"
