@@ -4,15 +4,15 @@
 
 | Target dossier | Status |
 | --- | --- |
-| [ZX Spectrum](ZX_SPECTRUM.md) | Planned |
-| [Amstrad CPC](AMSTRAD_CPC.md) | Planned |
-| [Commodore 64](COMMODORE_64.md) | Planned |
-| [Commodore Plus/4](COMMODORE_PLUS4.md) | Planned |
-| [MSX](MSX.md) | Planned |
-| [Amstrad PCW](AMSTRAD_PCW.md) | Planned |
-| [Atari ST](ATARI_ST.md) | Planned |
-| [Amiga](AMIGA.md) | Planned |
-| [IBM PC/DOS](IBM_PC_DOS.md) | Planned |
+| [ZX Spectrum](ZX_SPECTRUM.md) | Implementation contract |
+| [Amstrad CPC](AMSTRAD_CPC.md) | Implementation contract |
+| [Commodore 64](COMMODORE_64.md) | Implementation contract |
+| [Commodore Plus/4](COMMODORE_PLUS4.md) | Implementation contract |
+| [MSX](MSX.md) | Implementation contract |
+| [Amstrad PCW](AMSTRAD_PCW.md) | Implementation contract |
+| [Atari ST](ATARI_ST.md) | Implementation contract |
+| [Amiga](AMIGA.md) | Implementation contract |
+| [IBM PC/DOS](IBM_PC_DOS.md) | Implementation contract |
 | [Legacy overview](PLATFORM_RUNTIME_MEDIA.md) | Migration source and comparative index. |
 
 Byte-level media specifications belong in `../formats/`; this directory records only target-specific implications.
