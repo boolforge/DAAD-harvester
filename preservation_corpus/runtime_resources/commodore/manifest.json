@@ -145,6 +145,13 @@
       "result": "The introduction state is reproduced after the verified space input; the extracted 64 KiB RAM range still contains no structurally validated DDB."
     },
     {
+      "platform": "c64",
+      "source_artifact_sha256": "4f2c17a2324f539dbf0c121b88fb1101602ffed0473481be61800571424c157f",
+      "title": "Jabato vs Imperio",
+      "interaction": "Two independently delivered, correctly encoded quoted-space monitor inputs at three-second intervals after virtual-drive autostart.",
+      "result": "The retained stage screenshots show the same introductory panel while the waiting prompt progresses from two to four dots. Both inputs reached the runtime, but no data-load or game-state transition occurred in this bounded interaction path."
+    },
+    {
       "platform": "plus4",
       "source_artifact_sha256": "3a9617f03ba18edd2be29abe6dfcc383f47a81b77ab37be98be585aea9c38a49",
       "title": "Eight Feet Under / EDIPLUS4 loader",
