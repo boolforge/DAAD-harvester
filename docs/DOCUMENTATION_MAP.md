@@ -43,7 +43,7 @@ docs/
 | `interpreter_profiles.py` and runtime-identification tests | Runtime identity implementation source | `interpreters/IDENTITY_PROTOCOL.md`, `interpreters/OFFICIAL_PROFILE_LEDGER.md`, `interpreters/PUBLIC_IMPLEMENTATIONS.md` | Focused modules available |
 | `platforms/PLATFORM_RUNTIME_MEDIA.md` | Nine-target platform index | `platforms/ZX_SPECTRUM.md` through `platforms/IBM_PC_DOS.md` | Focused modules available; legacy retained as migration source |
 | `derivatives/COMPATIBILITY_TAXONOMY.md` | Derivative index and comparison table | `derivatives/DRC.md`, `derivatives/MSX2DAAD.md`, `derivatives/MALUVA.md`, `derivatives/PCDAAD.md`, `derivatives/UNDAAD.md` | Planned |
-| `formats/FORMAT_CAPABILITY_MATRIX.md` | Release-gate matrix | `formats/TAPE_STREAMS.md`, `formats/CBM_DISK_AND_PROGRAM.md`, `formats/CPM_DSK.md`, `formats/FAT_MEDIA.md`, `formats/AMIGA_MEDIA.md`, `formats/ATARI_PROTECTED_MEDIA.md`, `formats/ARCHIVE_WRAPPERS.md`, `formats/EXECUTABLE_AND_SNAPSHOT_EVIDENCE.md` | Planned |
+| `formats/FORMAT_CAPABILITY_MATRIX.md` | Release-gate matrix | `formats/TAPE_STREAMS.md`, `formats/CBM_DISK_AND_PROGRAM.md`, `formats/CPM_DSK.md`, `formats/FAT_MEDIA.md`, `formats/AMIGA_MEDIA.md`, `formats/ATARI_PROTECTED_MEDIA.md`, `formats/ARCHIVE_WRAPPERS.md`, `formats/EXECUTABLE_AND_SNAPSHOT_EVIDENCE.md` | Focused modules available; matrix retained as release gate |
 | `sources/SOURCE_REGISTER.md` | Source-family index | `sources/PRIMARY_DAAD.md`, `sources/PUBLIC_IMPLEMENTATIONS.md`, `sources/MEDIA_SPECS.md`, `sources/DISCOVERY_ADAPTERS.md` | Planned |
 | `RESEARCH_METHODOLOGY.md` | Corpus method | `schemas/EVIDENCE_MODEL.md`, `diagrams/RESEARCH_EVIDENCE_FLOW.md` | Planned extraction of supporting material |
 
