@@ -165,6 +165,16 @@ def test_cpc_dsk_inspection_validates_track_and_sector_boundaries() -> None:
     result = inspect_native_media("adventure.dsk", bytes(dsk))
     assert result.validation == "validated_cpc_dsk_track_stream"
     assert result.evidence["sector_count"] == 1
+    assert result.evidence["cpm_directory_extraction_eligible"] is False
+
+
+def test_retained_cpc_dsk_records_nonstandard_cpm_geometry() -> None:
+    image = Path(__file__).resolve().parents[1] / "preservation_corpus" / "downloads" / "110_Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk"
+    result = inspect_native_media(image.name, image.read_bytes())
+    assert result.validation == "validated_cpc_dsk_track_stream"
+    assert result.evidence["cpm_directory_profile"] == "nonstandard_mixed_geometry"
+    assert result.evidence["cpm_directory_extraction_eligible"] is False
+    assert result.evidence["present_tracks"] == 40
 
 
 def test_media_evidence_is_json_serializable() -> None:

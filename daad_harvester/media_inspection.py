@@ -164,6 +164,7 @@ def _inspect_cpc_dsk(data: bytes) -> MediaInspection:
     pos = 0x100
     present_tracks = 0
     sectors = 0
+    track_layouts: list[tuple[tuple[int, ...], tuple[int, ...]]] = []
     for index in range(total_tracks):
         track_size = track_sizes[index] * 256 if extended else fixed_size
         if not track_size:
@@ -177,6 +178,8 @@ def _inspect_cpc_dsk(data: bytes) -> MediaInspection:
         if 0x18 + sector_count * 8 > 0x100:
             return _result("cpc-dsk", "rejected", "invalid_sector_descriptor_table", parsed_tracks=present_tracks)
         consumed = 0
+        sector_ids: list[int] = []
+        sector_sizes: list[int] = []
         for sector in range(sector_count):
             descriptor = header[0x18 + sector * 8:0x20 + sector * 8]
             sector_size = int.from_bytes(descriptor[6:8], "little")
@@ -186,13 +189,26 @@ def _inspect_cpc_dsk(data: bytes) -> MediaInspection:
                     return _result("cpc-dsk", "rejected", "invalid_sector_size_code", parsed_tracks=present_tracks)
                 sector_size = 128 << code
             consumed += sector_size
+            sector_ids.append(descriptor[2])
+            sector_sizes.append(sector_size)
         if 0x100 + consumed > track_size:
             return _result("cpc-dsk", "rejected", "sector_payload_exceeds_track", parsed_tracks=present_tracks)
         present_tracks += 1
         sectors += sector_count
+        track_layouts.append((tuple(sector_ids), tuple(sector_sizes)))
         pos += track_size
     if pos != len(data):
         return _result("cpc-dsk", "rejected", "trailing_or_missing_track_data", parsed_tracks=present_tracks, trailing=len(data) - pos)
+    standard_track_count = tracks == 40 and sides == 1 and present_tracks == 40
+    system_ids = tuple(range(0x41, 0x4A))
+    data_ids = tuple(range(0xC1, 0xCA))
+    standard_sizes = (512,) * 9
+    if standard_track_count and all(ids == system_ids and sizes == standard_sizes for ids, sizes in track_layouts):
+        cpm_profile = "cpc_system"
+    elif standard_track_count and all(ids == data_ids and sizes == standard_sizes for ids, sizes in track_layouts):
+        cpm_profile = "cpc_data"
+    else:
+        cpm_profile = "nonstandard_mixed_geometry"
     return _result(
         "cpc-dsk", "recognized_evidence", "validated_cpc_dsk_track_stream",
         dsk_variant="extended" if extended else "standard",
@@ -200,6 +216,14 @@ def _inspect_cpc_dsk(data: bytes) -> MediaInspection:
         sides=sides,
         present_tracks=present_tracks,
         sector_count=sectors,
+        cpm_directory_profile=cpm_profile,
+        cpm_directory_extraction_eligible=cpm_profile in {"cpc_system", "cpc_data"},
+        observed_track_layouts=sorted(
+            {
+                f"ids={','.join(f'{value:02X}' for value in ids)};sizes={','.join(map(str, sizes))}"
+                for ids, sizes in track_layouts
+            }
+        ),
     )
 
 
