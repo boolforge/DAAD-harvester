@@ -1,0 +1,12 @@
+flowchart TD
+  S[Source URL / source record] --> A[Retained artifact bytes]
+  A --> H[Hash set]
+  A --> M[Media inspection]
+  A --> D[DDB structural validation]
+  A --> R[Interpreter profile matching]
+  H --> P[Provenance relationship]
+  M --> E[Evidence record]
+  D --> E
+  R --> E
+  P --> E
+  E --> Q[Qualified report or library classification]

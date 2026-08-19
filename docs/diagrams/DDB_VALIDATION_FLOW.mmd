@@ -1,0 +1,14 @@
+flowchart TD
+  A[Candidate bytes] --> B{Explicit non-DAAD rejection?}
+  B -- yes --> X[Unverified with reason]
+  B -- no --> C[Candidate raw / validated wrapper offsets]
+  C --> D[Parse DRC or legacy header]
+  D --> E{Length and target fields valid?}
+  E -- no --> X
+  E -- yes --> F[Resolve target address and pointer offsets]
+  F --> G{Pointers in bounded payload?}
+  G -- no --> X
+  G -- yes --> H[Validate process entries and terminated streams]
+  H -- no --> X
+  H -- yes --> I[Verified structural DDB evidence]
+  I --> J[Correlate interpreter separately]

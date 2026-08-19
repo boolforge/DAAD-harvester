@@ -1,0 +1,9 @@
+flowchart LR
+  O[Original artifact + SHA-256] --> W[Wrapper/media recognition]
+  W --> V[Bounds / checksum / geometry validation]
+  V -->|extractable| C[Child member bytes + SHA-256]
+  V -->|protected or non-file-oriented| E[Structured evidence-only record]
+  C --> N[Recursive inspection]
+  N --> P[Parent-child provenance chain]
+  E --> P
+  P --> L[Library/report relative links]
