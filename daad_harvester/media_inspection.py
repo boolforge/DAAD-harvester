@@ -197,6 +197,73 @@ def _inspect_dms(data: bytes) -> MediaInspection:
     )
 
 
+def _inspect_fat(data: bytes) -> MediaInspection:
+    if len(data) < 512 or data[510:512] != b"\x55\xaa":
+        return _result("fat12-fat16", "rejected", "invalid_boot_signature")
+    bytes_per_sector = int.from_bytes(data[11:13], "little")
+    sectors_per_cluster = data[13]
+    reserved = int.from_bytes(data[14:16], "little")
+    fat_count = data[16]
+    root_entries = int.from_bytes(data[17:19], "little")
+    total_sectors = int.from_bytes(data[19:21], "little") or int.from_bytes(data[32:36], "little")
+    sectors_per_fat = int.from_bytes(data[22:24], "little")
+    if (
+        bytes_per_sector not in {128, 256, 512, 1024}
+        or not sectors_per_cluster
+        or not reserved
+        or not fat_count
+        or not root_entries
+        or not sectors_per_fat
+        or not total_sectors
+    ):
+        return _result("fat12-fat16", "rejected", "invalid_bpb")
+    root_sectors = (root_entries * 32 + bytes_per_sector - 1) // bytes_per_sector
+    data_start = reserved + fat_count * sectors_per_fat + root_sectors
+    data_sectors = total_sectors - data_start
+    image_size = total_sectors * bytes_per_sector
+    if data_sectors <= 0 or image_size > len(data):
+        return _result("fat12-fat16", "rejected", "declared_geometry_out_of_range")
+    cluster_count = data_sectors // sectors_per_cluster
+    if cluster_count >= 65525:
+        return _result("fat12-fat16", "recognized_evidence", "fat32_or_later_not_routed", cluster_count=cluster_count)
+    fat_variant = "fat12" if cluster_count < 4085 else "fat16"
+    return _result(
+        "fat12-fat16", "recognized_evidence", "validated_fat_geometry",
+        fat_variant=fat_variant,
+        bytes_per_sector=bytes_per_sector,
+        sectors_per_cluster=sectors_per_cluster,
+        total_sectors=total_sectors,
+        cluster_count=cluster_count,
+    )
+
+
+def _inspect_mz(data: bytes) -> MediaInspection:
+    if len(data) < 28 or data[:2] not in {b"MZ", b"ZM"}:
+        return _result("dos-mz", "rejected", "truncated_or_missing_mz_signature")
+    bytes_last_page = int.from_bytes(data[2:4], "little")
+    pages = int.from_bytes(data[4:6], "little")
+    relocation_count = int.from_bytes(data[6:8], "little")
+    header_paragraphs = int.from_bytes(data[8:10], "little")
+    relocation_offset = int.from_bytes(data[24:26], "little")
+    if not pages or bytes_last_page > 512:
+        return _result("dos-mz", "rejected", "invalid_page_fields")
+    declared_size = pages * 512 - (512 - bytes_last_page if bytes_last_page else 0)
+    header_size = header_paragraphs * 16
+    relocation_end = relocation_offset + relocation_count * 4
+    if declared_size < header_size or declared_size > len(data) or relocation_end > header_size:
+        return _result(
+            "dos-mz", "rejected", "invalid_header_bounds",
+            declared_size=declared_size, header_size=header_size, relocation_end=relocation_end,
+        )
+    return _result(
+        "dos-mz", "recognized_evidence", "validated_mz_header",
+        declared_size=declared_size,
+        header_size=header_size,
+        relocation_count=relocation_count,
+        relocation_offset=relocation_offset,
+    )
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -225,6 +292,10 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_adf(data)
     if data.startswith(b"DMS!") or extension == ".dms":
         return _inspect_dms(data)
+    if len(data) >= 512 and data[510:512] == b"\x55\xaa":
+        return _inspect_fat(data)
+    if data.startswith((b"MZ", b"ZM")) or extension == ".exe":
+        return _inspect_mz(data)
     if extension in {".sna", ".z80"}:
         return _inspect_snapshot(extension, data)
     if extension in {".rom", ".com", ".exe", ".prg"}:

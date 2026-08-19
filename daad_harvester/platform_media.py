@@ -269,12 +269,40 @@ def _fat12_next(table: bytes, cluster: int) -> Optional[int]:
     return (pair >> 4) & 0x0FFF if cluster & 1 else pair & 0x0FFF
 
 
-def extract_fat12(data: bytes) -> List[Member]:
-    """Extract root-directory files from a standard FAT12 floppy image.
+def _fat_lfn_name(parts: List[bytes]) -> str:
+    """Return a validated VFAT long filename, or an empty value for fallback."""
 
-    This covers MSX-DOS, Atari ST, and IBM PC media.  It intentionally follows
-    only valid root entries and cluster chains, rejecting cycles and malformed
-    BPBs rather than treating a random sector stream as a filesystem.
+    raw = b"".join(parts)
+    characters = []
+    for index in range(0, len(raw), 2):
+        unit = raw[index:index + 2]
+        if len(unit) != 2 or unit == b"\x00\x00":
+            break
+        if unit == b"\xff\xff":
+            continue
+        characters.append(unit)
+    try:
+        value = b"".join(characters).decode("utf-16le")
+    except UnicodeDecodeError:
+        return ""
+    return _clean_name(value.encode("utf-8", "ignore"), "")
+
+
+def _fat_lfn_checksum(short_name: bytes) -> int:
+    checksum = 0
+    for value in short_name:
+        checksum = ((checksum & 1) << 7) + (checksum >> 1) + value
+        checksum &= 0xFF
+    return checksum
+
+
+def extract_fat(data: bytes, *, require_type: Optional[str] = None) -> List[Member]:
+    """Extract a complete bounded FAT12/FAT16 directory tree.
+
+    The parser validates the BPB-derived geometry and FAT variant, walks files
+    and directories only through bounded, cycle-free cluster chains, and handles
+    conventional 8.3 plus validated long filename records. FAT32 is deliberately
+    not conflated with these floppy-era media families and is rejected here.
     """
 
     if len(data) < 512 or data[510:512] != b"\x55\xaa":
@@ -304,46 +332,118 @@ def extract_fat12(data: bytes) -> List[Member]:
     fat_size = sectors_per_fat * bytes_per_sector
     root_start = (reserved + fat_count * sectors_per_fat) * bytes_per_sector
     data_start_sector = reserved + fat_count * sectors_per_fat + root_sector_count
-    if fat_start + fat_size > len(data) or root_start + root_entries * 32 > len(data):
+    data_sector_count = total_sectors - data_start_sector
+    if data_sector_count <= 0 or fat_start + fat_size > len(data) or root_start + root_entries * 32 > len(data):
+        return []
+    cluster_count = data_sector_count // sectors_per_cluster
+    fat_type = "fat12" if cluster_count < 4085 else "fat16" if cluster_count < 65525 else "fat32"
+    if fat_type == "fat32" or (require_type and fat_type != require_type):
         return []
     fat = data[fat_start:fat_start + fat_size]
     members: List[Member] = []
-    for entry_offset in range(root_start, root_start + root_entries * 32, 32):
-        entry = data[entry_offset:entry_offset + 32]
-        if len(entry) < 32 or entry[0] in {0x00, 0xE5}:
-            continue
-        attributes = entry[11]
-        if attributes & 0x18 or attributes == 0x0F:  # volume label, directory, or VFAT LFN
-            continue
-        name = _clean_name(entry[0:8], "file")
-        extension = _clean_name(entry[8:11], "")
-        filename = f"{name}.{extension}" if extension else name
-        cluster = int.from_bytes(entry[26:28], "little")
-        file_size = int.from_bytes(entry[28:32], "little")
-        if file_size == 0:
-            members.append((filename, b""))
-            continue
-        if cluster < 2:
-            continue
-        clusters_seen = set()
+    max_cluster = cluster_count + 1
+    directory_clusters: set[int] = set()
+
+    def next_cluster(cluster: int) -> Optional[int]:
+        if fat_type == "fat12":
+            return _fat12_next(fat, cluster)
+        offset = cluster * 2
+        return int.from_bytes(fat[offset:offset + 2], "little") if offset + 2 <= len(fat) else None
+
+    def chain_payload(first_cluster: int) -> Optional[bytes]:
+        if not 2 <= first_cluster <= max_cluster:
+            return None
+        seen: set[int] = set()
         payload = bytearray()
-        while 2 <= cluster < 0xFF8 and cluster not in clusters_seen:
-            clusters_seen.add(cluster)
+        cluster = first_cluster
+        eof = 0xFF8 if fat_type == "fat12" else 0xFFF8
+        bad = 0xFF7 if fat_type == "fat12" else 0xFFF7
+        while True:
+            if cluster in seen or not 2 <= cluster <= max_cluster:
+                return None
+            seen.add(cluster)
             sector = data_start_sector + ((cluster - 2) * sectors_per_cluster)
             start = sector * bytes_per_sector
             length = sectors_per_cluster * bytes_per_sector
-            if start + length > len(data):
-                payload = bytearray()
-                break
+            if start + length > image_size:
+                return None
             payload.extend(data[start:start + length])
-            next_cluster = _fat12_next(fat, cluster)
-            if next_cluster is None:
-                payload = bytearray()
-                break
-            cluster = next_cluster
-        if len(payload) >= file_size:
-            members.append((filename, bytes(payload[:file_size])))
+            following = next_cluster(cluster)
+            if following is None or following == bad:
+                return None
+            if following >= eof:
+                return bytes(payload)
+            cluster = following
+
+    def walk_directory(entries: bytes, prefix: str) -> None:
+        lfn_records: List[Tuple[int, int, bytes]] = []
+        for entry_offset in range(0, len(entries) - 31, 32):
+            entry = entries[entry_offset:entry_offset + 32]
+            if entry[0] == 0x00:
+                return
+            if entry[0] == 0xE5:
+                lfn_records.clear()
+                continue
+            attributes = entry[11]
+            if attributes == 0x0F:
+                ordinal = entry[0]
+                sequence = ordinal & 0x1F
+                if entry[12] != 0 or entry[26:28] != b"\x00\x00" or sequence == 0:
+                    lfn_records.clear()
+                    continue
+                fragment = entry[1:11] + entry[14:26] + entry[28:32]
+                if ordinal & 0x40:
+                    lfn_records = [(sequence, entry[13], fragment)]
+                elif not lfn_records or sequence != lfn_records[-1][0] - 1 or entry[13] != lfn_records[-1][1]:
+                    lfn_records.clear()
+                else:
+                    lfn_records.append((sequence, entry[13], fragment))
+                continue
+            lfn_parts = [record[2] for record in reversed(lfn_records)]
+            sequence_valid = bool(lfn_records) and lfn_records[-1][0] == 1 and all(
+                lfn_records[index][0] == lfn_records[0][0] - index for index in range(len(lfn_records))
+            )
+            checksum_valid = sequence_valid and lfn_records[0][1] == _fat_lfn_checksum(entry[:11])
+            name = _fat_lfn_name(lfn_parts) if checksum_valid else ""
+            name = name or _clean_name(entry[0:8], "file")
+            lfn_records.clear()
+            extension = _clean_name(entry[8:11], "")
+            short_name = f"{name}.{extension}" if extension and not name.casefold().endswith(f".{extension.casefold()}") else name
+            if attributes & 0x08:  # volume label
+                continue
+            cluster = int.from_bytes(entry[26:28], "little")
+            path = f"{prefix}/{short_name}" if prefix else short_name
+            if attributes & 0x10:
+                if short_name in {".", ".."} or cluster in directory_clusters:
+                    continue
+                directory = chain_payload(cluster)
+                if directory is None:
+                    continue
+                directory_clusters.add(cluster)
+                walk_directory(directory, path)
+                continue
+            file_size = int.from_bytes(entry[28:32], "little")
+            if file_size == 0:
+                members.append((path, b""))
+                continue
+            payload = chain_payload(cluster)
+            if payload is not None and len(payload) >= file_size:
+                members.append((path, payload[:file_size]))
+
+    walk_directory(data[root_start:root_start + root_entries * 32], "")
     return members
+
+
+def extract_fat12(data: bytes) -> List[Member]:
+    """Extract a bounded FAT12 filesystem; compatibility wrapper for callers."""
+
+    return extract_fat(data, require_type="fat12")
+
+
+def extract_fat16(data: bytes) -> List[Member]:
+    """Extract a bounded FAT16 filesystem, including subdirectories and LFNs."""
+
+    return extract_fat(data, require_type="fat16")
 
 
 def decompress_msa(data: bytes) -> Optional[bytes]:

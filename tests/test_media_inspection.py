@@ -103,6 +103,29 @@ def test_tzx_inspection_requires_validated_block_stream() -> None:
     assert result.validation == "invalid_or_truncated_block_stream"
 
 
+def test_fat_and_dos_mz_headers_capture_structured_evidence() -> None:
+    fat = bytearray(4 * 512)
+    fat[11:13] = (512).to_bytes(2, "little")
+    fat[13] = fat[14] = fat[16] = 1
+    fat[17:19] = (16).to_bytes(2, "little")
+    fat[19:21] = (4).to_bytes(2, "little")
+    fat[22:24] = (1).to_bytes(2, "little")
+    fat[510:512] = b"\x55\xaa"
+    result = inspect_native_media("disk.img", bytes(fat))
+    assert result.validation == "validated_fat_geometry"
+    assert result.evidence["fat_variant"] == "fat12"
+
+    mz = bytearray(64)
+    mz[:2] = b"MZ"
+    mz[2:4] = (64).to_bytes(2, "little")
+    mz[4:6] = (1).to_bytes(2, "little")
+    mz[8:10] = (2).to_bytes(2, "little")
+    mz[24:26] = (28).to_bytes(2, "little")
+    result = inspect_native_media("DAAD.EXE", bytes(mz))
+    assert result.validation == "validated_mz_header"
+    assert result.evidence["declared_size"] == 64
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)

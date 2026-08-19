@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from daad_harvester.db import Database
-from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12, parse_tzx_blocks
+from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12, extract_fat16, parse_tzx_blocks
 from daad_harvester.unpack import Unpacker
 
 
@@ -33,6 +33,51 @@ def _fat12_image(payload: bytes = b"DAAD.DDB") -> bytes:
     image[root + 28:root + 32] = len(payload).to_bytes(4, "little")
     image[1536:1536 + len(payload)] = payload
     return bytes(image)
+
+
+def _fat16_nested_image(payload: bytes = b"FAT16.DDB") -> bytes:
+    # BPB geometry creates 4,085 data clusters, the first valid FAT16 threshold.
+    data_clusters = 4085
+    sectors_per_fat = 16
+    sectors = 1 + sectors_per_fat + 1 + data_clusters
+    image = bytearray(sectors * 512)
+    image[11:13] = (512).to_bytes(2, "little")
+    image[13] = 1
+    image[14:16] = (1).to_bytes(2, "little")
+    image[16] = 1
+    image[17:19] = (16).to_bytes(2, "little")
+    image[19:21] = sectors.to_bytes(2, "little")
+    image[21] = 0xF8
+    image[22:24] = sectors_per_fat.to_bytes(2, "little")
+    image[510:512] = b"\x55\xaa"
+    fat = 512
+    for cluster, value in ((0, 0xFFF8), (1, 0xFFFF), (2, 0xFFFF), (3, 0xFFFF)):
+        image[fat + cluster * 2:fat + cluster * 2 + 2] = value.to_bytes(2, "little")
+    root = (1 + sectors_per_fat) * 512
+    image[root:root + 8] = b"LEVEL1  "
+    image[root + 11] = 0x10
+    image[root + 26:root + 28] = (2).to_bytes(2, "little")
+    data_start = (1 + sectors_per_fat + 1) * 512
+    image[data_start:data_start + 8] = b"DAAD    "  # cluster 2 directory
+    image[data_start + 8:data_start + 11] = b"DDB"
+    image[data_start + 26:data_start + 28] = (3).to_bytes(2, "little")
+    image[data_start + 28:data_start + 32] = len(payload).to_bytes(4, "little")
+    image[data_start + 512:data_start + 512 + len(payload)] = payload  # cluster 3
+    return bytes(image)
+
+
+def _lfn_entry(name: str, short_name: bytes) -> bytes:
+    encoded = (name + "\x00").encode("utf-16le").ljust(26, b"\xff")
+    entry = bytearray(32)
+    entry[0] = 0x41
+    entry[1:11] = encoded[:10]
+    entry[11] = 0x0F
+    entry[13] = 0
+    for value in short_name:
+        entry[13] = (((entry[13] & 1) << 7) + (entry[13] >> 1) + value) & 0xFF
+    entry[14:26] = encoded[10:22]
+    entry[28:32] = encoded[22:26]
+    return bytes(entry)
 
 
 def _t64(payload: bytes = b"DDB") -> bytes:
@@ -188,6 +233,27 @@ def test_extracts_msx_and_dos_fat12_images(tmp_path: Path) -> None:
     assert unpacker.extract_container(tmp_path / "game.dsk", "game.img", image) == [("DAAD.DDB", b"DAAD.DDB")]
     assert unpacker.extract_container(tmp_path / "game.dsk", "game.dsk", image) == [("DAAD.DDB", b"DAAD.DDB")]
     assert unpacker.extract_container(tmp_path / "game.st", "game.st", image) == [("DAAD.DDB", b"DAAD.DDB")]
+
+
+def test_extracts_nested_dos_fat16_filesystem(tmp_path: Path) -> None:
+    image = _fat16_nested_image()
+    assert extract_fat16(image) == [("LEVEL1/DAAD.DDB", b"FAT16.DDB")]
+    assert _unpacker(tmp_path).unpack_fat(image) == [("LEVEL1/DAAD.DDB", b"FAT16.DDB")]
+
+
+def test_fat16_validates_and_recovers_long_filename_records() -> None:
+    image = bytearray(_fat16_nested_image())
+    root = (1 + 16) * 512
+    short_name = b"ADVENT~1DDB"
+    image[root + 32:root + 64] = _lfn_entry("DAAD123.ddb", short_name)
+    image[root + 64:root + 72] = short_name[:8]
+    image[root + 72:root + 75] = short_name[8:]
+    image[root + 64 + 26:root + 64 + 28] = (3).to_bytes(2, "little")
+    image[root + 64 + 28:root + 64 + 32] = len(b"FAT16.DDB").to_bytes(4, "little")
+    assert extract_fat16(bytes(image)) == [
+        ("LEVEL1/DAAD.DDB", b"FAT16.DDB"),
+        ("DAAD123.ddb", b"FAT16.DDB"),
+    ]
 
 
 def test_decodes_msa_then_extracts_atari_st_fat12(tmp_path: Path) -> None:

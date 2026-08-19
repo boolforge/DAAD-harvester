@@ -43,7 +43,7 @@ from daad_harvester.platform_media import (
     decompress_dms,
     decompress_msa,
     extract_adf,
-    extract_fat12,
+    extract_fat,
     extract_msx_cas,
     extract_p00,
     extract_t64,
@@ -580,14 +580,18 @@ class Unpacker:
         """Extract ZX Spectrum TZX or CPC CDT standard data blocks."""
         return extract_tzx(data)
 
+    def unpack_fat(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Extract MSX, Atari ST, and DOS FAT12/FAT16 filesystem members."""
+        return extract_fat(data)
+
     def unpack_fat12(self, data: bytes) -> List[Tuple[str, bytes]]:
-        """Extract MSX, Atari ST, and DOS FAT12 root-directory files."""
-        return extract_fat12(data)
+        """Compatibility entry point for callers requesting generic floppy media."""
+        return self.unpack_fat(data)
 
     def unpack_msa(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Decode an Atari ST MSA image and extract its FAT12 members."""
         decoded = decompress_msa(data)
-        return extract_fat12(decoded) if decoded is not None else []
+        return extract_fat(decoded) if decoded is not None else []
 
     def unpack_adf(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Extract Amiga OFS/FFS ADF members."""
