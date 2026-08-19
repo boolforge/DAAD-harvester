@@ -37,6 +37,15 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord, SourceRecord, SourceStatus
 from daad_harvester.daad_logger import LoggerSuite
+from daad_harvester.platform_media import (
+    decompress_adz,
+    decompress_msa,
+    extract_adf,
+    extract_fat12,
+    extract_msx_cas,
+    extract_t64,
+    extract_tzx,
+)
 
 logger = structlog.get_logger(__name__)
 
@@ -512,11 +521,16 @@ class Unpacker:
                 curr_t, curr_s = sec_data[0], sec_data[1]
 
                 for entry_idx in range(8):
-                    entry = sec_data[entry_idx*32 : (entry_idx+1)*32]
-                    file_type = entry[2]
+                    # C64 directory sectors reserve bytes 0-1 for the next
+                    # directory-sector link; each 32-byte entry starts at 2.
+                    entry_start = 2 + (entry_idx * 32)
+                    entry = sec_data[entry_start:entry_start + 32]
+                    if len(entry) != 32:
+                        continue
+                    file_type = entry[0]
                     if file_type != 0:
-                        raw_name = entry[5:21].replace(b'\xa0', b' ').decode('ascii', errors='ignore').strip()
-                        file_t, file_s = entry[3], entry[4]
+                        raw_name = entry[3:19].replace(b'\xa0', b' ').decode('ascii', errors='ignore').strip()
+                        file_t, file_s = entry[1], entry[2]
 
                         file_bytes = bytearray()
                         ft, fs = file_t, file_s
@@ -529,7 +543,9 @@ class Unpacker:
                             fsec = data[foff:foff+256]
                             ft, fs = fsec[0], fsec[1]
                             if ft == 0:
-                                file_bytes.extend(fsec[1:fs+1])
+                                # Final C64 sector byte 1 is the terminal
+                                # link/count byte; payload begins at byte 2.
+                                file_bytes.extend(fsec[2:fs+1])
                             else:
                                 file_bytes.extend(fsec[2:256])
 
@@ -539,6 +555,36 @@ class Unpacker:
             logger.warning("d64_parse_error", error=str(exc))
 
         return extracted
+
+    def unpack_t64(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Extract Commodore 64/Plus4 T64 tape members."""
+        return extract_t64(data)
+
+    def unpack_tzx(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Extract ZX Spectrum TZX or CPC CDT standard data blocks."""
+        return extract_tzx(data)
+
+    def unpack_fat12(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Extract MSX, Atari ST, and DOS FAT12 root-directory files."""
+        return extract_fat12(data)
+
+    def unpack_msa(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Decode an Atari ST MSA image and extract its FAT12 members."""
+        decoded = decompress_msa(data)
+        return extract_fat12(decoded) if decoded is not None else []
+
+    def unpack_adf(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Extract Amiga OFS/FFS ADF members."""
+        return extract_adf(data)
+
+    def unpack_adz(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Expand a gzip ADZ image then extract Amiga OFS/FFS members."""
+        decoded = decompress_adz(data)
+        return extract_adf(decoded) if decoded is not None else []
+
+    def unpack_cas(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Split MSX CAS tape records into recursively fingerprintable members."""
+        return extract_msx_cas(data)
 
     # --- Layer 3: Tape Dumps ---
 
@@ -590,7 +636,14 @@ class Unpacker:
         is_cab = data.startswith(b"MSCF") or ext == '.cab'
         is_dsk = len(data) >= 0x100 and (data.startswith(b"EXTENDED CPC DSK") or data.startswith(b"MV - CPCEMU"))
         is_d64 = len(data) in (174848, 196608, 175531, 197371) or ext == '.d64'
+        is_t64 = ext == '.t64' or (len(data) >= 40 and b"c64 tape image" in data[:40].lower())
         is_tap = ext == '.tap'
+        is_tzx = ext in {'.tzx', '.cdt'} or data.startswith(b"ZXTape!\x1a")
+        is_msa = ext == '.msa' or data.startswith(b"\x0e\x0f")
+        is_adf = ext == '.adf' or (len(data) % 512 == 0 and data.startswith(b"DOS"))
+        is_adz = ext == '.adz'
+        is_cas = ext == '.cas'
+        is_fat12 = ext in {'.st', '.img'} or (len(data) >= 512 and data[510:512] == b"\x55\xaa")
 
         if is_zip:
             res = self.unpack_zip(file_path)
@@ -636,8 +689,36 @@ class Unpacker:
             res = self.unpack_d64(data)
             if res:
                 return res
+        if is_t64:
+            res = self.unpack_t64(data)
+            if res:
+                return res
         if is_tap:
             res = self.unpack_tap(data)
+            if res:
+                return res
+        if is_tzx:
+            res = self.unpack_tzx(data)
+            if res:
+                return res
+        if is_msa:
+            res = self.unpack_msa(data)
+            if res:
+                return res
+        if is_adz:
+            res = self.unpack_adz(data)
+            if res:
+                return res
+        if is_adf:
+            res = self.unpack_adf(data)
+            if res:
+                return res
+        if is_cas:
+            res = self.unpack_cas(data)
+            if res:
+                return res
+        if is_fat12:
+            res = self.unpack_fat12(data)
             if res:
                 return res
 
