@@ -110,7 +110,17 @@ class Discoverer:
     def _is_daad_related(*values: Any) -> bool:
         """Reject obvious homonyms while retaining DAAD games, tools, and authorship metadata."""
         text = " ".join(str(value or "") for value in values).lower()
-        if any(marker in text for marker in ("raad en daad", "daad scholarship", "german university")):
+        normalized = re.sub(r"[^a-z0-9]+", " ", text).strip()
+        if any(
+            marker in normalized
+            for marker in (
+                "raad en daad",
+                "daad scholarship",
+                "german university",
+                "university course",
+                "study in germany",
+            )
+        ):
             return False
         return any(
             marker in text
@@ -309,7 +319,12 @@ class Discoverer:
                 game_url = self._canonical_url(urljoin(listing_url, anchor["href"]))
                 parsed = urlparse(game_url)
                 path_parts = [part for part in parsed.path.split("/") if part]
-                if not parsed.netloc.endswith("itch.io") or len(path_parts) != 1 or game_url in seen_game_pages:
+                if (
+                    parsed.netloc == "itch.io"
+                    or not parsed.netloc.endswith(".itch.io")
+                    or len(path_parts) != 1
+                    or game_url in seen_game_pages
+                ):
                     continue
                 seen_game_pages.add(game_url)
                 game_page = await self._fetch_url(client, game_url)
@@ -359,7 +374,8 @@ class Discoverer:
             for release in entry.get("releases", []) or []:
                 for file_info in release.get("files", []) or []:
                     path = file_info.get("path")
-                    if path:
+                    path_lower = unquote(path or "").lower()
+                    if path and not any(engine in path_lower for engine in ("paws", "quill", "gac", "swan")):
                         yield title, path
 
     async def discover_zxdb(self, client: httpx.AsyncClient) -> int:

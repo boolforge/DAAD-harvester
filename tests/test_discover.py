@@ -31,6 +31,12 @@ async def test_rate_limiter_delays_second_request_to_the_same_domain():
     assert elapsed >= 0.05
 
 
+def test_daad_relevance_filter_rejects_known_homonyms():
+    assert Discoverer._is_daad_related("DAAD Ready game") is True
+    assert Discoverer._is_daad_related("German-University-Courses-List", "DAAD scholarship data") is False
+    assert Discoverer._is_daad_related("Koninklijke Met Raad en Daad") is False
+
+
 def test_add_source_accepts_only_supported_direct_artifacts_and_deduplicates(tmp_path):
     db = Database(tmp_path / "test.db")
     discoverer = Discoverer(db)
@@ -95,7 +101,7 @@ async def test_discoverer_github_uses_each_repos_own_default_branch_and_filters_
             },
             {
                 "name": "German-University-Courses-List",
-                "description": "DAAD scholarship data",
+                "description": "A dataset of German university courses",
                 "owner": {"login": "abrarum"},
                 "default_branch": "main",
             },
@@ -155,6 +161,26 @@ async def test_discover_zxinfo_uses_documented_search_endpoint_and_download_host
     assert all("/games/search" not in url for url in requested_urls)
 
 
+def test_zxinfo_file_iterator_excludes_other_authoring_engines():
+    hits = [
+        {
+            "_source": {
+                "title": "A DAAD game",
+                "releases": [
+                    {
+                        "files": [
+                            {"path": "/zxdb/daad-game.tap.zip"},
+                            {"path": "/zxdb/daad-game-paws.tap.zip"},
+                        ]
+                    }
+                ],
+            }
+        }
+    ]
+
+    assert list(Discoverer._iter_zxinfo_files(hits)) == [("A DAAD game", "/zxdb/daad-game.tap.zip")]
+
+
 @pytest.mark.anyio
 async def test_discover_ifarchive_is_explicitly_skipped_without_a_daad_index(tmp_path):
     db = Database(tmp_path / "test.db")
@@ -183,6 +209,26 @@ async def test_web_search_uses_current_result_selector_and_only_direct_files(tmp
 
     assert inserted == 1
     assert [source.url for source in db.get_pending_sources()] == ["https://example.com/daad.zip"]
+
+
+@pytest.mark.anyio
+async def test_itchio_does_not_request_root_account_pages(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    listing = """
+    <a href="https://itch.io/login">Log in</a>
+    <a href="https://maker.itch.io/daad-game">A DAAD game</a>
+    """
+    game_page = "<a href=\"/daad-game/purchase\">Download now</a>"
+
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.side_effect = [listing, game_page, listing, game_page, listing, game_page]
+        async with httpx.AsyncClient() as client:
+            inserted = await discoverer.discover_itchio(client)
+
+    requested_urls = [call.args[1] for call in mock_fetch.call_args_list]
+    assert inserted == 0
+    assert "https://itch.io/login" not in requested_urls
 
 
 @pytest.mark.anyio
