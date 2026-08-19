@@ -329,6 +329,38 @@ def _inspect_ipf(data: bytes) -> MediaInspection:
     return _result("sps-ipf", "recognized_evidence", "validated_initial_caps_record", record_size=record_size, archive_size=len(data))
 
 
+def _inspect_msx_rom(data: bytes) -> MediaInspection:
+    """Capture MSX cartridge-header and banking evidence without mapper guessing."""
+
+    if not data:
+        return _result("msx-rom", "rejected", "empty_rom_image")
+    header_offset = next((offset for offset in (0, 0x4000) if len(data) >= offset + 16 and data[offset:offset + 2] == b"AB"), None)
+    if header_offset is None:
+        return _result(
+            "msx-rom", "recognized_evidence", "raw_rom_without_standard_ab_header",
+            rom_size=len(data), size_multiple_8k=len(data) % 0x2000 == 0,
+            mapper_assessment="unidentified",
+        )
+    vectors = {
+        name: int.from_bytes(data[header_offset + position:header_offset + position + 2], "little")
+        for name, position in (("init", 2), ("statement", 4), ("device", 6), ("text", 8))
+    }
+    nonzero_vectors = {name: value for name, value in vectors.items() if value}
+    if len(data) <= 0x8000:
+        mapper_assessment = "linear_cartridge_size"
+    else:
+        mapper_assessment = "banked_size_requires_mapper_identification"
+    return _result(
+        "msx-rom", "recognized_evidence", "validated_msx_ab_cartridge_header",
+        rom_size=len(data),
+        header_offset=header_offset,
+        header_address=0x4000 if header_offset == 0 else 0x8000,
+        size_multiple_8k=len(data) % 0x2000 == 0,
+        mapper_assessment=mapper_assessment,
+        entry_vectors=nonzero_vectors,
+    )
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -361,6 +393,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_stx(data)
     if data.startswith(b"CAPS") or extension == ".ipf":
         return _inspect_ipf(data)
+    if extension == ".rom":
+        return _inspect_msx_rom(data)
     if len(data) >= 512 and data[510:512] == b"\x55\xaa":
         return _inspect_fat(data)
     if data.startswith((b"MZ", b"ZM")) or extension == ".exe":

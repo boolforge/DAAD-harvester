@@ -140,6 +140,17 @@ def test_stx_and_ipf_preservation_media_record_protection_evidence() -> None:
     assert result.validation == "validated_initial_caps_record"
 
 
+def test_msx_rom_header_records_vectors_and_does_not_guess_mapper() -> None:
+    rom = bytearray(0x10000)
+    rom[:2] = b"AB"
+    rom[2:4] = (0x4010).to_bytes(2, "little")
+    result = inspect_native_media("adventure.rom", bytes(rom))
+    assert result.parser == "msx-rom"
+    assert result.validation == "validated_msx_ab_cartridge_header"
+    assert result.evidence["entry_vectors"] == {"init": 0x4010}
+    assert result.evidence["mapper_assessment"] == "banked_size_requires_mapper_identification"
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)
