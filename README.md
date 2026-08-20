@@ -106,6 +106,32 @@ daad-harvester --version
 daad-harvester --help
 ```
 
+### Deterministic continuation for contributors
+
+The preservation-critical pipeline has **no LLM runtime dependency**. A human contributor or any future development system starts by verifying the committed state, then changes one evidence contract at a time. The mandatory offline gate is:
+
+```bash
+python scripts/verify_regeneration_manifest.py
+python scripts/verify_runtime_resources.py
+python scripts/verify_game_corpus.py
+python scripts/verify_reverse_corpus.py
+python scripts/check_docs.py
+python -m pyflakes daad_harvester scripts
+pytest -q
+```
+
+Read [`TODO.md`](TODO.md), the [format capability matrix](docs/formats/FORMAT_CAPABILITY_MATRIX.md), the [evidence model](docs/schemas/EVIDENCE_MODEL.md), the [coverage ledger](preservation_corpus/COVERAGE_LEDGER.md), and the [self-contained regeneration policy](docs/SELF_CONTAINED_REGENERATION.md) before modifying a parser or promoted claim. A new profile requires retained input bytes, an explicit format contract, positive and malformed fixtures, a real-artifact regression, deterministic output regeneration, a manifest entry, and refreshed documentation. No private model context or undocumented workstation setup is part of this workflow.
+
+The complete prompt-free handoff procedure, including optional-validator automation and recovery boundaries, is in the [clone-to-contribution continuation guide](docs/CONTRIBUTOR_CONTINUATION.md).
+
+For one deterministic cross-host primary verification command, run:
+
+```bash
+python scripts/run_primary_workflow.py
+```
+
+Use `--quick` to omit linting and the full test suite during an investigation, or `--list` to inspect the exact native command plan. This launcher never invokes an emulator, GUI tool, network service, or LLM.
+
 ### Android Termux
 
 [Termux][13] provides an Android terminal with package management and Python support. After installation, run the one-line command above. To make output visible to Android file managers, grant shared storage once and use a dedicated output folder.
@@ -191,7 +217,7 @@ A library path is a convenience classification, not an emulation claim. The pipe
 
 ## Validation status and limits
 
-The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, official interpreter-profile tests, source-adapter tests, all-mode DMS fixtures, typed tape-block fixtures, FAT12/FAT16 traversal, native-media corruption boundaries, verified scene-variant runtime comparisons, and seven hash-pinned repository-native regeneration paths. The current suite contains **240 passing tests**.
+The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, official interpreter-profile tests, source-adapter tests, all-mode DMS fixtures, typed tape-block fixtures, FAT12/FAT16 traversal, native-media corruption boundaries, verified scene-variant runtime comparisons, cross-platform interpreter-correlation isolation, the official R4 MSX-DOS FAT12 real-artifact profile, and eight hash-pinned repository-native regeneration paths. The current suite contains **247 passing tests**.
 
 A fresh isolated public-source audit produced **174** source records. Its deliberately bounded six-source acquisition accepted **five** public downloads and retained **37** extracted/measured artifacts from Spectrum and Commodore/Plus/4 media. No member passed the structural DDB contract, so the run records **zero verified DDBs** rather than inventing a DAAD version. The full command sequence, counts, and source-failure boundary are recorded in [`docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md`](docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md). An earlier retained sample also contained the exact Plus/4 `EDIPLUS4` runtime match described above.
 
