@@ -36,7 +36,7 @@ A promoted result must have all of the following. Missing any item keeps the out
 
 The machine-readable [`regeneration_manifest.json`](../preservation_corpus/regeneration_manifest.json) is the project registry for promoted paths. Each entry records its immutable inputs and outputs, the repository-local Python command, declared dependencies, network prohibition, and optional validators. [`verify_regeneration_manifest.py`](../scripts/verify_regeneration_manifest.py) validates all input/output hashes and executes only the explicitly supported local Python verifier shape. It refuses network-dependent entries and refuses commands that are not repository-local Python scripts.
 
-[`check_docs.py`](../scripts/check_docs.py) requires this policy to be linked from project entry points, research methodology, evidence contracts, and corpus-handling policy. The continuous-integration workflow runs both policy/documentation verification and manifest verification before the test suite. A contributor cannot remove the rule from a core document or add an unverified registered result without failing the relevant gate.
+[`check_docs.py`](../scripts/check_docs.py) requires this policy to be linked from project entry points, research methodology, evidence contracts, and corpus-handling policy. The continuous-integration workflow runs policy/documentation verification as a dedicated gate and executes the mandatory full test suite, which includes the manifest verifier. A contributor cannot remove the rule from a core document or add an unverified registered result without failing the relevant gate.
 
 ## External-tool boundary
 
