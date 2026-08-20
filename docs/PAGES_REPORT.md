@@ -27,7 +27,7 @@ The Pages workflow publishes the viewer, the already verified committed `report_
 
 ## Public artifact download contract
 
-The browser treats the manifest as the sole authority for a retained-byte download. An artifact-detail route may offer a download only when the report references a manifest entry and the corresponding byte has been staged under the public artifact root. It must display the original filename, media/container classification, source association, structural/interpreter evidence where available, file size, and every native digest before or alongside the link. A DDB is not privileged: the same rules apply to its container, tape image, ROM, disk, executable, interpreter, capture, or derived output.
+The browser treats the manifest as the sole authority for a retained-byte download. An artifact-detail route may offer a download only when the report references a manifest entry and the corresponding byte has been staged under the public artifact root. It must display the original filename, lineage role, source-platform claim, artifact-platform evidence, separately measured DDB platform, technical medium/container/member and parser status, source association, structural/interpreter evidence where available, file size, and every native digest before or alongside the link. A DDB is not privileged: the same rules apply to its container, tape image, ROM, disk, executable, interpreter, capture, or derived output.
 
 | Deployment check | Required result |
 | --- | --- |
@@ -55,4 +55,8 @@ The report is a static application, so shareable evidence views use browser-safe
 | Source/port evidence | Numeric exported source ID plus associated game context. | Source provenance and linked retained artifact evidence. | A source record does not become a verified binary. |
 | Detection handoff | Fixed generated-header target. | Header provenance, preview, checksum, and conditional download. | The header is metadata, not an engine/equivalence claim. |
 
-Every entity entry point must be keyboard-operable, visibly focused, have a descriptive accessible name, and provide a deterministic return path to its parent list. Compact library/list cards are not a sufficient interface by themselves: each must expose a semantic control that opens its recorded detail.
+Every entity entry point must be keyboard-operable, visibly focused, have a descriptive accessible name, and provide a deterministic return path to its parent list. The ordinary game card and game-detail route must display every associated retained artifact by default in deterministic lineage order; an explicit compact mode may reduce the list only after the complete view has been available. The interface must provide a visible legend for technical media and lineage roles, including an explanation that a `PIC`/image-resource payload is not itself a game database or an interpreter.
+
+## Authentic cover and logo contract
+
+A game card may use a cover or logo only when the exact original visual is either a retained artifact or a registered public-source asset. The report must record its source URL or retained artifact identifier, a content type, an alt-text description, and whether the displayed derivative is the unchanged original or a conservatively restored copy. Generated replacement artwork, anonymous placeholders, and silently substituted visual assets are prohibited. A restoration may improve legibility of a low-resolution original logo or cover but must not add, remove, redraw, or reinterpret its documentary content; the original remains reachable from the game record.

@@ -51,6 +51,20 @@ class StaticReportExporter:
             return []
 
     @staticmethod
+    def _lineage_role(artifact: Dict[str, Any]) -> str:
+        """Classify retained lineage without inferring the member's semantics."""
+
+        if artifact.get("media_status") == "runtime_recovered":
+            return "derived_recovery"
+        if artifact.get("archive_depth", 0) == 0 and artifact.get("container_format"):
+            return "source_container"
+        if artifact.get("container_format"):
+            return "extracted_medium"
+        if artifact.get("container_member"):
+            return "extracted_member"
+        return "retained_byte"
+
+    @staticmethod
     def _catalog_title_matrix(catalog: Dict[str, Any]) -> list[Dict[str, Any]]:
         """Join explicit source-game associations to retained artifacts safely.
 
@@ -77,25 +91,41 @@ class StaticReportExporter:
                 if not isinstance(source_id, int):
                     continue
                 for artifact in artifacts_by_source.get(source_id, []):
-                    measured_platform = artifact.get("measured_platform") or artifact.get("legacy_platform_hint")
+                    measured_platform = artifact.get("measured_platform")
                     linked_artifacts.append(
                         {
                             "artifact_id": artifact["id"],
                             "source_id": source_id,
+                            "source_platform": source.get("platform"),
                             "original_filename": artifact["original_filename"],
                             "sha256": artifact["sha256"],
                             "checksums": {
                                 field: artifact.get(field) for field in ARTIFACT_CHECKSUM_FIELDS
                             },
                             "file_size": artifact["file_size"],
+                            "archive_depth": artifact.get("archive_depth", 0),
+                            "artifact_platform_hint": artifact.get("legacy_platform_hint"),
                             "measured_platform": measured_platform,
+                            "container_format": artifact.get("container_format"),
+                            "container_member": artifact.get("container_member"),
+                            "media_parser": artifact.get("media_parser"),
+                            "media_status": artifact.get("media_status"),
+                            "media_validation": artifact.get("media_validation"),
+                            "lineage_role": StaticReportExporter._lineage_role(artifact),
                             "is_daad_payload": artifact["is_daad_payload"],
                             "ddb_format": artifact.get("ddb_format"),
                             "interpreter_identity": artifact.get("interpreter_identity"),
                             "evidence_state": "verified_ddb" if artifact["is_daad_payload"] else "retained_artifact",
                         }
                     )
-            linked_artifacts.sort(key=lambda item: (item["artifact_id"], item["original_filename"]))
+            linked_artifacts.sort(
+                key=lambda item: (
+                    item["source_id"],
+                    item["archive_depth"],
+                    item["artifact_id"],
+                    item["original_filename"],
+                )
+            )
             measured_platforms = sorted(
                 {
                     str(artifact["measured_platform"])

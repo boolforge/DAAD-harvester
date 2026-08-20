@@ -30,8 +30,10 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     retained.parent.mkdir(parents=True)
     retained.write_bytes(payload)
     artifact = ArtifactRecord(
-        id=None, source_id=source_id, original_filename="ADVENTURE.DDB", extracted_path=str(retained), archive_depth=1,
+        id=None, source_id=source_id, original_filename="ADVENTURE.DDB", extracted_path=str(retained),
         file_size=len(payload), md5_full=hashes["md5_full"], md5_5000=hashes["md5_5000"], sha256=hashes["sha256"], sha1=hashes["sha1"], crc32=hashes["crc32"], md5_tail5000=hashes["md5_tail5000"], sha224=hashes["sha224"], sha384=hashes["sha384"], sha512=hashes["sha512"], sha3_256=hashes["sha3_256"], sha3_512=hashes["sha3_512"], blake2b=hashes["blake2b"], blake2s=hashes["blake2s"], adler32=hashes["adler32"], xxh32=hashes["xxh32"], xxh64=hashes["xxh64"], xxh128=hashes["xxh128"],
+        archive_depth=1, container_format="c64-d64", container_member="ADVENTURE.DDB",
+        media_parser="c64-d64", media_status="extracted", media_validation="validated_member_emission",
         is_daad_payload=True, measured_platform="c64", ddb_format="daad-v3", fingerprint_confidence="verified",
     )
     db.add_artifact(artifact)
@@ -51,4 +53,14 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert matrix["artifacts"][0]["sha256"] == hashes["sha256"]
     assert matrix["artifacts"][0]["checksums"] == hashes
     assert matrix["artifacts"][0]["evidence_state"] == "verified_ddb"
+    assert matrix["artifacts"][0]["source_platform"] == "c64"
+    assert matrix["artifacts"][0]["artifact_platform_hint"] is None
+    assert matrix["artifacts"][0]["measured_platform"] == "c64"
+    assert matrix["artifacts"][0]["archive_depth"] == 1
+    assert matrix["artifacts"][0]["container_format"] == "c64-d64"
+    assert matrix["artifacts"][0]["container_member"] == "ADVENTURE.DDB"
+    assert matrix["artifacts"][0]["media_parser"] == "c64-d64"
+    assert matrix["artifacts"][0]["media_status"] == "extracted"
+    assert matrix["artifacts"][0]["media_validation"] == "validated_member_emission"
+    assert matrix["artifacts"][0]["lineage_role"] == "extracted_medium"
     assert "runnable game port" in matrix["boundary"]
