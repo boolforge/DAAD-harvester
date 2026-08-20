@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import gzip
+import hashlib
 import io
 from pathlib import Path
 import zipfile
@@ -42,6 +43,34 @@ def _fat12_image(payload: bytes = b"DAAD.DDB") -> bytes:
     image[root + 26:root + 28] = (2).to_bytes(2, "little")
     image[root + 28:root + 32] = len(payload).to_bytes(4, "little")
     image[1536:1536 + len(payload)] = payload
+    return bytes(image)
+
+
+def _msx_dos_fat12_image(payload: bytes = b"DAAD.DDB") -> bytes:
+    """Build a documented MSX-DOS 2DD/9 FAT12 image without an IBM trailer."""
+
+    sectors = 1440
+    image = bytearray(sectors * 512)
+    image[:3] = b"\xeb\xfe\x90"
+    image[3:11] = b"DiskMgr1"
+    image[11:13] = (512).to_bytes(2, "little")
+    image[13] = 2
+    image[14:16] = (1).to_bytes(2, "little")
+    image[16] = 2
+    image[17:19] = (112).to_bytes(2, "little")
+    image[19:21] = sectors.to_bytes(2, "little")
+    image[21] = 0xF9
+    image[22:24] = (3).to_bytes(2, "little")
+    image[24:26] = (9).to_bytes(2, "little")
+    image[26:28] = (2).to_bytes(2, "little")
+    for fat_start in (512, 2048):
+        image[fat_start:fat_start + 5] = b"\xf9\xff\xff\xff\x0f"
+    root = 7 * 512
+    image[root:root + 8] = b"DAAD    "
+    image[root + 8:root + 11] = b"DDB"
+    image[root + 26:root + 28] = (2).to_bytes(2, "little")
+    image[root + 28:root + 32] = len(payload).to_bytes(4, "little")
+    image[14 * 512:14 * 512 + len(payload)] = payload
     return bytes(image)
 
 
@@ -281,6 +310,47 @@ def test_extracts_msx_and_dos_fat12_images(tmp_path: Path) -> None:
     assert unpacker.extract_container(tmp_path / "game.dsk", "game.img", image) == [("DAAD.DDB", b"DAAD.DDB")]
     assert unpacker.extract_container(tmp_path / "game.dsk", "game.dsk", image) == [("DAAD.DDB", b"DAAD.DDB")]
     assert unpacker.extract_container(tmp_path / "game.st", "game.st", image) == [("DAAD.DDB", b"DAAD.DDB")]
+
+
+def test_extracts_documented_msx_dos_fat12_without_ibm_boot_trailer(tmp_path: Path) -> None:
+    image = _msx_dos_fat12_image()
+    assert image[510:512] == b"\x00\x00"
+    assert extract_fat12(image) == [("DAAD.DDB", b"DAAD.DDB")]
+    assert _unpacker(tmp_path).extract_container(tmp_path / "game.dsk", "game.dsk", image) == [
+        ("DAAD.DDB", b"DAAD.DDB")
+    ]
+
+
+def test_rejects_msx_prefix_when_documented_geometry_is_not_coherent() -> None:
+    image = bytearray(_msx_dos_fat12_image())
+    image[22:24] = (2).to_bytes(2, "little")
+    assert extract_fat12(bytes(image)) == []
+
+
+def test_extracts_retained_official_r4_msx_dos_disk() -> None:
+    image = (
+        Path(__file__).resolve().parents[1]
+        / "preservation_corpus"
+        / "extracted"
+        / "depth1_38ecfcb6_MSX.DSK"
+    ).read_bytes()
+
+    members = extract_fat12(image)
+
+    assert [(name, len(payload)) for name, payload in members] == [
+        ("MSXDOS.SYS", 2432),
+        ("COMMAND.COM", 7168),
+        ("DAAD.MDG", 2105),
+        ("DAAD.Z80", 8400),
+        ("YOURGAME.COM", 559),
+    ]
+    assert [hashlib.sha256(payload).hexdigest() for _, payload in members] == [
+        "8f2577eec214ce947e74c740c82d4266ff2933978033433d4532385640b47231",
+        "d4c1f030f585af8cae626af07ed5906759547042f109e7116ae2c38654c9b513",
+        "c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06",
+        "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+        "cb0d307c041d873d18ae4a0779bf6aa404b2cf329f838b06e2d2d99e3afecbba",
+    ]
 
 
 def test_extracts_nested_dos_fat16_filesystem(tmp_path: Path) -> None:

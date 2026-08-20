@@ -131,6 +131,51 @@ def test_interpreter_alias_upgrades_only_on_same_platform_official_hash(tmp_path
     assert match.confidence == "verified"
 
 
+def test_interpreter_exact_hash_identifies_documented_filename_alias(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import daad_harvester.interpreter_profiles as profiles
+
+    runtime_path = tmp_path / "DAAD.Z80"
+    runtime_path.write_bytes(b"official msx package alias")
+    digest = sha256(runtime_path.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        profiles,
+        "OFFICIAL_INTERPRETER_PROFILES",
+        (InterpreterProfile("official-msx", "msx", ("msxedi.z80",), digest),),
+    )
+
+    match = identify_interpreter_file(runtime_path, observed_filename="DAAD.Z80")
+
+    assert match is not None
+    assert match.profile_id == "official-msx"
+    assert match.confidence == "verified"
+
+
+def test_non_ddb_does_not_inherit_unrelated_sibling_interpreter(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import daad_harvester.interpreter_profiles as profiles
+
+    db = Database(tmp_path / "state.db")
+    disk_path = tmp_path / "MSX.DSK"
+    disk_path.write_bytes(b"not a ddb or interpreter")
+    sibling_path = tmp_path / "EDI1.PRG"
+    sibling_path.write_bytes(b"unrelated atari runtime")
+    digest = sha256(sibling_path.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        profiles,
+        "OFFICIAL_INTERPRETER_PROFILES",
+        (InterpreterProfile("official-atarist", "atarist", ("edi1.prg",), digest),),
+    )
+    disk = _artifact(db, disk_path, filename="MSX.DSK")
+    disk.id = db.add_artifact(disk)
+    sibling = _artifact(db, sibling_path, filename="EDI1.PRG")
+    sibling.id = db.add_artifact(sibling)
+
+    assert Fingerprinter(db).scan_artifact(disk) is False
+
+    persisted = next(item for item in db.get_all_artifacts() if item.id == disk.id)
+    assert persisted.interpreter_identity is None
+    assert db.get_version_evidence(artifact_id=disk.id) == []
+
+
 def test_fingerprint_finds_embedded_structural_ddb(tmp_path: Path) -> None:
     db = Database(tmp_path / "state.db")
     path = tmp_path / "disk_member.bin"

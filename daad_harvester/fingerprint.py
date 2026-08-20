@@ -100,6 +100,9 @@ class Fingerprinter:
     def _record_interpreter_only(self, artifact: ArtifactRecord, matches: list[InterpreterMatch]) -> None:
         best = self._best_interpreter_match(matches, None)
         if best is None:
+            # Do not preserve an earlier sibling-derived identity merely because
+            # the current byte analysis finds no self-contained runtime match.
+            self.db.update_artifact_fingerprint(artifact.id, False)
             return
         evidence = json.dumps({"interpreter_matches": self._match_details(matches)}, sort_keys=True)
         self.db.update_artifact_fingerprint(
@@ -139,19 +142,24 @@ class Fingerprinter:
                     embedded_offset, embedded_data = embedded
                     analysis = self.parser.parse_ddb(embedded_data, f"embedded_{artifact.original_filename}.ddb")
 
-            matches = self._identify_candidate_interpreters(path)
             own_match = identify_interpreter_file(path, observed_filename=artifact.original_filename)
+            self.db.clear_artifact_interpreter_evidence(artifact.id)
+            if not analysis["is_daad"]:
+                # A non-DDB file has no measured target platform with which to
+                # filter a bundle.  Only its own filename/hash may establish an
+                # interpreter identity; source-wide filesystem siblings are not
+                # a valid correlation boundary.
+                self._record_interpreter_only(artifact, [own_match] if own_match else [])
+                return False
+
+            platform = analysis["platform"]
+            matches = self._identify_candidate_interpreters(path)
             if own_match is not None and all(
                 (match.profile_id, match.sha256) != (own_match.profile_id, own_match.sha256)
                 for match in matches
             ):
                 matches.append(own_match)
                 matches.sort(key=lambda item: (item.platform, item.profile_id, item.filename))
-            if not analysis["is_daad"]:
-                self._record_interpreter_only(artifact, matches)
-                return False
-
-            platform = analysis["platform"]
             interpreter = self._best_interpreter_match(matches, platform)
             evidence_details = dict(analysis["details"])
             evidence_details["embedded_offset"] = embedded_offset

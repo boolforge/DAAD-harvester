@@ -41,6 +41,21 @@ The current code handles only a small subset of these data blocks; it must gain 
 
 Raw images must be distinguished from filesystems. C64 G64 is a low-level GCR track stream designed for nonstandard formats and protection, while D64 is a sector image; neither may be treated as the other.[3] Atari ST and MSX/DOS images are often FAT-family media, but geometry and BPB validation must occur before file traversal. CPC/PCW CP/M images require allocation/extents rather than FAT assumptions. Amiga images require block-level OFS/FFS semantics and may contain chained header extensions.
 
+## Cross-platform format-profile dossiers
+
+Every accepted physical or logical profile must have a linked dossier. A profile is an evidence-backed combination of medium geometry, filesystem/container layout, boot or loader convention, target/load model, and relevant companion relationship; it is **not** a filename-extension rule. The dossier must identify the retained samples and hashes, primary and independent references, acceptance predicates, malformed/rejection predicates, member/provenance behavior, current applicability boundary, unresolved variants that require further work, real-artifact regressions, and a self-contained regeneration command. It must cross-link the [evidence model](../schemas/EVIDENCE_MODEL.md), [coverage ledger](../../preservation_corpus/COVERAGE_LEDGER.md), and relevant parser tests.
+
+| Profile family | Current dossier/evidence location | Critical non-generalization rule |
+| --- | --- | --- |
+| MSX-DOS FAT12 without IBM-PC trailer | [Official R4 `MSX.DSK` dossier](MSX_DOS_FAT12_VARIANT.md) | The presently documented MSX profiles justify only the no-trailer MSX exception; they do not validate arbitrary FAT images, other MSX geometries, or another platform’s boot convention. |
+| CPC/PCW CP/M disk variants | [CPC/PCW coverage and blocker records](../../preservation_corpus/COVERAGE_LEDGER.md) | Track/sector and extent allocation must be proven from the actual DSK/raw-image profile; FAT assumptions are prohibited. |
+| Atari ST raw/protected disk families | [Atari ST matrix contract](#target-media-matrix) and retained media evidence | FAT, MSA, STX, and IPF have distinct physical/structural predicates; an ST-compatible filename does not establish sector reconstruction. |
+| Commodore C64/Plus-4 media and loaders | [Commodore loader evidence](../../preservation_corpus/derived/commodore_loader/) | ROM packet, custom pulse-reader, disk-chain, and scene-loader evidence are separate profiles; a result on one variant never proves another. |
+| Amiga OFS/FFS and DMS media | [Amiga coverage records](../../preservation_corpus/COVERAGE_LEDGER.md) | Block hierarchy, compression mode, and checksum contracts are media-specific; a successful ADF path cannot be inferred for DMS/HDF/LHA. |
+| ZX/CPC/MSX tape and snapshots | [Tape/stream contract](#tape-and-stream-media) | Physical blocks, target memory maps, and loader semantics must be documented separately even when containers share a TZX-like representation. |
+
+An unknown but coherent profile is never a terminal unsupported omission. It becomes a retained-sample research and implementation loop: acquire evidence, consult primary references, state the contract, add positive and malformed fixtures plus a real artifact, regenerate deterministically, and then promote the profile. The active R4 MSX case is the first explicitly linked example of this rule; corresponding dossiers are required for all other format families.
+
 For Amiga DMS, the required decoder must cover `NOCOMP`, `SIMPLE`, `QUICK`, `MEDIUM`, `DEEP`, `HEAVY1`, and `HEAVY2`, including track-header CRC, payload CRC, unpacked checksums, state-carry flags, encrypted-archive reporting, banner/FILEID metadata, and byte-exact ADF output. The independent xDMS reference documents these modes and its oracle-based test strategy.[4]
 
 ## Archive and executable media

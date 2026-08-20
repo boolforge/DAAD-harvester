@@ -140,9 +140,22 @@ def identify_interpreter_file(path: Path, *, observed_filename: Optional[str] = 
         return None
     filename = (observed_filename or path.name).casefold()
     candidates = [profile for profile in OFFICIAL_INTERPRETER_PROFILES if filename in profile.filenames]
+    digest = sha256(path.read_bytes()).hexdigest()
+    # An immutable full-byte match is an identity claim in its own right.  This
+    # handles documented package aliases (for example an MSX disk member named
+    # DAAD.Z80) without borrowing a different platform's filename convention.
+    exact_profiles = [
+        profile for profile in OFFICIAL_INTERPRETER_PROFILES
+        if profile.sha256 and digest == profile.sha256
+    ]
+    if len(exact_profiles) == 1:
+        profile = exact_profiles[0]
+        return InterpreterMatch(
+            profile.profile_id, profile.platform, "verified", path.name, digest,
+            profile.interpreter_version, profile.language,
+        )
     if not candidates:
         return None
-    digest = sha256(path.read_bytes()).hexdigest()
     candidate_platforms = {profile.platform for profile in candidates}
     # A historical filename alias may carry a byte-identical official runtime.
     # Resolve that only through an exact same-platform profile hash, never from

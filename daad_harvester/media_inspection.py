@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from daad_harvester.dms import crc16_arc
-from daad_harvester.platform_media import parse_tzx_blocks
+from daad_harvester.platform_media import is_msx_dos_fat12_boot_sector, parse_tzx_blocks
 
 
 @dataclass(frozen=True)
@@ -279,7 +279,8 @@ def _inspect_dms(data: bytes) -> MediaInspection:
 
 
 def _inspect_fat(data: bytes) -> MediaInspection:
-    if len(data) < 512 or data[510:512] != b"\x55\xaa":
+    is_msx_dos = is_msx_dos_fat12_boot_sector(data)
+    if len(data) < 512 or (data[510:512] != b"\x55\xaa" and not is_msx_dos):
         return _result("fat12-fat16", "rejected", "invalid_boot_signature")
     bytes_per_sector = int.from_bytes(data[11:13], "little")
     sectors_per_cluster = data[13]
@@ -309,8 +310,10 @@ def _inspect_fat(data: bytes) -> MediaInspection:
         return _result("fat12-fat16", "recognized_evidence", "fat32_or_later_not_routed", cluster_count=cluster_count)
     fat_variant = "fat12" if cluster_count < 4085 else "fat16"
     return _result(
-        "fat12-fat16", "recognized_evidence", "validated_fat_geometry",
+        "fat12-fat16", "recognized_evidence",
+        "validated_msx_dos_fat12_geometry" if is_msx_dos else "validated_fat_geometry",
         fat_variant=fat_variant,
+        boot_convention="msx-dos-eb-fe-90" if is_msx_dos else "ibm-pc-55-aa",
         bytes_per_sector=bytes_per_sector,
         sectors_per_cluster=sectors_per_cluster,
         total_sectors=total_sectors,
@@ -478,7 +481,9 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_ipf(data)
     if extension == ".rom":
         return _inspect_msx_rom(data)
-    if len(data) >= 512 and data[510:512] == b"\x55\xaa":
+    if len(data) >= 512 and (
+        data[510:512] == b"\x55\xaa" or is_msx_dos_fat12_boot_sector(data)
+    ):
         return _inspect_fat(data)
     if data.startswith((b"MZ", b"ZM")) or extension == ".exe":
         return _inspect_mz(data)

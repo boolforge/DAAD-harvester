@@ -402,6 +402,47 @@ def _fat12_next(table: bytes, cluster: int) -> Optional[int]:
     return (pair >> 4) & 0x0FFF if cluster & 1 else pair & 0x0FFF
 
 
+MSX_DOS_FAT12_GEOMETRIES = {
+    # Current evidence-backed profiles: media descriptor -> (total sectors,
+    # sectors/track, heads, sectors/FAT).  This is deliberately expandable;
+    # each future profile needs retained media, primary documentation, bounded
+    # rejection tests, and a real-artifact regression before promotion.
+    0xF8: (720, 9, 1, 2),   # 1DD, 9 sectors
+    0xF9: (1440, 9, 2, 3),  # 2DD, 9 sectors
+    0xFA: (640, 8, 1, 1),   # 1DD, 8 sectors
+    0xFB: (1280, 8, 2, 2),  # 2DD, 8 sectors
+}
+
+
+def is_msx_dos_fat12_boot_sector(data: bytes) -> bool:
+    """Return whether *data* has the bounded documented MSX-DOS FAT12 BPB.
+
+    MSX-DOS 2 volumes commonly start with ``EB FE 90`` and need not carry the
+    IBM-PC ``55 AA`` boot-code trailer.  The prefix alone is non-evidentiary,
+    so acceptance requires one complete *currently verified* MSX 1DD/2DD FAT12
+    geometry profile.  It is not a final historical geometry whitelist.
+    """
+
+    if len(data) < 512 or data[:3] != b"\xeb\xfe\x90":
+        return False
+    geometry = MSX_DOS_FAT12_GEOMETRIES.get(data[21])
+    if geometry is None:
+        return False
+    total_sectors, sectors_per_track, heads, sectors_per_fat = geometry
+    return (
+        int.from_bytes(data[11:13], "little") == 512
+        and data[13] == 2
+        and int.from_bytes(data[14:16], "little") == 1
+        and data[16] == 2
+        and int.from_bytes(data[17:19], "little") == 112
+        and int.from_bytes(data[19:21], "little") == total_sectors
+        and int.from_bytes(data[22:24], "little") == sectors_per_fat
+        and int.from_bytes(data[24:26], "little") == sectors_per_track
+        and int.from_bytes(data[26:28], "little") == heads
+        and len(data) >= total_sectors * 512
+    )
+
+
 def _fat_lfn_name(parts: List[bytes]) -> str:
     """Return a validated VFAT long filename, or an empty value for fallback."""
 
@@ -438,7 +479,9 @@ def extract_fat(data: bytes, *, require_type: Optional[str] = None) -> List[Memb
     not conflated with these floppy-era media families and is rejected here.
     """
 
-    if len(data) < 512 or data[510:512] != b"\x55\xaa":
+    if len(data) < 512 or (
+        data[510:512] != b"\x55\xaa" and not is_msx_dos_fat12_boot_sector(data)
+    ):
         return []
     bytes_per_sector = int.from_bytes(data[11:13], "little")
     sectors_per_cluster = data[13]

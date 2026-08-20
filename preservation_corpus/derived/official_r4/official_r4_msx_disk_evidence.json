@@ -1,0 +1,53 @@
+{
+  "external_validators": [],
+  "members": [
+    {
+      "name": "MSXDOS.SYS",
+      "sha256": "8f2577eec214ce947e74c740c82d4266ff2933978033433d4532385640b47231",
+      "size": 2432
+    },
+    {
+      "name": "COMMAND.COM",
+      "sha256": "d4c1f030f585af8cae626af07ed5906759547042f109e7116ae2c38654c9b513",
+      "size": 7168
+    },
+    {
+      "name": "DAAD.MDG",
+      "sha256": "c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06",
+      "size": 2105
+    },
+    {
+      "name": "DAAD.Z80",
+      "sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+      "size": 8400
+    },
+    {
+      "name": "YOURGAME.COM",
+      "sha256": "cb0d307c041d873d18ae4a0779bf6aa404b2cf329f838b06e2d2d99e3afecbba",
+      "size": 559
+    }
+  ],
+  "primary_class": "repository-native",
+  "profile": {
+    "boot_convention": "msx-dos-eb-fe-90",
+    "boundary": "Current evidence-backed profile, not a terminal MSX geometry whitelist.",
+    "evidence": {
+      "boot_convention": "msx-dos-eb-fe-90",
+      "bytes_per_sector": 512,
+      "cluster_count": 713,
+      "fat_variant": "fat12",
+      "sectors_per_cluster": 2,
+      "total_sectors": 1440
+    },
+    "identifier": "msx-dos-fat12-currently-verified-2dd-9",
+    "validation": "validated_msx_dos_fat12_geometry"
+  },
+  "requires_network": false,
+  "schema_version": 1,
+  "source": {
+    "archive_member": "DAAD/LIB/MSX/MSX.DSK",
+    "archive_path": "preservation_corpus/downloads/250_DAAD_R4.zip",
+    "archive_sha256": "205c35b8eecc6639eb25a1058f07a11d8610b8a23e6dc4ee7a56ff8a150f4f8a",
+    "disk_sha256": "c39ea8a663bae9258563783ef62cd122d1cc1ba1f55749224663190b416fe67e"
+  }
+}

@@ -1,7 +1,7 @@
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.309238
+TIMESTAMP:       2026-08-20T21:28:09.760696
 GAME ID         : art_68
 TITLE           : Chichén Itzá
 PLATFORM        : AMIGA
@@ -20,9 +20,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.431872
+TIMESTAMP:       2026-08-20T21:28:09.935912
 GAME ID         : art_76
 TITLE           : Chichén Itzá
 PLATFORM        : AMIGA
@@ -41,9 +41,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.576187
+TIMESTAMP:       2026-08-20T21:28:10.137624
 GAME ID         : art_83
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -62,9 +62,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.602218
+TIMESTAMP:       2026-08-20T21:28:10.245191
 GAME ID         : art_86
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -83,9 +83,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.612330
+TIMESTAMP:       2026-08-20T21:28:10.344757
 GAME ID         : art_87
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -104,9 +104,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.624590
+TIMESTAMP:       2026-08-20T21:28:10.446386
 GAME ID         : art_88
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -125,9 +125,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.642105
+TIMESTAMP:       2026-08-20T21:28:10.551315
 GAME ID         : art_90
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -146,9 +146,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.652104
+TIMESTAMP:       2026-08-20T21:28:10.652881
 GAME ID         : art_91
 TITLE           : Chichén Itzá
 PLATFORM        : ZX
@@ -167,9 +167,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.781397
+TIMESTAMP:       2026-08-20T21:28:10.811789
 GAME ID         : art_105
 TITLE           : Jabato
 PLATFORM        : C64
@@ -188,9 +188,9 @@ CRC32           : N/A
 XXH64           : N/A
 ================================================================ drop
 ================================================================================
-SESSION TAG:     20260820_195734
+SESSION TAG:     20260820_212808
 CATEGORY:        VERIFIED DAAD DDB
-TIMESTAMP:       2026-08-20T19:57:35.790240
+TIMESTAMP:       2026-08-20T21:28:10.861144
 GAME ID         : art_106
 TITLE           : Jabato
 PLATFORM        : C64
@@ -204,6 +204,489 @@ EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/derived/commod
 MD5_FULL        : N/A
 MD5_5000        : N/A
 SHA256          : ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:10.911502
+GAME ID         : art_107
+TITLE           : Jabato
+PLATFORM        : C64
+VERSION GUESS   : DAAD DDB v1
+LANGUAGE        : es
+FILENAME        : jabato_ass_part1_post_mirar.ddb
+FILE SIZE       : 24899 bytes
+SOURCE URL      : https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:10.960264
+GAME ID         : art_108
+TITLE           : Jabato
+PLATFORM        : C64
+VERSION GUESS   : DAAD DDB v1
+LANGUAGE        : es
+FILENAME        : jabato_ass_part2_post_mirar.ddb
+FILE SIZE       : 24680 bytes
+SOURCE URL      : https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/jabato_ass_part2_post_mirar.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.079452
+GAME ID         : art_118
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Side 1.tzx
+FILE SIZE       : 48362 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_a3f96f06_Chichen Itza - Side 1.tzx
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8b13fc9589b8570870cfe93639bec4e05f61505cee0a7b1ecc8d5c6b5186d404
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.300123
+GAME ID         : art_138
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_f60ae20d_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.454966
+GAME ID         : art_142
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 22194 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.615125
+GAME ID         : art_153
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Part 1.tap
+FILE SIZE       : 48166 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_c3c04791_Chichen Itza - Part 1.tap
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 7b032a6caa265e901bd45353f2aa7f382dcc80bb6fa88c7e20cb01bfea969f2f
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.730353
+GAME ID         : art_157
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Side 2.tzx
+FILE SIZE       : 48362 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_13421478_Chichen Itza - Side 2.tzx
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : d063588ef9807542fd721f638dd84bf0287055fbb9766b9a4b60ba3e2ca36d93
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.877973
+GAME ID         : art_170
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_f60ae20d_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:11.984295
+GAME ID         : art_173
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 22194 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.113854
+GAME ID         : art_176
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_05ac0a89_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.220032
+GAME ID         : art_178
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 26489 bytes
+SOURCE URL      : https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_baf4ceb2_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.326636
+GAME ID         : art_179
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Side 1.tzx
+FILE SIZE       : 48362 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_a3f96f06_Chichen Itza - Side 1.tzx
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8b13fc9589b8570870cfe93639bec4e05f61505cee0a7b1ecc8d5c6b5186d404
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.431902
+GAME ID         : art_183
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Part 2.tap
+FILE SIZE       : 48166 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_474a3a55_Chichen Itza - Part 2.tap
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : d2982344263f96ade41d8590fe975ba6b6867d7af87ccddfc0417b5db11a8f73
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.598284
+GAME ID         : art_197
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_f60ae20d_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.704585
+GAME ID         : art_200
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 22194 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.816838
+GAME ID         : art_203
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_05ac0a89_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:12.930734
+GAME ID         : art_206
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 26489 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tap.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_baf4ceb2_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:13.084651
+GAME ID         : art_213
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : Chichen Itza - Side 2.tzx
+FILE SIZE       : 48362 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_13421478_Chichen Itza - Side 2.tzx
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : d063588ef9807542fd721f638dd84bf0287055fbb9766b9a4b60ba3e2ca36d93
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:13.213636
+GAME ID         : art_221
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE.bin
+FILE SIZE       : 40960 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_05ac0a89_CODE.bin
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:13.327102
+GAME ID         : art_224
+TITLE           : Chichén Itzá
+PLATFORM        : ZX
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : unknown
+FILENAME        : CODE__embedded_002400.ddb
+FILE SIZE       : 26489 bytes
+SOURCE URL      : https://spectrumcomputing.co.uk/pub/sinclair/games/c/ChichenItza.tzx.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth3_baf4ceb2_CODE__embedded_002400.ddb
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:13.833871
+GAME ID         : art_833
+TITLE           : Official DAAD R4 preservation archive
+PLATFORM        : DOS
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : en
+FILENAME        : DAAD/DAAD/SCE/BLANK.DDB
+FILE SIZE       : 2652 bytes
+SOURCE URL      : https://github.com/daad-adventure-writer/daad/releases/download/r4.0/DAAD_R4.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_98397784_BLANK.DDB
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 8f45acdfe4813996cb3895dd66d2d9e6f0685acfc94c1ec35ed3eeb626cdad84
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:13.951063
+GAME ID         : art_837
+TITLE           : Official DAAD R4 preservation archive
+PLATFORM        : DOS
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : en
+FILENAME        : DAAD/DAAD/SCE/SPANISH.DDB
+FILE SIZE       : 2326 bytes
+SOURCE URL      : https://github.com/daad-adventure-writer/daad/releases/download/r4.0/DAAD_R4.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_f14c8b04_SPANISH.DDB
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : a147f2ad2f691930e886a0c1df1d8aa1de6683a20c369fb834244e917dbc8de1
+SHA1            : N/A
+CRC32           : N/A
+XXH64           : N/A
+================================================================ drop
+================================================================================
+SESSION TAG:     20260820_212808
+CATEGORY:        VERIFIED DAAD DDB
+TIMESTAMP:       2026-08-20T21:28:15.493907
+GAME ID         : art_993
+TITLE           : Official DAAD R4 preservation archive
+PLATFORM        : AMIGA
+VERSION GUESS   : DAAD DDB v2
+LANGUAGE        : en
+FILENAME        : PART1.DDB
+FILE SIZE       : 2872 bytes
+SOURCE URL      : https://github.com/daad-adventure-writer/daad/releases/download/r4.0/DAAD_R4.zip
+EXTRACTED PATH  : /home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_92aef478_PART1.DDB
+--- HASHES ---
+MD5_FULL        : N/A
+MD5_5000        : N/A
+SHA256          : 13389079e2a3e06e7546e082e5e3d1e5d7658333efcac20a0992a2dc9396e133
 SHA1            : N/A
 CRC32           : N/A
 XXH64           : N/A

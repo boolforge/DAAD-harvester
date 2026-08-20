@@ -126,6 +126,27 @@ def test_fat_and_dos_mz_headers_capture_structured_evidence() -> None:
     assert result.evidence["declared_size"] == 64
 
 
+def test_msx_dos_fat12_without_ibm_boot_trailer_is_strictly_recognized() -> None:
+    image = bytearray(1440 * 512)
+    image[:3] = b"\xeb\xfe\x90"
+    image[11:13] = (512).to_bytes(2, "little")
+    image[13] = 2
+    image[14:16] = (1).to_bytes(2, "little")
+    image[16] = 2
+    image[17:19] = (112).to_bytes(2, "little")
+    image[19:21] = (1440).to_bytes(2, "little")
+    image[21] = 0xF9
+    image[22:24] = (3).to_bytes(2, "little")
+    image[24:26] = (9).to_bytes(2, "little")
+    image[26:28] = (2).to_bytes(2, "little")
+
+    result = inspect_native_media("MSX.DSK", bytes(image))
+
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_msx_dos_fat12_geometry"
+    assert result.evidence["boot_convention"] == "msx-dos-eb-fe-90"
+
+
 def test_stx_and_ipf_preservation_media_record_protection_evidence() -> None:
     stx = bytearray(b"RSY\x00" + (0x0300).to_bytes(2, "little") + (1).to_bytes(2, "little") + b"\x00\x00" + b"\x01\x01" + b"\x00" * 4)
     stx.extend((32).to_bytes(4, "little") + (0).to_bytes(4, "little") + (1).to_bytes(2, "little") + (1).to_bytes(2, "little") + (0).to_bytes(2, "little") + b"\x00\x00")

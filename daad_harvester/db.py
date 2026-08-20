@@ -574,6 +574,24 @@ class Database:
 
     # --- Provenance evidence ledger ---
 
+    def clear_artifact_interpreter_evidence(self, artifact_id: int) -> None:
+        """Remove stale interpreter correlations before a fresh byte analysis.
+
+        Structural DDB evidence and source provenance are intentionally retained;
+        only the revocable interpreter-identity conclusion is replaced.
+        """
+
+        with self.get_connection() as conn:
+            conn.execute(
+                "DELETE FROM version_evidence WHERE artifact_id = ? AND kind = ?",
+                (artifact_id, "interpreter_identity"),
+            )
+            conn.execute(
+                "UPDATE artifacts SET interpreter_identity = NULL, interpreter_version = NULL WHERE id = ?",
+                (artifact_id,),
+            )
+            conn.commit()
+
     def add_version_evidence(self, evidence: VersionEvidence) -> int:
         """Insert one source- or artifact-scoped provenance assertion idempotently."""
         now = datetime.now().isoformat()

@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
+          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
+          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
+          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -281,17 +281,17 @@
         },
         {
           "path": "preservation_corpus/logs/daad_general.log",
-          "sha256": "2c847d1754e45c8c49a918e396e91649dc4a8468242ff5afec6c0c784c25ae8a"
+          "sha256": "a1f2305c173e3c2b72a9d1d99ed04d6a2b662e5b53f86619f5491aa982be0ca7"
         },
         {
           "path": "preservation_corpus/logs/daad_games.log",
-          "sha256": "1b28a6a6cf48723ec43740bca17e0f33dbbfad1fc4606ab0944e6247d4a24c42"
+          "sha256": "1aeae80ec6dd8c4fa1ed2ee330a25f5f56610f2c266d3c01383c2364db200b9e"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "09a9f99d8fdc9b66aafa71f464996d62d41aca82c56e167a1980d16f6dc16df9"
+          "sha256": "2ed800931d64982dca094420be2b823635e835d9c965d1df85e3486787b4e1e0"
         }
       ],
       "external_validators": [
@@ -353,6 +353,38 @@
           "role": "independent comparison reference only; not read by this primary comparison command"
         }
       ]
+    },
+    {
+      "id": "official-r4-msx-dos-fat12-profile",
+      "description": "Validates the official DAAD R4 embedded MSX.DSK through the current documented MSX-DOS FAT12 no-trailer profile and byte-verifies its five extracted package members.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_official_daad_r4_msx_disk.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/downloads/250_DAAD_R4.zip",
+          "sha256": "205c35b8eecc6639eb25a1058f07a11d8610b8a23e6dc4ee7a56ff8a150f4f8a"
+        },
+        {
+          "path": "preservation_corpus/extracted/depth1_38ecfcb6_MSX.DSK",
+          "sha256": "c39ea8a663bae9258563783ef62cd122d1cc1ba1f55749224663190b416fe67e"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/official_r4/official_r4_msx_disk_evidence.json",
+          "sha256": "b1ab2ab419675137695108f1ad7c4d4b5792f42f615e841df107fa32d6f7bb6b"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }
