@@ -26,20 +26,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install and verify the harvester
+      - name: Install and verify committed primary evidence
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pytest pytest-asyncio pyflakes
-          PYTHONPATH=. python -m pyflakes daad_harvester/
-          PYTHONPATH=. python -m pytest tests/ -q
+          python scripts/run_primary_workflow.py
 
-      - name: Generate deterministic public report data
+      - name: Validate and stage committed public evidence
         run: |
-          mkdir -p pages-output
-          PYTHONPATH=. python -m daad_harvester --phase catalog --output-dir pages-output --log-level INFO
-          PYTHONPATH=. python -m daad_harvester --phase organize --resume --output-dir pages-output --log-level INFO
-          PYTHONPATH=. python -m daad_harvester --phase report --resume --output-dir pages-output --log-level INFO
+          test -s preservation_corpus/report_data.json
+          test -s preservation_corpus/detection_tables.h
+          test -s preservation_corpus/library/manifest.json
+          python scripts/build_pages_docs.py
 
       - name: Set up Node
         uses: pnpm/action-setup@v4
@@ -58,9 +57,10 @@ jobs:
         run: |
           corepack enable
           pnpm install --frozen-lockfile
-          cp ../../pages-output/report_data.json public/report_data.json
-          if [ -f ../../pages-output/detection_tables.h ]; then cp ../../pages-output/detection_tables.h public/detection_tables.h; fi
-          if [ -f ../../pages-output/library/manifest.json ]; then mkdir -p public/library && cp ../../pages-output/library/manifest.json public/library/manifest.json; fi
+          cp ../../preservation_corpus/report_data.json public/report_data.json
+          cp ../../preservation_corpus/detection_tables.h public/detection_tables.h
+          mkdir -p public/library
+          cp ../../preservation_corpus/library/manifest.json public/library/manifest.json
           pnpm run build
 
       - name: Upload Pages artifact
@@ -74,7 +74,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-public-deployment:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out verification script
+        uses: actions/checkout@v4
+      - name: Verify canonical public portal content
+        run: |
+          expected_report_sha256="$(sha256sum preservation_corpus/report_data.json | awk '{print $1}')"
+          python scripts/verify_pages_deployment.py \
+            --url "${{ needs.deploy.outputs.page_url }}" \
+            --documentation-url "${{ needs.deploy.outputs.page_url }}documentation/index.html" \
+            --minimum-sources 1 \
+            --minimum-artifacts 1 \
+            --expected-report-sha256 "$expected_report_sha256"

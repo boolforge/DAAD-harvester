@@ -10,21 +10,24 @@ The export records the evidence catalog, verified-DDB count, detection-table ava
 
 ## Published content boundary
 
-The Pages workflow publishes the viewer, `report_data.json`, a library **manifest**, and `detection_tables.h` when it exists. It does **not** publish local game binaries or the `library/` payload tree. This preserves the report’s provenance links while avoiding automatic redistribution of archived software whose rights status has not been established.
+The Pages workflow publishes the viewer, the already verified committed `report_data.json`, a library **manifest**, `detection_tables.h`, and a static HTML rendering of every maintained project Markdown document. It does **not** publish local game binaries or the `library/` payload tree. This preserves the report’s provenance links while avoiding automatic redistribution of archived software whose rights status has not been established.
 
 | Public Pages content | Reason |
 | --- | --- |
 | Report JSON | Evidence, counts, policy, and bounded logs are necessary for the public viewer. |
 | Library manifest | Provides classification and source provenance without distributing retained artifacts. |
 | `detection_tables.h` | Enables download of generated ScummVM-oriented detection metadata. |
+| `documentation/index.html` and rendered documents | Deterministic static HTML view of the versioned README, TODO, and all `docs/**/*.md` modules. |
 | Game binaries | Excluded from automated publication; obtain a lawful release from its recorded source. |
 
 ## Workflow
 
-`.github/workflows/pages.yml` runs on pushes to `main` and manual dispatch. It executes the deterministic test and static-analysis baseline, writes report data from a clean Pages output directory, compiles `web/report-viewer`, and deploys the resulting static artifact through GitHub Pages.
+`.github/workflows/pages.yml` runs on pushes to `main` and manual dispatch. It executes the complete deterministic primary gate against the committed corpus state, rejects a missing report/library/detection export, renders the documentation portal through `scripts/build_pages_docs.py`, compiles `web/report-viewer`, and deploys the resulting static artifact through GitHub Pages. A separate post-deployment job fetches the exact deployment URL and fails if the report JSON lacks retained sources/artifacts or the documentation index is unavailable.
 
 Before the first deployment, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions** in the repository. The configured project URL is:
 
 ```text
 https://boolforge.github.io/DAAD-harvester/
 ```
+
+GitHub Pages project paths are case-sensitive. The capitalized `DAAD-harvester` path above is canonical; `https://boolforge.github.io/daad-harvester/` is not an equivalent URL and may return 404.

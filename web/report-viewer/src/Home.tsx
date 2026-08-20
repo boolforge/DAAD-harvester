@@ -140,7 +140,7 @@ export default function Home() {
       <aside className="evidence-rail">
         <div className="brand-lockup"><img src={ASSETS.mark} alt="DAAD Harvester signal mark" /><div><span>DAAD</span><strong>Harvester</strong></div></div>
         <div className="rail-label">Evidence navigation</div>
-        <nav>{NAV.map(({ id, label, icon: Icon }) => <button key={id} className={view === id ? "rail-nav active" : "rail-nav"} onClick={() => setView(id)}><Icon size={16} /><span>{label}</span><ChevronRight size={14} /></button>)}</nav>
+        <nav>{NAV.map(({ id, label, icon: Icon }) => <button key={id} className={view === id ? "rail-nav active" : "rail-nav"} onClick={() => setView(id)}><Icon size={16} /><span>{label}</span><ChevronRight size={14} /></button>)}<a className="rail-nav documentation-link" href={`${BASE_URL}documentation/index.html`}><BookOpen size={16} /><span>Project documentation</span><ExternalLink size={14} /></a></nav>
         <div className="rail-foot"><RadioTower size={14} /><span>Static report<br />schema v1</span></div>
       </aside>
 
