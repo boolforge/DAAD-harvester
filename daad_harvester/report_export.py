@@ -8,6 +8,7 @@ values or exposing local extraction paths.
 from __future__ import annotations
 
 import json
+from hashlib import sha256
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
@@ -42,6 +43,81 @@ class StaticReportExporter:
         except OSError:
             return []
 
+    @staticmethod
+    def _catalog_title_matrix(catalog: Dict[str, Any]) -> list[Dict[str, Any]]:
+        """Join explicit source-game associations to retained artifacts safely.
+
+        The matrix deliberately preserves three separate layers: catalog-declared
+        platforms, source-declared platforms, and platforms measured on retained
+        artifacts.  It does not call any layer a runnable or verified game port.
+        """
+
+        artifacts_by_source: dict[int, list[Dict[str, Any]]] = {}
+        for artifact in catalog["artifacts"]:
+            source_id = artifact.get("source_id")
+            if isinstance(source_id, int):
+                artifacts_by_source.setdefault(source_id, []).append(artifact)
+
+        matrix: list[Dict[str, Any]] = []
+        for game in catalog["games"]:
+            source_entries = game["queued_sources"]
+            source_platforms = sorted(
+                {str(source["platform"]) for source in source_entries if source.get("platform")}
+            )
+            linked_artifacts: list[Dict[str, Any]] = []
+            for source in source_entries:
+                source_id = source.get("id")
+                if not isinstance(source_id, int):
+                    continue
+                for artifact in artifacts_by_source.get(source_id, []):
+                    measured_platform = artifact.get("measured_platform") or artifact.get("legacy_platform_hint")
+                    linked_artifacts.append(
+                        {
+                            "artifact_id": artifact["id"],
+                            "source_id": source_id,
+                            "original_filename": artifact["original_filename"],
+                            "sha256": artifact["sha256"],
+                            "checksums": {
+                                "sha256": artifact["sha256"],
+                                "sha1": artifact.get("sha1"),
+                                "md5_full": artifact.get("md5_full"),
+                                "md5_5000": artifact.get("md5_5000"),
+                                "crc32": artifact.get("crc32"),
+                                "xxh64": artifact.get("xxh64"),
+                            },
+                            "file_size": artifact["file_size"],
+                            "measured_platform": measured_platform,
+                            "is_daad_payload": artifact["is_daad_payload"],
+                            "ddb_format": artifact.get("ddb_format"),
+                            "interpreter_identity": artifact.get("interpreter_identity"),
+                            "evidence_state": "verified_ddb" if artifact["is_daad_payload"] else "retained_artifact",
+                        }
+                    )
+            linked_artifacts.sort(key=lambda item: (item["artifact_id"], item["original_filename"]))
+            measured_platforms = sorted(
+                {
+                    str(artifact["measured_platform"])
+                    for artifact in linked_artifacts
+                    if artifact.get("measured_platform")
+                }
+            )
+            matrix.append(
+                {
+                    "game_id": game["game_id"],
+                    "title": game["title"],
+                    "catalog_platforms": list(game["platform_evidence"]),
+                    "source_platforms": source_platforms,
+                    "measured_artifact_platforms": measured_platforms,
+                    "source_count": len(source_entries),
+                    "artifacts": linked_artifacts,
+                    "boundary": (
+                        "Catalog platforms, source platforms, and measured artifact platforms are distinct "
+                        "evidence layers; this matrix does not assert a runnable game port."
+                    ),
+                }
+            )
+        return matrix
+
     def build(self) -> Dict[str, Any]:
         catalog = EvidenceCatalogExporter(self.db, self.output_dir).build()
         # Extraction paths are operational/private machine locations, not web
@@ -74,11 +150,19 @@ class StaticReportExporter:
                 "library_summary": library.get("summary", {}),
             },
             "catalog": catalog,
+            "game_port_matrix": self._catalog_title_matrix(catalog),
             "detections": {
                 "available": bool(detection_text),
                 "download_path": "detection_tables.h" if detection_text else None,
                 "entry_count": len(catalog_entries),
                 "preview": detection_text[:12000],
+                "sha256": sha256(detection_text.encode("utf-8")).hexdigest() if detection_text else None,
+                "generator": "daad_harvester.synthesize.Synthesizer",
+                "input_catalog": "daad_catalog.json",
+                "boundary": (
+                    "Generated ScummVM-oriented detection metadata; not proof of a complete engine, "
+                    "a runnable title, or emulator-equivalent behavior."
+                ),
             },
             "library": library,
             "logs": {name: self._tail(path) for name, path in log_candidates.items()},

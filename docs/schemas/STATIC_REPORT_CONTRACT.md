@@ -18,6 +18,7 @@
 | `policy` | object | Published no-promotion/path/verified semantics. |
 | `summary` | object | Catalog totals plus detection/library summary. |
 | `catalog` | object | Browser-safe evidence catalog from the pipeline. |
+| `game_port_matrix` | array | Per-known-title matrix that keeps catalog, source, and retained measured-artifact platform layers distinct and lists source-associated retained artifacts with checksums. |
 | `detections` | object | Detection-table availability, relative download path, count, and bounded preview. |
 | `library` | object | Manifest-derived classified-library summary and relative links. |
 | `logs` | object | Bounded tails of general/game logs. |
@@ -30,14 +31,16 @@ Before export, every catalog artifact has `extracted_path` removed. Library link
 
 | Subobject | Browser-safe contract | Viewer behavior |
 | --- | --- | --- |
-| `detections` | `available`, `download_path`, `entry_count`, `preview` (maximum 12,000 text characters). | Exposes a download link only when an export exists. |
+| `game_port_matrix` | `game_id`, `title`, `catalog_platforms`, `source_platforms`, `measured_artifact_platforms`, `source_count`, and source-associated artifact records. | Lets a consumer browse each layer separately; it never calls a listed platform a runnable port. |
+| `game_port_matrix[].artifacts[]` | Artifact/source IDs, filename, SHA-256, size, measured platform when present, DDB/interpreter fields, and `verified_ddb` or `retained_artifact` evidence state. | Displays/copies the checksum for that exact retained byte sequence; missing fields remain unknown. |
+| `detections` | `available`, `download_path`, `entry_count`, `preview` (maximum 12,000 text characters), SHA-256, generator, input-catalog name, and explicit boundary. | Exposes a download link only when an export exists and labels the header as generated detection metadata rather than engine proof. |
 | `library` | Manifest or unavailable sentinel with summary/artifacts. | Links only to relative deployment assets. |
 | `logs` | Last 120 lines per named log candidate. | Displays retained lines; never invents events. |
 | `catalog` | Evidence catalog with local paths removed. | Supplies artifacts/detections with their recorded confidence/status. |
 
 ## Consumer rules
 
-The viewer may format, filter, search, or link fields. It must not calculate an identity confidence from a filename, infer a version from a blank field, show hidden local paths, or turn an unavailable download into an active link. A contract-breaking object should be shown as unavailable/unknown rather than normalized silently.[1] [2]
+The viewer may format, filter, search, group, copy a recorded checksum, or link fields. It must not calculate an identity confidence from a filename, infer a version from a blank field, merge catalog/source/measured platform layers into a port claim, show hidden local paths, or turn an unavailable download into an active link. A contract-breaking object should be shown as unavailable/unknown rather than normalized silently.[1] [2]
 
 The detailed public-report and TUI interaction boundary—including title/port separation, checksum display, ScummVM detection-header semantics, and required regression matrix—is maintained in the [UI evidence contract](../requirements/UI_EVIDENCE_CONTRACT.md).
 
