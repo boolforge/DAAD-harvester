@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 import time
 
 import pytest
@@ -64,6 +65,23 @@ def test_historical_v1_database_is_distinguished_from_v2_without_toolchain_guess
     assert result["version"] == "DAAD DDB v1"
     assert result["platform"] == "zx"
     assert result["language"] == "es"
+
+
+def test_retained_adp_jabato_c64_v1_fixture_validates_at_native_base() -> None:
+    fixture = (
+        Path(__file__).resolve().parents[1]
+        / "reverse_engineering/public_implementations/adp/source/tests/games/jabato/c64/JABATO-C64 1.DDB"
+    )
+    payload = fixture.read_bytes()
+    result = DAADBytecodeParser().parse_ddb(payload, fixture.name)
+
+    assert result["is_daad"] is True
+    assert result["ddb_format"] == "daad-v1-legacy"
+    assert result["platform"] == "c64"
+    assert result["language"] == "es"
+    assert result["details"]["header"]["base_address"] == 0x3880
+    assert result["details"]["header"]["header_size"] == 32
+    assert result["details"]["payload_size"] == len(payload) == 24899
 
 
 def test_historical_header_rejects_bad_marker_and_unterminated_condact_stream() -> None:

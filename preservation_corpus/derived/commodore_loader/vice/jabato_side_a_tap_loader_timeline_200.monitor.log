@@ -1,0 +1,29 @@
+(C:$e4e7) (C:$e4e7)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;e4e7 03 03 00 f3 2f 27 00100011 000 000   26103168
+(C:$e4e7) Displaying 40x25 screen at $0400:
+0400                                          
+0428      **** commodore 64 basic v2 ****     
+0450                                          
+0478   64k ram system  38911 basic bytes free 
+04a0                                          
+04c8  ready.                                  
+04f0  load                                    
+0518                                          
+0540  press play on tape                      
+0568  ok                                      
+0590                                          
+05b8  searching                               
+05e0  found jabato 1                          
+0608                                          
+0630                                          
+0658                                          
+0680                                          
+06a8                                          
+06d0                                          
+06f8                                          
+0720                                          
+0748                                          
+0770                                          
+0798                                          
+07c0                                          
+(C:$e4e7) (C:$e4e7) 

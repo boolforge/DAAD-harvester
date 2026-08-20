@@ -1,0 +1,951 @@
+{
+  "dominant_exact_pulse_cycles": [
+    {
+      "count": 270484,
+      "cycles": 592,
+      "tap_value": 74
+    },
+    {
+      "count": 209791,
+      "cycles": 280,
+      "tap_value": 35
+    },
+    {
+      "count": 124457,
+      "cycles": 304,
+      "tap_value": 38
+    },
+    {
+      "count": 107389,
+      "cycles": 568,
+      "tap_value": 71
+    },
+    {
+      "count": 22398,
+      "cycles": 384,
+      "tap_value": 48
+    },
+    {
+      "count": 18644,
+      "cycles": 368,
+      "tap_value": 46
+    },
+    {
+      "count": 10962,
+      "cycles": 608,
+      "tap_value": 76
+    },
+    {
+      "count": 7276,
+      "cycles": 264,
+      "tap_value": 33
+    },
+    {
+      "count": 6014,
+      "cycles": 528,
+      "tap_value": 66
+    },
+    {
+      "count": 3094,
+      "cycles": 552,
+      "tap_value": 69
+    },
+    {
+      "count": 989,
+      "cycles": 512,
+      "tap_value": 64
+    },
+    {
+      "count": 738,
+      "cycles": 344,
+      "tap_value": 43
+    },
+    {
+      "count": 554,
+      "cycles": 712,
+      "tap_value": 89
+    },
+    {
+      "count": 448,
+      "cycles": 696,
+      "tap_value": 87
+    },
+    {
+      "count": 55,
+      "cycles": 408,
+      "tap_value": 51
+    },
+    {
+      "count": 14,
+      "cycles": 328,
+      "tap_value": 41
+    }
+  ],
+  "extended_pulse_events": [
+    {
+      "cycles": 2216,
+      "encoded_size": 4,
+      "stream_offset": 35376
+    },
+    {
+      "cycles": 322196,
+      "encoded_size": 4,
+      "stream_offset": 35380
+    },
+    {
+      "cycles": 2257,
+      "encoded_size": 4,
+      "stream_offset": 52881
+    },
+    {
+      "cycles": 518486,
+      "encoded_size": 4,
+      "stream_offset": 52885
+    },
+    {
+      "cycles": 2586,
+      "encoded_size": 4,
+      "stream_offset": 56612
+    },
+    {
+      "cycles": 542214,
+      "encoded_size": 4,
+      "stream_offset": 56616
+    },
+    {
+      "cycles": 2401,
+      "encoded_size": 4,
+      "stream_offset": 62908
+    },
+    {
+      "cycles": 546915,
+      "encoded_size": 4,
+      "stream_offset": 62912
+    },
+    {
+      "cycles": 2647,
+      "encoded_size": 4,
+      "stream_offset": 77900
+    },
+    {
+      "cycles": 546299,
+      "encoded_size": 4,
+      "stream_offset": 77904
+    },
+    {
+      "cycles": 546607,
+      "encoded_size": 4,
+      "stream_offset": 92219
+    },
+    {
+      "cycles": 2647,
+      "encoded_size": 4,
+      "stream_offset": 186345
+    },
+    {
+      "cycles": 547879,
+      "encoded_size": 4,
+      "stream_offset": 186349
+    },
+    {
+      "cycles": 2668,
+      "encoded_size": 4,
+      "stream_offset": 339474
+    },
+    {
+      "cycles": 546566,
+      "encoded_size": 4,
+      "stream_offset": 339478
+    },
+    {
+      "cycles": 2463,
+      "encoded_size": 4,
+      "stream_offset": 636755
+    },
+    {
+      "cycles": 547818,
+      "encoded_size": 4,
+      "stream_offset": 636759
+    },
+    {
+      "cycles": 2873,
+      "encoded_size": 4,
+      "stream_offset": 783410
+    },
+    {
+      "cycles": 133808,
+      "encoded_size": 4,
+      "stream_offset": 783414
+    },
+    {
+      "cycles": 5480,
+      "encoded_size": 4,
+      "stream_offset": 783418
+    },
+    {
+      "cycles": 592421,
+      "encoded_size": 4,
+      "stream_offset": 783422
+    }
+  ],
+  "file_size": 783446,
+  "header": {
+    "declared_pulse_bytes": 783426,
+    "platform": "c64",
+    "platform_code": 0,
+    "signature": "C64-TAPE-RAW",
+    "version": 1,
+    "video_standard": 0
+  },
+  "measured_loader_01b6_plausible_frames": [
+    {
+      "available_payload_sha256": "297133ebffa17b69c99375de27772c024c63cc3cc53f5f9d2a101f2d0c941a51",
+      "available_payload_size": 1170,
+      "complete_payload": false,
+      "end_address_exclusive": 13315,
+      "expected_payload_size": 13312,
+      "phase": 9,
+      "segment_index": 5,
+      "start_address": 3,
+      "sync_stream_offset": 80467
+    },
+    {
+      "available_payload_sha256": "5ddd986f21a50f0ffadc78e0e618b1c9fcbb2d3e37521912eeed0e79f662b97d",
+      "available_payload_size": 256,
+      "complete_payload": true,
+      "end_address_exclusive": 42243,
+      "expected_payload_size": 256,
+      "phase": 2,
+      "runtime_byte_matches": 1,
+      "runtime_exact_match": false,
+      "segment_index": 6,
+      "start_address": 41987,
+      "sync_stream_offset": 164765
+    },
+    {
+      "available_payload_sha256": "a43c9dcf94756a0e09cbceb88039167f4b32504e0ec69ef7f23809a0fd9ca705",
+      "available_payload_size": 277,
+      "complete_payload": true,
+      "end_address_exclusive": 6934,
+      "expected_payload_size": 277,
+      "phase": 9,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 7,
+      "start_address": 6657,
+      "sync_stream_offset": 239852
+    },
+    {
+      "available_payload_sha256": "15394dc532ee070d8e16858779cd9180f88a4df2837eba9049bae45e497429e4",
+      "available_payload_size": 277,
+      "complete_payload": true,
+      "end_address_exclusive": 7958,
+      "expected_payload_size": 277,
+      "phase": 9,
+      "runtime_byte_matches": 3,
+      "runtime_exact_match": false,
+      "segment_index": 7,
+      "start_address": 7681,
+      "sync_stream_offset": 253212
+    },
+    {
+      "available_payload_sha256": "f90f8932204f441ff86994d5cb286232eba8d42c405b39b0e50c519cc712b6fe",
+      "available_payload_size": 277,
+      "complete_payload": true,
+      "end_address_exclusive": 12310,
+      "expected_payload_size": 277,
+      "phase": 9,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 7,
+      "start_address": 12033,
+      "sync_stream_offset": 311972
+    },
+    {
+      "available_payload_sha256": "714eef93093cdc4ca0cf385d73b61d043fd7769f0851799a8a9ac022f678dfeb",
+      "available_payload_size": 150,
+      "complete_payload": true,
+      "end_address_exclusive": 33302,
+      "expected_payload_size": 150,
+      "phase": 2,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 33152,
+      "sync_stream_offset": 565244
+    },
+    {
+      "available_payload_sha256": "e77a3e2aa2b300af4f55c6701af9f384611a284d9c7e1e37cb4939ac6bfec3e5",
+      "available_payload_size": 1305,
+      "complete_payload": false,
+      "end_address_exclusive": 17163,
+      "expected_payload_size": 1509,
+      "phase": 2,
+      "segment_index": 8,
+      "start_address": 15654,
+      "sync_stream_offset": 623654
+    },
+    {
+      "available_payload_sha256": "7cb7c4547cf2653590d7a9ace60cc623d25148adfbc88a89aeb0ef88da7839ba",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 32920,
+      "expected_payload_size": 1,
+      "phase": 2,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 32919,
+      "sync_stream_offset": 629004
+    },
+    {
+      "available_payload_sha256": "c5cb63ca8e59d9f6bd2aa494e84118a584cf13a3000f85bdffdc1214426beb57",
+      "available_payload_size": 438,
+      "complete_payload": false,
+      "end_address_exclusive": 64259,
+      "expected_payload_size": 16384,
+      "phase": 2,
+      "segment_index": 8,
+      "start_address": 47875,
+      "sync_stream_offset": 632324
+    },
+    {
+      "available_payload_sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 32921,
+      "expected_payload_size": 1,
+      "phase": 2,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 32920,
+      "sync_stream_offset": 633044
+    },
+    {
+      "available_payload_sha256": "149488d869cbef080602a371ab0d39d97af103fb726aaeb02ccd36c06f494e5d",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 32828,
+      "expected_payload_size": 1,
+      "phase": 9,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 32827,
+      "sync_stream_offset": 353021
+    },
+    {
+      "available_payload_sha256": "a83dd0ccbffe39d071cc317ddf6e97f5c6b1c87af91919271f9fa140b0508c6c",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 32829,
+      "expected_payload_size": 1,
+      "phase": 9,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 32828,
+      "sync_stream_offset": 356341
+    },
+    {
+      "available_payload_sha256": "c5974bfe94756404db8334ac36b34645072a0da4d09c7e35e7d04c85f2bfd863",
+      "available_payload_size": 768,
+      "complete_payload": true,
+      "end_address_exclusive": 42755,
+      "expected_payload_size": 768,
+      "phase": 9,
+      "runtime_byte_matches": 11,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 41987,
+      "sync_stream_offset": 359661
+    },
+    {
+      "available_payload_sha256": "f218bb592a84fd6d033599d5e770fc90393e221658e23e804237b88b77bfd7dc",
+      "available_payload_size": 150,
+      "complete_payload": true,
+      "end_address_exclusive": 26390,
+      "expected_payload_size": 150,
+      "phase": 9,
+      "runtime_byte_matches": 2,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 26240,
+      "sync_stream_offset": 485061
+    },
+    {
+      "available_payload_sha256": "a415998fda24d99868cbb4febd1dec0c90039843a7bb6f1d3dff0397c65bee06",
+      "available_payload_size": 2792,
+      "complete_payload": false,
+      "end_address_exclusive": 64259,
+      "expected_payload_size": 16384,
+      "phase": 9,
+      "segment_index": 8,
+      "start_address": 47875,
+      "sync_stream_offset": 608781
+    },
+    {
+      "available_payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 32913,
+      "expected_payload_size": 1,
+      "phase": 9,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 32912,
+      "sync_stream_offset": 609501
+    },
+    {
+      "available_payload_sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 29349,
+      "expected_payload_size": 1,
+      "phase": 2,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 29348,
+      "sync_stream_offset": 664075
+    },
+    {
+      "available_payload_sha256": "57081f280c1f36586aef2f73accd22ed8f31ad7976709d1acf99193f9a74e1cd",
+      "available_payload_size": 164,
+      "complete_payload": true,
+      "end_address_exclusive": 50454,
+      "expected_payload_size": 164,
+      "phase": 6,
+      "runtime_byte_matches": 39,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 50290,
+      "sync_stream_offset": 759629
+    },
+    {
+      "available_payload_sha256": "d0063e881ede86ba5a1fc957a7392fb9fc50cfad0c473272e2723d875d080bc7",
+      "available_payload_size": 164,
+      "complete_payload": true,
+      "end_address_exclusive": 50710,
+      "expected_payload_size": 164,
+      "phase": 6,
+      "runtime_byte_matches": 42,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 50546,
+      "sync_stream_offset": 762969
+    },
+    {
+      "available_payload_sha256": "89c0809f8a8735a0cf8e389b3eb85dfe396aa077e79f5c69078ea6407e65d80b",
+      "available_payload_size": 164,
+      "complete_payload": true,
+      "end_address_exclusive": 50966,
+      "expected_payload_size": 164,
+      "phase": 6,
+      "runtime_byte_matches": 58,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 50802,
+      "sync_stream_offset": 766309
+    },
+    {
+      "available_payload_sha256": "62c66a7a5dd70c3146618063c344e531e6d4b59e379808443ce962b3abd63c5a",
+      "available_payload_size": 1,
+      "complete_payload": true,
+      "end_address_exclusive": 29387,
+      "expected_payload_size": 1,
+      "phase": 7,
+      "runtime_byte_matches": 0,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 29386,
+      "sync_stream_offset": 778930
+    },
+    {
+      "available_payload_sha256": "050d5f249414eae0b87e3b5be565d0739fcf06509cf28423cecf593f429e540c",
+      "available_payload_size": 458,
+      "complete_payload": true,
+      "end_address_exclusive": 2048,
+      "expected_payload_size": 458,
+      "phase": 8,
+      "runtime_byte_matches": 15,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 1590,
+      "sync_stream_offset": 717721
+    },
+    {
+      "available_payload_sha256": "d4d4c62c7bb7356f60156d7da0aa676db3d26e7652b4184b4be9d1a29d5e4ba3",
+      "available_payload_size": 164,
+      "complete_payload": true,
+      "end_address_exclusive": 47126,
+      "expected_payload_size": 164,
+      "phase": 8,
+      "runtime_byte_matches": 5,
+      "runtime_exact_match": false,
+      "segment_index": 9,
+      "start_address": 46962,
+      "sync_stream_offset": 721021
+    }
+  ],
+  "measured_loader_01b6_sync_candidates": [
+    {
+      "following_16_bytes_hex": "033403008be383a47ca5a802e4a786ae",
+      "phase": 9,
+      "preceding_zero_byte_run": 255,
+      "segment_index": 5,
+      "sync_stream_offset": 80467
+    },
+    {
+      "following_16_bytes_hex": "03a503a40404fa00f900ffffffffffff",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 6,
+      "sync_stream_offset": 164765
+    },
+    {
+      "following_16_bytes_hex": "161b011a01fec9fff005d92e37d008a1",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 239852
+    },
+    {
+      "following_16_bytes_hex": "161f011e01f008ada70209208da70220",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 253212
+    },
+    {
+      "following_16_bytes_hex": "16033403008be383a47ca5a802e4a786",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 265762
+    },
+    {
+      "following_16_bytes_hex": "049b34a171a5dfa1b1045e64952032fc",
+      "phase": 9,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 7,
+      "sync_stream_offset": 305502
+    },
+    {
+      "following_16_bytes_hex": "1630012f018d09d0207531f0034cc630",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 311972
+    },
+    {
+      "following_16_bytes_hex": "ff0c0136094afeff07040706070816ff",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 8,
+      "sync_stream_offset": 560644
+    },
+    {
+      "following_16_bytes_hex": "1682808180266016ff002808070b732b",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 565244
+    },
+    {
+      "following_16_bytes_hex": "0b43263d4d304d3e33431616ff2f644b",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 623654
+    },
+    {
+      "following_16_bytes_hex": "ff0b424d47ff0c424da6ff0b470b4a34",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 8,
+      "sync_stream_offset": 624174
+    },
+    {
+      "following_16_bytes_hex": "ff30c933c8923321014b180ec9014da2",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 8,
+      "sync_stream_offset": 626944
+    },
+    {
+      "following_16_bytes_hex": "9880978016ff0c6e261116ff49ff0d61",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 629004
+    },
+    {
+      "following_16_bytes_hex": "03fb03bba9e6a9b08dbb03a9078501a9",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 632324
+    },
+    {
+      "following_16_bytes_hex": "99809880330606306616ff0c660b6d37",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 633044
+    },
+    {
+      "following_16_bytes_hex": "3c803b80b1bcb6ba2600bab1b9baad2c",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 353021
+    },
+    {
+      "following_16_bytes_hex": "3d803c804902b7aabaa9b03f02b6dfdf",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 356341
+    },
+    {
+      "following_16_bytes_hex": "03a703a404204a4a3e803d80bcb7ba48",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 359661
+    },
+    {
+      "following_16_bytes_hex": "1667806680f5b3908cdf988a9e8d9b96",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 485061
+    },
+    {
+      "following_16_bytes_hex": "03fb03bba9e6a9b08dbb03a9078501a9",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 608781
+    },
+    {
+      "following_16_bytes_hex": "9180908000100e4108332240ff00100e",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 609501
+    },
+    {
+      "following_16_bytes_hex": "03a403a40404a372a2720b0315000035",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 658015
+    },
+    {
+      "following_16_bytes_hex": "2000163800166000b620008096001080",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 9,
+      "sync_stream_offset": 663185
+    },
+    {
+      "following_16_bytes_hex": "3800166000b6200080960010809603fb",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 9,
+      "sync_stream_offset": 663215
+    },
+    {
+      "following_16_bytes_hex": "6000b6200080960010809603fb03bba9",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 9,
+      "sync_stream_offset": 663245
+    },
+    {
+      "following_16_bytes_hex": "a572a47200288eb682188196281881d5",
+      "phase": 2,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 664075
+    },
+    {
+      "following_16_bytes_hex": "16034803472664034efd4edc8420bd62",
+      "phase": 6,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 744829
+    },
+    {
+      "following_16_bytes_hex": "16c572c472700000002850a050280000",
+      "phase": 6,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 759629
+    },
+    {
+      "following_16_bytes_hex": "16c672c572f800708808300888700010",
+      "phase": 6,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 762969
+    },
+    {
+      "following_16_bytes_hex": "16c772c67288007088807008887000f8",
+      "phase": 6,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 766309
+    },
+    {
+      "following_16_bytes_hex": "cb72ca726d80ffffffff7f7f7f7ffeff",
+      "phase": 7,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 778930
+    },
+    {
+      "following_16_bytes_hex": "810096680f8096481880351f00f50600",
+      "phase": 8,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 9,
+      "sync_stream_offset": 693701
+    }
+  ],
+  "path": "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap",
+  "physical_pause_segments": [
+    {
+      "following_pause_cycles": 322196,
+      "segment_index": 0,
+      "stream_byte_count": 35384,
+      "stream_end_exclusive": 35384,
+      "stream_start": 0
+    },
+    {
+      "following_pause_cycles": 518486,
+      "segment_index": 1,
+      "stream_byte_count": 17505,
+      "stream_end_exclusive": 52889,
+      "stream_start": 35384
+    },
+    {
+      "following_pause_cycles": 542214,
+      "segment_index": 2,
+      "stream_byte_count": 3731,
+      "stream_end_exclusive": 56620,
+      "stream_start": 52889
+    },
+    {
+      "following_pause_cycles": 546915,
+      "segment_index": 3,
+      "stream_byte_count": 6296,
+      "stream_end_exclusive": 62916,
+      "stream_start": 56620
+    },
+    {
+      "following_pause_cycles": 546299,
+      "segment_index": 4,
+      "stream_byte_count": 14992,
+      "stream_end_exclusive": 77908,
+      "stream_start": 62916
+    },
+    {
+      "following_pause_cycles": 546607,
+      "segment_index": 5,
+      "stream_byte_count": 14315,
+      "stream_end_exclusive": 92223,
+      "stream_start": 77908
+    },
+    {
+      "following_pause_cycles": 547879,
+      "segment_index": 6,
+      "stream_byte_count": 94130,
+      "stream_end_exclusive": 186353,
+      "stream_start": 92223
+    },
+    {
+      "following_pause_cycles": 546566,
+      "segment_index": 7,
+      "stream_byte_count": 153129,
+      "stream_end_exclusive": 339482,
+      "stream_start": 186353
+    },
+    {
+      "following_pause_cycles": 547818,
+      "segment_index": 8,
+      "stream_byte_count": 297281,
+      "stream_end_exclusive": 636763,
+      "stream_start": 339482
+    },
+    {
+      "following_pause_cycles": 133808,
+      "segment_index": 9,
+      "stream_byte_count": 146655,
+      "stream_end_exclusive": 783418,
+      "stream_start": 636763
+    },
+    {
+      "following_pause_cycles": 592421,
+      "segment_index": 10,
+      "stream_byte_count": 8,
+      "stream_end_exclusive": 783426,
+      "stream_start": 783418
+    }
+  ],
+  "pulse_event_count": 783363,
+  "pulse_kinds": {
+    "exact_extended": 21,
+    "quantized": 783342
+  },
+  "sha256": "99e873fd309be0325e37668f9385937d22337c1a4c1d2b9094ac2ef575082ad1",
+  "two_pulse_previews": [
+    {
+      "bit_order": "msb_first",
+      "decoded_byte_count": 97920,
+      "first_64_bytes_hex": "80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "longest_constant_byte_runs": [
+        {
+          "byte": 0,
+          "length": 3390,
+          "start": 1
+        },
+        {
+          "byte": 0,
+          "length": 671,
+          "start": 4423
+        },
+        {
+          "byte": 255,
+          "length": 20,
+          "start": 20665
+        },
+        {
+          "byte": 255,
+          "length": 19,
+          "start": 20606
+        },
+        {
+          "byte": 255,
+          "length": 18,
+          "start": 69848
+        },
+        {
+          "byte": 255,
+          "length": 17,
+          "start": 97440
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 12760
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 15353
+        },
+        {
+          "byte": 0,
+          "length": 10,
+          "start": 3897
+        },
+        {
+          "byte": 255,
+          "length": 10,
+          "start": 13608
+        }
+      ],
+      "threshold_cycles": 436,
+      "transition_previews": [
+        {
+          "following_64_bytes_hex": "01cb2b3ab2b5d4ab5b4ab3ccab3acab5d2ab3b2ab5caab5d2aadd54b5b2aabaaad5d2aadb32cbcaacdb2acdcaacdacccbd52cbaab2bcad2baab2baab2baab2ba",
+          "run_byte": 0,
+          "run_length": 3390,
+          "run_start": 1
+        },
+        {
+          "following_64_bytes_hex": "3965675656ba956b69567995675956ba55676556b9556b56667655575555b9595b5596b9595b5555b955575555b9666b5565765667565575566b5555b959675a",
+          "run_byte": 0,
+          "run_length": 671,
+          "run_start": 4423
+        }
+      ]
+    },
+    {
+      "bit_order": "lsb_first",
+      "decoded_byte_count": 97920,
+      "first_64_bytes_hex": "01000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "longest_constant_byte_runs": [
+        {
+          "byte": 0,
+          "length": 3390,
+          "start": 1
+        },
+        {
+          "byte": 0,
+          "length": 671,
+          "start": 4423
+        },
+        {
+          "byte": 255,
+          "length": 20,
+          "start": 20665
+        },
+        {
+          "byte": 255,
+          "length": 19,
+          "start": 20606
+        },
+        {
+          "byte": 255,
+          "length": 18,
+          "start": 69848
+        },
+        {
+          "byte": 255,
+          "length": 17,
+          "start": 97440
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 12760
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 15353
+        },
+        {
+          "byte": 0,
+          "length": 10,
+          "start": 3897
+        },
+        {
+          "byte": 255,
+          "length": 10,
+          "start": 13608
+        }
+      ],
+      "threshold_cycles": 436,
+      "transition_previews": [
+        {
+          "following_64_bytes_hex": "80d3d45c4dad2bd5da52cd33d55c53ad4bd5dc54ad53d5ba54b5abd2da54d555b5ba54b5cd343d55b34d353b55b33533bd4ad3554d3db5d4554d5dd5d4554d5d",
+          "run_byte": 0,
+          "run_length": 3390,
+          "run_start": 1
+        },
+        {
+          "following_64_bytes_hex": "9ca6e66a6a5da9d6966a9ea9e69a6a5daae6a66a9daad66a666eaaeaaaaa9d9adaaa699d9adaaaaa9daaeaaaaa9d66d6aaa66e6ae66aaaae6ad6aaaa9d9ae65a",
+          "run_byte": 0,
+          "run_length": 671,
+          "run_start": 4423
+        }
+      ]
+    }
+  ]
+}

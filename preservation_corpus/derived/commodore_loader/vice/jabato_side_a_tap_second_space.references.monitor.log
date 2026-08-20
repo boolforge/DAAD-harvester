@@ -1,0 +1,804 @@
+(C:$e5d4) (C:$26f1) >C:1f60  b2 02 d0 01  60 a2 01 8e  b2 02 18 69  30 4c 1f 23   ....`......i0L.#
+>C:1f70  20 04 2a 4c  7c 1f 20 04  2a 4c 84 1f  ad a7 02 09    .*L|. .*L......
+>C:1f80  40 8d a7 02  a2 00 ad a9  02 09 20 8d  a9 02 a1 41   @......... ....A
+>C:1f90  49 ff c9 0a  f0 2e cd 82  38 f0 0c c9  40 d0 19 ad   I.......8...@...
+>C:1fa0  a9 02 29 df  8d a9 02 ad  a9 02 09 10  8d a9 02 ad   ..).............
+>C:1fb0  61 36 20 5b  1e 4c bb 1f  20 1f 23 e6  41 d0 c5 e6   a6 [.L.. .#.A...
+>C:1fc0  42 4c 84 1f  2c a7 02 50  10 20 1d 23  20 d5 29 ad   BL..,..P. .# .).
+>C:1fd0  a7 02 29 bf  8d a7 02 a2  00 60 ad a8  02 29 ef 8d   ..)......`...)..
+>C:1fe0  a8 02 ad 58  36 f0 05 cd  86 38 90 2f  20 d9 1e a0   ...X6....8./ ...
+>C:1ff0  02 c9 1e 90  0b c8 c9 3c  90 06 c8 c9  5a 90 01 c8   .......<....Z...
+>C:2000  98 4c 1b 20  48 ad a7 02  29 fb 8d a7  02 ad a8 02   .L. H...).......
+>C:2010  09 10 8d a8  02 a9 0c 8d  c8 02 68 48  ad c9 02 8d   ..........hH....
+>C:2020  c3                                                   .
+(C:$2021) .C:1f60  B2          JAM
+.C:1f61  02          JAM
+.C:1f62  D0 01       BNE $1F65
+.C:1f64  60          RTS
+.C:1f65  A2 01       LDX #$01
+.C:1f67  8E B2 02    STX $02B2
+.C:1f6a  18          CLC
+.C:1f6b  69 30       ADC #$30
+.C:1f6d  4C 1F 23    JMP $231F
+.C:1f70  20 04 2A    JSR $2A04
+.C:1f73  4C 7C 1F    JMP $1F7C
+.C:1f76  20 04 2A    JSR $2A04
+.C:1f79  4C 84 1F    JMP $1F84
+.C:1f7c  AD A7 02    LDA $02A7
+.C:1f7f  09 40       ORA #$40
+.C:1f81  8D A7 02    STA $02A7
+.C:1f84  A2 00       LDX #$00
+.C:1f86  AD A9 02    LDA $02A9
+.C:1f89  09 20       ORA #$20
+.C:1f8b  8D A9 02    STA $02A9
+.C:1f8e  A1 41       LDA ($41,X)
+.C:1f90  49 FF       EOR #$FF
+.C:1f92  C9 0A       CMP #$0A
+.C:1f94  F0 2E       BEQ $1FC4
+.C:1f96  CD 82 38    CMP $3882
+.C:1f99  F0 0C       BEQ $1FA7
+.C:1f9b  C9 40       CMP #$40
+.C:1f9d  D0 19       BNE $1FB8
+.C:1f9f  AD A9 02    LDA $02A9
+.C:1fa2  29 DF       AND #$DF
+.C:1fa4  8D A9 02    STA $02A9
+.C:1fa7  AD A9 02    LDA $02A9
+.C:1faa  09 10       ORA #$10
+.C:1fac  8D A9 02    STA $02A9
+.C:1faf  AD 61 36    LDA $3661
+.C:1fb2  20 5B 1E    JSR $1E5B
+.C:1fb5  4C BB 1F    JMP $1FBB
+.C:1fb8  20 1F 23    JSR $231F
+.C:1fbb  E6 41       INC $41
+.C:1fbd  D0 C5       BNE $1F84
+.C:1fbf  E6 42       INC $42
+.C:1fc1  4C 84 1F    JMP $1F84
+.C:1fc4  2C A7 02    BIT $02A7
+.C:1fc7  50 10       BVC $1FD9
+.C:1fc9  20 1D 23    JSR $231D
+.C:1fcc  20 D5 29    JSR $29D5
+.C:1fcf  AD A7 02    LDA $02A7
+.C:1fd2  29 BF       AND #$BF
+.C:1fd4  8D A7 02    STA $02A7
+.C:1fd7  A2 00       LDX #$00
+.C:1fd9  60          RTS
+.C:1fda  AD A8 02    LDA $02A8
+.C:1fdd  29 EF       AND #$EF
+.C:1fdf  8D A8 02    STA $02A8
+.C:1fe2  AD 58 36    LDA $3658
+.C:1fe5  F0 05       BEQ $1FEC
+.C:1fe7  CD 86 38    CMP $3886
+.C:1fea  90 2F       BCC $201B
+.C:1fec  20 D9 1E    JSR $1ED9
+.C:1fef  A0 02       LDY #$02
+.C:1ff1  C9 1E       CMP #$1E
+.C:1ff3  90 0B       BCC $2000
+.C:1ff5  C8          INY
+.C:1ff6  C9 3C       CMP #$3C
+.C:1ff8  90 06       BCC $2000
+.C:1ffa  C8          INY
+.C:1ffb  C9 5A       CMP #$5A
+.C:1ffd  90 01       BCC $2000
+.C:1fff  C8          INY
+.C:2000  98          TYA
+.C:2001  4C 1B 20    JMP $201B
+.C:2004  48          PHA
+.C:2005  AD A7 02    LDA $02A7
+.C:2008  29 FB       AND #$FB
+.C:200a  8D A7 02    STA $02A7
+.C:200d  AD A8 02    LDA $02A8
+.C:2010  09 10       ORA #$10
+.C:2012  8D A8 02    STA $02A8
+.C:2015  A9 0C       LDA #$0C
+.C:2017  8D C8 02    STA $02C8
+.C:201a  68          PLA
+.C:201b  48          PHA
+.C:201c  AD C9 02    LDA $02C9
+.C:201f  8D C3 02    STA $02C3
+(C:$2022) >C:34f0  8d fa ff a9  34 8d fb ff  08 78 ad 15  03 c9 32 f0   ....4....x....2.
+>C:3500  09 8d df 02  ad 14 03 8d  de 02 a0 ff  b9 00 ff 99   ................
+>C:3510  00 ff 88 d0  f7 a9 00 85  fb a9 cc 85  fc 98 91 fb   ................
+>C:3520  20 e8 33 a5  fc c9 d0 d0  f4 28 ad 02  dd 09 03 8d    .3......(......
+>C:3530  02 dd ad 00  dd 29 fc 8d  00 dd a9 38  8d 18 d0 ad   .....).....8....
+>C:3540  11 d0 09 20  8d 11 d0 ad  68 61 63 65  73 2e 72 72   ... ....haces.rr
+>C:3550  6f 2e 6f 2e  3a f0 08 ad  a9 02 09 04  8d a9 02 a9   o.o.:...........
+>C:3560  c0 8d f1 02  a9 00 a0 08  99 25 37 88  d0 fa 4c 7a   .........%7...Lz
+>C:3570  08 10 00 18  00 28 18 00  00 00 00 00  40 00 00 00   .....(......@...
+>C:3580  e0 10 00 0d  00 20 0d 00  04 04 00 00  40 00 00 00   ..... ......@...
+>C:3590  e0 10 00 07  00 28 07 0f  00 00 16 00  40 00 00 00   .....(......@...
+>C:35a0  e0 10 00 01  00 28 01 17  00 00 17 00  42 00 00 00   .....(......B...
+>C:35b0  e0 10 00 18  00 28 18 00  00 00 00 00  40 00 00 00   .....(......@...
+>C:35c0  e0 10 00 18  00 28 18 00  00 00 00 00  40 00 00 00   .....(......@...
+>C:35d0  e0 10 00 19  00 28 18 00  00 00 16 00  40 00 00 00   .....(......@...
+>C:35e0  e0 10 00 18  00 28 18 00  00 00 00 00  40 00 00 00   .....(......@...
+>C:35f0  e0 10 00 18  00 28 18 00  00 00 00 00  40 00 00 00   .....(......@...
+>C:3600  e0 12 00 03  00 10 03 00  00 00 00 00  40 00 00 00   ............@...
+>C:3610  e0 bd ad ba  be b4 f5 b6  d0 b0 df ba  8d 8d 90 8d   ................
+>C:3620  df f5 b8 9e  92 9a df ba  8d 8d 90 8d  df f5 00 00   ................
+>C:3630  00 00 00 00  00 03 00 00  00 00 00 00  00 00 00 00   ................
+>C:3640  00 00 00 00  00 00 00 00  00 00 00 80  00 00 00 00   ................
+>C:3650  00 00 00 07  03 00 ff 02  05 00 00 00  ff ff 0a 29   ...............)
+>C:3660  00 00 32 40  00 00 00 00  00 00 00 00  00 00 00 00   ..2@............
+>C:3670  00 00 00 00  00 00 00 00  00 fe 00 00  00 00 00 00   ................
+>C:3680  00 00 00 00  00 00 00 00  00 00 00 2b  00 00 00 00   ...........+....
+>C:3690  00 00 00 00  00 00 00 00  22 25 ff 00  00 00 00 00   ........"%......
+>C:36a0  00 00 00 00  00 00 00 00  00 00 00 03  4e 75 72 69   ............Nuri
+>C:36b0  61 03 00 00  00 00 00 00  00 00 00 00  00 00 00 00   a...............
+>C:36c0  00                                                   .
+(C:$36c1) .C:3400  A5 FD       LDA $FD
+.C:3402  C9 FF       CMP #$FF
+.C:3404  D0 02       BNE $3408
+.C:3406  C6 FE       DEC $FE
+.C:3408  68          PLA
+.C:3409  60          RTS
+.C:340a  48          PHA
+.C:340b  C6 FB       DEC $FB
+.C:340d  A5 FB       LDA $FB
+.C:340f  C9 FF       CMP #$FF
+.C:3411  D0 02       BNE $3415
+.C:3413  C6 FC       DEC $FC
+.C:3415  68          PLA
+.C:3416  60          RTS
+.C:3417  AE B7 02    LDX $02B7
+.C:341a  F0 10       BEQ $342C
+.C:341c  A0 00       LDY #$00
+.C:341e  B1 1B       LDA ($1B),Y
+.C:3420  91 1D       STA ($1D),Y
+.C:3422  C8          INY
+.C:3423  D0 F9       BNE $341E
+.C:3425  E6 1C       INC $1C
+.C:3427  E6 1E       INC $1E
+.C:3429  CA          DEX
+.C:342a  D0 F2       BNE $341E
+.C:342c  AE B6 02    LDX $02B6
+.C:342f  F0 0A       BEQ $343B
+.C:3431  A0 00       LDY #$00
+.C:3433  B1 1B       LDA ($1B),Y
+.C:3435  91 1D       STA ($1D),Y
+.C:3437  C8          INY
+.C:3438  CA          DEX
+.C:3439  D0 F8       BNE $3433
+.C:343b  60          RTS
+.C:343c  0A          ASL A
+.C:343d  AA          TAX
+.C:343e  BD 45 34    LDA $3445,X
+.C:3441  BC 46 34    LDY $3446,X
+.C:3444  60          RTS
+.C:3445  00          BRK
+.C:3446  00          BRK
+.C:3447  28          PLP
+.C:3448  00          BRK
+.C:3449  50 00       BVC $344B
+.C:344b  78          SEI
+.C:344c  00          BRK
+.C:344d  A0 00       LDY #$00
+.C:344f  C8          INY
+.C:3450  00          BRK
+.C:3451  F0 00       BEQ $3453
+.C:3453  18          CLC
+.C:3454  01 40       ORA ($40,X)
+.C:3456  01 68       ORA ($68,X)
+.C:3458  01 90       ORA ($90,X)
+.C:345a  01 B8       ORA ($B8,X)
+.C:345c  01 E0       ORA ($E0,X)
+.C:345e  01 08       ORA ($08,X)
+.C:3460  02          JAM
+.C:3461  30 02       BMI $3465
+.C:3463  58          CLI
+.C:3464  02          JAM
+.C:3465  80 02       NOOP #$02
+.C:3467  A8          TAY
+.C:3468  02          JAM
+.C:3469  D0 02       BNE $346D
+.C:346b  F8          SED
+.C:346c  02          JAM
+.C:346d  20 03 48    JSR $4803
+.C:3470  03 70       SLO ($70,X)
+.C:3472  03 98       SLO ($98,X)
+.C:3474  03 C0       SLO ($C0,X)
+.C:3476  03 E8       SLO ($E8,X)
+.C:3478  03 78       SLO ($78,X)
+.C:347a  A9 07       LDA #$07
+.C:347c  85 01       STA $01
+.C:347e  A9 00       LDA #$00
+.C:3480  85 FB       STA $FB
+.C:3482  A9 08       LDA #$08
+.C:3484  85 FC       STA $FC
+.C:3486  A0 34       LDY #$34
+.C:3488  20 9B 34    JSR $349B
+.C:348b  A9 AB       LDA #$AB
+.C:348d  85 FB       STA $FB
+.C:348f  A9 34       LDA #$34
+.C:3491  85 FC       STA $FC
+.C:3493  A0 CC       LDY #$CC
+.C:3495  20 9B 34    JSR $349B
+.C:3498  6C FC FF    JMP ($FFFC)
+.C:349b  A9 00       LDA #$00
+.C:349d  AA          TAX
+.C:349e  81 FB       STA ($FB,X)
+.C:34a0  E6 FB       INC $FB
+.C:34a2  D0 02       BNE $34A6
+.C:34a4  E6 FC       INC $FC
+.C:34a6  C4 FC       CPY $FC
+.C:34a8  D0 F1       BNE $349B
+.C:34aa  60          RTS
+.C:34ab  08          PHP
+.C:34ac  78          SEI
+.C:34ad  AD DD 02    LDA $02DD
+.C:34b0  09 80       ORA #$80
+.C:34b2  8D DD 02    STA $02DD
+.C:34b5  A5 01       LDA $01
+.C:34b7  29 FC       AND #$FC
+.C:34b9  85 01       STA $01
+.C:34bb  28          PLP
+.C:34bc  60          RTS
+.C:34bd  08          PHP
+.C:34be  78          SEI
+.C:34bf  A5 01       LDA $01
+.C:34c1  09 02       ORA #$02
+.C:34c3  85 01       STA $01
+.C:34c5  AD DD 02    LDA $02DD
+.C:34c8  29 7F       AND #$7F
+.C:34ca  8D DD 02    STA $02DD
+.C:34cd  28          PLP
+.C:34ce  60          RTS
+.C:34cf  40          RTI
+.C:34d0  22          JAM
+.C:34d1  0D 8D C0    ORA $C08D
+.C:34d4  02          JAM
+.C:34d5  8D C1 02    STA $02C1
+.C:34d8  8D BE 02    STA $02BE
+.C:34db  20 90 FF    JSR $FF90
+.C:34de  A5 01       LDA $01
+.C:34e0  29 FE       AND #$FE
+.C:34e2  85 01       STA $01
+.C:34e4  A9 CF       LDA #$CF
+.C:34e6  8D 18 03    STA $0318
+.C:34e9  A9 34       LDA #$34
+.C:34eb  8D 19 03    STA $0319
+.C:34ee  A9 CF       LDA #$CF
+.C:34f0  8D FA FF    STA $FFFA
+.C:34f3  A9 34       LDA #$34
+.C:34f5  8D FB FF    STA $FFFB
+.C:34f8  08          PHP
+.C:34f9  78          SEI
+.C:34fa  AD 15 03    LDA $0315
+.C:34fd  C9 32       CMP #$32
+.C:34ff  F0 09       BEQ $350A
+.C:3501  8D DF 02    STA $02DF
+.C:3504  AD 14 03    LDA $0314
+.C:3507  8D DE 02    STA $02DE
+.C:350a  A0 FF       LDY #$FF
+.C:350c  B9 00 FF    LDA $FF00,Y
+.C:350f  99 00 FF    STA $FF00,Y
+.C:3512  88          DEY
+.C:3513  D0 F7       BNE $350C
+.C:3515  A9 00       LDA #$00
+.C:3517  85 FB       STA $FB
+.C:3519  A9 CC       LDA #$CC
+.C:351b  85 FC       STA $FC
+.C:351d  98          TYA
+.C:351e  91 FB       STA ($FB),Y
+.C:3520  20 E8 33    JSR $33E8
+.C:3523  A5 FC       LDA $FC
+.C:3525  C9 D0       CMP #$D0
+.C:3527  D0 F4       BNE $351D
+.C:3529  28          PLP
+.C:352a  AD 02 DD    LDA $DD02
+.C:352d  09 03       ORA #$03
+.C:352f  8D 02 DD    STA $DD02
+.C:3532  AD 00 DD    LDA $DD00
+.C:3535  29 FC       AND #$FC
+.C:3537  8D 00 DD    STA $DD00
+.C:353a  A9 38       LDA #$38
+.C:353c  8D 18 D0    STA $D018
+.C:353f  AD 11 D0    LDA $D011
+.C:3542  09 20       ORA #$20
+.C:3544  8D 11 D0    STA $D011
+.C:3547  AD 68 61    LDA $6168
+.C:354a  63 65       RRA ($65,X)
+.C:354c  73 2E       RRA ($2E),Y
+.C:354e  72          JAM
+.C:354f  72          JAM
+.C:3550  6F 2E 6F    RRA $6F2E
+.C:3553  2E 3A F0    ROL $F03A
+.C:3556  08          PHP
+.C:3557  AD A9 02    LDA $02A9
+.C:355a  09 04       ORA #$04
+.C:355c  8D A9 02    STA $02A9
+.C:355f  A9 C0       LDA #$C0
+.C:3561  8D F1 02    STA $02F1
+.C:3564  A9 00       LDA #$00
+.C:3566  A0 08       LDY #$08
+.C:3568  99 25 37    STA $3725,Y
+.C:356b  88          DEY
+.C:356c  D0 FA       BNE $3568
+.C:356e  4C 7A 08    JMP $087A
+.C:3571  10 00       BPL $3573
+.C:3573  18          CLC
+.C:3574  00          BRK
+.C:3575  28          PLP
+.C:3576  18          CLC
+.C:3577  00          BRK
+.C:3578  00          BRK
+.C:3579  00          BRK
+.C:357a  00          BRK
+.C:357b  00          BRK
+.C:357c  40          RTI
+.C:357d  00          BRK
+.C:357e  00          BRK
+.C:357f  00          BRK
+.C:3580  E0 10       CPX #$10
+.C:3582  00          BRK
+.C:3583  0D 00 20    ORA $2000
+.C:3586  0D 00 04    ORA $0400
+.C:3589  04 00       NOOP $00
+.C:358b  00          BRK
+.C:358c  40          RTI
+.C:358d  00          BRK
+.C:358e  00          BRK
+.C:358f  00          BRK
+.C:3590  E0 10       CPX #$10
+.C:3592  00          BRK
+.C:3593  07 00       SLO $00
+.C:3595  28          PLP
+.C:3596  07 0F       SLO $0F
+.C:3598  00          BRK
+.C:3599  00          BRK
+.C:359a  16 00       ASL $00,X
+.C:359c  40          RTI
+.C:359d  00          BRK
+.C:359e  00          BRK
+.C:359f  00          BRK
+.C:35a0  E0 10       CPX #$10
+.C:35a2  00          BRK
+.C:35a3  01 00       ORA ($00,X)
+.C:35a5  28          PLP
+.C:35a6  01 17       ORA ($17,X)
+.C:35a8  00          BRK
+.C:35a9  00          BRK
+.C:35aa  17 00       SLO $00,X
+.C:35ac  42          JAM
+.C:35ad  00          BRK
+.C:35ae  00          BRK
+.C:35af  00          BRK
+.C:35b0  E0 10       CPX #$10
+.C:35b2  00          BRK
+.C:35b3  18          CLC
+.C:35b4  00          BRK
+.C:35b5  28          PLP
+.C:35b6  18          CLC
+.C:35b7  00          BRK
+.C:35b8  00          BRK
+.C:35b9  00          BRK
+.C:35ba  00          BRK
+.C:35bb  00          BRK
+.C:35bc  40          RTI
+.C:35bd  00          BRK
+.C:35be  00          BRK
+.C:35bf  00          BRK
+.C:35c0  E0 10       CPX #$10
+.C:35c2  00          BRK
+.C:35c3  18          CLC
+.C:35c4  00          BRK
+.C:35c5  28          PLP
+.C:35c6  18          CLC
+.C:35c7  00          BRK
+.C:35c8  00          BRK
+.C:35c9  00          BRK
+.C:35ca  00          BRK
+.C:35cb  00          BRK
+.C:35cc  40          RTI
+.C:35cd  00          BRK
+.C:35ce  00          BRK
+.C:35cf  00          BRK
+.C:35d0  E0 10       CPX #$10
+.C:35d2  00          BRK
+.C:35d3  19 00 28    ORA $2800,Y
+.C:35d6  18          CLC
+.C:35d7  00          BRK
+.C:35d8  00          BRK
+.C:35d9  00          BRK
+.C:35da  16 00       ASL $00,X
+.C:35dc  40          RTI
+.C:35dd  00          BRK
+.C:35de  00          BRK
+.C:35df  00          BRK
+.C:35e0  E0 10       CPX #$10
+.C:35e2  00          BRK
+.C:35e3  18          CLC
+.C:35e4  00          BRK
+.C:35e5  28          PLP
+.C:35e6  18          CLC
+.C:35e7  00          BRK
+.C:35e8  00          BRK
+.C:35e9  00          BRK
+.C:35ea  00          BRK
+.C:35eb  00          BRK
+.C:35ec  40          RTI
+.C:35ed  00          BRK
+.C:35ee  00          BRK
+.C:35ef  00          BRK
+.C:35f0  E0 10       CPX #$10
+.C:35f2  00          BRK
+.C:35f3  18          CLC
+.C:35f4  00          BRK
+.C:35f5  28          PLP
+.C:35f6  18          CLC
+.C:35f7  00          BRK
+.C:35f8  00          BRK
+.C:35f9  00          BRK
+.C:35fa  00          BRK
+.C:35fb  00          BRK
+.C:35fc  40          RTI
+.C:35fd  00          BRK
+.C:35fe  00          BRK
+.C:35ff  00          BRK
+.C:3600  E0 12       CPX #$12
+.C:3602  00          BRK
+.C:3603  03 00       SLO ($00,X)
+.C:3605  10 03       BPL $360A
+.C:3607  00          BRK
+.C:3608  00          BRK
+.C:3609  00          BRK
+.C:360a  00          BRK
+.C:360b  00          BRK
+.C:360c  40          RTI
+.C:360d  00          BRK
+.C:360e  00          BRK
+.C:360f  00          BRK
+.C:3610  E0 BD       CPX #$BD
+.C:3612  AD BA BE    LDA $BEBA
+.C:3615  B4 F5       LDY $F5,X
+.C:3617  B6 D0       LDX $D0,Y
+.C:3619  B0 DF       BCS $35FA
+.C:361b  BA          TSX
+.C:361c  8D 8D 90    STA $908D
+.C:361f  8D DF F5    STA $F5DF
+.C:3622  B8          CLV
+.C:3623  9E 92 9A    SHX $9A92,Y
+.C:3626  DF BA 8D    DCP $8DBA,X
+.C:3629  8D 90 8D    STA $8D90
+.C:362c  DF F5 00    DCP $00F5,X
+.C:362f  00          BRK
+.C:3630  00          BRK
+.C:3631  00          BRK
+.C:3632  00          BRK
+.C:3633  00          BRK
+.C:3634  00          BRK
+.C:3635  03 00       SLO ($00,X)
+.C:3637  00          BRK
+.C:3638  00          BRK
+.C:3639  00          BRK
+.C:363a  00          BRK
+.C:363b  00          BRK
+.C:363c  00          BRK
+.C:363d  00          BRK
+.C:363e  00          BRK
+.C:363f  00          BRK
+.C:3640  00          BRK
+.C:3641  00          BRK
+.C:3642  00          BRK
+.C:3643  00          BRK
+.C:3644  00          BRK
+.C:3645  00          BRK
+.C:3646  00          BRK
+.C:3647  00          BRK
+.C:3648  00          BRK
+.C:3649  00          BRK
+.C:364a  00          BRK
+.C:364b  80 00       NOOP #$00
+.C:364d  00          BRK
+.C:364e  00          BRK
+.C:364f  00          BRK
+.C:3650  00          BRK
+.C:3651  00          BRK
+.C:3652  00          BRK
+.C:3653  07 03       SLO $03
+.C:3655  00          BRK
+.C:3656  FF 02 05    ISB $0502,X
+.C:3659  00          BRK
+.C:365a  00          BRK
+.C:365b  00          BRK
+.C:365c  FF FF 0A    ISB $0AFF,X
+.C:365f  29 00       AND #$00
+.C:3661  00          BRK
+.C:3662  32          JAM
+.C:3663  40          RTI
+.C:3664  00          BRK
+.C:3665  00          BRK
+.C:3666  00          BRK
+.C:3667  00          BRK
+.C:3668  00          BRK
+.C:3669  00          BRK
+.C:366a  00          BRK
+.C:366b  00          BRK
+.C:366c  00          BRK
+.C:366d  00          BRK
+.C:366e  00          BRK
+.C:366f  00          BRK
+.C:3670  00          BRK
+.C:3671  00          BRK
+.C:3672  00          BRK
+.C:3673  00          BRK
+.C:3674  00          BRK
+.C:3675  00          BRK
+.C:3676  00          BRK
+.C:3677  00          BRK
+.C:3678  00          BRK
+.C:3679  FE 00 00    INC $0000,X
+.C:367c  00          BRK
+.C:367d  00          BRK
+.C:367e  00          BRK
+.C:367f  00          BRK
+.C:3680  00          BRK
+.C:3681  00          BRK
+.C:3682  00          BRK
+.C:3683  00          BRK
+.C:3684  00          BRK
+.C:3685  00          BRK
+.C:3686  00          BRK
+.C:3687  00          BRK
+.C:3688  00          BRK
+.C:3689  00          BRK
+.C:368a  00          BRK
+.C:368b  2B 00       ANC #$00
+.C:368d  00          BRK
+.C:368e  00          BRK
+.C:368f  00          BRK
+.C:3690  00          BRK
+.C:3691  00          BRK
+.C:3692  00          BRK
+.C:3693  00          BRK
+.C:3694  00          BRK
+.C:3695  00          BRK
+.C:3696  00          BRK
+.C:3697  00          BRK
+.C:3698  22          JAM
+.C:3699  25 FF       AND $FF
+.C:369b  00          BRK
+.C:369c  00          BRK
+.C:369d  00          BRK
+.C:369e  00          BRK
+.C:369f  00          BRK
+.C:36a0  00          BRK
+.C:36a1  00          BRK
+.C:36a2  00          BRK
+.C:36a3  00          BRK
+.C:36a4  00          BRK
+.C:36a5  00          BRK
+.C:36a6  00          BRK
+.C:36a7  00          BRK
+.C:36a8  00          BRK
+.C:36a9  00          BRK
+.C:36aa  00          BRK
+.C:36ab  03 4E       SLO ($4E,X)
+.C:36ad  75 72       ADC $72,X
+.C:36af  69 61       ADC #$61
+.C:36b1  03 00       SLO ($00,X)
+.C:36b3  00          BRK
+.C:36b4  00          BRK
+.C:36b5  00          BRK
+.C:36b6  00          BRK
+.C:36b7  00          BRK
+.C:36b8  00          BRK
+.C:36b9  00          BRK
+.C:36ba  00          BRK
+.C:36bb  00          BRK
+.C:36bc  00          BRK
+.C:36bd  00          BRK
+.C:36be  00          BRK
+.C:36bf  00          BRK
+.C:36c0  00          BRK
+.C:36c1  00          BRK
+.C:36c2  00          BRK
+.C:36c3  00          BRK
+.C:36c4  00          BRK
+.C:36c5  00          BRK
+.C:36c6  00          BRK
+.C:36c7  00          BRK
+.C:36c8  00          BRK
+.C:36c9  00          BRK
+.C:36ca  00          BRK
+.C:36cb  00          BRK
+.C:36cc  00          BRK
+.C:36cd  00          BRK
+.C:36ce  00          BRK
+.C:36cf  00          BRK
+.C:36d0  00          BRK
+.C:36d1  00          BRK
+.C:36d2  00          BRK
+.C:36d3  00          BRK
+.C:36d4  00          BRK
+.C:36d5  00          BRK
+.C:36d6  00          BRK
+.C:36d7  00          BRK
+.C:36d8  00          BRK
+.C:36d9  00          BRK
+.C:36da  00          BRK
+.C:36db  00          BRK
+.C:36dc  00          BRK
+.C:36dd  00          BRK
+.C:36de  00          BRK
+.C:36df  00          BRK
+.C:36e0  00          BRK
+.C:36e1  00          BRK
+.C:36e2  00          BRK
+.C:36e3  00          BRK
+.C:36e4  00          BRK
+.C:36e5  00          BRK
+.C:36e6  00          BRK
+.C:36e7  00          BRK
+.C:36e8  00          BRK
+.C:36e9  00          BRK
+.C:36ea  00          BRK
+.C:36eb  00          BRK
+.C:36ec  00          BRK
+.C:36ed  00          BRK
+.C:36ee  00          BRK
+.C:36ef  00          BRK
+.C:36f0  00          BRK
+.C:36f1  00          BRK
+.C:36f2  00          BRK
+.C:36f3  00          BRK
+.C:36f4  00          BRK
+.C:36f5  00          BRK
+.C:36f6  00          BRK
+.C:36f7  00          BRK
+.C:36f8  00          BRK
+.C:36f9  00          BRK
+.C:36fa  00          BRK
+.C:36fb  00          BRK
+.C:36fc  00          BRK
+.C:36fd  00          BRK
+.C:36fe  00          BRK
+.C:36ff  00          BRK
+.C:3700  00          BRK
+.C:3701  00          BRK
+.C:3702  00          BRK
+.C:3703  00          BRK
+.C:3704  00          BRK
+.C:3705  00          BRK
+.C:3706  00          BRK
+.C:3707  00          BRK
+.C:3708  00          BRK
+.C:3709  00          BRK
+.C:370a  00          BRK
+.C:370b  00          BRK
+.C:370c  00          BRK
+.C:370d  00          BRK
+.C:370e  00          BRK
+.C:370f  00          BRK
+.C:3710  00          BRK
+.C:3711  00          BRK
+.C:3712  00          BRK
+.C:3713  00          BRK
+.C:3714  00          BRK
+.C:3715  00          BRK
+.C:3716  00          BRK
+.C:3717  00          BRK
+.C:3718  00          BRK
+.C:3719  00          BRK
+.C:371a  00          BRK
+.C:371b  00          BRK
+.C:371c  00          BRK
+.C:371d  00          BRK
+.C:371e  00          BRK
+.C:371f  00          BRK
+.C:3720  00          BRK
+.C:3721  00          BRK
+.C:3722  00          BRK
+.C:3723  00          BRK
+.C:3724  00          BRK
+.C:3725  00          BRK
+.C:3726  00          BRK
+.C:3727  00          BRK
+.C:3728  00          BRK
+.C:3729  00          BRK
+.C:372a  00          BRK
+.C:372b  00          BRK
+.C:372c  00          BRK
+.C:372d  00          BRK
+.C:372e  FC 04 0F    NOOP $0F04,X
+.C:3731  FC FD FC    NOOP $FCFD,X
+.C:3734  FC FC FC    NOOP $FCFC,X
+.C:3737  13 0E       SLO ($0E),Y
+.C:3739  02          JAM
+.C:373a  FC 25 21    NOOP $2125,X
+.C:373d  FC 22 FC    NOOP $FC22,X
+.C:3740  FC FC FC    NOOP $FCFC,X
+.C:3743  FC FC FC    NOOP $FCFC,X
+.C:3746  FF FF 00    ISB $00FF,X
+.C:3749  FF 00 FF    ISB $FF00,X
+.C:374c  00          BRK
+.C:374d  FF 00 FF    ISB $FF00,X
+.C:3750  00          BRK
+.C:3751  FF 00 FF    ISB $FF00,X
+.C:3754  00          BRK
+.C:3755  FF 00 FF    ISB $FF00,X
+.C:3758  00          BRK
+.C:3759  FF 00 FF    ISB $FF00,X
+.C:375c  00          BRK
+.C:375d  FF 00 FF    ISB $FF00,X
+.C:3760  00          BRK
+.C:3761  FF 00 FF    ISB $FF00,X
+.C:3764  00          BRK
+.C:3765  FF 00 FF    ISB $FF00,X
+.C:3768  00          BRK
+.C:3769  FF 00 FF    ISB $FF00,X
+.C:376c  00          BRK
+.C:376d  FF 00 FF    ISB $FF00,X
+.C:3770  00          BRK
+.C:3771  FF 00 FF    ISB $FF00,X
+.C:3774  00          BRK
+.C:3775  FF 00 FF    ISB $FF00,X
+.C:3778  00          BRK
+.C:3779  FF 00 FF    ISB $FF00,X
+.C:377c  00          BRK
+.C:377d  FF 00 FF    ISB $FF00,X
+.C:3780  00          BRK
+.C:3781  FF 00 FF    ISB $FF00,X
+.C:3784  00          BRK
+.C:3785  FF 00 FF    ISB $FF00,X
+.C:3788  00          BRK
+.C:3789  FF 00 FF    ISB $FF00,X
+.C:378c  00          BRK
+.C:378d  FF 00 FF    ISB $FF00,X
+.C:3790  00          BRK
+.C:3791  FF 00 FF    ISB $FF00,X
+.C:3794  00          BRK
+.C:3795  FF 00 FF    ISB $FF00,X
+.C:3798  00          BRK
+.C:3799  FF 00 FF    ISB $FF00,X
+.C:379c  00          BRK
+.C:379d  FF 00 FF    ISB $FF00,X
+.C:37a0  00          BRK
+.C:37a1  FF 00 FF    ISB $FF00,X
+.C:37a4  00          BRK
+.C:37a5  FF 00 FF    ISB $FF00,X
+.C:37a8  00          BRK
+.C:37a9  FF 00 FF    ISB $FF00,X
+.C:37ac  00          BRK
+.C:37ad  FF 00 FF    ISB $FF00,X
+.C:37b0  00          BRK
+.C:37b1  FF 00 FF    ISB $FF00,X
+.C:37b4  00          BRK
+.C:37b5  FF 00 FF    ISB $FF00,X
+.C:37b8  00          BRK
+.C:37b9  FF 00 FF    ISB $FF00,X
+.C:37bc  00          BRK
+.C:37bd  FF 00 FF    ISB $FF00,X
+.C:37c0  00          BRK
+.C:37c1  FF 00 FF    ISB $FF00,X
+.C:37c4  00          BRK
+.C:37c5  DE 00 FF    DEC $FF00,X
+.C:37c8  00          BRK
+.C:37c9  FF 00 FF    ISB $FF00,X
+.C:37cc  00          BRK
+.C:37cd  FF 00 FF    ISB $FF00,X
+.C:37d0  00          BRK
+.C:37d1  FF 00 FF    ISB $FF00,X
+.C:37d4  00          BRK
+.C:37d5  FF 00 FF    ISB $FF00,X
+.C:37d8  00          BRK
+.C:37d9  FF 00 FF    ISB $FF00,X
+.C:37dc  00          BRK
+.C:37dd  9C 00 FF    SHY $FF00,X
+.C:37e0  00          BRK
+.C:37e1  FF 00 FF    ISB $FF00,X
+.C:37e4  00          BRK
+.C:37e5  FF 00 FF    ISB $FF00,X
+.C:37e8  00          BRK
+.C:37e9  FF 00 FF    ISB $FF00,X
+.C:37ec  00          BRK
+.C:37ed  DE 00 DE    DEC $DE00,X
+.C:37f0  00          BRK
+.C:37f1  FF 00 FF    ISB $FF00,X
+.C:37f4  00          BRK
+.C:37f5  FF 00 FF    ISB $FF00,X
+.C:37f8  00          BRK
+.C:37f9  FF 00 FF    ISB $FF00,X
+.C:37fc  00          BRK
+.C:37fd  FF 00 00    ISB $0000,X
+.C:3800  00          BRK
+(C:$3801) 

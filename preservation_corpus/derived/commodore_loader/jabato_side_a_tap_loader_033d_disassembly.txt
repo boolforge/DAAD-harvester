@@ -1,0 +1,78 @@
+.C:032f  FE 78 03    INC $0378,X
+.C:0332  ED F5 A9    SBC $A9F5
+.C:0335  10 2C       BPL $0363
+.C:0337  0D DC F0    ORA $F0DC
+.C:033a  FB A9 11    ISB $11A9,Y
+.C:033d  8D 0E DD    STA $DD0E
+.C:0340  AD 0D DD    LDA $DD0D
+.C:0343  4A          LSR A
+.C:0344  2C 0D DC    BIT $DC0D
+.C:0347  66 FC       ROR $FC
+.C:0349  60          RTS
+.C:034a  A2 0A       LDX #$0A
+.C:034c  20 34 03    JSR $0334
+.C:034f  EE 20 D0    INC $D020
+.C:0352  CA          DEX
+.C:0353  D0 F7       BNE $034C
+.C:0355  A5 FC       LDA $FC
+.C:0357  60          RTS
+.C:0358  EA          NOP
+.C:0359  EA          NOP
+.C:035a  A9 81       LDA #$81
+.C:035c  8D 0D DC    STA $DC0D
+.C:035f  58          CLI
+.C:0360  A9 00       LDA #$00
+.C:0362  20 71 A8    JSR $A871
+.C:0365  4C EA A7    JMP $A7EA
+.C:0368  DC 58 A9    NOOP $A958,X
+.C:036b  00          BRK
+.C:036c  20 71 A8    JSR $A871
+.C:036f  4C EA A7    JMP $A7EA
+.C:0372  00          BRK
+.C:0373  00          BRK
+.C:0374  00          BRK
+.C:0375  00          BRK
+.C:0376  00          BRK
+.C:0377  8D A9 B6    STA $B6A9
+.C:037a  8D 04 DD    STA $DD04
+.C:037d  A9 01       LDA #$01
+.C:037f  8D 05 DD    STA $DD05
+.C:0382  A0 7F       LDY #$7F
+.C:0384  8C 0D DD    STY $DD0D
+.C:0387  8C 0D DC    STY $DC0D
+.C:038a  A9 07       LDA #$07
+.C:038c  85 01       STA $01
+.C:038e  84 FC       STY $FC
+.C:0390  20 34 03    JSR $0334
+.C:0393  D0 FB       BNE $0390
+.C:0395  20 4A 03    JSR $034A
+.C:0398  D0 F4       BNE $038E
+.C:039a  20 4A 03    JSR $034A
+.C:039d  F0 FB       BEQ $039A
+.C:039f  C9 16       CMP #$16
+.C:03a1  D0 EB       BNE $038E
+.C:03a3  A0 03       LDY #$03
+.C:03a5  20 4A 03    JSR $034A
+.C:03a8  99 AC 00    STA $00AC,Y
+.C:03ab  88          DEY
+.C:03ac  10 F7       BPL $03A5
+.C:03ae  20 4A 03    JSR $034A
+.C:03b1  81 AC       STA ($AC,X)
+.C:03b3  20 DB FC    JSR $FCDB
+.C:03b6  20 D1 FC    JSR $FCD1
+.C:03b9  90 F3       BCC $03AE
+.C:03bb  B0 E6       BCS $03A3
+.C:03bd  A9 B0       LDA #$B0
+.C:03bf  8D BB 03    STA $03BB
+.C:03c2  A9 81       LDA #$81
+.C:03c4  8D 0D DC    STA $DC0D
+.C:03c7  58          CLI
+.C:03c8  20 CA FC    JSR $FCCA
+.C:03cb  2C 53 E4    BIT $E453
+.C:03ce  A2 E8       LDX #$E8
+.C:03d0  A0 C3       LDY #$C3
+.C:03d2  A9 40       LDA #$40
+.C:03d4  85 90       STA $90
+.C:03d6  18          CLC
+.C:03d7  60          RTS
+.C:03d8  00          BRK

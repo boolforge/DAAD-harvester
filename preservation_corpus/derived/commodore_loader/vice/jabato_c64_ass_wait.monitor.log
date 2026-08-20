@@ -1,0 +1,30 @@
+(C:$ff48)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;ff48 00 ff 00 ee 2f 36 00100110 000 012  292166796
+(C:$ff48) Displaying 40x25 screen at $cc00:
+cc00  ppppcccccccaaaaaaaaaaaaaaaaaaaaaaaaapppp
+cc28  ppppcccccccaaaaaaaaaaaaaaaaaaaaaaaaapppp
+cc50  ppppcccccccaaaaaaaaaaaaaaaaaaaaaaaaapppp
+cc78  ppppcccccccaaaaaaaaaaaaaaaaaaaaaaaaapppp
+cca0  ppppcccccccaaaaaaaaaaaaaaaaaaaaaaaaapppp
+ccc8  ppppaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAApppp
+ccf0  ppppaaaaaaaaaaaaaaaaaaaaaaaaaaAAaaaApppp
+cd18  ppppaaaaaaaaaaaaaaaaaaaaaaAaAAaaAaaApppp
+cd40  ppppaaaaaaaaaaaaaaaaaaAAAAAAAAaaaaaapppp
+cd68  ppppaaaaaaaaaaaaaaaaaAAAAAAAAAAaAaaapppp
+cd90  ppppaaaaaaaaaaaaaaaaAAAAAAAaAaaaaaaApppp
+cdb8  ppppaaaaaaaaaaaaaaaaAAAAAAaaaaaaaaaApppp
+cde0  ppppaaaaaaaaaaaaaaaAAAAAAAAaaaAAAAaapppp
+ce08  ppppaaaaaaaaaaaaaaaAAAAAAAAAaaAAAAAApppp
+ce30  pppppppppppppppppppppppppppppppppppppppp
+ce58  pppppppppppppppppppppppppppppppppppppppp
+ce80  pppppppppppppppppppppppppppppppppppppppp
+cea8  pppppppppppppppppppppppppppppppppppppppp
+ced0  pppppppppppppppppppppppppppppppppppppppp
+cef8  pppppppppppppppppppppppppppppppppppppppp
+cf20  pppppppppppppppppppppppppppppppppppppppp
+cf48  pppppppppppppppppppppppppppppppppppppppp
+cf70  pppppppppppppppppppppppppppppppppppppppp
+cf98  pppppppppppppppppppppppppppppppppppppppp
+cfc0  pppppppppppppppppppppppppppppppppppppppp
+(C:$ff48) (C:$ff48) (C:$ff48) monitor_exit_status=0
+emulator_exit_status=0

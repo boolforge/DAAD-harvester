@@ -32,6 +32,8 @@ HEADER_SIZE = 60
 HEADER_POINTER_COUNT = 13
 LEGACY_HEADER_SIZE = 34
 LEGACY_POINTER_COUNT = 13
+LEGACY_V1_HEADER_SIZE = 32
+LEGACY_V1_SECTION_POINTER_COUNT = 11
 MAX_EMBEDDED_SCAN = 524_288
 MAX_PROCESS_ENTRIES = 256
 MAX_BYTECODE_LENGTH = 1024
@@ -181,7 +183,7 @@ class DAADBytecodeParser:
         the same fields as target-memory addresses. Both forms are accepted
         only when their complete bounded range validates structurally.
         """
-        if offset < 0 or len(data) - offset < LEGACY_HEADER_SIZE:
+        if offset < 0 or len(data) - offset < LEGACY_V1_HEADER_SIZE:
             return None
         major = data[offset]
         machine_language = data[offset + 1]
@@ -194,11 +196,23 @@ class DAADBytecodeParser:
         # historical targets store 16-bit values in Motorola order; the other
         # original 8-bit and DOS targets are little-endian.
         endianness = "big" if platform in {"atarist", "amiga"} else "little"
+        # Version 1 predates the extra object-attributes field.  It therefore
+        # has eleven section pointers and stores file length at $001E.  V2
+        # has twelve section pointers and stores file length at $0020.  Do not
+        # parse V1 vocabulary bytes at $0020 onward as phantom header pointers.
+        if major == 1:
+            header_size = LEGACY_V1_HEADER_SIZE
+            pointer_count = LEGACY_V1_SECTION_POINTER_COUNT
+        else:
+            header_size = LEGACY_HEADER_SIZE
+            pointer_count = LEGACY_POINTER_COUNT - 1
+        if len(data) - offset < header_size:
+            return None
         pointers = tuple(
             self._read_word(data, offset + 8 + (index * 2), endianness)
-            for index in range(LEGACY_POINTER_COUNT)
+            for index in range(pointer_count)
         )
-        file_length = pointers[12]
+        file_length = self._read_word(data, offset + 8 + (pointer_count * 2), endianness)
         available_size = len(data) - offset
         absolute_size = file_length - target_base
         # Historical native DDBs may retain machine addresses. Prefer that
@@ -208,7 +222,7 @@ class DAADBytecodeParser:
         base_address = (
             target_base
             if target_base
-            and absolute_size >= LEGACY_HEADER_SIZE
+            and absolute_size >= header_size
             and absolute_size <= available_size
             else 0
         )
@@ -227,7 +241,7 @@ class DAADBytecodeParser:
             process_count=data[offset + 7],
             pointers=pointers,
             file_length=file_length,
-            header_size=LEGACY_HEADER_SIZE,
+            header_size=header_size,
             layout="legacy",
         )
 

@@ -1,0 +1,29 @@
+(C:$f999) (C:$f999)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;f999 8f 01 ff ea 2f 07 00100111 000 002   13719890
+(C:$f999) Displaying 40x25 screen at $0400:
+0400                                          
+0428      **** commodore 64 basic v2 ****     
+0450                                          
+0478   64k ram system  38911 basic bytes free 
+04a0                                          
+04c8  ready.                                  
+04f0  load                                    
+0518                                          
+0540  press play on tape                      
+0568  ok                                      
+0590                                          
+05b8  searching                               
+05e0                                          
+0608                                          
+0630                                          
+0658                                          
+0680                                          
+06a8                                          
+06d0                                          
+06f8                                          
+0720                                          
+0748                                          
+0770                                          
+0798                                          
+07c0                                          
+(C:$f999) (C:$f97c) 

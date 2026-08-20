@@ -6,7 +6,12 @@ Fixtures intentionally model database structure, not a made-up DAAD signature.
 
 from __future__ import annotations
 
-from daad_harvester.daad_parser import HEADER_SIZE, LEGACY_HEADER_SIZE, MACHINE_IDS
+from daad_harvester.daad_parser import (
+    HEADER_SIZE,
+    LEGACY_HEADER_SIZE,
+    LEGACY_V1_HEADER_SIZE,
+    MACHINE_IDS,
+)
 
 
 PLATFORM_MACHINE_IDS = {
@@ -75,13 +80,16 @@ def make_legacy_ddb(platform: str, *, major: int = 2, spanish: bool = False) -> 
     data[3:8] = bytes((1, 1, 1, 1, 1))
     assert modern_endianness in {"big", "little"}
 
-    # Pointer order from the historical interpreter's DDB_Header definition.
-    # Tokens, process list, and vocabulary are mandatory for the validator;
-    # remaining zero offsets are legal absent optional sections.
-    pointers = [LEGACY_HEADER_SIZE, 72, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, size]
+    # V1 has eleven section pointers and file length at $001E; V2 adds the
+    # extra-object-attributes pointer and moves file length to $0020.
+    header_size = LEGACY_V1_HEADER_SIZE if major == 1 else LEGACY_HEADER_SIZE
+    pointers = [header_size, 72, 0, 0, 0, 0, 0, 40, 0, 0, 0]
+    if major != 1:
+        pointers.append(0)
     for index, value in enumerate(pointers):
         _write_word(data, 8 + (index * 2), value, endianness)
-    data[LEGACY_HEADER_SIZE] = 0x80  # minimal compressed-token terminator
+    _write_word(data, 8 + (len(pointers) * 2), size, endianness)
+    data[header_size] = 0x80  # minimal compressed-token terminator
     data[40] = 0x80  # bounded vocabulary placeholder
     data[56:60] = bytes((1, 1)) + (64).to_bytes(2, endianness)
     data[60] = 0  # end of process-entry list

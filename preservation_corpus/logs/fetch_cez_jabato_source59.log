@@ -1,0 +1,14 @@
+reset_sources=0 backfilled_artifacts=0 cleared_stale_games=0 event='database_backfill_and_rescan_completed' logger='daad_harvester.db' level='info' timestamp='2026-08-19T12:25:30.619732Z'
+phase='fetch' db_path='/home/ubuntu/DAAD-harvester/preservation_corpus/state.db' event='starting_daad_harvester' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T12:25:30.620019Z'
+event='executing_phase_fetch' logger='daad_harvester.cli' level='info' timestamp='2026-08-19T12:25:30.620418Z'
+count=1 parallel=1 max_sources=1 event='starting_fetch_phase' logger='daad_harvester.fetch' level='info' timestamp='2026-08-19T12:25:30.622607Z'
+source_id=59 url='https://computeremuzone.com/download.php?ind=415' attempt=1 event='downloading_source' logger='daad_harvester.fetch' level='info' timestamp='2026-08-19T12:25:30.827224Z'
+HTTP Request: GET https://computeremuzone.com/download.php?ind=415 "HTTP/1.1 403 Forbidden"
+source_id=59 status_code=403 event='http_download_error' logger='daad_harvester.fetch' level='warning' timestamp='2026-08-19T12:25:33.493699Z'
+source_id=59 url='https://computeremuzone.com/download.php?ind=415' attempt=2 event='downloading_source' logger='daad_harvester.fetch' level='info' timestamp='2026-08-19T12:25:34.572708Z'
+HTTP Request: GET https://computeremuzone.com/download.php?ind=415 "HTTP/1.1 403 Forbidden"
+source_id=59 status_code=403 event='http_download_error' logger='daad_harvester.fetch' level='warning' timestamp='2026-08-19T12:25:36.464848Z'
+source_id=59 url='https://computeremuzone.com/download.php?ind=415' attempt=3 event='downloading_source' logger='daad_harvester.fetch' level='info' timestamp='2026-08-19T12:25:38.921314Z'
+HTTP Request: GET https://computeremuzone.com/download.php?ind=415 "HTTP/1.1 403 Forbidden"
+source_id=59 status_code=403 event='http_download_error' logger='daad_harvester.fetch' level='warning' timestamp='2026-08-19T12:25:41.440257Z'
+total=1 successful=0 event='fetch_phase_completed' logger='daad_harvester.fetch' level='info' timestamp='2026-08-19T12:25:41.444050Z'

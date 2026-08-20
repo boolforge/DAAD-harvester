@@ -1,0 +1,1504 @@
+(C:$e5d4) (C:$26f1)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;26f1 00 ff 00 f1 2f 36 00100011 000 001  563419585
+(C:$26f1) >C:0000  2f 36 00 aa  b1 91 b3 00  00 00 00 00  00 b4 d0 00   /6..............
+>C:0010  00 00 00 00  00 00 19 00  00 ce 9c a1  35 ca 02 00   ............5...
+>C:0020  00 00 20 00  00 00 00 00  00 00 00 01  08 00 00 00   .. .............
+>C:0030  00 00 00 00  a0 18 fe 00  a0 00 00 00  00 5d ed 00   .............]..
+>C:0040  ff 2b 43 00  00 00 00 00  00 00 00 00  00 00 00 00   .+C.............
+>C:0050  00 00 00 03  4c 00 00 00  00 00 00 00  00 00 00 00   ....L...........
+>C:0060  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00   ................
+>C:0070  00 00 00 e6  7a d0 02 e6  7b ad 60 ea  c9 3a b0 0a   ....z...{.`..:..
+>C:0080  c9 20 f0 ef  38 e9 30 38  e9 d0 60 03  00 c3 cf 58   . ..8.08..`....X
+>C:0090  00 ff 00 00  00 00 00 00  00 00 03 00  00 00 00 00   ................
+>C:00a0  00 25 e0 00  00 00 00 00  00 00 00 00  00 00 00 00   .%..............
+>C:00b0  00 00 00 00  00 00 00 00  00 00 00 00  00 00 00 00   ................
+>C:00c0  00 00 00 30  fd 40 00 00  00 00 00 40  0c 0c 00 00   ...0.@.....@....
+>C:00d0  00 00 04 00  00 27 00 00  00 84 84 84  84 84 84 84   .....'..........
+>C:00e0  85 85 85 85  85 85 86 86  86 86 86 86  86 87 87 87   ................
+>C:00f0  87 87 87 00  d8 00 00 00  00 00 00 4d  00 f6 8d 00   ...........M....
+(C:$0100) .C:2400  25 4C       AND $4C
+.C:2402  D5 23       CMP $23,X
+.C:2404  20 E6 24    JSR $24E6
+.C:2407  4C D5 23    JMP $23D5
+.C:240a  C9 0F       CMP #$0F
+.C:240c  D0 0B       BNE $2419
+.C:240e  AD D5 02    LDA $02D5
+.C:2411  29 FE       AND #$FE
+.C:2413  8D D5 02    STA $02D5
+.C:2416  4C D5 23    JMP $23D5
+.C:2419  C9 0E       CMP #$0E
+.C:241b  D0 0B       BNE $2428
+.C:241d  AD D5 02    LDA $02D5
+.C:2420  09 01       ORA #$01
+.C:2422  8D D5 02    STA $02D5
+.C:2425  4C D5 23    JMP $23D5
+.C:2428  48          PHA
+.C:2429  20 7C 24    JSR $247C
+.C:242c  68          PLA
+.C:242d  C9 0B       CMP #$0B
+.C:242f  D0 06       BNE $2437
+.C:2431  20 E7 27    JSR $27E7
+.C:2434  4C D5 23    JMP $23D5
+.C:2437  C9 0C       CMP #$0C
+.C:2439  D0 06       BNE $2441
+.C:243b  AE CF 02    LDX $02CF
+.C:243e  20 E2 26    JSR $26E2
+.C:2441  4C D5 23    JMP $23D5
+.C:2444  48          PHA
+.C:2445  20 80 25    JSR $2580
+.C:2448  AD D5 02    LDA $02D5
+.C:244b  29 DF       AND #$DF
+.C:244d  8D D5 02    STA $02D5
+.C:2450  AD D1 02    LDA $02D1
+.C:2453  18          CLC
+.C:2454  6D CE 02    ADC $02CE
+.C:2457  CD D2 02    CMP $02D2
+.C:245a  F0 02       BEQ $245E
+.C:245c  68          PLA
+.C:245d  60          RTS
+.C:245e  68          PLA
+.C:245f  C9 20       CMP #$20
+.C:2461  D0 0D       BNE $2470
+.C:2463  2C D5 02    BIT $02D5
+.C:2466  50 08       BVC $2470
+.C:2468  AD D5 02    LDA $02D5
+.C:246b  09 80       ORA #$80
+.C:246d  8D D5 02    STA $02D5
+.C:2470  4C EB 24    JMP $24EB
+.C:2473  AD D5 02    LDA $02D5
+.C:2476  09 20       ORA #$20
+.C:2478  8D D5 02    STA $02D5
+.C:247b  60          RTS
+.C:247c  48          PHA
+.C:247d  2C D5 02    BIT $02D5
+.C:2480  50 05       BVC $2487
+.C:2482  AD C4 02    LDA $02C4
+.C:2485  D0 02       BNE $2489
+.C:2487  68          PLA
+.C:2488  60          RTS
+.C:2489  AD D1 02    LDA $02D1
+.C:248c  18          CLC
+.C:248d  6D CE 02    ADC $02CE
+.C:2490  38          SEC
+.C:2491  ED D2 02    SBC $02D2
+.C:2494  CD C4 02    CMP $02C4
+.C:2497  F0 20       BEQ $24B9
+.C:2499  B0 26       BCS $24C1
+.C:249b  AD D1 02    LDA $02D1
+.C:249e  18          CLC
+.C:249f  6D CE 02    ADC $02CE
+.C:24a2  CD D2 02    CMP $02D2
+.C:24a5  F0 1A       BEQ $24C1
+.C:24a7  A5 FC       LDA $FC
+.C:24a9  48          PHA
+.C:24aa  A5 FB       LDA $FB
+.C:24ac  48          PHA
+.C:24ad  20 E6 24    JSR $24E6
+.C:24b0  68          PLA
+.C:24b1  85 FB       STA $FB
+.C:24b3  68          PLA
+.C:24b4  85 FC       STA $FC
+.C:24b6  4C C1 24    JMP $24C1
+.C:24b9  AD D5 02    LDA $02D5
+.C:24bc  09 80       ORA #$80
+.C:24be  8D D5 02    STA $02D5
+.C:24c1  A0 00       LDY #$00
+.C:24c3  98          TYA
+.C:24c4  48          PHA
+.C:24c5  B9 48 35    LDA $3548,Y
+.C:24c8  20 44 24    JSR $2444
+.C:24cb  68          PLA
+.C:24cc  A8          TAY
+.C:24cd  C8          INY
+.C:24ce  CC C4 02    CPY $02C4
+.C:24d1  D0 F0       BNE $24C3
+.C:24d3  4C DF 24    JMP $24DF
+.C:24d6  48          PHA
+.C:24d7  AD D5 02    LDA $02D5
+.C:24da  29 7F       AND #$7F
+.C:24dc  8D D5 02    STA $02D5
+.C:24df  A9 00       LDA #$00
+.C:24e1  8D C4 02    STA $02C4
+.C:24e4  68          PLA
+.C:24e5  60          RTS
+.C:24e6  A9 0D       LDA #$0D
+.C:24e8  20 80 25    JSR $2580
+.C:24eb  CE CC 02    DEC $02CC
+.C:24ee  F0 01       BEQ $24F1
+.C:24f0  60          RTS
+.C:24f1  AD CF 02    LDA $02CF
+.C:24f4  8D CC 02    STA $02CC
+.C:24f7  AD BE 02    LDA $02BE
+.C:24fa  D0 F4       BNE $24F0
+.C:24fc  A9 02       LDA #$02
+.C:24fe  2C D5 02    BIT $02D5
+.C:2501  D0 ED       BNE $24F0
+.C:2503  A5 42       LDA $42
+.C:2505  48          PHA
+.C:2506  A5 41       LDA $41
+.C:2508  48          PHA
+.C:2509  A9 20       LDA #$20
+.C:250b  20 04 2A    JSR $2A04
+.C:250e  AD DC 02    LDA $02DC
+.C:2511  48          PHA
+.C:2512  29 3F       AND #$3F
+.C:2514  8D DC 02    STA $02DC
+.C:2517  AD DA 02    LDA $02DA
+.C:251a  48          PHA
+.C:251b  AD DB 02    LDA $02DB
+.C:251e  48          PHA
+.C:251f  AD D5 02    LDA $02D5
+.C:2522  48          PHA
+.C:2523  A9 00       LDA #$00
+.C:2525  8D D5 02    STA $02D5
+.C:2528  CE BE 02    DEC $02BE
+.C:252b  20 D5 29    JSR $29D5
+.C:252e  A0 00       LDY #$00
+.C:2530  B1 41       LDA ($41),Y
+.C:2532  49 FF       EOR #$FF
+.C:2534  C9 0A       CMP #$0A
+.C:2536  F0 0C       BEQ $2544
+.C:2538  20 1F 23    JSR $231F
+.C:253b  E6 41       INC $41
+.C:253d  D0 02       BNE $2541
+.C:253f  E6 42       INC $42
+.C:2541  4C 2E 25    JMP $252E
+.C:2544  EE BE 02    INC $02BE
+.C:2547  68          PLA
+.C:2548  8D D5 02    STA $02D5
+.C:254b  68          PLA
+.C:254c  8D DB 02    STA $02DB
+.C:254f  68          PLA
+.C:2550  8D DA 02    STA $02DA
+.C:2553  68          PLA
+.C:2554  8D DC 02    STA $02DC
+.C:2557  68          PLA
+.C:2558  85 41       STA $41
+.C:255a  68          PLA
+.C:255b  85 42       STA $42
+.C:255d  A9 02       LDA #$02
+.C:255f  2C 5F 36    BIT $365F
+.C:2562  20 EA 26    JSR $26EA
+.C:2565  AD D2 02    LDA $02D2
+.C:2568  CD D1 02    CMP $02D1
+.C:256b  D0 01       BNE $256E
+.C:256d  60          RTS
+.C:256e  A9 08       LDA #$08
+.C:2570  20 80 25    JSR $2580
+.C:2573  A9 20       LDA #$20
+.C:2575  20 80 25    JSR $2580
+.C:2578  A9 08       LDA #$08
+.C:257a  20 80 25    JSR $2580
+.C:257d  4C 65 25    JMP $2565
+.C:2580  48          PHA
+.C:2581  20 9A 25    JSR $259A
+.C:2584  68          PLA
+.C:2585  C9 08       CMP #$08
+.C:2587  D0 05       BNE $258E
+.C:2589  20 B1 25    JSR $25B1
+.C:258c  F0 0C       BEQ $259A
+.C:258e  C9 0D       CMP #$0D
+.C:2590  D0 05       BNE $2597
+.C:2592  20 EB 25    JSR $25EB
+.C:2595  F0 03       BEQ $259A
+.C:2597  20 27 26    JSR $2627
+.C:259a  AD CD 02    LDA $02CD
+.C:259d  F0 49       BEQ $25E8
+.C:259f  AD DC 02    LDA $02DC
+.C:25a2  48          PHA
+.C:25a3  A9 80       LDA #$80
+.C:25a5  8D DC 02    STA $02DC
+.C:25a8  A9 5F       LDA #$5F
+.C:25aa  20 27 26    JSR $2627
+.C:25ad  68          PLA
+.C:25ae  8D DC 02    STA $02DC
+.C:25b1  AD D2 02    LDA $02D2
+.C:25b4  CD D1 02    CMP $02D1
+.C:25b7  F0 13       BEQ $25CC
+.C:25b9  CE D2 02    DEC $02D2
+.C:25bc  38          SEC
+.C:25bd  A5 35       LDA $35
+.C:25bf  E9 08       SBC #$08
+.C:25c1  85 35       STA $35
+.C:25c3  A5 36       LDA $36
+.C:25c5  E9 00       SBC #$00
+.C:25c7  85 36       STA $36
+.C:25c9  4C E8 25    JMP $25E8
+.C:25cc  AE D3 02    LDX $02D3
+.C:25cf  EC D0 02    CPX $02D0
+.C:25d2  F0 14       BEQ $25E8
+.C:25d4  CA          DEX
+.C:25d5  8E D3 02    STX $02D3
+.C:25d8  AD D1 02    LDA $02D1
+.C:25db  18          CLC
+.C:25dc  6D CE 02    ADC $02CE
+.C:25df  38          SEC
+.C:25e0  E9 01       SBC #$01
+.C:25e2  8D D2 02    STA $02D2
+.C:25e5  20 63 29    JSR $2963
+.C:25e8  A9 00       LDA #$00
+.C:25ea  60          RTS
+.C:25eb  AD D1 02    LDA $02D1
+.C:25ee  18          CLC
+.C:25ef  6D CE 02    ADC $02CE
+.C:25f2  CD D2 02    CMP $02D2
+.C:25f5  F0 08       BEQ $25FF
+.C:25f7  A9 20       LDA #$20
+.C:25f9  20 27 26    JSR $2627
+.C:25fc  4C EB 25    JMP $25EB
+.C:25ff  AD D0 02    LDA $02D0
+.C:2602  18          CLC
+.C:2603  6D CF 02    ADC $02CF
+.C:2606  CD D3 02    CMP $02D3
+.C:2609  F0 05       BEQ $2610
+.C:260b  EE D3 02    INC $02D3
+.C:260e  D0 0B       BNE $261B
+.C:2610  AD D3 02    LDA $02D3
+.C:2613  48          PHA
+.C:2614  20 F7 27    JSR $27F7
+.C:2617  68          PLA
+.C:2618  8D D3 02    STA $02D3
+.C:261b  AD D1 02    LDA $02D1
+.C:261e  8D D2 02    STA $02D2
+.C:2621  20 63 29    JSR $2963
+.C:2624  A9 00       LDA #$00
+.C:2626  60          RTS
+.C:2627  A2 00       LDX #$00
+.C:2629  86 8E       STX $8E
+.C:262b  0A          ASL A
+.C:262c  26 8E       ROL $8E
+.C:262e  0A          ASL A
+.C:262f  26 8E       ROL $8E
+.C:2631  0A          ASL A
+.C:2632  26 8E       ROL $8E
+.C:2634  85 8D       STA $8D
+.C:2636  18          CLC
+.C:2637  AD F7 CB    LDA $CBF7
+.C:263a  65 8D       ADC $8D
+.C:263c  85 8D       STA $8D
+.C:263e  AD F8 CB    LDA $CBF8
+.C:2641  65 8E       ADC $8E
+.C:2643  85 8E       STA $8E
+.C:2645  AD D1 02    LDA $02D1
+.C:2648  18          CLC
+.C:2649  6D CE 02    ADC $02CE
+.C:264c  CD D2 02    CMP $02D2
+.C:264f  D0 0F       BNE $2660
+.C:2651  A5 8E       LDA $8E
+.C:2653  48          PHA
+.C:2654  A5 8D       LDA $8D
+.C:2656  48          PHA
+.C:2657  20 EB 25    JSR $25EB
+.C:265a  68          PLA
+.C:265b  85 8D       STA $8D
+.C:265d  68          PLA
+.C:265e  85 8E       STA $8E
+.C:2660  20 AB 34    JSR $34AB
+.C:2663  20 7A 26    JSR $267A
+.C:2666  20 BD 34    JSR $34BD
+.C:2669  EE D2 02    INC $02D2
+.C:266c  18          CLC
+.C:266d  A9 08       LDA #$08
+.C:266f  65 35       ADC $35
+.C:2671  85 35       STA $35
+.C:2673  A9 00       LDA #$00
+.C:2675  65 36       ADC $36
+.C:2677  85 36       STA $36
+.C:2679  60          RTS
+.C:267a  A2 00       LDX #$00
+.C:267c  A0 00       LDY #$00
+.C:267e  2C DC 02    BIT $02DC
+.C:2681  10 01       BPL $2684
+.C:2683  CA          DEX
+.C:2684  50 01       BVC $2687
+.C:2686  88          DEY
+.C:2687  86 40       STX $40
+.C:2689  84 3F       STY $3F
+.C:268b  A0 07       LDY #$07
+.C:268d  B1 35       LDA ($35),Y
+.C:268f  25 40       AND $40
+.C:2691  51 8D       EOR ($8D),Y
+.C:2693  45 3F       EOR $3F
+.C:2695  91 35       STA ($35),Y
+.C:2697  88          DEY
+.C:2698  10 F3       BPL $268D
+.C:269a  A5 35       LDA $35
+.C:269c  85 8D       STA $8D
+.C:269e  A5 36       LDA $36
+.C:26a0  4A          LSR A
+.C:26a1  66 8D       ROR $8D
+.C:26a3  4A          LSR A
+.C:26a4  66 8D       ROR $8D
+.C:26a6  4A          LSR A
+.C:26a7  66 8D       ROR $8D
+.C:26a9  29 03       AND #$03
+.C:26ab  09 CC       ORA #$CC
+.C:26ad  85 8E       STA $8E
+.C:26af  A0 00       LDY #$00
+.C:26b1  B1 8D       LDA ($8D),Y
+.C:26b3  4D DA 02    EOR $02DA
+.C:26b6  2D DB 02    AND $02DB
+.C:26b9  4D DA 02    EOR $02DA
+.C:26bc  91 8D       STA ($8D),Y
+.C:26be  60          RTS
+.C:26bf  AD CD 02    LDA $02CD
+.C:26c2  D0 0E       BNE $26D2
+.C:26c4  CE CD 02    DEC $02CD
+.C:26c7  4C 9F 25    JMP $259F
+.C:26ca  20 9A 25    JSR $259A
+.C:26cd  A9 00       LDA #$00
+.C:26cf  8D CD 02    STA $02CD
+.C:26d2  60          RTS
+.C:26d3  20 7C 24    JSR $247C
+.C:26d6  A9 10       LDA #$10
+.C:26d8  20 76 1F    JSR $1F76
+.C:26db  20 7C 24    JSR $247C
+.C:26de  AE CF 02    LDX $02CF
+.C:26e1  E8          INX
+.C:26e2  8E CC 02    STX $02CC
+.C:26e5  A9 04       LDA #$04
+.C:26e7  2C 5F 36    BIT $365F
+.C:26ea  F0 05       BEQ $26F1
+.C:26ec  AD 5E 36    LDA $365E
+.C:26ef  D0 08       BNE $26F9
+.C:26f1  20 E4 FF    JSR $FFE4
+.C:26f4  C9 00       CMP #$00
+.C:26f6  F0 F9       BEQ $26F1
+.C:26f8  60          RTS
+.C:26f9  A9 00       LDA #$00
+.C:26fb  8D E0 02    STA $02E0
+.C:26fe  8D E1 02    STA $02E1
+.C:2701  20 E4 FF    JSR $FFE4
+.C:2704  C9 00       CMP #$00
+.C:2706  D0 0A       BNE $2712
+.C:2708  AD E1 02    LDA $02E1
+.C:270b  CD 5E 36    CMP $365E
+.C:270e  90 F1       BCC $2701
+.C:2710  18          CLC
+.C:2711  60          RTS
+.C:2712  38          SEC
+.C:2713  60          RTS
+.C:2714  A6 8C       LDX $8C
+.C:2716  A4 8B       LDY $8B
+.C:2718  8A          TXA
+.C:2719  CD D0 02    CMP $02D0
+.C:271c  90 1F       BCC $273D
+.C:271e  AD D0 02    LDA $02D0
+.C:2721  18          CLC
+.C:2722  6D CF 02    ADC $02CF
+.C:2725  C5 8C       CMP $8C
+.C:2727  90 14       BCC $273D
+.C:2729  98          TYA
+.C:272a  CD D1 02    CMP $02D1
+.C:272d  90 0E       BCC $273D
+.C:272f  AD D1 02    LDA $02D1
+.C:2732  18          CLC
+.C:2733  6D CE 02    ADC $02CE
+.C:2736  38          SEC
+.C:2737  E9 01       SBC #$01
+.C:2739  C5 8B       CMP $8B
+.C:273b  B0 06       BCS $2743
+.C:273d  AC D1 02    LDY $02D1
+.C:2740  AE D0 02    LDX $02D0
+.C:2743  8C D2 02    STY $02D2
+.C:2746  8E D3 02    STX $02D3
+.C:2749  4C 63 29    JMP $2963
+.C:274c  AD D0 02    LDA $02D0
+.C:274f  18          CLC
+.C:2750  6D CF 02    ADC $02CF
+.C:2753  C9 19       CMP #$19
+.C:2755  90 09       BCC $2760
+.C:2757  A9 18       LDA #$18
+.C:2759  38          SEC
+.C:275a  ED D0 02    SBC $02D0
+.C:275d  8D CF 02    STA $02CF
+.C:2760  AD D1 02    LDA $02D1
+.C:2763  18          CLC
+.C:2764  6D CE 02    ADC $02CE
+.C:2767  C9 29       CMP #$29
+.C:2769  90 09       BCC $2774
+.C:276b  A9 28       LDA #$28
+.C:276d  38          SEC
+.C:276e  ED D1 02    SBC $02D1
+.C:2771  8D CE 02    STA $02CE
+.C:2774  60          RTS
+.C:2775  CD C9 02    CMP $02C9
+.C:2778  F0 FA       BEQ $2774
+.C:277a  48          PHA
+.C:277b  20 7C 24    JSR $247C
+.C:277e  AD C9 02    LDA $02C9
+.C:2781  20 BE 27    JSR $27BE
+.C:2784  A9 CA       LDA #$CA
+.C:2786  85 1B       STA $1B
+.C:2788  A9 02       LDA #$02
+.C:278a  85 1C       STA $1C
+.C:278c  A9 0D       LDA #$0D
+.C:278e  8D B6 02    STA $02B6
+.C:2791  A9 00       LDA #$00
+.C:2793  8D B7 02    STA $02B7
+.C:2796  20 17 34    JSR $3417
+.C:2799  68          PLA
+.C:279a  48          PHA
+.C:279b  8D C9 02    STA $02C9
+.C:279e  20 BE 27    JSR $27BE
+.C:27a1  A9 CA       LDA #$CA
+.C:27a3  85 1D       STA $1D
+.C:27a5  A9 02       LDA #$02
+.C:27a7  85 1E       STA $1E
+.C:27a9  A9 0D       LDA #$0D
+.C:27ab  8D B6 02    STA $02B6
+.C:27ae  A9 00       LDA #$00
+.C:27b0  8D B7 02    STA $02B7
+.C:27b3  20 17 34    JSR $3417
+.C:27b6  20 63 29    JSR $2963
+.C:27b9  20 D5 29    JSR $29D5
+.C:27bc  68          PLA
+.C:27bd  60          RTS
+.C:27be  48          PHA
+.C:27bf  A9 00       LDA #$00
+.C:27c1  85 1E       STA $1E
+.C:27c3  68          PLA
+.C:27c4  0A          ASL A
+.C:27c5  26 1E       ROL $1E
+.C:27c7  0A          ASL A
+.C:27c8  26 1E       ROL $1E
+.C:27ca  0A          ASL A
+.C:27cb  26 1E       ROL $1E
+.C:27cd  0A          ASL A
+.C:27ce  26 1E       ROL $1E
+.C:27d0  18          CLC
+.C:27d1  69 81       ADC #$81
+.C:27d3  85 1D       STA $1D
+.C:27d5  85 1B       STA $1B
+.C:27d7  A5 1E       LDA $1E
+.C:27d9  69 35       ADC #$35
+.C:27db  85 1E       STA $1E
+.C:27dd  85 1C       STA $1C
+.C:27df  60          RTS
+.C:27e0  A9 40       LDA #$40
+.C:27e2  2C 4B 36    BIT $364B
+.C:27e5  D0 0F       BNE $27F6
+.C:27e7  20 D6 24    JSR $24D6
+.C:27ea  20 57 29    JSR $2957
+.C:27ed  AD CF 02    LDA $02CF
+.C:27f0  8D CC 02    STA $02CC
+.C:27f3  20 B6 28    JSR $28B6
+.C:27f6  60          RTS
+.C:27f7  AD CF 02    LDA $02CF
+.C:27fa  85 FE       STA $FE
+.C:27fc  AD CE 02    LDA $02CE
+.C:27ff  0A          ASL A
+.C:2800  0A          ASL A
+.C:2801  0A          ASL A
+.C:2802  8D B6 02    STA $02B6
+.C:2805  A9 00       LDA #$00
+.C:2807  69 00       ADC #$00
+.C:2809  8D B7 02    STA $02B7
+.C:280c  20 57 29    JSR $2957
+.C:280f  A5 35       LDA $35
+.C:2811  85 1B       STA $1B
+.C:2813  A5 36       LDA $36
+.C:2815  85 1C       STA $1C
+.C:2817  A5 FE       LDA $FE
+.C:2819  F0 2E       BEQ $2849
+.C:281b  20 AB 34    JSR $34AB
+.C:281e  A5 35       LDA $35
+.C:2820  85 1D       STA $1D
+.C:2822  A5 36       LDA $36
+.C:2824  85 1E       STA $1E
+.C:2826  18          CLC
+.C:2827  A9 40       LDA #$40
+.C:2829  65 35       ADC $35
+.C:282b  85 35       STA $35
+.C:282d  A9 01       LDA #$01
+.C:282f  65 36       ADC $36
+.C:2831  85 36       STA $36
+.C:2833  A5 35       LDA $35
+.C:2835  85 1B       STA $1B
+.C:2837  A5 36       LDA $36
+.C:2839  85 1C       STA $1C
+.C:283b  48          PHA
+.C:283c  20 17 34    JSR $3417
+.C:283f  68          PLA
+.C:2840  85 1C       STA $1C
+.C:2842  C6 FE       DEC $FE
+.C:2844  D0 D8       BNE $281E
+.C:2846  20 BD 34    JSR $34BD
+.C:2849  20 33 29    JSR $2933
+.C:284c  AD CF 02    LDA $02CF
+.C:284f  85 FE       STA $FE
+.C:2851  AD CE 02    LDA $02CE
+.C:2854  8D B6 02    STA $02B6
+.C:2857  A9 00       LDA #$00
+.C:2859  8D B7 02    STA $02B7
+.C:285c  AD D0 02    LDA $02D0
+.C:285f  20 3C 34    JSR $343C
+.C:2862  18          CLC
+.C:2863  6D D1 02    ADC $02D1
+.C:2866  85 1D       STA $1D
+.C:2868  98          TYA
+.C:2869  69 CC       ADC #$CC
+.C:286b  85 1E       STA $1E
+.C:286d  A5 1D       LDA $1D
+.C:286f  85 1B       STA $1B
+.C:2871  A5 1E       LDA $1E
+.C:2873  85 1C       STA $1C
+.C:2875  A5 FE       LDA $FE
+.C:2877  F0 32       BEQ $28AB
+.C:2879  A9 28       LDA #$28
+.C:287b  85 1B       STA $1B
+.C:287d  A9 00       LDA #$00
+.C:287f  85 1C       STA $1C
+.C:2881  18          CLC
+.C:2882  A5 1D       LDA $1D
+.C:2884  65 1B       ADC $1B
+.C:2886  85 1B       STA $1B
+.C:2888  A5 1E       LDA $1E
+.C:288a  65 1C       ADC $1C
+.C:288c  85 1C       STA $1C
+.C:288e  48          PHA
+.C:288f  A5 1E       LDA $1E
+.C:2891  48          PHA
+.C:2892  20 17 34    JSR $3417
+.C:2895  68          PLA
+.C:2896  85 1E       STA $1E
+.C:2898  68          PLA
+.C:2899  85 1C       STA $1C
+.C:289b  A9 28       LDA #$28
+.C:289d  65 1D       ADC $1D
+.C:289f  85 1D       STA $1D
+.C:28a1  A9 00       LDA #$00
+.C:28a3  65 1E       ADC $1E
+.C:28a5  85 1E       STA $1E
+.C:28a7  C6 FE       DEC $FE
+.C:28a9  D0 CE       BNE $2879
+.C:28ab  AC CE 02    LDY $02CE
+.C:28ae  88          DEY
+.C:28af  A9 01       LDA #$01
+.C:28b1  85 FE       STA $FE
+.C:28b3  4C 1A 29    JMP $291A
+.C:28b6  AE CF 02    LDX $02CF
+.C:28b9  E8          INX
+.C:28ba  86 FE       STX $FE
+.C:28bc  A9 00       LDA #$00
+.C:28be  8D B7 02    STA $02B7
+.C:28c1  AD CE 02    LDA $02CE
+.C:28c4  0A          ASL A
+.C:28c5  2E B7 02    ROL $02B7
+.C:28c8  0A          ASL A
+.C:28c9  2E B7 02    ROL $02B7
+.C:28cc  0A          ASL A
+.C:28cd  2E B7 02    ROL $02B7
+.C:28d0  8D B6 02    STA $02B6
+.C:28d3  20 57 29    JSR $2957
+.C:28d6  A5 35       LDA $35
+.C:28d8  85 1B       STA $1B
+.C:28da  A5 36       LDA $36
+.C:28dc  85 1C       STA $1C
+.C:28de  48          PHA
+.C:28df  20 33 29    JSR $2933
+.C:28e2  68          PLA
+.C:28e3  85 1C       STA $1C
+.C:28e5  18          CLC
+.C:28e6  A9 40       LDA #$40
+.C:28e8  65 1B       ADC $1B
+.C:28ea  85 1B       STA $1B
+.C:28ec  A9 01       LDA #$01
+.C:28ee  65 1C       ADC $1C
+.C:28f0  85 1C       STA $1C
+.C:28f2  C6 FE       DEC $FE
+.C:28f4  D0 E8       BNE $28DE
+.C:28f6  AD CE 02    LDA $02CE
+.C:28f9  85 FD       STA $FD
+.C:28fb  AE CF 02    LDX $02CF
+.C:28fe  E8          INX
+.C:28ff  86 FE       STX $FE
+.C:2901  AD D1 02    LDA $02D1
+.C:2904  85 FB       STA $FB
+.C:2906  AD D0 02    LDA $02D0
+.C:2909  20 3C 34    JSR $343C
+.C:290c  18          CLC
+.C:290d  65 FB       ADC $FB
+.C:290f  85 1B       STA $1B
+.C:2911  98          TYA
+.C:2912  69 CC       ADC #$CC
+.C:2914  85 1C       STA $1C
+.C:2916  C6 FD       DEC $FD
+.C:2918  A4 FD       LDY $FD
+.C:291a  AD CA 02    LDA $02CA
+.C:291d  91 1B       STA ($1B),Y
+.C:291f  88          DEY
+.C:2920  10 F8       BPL $291A
+.C:2922  A9 28       LDA #$28
+.C:2924  65 1B       ADC $1B
+.C:2926  85 1B       STA $1B
+.C:2928  A9 00       LDA #$00
+.C:292a  65 1C       ADC $1C
+.C:292c  85 1C       STA $1C
+.C:292e  C6 FE       DEC $FE
+.C:2930  D0 E6       BNE $2918
+.C:2932  60          RTS
+.C:2933  20 AB 34    JSR $34AB
+.C:2936  A0 00       LDY #$00
+.C:2938  98          TYA
+.C:2939  AE B7 02    LDX $02B7
+.C:293c  F0 0A       BEQ $2948
+.C:293e  91 1B       STA ($1B),Y
+.C:2940  C8          INY
+.C:2941  D0 FB       BNE $293E
+.C:2943  E6 1C       INC $1C
+.C:2945  CA          DEX
+.C:2946  D0 F6       BNE $293E
+.C:2948  AE B6 02    LDX $02B6
+.C:294b  F0 06       BEQ $2953
+.C:294d  91 1B       STA ($1B),Y
+.C:294f  C8          INY
+.C:2950  CA          DEX
+.C:2951  D0 FA       BNE $294D
+.C:2953  20 BD 34    JSR $34BD
+.C:2956  60          RTS
+.C:2957  AD D0 02    LDA $02D0
+.C:295a  8D D3 02    STA $02D3
+.C:295d  AD D1 02    LDA $02D1
+.C:2960  8D D2 02    STA $02D2
+.C:2963  AD D3 02    LDA $02D3
+.C:2966  20 3C 34    JSR $343C
+.C:2969  84 36       STY $36
+.C:296b  0A          ASL A
+.C:296c  26 36       ROL $36
+.C:296e  0A          ASL A
+.C:296f  26 36       ROL $36
+.C:2971  0A          ASL A
+.C:2972  26 36       ROL $36
+.C:2974  85 35       STA $35
+.C:2976  AD D2 02    LDA $02D2
+.C:2979  0A          ASL A
+.C:297a  0A          ASL A
+.C:297b  0A          ASL A
+.C:297c  90 03       BCC $2981
+.C:297e  E6 36       INC $36
+.C:2980  18          CLC
+.C:2981  65 35       ADC $35
+.C:2983  85 35       STA $35
+.C:2985  A9 00       LDA #$00
+.C:2987  65 36       ADC $36
+.C:2989  85 36       STA $36
+.C:298b  A9 00       LDA #$00
+.C:298d  65 35       ADC $35
+.C:298f  85 35       STA $35
+.C:2991  A9 E0       LDA #$E0
+.C:2993  65 36       ADC $36
+.C:2995  85 36       STA $36
+.C:2997  60          RTS
+.C:2998  AD F9 CB    LDA $CBF9
+.C:299b  85 3F       STA $3F
+.C:299d  AD FA CB    LDA $CBFA
+.C:29a0  85 40       STA $40
+.C:29a2  A0 00       LDY #$00
+.C:29a4  B1 3F       LDA ($3F),Y
+.C:29a6  8D 20 D0    STA $D020
+.C:29a9  C8          INY
+.C:29aa  B1 3F       LDA ($3F),Y
+.C:29ac  85 8D       STA $8D
+.C:29ae  C8          INY
+.C:29af  B1 3F       LDA ($3F),Y
+.C:29b1  0A          ASL A
+.C:29b2  0A          ASL A
+.C:29b3  0A          ASL A
+.C:29b4  0A          ASL A
+.C:29b5  05 8D       ORA $8D
+.C:29b7  8D DA 02    STA $02DA
+.C:29ba  A9 00       LDA #$00
+.C:29bc  8D DB 02    STA $02DB
+.C:29bf  AD DB 02    LDA $02DB
+.C:29c2  8D CB 02    STA $02CB
+.C:29c5  AD DA 02    LDA $02DA
+.C:29c8  8D CA 02    STA $02CA
+.C:29cb  AD DC 02    LDA $02DC
+.C:29ce  8D D4 02    STA $02D4
+.C:29d1  60          RTS
+.C:29d2  20 7C 24    JSR $247C
+.C:29d5  AD CB 02    LDA $02CB
+.C:29d8  8D DB 02    STA $02DB
+.C:29db  AD CA 02    LDA $02CA
+.C:29de  8D DA 02    STA $02DA
+.C:29e1  AD D4 02    LDA $02D4
+.C:29e4  8D DC 02    STA $02DC
+.C:29e7  60          RTS
+.C:29e8  AC 8A 38    LDY $388A
+.C:29eb  84 8D       STY $8D
+.C:29ed  AC 8B 38    LDY $388B
+.C:29f0  84 8E       STY $8E
+.C:29f2  4C 1A 2A    JMP $2A1A
+.C:29f5  A5 FB       LDA $FB
+.C:29f7  AC 8C 38    LDY $388C
+.C:29fa  84 8D       STY $8D
+.C:29fc  AC 8D 38    LDY $388D
+.C:29ff  84 8E       STY $8E
+(C:$2a01) .C:2a00  8E 4C 1A    STX $1A4C
+.C:2a03  2A          ROL A
+.C:2a04  AC 92 38    LDY $3892
+.C:2a07  84 8D       STY $8D
+.C:2a09  AC 93 38    LDY $3893
+.C:2a0c  84 8E       STY $8E
+.C:2a0e  20 1A 2A    JSR $2A1A
+.C:2a11  A5 FB       LDA $FB
+.C:2a13  85 41       STA $41
+.C:2a15  A5 FC       LDA $FC
+.C:2a17  85 42       STA $42
+.C:2a19  60          RTS
+.C:2a1a  0A          ASL A
+.C:2a1b  08          PHP
+.C:2a1c  18          CLC
+.C:2a1d  65 8D       ADC $8D
+.C:2a1f  85 8D       STA $8D
+.C:2a21  A9 00       LDA #$00
+.C:2a23  A8          TAY
+.C:2a24  65 8E       ADC $8E
+.C:2a26  28          PLP
+.C:2a27  69 00       ADC #$00
+.C:2a29  85 8E       STA $8E
+.C:2a2b  B1 8D       LDA ($8D),Y
+.C:2a2d  85 FB       STA $FB
+.C:2a2f  C8          INY
+.C:2a30  B1 8D       LDA ($8D),Y
+.C:2a32  85 FC       STA $FC
+.C:2a34  60          RTS
+.C:2a35  AD AA 02    LDA $02AA
+.C:2a38  29 7F       AND #$7F
+.C:2a3a  8D AA 02    STA $02AA
+.C:2a3d  A9 00       LDA #$00
+.C:2a3f  8D 56 36    STA $3656
+.C:2a42  AD 4B 36    LDA $364B
+.C:2a45  29 20       AND #$20
+.C:2a47  D0 39       BNE $2A82
+.C:2a49  20 0B 2B    JSR $2B0B
+.C:2a4c  A1 FB       LDA ($FB,X)
+.C:2a4e  30 36       BMI $2A86
+.C:2a50  CA          DEX
+.C:2a51  8E 56 36    STX $3656
+.C:2a54  20 B6 2A    JSR $2AB6
+.C:2a57  A9 08       LDA #$08
+.C:2a59  2C 4B 36    BIT $364B
+.C:2a5c  F0 08       BEQ $2A66
+.C:2a5e  AD DA 02    LDA $02DA
+.C:2a61  29 0F       AND #$0F
+.C:2a63  8D 20 D0    STA $D020
+.C:2a66  20 8D 2A    JSR $2A8D
+.C:2a69  A9 10       LDA #$10
+.C:2a6b  2C 4B 36    BIT $364B
+.C:2a6e  F0 0C       BEQ $2A7C
+.C:2a70  A9 00       LDA #$00
+.C:2a72  85 C6       STA $C6
+.C:2a74  A5 C6       LDA $C6
+.C:2a76  F0 FC       BEQ $2A74
+.C:2a78  A9 00       LDA #$00
+.C:2a7a  85 C6       STA $C6
+.C:2a7c  AD C2 02    LDA $02C2
+.C:2a7f  8D 20 D0    STA $D020
+.C:2a82  20 D5 29    JSR $29D5
+.C:2a85  60          RTS
+.C:2a86  A9 80       LDA #$80
+.C:2a88  2C AA 02    BIT $02AA
+.C:2a8b  F0 17       BEQ $2AA4
+.C:2a8d  20 5D 2E    JSR $2E5D
+.C:2a90  A9 00       LDA #$00
+.C:2a92  8D F6 02    STA $02F6
+.C:2a95  8D FB 02    STA $02FB
+.C:2a98  8D F9 02    STA $02F9
+.C:2a9b  20 AB 34    JSR $34AB
+.C:2a9e  20 4B 2B    JSR $2B4B
+.C:2aa1  20 BD 34    JSR $34BD
+.C:2aa4  60          RTS
+.C:2aa5  A9 20       LDA #$20
+.C:2aa7  2C 4B 36    BIT $364B
+.C:2aaa  D0 F8       BNE $2AA4
+.C:2aac  AC 54 36    LDY $3654
+.C:2aaf  20 0B 2B    JSR $2B0B
+.C:2ab2  A1 FB       LDA ($FB,X)
+.C:2ab4  30 EE       BMI $2AA4
+.C:2ab6  98          TYA
+.C:2ab7  48          PHA
+.C:2ab8  AD CA 02    LDA $02CA
+.C:2abb  48          PHA
+.C:2abc  AD CB 02    LDA $02CB
+.C:2abf  48          PHA
+.C:2ac0  A0 01       LDY #$01
+.C:2ac2  B1 FB       LDA ($FB),Y
+.C:2ac4  8D CA 02    STA $02CA
+.C:2ac7  A9 00       LDA #$00
+.C:2ac9  8D CB 02    STA $02CB
+.C:2acc  C8          INY
+.C:2acd  B1 FB       LDA ($FB),Y
+.C:2acf  8D D0 02    STA $02D0
+.C:2ad2  C8          INY
+.C:2ad3  B1 FB       LDA ($FB),Y
+.C:2ad5  8D D1 02    STA $02D1
+.C:2ad8  C8          INY
+.C:2ad9  B1 FB       LDA ($FB),Y
+.C:2adb  38          SEC
+.C:2adc  E9 01       SBC #$01
+.C:2ade  8D CF 02    STA $02CF
+.C:2ae1  C8          INY
+.C:2ae2  B1 FB       LDA ($FB),Y
+.C:2ae4  8D CE 02    STA $02CE
+.C:2ae7  20 4C 27    JSR $274C
+.C:2aea  20 D5 29    JSR $29D5
+.C:2aed  20 E7 27    JSR $27E7
+.C:2af0  AD 20 D0    LDA $D020
+.C:2af3  8D C2 02    STA $02C2
+.C:2af6  68          PLA
+.C:2af7  8D CB 02    STA $02CB
+.C:2afa  68          PLA
+.C:2afb  8D CA 02    STA $02CA
+.C:2afe  A9 00       LDA #$00
+.C:2b00  85 22       STA $22
+.C:2b02  85 23       STA $23
+.C:2b04  85 24       STA $24
+.C:2b06  85 25       STA $25
+.C:2b08  68          PLA
+.C:2b09  A8          TAY
+.C:2b0a  60          RTS
+.C:2b0b  A2 00       LDX #$00
+.C:2b0d  86 FC       STX $FC
+.C:2b0f  98          TYA
+.C:2b10  0A          ASL A
+.C:2b11  08          PHP
+.C:2b12  48          PHA
+.C:2b13  26 FC       ROL $FC
+.C:2b15  0A          ASL A
+.C:2b16  26 FC       ROL $FC
+.C:2b18  85 FB       STA $FB
+.C:2b1a  68          PLA
+.C:2b1b  18          CLC
+.C:2b1c  65 FB       ADC $FB
+.C:2b1e  85 FB       STA $FB
+.C:2b20  90 02       BCC $2B24
+.C:2b22  E6 FC       INC $FC
+.C:2b24  28          PLP
+.C:2b25  90 02       BCC $2B29
+.C:2b27  E6 FC       INC $FC
+.C:2b29  18          CLC
+.C:2b2a  AD F3 CB    LDA $CBF3
+.C:2b2d  65 FB       ADC $FB
+.C:2b2f  85 FB       STA $FB
+.C:2b31  AD F4 CB    LDA $CBF4
+.C:2b34  65 FC       ADC $FC
+.C:2b36  85 FC       STA $FC
+.C:2b38  60          RTS
+.C:2b39  A9 03       LDA #$03
+.C:2b3b  D0 02       BNE $2B3F
+.C:2b3d  A9 01       LDA #$01
+.C:2b3f  8D F7 02    STA $02F7
+.C:2b42  18          CLC
+.C:2b43  65 19       ADC $19
+.C:2b45  85 19       STA $19
+.C:2b47  90 02       BCC $2B4B
+.C:2b49  E6 1A       INC $1A
+.C:2b4b  A0 00       LDY #$00
+.C:2b4d  B1 19       LDA ($19),Y
+.C:2b4f  29 07       AND #$07
+.C:2b51  0A          ASL A
+.C:2b52  AA          TAX
+.C:2b53  BD 5D 2B    LDA $2B5D,X
+.C:2b56  48          PHA
+.C:2b57  BD 5C 2B    LDA $2B5C,X
+.C:2b5a  48          PHA
+.C:2b5b  60          RTS
+.C:2b5c  6B 2B       ARR #$2B
+.C:2b5e  8E 2B 08    STX $082B
+.C:2b61  2C B9 2B    BIT $2BB9
+.C:2b64  29 2C       AND #$2C
+.C:2b66  50 2C       BVC $2B94
+.C:2b68  78          SEI
+.C:2b69  2C 1D 2D    BIT $2D1D
+.C:2b6c  B1 19       LDA ($19),Y
+.C:2b6e  0A          ASL A
+.C:2b6f  B0 13       BCS $2B84
+.C:2b71  85 FB       STA $FB
+.C:2b73  AD DA 02    LDA $02DA
+.C:2b76  45 FB       EOR $FB
+.C:2b78  29 0F       AND #$0F
+.C:2b7a  45 FB       EOR $FB
+.C:2b7c  8D DA 02    STA $02DA
+.C:2b7f  A9 0F       LDA #$0F
+.C:2b81  4C A6 2B    JMP $2BA6
+.C:2b84  AD DB 02    LDA $02DB
+.C:2b87  09 F0       ORA #$F0
+.C:2b89  8D DB 02    STA $02DB
+.C:2b8c  4C 3D 2B    JMP $2B3D
+.C:2b8f  B1 19       LDA ($19),Y
+.C:2b91  30 1C       BMI $2BAF
+.C:2b93  4A          LSR A
+.C:2b94  4A          LSR A
+.C:2b95  4A          LSR A
+.C:2b96  85 FB       STA $FB
+.C:2b98  AD DA 02    LDA $02DA
+.C:2b9b  45 FB       EOR $FB
+.C:2b9d  29 F0       AND #$F0
+.C:2b9f  45 FB       EOR $FB
+.C:2ba1  8D DA 02    STA $02DA
+.C:2ba4  A9 F0       LDA #$F0
+.C:2ba6  2D DB 02    AND $02DB
+.C:2ba9  8D DB 02    STA $02DB
+.C:2bac  4C 3D 2B    JMP $2B3D
+.C:2baf  AD DB 02    LDA $02DB
+.C:2bb2  09 0F       ORA #$0F
+.C:2bb4  8D DB 02    STA $02DB
+.C:2bb7  4C 3D 2B    JMP $2B3D
+.C:2bba  AD FA 02    LDA $02FA
+.C:2bbd  C9 0A       CMP #$0A
+.C:2bbf  D0 0D       BNE $2BCE
+.C:2bc1  A9 00       LDA #$00
+.C:2bc3  8D F6 02    STA $02F6
+.C:2bc6  8D FB 02    STA $02FB
+.C:2bc9  A2 03       LDX #$03
+.C:2bcb  4C 1F 08    JMP $081F
+.C:2bce  C9 00       CMP #$00
+.C:2bd0  D0 0A       BNE $2BDC
+.C:2bd2  A5 19       LDA $19
+.C:2bd4  8D F8 02    STA $02F8
+.C:2bd7  A5 1A       LDA $1A
+.C:2bd9  8D F9 02    STA $02F9
+.C:2bdc  EE FA 02    INC $02FA
+.C:2bdf  A5 1A       LDA $1A
+.C:2be1  48          PHA
+.C:2be2  A5 19       LDA $19
+.C:2be4  48          PHA
+.C:2be5  AD F6 02    LDA $02F6
+.C:2be8  0D FB 02    ORA $02FB
+.C:2beb  48          PHA
+.C:2bec  B1 19       LDA ($19),Y
+.C:2bee  4A          LSR A
+.C:2bef  4A          LSR A
+.C:2bf0  4A          LSR A
+.C:2bf1  29 07       AND #$07
+.C:2bf3  8D F6 02    STA $02F6
+.C:2bf6  AD FB 02    LDA $02FB
+.C:2bf9  51 19       EOR ($19),Y
+.C:2bfb  29 C0       AND #$C0
+.C:2bfd  8D FB 02    STA $02FB
+.C:2c00  C8          INY
+.C:2c01  B1 19       LDA ($19),Y
+.C:2c03  20 5E 2E    JSR $2E5E
+.C:2c06  4C 4B 2B    JMP $2B4B
+.C:2c09  AD FA 02    LDA $02FA
+.C:2c0c  F0 1B       BEQ $2C29
+.C:2c0e  68          PLA
+.C:2c0f  48          PHA
+.C:2c10  29 07       AND #$07
+.C:2c12  8D F6 02    STA $02F6
+.C:2c15  68          PLA
+.C:2c16  29 C0       AND #$C0
+.C:2c18  8D FB 02    STA $02FB
+.C:2c1b  68          PLA
+.C:2c1c  85 19       STA $19
+.C:2c1e  68          PLA
+.C:2c1f  85 1A       STA $1A
+.C:2c21  CE FA 02    DEC $02FA
+.C:2c24  A9 02       LDA #$02
+.C:2c26  4C 3F 2B    JMP $2B3F
+.C:2c29  60          RTS
+.C:2c2a  B1 19       LDA ($19),Y
+.C:2c2c  8D DC 02    STA $02DC
+.C:2c2f  20 82 2E    JSR $2E82
+.C:2c32  A5 8B       LDA $8B
+.C:2c34  85 22       STA $22
+.C:2c36  A5 8C       LDA $8C
+.C:2c38  85 23       STA $23
+.C:2c3a  A5 FB       LDA $FB
+.C:2c3c  85 24       STA $24
+.C:2c3e  A5 FC       LDA $FC
+.C:2c40  85 25       STA $25
+.C:2c42  AD DC 02    LDA $02DC
+.C:2c45  29 C0       AND #$C0
+.C:2c47  C9 C0       CMP #$C0
+.C:2c49  F0 03       BEQ $2C4E
+.C:2c4b  20 8D 31    JSR $318D
+.C:2c4e  4C 39 2B    JMP $2B39
+.C:2c51  B1 19       LDA ($19),Y
+.C:2c53  29 C0       AND #$C0
+.C:2c55  C9 C0       CMP #$C0
+.C:2c57  F0 1A       BEQ $2C73
+.C:2c59  8D DC 02    STA $02DC
+.C:2c5c  20 EF 2D    JSR $2DEF
+.C:2c5f  C8          INY
+.C:2c60  A2 01       LDX #$01
+.C:2c62  2C FC 02    BIT $02FC
+.C:2c65  10 02       BPL $2C69
+.C:2c67  A2 FF       LDX #$FF
+.C:2c69  50 02       BVC $2C6D
+.C:2c6b  A0 FF       LDY #$FF
+.C:2c6d  20 CB 30    JSR $30CB
+.C:2c70  4C 39 2B    JMP $2B39
+.C:2c73  20 A9 2D    JSR $2DA9
+.C:2c76  4C 39 2B    JMP $2B39
+.C:2c79  A5 23       LDA $23
+.C:2c7b  48          PHA
+.C:2c7c  A5 22       LDA $22
+.C:2c7e  48          PHA
+.C:2c7f  A5 25       LDA $25
+.C:2c81  48          PHA
+.C:2c82  A5 24       LDA $24
+.C:2c84  48          PHA
+.C:2c85  20 A9 2D    JSR $2DA9
+.C:2c88  B1 19       LDA ($19),Y
+.C:2c8a  30 1E       BMI $2CAA
+.C:2c8c  A9 A2       LDA #$A2
+.C:2c8e  85 FB       STA $FB
+.C:2c90  85 8B       STA $8B
+.C:2c92  A9 2C       LDA #$2C
+.C:2c94  85 FC       STA $FC
+.C:2c96  85 8C       STA $8C
+.C:2c98  A9 00       LDA #$00
+.C:2c9a  20 A6 2E    JSR $2EA6
+.C:2c9d  A0 03       LDY #$03
+.C:2c9f  4C C9 2C    JMP $2CC9
+.C:2ca2  FF FF FF    ISB $FFFF,X
+.C:2ca5  FF FF FF    ISB $FFFF,X
+.C:2ca8  FF FF A0    ISB $A0FF,X
+.C:2cab  03 B1       SLO ($B1,X)
+.C:2cad  19 A0 00    ORA $00A0,Y
+.C:2cb0  20 D9 2C    JSR $2CD9
+.C:2cb3  A5 FB       LDA $FB
+.C:2cb5  85 8B       STA $8B
+.C:2cb7  A5 FC       LDA $FC
+.C:2cb9  85 8C       STA $8C
+.C:2cbb  B1 19       LDA ($19),Y
+.C:2cbd  29 40       AND #$40
+.C:2cbf  F0 02       BEQ $2CC3
+.C:2cc1  A0 FF       LDY #$FF
+.C:2cc3  98          TYA
+.C:2cc4  20 A6 2E    JSR $2EA6
+.C:2cc7  A0 04       LDY #$04
+.C:2cc9  68          PLA
+.C:2cca  85 24       STA $24
+.C:2ccc  68          PLA
+.C:2ccd  85 25       STA $25
+.C:2ccf  68          PLA
+.C:2cd0  85 22       STA $22
+.C:2cd2  68          PLA
+.C:2cd3  85 23       STA $23
+.C:2cd5  98          TYA
+.C:2cd6  4C 3F 2B    JMP $2B3F
+.C:2cd9  84 FC       STY $FC
+.C:2cdb  0A          ASL A
+.C:2cdc  26 FC       ROL $FC
+.C:2cde  0A          ASL A
+.C:2cdf  26 FC       ROL $FC
+.C:2ce1  0A          ASL A
+.C:2ce2  26 FC       ROL $FC
+.C:2ce4  6D F7 CB    ADC $CBF7
+.C:2ce7  85 FB       STA $FB
+.C:2ce9  AD F8 CB    LDA $CBF8
+.C:2cec  65 FC       ADC $FC
+.C:2cee  85 FC       STA $FC
+.C:2cf0  60          RTS
+.C:2cf1  0A          ASL A
+.C:2cf2  29 C0       AND #$C0
+.C:2cf4  8D DC 02    STA $02DC
+.C:2cf7  C8          INY
+.C:2cf8  B1 19       LDA ($19),Y
+.C:2cfa  8D D3 02    STA $02D3
+.C:2cfd  C8          INY
+.C:2cfe  B1 19       LDA ($19),Y
+.C:2d00  8D D2 02    STA $02D2
+.C:2d03  C8          INY
+.C:2d04  B1 19       LDA ($19),Y
+.C:2d06  48          PHA
+.C:2d07  20 63 29    JSR $2963
+.C:2d0a  A0 00       LDY #$00
+.C:2d0c  68          PLA
+.C:2d0d  20 D9 2C    JSR $2CD9
+.C:2d10  85 8E       STA $8E
+.C:2d12  A5 FB       LDA $FB
+.C:2d14  85 8D       STA $8D
+.C:2d16  20 7A 26    JSR $267A
+.C:2d19  A9 04       LDA #$04
+.C:2d1b  4C 3F 2B    JMP $2B3F
+.C:2d1e  B1 19       LDA ($19),Y
+.C:2d20  10 CF       BPL $2CF1
+.C:2d22  A9 00       LDA #$00
+.C:2d24  85 8C       STA $8C
+.C:2d26  C8          INY
+.C:2d27  B1 19       LDA ($19),Y
+.C:2d29  85 8B       STA $8B
+.C:2d2b  06 8B       ASL $8B
+.C:2d2d  26 8C       ROL $8C
+.C:2d2f  06 8B       ASL $8B
+.C:2d31  26 8C       ROL $8C
+.C:2d33  06 8B       ASL $8B
+.C:2d35  26 8C       ROL $8C
+.C:2d37  A5 8B       LDA $8B
+.C:2d39  85 FB       STA $FB
+.C:2d3b  A5 8C       LDA $8C
+.C:2d3d  85 FC       STA $FC
+.C:2d3f  06 8B       ASL $8B
+.C:2d41  26 8C       ROL $8C
+.C:2d43  06 8B       ASL $8B
+.C:2d45  26 8C       ROL $8C
+.C:2d47  18          CLC
+.C:2d48  A5 8B       LDA $8B
+.C:2d4a  65 FB       ADC $FB
+.C:2d4c  85 FB       STA $FB
+.C:2d4e  A5 8C       LDA $8C
+.C:2d50  65 FC       ADC $FC
+.C:2d52  85 FC       STA $FC
+.C:2d54  C8          INY
+.C:2d55  B1 19       LDA ($19),Y
+.C:2d57  18          CLC
+.C:2d58  65 FB       ADC $FB
+.C:2d5a  85 FB       STA $FB
+.C:2d5c  A9 00       LDA #$00
+.C:2d5e  65 FC       ADC $FC
+.C:2d60  85 FC       STA $FC
+.C:2d62  18          CLC
+.C:2d63  A9 00       LDA #$00
+.C:2d65  65 FB       ADC $FB
+.C:2d67  85 FB       STA $FB
+.C:2d69  A9 CC       LDA #$CC
+.C:2d6b  65 FC       ADC $FC
+.C:2d6d  85 FC       STA $FC
+.C:2d6f  C8          INY
+.C:2d70  B1 19       LDA ($19),Y
+.C:2d72  AA          TAX
+.C:2d73  C8          INY
+.C:2d74  B1 19       LDA ($19),Y
+.C:2d76  48          PHA
+.C:2d77  A8          TAY
+.C:2d78  B1 FB       LDA ($FB),Y
+.C:2d7a  4D DA 02    EOR $02DA
+.C:2d7d  2D DB 02    AND $02DB
+.C:2d80  4D DA 02    EOR $02DA
+.C:2d83  91 FB       STA ($FB),Y
+.C:2d85  C0 00       CPY #$00
+.C:2d87  F0 04       BEQ $2D8D
+.C:2d89  88          DEY
+.C:2d8a  4C 78 2D    JMP $2D78
+.C:2d8d  E0 00       CPX #$00
+.C:2d8f  F0 12       BEQ $2DA3
+.C:2d91  CA          DEX
+.C:2d92  18          CLC
+.C:2d93  A9 28       LDA #$28
+.C:2d95  65 FB       ADC $FB
+.C:2d97  85 FB       STA $FB
+.C:2d99  A9 00       LDA #$00
+.C:2d9b  65 FC       ADC $FC
+.C:2d9d  85 FC       STA $FC
+.C:2d9f  68          PLA
+.C:2da0  4C 76 2D    JMP $2D76
+.C:2da3  68          PLA
+.C:2da4  A9 05       LDA #$05
+.C:2da6  4C 3F 2B    JMP $2B3F
+.C:2da9  20 EF 2D    JSR $2DEF
+.C:2dac  2C FC 02    BIT $02FC
+.C:2daf  10 10       BPL $2DC1
+.C:2db1  38          SEC
+.C:2db2  A5 22       LDA $22
+.C:2db4  E5 8B       SBC $8B
+.C:2db6  85 22       STA $22
+.C:2db8  A5 23       LDA $23
+.C:2dba  E5 8C       SBC $8C
+.C:2dbc  85 23       STA $23
+.C:2dbe  4C CE 2D    JMP $2DCE
+.C:2dc1  18          CLC
+.C:2dc2  A5 8B       LDA $8B
+.C:2dc4  65 22       ADC $22
+.C:2dc6  85 22       STA $22
+.C:2dc8  A5 8C       LDA $8C
+.C:2dca  65 23       ADC $23
+.C:2dcc  85 23       STA $23
+.C:2dce  2C FC 02    BIT $02FC
+.C:2dd1  50 0E       BVC $2DE1
+.C:2dd3  38          SEC
+.C:2dd4  A5 24       LDA $24
+.C:2dd6  E5 FB       SBC $FB
+.C:2dd8  85 24       STA $24
+.C:2dda  A5 25       LDA $25
+.C:2ddc  E5 FC       SBC $FC
+.C:2dde  85 25       STA $25
+.C:2de0  60          RTS
+.C:2de1  18          CLC
+.C:2de2  A5 FB       LDA $FB
+.C:2de4  65 24       ADC $24
+.C:2de6  85 24       STA $24
+.C:2de8  A5 FC       LDA $FC
+.C:2dea  65 25       ADC $25
+.C:2dec  85 25       STA $25
+.C:2dee  60          RTS
+.C:2def  20 82 2E    JSR $2E82
+.C:2df2  AD F6 02    LDA $02F6
+.C:2df5  F0 4C       BEQ $2E43
+.C:2df7  A9 00       LDA #$00
+.C:2df9  85 8D       STA $8D
+.C:2dfb  A9 00       LDA #$00
+.C:2dfd  85 8E       STA $8E
+.C:2dff  AC F6 02    LDY $02F6
+.C:2e02  18          CLC
+.C:2e03  A5 8B       LDA $8B
+.C:2e05  65 8D       ADC $8D
+.C:2e07  85 8D       STA $8D
+.C:2e09  A5 8C       LDA $8C
+.C:2e0b  65 8E       ADC $8E
+.C:2e0d  85 8E       STA $8E
+.C:2e0f  88          DEY
+.C:2e10  D0 F0       BNE $2E02
+.C:2e12  20 50 2E    JSR $2E50
+.C:2e15  A5 8D       LDA $8D
+.C:2e17  85 8B       STA $8B
+.C:2e19  A5 8E       LDA $8E
+.C:2e1b  85 8C       STA $8C
+.C:2e1d  A9 00       LDA #$00
+.C:2e1f  85 8D       STA $8D
+.C:2e21  A9 00       LDA #$00
+.C:2e23  85 8E       STA $8E
+.C:2e25  AC F6 02    LDY $02F6
+.C:2e28  18          CLC
+.C:2e29  A5 FB       LDA $FB
+.C:2e2b  65 8D       ADC $8D
+.C:2e2d  85 8D       STA $8D
+.C:2e2f  A5 FC       LDA $FC
+.C:2e31  65 8E       ADC $8E
+.C:2e33  85 8E       STA $8E
+.C:2e35  88          DEY
+.C:2e36  D0 F0       BNE $2E28
+.C:2e38  20 50 2E    JSR $2E50
+.C:2e3b  A5 8D       LDA $8D
+.C:2e3d  85 FB       STA $FB
+.C:2e3f  A5 8E       LDA $8E
+.C:2e41  85 FC       STA $FC
+.C:2e43  A0 00       LDY #$00
+.C:2e45  B1 19       LDA ($19),Y
+.C:2e47  0A          ASL A
+.C:2e48  0A          ASL A
+.C:2e49  4D FB 02    EOR $02FB
+.C:2e4c  8D FC 02    STA $02FC
+.C:2e4f  60          RTS
+.C:2e50  46 8E       LSR $8E
+.C:2e52  66 8D       ROR $8D
+.C:2e54  46 8E       LSR $8E
+.C:2e56  66 8D       ROR $8D
+.C:2e58  46 8E       LSR $8E
+.C:2e5a  66 8D       ROR $8D
+.C:2e5c  60          RTS
+.C:2e5d  98          TYA
+.C:2e5e  0A          ASL A
+.C:2e5f  08          PHP
+.C:2e60  18          CLC
+.C:2e61  6D F1 CB    ADC $CBF1
+.C:2e64  85 19       STA $19
+.C:2e66  AD F2 CB    LDA $CBF2
+.C:2e69  69 00       ADC #$00
+.C:2e6b  28          PLP
+.C:2e6c  69 00       ADC #$00
+.C:2e6e  85 1A       STA $1A
+.C:2e70  98          TYA
+.C:2e71  48          PHA
+.C:2e72  A0 00       LDY #$00
+.C:2e74  B1 19       LDA ($19),Y
+.C:2e76  48          PHA
+.C:2e77  C8          INY
+.C:2e78  B1 19       LDA ($19),Y
+.C:2e7a  85 1A       STA $1A
+.C:2e7c  68          PLA
+.C:2e7d  85 19       STA $19
+.C:2e7f  68          PLA
+.C:2e80  A8          TAY
+.C:2e81  60          RTS
+.C:2e82  A9 00       LDA #$00
+.C:2e84  85 FC       STA $FC
+.C:2e86  A8          TAY
+.C:2e87  B1 19       LDA ($19),Y
+.C:2e89  4A          LSR A
+.C:2e8a  4A          LSR A
+.C:2e8b  4A          LSR A
+.C:2e8c  29 01       AND #$01
+.C:2e8e  85 8C       STA $8C
+.C:2e90  C8          INY
+.C:2e91  B1 19       LDA ($19),Y
+.C:2e93  85 8B       STA $8B
+.C:2e95  C8          INY
+.C:2e96  B1 19       LDA ($19),Y
+.C:2e98  85 FB       STA $FB
+.C:2e9a  60          RTS
+.C:2e9b  48          PHA
+.C:2e9c  20 AB 34    JSR $34AB
+.C:2e9f  68          PLA
+.C:2ea0  20 A6 2E    JSR $2EA6
+.C:2ea3  4C BD 34    JMP $34BD
+.C:2ea6  BA          TSX
+.C:2ea7  8E FD 02    STX $02FD
+.C:2eaa  85 8E       STA $8E
+.C:2eac  A0 00       LDY #$00
+.C:2eae  84 8D       STY $8D
+.C:2eb0  B1 8B       LDA ($8B),Y
+.C:2eb2  11 FB       ORA ($FB),Y
+.C:2eb4  45 8E       EOR $8E
+.C:2eb6  99 00 D0    STA $D000,Y
+.C:2eb9  C8          INY
+.C:2eba  C0 08       CPY #$08
+.C:2ebc  D0 F2       BNE $2EB0
+.C:2ebe  A5 22       LDA $22
+.C:2ec0  8D F2 02    STA $02F2
+.C:2ec3  A5 23       LDA $23
+.C:2ec5  8D F3 02    STA $02F3
+.C:2ec8  A5 24       LDA $24
+.C:2eca  8D F4 02    STA $02F4
+.C:2ecd  A5 25       LDA $25
+.C:2ecf  8D F5 02    STA $02F5
+.C:2ed2  AE F1 02    LDX $02F1
+.C:2ed5  E8          INX
+.C:2ed6  A0 00       LDY #$00
+.C:2ed8  A9 08       LDA #$08
+.C:2eda  85 FB       STA $FB
+.C:2edc  A9 D0       LDA #$D0
+.C:2ede  85 FC       STA $FC
+.C:2ee0  A9 FF       LDA #$FF
+.C:2ee2  91 FB       STA ($FB),Y
+.C:2ee4  E6 FB       INC $FB
+.C:2ee6  D0 02       BNE $2EEA
+.C:2ee8  E6 FC       INC $FC
+.C:2eea  91 FB       STA ($FB),Y
+.C:2eec  E6 FB       INC $FB
+.C:2eee  D0 02       BNE $2EF2
+.C:2ef0  E6 FC       INC $FC
+.C:2ef2  CA          DEX
+.C:2ef3  D0 ED       BNE $2EE2
+.C:2ef5  91 FB       STA ($FB),Y
+.C:2ef7  E6 FB       INC $FB
+.C:2ef9  D0 02       BNE $2EFD
+.C:2efb  E6 FC       INC $FC
+.C:2efd  A9 7F       LDA #$7F
+.C:2eff  91 FB       STA ($FB),Y
+.C:2f01  8D 09 D0    STA $D009
+.C:2f04  20 75 31    JSR $3175
+.C:2f07  F0 03       BEQ $2F0C
+.C:2f09  4C C6 30    JMP $30C6
+.C:2f0c  A9 FF       LDA #$FF
+.C:2f0e  48          PHA
+.C:2f0f  18          CLC
+.C:2f10  66 8E       ROR $8E
+.C:2f12  A5 8D       LDA $8D
+.C:2f14  29 BF       AND #$BF
+.C:2f16  85 8D       STA $8D
+.C:2f18  A5 24       LDA $24
+.C:2f1a  0A          ASL A
+.C:2f1b  08          PHP
+.C:2f1c  18          CLC
+.C:2f1d  69 08       ADC #$08
+.C:2f1f  85 0D       STA $0D
+.C:2f21  A9 D0       LDA #$D0
+.C:2f23  69 00       ADC #$00
+.C:2f25  28          PLP
+.C:2f26  69 00       ADC #$00
+.C:2f28  85 0E       STA $0E
+.C:2f2a  A5 24       LDA $24
+.C:2f2c  20 DC 31    JSR $31DC
+.C:2f2f  BD 85 31    LDA $3185,X
+.C:2f32  49 FF       EOR #$FF
+.C:2f34  85 40       STA $40
+.C:2f36  98          TYA
+.C:2f37  48          PHA
+.C:2f38  18          CLC
+.C:2f39  65 FB       ADC $FB
+.C:2f3b  85 8B       STA $8B
+.C:2f3d  A5 FC       LDA $FC
+.C:2f3f  69 00       ADC #$00
+.C:2f41  85 8C       STA $8C
+.C:2f43  24 8D       BIT $8D
+.C:2f45  10 07       BPL $2F4E
+.C:2f47  C6 24       DEC $24
+.C:2f49  A0 00       LDY #$00
+.C:2f4b  4C 52 2F    JMP $2F52
+.C:2f4e  E6 24       INC $24
+.C:2f50  A0 04       LDY #$04
+.C:2f52  B1 0D       LDA ($0D),Y
+.C:2f54  85 FD       STA $FD
+.C:2f56  C8          INY
+.C:2f57  B1 0D       LDA ($0D),Y
+.C:2f59  85 FE       STA $FE
+.C:2f5b  A5 24       LDA $24
+.C:2f5d  20 DC 31    JSR $31DC
+.C:2f60  98          TYA
+.C:2f61  18          CLC
+.C:2f62  65 FB       ADC $FB
+.C:2f64  85 3D       STA $3D
+.C:2f66  A5 FC       LDA $FC
+.C:2f68  69 00       ADC #$00
+.C:2f6a  85 3E       STA $3E
+.C:2f6c  68          PLA
+.C:2f6d  AA          TAX
+.C:2f6e  BD 00 D0    LDA $D000,X
+.C:2f71  85 3F       STA $3F
+.C:2f73  A0 00       LDY #$00
+.C:2f75  46 40       LSR $40
+.C:2f77  90 1C       BCC $2F95
+.C:2f79  66 40       ROR $40
+.C:2f7b  18          CLC
+.C:2f7c  A9 08       LDA #$08
+.C:2f7e  65 3D       ADC $3D
+.C:2f80  85 3D       STA $3D
+.C:2f82  A9 00       LDA #$00
+.C:2f84  65 3E       ADC $3E
+.C:2f86  85 3E       STA $3E
+.C:2f88  18          CLC
+.C:2f89  A9 08       LDA #$08
+.C:2f8b  65 8B       ADC $8B
+.C:2f8d  85 8B       STA $8B
+.C:2f8f  A9 00       LDA #$00
+.C:2f91  65 8C       ADC $8C
+.C:2f93  85 8C       STA $8C
+.C:2f95  E6 22       INC $22
+.C:2f97  D0 02       BNE $2F9B
+.C:2f99  E6 23       INC $23
+.C:2f9b  A5 22       LDA $22
+.C:2f9d  C9 40       CMP #$40
+.C:2f9f  A5 23       LDA $23
+.C:2fa1  E9 01       SBC #$01
+.C:2fa3  F0 06       BEQ $2FAB
+.C:2fa5  B1 8B       LDA ($8B),Y
+.C:2fa7  25 40       AND $40
+.C:2fa9  F0 CA       BEQ $2F75
+.C:2fab  38          SEC
+.C:2fac  A5 22       LDA $22
+.C:2fae  E9 01       SBC #$01
+.C:2fb0  85 22       STA $22
+.C:2fb2  A5 23       LDA $23
+.C:2fb4  E9 00       SBC #$00
+.C:2fb6  85 23       STA $23
+.C:2fb8  A0 02       LDY #$02
+.C:2fba  A5 22       LDA $22
+.C:2fbc  91 0D       STA ($0D),Y
+.C:2fbe  C8          INY
+.C:2fbf  A5 23       LDA $23
+.C:2fc1  91 0D       STA ($0D),Y
+.C:2fc3  A0 00       LDY #$00
+.C:2fc5  4C 38 30    JMP $3038
+.C:2fc8  4C 8C 30    JMP $308C
+.C:2fcb  B1 8B       LDA ($8B),Y
+.C:2fcd  25 40       AND $40
+.C:2fcf  D0 F7       BNE $2FC8
+.C:2fd1  A5 3F       LDA $3F
+.C:2fd3  25 40       AND $40
+.C:2fd5  11 8B       ORA ($8B),Y
+.C:2fd7  91 8B       STA ($8B),Y
+.C:2fd9  A5 8B       LDA $8B
+.C:2fdb  85 FB       STA $FB
+.C:2fdd  A5 8C       LDA $8C
+.C:2fdf  85 FC       STA $FC
+.C:2fe1  20 A5 31    JSR $31A5
+.C:2fe4  24 8D       BIT $8D
+.C:2fe6  70 14       BVS $2FFC
+.C:2fe8  24 FE       BIT $FE
+.C:2fea  30 13       BMI $2FFF
+.C:2fec  A5 FD       LDA $FD
+.C:2fee  C5 22       CMP $22
+.C:2ff0  A5 FE       LDA $FE
+.C:2ff2  E5 23       SBC $23
+.C:2ff4  90 09       BCC $2FFF
+.C:2ff6  A5 8D       LDA $8D
+.C:2ff8  09 40       ORA #$40
+.C:2ffa  85 8D       STA $8D
+.C:2ffc  4C 29 30    JMP $3029
+.C:2fff  B1 3D       LDA ($3D),Y
+(C:$3001) 

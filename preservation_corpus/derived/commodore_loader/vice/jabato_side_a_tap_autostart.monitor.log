@@ -1,0 +1,30 @@
+(C:$0339)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;0339 10 04 ff f0 2f 07 00100010 000 002  294053762
+(C:$0339) Displaying 40x25 screen at $c000:
+c000  ;....>>NNNNNN666;^6NNNNNKKNN6K6666KNKK..
+c028  .....S....VK...666VN....KK6..SV.....KK..
+c050  ..........nK6;66S......KKKS...VV...6VV.K
+c078  ..........cif.........K..V..VVVV..6KVN..
+c0a0  ...........IZ...Y[Y....VVSS..VV...NVVN..
+c0c8  ...........Y....YYY.....V.V.......VKK...
+c0f0  ...........YIVVNVzYV............V.VKV..N
+c118  ............VvHANVvVQV.........VV.V..NN.
+c140  ..............VVVVVVVV..........VVV.VNNK
+c168  ..............VNVQV.fVZZ......VVNvN.VKKK
+c190  ..............V.FVVYHHXY.........VV.....
+c1b8  ..............V.VNV.VVY.................
+c1e0  ..............TT&T$T................SSS.
+c208  .............T""R"("...........XX.......
+c230  .............TR"R"x)...........X.X......
+c258  ......XX.YZY.TRRRR.)Z.X...........X..XX.
+c280  ......X)YY)Y.))Y....YVKVX...WWX..k.XXX..
+c2a8  ......XYxxxYX))...X...Vv..XWW.+.kkX.Xkk.
+c2d0  .....XYYxxx)YY)Y...YY...V.X?.++++.XXX.k.
+c2f8  ..XXS999Yxxx)YIQ.SYY9S..SIY?4TT4sxxX....
+c320  ..H>>8..99xxiYvI9ixYY9999YY(+T428YYX.Y..
+c348  SS.>>.>H88vxxxxIxxixx[YQxY[.XTI*#>8XXNFN
+c370  nFFIxYYxvIIx.xYixxiixYYYY[[[YF&H.VIsxCK.
+c398  FHHIYxYYIY.x[xxx.xYYYx.xxx.[x[xvIIIY[YKN
+c3c0  VFVVYx[YY.xxYYyYyYwk........[[[vvxYYYIFN
+(C:$0339) (C:$0339) (C:$0339) monitor_exit_status=0
+emulator_exit_status=0
