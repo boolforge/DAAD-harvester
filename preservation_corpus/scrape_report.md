@@ -5,9 +5,9 @@
 - **Successfully Downloaded:** 0
 - **Failed / Network Error:** 1
 - **Dead / 404 Targets:** 0
-- **Total Extracted Artifacts:** 59
-- **Verified DAAD Payloads:** 10
-- **ScummVM Catalog Entries Generated:** 10
+- **Total Extracted Artifacts:** 61
+- **Verified DAAD Payloads:** 12
+- **ScummVM Catalog Entries Generated:** 12
 
 ## 2. Source Tier Breakdown
 - **API:** 93 URLs
@@ -17,7 +17,7 @@
 ## 3. Platform Distribution
 - **AMIGA:** 2 titles
 - **ZX:** 6 titles
-- **C64:** 2 titles
+- **C64:** 4 titles
 
 ## 4. Verified DAAD Games & Multi-Algorithm Hashes
 ### Chichén Itzá (amiga)
@@ -120,9 +120,30 @@
 - **CRC32:** `bea815cf`
 - **XXH64:** `fed2088534a33045`
 
+### Jabato (c64)
+- **Filename:** `jabato_ass_part1_post_mirar.ddb` (24899 bytes)
+- **Version Guess:** `DAAD DDB v1`
+- **MD5 Full:** `8b68cff0783d1e14776967521e570b5f`
+- **MD5 Head 5KB:** `b71b078098380ddbf8c6cf17557ac94f`
+- **SHA-256:** `7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6`
+- **SHA-1:** `4f66c4624e2b322e43da7598ba10119ebea4290b`
+- **CRC32:** `6c2ad6d4`
+- **XXH64:** `bf329f98c63a7890`
+
+### Jabato (c64)
+- **Filename:** `jabato_ass_part2_post_mirar.ddb` (24680 bytes)
+- **Version Guess:** `DAAD DDB v1`
+- **MD5 Full:** `f81df6a303bddb43c1920bec39a2ecbf`
+- **MD5 Head 5KB:** `5daeed0d8b350078261e972685be5804`
+- **SHA-256:** `ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69`
+- **SHA-1:** `49d5886f8e9e811d8c1662e1bc15902a4cb8870b`
+- **CRC32:** `bea815cf`
+- **XXH64:** `fed2088534a33045`
+
 
 ## 5. MD5 Collision Report (Potential Cross-Platform Ports / Duplicates)
-_No duplicate MD5 collisions detected._
+- MD5 `8b68cff0783d1e14776967521e570b5f`: `jabato_side_a_runtime_part1.ddb` <--> `jabato_ass_part1_post_mirar.ddb`
+- MD5 `f81df6a303bddb43c1920bec39a2ecbf`: `jabato_side_b_runtime_part2.ddb` <--> `jabato_ass_part2_post_mirar.ddb`
 
 ## 6. Coverage Gaps & Unreachable Targets
 - `https://computeremuzone.com/download.php?ind=415` (Status: **error**, HTTP: 403)

@@ -110,6 +110,26 @@ static const ADGameDescription gameDescriptions[] = {
 		ADGF_NO_FLAGS,
 		GUIO0()
 	},
+	// MD5 Head (5KB): b71b078098380ddbf8c6cf17557ac94f | SHA-256: 7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6 | SHA-1: 4f66c4624e2b322e43da7598ba10119ebea4290b | CRC32: 6c2ad6d4 | XXH64: bf329f98c63a7890
+	{
+		"daad_jabato",
+		"Jabato (C64/1989)",
+		AD_ENTRY1s("jabato_ass_part1_post_mirar.ddb", "8b68cff0783d1e14776967521e570b5f", 24899),
+		Common::ES_ESP,
+		Common::kPlatformC64,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 5daeed0d8b350078261e972685be5804 | SHA-256: ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69 | SHA-1: 49d5886f8e9e811d8c1662e1bc15902a4cb8870b | CRC32: bea815cf | XXH64: fed2088534a33045
+	{
+		"daad_jabato",
+		"Jabato (C64/1989)",
+		AD_ENTRY1s("jabato_ass_part2_post_mirar.ddb", "f81df6a303bddb43c1920bec39a2ecbf", 24680),
+		Common::ES_ESP,
+		Common::kPlatformC64,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
 	AD_END_MARKER
 };
 

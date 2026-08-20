@@ -55,7 +55,6 @@ def ingest(
     output_path.write_bytes(payload)
     hashes = compute_hashes(payload)
     details = analysis["details"]
-    header = details["header"]
     evidence = {
         "origin_kind": "emulator_ram_range",
         "ram_path": str(ram_path),

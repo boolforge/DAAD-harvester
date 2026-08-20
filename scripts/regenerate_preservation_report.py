@@ -17,7 +17,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 CORPUS = ROOT / "preservation_corpus"
 REPORT = CORPUS / "report_data.json"
-REPORT_TIMESTAMP = "2026-08-20T19:58:31.210270+00:00"
+REPORT_TIMESTAMP = "2026-08-20T21:00:13.466648+00:00"
 sys.path.insert(0, str(ROOT))
 
 from daad_harvester.db import Database  # noqa: E402

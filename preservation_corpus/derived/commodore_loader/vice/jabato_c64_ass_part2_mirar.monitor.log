@@ -1,0 +1,29 @@
+(C:$ff48)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;ff48 00 ff 00 ec 2f 36 00100111 000 012  835006548
+(C:$ff48) Displaying 40x25 screen at $cc00:
+cc00  pppppppppppppppppppppppppppppppppppppppp
+cc28  pppppppppppppppppppppppppppppppppppppppp
+cc50  pppppppppppppppppppppppppppppppppppppppp
+cc78  pppppppppppppppppppppppppppppppppppppppp
+cca0  pppppppppppppppppppppppppppppppppppppppp
+ccc8  pppppppppppppppppppppppppppppppppppppppp
+ccf0  pppppppppppppppppppppppppppppppppppppppp
+cd18  pppppppppppppppppppppppppppppppppppppppp
+cd40  pppppppppppppppppppppppppppppppppppppppp
+cd68  pppppppppppppppppppppppppppppppppppppppp
+cd90  pppppppppppppppppppppppppppppppppppppppp
+cdb8  pppppppppppppppppppppppppppppppppppppppp
+cde0  pppppppppppppppppppppppppppppppppppppppp
+ce08  pppppppppppppppppppppppppppppppppppppppp
+ce30  pppppppppppppppppppppppppppppppppppppppp
+ce58  pppppppppppppppppppppppppppppppppppppppp
+ce80  pppppppppppppppppppppppppppppppppppppppp
+cea8  pppppppppppppppppppppppppppppppppppppppp
+ced0  pppppppppppppppppppppppppppppppppppppppp
+cef8  pppppppppppppppppppppppppppppppppppppppp
+cf20  pppppppppppppppppppppppppppppppppppppppp
+cf48  pppppppppppppppppppppppppppppppppppppppp
+cf70  pppppppppppppppppppppppppppppppppppppppp
+cf98  pppppppppppppppppppppppppppppppppppppppp
+cfc0  pppppppppppppppppppppppppppppppppppppppp
+(C:$ff48) (C:$ff48) (C:$ff48) 

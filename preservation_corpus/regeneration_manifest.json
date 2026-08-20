@@ -128,21 +128,21 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
-          "sha256": "e9ca2c94ed06fa7ecab4667013a49aeb6b067cb0e7f3e38c497c2166b9aa1619"
+          "sha256": "c5fe6f9316074a40c5c5dc905622dfdd30eeccb9f4821854c8eb076ae4094f23"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
-          "sha256": "e9ca2c94ed06fa7ecab4667013a49aeb6b067cb0e7f3e38c497c2166b9aa1619"
+          "sha256": "c5fe6f9316074a40c5c5dc905622dfdd30eeccb9f4821854c8eb076ae4094f23"
         }
       ],
       "external_validators": []
@@ -265,19 +265,19 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+          "sha256": "dbc05d5168833241d4a2e3ae091cfcffd91a611ef3177afc952da55c90057563"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
-          "sha256": "aeca2212fdc2e3c1ca1cf1e023903c0b1b3b4e846ad47e9ecc63a2a682a013cc"
+          "sha256": "6695a094ffdfb48a6b4b85d17fca37925649a640cf45588a15af5b183683d091"
         },
         {
           "path": "preservation_corpus/library/manifest.json",
-          "sha256": "c2e506f74c6bcc63b271aee658e493c4b9b1da1278eeccb8d78a945cd1f124d3"
+          "sha256": "a69488440790d9d465086fe887c066228e8dd6f85842c30f653e142481c32adf"
         },
         {
           "path": "preservation_corpus/daad_catalog.json",
-          "sha256": "3f73c46071bae707a2af6c2db9bbcf3d0acc067f79e202600f80c7e7188f1c54"
+          "sha256": "844ad7d373741864b9283ef652ebc82af029261e2acac8568b90fc17c610fd36"
         },
         {
           "path": "preservation_corpus/logs/daad_general.log",
@@ -291,13 +291,66 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "957e7ec9836590234137fa5dffa032d8d809382edc75083988cd19e5711ca26a"
+          "sha256": "09a9f99d8fdc9b66aafa71f464996d62d41aca82c56e167a1980d16f6dc16df9"
         }
       ],
       "external_validators": [
         {
           "name": "browser report viewer",
           "role": "optional presentation consumer only; not invoked by the primary report-regeneration command"
+        }
+      ]
+    },
+    {
+      "id": "c64-jabato-ass-scene-variant-comparison",
+      "description": "Structurally validates and byte-compares the retained ASS scene members' post-command Part 1 and Part 2 runtime DDBs against the original Side A and Side B recoveries.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_jabato_c64_ass_scene_variant.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/extracted/depth1_a05bba25_JABATO P.1",
+          "sha256": "528d6b6f9c47153f6a7b64316a2b9c46f90020089de3212fe7568a7e31914af0"
+        },
+        {
+          "path": "preservation_corpus/extracted/depth1_20a1cd01_JABATO P.2",
+          "sha256": "65e8e2b2358caecf302a367374d87993c685bb76b894e11da51e8aa7a0eba6c7"
+        },
+        {
+          "path": "preservation_corpus/derived/commodore_loader/vice/jabato_c64_ass_part1_mirar.ram",
+          "sha256": "b54145cc3d76417ecb5bbddc6cc0ecb71f9608ef5ee15de623857ed36fd6576f"
+        },
+        {
+          "path": "preservation_corpus/derived/commodore_loader/vice/jabato_c64_ass_part2_mirar.ram",
+          "sha256": "402fca8d2112f599943b8a7f3820dad3866cf3e6386dddabe4552ad555dd84db"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
+          "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6"
+        },
+        {
+          "path": "preservation_corpus/derived/commodore_loader/jabato_ass_part2_post_mirar.ddb",
+          "sha256": "ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "VICE",
+          "role": "acquisition-time producer of the retained post-command RAM captures only; not invoked by this primary comparison command"
+        },
+        {
+          "name": "ADP fixtures",
+          "role": "independent comparison reference only; not read by this primary comparison command"
         }
       ]
     }

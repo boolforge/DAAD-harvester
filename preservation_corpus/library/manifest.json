@@ -8,7 +8,7 @@
   },
   "summary": {
     "archive": 4,
-    "ready_to_use": 16,
+    "ready_to_use": 18,
     "support_or_unknown": 39
   },
   "artifacts": [
@@ -1072,6 +1072,42 @@
       "original_filename": "jabato_side_b_runtime_part2.ddb",
       "source_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/jabato_side_b_tap_post_input_12_part2.ddb",
       "library_path": "library/C64/jabato/ready_to_use/jabato_side_b_runtime_part2.ddb",
+      "materialization": "hardlink"
+    },
+    {
+      "artifact_id": 107,
+      "source_id": 121,
+      "game_id": "jabato",
+      "title": "Jabato",
+      "platform": "c64",
+      "classification": "ready_to_use",
+      "ready_to_use": true,
+      "binary_verified_daad": true,
+      "daad_version_guess": "DAAD DDB v1",
+      "source_url": "https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64",
+      "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6",
+      "size": 24899,
+      "original_filename": "jabato_ass_part1_post_mirar.ddb",
+      "source_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
+      "library_path": "library/C64/jabato/ready_to_use/jabato_ass_part1_post_mirar.ddb",
+      "materialization": "hardlink"
+    },
+    {
+      "artifact_id": 108,
+      "source_id": 121,
+      "game_id": "jabato",
+      "title": "Jabato",
+      "platform": "c64",
+      "classification": "ready_to_use",
+      "ready_to_use": true,
+      "binary_verified_daad": true,
+      "daad_version_guess": "DAAD DDB v1",
+      "source_url": "https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64",
+      "sha256": "ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69",
+      "size": 24680,
+      "original_filename": "jabato_ass_part2_post_mirar.ddb",
+      "source_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/derived/commodore_loader/jabato_ass_part2_post_mirar.ddb",
+      "library_path": "library/C64/jabato/ready_to_use/jabato_ass_part2_post_mirar.ddb",
       "materialization": "hardlink"
     }
   ]
