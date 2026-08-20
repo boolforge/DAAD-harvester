@@ -502,6 +502,37 @@ class Database:
             )
             conn.commit()
 
+    def update_artifact_checksums(self, artifact_id: int, hashes: dict[str, str]) -> None:
+        """Persist the canonical complete digest suite for one retained artifact.
+
+        This method is intentionally limited to digest columns. Callers must
+        obtain ``hashes`` by rereading the retained bytes through
+        :func:`daad_harvester.unpack.compute_hashes`; it must never be used to
+        manufacture a checksum from metadata or a filename.
+        """
+
+        required = (
+            "md5_full", "md5_5000", "md5_tail5000", "sha1", "sha224",
+            "sha256", "sha384", "sha512", "sha3_256", "sha3_512",
+            "blake2b", "blake2s", "crc32", "adler32", "xxh32", "xxh64", "xxh128",
+        )
+        missing = [field for field in required if not hashes.get(field)]
+        if missing:
+            raise ValueError(f"incomplete checksum update for artifact {artifact_id}: {', '.join(missing)}")
+        with self.get_connection() as conn:
+            conn.execute(
+                """
+                UPDATE artifacts
+                SET md5_full = ?, md5_5000 = ?, md5_tail5000 = ?, sha1 = ?, sha224 = ?,
+                    sha256 = ?, sha384 = ?, sha512 = ?, sha3_256 = ?, sha3_512 = ?,
+                    blake2b = ?, blake2s = ?, crc32 = ?, adler32 = ?, xxh32 = ?,
+                    xxh64 = ?, xxh128 = ?
+                WHERE id = ?
+                """,
+                tuple(hashes[field] for field in required) + (artifact_id,),
+            )
+            conn.commit()
+
     def update_artifact_media(
         self,
         artifact_id: int,
