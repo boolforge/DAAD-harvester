@@ -38,6 +38,8 @@ jobs:
           test -s preservation_corpus/report_data.json
           test -s preservation_corpus/detection_tables.h
           test -s preservation_corpus/library/manifest.json
+          test -s preservation_corpus/public_artifacts_manifest.json
+          python scripts/build_public_artifact_manifest.py --check
           python scripts/build_pages_docs.py
 
       - name: Set up Node
@@ -59,6 +61,8 @@ jobs:
           pnpm install --frozen-lockfile
           cp ../../preservation_corpus/report_data.json public/report_data.json
           cp ../../preservation_corpus/detection_tables.h public/detection_tables.h
+          cp ../../preservation_corpus/public_artifacts_manifest.json public/public_artifacts_manifest.json
+          python ../../scripts/stage_public_artifacts.py --stage-dir public
           mkdir -p public/library
           cp ../../preservation_corpus/library/manifest.json public/library/manifest.json
           pnpm run build
@@ -90,9 +94,12 @@ jobs:
       - name: Verify canonical public portal content
         run: |
           expected_report_sha256="$(sha256sum preservation_corpus/report_data.json | awk '{print $1}')"
+          expected_manifest_sha256="$(sha256sum preservation_corpus/public_artifacts_manifest.json | awk '{print $1}')"
           python scripts/verify_pages_deployment.py \
             --url "${{ needs.deploy.outputs.page_url }}" \
             --documentation-url "${{ needs.deploy.outputs.page_url }}documentation/index.html" \
             --minimum-sources 1 \
             --minimum-artifacts 1 \
-            --expected-report-sha256 "$expected_report_sha256"
+            --expected-report-sha256 "$expected_report_sha256" \
+            --expected-manifest-sha256 "$expected_manifest_sha256" \
+            --minimum-public-artifacts 1

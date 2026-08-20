@@ -27,6 +27,7 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
         ("runtime resources", ("scripts/verify_runtime_resources.py",)),
         ("retained game corpus", ("scripts/verify_game_corpus.py",)),
         ("complete artifact checksums", ("scripts/verify_artifact_checksums.py",)),
+        ("public artifact manifest", ("scripts/build_public_artifact_manifest.py", "--check")),
         ("reverse-engineering corpus", ("scripts/verify_reverse_corpus.py",)),
         ("static preservation report", ("scripts/regenerate_preservation_report.py", "--check")),
         ("documentation integrity", ("scripts/check_docs.py",)),

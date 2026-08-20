@@ -25,6 +25,7 @@ def test_primary_workflow_lists_all_native_gates_without_external_tools() -> Non
     assert "runtime resources:" in result.stdout
     assert "retained game corpus:" in result.stdout
     assert "complete artifact checksums:" in result.stdout
+    assert "public artifact manifest:" in result.stdout
     assert "reverse-engineering corpus:" in result.stdout
     assert "static preservation report:" in result.stdout
     assert "documentation integrity:" in result.stdout

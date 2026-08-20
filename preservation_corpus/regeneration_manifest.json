@@ -302,6 +302,42 @@
       ]
     },
     {
+      "id": "public-retained-artifact-manifest",
+      "description": "Regenerates and byte-verifies the browser-safe manifest that maps every retained authorized artifact across all platforms and technical media to an opaque public deployment path, complete digest suite, provenance, and evidence state.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "declared project Python dependencies",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/build_public_artifact_manifest.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/public_artifacts_manifest.json",
+          "sha256": "a30f9e3f6e839aac20e324ea9d97134495cf1ab8023373ac47c6ce23a46ed2f4"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "Pages static-artifact staging",
+          "role": "CI copies only manifest-approved bytes and independently recomputes their retained-byte digests; it is not a source of preservation evidence"
+        }
+      ]
+    },
+    {
       "id": "c64-jabato-ass-scene-variant-comparison",
       "description": "Structurally validates and byte-compares the retained ASS scene members' post-command Part 1 and Part 2 runtime DDBs against the original Side A and Side B recoveries.",
       "primary_class": "repository-native",
