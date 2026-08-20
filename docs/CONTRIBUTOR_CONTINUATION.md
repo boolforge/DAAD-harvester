@@ -11,6 +11,8 @@
 
 This guide complements the mandatory [self-contained regeneration policy](SELF_CONTAINED_REGENERATION.md). The policy defines what may be promoted as primary evidence; this guide defines how a new maintainer works safely and deterministically.
 
+The repository-wide [requirements, evidence, and continuity contract](requirements/TRACEABILITY_AND_CONTINUITY.md) defines the mandatory handoff record for every concern and future change. Read it after this guide’s orientation sections when planning or reviewing a modification.
+
 ## 1. Distinguish host automation from historical target coverage
 
 The project has two independent platform dimensions. **Host support** means the deterministic Python workflow runs on Linux, macOS, Windows, and Termux. **Target coverage** means the evidence model and native parsers cover DAAD artifacts for ZX Spectrum, Amstrad CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS. A successful host run never proves every historical target is complete; the [format capability matrix](formats/FORMAT_CAPABILITY_MATRIX.md) and [coverage ledger](../preservation_corpus/COVERAGE_LEDGER.md) record the target-specific state.

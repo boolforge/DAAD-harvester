@@ -8,6 +8,7 @@ This documentation corpus describes **what DAAD Harvester can measure**, the evi
 | [Self-contained regeneration standard](SELF_CONTAINED_REGENERATION.md) | Mandatory global policy, manifest contract, CI gate, and external-validator boundary for every promoted result. |
 | [Research methodology](RESEARCH_METHODOLOGY.md) | Evidence ladder, lawful reverse-engineering boundary, documentation anatomy, and reproducibility packet. |
 | [Documentation map](DOCUMENTATION_MAP.md) | Directory ownership, modular migration ledger, required module header, and cross-reference rules. |
+| [Requirements and continuation contract](requirements/TRACEABILITY_AND_CONTINUITY.md) | Repository-wide requirements-to-evidence traceability, clean-clone human/agent continuation, CI parity, and public-report/TUI evidence rules. |
 | [Format capability matrix](formats/FORMAT_CAPABILITY_MATRIX.md) | Input families, parser contracts, extraction boundaries, and test expectations. |
 | [Version chronology](versions/DAAD_CHRONOLOGY.md) | DAAD R2–R5, historical V1/V2 layouts, and DRC V2/V3 evidence. |
 | [Platform runtime and media guide](platforms/PLATFORM_RUNTIME_MEDIA.md) | The nine canonical targets, runtime evidence, and native media handling. |

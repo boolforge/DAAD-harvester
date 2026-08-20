@@ -21,6 +21,7 @@ FOCUSED_DIRECTORIES = (
     "reverse_engineering",
     "schemas",
     "sources",
+    "requirements",
 )
 LEGACY_OR_INDEX = {
     "README.md",
@@ -41,6 +42,13 @@ REGENERATION_POLICY_DOCUMENTS = (
     DOCS / "schemas" / "STATIC_REPORT_CONTRACT.md",
     DOCS / "reverse_engineering" / "AUTHORIZATION_AND_HANDLING.md",
     DOCS / "reverse_engineering" / "ARCHITECTURE_WORKFLOWS.md",
+)
+TRACEABILITY_DOCUMENT = DOCS / "requirements" / "TRACEABILITY_AND_CONTINUITY.md"
+TRACEABILITY_NAVIGATION_DOCUMENTS = (
+    ROOT / "README.md",
+    DOCS / "README.md",
+    DOCS / "DOCUMENTATION_MAP.md",
+    DOCS / "CONTRIBUTOR_CONTINUATION.md",
 )
 
 
@@ -99,12 +107,28 @@ def check_regeneration_policy_links(errors: list[str]) -> int:
     return checked
 
 
+def check_traceability_navigation(errors: list[str]) -> int:
+    """Ensure clean-clone continuation can discover the traceability contract."""
+
+    checked = 0
+    if not TRACEABILITY_DOCUMENT.is_file():
+        errors.append(f"missing traceability contract: {TRACEABILITY_DOCUMENT.relative_to(ROOT)}")
+        return checked
+    required_link = "requirements/TRACEABILITY_AND_CONTINUITY.md"
+    for document in TRACEABILITY_NAVIGATION_DOCUMENTS:
+        checked += 1
+        if required_link not in document.read_text(encoding="utf-8"):
+            errors.append(f"missing traceability navigation link: {document.relative_to(ROOT)}")
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     links = check_relative_links(errors)
     modules = check_focused_module_headers(errors)
     diagrams = check_mermaid_sources(errors)
     policy_documents = check_regeneration_policy_links(errors)
+    traceability_documents = check_traceability_navigation(errors)
     if errors:
         print("Documentation integrity check failed:")
         print("\n".join(f"- {error}" for error in errors))
@@ -112,7 +136,8 @@ def main() -> int:
     print(
         "Documentation integrity check passed: "
         f"{links} relative links, {modules} focused modules, {diagrams} Mermaid sources, "
-        f"{policy_documents} required regeneration-policy links."
+        f"{policy_documents} required regeneration-policy links, "
+        f"{traceability_documents} traceability-navigation links."
     )
     return 0
 

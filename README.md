@@ -124,6 +124,8 @@ Read [`TODO.md`](TODO.md), the [format capability matrix](docs/formats/FORMAT_CA
 
 The complete prompt-free handoff procedure, including optional-validator automation and recovery boundaries, is in the [clone-to-contribution continuation guide](docs/CONTRIBUTOR_CONTINUATION.md).
 
+The [requirements, evidence, and continuity contract](docs/requirements/TRACEABILITY_AND_CONTINUITY.md) shows how every current and future claim must link its evidence, code, tests, deterministic regeneration, CI behavior, public representation, recovery boundary, and continuation instruction for both humans and deterministic agents.
+
 For one deterministic cross-host primary verification command, run:
 
 ```bash

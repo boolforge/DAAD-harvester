@@ -39,6 +39,8 @@ Before export, every catalog artifact has `extracted_path` removed. Library link
 
 The viewer may format, filter, search, or link fields. It must not calculate an identity confidence from a filename, infer a version from a blank field, show hidden local paths, or turn an unavailable download into an active link. A contract-breaking object should be shown as unavailable/unknown rather than normalized silently.[1] [2]
 
+The detailed public-report and TUI interaction boundary—including title/port separation, checksum display, ScummVM detection-header semantics, and required regression matrix—is maintained in the [UI evidence contract](../requirements/UI_EVIDENCE_CONTRACT.md).
+
 ## References
 
 [1]: [`report_export.py`](../../daad_harvester/report_export.py) static exporter contract

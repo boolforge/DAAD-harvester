@@ -18,6 +18,7 @@ docs/
 ├── schemas/                          # persisted evidence and byte-layout schemas
 ├── diagrams/                         # standalone Mermaid sources and rendered assets
 ├── sources/                          # one primary source ledger entry per source family
+├── requirements/                     # cross-cutting traceability, continuity, and interface contracts
 ├── audits/                           # immutable dated reproducibility records
 └── tui/                              # operational interface and recording method
 ```
@@ -35,6 +36,7 @@ docs/
 | `schemas/` | What fields or bytes have defined semantics? | Narrative release history. |
 | `diagrams/` | What visual model supports one named module? | Uncited prose explanations. |
 | `sources/` | What exact source supports what claim, with access and legal boundary? | Unattributed interpretation. |
+| `requirements/` | How does a requirement map to evidence, source code, tests, regeneration, CI, interface behavior, recovery, and the next contributor? | Platform/format detail duplicated from focused technical dossiers. |
 | `audits/` | What exact command and dated result was observed? | Timeless format specification. |
 
 ## Current-file migration ledger
@@ -66,3 +68,5 @@ Every detailed module begins with a compact header.
 Links point **outward** instead of copying text. A platform dossier links to a media-family module for byte details; that module links back only where platform behavior differs. Diagrams are stored separately and embedded by link. A source URL is defined once in the relevant source-ledger file and cited from technical modules through an explicit reference label.
 
 This arrangement keeps a future ScummVM implementer from having to infer whether a paragraph is normative format detail, local Harvester behavior, historical evidence, or a dated audit observation.
+
+The [requirements traceability and continuity contract](requirements/TRACEABILITY_AND_CONTINUITY.md) is the repository-wide handoff layer: it ties every concern to its focused module without duplicating the technical content held by the owning directory.
