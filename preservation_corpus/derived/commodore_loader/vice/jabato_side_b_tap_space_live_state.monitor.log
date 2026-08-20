@@ -1,0 +1,8 @@
+(C:$0336)   ADDR A  X  Y  SP 00 01 NV-BDIZC LIN CYC  STOPWATCH
+.;0336 10 06 ff f0 2f 07 00100010 000 001  264432169
+(C:$0336) >C:00a8  00 00 80 6b  eb 7d 80 7e                             ...k.}.~
+(C:$00b0) >C:0314  31 ea                                                1.
+(C:$0316) ERROR -- Wrong syntax:
+  disassemble $0300 $03d8
+              ^
+(C:$0316) 

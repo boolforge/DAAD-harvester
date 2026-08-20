@@ -91,3 +91,20 @@ def test_library_builder_retains_duplicate_member_names_as_distinct_paths(tmp_pa
     assert len({entry["library_path"] for entry in entries}) == 2
     assert any("__artifact_" in entry["library_path"] for entry in entries)
     assert {Path(tmp_path / entry["library_path"]).read_bytes() for entry in entries} == {b"part-one", b"part-two"}
+
+
+def test_library_builder_places_verified_ddb_in_ready_to_use(tmp_path):
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source(
+        "https://example.com/jabato.tap", "archive", title="Jabato", platform="c64", known_game_id="jabato"
+    )
+    ddb = tmp_path / "jabato_part2.ddb"
+    ddb.write_bytes(b"verified-daad-database")
+    _add_artifact(db, source_id, ddb, "jabato_part2.ddb", is_daad=True, platform_hint="c64")
+
+    manifest = json.loads(LibraryBuilder(db, tmp_path).build().read_text(encoding="utf-8"))
+    entry = manifest["artifacts"][0]
+
+    assert entry["classification"] == "ready_to_use"
+    assert entry["ready_to_use"] is True
+    assert entry["library_path"] == "library/C64/jabato/ready_to_use/jabato_part2.ddb"

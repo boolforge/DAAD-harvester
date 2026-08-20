@@ -1,0 +1,1188 @@
+{
+  "dominant_exact_pulse_cycles": [
+    {
+      "count": 186277,
+      "cycles": 592,
+      "tap_value": 74
+    },
+    {
+      "count": 130817,
+      "cycles": 280,
+      "tap_value": 35
+    },
+    {
+      "count": 121031,
+      "cycles": 608,
+      "tap_value": 76
+    },
+    {
+      "count": 116632,
+      "cycles": 264,
+      "tap_value": 33
+    },
+    {
+      "count": 84123,
+      "cycles": 304,
+      "tap_value": 38
+    },
+    {
+      "count": 61880,
+      "cycles": 568,
+      "tap_value": 71
+    },
+    {
+      "count": 21517,
+      "cycles": 384,
+      "tap_value": 48
+    },
+    {
+      "count": 18340,
+      "cycles": 368,
+      "tap_value": 46
+    },
+    {
+      "count": 12936,
+      "cycles": 240,
+      "tap_value": 30
+    },
+    {
+      "count": 7081,
+      "cycles": 632,
+      "tap_value": 79
+    },
+    {
+      "count": 5007,
+      "cycles": 528,
+      "tap_value": 66
+    },
+    {
+      "count": 4203,
+      "cycles": 552,
+      "tap_value": 69
+    },
+    {
+      "count": 1777,
+      "cycles": 344,
+      "tap_value": 43
+    },
+    {
+      "count": 974,
+      "cycles": 512,
+      "tap_value": 64
+    },
+    {
+      "count": 630,
+      "cycles": 712,
+      "tap_value": 89
+    },
+    {
+      "count": 322,
+      "cycles": 696,
+      "tap_value": 87
+    }
+  ],
+  "extended_pulse_events": [
+    {
+      "cycles": 3202,
+      "encoded_size": 4,
+      "stream_offset": 35376
+    },
+    {
+      "cycles": 321047,
+      "encoded_size": 4,
+      "stream_offset": 35380
+    },
+    {
+      "cycles": 3407,
+      "encoded_size": 4,
+      "stream_offset": 52880
+    },
+    {
+      "cycles": 520724,
+      "encoded_size": 4,
+      "stream_offset": 52884
+    },
+    {
+      "cycles": 3407,
+      "encoded_size": 4,
+      "stream_offset": 56628
+    },
+    {
+      "cycles": 276382,
+      "encoded_size": 4,
+      "stream_offset": 56632
+    },
+    {
+      "cycles": 268336,
+      "encoded_size": 4,
+      "stream_offset": 56636
+    },
+    {
+      "cycles": 546525,
+      "encoded_size": 4,
+      "stream_offset": 63964
+    },
+    {
+      "cycles": 2483,
+      "encoded_size": 4,
+      "stream_offset": 78787
+    },
+    {
+      "cycles": 547243,
+      "encoded_size": 4,
+      "stream_offset": 78792
+    },
+    {
+      "cycles": 3633,
+      "encoded_size": 4,
+      "stream_offset": 93636
+    },
+    {
+      "cycles": 547695,
+      "encoded_size": 4,
+      "stream_offset": 93640
+    },
+    {
+      "cycles": 3448,
+      "encoded_size": 4,
+      "stream_offset": 195903
+    },
+    {
+      "cycles": 546833,
+      "encoded_size": 4,
+      "stream_offset": 195907
+    },
+    {
+      "cycles": 2360,
+      "encoded_size": 4,
+      "stream_offset": 339287
+    },
+    {
+      "cycles": 547715,
+      "encoded_size": 4,
+      "stream_offset": 339292
+    },
+    {
+      "cycles": 545150,
+      "encoded_size": 4,
+      "stream_offset": 624574
+    },
+    {
+      "cycles": 3427,
+      "encoded_size": 4,
+      "stream_offset": 773919
+    },
+    {
+      "cycles": 133111,
+      "encoded_size": 4,
+      "stream_offset": 773923
+    },
+    {
+      "cycles": 6465,
+      "encoded_size": 4,
+      "stream_offset": 773927
+    },
+    {
+      "cycles": 588726,
+      "encoded_size": 4,
+      "stream_offset": 773931
+    },
+    {
+      "cycles": 5624,
+      "encoded_size": 4,
+      "stream_offset": 773935
+    },
+    {
+      "cycles": 730951,
+      "encoded_size": 4,
+      "stream_offset": 773939
+    },
+    {
+      "cycles": 2319,
+      "encoded_size": 4,
+      "stream_offset": 773943
+    }
+  ],
+  "file_size": 773967,
+  "header": {
+    "declared_pulse_bytes": 773947,
+    "platform": "c64",
+    "platform_code": 0,
+    "signature": "C64-TAPE-RAW",
+    "version": 1,
+    "video_standard": 0
+  },
+  "kernal_compatible_decoder": {
+    "packet_count": 4,
+    "packets": [
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "898887868584838281039f02c0034a414241544f2032202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "2bc86123547bc26586748e8013f94d561f4ecdd45234be2d74a95402236f6523",
+        "stream_end": 31174,
+        "stream_start": 27136
+      },
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "090807060504030201039f02c0034a414241544f2032202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "3dbf1ccfb1c505f3544d903f8161a05b66f778e288d81ccd88705a7893b4ff0d",
+        "stream_end": 35295,
+        "stream_start": 31257
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "898887868584838281a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "128466f13a562463d6efc9e1f62edcc99f281c2b0f57527c574fc8adbe5398b6",
+        "stream_end": 46738,
+        "stream_start": 40760
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "090807060504030201a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "efff9feb59d2edbace9f9387e2d6efbc4a817138c29582283ad19c204c61d0f7",
+        "stream_end": 52799,
+        "stream_start": 46821
+      }
+    ],
+    "reference_prefix_matches": [],
+    "timing_bounds": {
+      "max_long": 840,
+      "medium_long_boundary": 640,
+      "short_medium_boundary": 440
+    }
+  },
+  "measured_loader_01b6_plausible_frames": [
+    {
+      "available_payload_sha256": "81b949b0dfa949f7aac1ea2c8acca24acfec20d804a47a4a12c855a46bdae7e6",
+      "available_payload_size": 3290,
+      "complete_payload": false,
+      "end_address_exclusive": 5877,
+      "expected_payload_size": 5633,
+      "phase": 4,
+      "segment_index": 7,
+      "start_address": 244,
+      "sync_stream_offset": 162948
+    },
+    {
+      "available_payload_sha256": "c6d3e74bf65747d34d3e742bf6c208f52aa3ac1c598f0233cb302e7f7d57c3e9",
+      "available_payload_size": 256,
+      "complete_payload": true,
+      "end_address_exclusive": 63744,
+      "expected_payload_size": 256,
+      "phase": 4,
+      "runtime_byte_matches": 256,
+      "runtime_exact_match": true,
+      "segment_index": 7,
+      "start_address": 63488,
+      "sync_stream_offset": 176338
+    },
+    {
+      "available_payload_sha256": "4f80a92138688e52c86075cf33a36061a18b3680880d0898bbf882d9e3eb7bcf",
+      "available_payload_size": 5377,
+      "complete_payload": true,
+      "end_address_exclusive": 5648,
+      "expected_payload_size": 5377,
+      "phase": 9,
+      "runtime_byte_matches": 17,
+      "runtime_exact_match": false,
+      "segment_index": 8,
+      "start_address": 271,
+      "sync_stream_offset": 221260
+    },
+    {
+      "available_payload_sha256": "ef4b2cbd36d8249141c149786e8c95b881b5ee185959a7f0e319d38b0f285139",
+      "available_payload_size": 4425,
+      "complete_payload": false,
+      "end_address_exclusive": 5674,
+      "expected_payload_size": 5377,
+      "phase": 9,
+      "segment_index": 8,
+      "start_address": 297,
+      "sync_stream_offset": 294980
+    },
+    {
+      "available_payload_sha256": "9ac2e30ee6cc76d444252023718b1c948aff699076d860e8eeeacd80a999f31d",
+      "available_payload_size": 256,
+      "complete_payload": true,
+      "end_address_exclusive": 42359,
+      "expected_payload_size": 256,
+      "phase": 8,
+      "runtime_byte_matches": 256,
+      "runtime_exact_match": true,
+      "segment_index": 10,
+      "start_address": 42103,
+      "sync_stream_offset": 657696
+    }
+  ],
+  "measured_loader_01b6_sync_candidates": [
+    {
+      "following_16_bytes_hex": "1603a503a403ed00ec00555555555555",
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 135268
+    },
+    {
+      "following_16_bytes_hex": "1603a503a403ef00ee00555555555555",
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 141888
+    },
+    {
+      "following_16_bytes_hex": "16f500f400575555555555555555aa7f",
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 162948
+    },
+    {
+      "following_16_bytes_hex": "1603a703a403204af700f60095a5a5a9",
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 169018
+    },
+    {
+      "following_16_bytes_hex": "f900f800bebafaeaeeafafed55559595",
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 176338
+    },
+    {
+      "following_16_bytes_hex": "16033403008be383a47ca5a802e4a786",
+      "phase": 8,
+      "preceding_zero_byte_run": 255,
+      "segment_index": 7,
+      "sync_stream_offset": 96202
+    },
+    {
+      "following_16_bytes_hex": "049b34a171a5dfa1b1045e64952032fc",
+      "phase": 2,
+      "preceding_zero_byte_run": 1,
+      "segment_index": 8,
+      "sync_stream_offset": 305643
+    },
+    {
+      "following_16_bytes_hex": "1603a603a403200b010a015f363002a9",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 204520
+    },
+    {
+      "following_16_bytes_hex": "1610010f01818ba9274cc20e20fd33a5",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 221260
+    },
+    {
+      "following_16_bytes_hex": "162a012901add10285fbadd002203c34",
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 294980
+    },
+    {
+      "following_16_bytes_hex": "16788077808f6f6c1e7c8f8de7879692",
+      "phase": 3,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 525239
+    },
+    {
+      "following_16_bytes_hex": "163d803c803400b6adb2badf3400b6a5",
+      "phase": 5,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 353931
+    },
+    {
+      "following_16_bytes_hex": "1670806f80989e918b9adf978a869adf",
+      "phase": 6,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 9,
+      "sync_stream_offset": 500392
+    },
+    {
+      "following_16_bytes_hex": "191119160001010d1311130d0000000e",
+      "phase": 3,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 10,
+      "sync_stream_offset": 758181
+    },
+    {
+      "following_16_bytes_hex": "19111e103000000d020202020000000e",
+      "phase": 3,
+      "preceding_zero_byte_run": 2,
+      "segment_index": 10,
+      "sync_stream_offset": 759461
+    },
+    {
+      "following_16_bytes_hex": "a577a477081015030b150f08e5121425",
+      "phase": 8,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 10,
+      "sync_stream_offset": 657696
+    }
+  ],
+  "measured_loader_reference_prefix_matches": [],
+  "path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_5114b2dd_Jabato (1989)(Aventuras AD)(Side B).tap",
+  "physical_pause_segments": [
+    {
+      "following_pause_cycles": 321047,
+      "segment_index": 0,
+      "stream_byte_count": 35384,
+      "stream_end_exclusive": 35384,
+      "stream_start": 0
+    },
+    {
+      "following_pause_cycles": 520724,
+      "segment_index": 1,
+      "stream_byte_count": 17504,
+      "stream_end_exclusive": 52888,
+      "stream_start": 35384
+    },
+    {
+      "following_pause_cycles": 276382,
+      "segment_index": 2,
+      "stream_byte_count": 3748,
+      "stream_end_exclusive": 56636,
+      "stream_start": 52888
+    },
+    {
+      "following_pause_cycles": 268336,
+      "segment_index": 3,
+      "stream_byte_count": 4,
+      "stream_end_exclusive": 56640,
+      "stream_start": 56636
+    },
+    {
+      "following_pause_cycles": 546525,
+      "segment_index": 4,
+      "stream_byte_count": 7328,
+      "stream_end_exclusive": 63968,
+      "stream_start": 56640
+    },
+    {
+      "following_pause_cycles": 547243,
+      "segment_index": 5,
+      "stream_byte_count": 14828,
+      "stream_end_exclusive": 78796,
+      "stream_start": 63968
+    },
+    {
+      "following_pause_cycles": 547695,
+      "segment_index": 6,
+      "stream_byte_count": 14848,
+      "stream_end_exclusive": 93644,
+      "stream_start": 78796
+    },
+    {
+      "following_pause_cycles": 546833,
+      "segment_index": 7,
+      "stream_byte_count": 102267,
+      "stream_end_exclusive": 195911,
+      "stream_start": 93644
+    },
+    {
+      "following_pause_cycles": 547715,
+      "segment_index": 8,
+      "stream_byte_count": 143385,
+      "stream_end_exclusive": 339296,
+      "stream_start": 195911
+    },
+    {
+      "following_pause_cycles": 545150,
+      "segment_index": 9,
+      "stream_byte_count": 285282,
+      "stream_end_exclusive": 624578,
+      "stream_start": 339296
+    },
+    {
+      "following_pause_cycles": 133111,
+      "segment_index": 10,
+      "stream_byte_count": 149349,
+      "stream_end_exclusive": 773927,
+      "stream_start": 624578
+    },
+    {
+      "following_pause_cycles": 588726,
+      "segment_index": 11,
+      "stream_byte_count": 8,
+      "stream_end_exclusive": 773935,
+      "stream_start": 773927
+    },
+    {
+      "following_pause_cycles": 730951,
+      "segment_index": 12,
+      "stream_byte_count": 8,
+      "stream_end_exclusive": 773943,
+      "stream_start": 773935
+    },
+    {
+      "segment_index": 13,
+      "stream_byte_count": 4,
+      "stream_end_exclusive": 773947,
+      "stream_start": 773943
+    }
+  ],
+  "pulse_event_count": 773875,
+  "pulse_kinds": {
+    "exact_extended": 24,
+    "quantized": 773851
+  },
+  "segment_timing_profiles": [
+    {
+      "dominant_cycles": [
+        {
+          "count": 17675,
+          "cycles": 384,
+          "tap_value": 48
+        },
+        {
+          "count": 12444,
+          "cycles": 368,
+          "tap_value": 46
+        },
+        {
+          "count": 2010,
+          "cycles": 528,
+          "tap_value": 66
+        },
+        {
+          "count": 1596,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 688,
+          "cycles": 344,
+          "tap_value": 43
+        },
+        {
+          "count": 422,
+          "cycles": 512,
+          "tap_value": 64
+        },
+        {
+          "count": 211,
+          "cycles": 712,
+          "tap_value": 89
+        },
+        {
+          "count": 189,
+          "cycles": 696,
+          "tap_value": 87
+        }
+      ],
+      "exact_pulse_count": 35377,
+      "segment_index": 0
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 5896,
+          "cycles": 368,
+          "tap_value": 46
+        },
+        {
+          "count": 3842,
+          "cycles": 384,
+          "tap_value": 48
+        },
+        {
+          "count": 2997,
+          "cycles": 528,
+          "tap_value": 66
+        },
+        {
+          "count": 2401,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 1089,
+          "cycles": 344,
+          "tap_value": 43
+        },
+        {
+          "count": 552,
+          "cycles": 512,
+          "tap_value": 64
+        },
+        {
+          "count": 417,
+          "cycles": 712,
+          "tap_value": 89
+        },
+        {
+          "count": 133,
+          "cycles": 696,
+          "tap_value": 87
+        }
+      ],
+      "exact_pulse_count": 17497,
+      "segment_index": 1
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1594,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 732,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 453,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 447,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 340,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 129,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 34,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 7,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 3741,
+      "segment_index": 2
+    },
+    {
+      "dominant_cycles": [],
+      "exact_pulse_count": 0,
+      "segment_index": 3
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 2366,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 1358,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 1187,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 975,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 813,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 517,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 86,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 15,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 7324,
+      "segment_index": 4
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 4925,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 2613,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 2238,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 1859,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 1639,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1330,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 167,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 35,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 14821,
+      "segment_index": 5
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 4633,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 2658,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 2654,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 2069,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 1784,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 744,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 241,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 53,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 14841,
+      "segment_index": 6
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 28745,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 21956,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 21310,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 11608,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 10417,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 4822,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 2131,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 1239,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 102260,
+      "segment_index": 7
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 35257,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 28202,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 23101,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 22711,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 18550,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 11749,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 2567,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 1197,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 143378,
+      "segment_index": 8
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 83945,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 48636,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 45386,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 42463,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 28862,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 27639,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 5194,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 3054,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 285278,
+      "segment_index": 9
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 37338,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 28940,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 25982,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 22762,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 21875,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 8417,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 2516,
+          "cycles": 240,
+          "tap_value": 30
+        },
+        {
+          "count": 1481,
+          "cycles": 632,
+          "tap_value": 79
+        }
+      ],
+      "exact_pulse_count": 149342,
+      "segment_index": 10
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1,
+          "cycles": 6465,
+          "tap_value": null
+        }
+      ],
+      "exact_pulse_count": 1,
+      "segment_index": 11
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1,
+          "cycles": 5624,
+          "tap_value": 703
+        }
+      ],
+      "exact_pulse_count": 1,
+      "segment_index": 12
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1,
+          "cycles": 2319,
+          "tap_value": null
+        }
+      ],
+      "exact_pulse_count": 1,
+      "segment_index": 13
+    }
+  ],
+  "sha256": "090ff428dfa5731ee29fecb7caaf25c1bf41d36c80d0e0dd7ac34d669cfc8fc6",
+  "two_pulse_previews": [
+    {
+      "bit_order": "msb_first",
+      "decoded_byte_count": 96734,
+      "first_64_bytes_hex": "80000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "longest_constant_byte_runs": [
+        {
+          "byte": 0,
+          "length": 3390,
+          "start": 1
+        },
+        {
+          "byte": 0,
+          "length": 671,
+          "start": 4423
+        },
+        {
+          "byte": 255,
+          "length": 20,
+          "start": 22436
+        },
+        {
+          "byte": 255,
+          "length": 19,
+          "start": 22377
+        },
+        {
+          "byte": 255,
+          "length": 16,
+          "start": 96281
+        },
+        {
+          "byte": 255,
+          "length": 12,
+          "start": 68103
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 12866
+        },
+        {
+          "byte": 0,
+          "length": 10,
+          "start": 3897
+        },
+        {
+          "byte": 0,
+          "length": 9,
+          "start": 4413
+        },
+        {
+          "byte": 0,
+          "length": 9,
+          "start": 5842
+        }
+      ],
+      "threshold_cycles": 436,
+      "transition_previews": [
+        {
+          "following_64_bytes_hex": "01cb2b3ab2b5d4ab5b4ab3ccab3acab5d2ab3b2ab5caab5d2aadd54b5b2aabaaad5d2aadb32cbcaacdb2acdcaacdacccbd52cbaab2bb2d2baab2baab2baab2ba",
+          "run_byte": 0,
+          "run_length": 3390,
+          "run_start": 1
+        },
+        {
+          "following_64_bytes_hex": "72caceacad752ad6d2acf32aceb2ad74aacecaad72aad6acccecaaaeaaab72b2b6ab2d72b2b6aaab72aaaeaaab72ccd6aacaecacceacaaeaacd6aaab72b2ceb4",
+          "run_byte": 0,
+          "run_length": 671,
+          "run_start": 4423
+        }
+      ]
+    },
+    {
+      "bit_order": "lsb_first",
+      "decoded_byte_count": 96734,
+      "first_64_bytes_hex": "01000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "longest_constant_byte_runs": [
+        {
+          "byte": 0,
+          "length": 3390,
+          "start": 1
+        },
+        {
+          "byte": 0,
+          "length": 671,
+          "start": 4423
+        },
+        {
+          "byte": 255,
+          "length": 20,
+          "start": 22436
+        },
+        {
+          "byte": 255,
+          "length": 19,
+          "start": 22377
+        },
+        {
+          "byte": 255,
+          "length": 16,
+          "start": 96281
+        },
+        {
+          "byte": 255,
+          "length": 12,
+          "start": 68103
+        },
+        {
+          "byte": 255,
+          "length": 11,
+          "start": 12866
+        },
+        {
+          "byte": 0,
+          "length": 10,
+          "start": 3897
+        },
+        {
+          "byte": 0,
+          "length": 9,
+          "start": 4413
+        },
+        {
+          "byte": 0,
+          "length": 9,
+          "start": 5842
+        }
+      ],
+      "threshold_cycles": 436,
+      "transition_previews": [
+        {
+          "following_64_bytes_hex": "80d3d45c4dad2bd5da52cd33d55c53ad4bd5dc54ad53d5ba54b5abd2da54d555b5ba54b5cd343d55b34d353b55b33533bd4ad3554dddb4d4554d5dd5d4554d5d",
+          "run_byte": 0,
+          "run_length": 3390,
+          "run_start": 1
+        },
+        {
+          "following_64_bytes_hex": "4e537335b5ae546b4b35cf54734db52e557353b54e556b353337557555d54e4d6dd5b44e4d6d55d54e557555d54e336b5553373573355557356b55d54e4d732d",
+          "run_byte": 0,
+          "run_length": 671,
+          "run_start": 4423
+        }
+      ]
+    }
+  ]
+}

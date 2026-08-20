@@ -33,6 +33,8 @@ def _path_component(value: str, fallback: str) -> str:
 
 
 def _artifact_classification(artifact: ArtifactRecord) -> str:
+    if artifact.is_daad_payload:
+        return "ready_to_use"
     extension = Path(artifact.original_filename).suffix.lower()
     if extension in RUNNABLE_EXTENSIONS:
         return "ready_to_use"

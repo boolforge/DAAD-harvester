@@ -1,0 +1,161 @@
+{
+  "configuration_bytes_hex": "072f0000",
+  "module": "C64MEM",
+  "module_version": {
+    "major": 0,
+    "minor": 1
+  },
+  "modules": [
+    {
+      "major": 1,
+      "minor": 2,
+      "name": "MAINCPU",
+      "payload_size": 91
+    },
+    {
+      "major": 0,
+      "minor": 1,
+      "name": "C64MEM",
+      "payload_size": 65555
+    },
+    {
+      "major": 0,
+      "minor": 1,
+      "name": "C64CART",
+      "payload_size": 1
+    },
+    {
+      "major": 2,
+      "minor": 3,
+      "name": "CIA1",
+      "payload_size": 52
+    },
+    {
+      "major": 2,
+      "minor": 3,
+      "name": "CIA2",
+      "payload_size": 52
+    },
+    {
+      "major": 1,
+      "minor": 5,
+      "name": "SID",
+      "payload_size": 36
+    },
+    {
+      "major": 1,
+      "minor": 4,
+      "name": "SIDEXTENDED",
+      "payload_size": 133
+    },
+    {
+      "major": 2,
+      "minor": 0,
+      "name": "DRIVE8",
+      "payload_size": 145
+    },
+    {
+      "major": 2,
+      "minor": 0,
+      "name": "DRIVE9",
+      "payload_size": 145
+    },
+    {
+      "major": 2,
+      "minor": 0,
+      "name": "DRIVE10",
+      "payload_size": 145
+    },
+    {
+      "major": 2,
+      "minor": 0,
+      "name": "DRIVE11",
+      "payload_size": 145
+    },
+    {
+      "major": 0,
+      "minor": 0,
+      "name": "FSDRIVE",
+      "payload_size": 258
+    },
+    {
+      "major": 1,
+      "minor": 3,
+      "name": "VIC-II",
+      "payload_size": 123415
+    },
+    {
+      "major": 1,
+      "minor": 0,
+      "name": "GLUE",
+      "payload_size": 3
+    },
+    {
+      "major": 0,
+      "minor": 0,
+      "name": "C64MEMHACKS",
+      "payload_size": 1
+    },
+    {
+      "major": 1,
+      "minor": 0,
+      "name": "TAPEPORT",
+      "payload_size": 2
+    },
+    {
+      "major": 1,
+      "minor": 5,
+      "name": "DATASETTE",
+      "payload_size": 78
+    },
+    {
+      "major": 1,
+      "minor": 0,
+      "name": "TAPE",
+      "payload_size": 40
+    },
+    {
+      "major": 1,
+      "minor": 1,
+      "name": "KEYBOARD",
+      "payload_size": 96
+    },
+    {
+      "major": 0,
+      "minor": 0,
+      "name": "JOYPORT0",
+      "payload_size": 1
+    },
+    {
+      "major": 1,
+      "minor": 2,
+      "name": "JOYSTICK0",
+      "payload_size": 2
+    },
+    {
+      "major": 0,
+      "minor": 0,
+      "name": "JOYPORT1",
+      "payload_size": 1
+    },
+    {
+      "major": 1,
+      "minor": 2,
+      "name": "JOYSTICK1",
+      "payload_size": 2
+    },
+    {
+      "major": 1,
+      "minor": 0,
+      "name": "USERPORT",
+      "payload_size": 2
+    }
+  ],
+  "output_path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_b_tap_space.ram",
+  "output_sha256": "0a11c17c934714574e479c0fd279557c353c589b07b8920b23b825e3605d43f0",
+  "ram_offset_in_module": 4,
+  "ram_size": 65536,
+  "schema_version": 1,
+  "snapshot_path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_b_tap_space.vsf",
+  "snapshot_sha256": "cc0c7f217bed88d60c373fb59b1f0aa75fa72680c6d99bdec43f2f1dfdbfa99f"
+}

@@ -1,0 +1,2453 @@
+[
+  {
+    "candidate_count": 265,
+    "candidates": [
+      {
+        "ddb_format": "daad-v1-legacy",
+        "legacy_available_size": 24680,
+        "legacy_expected_size": 24680,
+        "legacy_header": {
+          "base_address": 14464,
+          "endianness": "little",
+          "file_length": 39144,
+          "header_size": 32,
+          "language": "es",
+          "layout": "legacy",
+          "location_count": 56,
+          "machine_id": 2,
+          "major_version": 1,
+          "message_count": 228,
+          "object_count": 17,
+          "platform": "c64",
+          "pointers": [
+            16548,
+            39060,
+            29794,
+            32101,
+            29069,
+            17722,
+            32489,
+            14496,
+            32652,
+            32601,
+            32635
+          ],
+          "process_count": 42,
+          "submachine": 95,
+          "system_message_count": 63
+        },
+        "legacy_marker": true,
+        "legacy_pointer_offsets": [
+          2084,
+          24596,
+          15330,
+          17637,
+          14605,
+          3258,
+          18025,
+          32,
+          18188,
+          18137,
+          18171
+        ],
+        "machine_language_byte": 33,
+        "major_byte": 1,
+        "mode": "legacy",
+        "offset": 0,
+        "payload_size": 24680,
+        "platform": "c64",
+        "reason": "verified_structural_legacy_ddb",
+        "validated": true
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 93,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 632,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 646,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 702,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 6,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 723,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 793,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 1374,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 1409,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 1710,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 2,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 1857,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 0,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 2082,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 70,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 14609,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 74,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 14659,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 89,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 14827,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 96,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 14883,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 116,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 15356,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 100,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 15436,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 62,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 15669,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 81,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 15882,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 111,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17114,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 109,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17132,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 122,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17709,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 123,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17719,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 12,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17759,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 11,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17761,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 10,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17767,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17769,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 12,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17772,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17774,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17777,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 15,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17779,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 16,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17784,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 21,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17794,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 18,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17796,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 17,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17799,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17801,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 21,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17804,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 20,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17806,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17811,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17816,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 25,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17819,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17821,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17823,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 23,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17828,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 26,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17830,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 27,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17832,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 28,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17837,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17839,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17841,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 26,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17846,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17848,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17850,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 23,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17855,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 25,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17857,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17859,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17864,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17866,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 24,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17868,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 29,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17873,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 24,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17875,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17877,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 33,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17882,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 28,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17884,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 33,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17886,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 31,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17891,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 31,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17893,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 31,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17895,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17900,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17902,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 30,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17904,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17909,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 14,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17911,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17913,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 29,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17918,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 34,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17920,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 33,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17923,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 34,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17926,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17930,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 37,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17937,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 36,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17944,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 49,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17953,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 43,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17967,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 35,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17975,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 45,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 17977,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 17980,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17985,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 50,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 17994,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18002,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18009,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 20,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18181,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 7,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18184,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 18,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18241,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18243,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 20,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18245,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 7,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18252,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 54,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18270,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18359,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18417,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 18425,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 50,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18453,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18459,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18461,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18517,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18519,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 14,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18570,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18576,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18586,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18588,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 35,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18596,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18606,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 35,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18608,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 36,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18616,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 41,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18624,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 46,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18626,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 45,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18636,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 53,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18638,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18646,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 36,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18648,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 41,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18656,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 46,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18658,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18910,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 18912,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 8,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18976,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 85,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18983,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 102,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18985,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18989,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 85,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 18993,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 104,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19006,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19008,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 85,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19050,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19052,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 105,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19057,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19059,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19219,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19239,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 8,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19243,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 12,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19248,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19256,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19260,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19262,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 0,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19268,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 23,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 19275,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19401,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19452,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19454,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19472,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19474,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 50,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19533,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19580,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19582,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19588,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19590,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 19669,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19671,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19706,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 19712,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20056,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20060,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20557,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20561,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20588,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20664,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20666,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20670,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20690,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20692,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 45,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20697,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 48,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20699,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 0,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20728,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 10,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20736,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 10,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20744,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 29,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20844,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 12,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20852,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20859,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20889,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 29,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20892,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20912,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20914,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20918,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 36,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20930,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20934,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 41,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20936,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 49,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20938,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20942,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 35,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 20944,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 20946,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 39,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20948,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20956,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20970,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 20985,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 52,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 21077,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21202,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 89,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21209,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 120,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21211,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21219,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21225,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21256,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21262,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 21341,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21452,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21454,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21472,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21474,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21485,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21487,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21495,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21497,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21507,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21509,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 11,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 21769,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 22,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21803,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 21894,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 21918,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21958,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21960,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 21973,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 21975,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22011,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 22013,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22031,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 42,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 22033,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22089,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 22091,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22378,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 44,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22522,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 47,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 22524,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 52,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 22776,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 22800,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 22807,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 3,
+        "mode": "modern_or_other",
+        "offset": 22814,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 72,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 22896,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 14,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 22961,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 13,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23089,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 53,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23109,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 32,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23214,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 24,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23313,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23344,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 78,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23369,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 81,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 23371,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 82,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 23373,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 82,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23382,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 5,
+        "major_byte": 2,
+        "mode": "modern_or_other",
+        "offset": 23397,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23426,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23439,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 75,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23530,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23535,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23541,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 15,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23574,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23592,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 77,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23598,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23615,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 19,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23664,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 20,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23737,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 34,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 23850,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 43,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24039,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 38,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24197,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 14,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24208,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 59,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24229,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 255,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24257,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 45,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24281,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 46,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24283,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 39,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24551,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 40,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24553,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      },
+      {
+        "legacy_marker": false,
+        "machine_language_byte": 41,
+        "major_byte": 1,
+        "mode": "modern_or_other",
+        "offset": 24555,
+        "reason": "no_valid_target_aware_ddb_structure",
+        "validated": false
+      }
+    ],
+    "direct": {
+      "ddb_format": "daad-v1-legacy",
+      "is_daad": true,
+      "platform": "c64",
+      "reason": "verified_structural_legacy_ddb",
+      "version": "DAAD DDB v1"
+    },
+    "embedded": {
+      "offset": 0,
+      "size": 24680
+    },
+    "path": "preservation_corpus/derived/commodore_loader/jabato_side_b_tap_post_input_12_part2.ddb",
+    "size": 24680
+  }
+]

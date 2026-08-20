@@ -84,6 +84,24 @@ def test_retained_adp_jabato_c64_v1_fixture_validates_at_native_base() -> None:
     assert result["details"]["payload_size"] == len(payload) == 24899
 
 
+def test_retained_jabato_side_b_part2_matches_adp_fixture_at_native_base() -> None:
+    root = Path(__file__).resolve().parents[1]
+    fixture = root / "reverse_engineering/public_implementations/adp/source/tests/games/jabato/c64/JABATO-C64 2.DDB"
+    recovered = root / "preservation_corpus/derived/commodore_loader/jabato_side_b_tap_post_input_12_part2.ddb"
+    payload = fixture.read_bytes()
+
+    assert recovered.read_bytes() == payload
+    result = DAADBytecodeParser().parse_ddb(payload, fixture.name)
+
+    assert result["is_daad"] is True
+    assert result["ddb_format"] == "daad-v1-legacy"
+    assert result["platform"] == "c64"
+    assert result["language"] == "es"
+    assert result["details"]["header"]["base_address"] == 0x3880
+    assert result["details"]["header"]["header_size"] == 32
+    assert result["details"]["payload_size"] == len(payload) == 24680
+
+
 def test_historical_header_rejects_bad_marker_and_unterminated_condact_stream() -> None:
     bad_marker = bytearray(make_legacy_ddb("c64"))
     bad_marker[2] = 0
