@@ -108,6 +108,11 @@ class Fingerprinter:
         self.db.update_artifact_fingerprint(
             artifact.id,
             False,
+            platform_hint=(
+                best.platform
+                if best.confidence == EvidenceConfidence.VERIFIED.value
+                else None
+            ),
             interpreter_identity=best.profile_id,
             interpreter_version=best.interpreter_version,
             fingerprint_confidence=best.confidence,

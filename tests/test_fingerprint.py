@@ -109,6 +109,32 @@ def test_historical_plus4_runtime_name_is_qualified_interpreter_evidence_only(tm
     assert evidence[0].confidence == "strong"
 
 
+def test_exact_runtime_profile_records_platform_hint_without_measured_ddb_platform(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import daad_harvester.interpreter_profiles as profiles
+
+    runtime_path = tmp_path / "stored_pcw_runtime"
+    runtime_path.write_bytes(b"exact official pcw runtime")
+    digest = sha256(runtime_path.read_bytes()).hexdigest()
+    monkeypatch.setattr(
+        profiles,
+        "OFFICIAL_INTERPRETER_PROFILES",
+        (InterpreterProfile("official-pcw", "pcw", ("pcwedi.bin",), digest),),
+    )
+    db = Database(tmp_path / "state.db")
+    artifact = _artifact(db, runtime_path, filename="PCWEDI.BIN")
+    artifact.id = db.add_artifact(artifact)
+
+    assert Fingerprinter(db).scan_artifact(artifact) is False
+
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.interpreter_identity == "official-pcw"
+    assert persisted.platform_hint == "pcw"
+    assert persisted.measured_platform is None
+    assert persisted.is_daad_payload is False
+
+
 def test_interpreter_alias_upgrades_only_on_same_platform_official_hash(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     import daad_harvester.interpreter_profiles as profiles
 
