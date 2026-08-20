@@ -14,6 +14,11 @@ live_output/
 !preservation_corpus/logs/
 !preservation_corpus/logs/*.log
 
+# Hash-pinned Ghidra batch records are retained reverse-engineering evidence,
+# not disposable developer logs. The manifest verifier requires them in a
+# clean clone and CI checkout.
+!reverse_engineering/derived/**/ghidra-headless.log
+
 # SQLite runtime journals are regenerated and are not preservation evidence.
 preservation_corpus/state.db-shm
 preservation_corpus/state.db-wal

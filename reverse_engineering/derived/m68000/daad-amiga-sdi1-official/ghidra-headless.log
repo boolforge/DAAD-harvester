@@ -1,0 +1,88 @@
+INFO  Using log config file: jar:file:/home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/ubuntu/.config/ghidra/ghidra_12.1.3_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/ubuntu/.config/ghidra/ghidra_12.1.3_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (941 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (2830 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 93 extension points (46 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Processors/8051/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/ubuntu/.local/ghidra/ghidra_12.1.3_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: /tmp/daad-ghidra-projects/daad-amiga-sdi1-official/analysis (HeadlessAnalyzer)  
+INFO  Creating project: /tmp/daad-ghidra-projects/daad-amiga-sdi1-official/analysis (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /tmp/daad-ghidra-projects/daad-amiga-sdi1-official/analysis (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1 (HeadlessAnalyzer)  
+INFO  Successfully applied "-loader-baseAddr" to "Base Address" (old: "null", new: "0x0") (ProgramLoader)  
+INFO  Using Loader: Raw Binary (ProgramLoader)  
+INFO  Using Language/Compiler: 68000:BE:32:default:default (ProgramLoader)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib/x86_64-linux-gnu/jni, /usr/lib/x86_64-linux-gnu, /usr/lib/jni] (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1 (HeadlessAnalyzer)  
+INFO  Packed database cache: /var/tmp/ubuntu-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    68000 Constant Reference Analyzer          0.257 secs
+    ASCII Strings                              0.199 secs
+    Apply Data Archives                        0.788 secs
+    Call-Fixup Installer                       0.002 secs
+    Create Address Tables                      0.016 secs
+    Create Address Tables - One Time           0.615 secs
+    Create Function                            0.119 secs
+    Data Reference                             0.321 secs
+    Decompiler Switch Analysis                 0.264 secs
+    Demangler GNU                              0.001 secs
+    Disassemble                                0.193 secs
+    Disassemble Entry Points                   0.001 secs
+    Embedded Media                             0.008 secs
+    External Entry References                  0.001 secs
+    Function ID                                0.018 secs
+    Function Start Search                      0.012 secs
+    Non-Returning Functions - Discovered       0.029 secs
+    Reference                                  0.571 secs
+    Shared Return Calls                        0.016 secs
+    Stack                                      0.120 secs
+    Subroutine References                      0.052 secs
+-----------------------------------------------------
+     Total Time   3 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1 (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: ExportDAADAnalysis.java '/home/ubuntu/DAAD-harvester/reverse_engineering/derived/m68000/daad-amiga-sdi1-official'  (HeadlessAnalyzer)  
+INFO  SCRIPT: /home/ubuntu/DAAD-harvester/reverse_engineering/tools/ghidra/ExportDAADAnalysis.java (HeadlessAnalyzer)  
+INFO  ANALYZING changes made by post scripts: file:///home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1 (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///home/ubuntu/DAAD-harvester/reverse_engineering/artifacts/original/amiga/daad-amiga-sdi1-official/sdi1 (HeadlessAnalyzer)  
+INFO  /sdi1: file created (ubuntu) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /sdi1 (analysis:/sdi1) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  
+
+[stderr]
+openjdk version "21.0.11" 2026-04-21
+OpenJDK Runtime Environment (build 21.0.11+10-1-24.04.2-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.11+10-1-24.04.2-Ubuntu, mixed mode)
