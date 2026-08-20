@@ -244,6 +244,62 @@
           "role": "retained independent analysis producers; this native verifier checks their recorded outputs but does not use them to regenerate or promote semantic conclusions"
         }
       ]
+    },
+    {
+      "id": "static-preservation-report",
+      "description": "Regenerates and byte-verifies the committed browser-safe static preservation report from the retained corpus state, catalogs, library manifest, detection table, and bounded logs using a recorded fixed timestamp.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "declared project Python dependencies",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/regenerate_preservation_report.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+        },
+        {
+          "path": "preservation_corpus/detection_tables.h",
+          "sha256": "aeca2212fdc2e3c1ca1cf1e023903c0b1b3b4e846ad47e9ecc63a2a682a013cc"
+        },
+        {
+          "path": "preservation_corpus/library/manifest.json",
+          "sha256": "c2e506f74c6bcc63b271aee658e493c4b9b1da1278eeccb8d78a945cd1f124d3"
+        },
+        {
+          "path": "preservation_corpus/daad_catalog.json",
+          "sha256": "3f73c46071bae707a2af6c2db9bbcf3d0acc067f79e202600f80c7e7188f1c54"
+        },
+        {
+          "path": "preservation_corpus/logs/daad_general.log",
+          "sha256": "2c847d1754e45c8c49a918e396e91649dc4a8468242ff5afec6c0c784c25ae8a"
+        },
+        {
+          "path": "preservation_corpus/logs/daad_games.log",
+          "sha256": "1b28a6a6cf48723ec43740bca17e0f33dbbfad1fc4606ab0944e6247d4a24c42"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/report_data.json",
+          "sha256": "957e7ec9836590234137fa5dffa032d8d809382edc75083988cd19e5711ca26a"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "browser report viewer",
+          "role": "optional presentation consumer only; not invoked by the primary report-regeneration command"
+        }
+      ]
     }
   ]
 }

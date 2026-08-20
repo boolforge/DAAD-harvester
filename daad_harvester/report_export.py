@@ -19,9 +19,10 @@ from daad_harvester.db import Database
 class StaticReportExporter:
     """Write a reviewable, frontend-safe summary of recorded pipeline evidence."""
 
-    def __init__(self, db: Database, output_dir: Path):
+    def __init__(self, db: Database, output_dir: Path, *, generated_at: str | None = None):
         self.db = db
         self.output_dir = output_dir
+        self.generated_at = generated_at
 
     @staticmethod
     def _read_json(path: Path, fallback: Any) -> Any:
@@ -60,7 +61,7 @@ class StaticReportExporter:
         }
         return {
             "schema_version": 1,
-            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "generated_at": self.generated_at or datetime.now(timezone.utc).isoformat(),
             "purpose": "Static DAAD preservation evidence report",
             "policy": {
                 "unknowns": "Unknown values remain unknown; no report field establishes an unmeasured DAAD version.",
