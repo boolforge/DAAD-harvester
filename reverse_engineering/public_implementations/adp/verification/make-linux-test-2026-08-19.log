@@ -1,0 +1,296 @@
+Compiling src-tools/dc_main.cpp
+Compiling src-tools/dc_condacts.cpp
+Compiling src-tools/dc_cp437.cpp
+Compiling src-tools/dc_cp850.cpp
+Compiling src-tools/dc_cp1252.cpp
+Compiling src-tools/dc_char.cpp
+Compiling src-tools/dc_symb.cpp
+Compiling src-tools/chr_conv.cpp
+Compiling src-tools/tool_adpc.cpp
+Compiling src-common/dim.cpp
+Compiling src-common/dim_adf.cpp
+Compiling src-common/dim_cpc.cpp
+Compiling src-common/dim_fat.cpp
+Compiling src-common/os_arena.cpp
+Compiling src-common/os_char.cpp
+Compiling src-common/os_file.cpp
+Compiling src-common/os_lib.cpp
+Compiling src-common/os_mem.cpp
+Compiling src-unix/files.cpp
+Compiling src-unix/error.cpp
+Linking out/adpc
+Compiling src-common/ddb.cpp for traced tool runtime
+Compiling src-common/ddb_data.cpp for traced tool runtime
+Compiling src-common/ddb_draw.cpp for traced tool runtime
+Compiling src-common/ddb_dump.cpp for traced tool runtime
+Compiling src-common/ddb_inp.cpp for traced tool runtime
+Compiling src-common/ddb_pal.cpp for traced tool runtime
+Compiling src-common/ddb_paw.cpp for traced tool runtime
+Compiling src-common/ddb_play.cpp for traced tool runtime
+Compiling src-common/ddb_psg.cpp for traced tool runtime
+Compiling src-common/ddb_run.cpp for traced tool runtime
+Compiling src-common/ddb_scr.cpp for traced tool runtime
+Compiling src-common/ddb_snap.cpp for traced tool runtime
+Compiling src-common/ddb_test.cpp for traced tool runtime
+Compiling src-common/ddb_vid.cpp for traced tool runtime
+Compiling src-common/ddb_wintext.cpp for traced tool runtime
+Compiling src-common/ddb_xmsg.cpp for traced tool runtime
+Compiling src-common/dim.cpp for traced tool runtime
+Compiling src-common/dim_adf.cpp for traced tool runtime
+Compiling src-common/dim_cpc.cpp for traced tool runtime
+Compiling src-common/dim_fat.cpp for traced tool runtime
+Compiling src-common/dmg.cpp for traced tool runtime
+Compiling src-common/dmg_audio.cpp for traced tool runtime
+Compiling src-common/dmg_cach.cpp for traced tool runtime
+Compiling src-common/dmg_cga.cpp for traced tool runtime
+Compiling src-common/dmg_ega.cpp for traced tool runtime
+Compiling src-common/dmg_font.cpp for traced tool runtime
+Compiling src-common/dmg_imgc.cpp for traced tool runtime
+Compiling src-common/dmg_imgp.cpp for traced tool runtime
+Compiling src-common/dmg_pcx.cpp for traced tool runtime
+Compiling src-common/dmg_rlec.cpp for traced tool runtime
+Compiling src-common/dmg_rleo.cpp for traced tool runtime
+Compiling src-common/dmg_rleop.cpp for traced tool runtime
+Compiling src-common/dmg_univ.cpp for traced tool runtime
+Compiling src-common/dmg_zx0.cpp for traced tool runtime
+Compiling src-common/os_arena.cpp for traced tool runtime
+Compiling src-common/os_char.cpp for traced tool runtime
+Compiling src-common/os_file.cpp for traced tool runtime
+Compiling src-common/os_lib.cpp for traced tool runtime
+Compiling src-common/os_mem.cpp for traced tool runtime
+Compiling src-common/scrfile.cpp for traced tool runtime
+Compiling src-common/vid_font.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_divsufsort.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_divsufsort_utils.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_matchfinder.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_shrink.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_sssort.cpp for traced tool runtime
+Compiling lib-src/salvador/salvador_trsort.cpp for traced tool runtime
+Compiling src-sdl/video.cpp for traced tool runtime
+Compiling src-unix/files.cpp for traced tool runtime
+Compiling src-unix/error.cpp for traced tool runtime
+Compiling src-tools/bas_cpc.cpp
+Compiling src-tools/bas_zx.cpp
+Compiling src-tools/dmg_edit.cpp
+Compiling src-tools/dmg_pack.cpp
+Compiling src-tools/img.cpp
+Compiling src-tools/ddb_writ.cpp
+Compiling src-tools/cli_parser.cpp
+Compiling src-tools/session_commands.cpp
+Compiling src-tools/tool_dmg.cpp
+Linking out/dmg
+Compiling src-tools/tool_dsk.cpp
+Linking out/dsk
+python3 scripts/run-adpc-tests.py --adpc out/adpc --dmg out/dmg --dsk out/dsk
+PASS windows/part1.ddb (14446 bytes)
+PASS windows/part2.ddb (20332 bytes)
+PASS amiga-ham/part1.ddb (14448 bytes)
+PASS amiga-ham/part2.ddb (20412 bytes)
+PASS windows/part1.dat (2029565 bytes)
+PASS windows/part2.dat (2655209 bytes)
+PASS amiga-ham/part1.dat (430508 bytes)
+PASS amiga-ham/part2.dat (630781 bytes)
+Distributables written to /home/ubuntu/DAAD-harvester/.audit/upstream-adp/games/original256/release
+Compiling src-tools/tool_ddb.cpp
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp: In function ‘int main(int, char**)’:
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:502:55: warning: ‘%s’ directive output may be truncated writing up to 6527 bytes into a region of size 256 [-Wformat-truncation=]
+  502 |                         snprintf(name, sizeof(name), "%s-%d.sdb", candidates[c].name, occurrence);
+      |                                                       ^~
+In function ‘int MountPAWSTape(const char*, char*, size_t)’,
+    inlined from ‘int main(int, char**)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1353:32:
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:502:54: note: using the range [-2147483648, 2147483647] for directive argument
+  502 |                         snprintf(name, sizeof(name), "%s-%d.sdb", candidates[c].name, occurrence);
+      |                                                      ^~~~~~~~~~~
+In file included from /usr/include/stdio.h:980,
+                 from /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:13:
+In function ‘int snprintf(char*, size_t, const char*, ...)’,
+    inlined from ‘int MountPAWSTape(const char*, char*, size_t)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:502:12,
+    inlined from ‘int main(int, char**)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1353:32:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:35: note: ‘__builtin___snprintf_chk’ output between 7 and 6544 bytes into a destination of size 256
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp: In function ‘int main(int, char**)’:
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:500:55: warning: ‘%s’ directive output may be truncated writing up to 6527 bytes into a region of size 256 [-Wformat-truncation=]
+  500 |                         snprintf(name, sizeof(name), "%s.sdb", candidates[c].name);
+      |                                                       ^~
+In function ‘int snprintf(char*, size_t, const char*, ...)’,
+    inlined from ‘int MountPAWSTape(const char*, char*, size_t)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:500:12,
+    inlined from ‘int main(int, char**)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1353:32:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:35: note: ‘__builtin___snprintf_chk’ output between 5 and 6532 bytes into a destination of size 256
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp: In function ‘int main(int, char**)’:
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1578:85: warning: ‘.ddb’ directive output may be truncated writing 4 bytes into a region of size between 1 and 256 [-Wformat-truncation=]
+ 1578 |                                 snprintf(outputFileName, sizeof(outputFileName), "%s.ddb", outputBase);
+      |                                                                                     ^~~~
+In function ‘int snprintf(char*, size_t, const char*, ...)’,
+    inlined from ‘int main(int, char**)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1578:13:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:35: note: ‘__builtin___snprintf_chk’ output between 5 and 260 bytes into a destination of size 256
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp: In function ‘int main(int, char**)’:
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1576:85: warning: ‘%d’ directive output may be truncated writing between 1 and 10 bytes into a region of size between 1 and 256 [-Wformat-truncation=]
+ 1576 |                                 snprintf(outputFileName, sizeof(outputFileName), "%s%d.ddb", outputBase, part + 1);
+      |                                                                                     ^~
+/home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1576:82: note: directive argument in the range [1, 2147483647]
+ 1576 |                                 snprintf(outputFileName, sizeof(outputFileName), "%s%d.ddb", outputBase, part + 1);
+      |                                                                                  ^~~~~~~~~~
+In function ‘int snprintf(char*, size_t, const char*, ...)’,
+    inlined from ‘int main(int, char**)’ at /home/ubuntu/DAAD-harvester/.audit/upstream-adp/src-tools/tool_ddb.cpp:1576:13:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:54:35: note: ‘__builtin___snprintf_chk’ output between 6 and 270 bytes into a destination of size 256
+   54 |   return __builtin___snprintf_chk (__s, __n, __USE_FORTIFY_LEVEL - 1,
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   55 |                                    __glibc_objsize (__s), __fmt,
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   56 |                                    __va_arg_pack ());
+      |                                    ~~~~~~~~~~~~~~~~~
+Linking out/ddb
+python3 scripts/run-game-tests.py --ddb out/ddb --skip-timed-pauses --jobs 4
+PASS probe tests/games/chichen/spectrum/CHICHEN-SPECTRUM 1.tzx
+PASS probe tests/games/cozumel/amiga/COZUMEL-AMIGA.ADF
+PASS probe tests/games/espacial/amiga/ESPACIAL-AMIGA.ADF
+PASS probe tests/games/original/atarist/ORIGINAL-ST.ST
+PASS probe tests/games/templos/atarist/TEMPLOS-ST 1.ST
+PASS probe tests/games/chichen/spectrum/CHICHEN-SPECTRUM 2.tzx
+PASS probe tests/games/cozumel/pcw/COZUMEL-PCW 1 Corregida.dsk
+PASS probe tests/games/espacial/atarist/ESPACIAL-ST 1.st
+PASS probe tests/games/original/amiga/ORIGINAL-AMIGA.ADF
+PASS probe tests/games/templos/amiga/TEMPLOS-AMIGA.adf
+PASS probe tests/games/chichen/amiga/CHICHEN-AMIGA.ADF
+PASS probe tests/games/cozumel/pcw/COZUMEL-PCW 1.dsk
+PASS probe tests/games/cozumel/spectrum/COZUMEL-SPECTRUM 1.tzx
+PASS probe tests/games/jabato/atarist/JABATO-ST 1.ST
+PASS probe tests/games/original/spectrum/ORIGINAL-SPECTRUM 1.tzx
+PASS probe tests/games/templos/atarist/TEMPLOS-ST 2.ST
+PASS probe tests/games/chichen/atarist/CHICHEN-ST.st
+PASS probe tests/games/cozumel/atarist/COZUMEL-ST.st
+PASS probe tests/games/cozumel/pcw/COZUMEL-PCW 2.dsk
+PASS probe tests/games/jabato/amiga/JABATO-AMIGA.ADF
+PASS probe tests/games/original/spectrum/ORIGINAL-SPECTRUM 2.tzx
+PASS probe tests/games/templos/spectrum/TEMPLOS-SPECTRUM 1.dsk
+PASS scenario tests/scenarios/chichen/part1-c64/scenario.json
+PASS scenario tests/scenarios/chichen/part1-cpc/scenario.json
+PASS scenario tests/scenarios/chichen/part1-pc-ega/scenario.json
+PASS scenario tests/scenarios/chichen/part2-amiga/scenario.json
+PASS scenario tests/scenarios/chichen/part2-c64/scenario.json
+PASS scenario tests/scenarios/chichen/part2-pc-vga/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-atarist/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-msx/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-c64/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/espacial/part1-pc-ega/scenario.json
+PASS scenario tests/scenarios/espacial/part2-c64/scenario.json
+PASS scenario tests/scenarios/espacial/part2-msx/scenario.json
+PASS scenario tests/scenarios/espacial/part3-amiga/scenario.json
+PASS scenario tests/scenarios/espacial/part3-msx/scenario.json
+PASS scenario tests/scenarios/jabato/part1-atarist/scenario.json
+PASS scenario tests/scenarios/jabato/part1-pc-cga/scenario.json
+PASS scenario tests/scenarios/jabato/part2-amiga/scenario.json
+PASS scenario tests/scenarios/jabato/part2-msx/scenario.json
+PASS scenario tests/scenarios/original/part1-atarist/scenario.json
+PASS scenario tests/scenarios/original/part1-msx/scenario.json
+PASS scenario tests/scenarios/original/part2-amiga/scenario.json
+PASS scenario tests/scenarios/original/part2-msx/scenario.json
+PASS scenario tests/scenarios/templos/part1-c64/scenario.json
+PASS scenario tests/scenarios/templos/part1-pc-ega/scenario.json
+PASS scenario tests/scenarios/templos/part2-amiga/scenario.json
+PASS scenario tests/scenarios/templos/part2-c64/scenario.json
+PASS scenario tests/scenarios/templos/part2-pc-ega/scenario.json
+PASS scenario tests/scenarios/chichen/part1-amiga/scenario.json
+PASS scenario tests/scenarios/chichen/part1-msx/scenario.json
+PASS scenario tests/scenarios/chichen/part2-atarist/scenario.json
+PASS scenario tests/scenarios/chichen/part2-msx/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-c64/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-pc-ega/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-amiga/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-msx/scenario.json
+PASS scenario tests/scenarios/espacial/part1-pc-cga/scenario.json
+PASS scenario tests/scenarios/espacial/part2-atarist/scenario.json
+PASS scenario tests/scenarios/espacial/part2-cpc/scenario.json
+PASS scenario tests/scenarios/espacial/part2-pc-ega/scenario.json
+PASS scenario tests/scenarios/espacial/part3-c64/scenario.json
+PASS scenario tests/scenarios/espacial/part3-pc-ega/scenario.json
+PASS scenario tests/scenarios/firfurcio-startup/scenario.json
+PASS scenario tests/scenarios/jabato/part1-amiga/scenario.json
+PASS scenario tests/scenarios/jabato/part1-msx/scenario.json
+PASS scenario tests/scenarios/jabato/part2-atarist/scenario.json
+PASS scenario tests/scenarios/jabato/part2-pc-cga/scenario.json
+PASS scenario tests/scenarios/original/part1-amiga/scenario.json
+PASS scenario tests/scenarios/original/part1-c64/scenario.json
+PASS scenario tests/scenarios/original/part1-pc-cga/scenario.json
+PASS scenario tests/scenarios/original/part2-amiga-death/scenario.json
+PASS scenario tests/scenarios/original/part2-cpc/scenario.json
+FAIL scenario tests/scenarios/original256/part1-amiga-ham/scenario.json: fixture not found: games/original256/release/amiga-hd/part1.ddb
+FAIL scenario tests/scenarios/original256/part1-amiga-ham-death/scenario.json: fixture not found: games/original256/release/amiga-hd/part1.ddb
+PASS scenario tests/scenarios/original256/part1-windows-death/scenario.json
+FAIL scenario tests/scenarios/original256/part2-amiga-ham/scenario.json: fixture not found: games/original256/release/amiga-hd/part2.ddb
+FAIL scenario tests/scenarios/original256/part2-amiga-ham-death/scenario.json: fixture not found: games/original256/release/amiga-hd/part2.ddb
+PASS scenario tests/scenarios/templos/part1-amiga/scenario.json
+PASS scenario tests/scenarios/templos/part1-msx/scenario.json
+PASS scenario tests/scenarios/templos/part1-pcw/scenario.json
+PASS scenario tests/scenarios/templos/part2-cpc/scenario.json
+PASS scenario tests/scenarios/templos/part2-pc-vga/scenario.json
+PASS scenario tests/scenarios/agatha/scenario.json
+PASS scenario tests/scenarios/chichen/part1-pc-vga/scenario.json
+PASS scenario tests/scenarios/chichen/part2-cpc/scenario.json
+PASS scenario tests/scenarios/chichen/part2-pc-ega/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-amiga/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-cpc/scenario.json
+PASS scenario tests/scenarios/cozumel/part1-spectrum/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-cpc/scenario.json
+PASS scenario tests/scenarios/cozumel/pcw/scenario.json
+PASS scenario tests/scenarios/espacial/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/espacial/part3-cpc/scenario.json
+PASS scenario tests/scenarios/espacial/part3-spectrum/scenario.json
+PASS scenario tests/scenarios/jabato/part1-c64/scenario.json
+PASS scenario tests/scenarios/jabato/part1-pc-ega/scenario.json
+PASS scenario tests/scenarios/jabato/part2-c64/scenario.json
+PASS scenario tests/scenarios/jabato/part2-pc-ega/scenario.json
+PASS scenario tests/scenarios/original/part1-cpc/scenario.json
+PASS scenario tests/scenarios/original/part1-spectrum/scenario.json
+PASS scenario tests/scenarios/original/part2-c64/scenario.json
+PASS scenario tests/scenarios/original/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/templos/part1-cpc/scenario.json
+PASS scenario tests/scenarios/templos/part1-pc-vga/scenario.json
+PASS scenario tests/scenarios/templos/part2-atarist/scenario.json
+PASS scenario tests/scenarios/templos/part2-msx/scenario.json
+PASS scenario tests/scenarios/templos/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/chichen/part1-atarist/scenario.json
+PASS scenario tests/scenarios/chichen/part1-pc-cga/scenario.json
+PASS scenario tests/scenarios/chichen/part1-spectrum/scenario.json
+PASS scenario tests/scenarios/chichen/part2-pc-cga/scenario.json
+PASS scenario tests/scenarios/chichen/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-atarist/scenario.json
+PASS scenario tests/scenarios/cozumel/part2-pc-ega/scenario.json
+PASS scenario tests/scenarios/espacial/part1-amiga/scenario.json
+PASS scenario tests/scenarios/espacial/part1-atarist/scenario.json
+PASS scenario tests/scenarios/espacial/part2-amiga/scenario.json
+PASS scenario tests/scenarios/espacial/part2-pc-cga/scenario.json
+PASS scenario tests/scenarios/espacial/part3-atarist/scenario.json
+PASS scenario tests/scenarios/espacial/part3-pc-cga/scenario.json
+PASS scenario tests/scenarios/firfurcio/scenario.json
+PASS scenario tests/scenarios/jabato/part1-cpc/scenario.json
+PASS scenario tests/scenarios/jabato/part1-spectrum/scenario.json
+PASS scenario tests/scenarios/jabato/part2-cpc/scenario.json
+PASS scenario tests/scenarios/jabato/part2-spectrum/scenario.json
+PASS scenario tests/scenarios/original/part2-atarist/scenario.json
+PASS scenario tests/scenarios/original/part2-pc-cga/scenario.json
+PASS scenario tests/scenarios/templos/part1-atarist/scenario.json
+PASS scenario tests/scenarios/templos/part1-pc-cga/scenario.json
+PASS scenario tests/scenarios/templos/part1-spectrum/scenario.json
+PASS scenario tests/scenarios/templos/part2-pc-cga/scenario.json
+PASS scenario tests/scenarios/templos/part2-pcw/scenario.json
+Probed 22 baseline fixture image(s): 18 passed, 4 failed
+make: *** [Makefile-linux:118: test-host] Error 1

@@ -18,6 +18,7 @@ live_output/
 # not disposable developer logs. The manifest verifier requires them in a
 # clean clone and CI checkout.
 !reverse_engineering/derived/**/ghidra-headless.log
+!reverse_engineering/public_implementations/adp/verification/*.log
 
 # SQLite runtime journals are regenerated and are not preservation evidence.
 preservation_corpus/state.db-shm
