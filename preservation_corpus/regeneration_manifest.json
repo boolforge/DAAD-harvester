@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
+          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
+          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,19 +265,19 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
+          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
-          "sha256": "6695a094ffdfb48a6b4b85d17fca37925649a640cf45588a15af5b183683d091"
+          "sha256": "a4332c7b9c7335dd73becfd5fb83e34d11a7c5b4d2385558dd6abf0106bce723"
         },
         {
           "path": "preservation_corpus/library/manifest.json",
-          "sha256": "a69488440790d9d465086fe887c066228e8dd6f85842c30f653e142481c32adf"
+          "sha256": "8d7949892650df553df7d9089c37ef5b82a52df099e8701909630d9b654dcf5f"
         },
         {
           "path": "preservation_corpus/daad_catalog.json",
-          "sha256": "844ad7d373741864b9283ef652ebc82af029261e2acac8568b90fc17c610fd36"
+          "sha256": "516a1fe9926b964a80295f49681c1012dd095d7d691fbdde7f064b3c97c3d09f"
         },
         {
           "path": "preservation_corpus/logs/daad_general.log",
@@ -291,7 +291,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "b8f5d8e9eddcc9249da9bb27ef543b277a627212b13564d4268de09ccc45adc0"
+          "sha256": "5b449a933365f457c7bfd436a3b54d4ecdee946e818d3780a25eaf8317f0695d"
         }
       ],
       "external_validators": [
@@ -321,13 +321,13 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "524faebd8057885db1b42ba43a90d61fe57e69bed363ba774f91340d85b279a8"
+          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/public_artifacts_manifest.json",
-          "sha256": "a30f9e3f6e839aac20e324ea9d97134495cf1ab8023373ac47c6ce23a46ed2f4"
+          "sha256": "7b5bd1e68b1ae1f376c0b745e26367e0819bccc7c6751bed41b1e7fe1ca69103"
         }
       ],
       "external_validators": [

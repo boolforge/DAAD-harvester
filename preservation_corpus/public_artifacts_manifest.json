@@ -586,7 +586,7 @@
         "container_format": null,
         "container_member": "EDI64",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": "daad-c64-edi64-official"
       },
@@ -1201,7 +1201,7 @@
         "container_format": null,
         "container_member": "AD",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-sdi2-official"
       },
@@ -4194,7 +4194,7 @@
         "container_format": null,
         "container_member": "EDI64",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": "daad-c64-edi64-official"
       },
@@ -11205,7 +11205,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/TEST/INTSM2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsm2-official"
       },
@@ -11246,7 +11246,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/TEST/INTSM1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsm1-official"
       },
@@ -11287,7 +11287,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/TEST/INTEM2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intem2-official"
       },
@@ -11369,7 +11369,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/TEST/INTEM1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intem1-official"
       },
@@ -12763,7 +12763,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSM3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsm3-official"
       },
@@ -12804,7 +12804,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSM2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsm2-official"
       },
@@ -12845,7 +12845,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSM1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsm1-official"
       },
@@ -12886,7 +12886,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSDM.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsdm-official"
       },
@@ -12927,7 +12927,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSD.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intsd-official"
       },
@@ -12968,7 +12968,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSCGA3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intscga3-official"
       },
@@ -13009,7 +13009,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSCGA2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intscga2-official"
       },
@@ -13050,7 +13050,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTSCGA1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intscga1-official"
       },
@@ -13091,7 +13091,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTS3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-ints3-official"
       },
@@ -13132,7 +13132,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTS2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-ints2-official"
       },
@@ -13173,7 +13173,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTS1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-ints1-official"
       },
@@ -13214,7 +13214,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTEM3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intem3-official"
       },
@@ -13255,7 +13255,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTEM2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intem2-official"
       },
@@ -13296,7 +13296,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTEM1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intem1-official"
       },
@@ -13337,7 +13337,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTEDM.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intedm-official"
       },
@@ -13378,7 +13378,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTED.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-inted-official"
       },
@@ -13419,7 +13419,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTECGA3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intecga3-official"
       },
@@ -13460,7 +13460,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTECGA2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intecga2-official"
       },
@@ -13501,7 +13501,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTECGA1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-intecga1-official"
       },
@@ -13542,7 +13542,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTE3.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-inte3-official"
       },
@@ -13583,7 +13583,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTE2.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-inte2-official"
       },
@@ -13624,7 +13624,7 @@
         "container_format": "dos-executable",
         "container_member": "DAAD/DAAD/INTERP/INTE1.EXE",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "dos",
         "ddb_format": null,
         "interpreter_identity": "daad-dos-inte1-official"
       },
@@ -13706,7 +13706,7 @@
         "container_format": null,
         "container_member": "DAAD/LIB/PCW/PCWSDI.BIN",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "pcw",
         "ddb_format": null,
         "interpreter_identity": "daad-pcw-pcwsdi-official"
       },
@@ -13747,7 +13747,7 @@
         "container_format": null,
         "container_member": "DAAD/LIB/PCW/PCWEDI.BIN",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "pcw",
         "ddb_format": null,
         "interpreter_identity": "daad-pcw-pcwedi-official"
       },
@@ -14854,7 +14854,7 @@
         "container_format": null,
         "container_member": "DAAD/LIB/MSX/MSXSDI.Z80",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "msx",
         "ddb_format": null,
         "interpreter_identity": "daad-msx-msxsdi-official"
       },
@@ -14895,7 +14895,7 @@
         "container_format": null,
         "container_member": "DAAD/LIB/MSX/MSXEDI.Z80",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "msx",
         "ddb_format": null,
         "interpreter_identity": "daad-msx-msxedi-official"
       },
@@ -15100,7 +15100,7 @@
         "container_format": null,
         "container_member": "DAAD.Z80",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "msx",
         "ddb_format": null,
         "interpreter_identity": "daad-msx-msxedi-official"
       },
@@ -15633,7 +15633,7 @@
         "container_format": null,
         "container_member": "SDI",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": "daad-c64-sdi64-official"
       },
@@ -15674,7 +15674,7 @@
         "container_format": null,
         "container_member": "EDI",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": "daad-c64-edi64-official"
       },
@@ -16740,7 +16740,7 @@
         "container_format": "commodore-prg",
         "container_member": "EDI1.PRG",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "atarist",
         "ddb_format": null,
         "interpreter_identity": "daad-atarist-edi1-official"
       },
@@ -16822,7 +16822,7 @@
         "container_format": "commodore-prg",
         "container_member": "EDI2.PRG",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "atarist",
         "ddb_format": null,
         "interpreter_identity": "daad-atarist-edi2-official"
       },
@@ -17150,7 +17150,7 @@
         "container_format": "commodore-prg",
         "container_member": "SDI1.PRG",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "atarist",
         "ddb_format": null,
         "interpreter_identity": "daad-atarist-sdi1-official"
       },
@@ -17232,7 +17232,7 @@
         "container_format": "commodore-prg",
         "container_member": "SDI2.PRG",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "atarist",
         "ddb_format": null,
         "interpreter_identity": "daad-atarist-sdi2-official"
       },
@@ -18175,7 +18175,7 @@
         "container_format": null,
         "container_member": "OTROS/DAAD/sdi1",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-sdi1-official"
       },
@@ -18216,7 +18216,7 @@
         "container_format": null,
         "container_member": "OTROS/DAAD/sdi2",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-sdi2-official"
       },
@@ -18339,7 +18339,7 @@
         "container_format": null,
         "container_member": "OTROS/DAAD/edi1",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-edi1-official"
       },
@@ -18380,7 +18380,7 @@
         "container_format": null,
         "container_member": "OTROS/DAAD/edi2",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-edi2-official"
       },
@@ -18626,7 +18626,7 @@
         "container_format": null,
         "container_member": "INTERP",
         "measured_platform": null,
-        "platform_hint": null,
+        "platform_hint": "amiga",
         "ddb_format": null,
         "interpreter_identity": "daad-amiga-edi1-official"
       },

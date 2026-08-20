@@ -130,6 +130,216 @@ static const ADGameDescription gameDescriptions[] = {
 		ADGF_NO_FLAGS,
 		GUIO0()
 	},
+	// MD5 Head (5KB): 93e08f227b118458d5f0149258d0e99b | SHA-256: 8b13fc9589b8570870cfe93639bec4e05f61505cee0a7b1ecc8d5c6b5186d404 | SHA-1: 44354efa2a66692b79b6a62d60765d508c366af1 | CRC32: 89b59d24 | XXH64: 8e1a49faddae9684
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Side 1.tzx", "a3f96f06d46921a3ed676363accbbb4f", 48362),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d | SHA-1: 35bcf531716368932db626d6c2805f03b255b854 | CRC32: 1959c357 | XXH64: 63bdab783c27377a
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "f60ae20dafd0b438167b2ddd429490d8", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): ebc9e82e2fa47e884022d130d9a71149 | SHA-256: 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab | SHA-1: 397801cbd41d64ec3bf71a9c905384288d3fe9a5 | CRC32: 4e7eb44b | XXH64: 5d8fc7e3b8609ece
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "25a67864283f05f41b11a83e808e8b61", 22194),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f0918aa730e5871dbe1bd1d1fc6a1978 | SHA-256: 7b032a6caa265e901bd45353f2aa7f382dcc80bb6fa88c7e20cb01bfea969f2f | SHA-1: 3d54a88285c7bb79a0dfb5ef762ae9f0520dc8d8 | CRC32: 14e54546 | XXH64: 52c8634942035096
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Part 1.tap", "c3c04791523bfeca464c84ac3bf3d68d", 48166),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 87d2e6e1733dff10614d3d074a02188c | SHA-256: d063588ef9807542fd721f638dd84bf0287055fbb9766b9a4b60ba3e2ca36d93 | SHA-1: 50adb20c01a51b7d89a202a62d5fd5c57ceca50a | CRC32: 894e48f5 | XXH64: ae50d20ecc19d003
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Side 2.tzx", "134214780aafda49411bb61bc31b63e2", 48362),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d | SHA-1: 35bcf531716368932db626d6c2805f03b255b854 | CRC32: 1959c357 | XXH64: 63bdab783c27377a
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "f60ae20dafd0b438167b2ddd429490d8", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): ebc9e82e2fa47e884022d130d9a71149 | SHA-256: 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab | SHA-1: 397801cbd41d64ec3bf71a9c905384288d3fe9a5 | CRC32: 4e7eb44b | XXH64: 5d8fc7e3b8609ece
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "25a67864283f05f41b11a83e808e8b61", 22194),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4 | SHA-1: 373dd773c280529b378daed45eb638bb0cd760b8 | CRC32: 03e4bcba | XXH64: 6c11f986fa1010e2
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "05ac0a89a88443ce3867a58e83392512", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 1a8f786d3382ec8a35a79de5a62a2ea8 | SHA-256: 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474 | SHA-1: 6f88ce417f7d339f7d121b375936c02e67df353b | CRC32: 347e109c | XXH64: d5609808d6654111
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "baf4ceb24cc82eda8d0845507a08eb9f", 26489),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 93e08f227b118458d5f0149258d0e99b | SHA-256: 8b13fc9589b8570870cfe93639bec4e05f61505cee0a7b1ecc8d5c6b5186d404 | SHA-1: 44354efa2a66692b79b6a62d60765d508c366af1 | CRC32: 89b59d24 | XXH64: 8e1a49faddae9684
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Side 1.tzx", "a3f96f06d46921a3ed676363accbbb4f", 48362),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 6cb1c913a51b02116a2fd90ff32438a7 | SHA-256: d2982344263f96ade41d8590fe975ba6b6867d7af87ccddfc0417b5db11a8f73 | SHA-1: 09e9de2e5a58db3d09503960a0fac01e65a700b8 | CRC32: 0a229edb | XXH64: 5ec493b002e15f1a
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Part 2.tap", "474a3a55fc64dbe042c22fbf8c4eba32", 48166),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d | SHA-1: 35bcf531716368932db626d6c2805f03b255b854 | CRC32: 1959c357 | XXH64: 63bdab783c27377a
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "f60ae20dafd0b438167b2ddd429490d8", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): ebc9e82e2fa47e884022d130d9a71149 | SHA-256: 7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab | SHA-1: 397801cbd41d64ec3bf71a9c905384288d3fe9a5 | CRC32: 4e7eb44b | XXH64: 5d8fc7e3b8609ece
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "25a67864283f05f41b11a83e808e8b61", 22194),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4 | SHA-1: 373dd773c280529b378daed45eb638bb0cd760b8 | CRC32: 03e4bcba | XXH64: 6c11f986fa1010e2
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "05ac0a89a88443ce3867a58e83392512", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 1a8f786d3382ec8a35a79de5a62a2ea8 | SHA-256: 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474 | SHA-1: 6f88ce417f7d339f7d121b375936c02e67df353b | CRC32: 347e109c | XXH64: d5609808d6654111
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "baf4ceb24cc82eda8d0845507a08eb9f", 26489),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 87d2e6e1733dff10614d3d074a02188c | SHA-256: d063588ef9807542fd721f638dd84bf0287055fbb9766b9a4b60ba3e2ca36d93 | SHA-1: 50adb20c01a51b7d89a202a62d5fd5c57ceca50a | CRC32: 894e48f5 | XXH64: ae50d20ecc19d003
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("Chichen Itza - Side 2.tzx", "134214780aafda49411bb61bc31b63e2", 48362),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f6baf28d3d202fe677f3106c5fe968df | SHA-256: 8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4 | SHA-1: 373dd773c280529b378daed45eb638bb0cd760b8 | CRC32: 03e4bcba | XXH64: 6c11f986fa1010e2
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE.bin", "05ac0a89a88443ce3867a58e83392512", 40960),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 1a8f786d3382ec8a35a79de5a62a2ea8 | SHA-256: 8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474 | SHA-1: 6f88ce417f7d339f7d121b375936c02e67df353b | CRC32: 347e109c | XXH64: d5609808d6654111
+	{
+		"daad_chich_n_itz",
+		"Chichén Itzá (ZX/1992)",
+		AD_ENTRY1s("CODE__embedded_002400.ddb", "baf4ceb24cc82eda8d0845507a08eb9f", 26489),
+		Common::ES_ESP,
+		Common::kPlatformZXSpectrum,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 9839778444677a27f1e65f7417eea3fd | SHA-256: 8f45acdfe4813996cb3895dd66d2d9e6f0685acfc94c1ec35ed3eeb626cdad84 | SHA-1: 1aa2fdcd4726126a1414817efdae876026bea13a | CRC32: 34ed6864 | XXH64: 440c66e466bced68
+	{
+		"daad_official_daad_r4_preservation_archive",
+		"Official DAAD R4 preservation archive (DOS/Unknown)",
+		AD_ENTRY1s("DAAD/DAAD/SCE/BLANK.DDB", "9839778444677a27f1e65f7417eea3fd", 2652),
+		Common::ES_ESP,
+		Common::kPlatformUnknown,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): f14c8b0404a98d7566bef7da8aea2c71 | SHA-256: a147f2ad2f691930e886a0c1df1d8aa1de6683a20c369fb834244e917dbc8de1 | SHA-1: 2ef4838610a6146e188c5ab8090e76aa0d77d9f5 | CRC32: 89e8503b | XXH64: 8f5469993613c19b
+	{
+		"daad_official_daad_r4_preservation_archive",
+		"Official DAAD R4 preservation archive (DOS/Unknown)",
+		AD_ENTRY1s("DAAD/DAAD/SCE/SPANISH.DDB", "f14c8b0404a98d7566bef7da8aea2c71", 2326),
+		Common::ES_ESP,
+		Common::kPlatformUnknown,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
+	// MD5 Head (5KB): 92aef478b4ca9bc9895f1427fb7f1160 | SHA-256: 13389079e2a3e06e7546e082e5e3d1e5d7658333efcac20a0992a2dc9396e133 | SHA-1: 990d959f9bb9bdc0b3572daf8d12cb3aecb62cd8 | CRC32: c7ac7777 | XXH64: 3deac27a322d1184
+	{
+		"daad_official_daad_r4_preservation_archive",
+		"Official DAAD R4 preservation archive (AMIGA/Unknown)",
+		AD_ENTRY1s("PART1.DDB", "92aef478b4ca9bc9895f1427fb7f1160", 2872),
+		Common::ES_ESP,
+		Common::kPlatformAmiga,
+		ADGF_NO_FLAGS,
+		GUIO0()
+	},
 	AD_END_MARKER
 };
 
