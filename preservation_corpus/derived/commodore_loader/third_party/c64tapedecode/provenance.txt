@@ -1,0 +1,2 @@
+origin=https://github.com/lunderhage/c64tapedecode.git
+revision=e37919fb7107babc590772994fe3e5814a697df4

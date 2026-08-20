@@ -205,6 +205,28 @@ def _physical_segments(pulses: list[Pulse], stream_size: int) -> list[dict[str, 
     return segments
 
 
+def _segment_timing_profiles(pulses: list[Pulse]) -> list[dict[str, object]]:
+    """Report dominant exact timings per long-pause-delimited physical segment."""
+    segments: list[list[int]] = [[]]
+    for pulse in pulses:
+        if pulse.kind == "exact_extended" and pulse.cycles is not None and pulse.cycles >= 100_000:
+            segments.append([])
+            continue
+        if pulse.cycles is not None:
+            segments[-1].append(pulse.cycles)
+    return [
+        {
+            "segment_index": index,
+            "exact_pulse_count": len(values),
+            "dominant_cycles": [
+                {"cycles": cycles, "count": count, "tap_value": cycles // 8 if cycles % 8 == 0 else None}
+                for cycles, count in sorted(Counter(values).items(), key=lambda item: (-item[1], item[0]))[:8]
+            ],
+        }
+        for index, values in enumerate(segments)
+    ]
+
+
 def _loader_01b6_preview(
     pulses: list[Pulse], validation_ram: bytes | None
 ) -> dict[str, list[dict[str, object]]]:
@@ -509,6 +531,7 @@ def inspect(
             if pulse.kind == "exact_extended"
         ][:64],
         "physical_pause_segments": _physical_segments(pulses, len(data) - 20),
+        "segment_timing_profiles": _segment_timing_profiles(pulses),
         "measured_loader_01b6_sync_candidates": loader_model["sync_candidates"],
         "measured_loader_01b6_plausible_frames": loader_model["plausible_frames"],
         "measured_loader_reference_prefix_matches": _measured_loader_reference_matches(

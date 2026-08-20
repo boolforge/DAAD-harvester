@@ -845,6 +845,484 @@
     "exact_extended": 21,
     "quantized": 783342
   },
+  "segment_timing_profiles": [
+    {
+      "dominant_cycles": [
+        {
+          "count": 18175,
+          "cycles": 384,
+          "tap_value": 48
+        },
+        {
+          "count": 12450,
+          "cycles": 368,
+          "tap_value": 46
+        },
+        {
+          "count": 2351,
+          "cycles": 528,
+          "tap_value": 66
+        },
+        {
+          "count": 1222,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 461,
+          "cycles": 512,
+          "tap_value": 64
+        },
+        {
+          "count": 255,
+          "cycles": 344,
+          "tap_value": 43
+        },
+        {
+          "count": 210,
+          "cycles": 712,
+          "tap_value": 89
+        },
+        {
+          "count": 194,
+          "cycles": 696,
+          "tap_value": 87
+        }
+      ],
+      "exact_pulse_count": 35377,
+      "segment_index": 0
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 6194,
+          "cycles": 368,
+          "tap_value": 46
+        },
+        {
+          "count": 4223,
+          "cycles": 384,
+          "tap_value": 48
+        },
+        {
+          "count": 3663,
+          "cycles": 528,
+          "tap_value": 66
+        },
+        {
+          "count": 1785,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 528,
+          "cycles": 512,
+          "tap_value": 64
+        },
+        {
+          "count": 483,
+          "cycles": 344,
+          "tap_value": 43
+        },
+        {
+          "count": 343,
+          "cycles": 712,
+          "tap_value": 89
+        },
+        {
+          "count": 254,
+          "cycles": 696,
+          "tap_value": 87
+        }
+      ],
+      "exact_pulse_count": 17498,
+      "segment_index": 1
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1836,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 850,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 631,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 262,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 108,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 34,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1,
+          "cycles": 736,
+          "tap_value": 92
+        },
+        {
+          "count": 1,
+          "cycles": 896,
+          "tap_value": 112
+        }
+      ],
+      "exact_pulse_count": 3724,
+      "segment_index": 2
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 2699,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 1475,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 1226,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 681,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 140,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 60,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 5,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 1,
+          "cycles": 752,
+          "tap_value": 94
+        }
+      ],
+      "exact_pulse_count": 6289,
+      "segment_index": 3
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 5890,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 3921,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 2937,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 1814,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 212,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 202,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 6,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 1,
+          "cycles": 752,
+          "tap_value": 94
+        }
+      ],
+      "exact_pulse_count": 14985,
+      "segment_index": 4
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 5854,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 3338,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 3153,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 1540,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 304,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 113,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 4,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 2,
+          "cycles": 448,
+          "tap_value": 56
+        }
+      ],
+      "exact_pulse_count": 14311,
+      "segment_index": 5
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 41152,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 26316,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 14318,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 8073,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 2498,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1753,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 10,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 1,
+          "cycles": 736,
+          "tap_value": 92
+        }
+      ],
+      "exact_pulse_count": 94123,
+      "segment_index": 6
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 53575,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 45313,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 27909,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 23078,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 1770,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1450,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 21,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 2,
+          "cycles": 328,
+          "tap_value": 41
+        }
+      ],
+      "exact_pulse_count": 153122,
+      "segment_index": 7
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 120722,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 74290,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 48139,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 47632,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 4558,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1896,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 32,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 2,
+          "cycles": 448,
+          "tap_value": 56
+        }
+      ],
+      "exact_pulse_count": 297274,
+      "segment_index": 8
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 49562,
+          "cycles": 280,
+          "tap_value": 35
+        },
+        {
+          "count": 43701,
+          "cycles": 592,
+          "tap_value": 74
+        },
+        {
+          "count": 33293,
+          "cycles": 304,
+          "tap_value": 38
+        },
+        {
+          "count": 16940,
+          "cycles": 568,
+          "tap_value": 71
+        },
+        {
+          "count": 1727,
+          "cycles": 608,
+          "tap_value": 76
+        },
+        {
+          "count": 1413,
+          "cycles": 264,
+          "tap_value": 33
+        },
+        {
+          "count": 9,
+          "cycles": 552,
+          "tap_value": 69
+        },
+        {
+          "count": 1,
+          "cycles": 736,
+          "tap_value": 92
+        }
+      ],
+      "exact_pulse_count": 146648,
+      "segment_index": 9
+    },
+    {
+      "dominant_cycles": [
+        {
+          "count": 1,
+          "cycles": 5480,
+          "tap_value": 685
+        }
+      ],
+      "exact_pulse_count": 1,
+      "segment_index": 10
+    },
+    {
+      "dominant_cycles": [],
+      "exact_pulse_count": 0,
+      "segment_index": 11
+    }
+  ],
   "sha256": "99e873fd309be0325e37668f9385937d22337c1a4c1d2b9094ac2ef575082ad1",
   "two_pulse_previews": [
     {

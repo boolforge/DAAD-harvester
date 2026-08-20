@@ -57,3 +57,7 @@ def test_retained_jabato_side_a_kernal_packets_are_reproducible() -> None:
     assert [packet["parity_valid_byte_count"] for packet in kernal["packets"]] == [202, 202, 299, 299]
     assert kernal["packets"][0]["first_64_bytes_hex"].startswith("898887868584838281039f02c0034a414241544f2031")
     assert kernal["reference_prefix_matches"] == []
+    profiles = result["segment_timing_profiles"]
+    assert len(profiles) == 12
+    assert profiles[0]["dominant_cycles"][0] == {"cycles": 384, "count": 18175, "tap_value": 48}
+    assert profiles[2]["dominant_cycles"][0] == {"cycles": 280, "count": 1836, "tap_value": 35}
