@@ -109,6 +109,141 @@
           "role": "independent retained byte-identity corroboration only; not read by the primary recovery verification command"
         }
       ]
+    },
+    {
+      "id": "all-platform-retained-game-corpus-integrity",
+      "description": "Verifies the committed all-platform SQLite evidence ledger, coverage ledger, and every retained artifact hash. This is an integrity claim, not a media-acquisition replay.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "SQLite support included with Python",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_game_corpus.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+        },
+        {
+          "path": "preservation_corpus/COVERAGE_LEDGER.md",
+          "sha256": "e9ca2c94ed06fa7ecab4667013a49aeb6b067cb0e7f3e38c497c2166b9aa1619"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "7c7a60338e6de3fe0ea0f7255aff88071bed80536d5a08678831fa5362f9fd72"
+        },
+        {
+          "path": "preservation_corpus/COVERAGE_LEDGER.md",
+          "sha256": "e9ca2c94ed06fa7ecab4667013a49aeb6b067cb0e7f3e38c497c2166b9aa1619"
+        }
+      ],
+      "external_validators": []
+    },
+    {
+      "id": "commodore-runtime-resource-integrity",
+      "description": "Verifies the committed Commodore runtime-resource manifest, all listed firmware/resources, retained captures, authorization directive, and required local links. This is an integrity claim, not a live-emulation replay.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_runtime_resources.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/runtime_resources/commodore/manifest.json",
+          "sha256": "abaa3ed29bd1da74d5079db5bb283cf661e93f278e93ab6d87348b9956c7be09"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/runtime_resources/commodore/manifest.json",
+          "sha256": "abaa3ed29bd1da74d5079db5bb283cf661e93f278e93ab6d87348b9956c7be09"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "VICE",
+          "role": "optional live-emulation validation and historical capture acquisition only; not invoked by this primary integrity verifier"
+        }
+      ]
+    },
+    {
+      "id": "reverse-engineering-corpus-integrity",
+      "description": "Verifies retained reverse-engineering source, comparison, and generated-output hashes from committed manifests. It preserves tool-output integrity only and does not promote external-tool semantics as repository-native decompilation.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_reverse_corpus.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "reverse_engineering/manifests/official_interpreters.json",
+          "sha256": "c4cfdd53c1fc8062023ec566246e40e80faba37e871e9e30e808f24558551a76"
+        },
+        {
+          "path": "reverse_engineering/manifests/public_sources.json",
+          "sha256": "eec0ed60b65b7a42d865f4f9171802b71bc47e0dadd7e9201dd5a7b24e1f5faf"
+        },
+        {
+          "path": "reverse_engineering/manifests/third_party_comparisons.json",
+          "sha256": "449dfa5db893ee39162103a389019580f507fe9f1c55c9b7b356a08b0ae86185"
+        },
+        {
+          "path": "reverse_engineering/manifests/adp_implementation.json",
+          "sha256": "5521b25da5f038b44d00ffe8adf30c098be9e6d5c8e0edfb1710c260b7014b8e"
+        },
+        {
+          "path": "reverse_engineering/manifests/adp_verification.json",
+          "sha256": "17f839331fa4c97938b6cbc0894acbdec64e8f29ce5a3a0dd234f56c24530329"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "reverse_engineering/manifests/official_interpreters.json",
+          "sha256": "c4cfdd53c1fc8062023ec566246e40e80faba37e871e9e30e808f24558551a76"
+        },
+        {
+          "path": "reverse_engineering/manifests/public_sources.json",
+          "sha256": "eec0ed60b65b7a42d865f4f9171802b71bc47e0dadd7e9201dd5a7b24e1f5faf"
+        },
+        {
+          "path": "reverse_engineering/manifests/third_party_comparisons.json",
+          "sha256": "449dfa5db893ee39162103a389019580f507fe9f1c55c9b7b356a08b0ae86185"
+        },
+        {
+          "path": "reverse_engineering/manifests/adp_implementation.json",
+          "sha256": "5521b25da5f038b44d00ffe8adf30c098be9e6d5c8e0edfb1710c260b7014b8e"
+        },
+        {
+          "path": "reverse_engineering/manifests/adp_verification.json",
+          "sha256": "17f839331fa4c97938b6cbc0894acbdec64e8f29ce5a3a0dd234f56c24530329"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "Ghidra, radare2, and architecture-specific disassemblers",
+          "role": "retained independent analysis producers; this native verifier checks their recorded outputs but does not use them to regenerate or promote semantic conclusions"
+        }
+      ]
     }
   ]
 }

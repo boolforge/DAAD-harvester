@@ -15,6 +15,7 @@ This documentation corpus describes **what DAAD Harvester can measure**, the evi
 | [Source register](sources/SOURCE_REGISTER.md) | Provenance, access boundaries, coverage, and use of every primary source. |
 | [TUI demonstration capture](tui/DEMONSTRATION_CAPTURE.md) | Reproducible authentic terminal recording, interaction sequence, and aspect-ratio rationale. |
 | [Final bounded live audit](audits/2026-08-19_FINAL_LIVE_AUDIT.md) | Fresh source discovery, bounded acquisition, native extraction, and negative verification result. |
+| [Self-contained regeneration baseline audit](audits/2026-08-20_SELF_CONTAINED_REGENERATION_BASELINE.md) | Domain-by-domain status, conversion backlog, and external-tool disposition under the mandatory global policy. |
 
 > **Preservation rule.** A filename, extension, or archive title is useful discovery context, but it is not binary identity. Harvester records a version, platform, or runtime as verified only when its measured structure or hash supports that exact statement.
 
