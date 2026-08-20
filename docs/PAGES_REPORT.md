@@ -10,19 +10,31 @@ The export records the evidence catalog, verified-DDB count, detection-table ava
 
 ## Published content boundary
 
-The Pages workflow publishes the viewer, the already verified committed `report_data.json`, a library **manifest**, `detection_tables.h`, and a static HTML rendering of every maintained project Markdown document. It does **not** publish local game binaries or the `library/` payload tree. This preserves the report’s provenance links while avoiding automatic redistribution of archived software whose rights status has not been established.
+The Pages workflow publishes the viewer, the already verified committed `report_data.json`, a deterministic public-artifact manifest, `detection_tables.h`, and a static HTML rendering of every maintained project Markdown document. The authorized retained corpus is staged under a bounded public artifact tree by repository code, not by browser guesses or local extraction paths. Every exposed byte is linked to its source/provenance, evidence state, size, and complete native checksum suite.
 
 | Public Pages content | Reason |
 | --- | --- |
 | Report JSON | Evidence, counts, policy, and bounded logs are necessary for the public viewer. |
-| Library manifest | Provides classification and source provenance without distributing retained artifacts. |
+| Public artifact manifest | Authoritative public-path, provenance, evidence-state, size, and complete-digest record for each staged retained byte. |
+| Authorized retained artifacts | Original containers, DDBs, tape media, ROMs, disks, executables, interpreter binaries, captures, and derived evidence under the manifest-controlled public tree. |
 | `detection_tables.h` | Enables download of generated ScummVM-oriented detection metadata. |
 | `documentation/index.html` and rendered documents | Deterministic static HTML view of the versioned README, TODO, and all `docs/**/*.md` modules. |
-| Game binaries | Excluded from automated publication; obtain a lawful release from its recorded source. |
+| Unmanifested/local paths | Excluded. The viewer never constructs a download URL from a filename, source URL, or workstation path. |
 
 ## Workflow
 
-`.github/workflows/pages.yml` runs on pushes to `main` and manual dispatch. It executes the complete deterministic primary gate against the committed corpus state, rejects a missing report/library/detection export, renders the documentation portal through `scripts/build_pages_docs.py`, compiles `web/report-viewer`, and deploys the resulting static artifact through GitHub Pages. A separate post-deployment job fetches the exact deployment URL and fails if the report JSON lacks retained sources/artifacts or the documentation index is unavailable.
+`.github/workflows/pages.yml` runs on pushes to `main` and manual dispatch. It executes the complete deterministic primary gate against the committed corpus state, regenerates/verifies the public-artifact manifest, copies only manifest-approved bytes to the static artifact tree, recomputes and compares their digests, renders the documentation portal through `scripts/build_pages_docs.py`, compiles `web/report-viewer`, and deploys the result through GitHub Pages. A separate post-deployment job fetches the exact deployment URL and fails if the report JSON, artifact manifest, byte checks, or documentation index are unavailable.
+
+## Public artifact download contract
+
+The browser treats the manifest as the sole authority for a retained-byte download. An artifact-detail route may offer a download only when the report references a manifest entry and the corresponding byte has been staged under the public artifact root. It must display the original filename, media/container classification, source association, structural/interpreter evidence where available, file size, and every native digest before or alongside the link. A DDB is not privileged: the same rules apply to its container, tape image, ROM, disk, executable, interpreter, capture, or derived output.
+
+| Deployment check | Required result |
+| --- | --- |
+| Path containment | Every manifest path resolves beneath the public artifact root; `..`, absolute, and workstation paths fail the build. |
+| Input identity | The staged byte SHA-256 and all generated digests equal the manifest record. |
+| Completeness | Every approved retained artifact has one manifest entry; every manifest entry has one staged file. |
+| Consumer boundary | The viewer offers links only from manifest `public_path` values and explicitly marks non-staged evidence unavailable. |
 
 Before the first deployment, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions** in the repository. The configured project URL is:
 
