@@ -160,6 +160,22 @@ def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
         ddb_format="daad-v2",
     )
     db.add_artifact(artifact)
+    db.add_artifact(
+        ArtifactRecord(
+            id=None,
+            source_id=source_id,
+            original_filename="CHICHEN.DSK",
+            extracted_path=str(tmp_path / "CHICHEN.DSK"),
+            archive_depth=0,
+            file_size=184320,
+            md5_full="d" * 32,
+            md5_5000="e" * 32,
+            sha256="f" * 64,
+            container_format="cpc-dsk",
+            media_parser="cpc_dsk",
+            media_validation="recognized",
+        )
+    )
     dash = TUIDashboard(db)
     dash.search_filter = "chichen"
 
@@ -170,6 +186,10 @@ def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
     assert "Catalog platforms" in text
     assert "Measured artifact platforms" in text
     assert "CHICHEN.DDB" in text
+    assert "CHICHEN.DSK" in text
+    assert "structurally validated DDB payload" in text
+    assert "retained technical-medium container" in text
+    assert "… 1 more retained artifacts" not in text
     assert "c" * 16 in text
     assert "SCUMMVM DETECTION HANDOFF" in text
     assert "Detection metadata only" in text

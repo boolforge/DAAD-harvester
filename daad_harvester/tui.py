@@ -86,6 +86,27 @@ class TUIDashboard:
         self.selected_index = max(0, min(self.selected_index, len(artifacts) - 1))
         return artifacts[self.selected_index]
 
+    @staticmethod
+    def _lineage_role(artifact: Any) -> str:
+        """Describe a stored artifact relation without claiming an unmeasured medium."""
+        if artifact.is_daad_payload:
+            return "structurally validated DDB payload"
+        if artifact.container_member:
+            return "extracted container member"
+        if artifact.archive_depth:
+            return "extracted archive member"
+        if artifact.container_format:
+            return "retained technical-medium container"
+        if artifact.media_parser:
+            return "retained media/support asset"
+        return "retained artifact; technical medium not classified"
+
+    def _source_for_artifact(self, artifact: Any) -> Any | None:
+        return next(
+            (source for source in self.db.get_all_sources() if source.id == artifact.source_id),
+            None,
+        )
+
     def _make_detail_panel(self) -> Panel:
         artifact = self._selected_artifact()
         theme_name, accent, _, border = self.theme
@@ -94,13 +115,20 @@ class TUIDashboard:
         table = Table.grid(expand=True, padding=(0, 1))
         table.add_column("Field", style=f"bold {accent}", width=22)
         table.add_column("Measured value", overflow="fold")
+        source = self._source_for_artifact(artifact)
         fields = (
             ("Artifact ID", artifact.id),
             ("Original member", artifact.original_filename),
-            ("Platform", artifact.measured_platform or artifact.platform_hint or "unknown"),
+            ("Lineage role", self._lineage_role(artifact)),
+            ("Source platform", (source.platform if source else None) or "not recorded"),
+            ("Artifact platform evidence", artifact.platform_hint or "not recorded"),
+            ("Measured DDB platform", artifact.measured_platform or "not a measured DDB"),
+            ("Technical medium", artifact.container_format or "not classified"),
+            ("Container member", artifact.container_member or "not a named member"),
+            ("Archive depth", artifact.archive_depth),
             ("DDB format", artifact.ddb_format or "not recorded"),
             ("DDB version", artifact.daad_version_guess or "not recorded"),
-            ("Interpreter", artifact.interpreter_identity or "not correlated"),
+            ("Interpreter correlation", artifact.interpreter_identity or "not correlated to this byte"),
             ("Confidence", artifact.fingerprint_confidence or "not recorded"),
             ("Media parser", artifact.media_parser or "not recorded"),
             ("Media validation", artifact.media_validation or "not recorded"),
@@ -278,7 +306,8 @@ class TUIDashboard:
             if not title or title.lower() in ("src", "download", "file", "archive", "unnamed"):
                 title = Path(art.original_filename).stem.replace("_", " ").title()
 
-            platform = (art.platform_hint or "unknown").upper()
+            source_platform = (src.platform if src else None) or "not recorded"
+            platform = (art.platform_hint or "not recorded").upper()
             version = art.daad_version_guess or art.media_validation or art.container_format or "retained"
             status = "VERIFIED" if art.is_daad_payload else (art.media_status or "retained").upper()
             sha256_short = art.sha256[:16] + "..." if art.sha256 and len(art.sha256) > 16 else (art.sha256 or "N/A")
@@ -288,7 +317,16 @@ class TUIDashboard:
             style = f"bold black on {accent}" if actual_idx == self.selected_index else None
             # Wrap in Text() (not raw str) so titles/filenames pulled from harvested
             # archives can never be misparsed as Rich markup (e.g. "Game [1988].zip").
-            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(status), Text(sha256_short), Text(size_str), style=style)
+            table.add_row(
+                str(art.id),
+                Text(title),
+                Text(f"source {source_platform.upper()}\nartifact {platform}"),
+                Text(f"{self._lineage_role(art)}\n{version}"),
+                Text(status),
+                Text(sha256_short),
+                Text(size_str),
+                style=style,
+            )
 
         verified_count = sum(1 for artifact in daad_arts if artifact.is_daad_payload)
         title_str = f"[bold {accent}]Artifact Evidence Ledger — {verified_count} Verified DDBs[/bold {accent}]"
@@ -405,17 +443,17 @@ class TUIDashboard:
             measured_platforms = ", ".join(
                 sorted(
                     {
-                        (artifact.measured_platform or artifact.platform_hint or "unknown").upper()
+                        artifact.measured_platform.upper()
                         for artifact in matched_artifacts
+                        if artifact.measured_platform
                     }
                 )
             ) or "no measured artifact"
             artifact_text = "\n".join(
-                f"{artifact.original_filename} | {artifact.sha256}"
-                for artifact in matched_artifacts[:3]
+                f"{artifact.original_filename} | {self._lineage_role(artifact)} | "
+                f"{artifact.container_format or 'medium not classified'} | {artifact.sha256}"
+                for artifact in matched_artifacts
             ) or "no source-associated retained artifact"
-            if len(matched_artifacts) > 3:
-                artifact_text += f"\n… {len(matched_artifacts) - 3} more retained artifacts"
             actual_index = rows.index((game, matched_sources, matched_artifacts))
             style = f"bold black on {accent}" if actual_index == self.selected_index else None
             table.add_row(
@@ -426,7 +464,7 @@ class TUIDashboard:
                 Text(artifact_text),
                 style=style,
             )
-        subtitle = "Catalog, source, and measured artifact platforms are separate evidence layers; no row asserts a runnable port."
+        subtitle = "Complete source-associated artifact lineage is shown. Catalog, source, artifact, and measured-DDB platform layers are separate evidence; no row asserts a runnable port."
         return Panel(table, title=f"[bold {accent}]GAME & PORT EXPLORER[/bold {accent}]", subtitle=subtitle, border_style=border)
 
     def _make_detection_panel(self) -> Panel:
