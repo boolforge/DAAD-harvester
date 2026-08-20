@@ -10,7 +10,14 @@ import zipfile
 import pytest
 
 from daad_harvester.db import Database
-from daad_harvester.platform_media import decompress_msa, extract_adf, extract_fat12, extract_fat16, parse_tzx_blocks
+from daad_harvester.platform_media import (
+    decompress_msa,
+    extract_adf,
+    extract_c64_tap_kernal_packets,
+    extract_fat12,
+    extract_fat16,
+    parse_tzx_blocks,
+)
 from daad_harvester.unpack import Unpacker
 from tests.ddb_fixtures import make_legacy_ddb
 
@@ -98,6 +105,23 @@ def _t64(payload: bytes = b"DDB") -> bytes:
     return bytes(data)
 
 
+def _c64_tap_packet(value: int, *, valid_parity: bool = True) -> bytes:
+    """Build one KERNAL-compatible raw-TAP packet for bounded extraction tests."""
+    pulses = bytearray([46] * 20 + [89, 74])
+    bits = [(value >> bit) & 1 for bit in range(8)]
+    parity = 1 ^ (value.bit_count() & 1)
+    if not valid_parity:
+        parity ^= 1
+    bits.append(parity)
+    for bit in bits:
+        first, second = ((74, 46) if bit else (46, 74))
+        pulses.extend((first, second))
+    header = bytearray(b"C64-TAPE-RAW")
+    header.extend((1, 0, 0, 0))
+    header.extend(len(pulses).to_bytes(4, "little"))
+    return bytes(header + pulses)
+
+
 def _tzx() -> bytes:
     header = b"\x00\x00GAME      \x00\x00\x00\x00\x00\x00\x00"
     body = b"\xffPAYLOAD\x00"
@@ -177,6 +201,27 @@ def _unpacker(tmp_path: Path) -> Unpacker:
 
 def test_extracts_t64_c64_and_plus4_style_prg(tmp_path: Path) -> None:
     assert _unpacker(tmp_path).unpack_t64(_t64()) == [("ADVENTURE.prg", b"\x01\x08DDB")]
+
+
+def test_extracts_parity_valid_c64_raw_tap_kernal_packet(tmp_path: Path) -> None:
+    tap = _c64_tap_packet(0xA5)
+    expected = [("c64tap_kernal_packet_000.bin", b"\xa5")]
+    assert extract_c64_tap_kernal_packets(tap) == expected
+    assert _unpacker(tmp_path).extract_container(tmp_path / "packet.tap", "packet.tap", tap) == expected
+
+
+def test_rejects_c64_raw_tap_packet_with_bad_parity() -> None:
+    assert extract_c64_tap_kernal_packets(_c64_tap_packet(0xA5, valid_parity=False)) == []
+
+
+def test_retained_jabato_side_a_raw_tap_recovers_rom_packets() -> None:
+    source = (
+        Path(__file__).resolve().parents[1]
+        / "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap"
+    )
+    members = extract_c64_tap_kernal_packets(source.read_bytes())
+    assert [len(payload) for _, payload in members] == [202, 202, 299, 299]
+    assert members[0][1].startswith(b"\x89\x88\x87\x86\x85\x84\x83\x82\x81\x03\x9f\x02\xc0\x03JABATO 1")
 
 
 def test_extracts_correctly_offset_c64_d64_directory_entry(tmp_path: Path) -> None:

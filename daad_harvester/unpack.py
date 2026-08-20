@@ -43,6 +43,7 @@ from daad_harvester.platform_media import (
     decompress_dms,
     decompress_msa,
     extract_adf,
+    extract_c64_tap_kernal_packets,
     extract_fat,
     extract_msx_cas,
     extract_p00,
@@ -573,6 +574,10 @@ class Unpacker:
         """Extract Commodore 64/Plus4 T64 tape members."""
         return extract_t64(data)
 
+    def unpack_cbm_tap(self, data: bytes) -> List[Tuple[str, bytes]]:
+        """Recover bounded parity-validated C64 KERNAL packets from raw TAP."""
+        return extract_c64_tap_kernal_packets(data)
+
     def unpack_p00(self, data: bytes) -> List[Tuple[str, bytes]]:
         """Unwrap a Commodore P00 program image into its original PRG bytes."""
         return extract_p00(data)
@@ -776,8 +781,12 @@ class Unpacker:
             res = self.unpack_p00(data)
             if res:
                 return res
-        if is_cbm_tap or is_g64:
-            # These are structurally inspected and retained as pulse/GCR
+        if is_cbm_tap:
+            res = self.unpack_cbm_tap(data)
+            if res:
+                return res
+        if is_g64:
+            # GCR images remain structurally inspected and retained as
             # evidence. They are not Spectrum TAP blocks and must never be
             # passed through the Spectrum extractor.
             return []

@@ -249,6 +249,139 @@ def extract_t64(data: bytes) -> List[Member]:
     return entries
 
 
+def _parse_c64_tap_pulses(data: bytes) -> Optional[List[Tuple[int, Optional[int]]]]:
+    """Return bounded C64 raw-TAP pulse timings with retained stream offsets.
+
+    A ``None`` duration represents a V0 overflow marker.  V1/V2 extended
+    records retain their documented exact 24-bit cycle value; all ordinary
+    records are quantized in eight-cycle units.
+    """
+    if len(data) < 20 or data[:12] != b"C64-TAPE-RAW":
+        return None
+    version = data[12]
+    declared_size = int.from_bytes(data[16:20], "little")
+    if version not in {0, 1, 2} or declared_size != len(data) - 20:
+        return None
+    stream = data[20:]
+    pulses: List[Tuple[int, Optional[int]]] = []
+    position = 0
+    while position < len(stream):
+        value = stream[position]
+        if value:
+            pulses.append((position, value * 8))
+            position += 1
+            continue
+        if version == 0:
+            pulses.append((position, None))
+            position += 1
+            continue
+        if position + 4 > len(stream):
+            return None
+        pulses.append((position, int.from_bytes(stream[position + 1:position + 4], "little")))
+        position += 4
+    return pulses
+
+
+def extract_c64_tap_kernal_packets(data: bytes) -> List[Member]:
+    """Recover parity-validated ROM-reader packets from a C64 raw-TAP stream.
+
+    The C64 KERNAL reader recognizes at least twenty short leader pulses, a
+    long byte-start pulse, then different short/medium pulse pairs for each
+    LSB-first data bit and its odd-parity companion.  This extractor preserves
+    every complete parity-valid packet as a raw member.  It intentionally does
+    not reinterpret packet headers, pair duplicate blocks, apply the KERNAL's
+    adaptive servo, or claim custom-loader payloads that do not pass this
+    deterministic contract.
+    """
+    pulses = _parse_c64_tap_pulses(data)
+    if pulses is None:
+        return []
+
+    def pulse_class(cycles: int) -> str:
+        if cycles <= 440:
+            return "short"
+        if cycles <= 640:
+            return "medium"
+        if cycles <= 840:
+            return "long"
+        return "invalid"
+
+    members: List[Member] = []
+    packet = bytearray()
+    state = "none"
+    short_run = 0
+    last_pulse = "invalid"
+    bit_count = 0
+    output_byte = 0
+    parity_valid = True
+
+    def flush() -> None:
+        nonlocal packet, parity_valid
+        if packet and parity_valid:
+            members.append((f"c64tap_kernal_packet_{len(members):03d}.bin", bytes(packet)))
+        packet = bytearray()
+        parity_valid = True
+
+    for _, cycles in pulses:
+        if cycles is None:
+            flush()
+            state = "none"
+            short_run = 0
+            last_pulse = "invalid"
+            continue
+        current = pulse_class(cycles)
+        if state == "none":
+            short_run = short_run + 1 if current == "short" else 0
+            if short_run >= 20:
+                state = "leader"
+        elif state == "leader":
+            if current == "long":
+                state = "data"
+            elif current != "short":
+                flush()
+                state = "none"
+                short_run = 0
+        elif state == "data":
+            if current == "short":
+                flush()
+                state = "leader"
+                short_run = 1
+            elif current == "medium":
+                state = "bit_first"
+                bit_count = 0
+                output_byte = 0
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        elif state == "bit_first":
+            if current in {"short", "medium"}:
+                state = "bit_second"
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        else:  # bit_second
+            if current in {"short", "medium"} and current != last_pulse:
+                bit = int(current == "short")
+                if bit_count < 8:
+                    output_byte |= bit << bit_count
+                    state = "bit_first"
+                else:
+                    expected_parity = 1 ^ (output_byte.bit_count() & 1)
+                    parity_valid = parity_valid and bit == expected_parity
+                    packet.append(output_byte)
+                    state = "leader"
+                bit_count += 1
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        last_pulse = current
+    flush()
+    return members
+
+
 def extract_p00(data: bytes) -> List[Member]:
     """Unwrap a validated P00 program image without losing its PRG load bytes."""
 
