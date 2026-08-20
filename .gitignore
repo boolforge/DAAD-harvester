@@ -14,6 +14,10 @@ live_output/
 !preservation_corpus/logs/
 !preservation_corpus/logs/*.log
 
+# SQLite runtime journals are regenerated and are not preservation evidence.
+preservation_corpus/state.db-shm
+preservation_corpus/state.db-wal
+
 *.egg-info/
 .audit/
 
