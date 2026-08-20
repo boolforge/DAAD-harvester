@@ -1,0 +1,90 @@
+; da65 V2.18 - Ubuntu 2.19-1
+; Created:    2026-08-20 19:12:34
+; Input file: /tmp/jabato_kernal_ff30_ff9f.bin
+; Page:       1
+
+
+        .setcpu "6502"
+
+L0314           := $0314
+L0316           := $0316
+LE518           := $E518
+LEDB9           := $EDB9
+LEDC7           := $EDC7
+LEE8E           := $EE8E
+LFD15           := $FD15
+LFD1A           := $FD1A
+LFD50           := $FD50
+LFDA3           := $FDA3
+LFDDD           := $FDDD
+LFE18           := $FE18
+LFE25           := $FE25
+LFE34           := $FE34
+        stx     $02,y
+        rol     a
+        tay
+        txa
+        adc     #$C8
+        sta     $0299
+        tya
+        adc     #$00
+        sta     $029A
+        rts
+
+        nop
+        nop
+        php
+        pla
+        and     #$EF
+        pha
+        pha
+        txa
+        pha
+        tya
+        pha
+        tsx
+        lda     $0104,x
+        and     #$10
+        beq     LFF58
+        jmp     (L0316)
+
+LFF58:  jmp     (L0314)
+
+LFF5B:  jsr     LE518
+LFF5E:  lda     $D012
+        bne     LFF5E
+        lda     $D019
+        and     #$01
+        sta     $02A6
+        jmp     LFDDD
+
+        lda     #$81
+        sta     $DC0D
+        lda     $DC0E
+        and     #$80
+        ora     #$11
+        sta     $DC0E
+        jmp     LEE8E
+
+        .byte   $03
+        jmp     LFF5B
+
+        jmp     LFDA3
+
+        jmp     LFD50
+
+        jmp     LFD15
+
+        jmp     LFD1A
+
+        jmp     LFE18
+
+        jmp     LEDB9
+
+        jmp     LEDC7
+
+        jmp     LFE25
+
+        jmp     LFE34
+
+        .byte   $4C

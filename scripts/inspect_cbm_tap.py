@@ -27,6 +27,14 @@ SIGNATURES = {
     b"C16-TAPE-RAW": "plus4",
 }
 
+# Default bounds are the midpoint limits implied by the retained C64 KERNAL
+# reader's short/medium/long decision path, rounded outward to accommodate the
+# measured Side A timing clusters.  They are classification bounds only: the
+# KERNAL's adaptive software-servo and error correction are not yet modeled.
+ROM_SHORT_MEDIUM_BOUNDARY = 440
+ROM_MEDIUM_LONG_BOUNDARY = 640
+ROM_MAX_LONG = 840
+
 
 @dataclass(frozen=True)
 class Pulse:
@@ -280,8 +288,197 @@ def _loader_01b6_preview(
     return {"sync_candidates": previews, "plausible_frames": frames}
 
 
+def _measured_loader_reference_matches(
+    pulses: list[Pulse], reference: bytes | None
+) -> list[dict[str, object]]:
+    """Find exact reference prefixes under the measured ten-pulse ROR model.
+
+    This is deliberately a location test, not a member extractor: a match only
+    proves that the supplied byte prefix is present under a stated timing phase
+    and polarity.  Header, checksum, and transfer-boundary semantics still
+    require independent validation before any bytes are promoted.
+    """
+    if reference is None:
+        return []
+    prefix = reference[: min(64, len(reference))]
+    if not prefix:
+        return []
+    segments: list[list[Pulse]] = [[]]
+    for pulse in pulses:
+        if pulse.kind == "exact_extended" and pulse.cycles is not None and pulse.cycles >= 100_000:
+            segments.append([])
+            continue
+        if pulse.cycles is not None:
+            segments[-1].append(pulse)
+    matches: list[dict[str, object]] = []
+    for segment_index, regular in enumerate(segments):
+        for phase in range(10):
+            for inverted in (False, True):
+                value = 0x7F
+                decoded: list[tuple[int, int]] = []
+                index = phase
+                while index + 10 <= len(regular):
+                    group = regular[index:index + 10]
+                    for pulse in group:
+                        carry = int(pulse.cycles > 0x01B6) ^ int(inverted)
+                        value = ((carry << 7) | (value >> 1)) & 0xFF
+                    decoded.append((group[0].stream_offset, value))
+                    index += 10
+                values = bytes(value for _, value in decoded)
+                found_at = values.find(prefix)
+                if found_at >= 0:
+                    matches.append(
+                        {
+                            "segment_index": segment_index,
+                            "phase": phase,
+                            "inverted_polarity": inverted,
+                            "stream_offset": decoded[found_at][0],
+                            "matched_prefix_size": len(prefix),
+                            "reference_prefix_sha256": hashlib.sha256(prefix).hexdigest(),
+                        }
+                    )
+    return matches
+
+
+def _kernal_pulse_class(cycles: int) -> str:
+    """Classify a regular TAP timing for the retained KERNAL read state machine."""
+    if cycles <= ROM_SHORT_MEDIUM_BOUNDARY:
+        return "short"
+    if cycles <= ROM_MEDIUM_LONG_BOUNDARY:
+        return "medium"
+    if cycles <= ROM_MAX_LONG:
+        return "long"
+    return "invalid"
+
+
+def _kernal_packet_summary(
+    pulses: list[Pulse], reference: bytes | None
+) -> dict[str, object]:
+    """Boundedly model the ROM reader's leader, byte, and parity states.
+
+    The state transitions mirror the independent retained C64 KERNAL source:
+    twenty short leader pulses, a long byte-start pulse, then differing
+    short/medium dipole pairs.  This deliberately omits the ROM software
+    servo, duplicated-block retry, header interpretation, and checksum claim.
+    It can therefore identify an exact known prefix but cannot yet materialize
+    a verified TAP member by itself.
+    """
+    packet_summaries: list[dict[str, object]] = []
+    matches: list[dict[str, object]] = []
+    packet: list[tuple[int, int, bool]] = []
+    state = "none"
+    short_run = 0
+    last_pulse = "invalid"
+    bit_count = 0
+    output_byte = 0
+    packet_start: int | None = None
+
+    def flush() -> None:
+        nonlocal packet, packet_start
+        if not packet:
+            return
+        values = bytes(value for _, value, _ in packet)
+        parity_valid = sum(valid for _, _, valid in packet)
+        packet_summaries.append(
+            {
+                "stream_start": packet_start,
+                "stream_end": packet[-1][0],
+                "byte_count": len(packet),
+                "parity_valid_byte_count": parity_valid,
+                "first_64_bytes_hex": values[:64].hex(),
+                "sha256": hashlib.sha256(values).hexdigest(),
+            }
+        )
+        if reference:
+            prefix = reference[: min(64, len(reference))]
+            found_at = values.find(prefix)
+            if found_at >= 0:
+                matches.append(
+                    {
+                        "stream_offset": packet[found_at][0],
+                        "packet_byte_offset": found_at,
+                        "packet_byte_count": len(packet),
+                        "matched_prefix_size": len(prefix),
+                        "reference_prefix_sha256": hashlib.sha256(prefix).hexdigest(),
+                    }
+                )
+        packet = []
+        packet_start = None
+
+    for pulse in pulses:
+        if pulse.cycles is None:
+            flush()
+            state = "none"
+            short_run = 0
+            last_pulse = "invalid"
+            continue
+        pulse_class = _kernal_pulse_class(pulse.cycles)
+        if state == "none":
+            short_run = short_run + 1 if pulse_class == "short" else 0
+            if short_run >= 20:
+                state = "leader"
+        elif state == "leader":
+            if pulse_class == "long":
+                state = "data"
+            elif pulse_class != "short":
+                flush()
+                state = "none"
+                short_run = 0
+        elif state == "data":
+            if pulse_class == "short":
+                flush()
+                state = "leader"
+                short_run = 1
+            elif pulse_class == "medium":
+                state = "bit_first"
+                bit_count = 0
+                output_byte = 0
+                packet_start = pulse.stream_offset if packet_start is None else packet_start
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        elif state == "bit_first":
+            if pulse_class in {"short", "medium"}:
+                state = "bit_second"
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        else:  # bit_second
+            if pulse_class in {"short", "medium"} and pulse_class != last_pulse:
+                bit = int(pulse_class == "short")
+                if bit_count < 8:
+                    output_byte |= bit << bit_count
+                    state = "bit_first"
+                else:
+                    expected_parity = 1 ^ (output_byte.bit_count() & 1)
+                    packet.append((pulse.stream_offset, output_byte, bit == expected_parity))
+                    state = "leader"
+                bit_count += 1
+            else:
+                flush()
+                state = "none"
+                short_run = 0
+        last_pulse = pulse_class
+    flush()
+    return {
+        "timing_bounds": {
+            "short_medium_boundary": ROM_SHORT_MEDIUM_BOUNDARY,
+            "medium_long_boundary": ROM_MEDIUM_LONG_BOUNDARY,
+            "max_long": ROM_MAX_LONG,
+        },
+        "packet_count": len(packet_summaries),
+        "packets": packet_summaries[:64],
+        "reference_prefix_matches": matches[:32],
+    }
+
+
 def inspect(
-    path: Path, threshold_cycles: int | None, validation_ram: bytes | None = None
+    path: Path,
+    threshold_cycles: int | None,
+    validation_ram: bytes | None = None,
+    reference_ddb: bytes | None = None,
 ) -> dict[str, object]:
     """Return a JSON-serializable, bounded structural analysis for one TAP."""
     data = path.read_bytes()
@@ -294,6 +491,7 @@ def inspect(
             raise ValueError("insufficient exact pulse classes for a two-pulse preview")
         threshold_cycles = (common[0][0] + common[1][0]) // 2
     loader_model = _loader_01b6_preview(pulses, validation_ram)
+    kernal_model = _kernal_packet_summary(pulses, reference_ddb)
     return {
         "path": str(path),
         "sha256": hashlib.sha256(data).hexdigest(),
@@ -313,6 +511,10 @@ def inspect(
         "physical_pause_segments": _physical_segments(pulses, len(data) - 20),
         "measured_loader_01b6_sync_candidates": loader_model["sync_candidates"],
         "measured_loader_01b6_plausible_frames": loader_model["plausible_frames"],
+        "measured_loader_reference_prefix_matches": _measured_loader_reference_matches(
+            pulses, reference_ddb
+        ),
+        "kernal_compatible_decoder": kernal_model,
         "dominant_exact_pulse_cycles": [
             {"cycles": cycles, "count": count, "tap_value": cycles // 8 if cycles % 8 == 0 else None}
             for cycles, count in common[:16]
@@ -337,11 +539,23 @@ def main() -> int:
         type=Path,
         help="Optional 64 KiB C64 RAM image used only for exact candidate-frame byte comparison.",
     )
+    parser.add_argument(
+        "--reference-ddb",
+        type=Path,
+        help="Optional known DDB used only for an exact 64-byte prefix-location scan under the measured loader model.",
+    )
     args = parser.parse_args()
     validation_ram = None if args.validate_ram is None else args.validate_ram.read_bytes()
     if validation_ram is not None and len(validation_ram) != 65536:
         parser.error("--validate-ram must contain exactly 65536 bytes")
-    print(json.dumps(inspect(args.path, args.threshold_cycles, validation_ram), indent=2, sort_keys=True))
+    reference_ddb = None if args.reference_ddb is None else args.reference_ddb.read_bytes()
+    print(
+        json.dumps(
+            inspect(args.path, args.threshold_cycles, validation_ram, reference_ddb),
+            indent=2,
+            sort_keys=True,
+        )
+    )
     return 0
 
 

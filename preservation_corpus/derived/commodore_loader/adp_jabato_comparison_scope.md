@@ -19,7 +19,7 @@ ADP’s retained DDB specification states that version 1 applies to *Aventura Or
 
 The stated C64 V1 model is now corroborated by independent original-runtime evidence. The active Side A gameplay snapshot has a structurally valid V1 DDB at `$3880`–`$99C2` (24,899 bytes). The range was extracted deterministically as `jabato_side_a_tap_second_space_part1.ddb`; its SHA-256, `7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6`, is byte-identical to ADP’s `JABATO-C64 1.DDB` fixture.
 
-This comparison exposed and corrected a Harvester V1 parser defect: V1 has eleven section pointers, no extra-object-attributes field, and file length at `$001E`; it is not a 34-byte V2 header with a field omitted semantically. The corrected parser validates both the ADP fixture and the extracted original runtime range as Spanish C64 DAAD legacy V1. The real-artifact regression runs with the complete suite, which passes 221 tests at this checkpoint.
+This comparison exposed and corrected a Harvester V1 parser defect: V1 has eleven section pointers, no extra-object-attributes field, and file length at `$001E`; it is not a 34-byte V2 header with a field omitted semantically. The corrected parser validates both the ADP fixture and the extracted original runtime range as Spanish C64 DAAD legacy V1. The real-artifact regression runs with the complete suite, which passes 223 tests at this checkpoint.
 
 | Input | SHA-256 | Original-runtime relation | Status |
 | --- | --- | --- | --- |

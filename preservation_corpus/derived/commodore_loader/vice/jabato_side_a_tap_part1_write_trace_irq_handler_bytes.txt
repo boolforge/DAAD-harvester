@@ -1,0 +1,6 @@
+00f92c 00 00 ff ff ff ff 00 00 00 00 ff ff ff ff 00 00
+*
+00f98c 00 00 ff ff ff ff 00 00 00 00 ff ff f7 ff 00 00
+00f99c 00 00 ff ff ff ff 00 00 00 00 ff ff ff ff 00 00
+*
+00f9cc

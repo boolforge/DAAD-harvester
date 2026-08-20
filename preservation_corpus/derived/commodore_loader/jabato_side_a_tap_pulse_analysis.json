@@ -197,6 +197,49 @@
     "version": 1,
     "video_standard": 0
   },
+  "kernal_compatible_decoder": {
+    "packet_count": 4,
+    "packets": [
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "898887868584838281039f02c0034a414241544f2031202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "f9d1de5cf2949af77beb19c2c49b39e344bfb384ae1da85e2b79535fcbc7af22",
+        "stream_end": 31174,
+        "stream_start": 27136
+      },
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "090807060504030201039f02c0034a414241544f2031202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "a366d51744fe80f69d4b7b4a0617e2430fd065a4ebb0e3bcb4c2ad82b4a5cde4",
+        "stream_end": 35295,
+        "stream_start": 31257
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "898887868584838281a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "128466f13a562463d6efc9e1f62edcc99f281c2b0f57527c574fc8adbe5398b6",
+        "stream_end": 46739,
+        "stream_start": 40761
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "090807060504030201a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "efff9feb59d2edbace9f9387e2d6efbc4a817138c29582283ad19c204c61d0f7",
+        "stream_end": 52800,
+        "stream_start": 46822
+      }
+    ],
+    "reference_prefix_matches": [],
+    "timing_bounds": {
+      "max_long": 840,
+      "medium_long_boundary": 640,
+      "short_medium_boundary": 440
+    }
+  },
   "measured_loader_01b6_plausible_frames": [
     {
       "available_payload_sha256": "297133ebffa17b69c99375de27772c024c63cc3cc53f5f9d2a101f2d0c941a51",
@@ -716,6 +759,7 @@
       "sync_stream_offset": 693701
     }
   ],
+  "measured_loader_reference_prefix_matches": [],
   "path": "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap",
   "physical_pause_segments": [
     {
