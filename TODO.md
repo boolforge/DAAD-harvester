@@ -1,10 +1,21 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. Subsequent retained-corpus work added real-Amiga, CPC, ZX loader, VICE snapshot, runtime-resource, C64 V1, raw-TAP, and multipart Jabato regressions; the latest complete release gate reports **229 passing tests**. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** The 2026-08-19 documentation-expansion audit recorded **210 passing tests**, a passing CLI/report smoke path, a passing static-report production build, and a passing permanent documentation-integrity check. Subsequent retained-corpus work added real-Amiga, CPC, ZX loader, VICE snapshot, runtime-resource, C64 V1, raw-TAP, multipart Jabato, and self-contained-regeneration regressions; the latest complete release gate reports **236 passing tests**, a passing hash-pinned native-regeneration manifest, and a passing mandatory policy-link check. The static report is live at `https://boolforge.github.io/DAAD-harvester/` following successful Pages run `32235035851`. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 
 DAAD Harvester must never label a source, container, interpreter, game database, platform, release, compiler generation, or derivative as verified unless the stored evidence supports that exact claim. A feature is complete only when it has a documented format contract, bounded implementation, deterministic negative and corruption tests, real-artifact validation where public media is available, provenance output, and a clear user-facing statement of any remaining boundary.
+
+## Self-contained regeneration requirement
+
+- [ ] Audit every promoted preservation claim and classify its regeneration path as **repository-native**, **declared Python/package dependency**, or **external independent validator**. A claim may not require an external GUI application, emulator, proprietary tool, or undeclared local resource for its primary regeneration.
+- [ ] Add deterministic repository commands and CI-safe tests for every primary extraction, structural validation, byte comparison, report, and evidence artifact. Retained media and committed reference fixtures must be sufficient to reproduce the expected hashes and evidence tables after a documented environment setup.
+- [ ] Reclassify VICE, Ghidra, radare2, c64tapedecode, and comparable programs as optional cross-validation evidence only. Preserve their command logs and results, but implement and test an equivalent repository-native primary path before any support claim is promoted.
+- [ ] Make all emulator-derived state claims explicitly reproducible from retained snapshots or native parsed inputs with a committed extraction script; where live emulation remains necessary to acquire a new state, record it as an acquisition method rather than a regeneration prerequisite.
+- [ ] Publish the self-contained regeneration requirement verbatim in the project policy, README, contributor guidance, corpus/evidence contracts, format dossiers, reverse-engineering methodology, and release checklist. Every document that introduces an evidence level or support claim must link to this requirement.
+- [ ] Add an automated policy check that rejects new promoted-evidence records lacking a native regeneration command, committed input manifest, declared dependencies, output-hash assertions, and an explicit classification for every external validator.
+- [ ] Require a self-contained-regeneration attestation in every commit-level audit and release gate. CI must fail if a required primary result invokes an undeclared executable, network endpoint, external emulator, GUI program, or non-committed input.
+- [ ] Audit existing reports, screenshots, recordings, static-site artifacts, binary analyses, decompilations, media extractions, DDB outputs, and emulator observations. Replace non-self-contained primary paths or downgrade them to optional corroboration until a native regeneration path is committed and tested.
 
 ## Completed foundation
 

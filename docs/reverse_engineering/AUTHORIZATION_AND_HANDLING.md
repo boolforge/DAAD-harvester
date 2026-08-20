@@ -5,7 +5,7 @@
 | **Question** | How are authorized original bytes and derived reverse-engineering materials retained, executed, analyzed, and published while preserving scientific provenance? |
 | **Evidence scope** | Institutional authorization directive; P0 source/license context; P1 acquisition hash, execution, and tool-run record. |
 | **Status** | permanent universal institutional corpus-handling directive |
-| **Implementation links** | [`../schemas/REVERSE_ENGINEERING_MANIFEST.md`](../schemas/REVERSE_ENGINEERING_MANIFEST.md), [`../schemas/EVIDENCE_MODEL.md`](../schemas/EVIDENCE_MODEL.md), [`../../TODO.md`](../../TODO.md) |
+| **Implementation links** | [`../schemas/REVERSE_ENGINEERING_MANIFEST.md`](../schemas/REVERSE_ENGINEERING_MANIFEST.md), [`../schemas/EVIDENCE_MODEL.md`](../schemas/EVIDENCE_MODEL.md), [`../SELF_CONTAINED_REGENERATION.md`](../SELF_CONTAINED_REGENERATION.md), [`../../TODO.md`](../../TODO.md) |
 | **Non-claims** | Institutional authorization changes retention/publication handling; it does not turn decompiler pseudocode into recovered source, prove an input’s historical identity, or remove the need for hashes, provenance, and independent verification. |
 
 ## Universal institutional corpus directive
@@ -15,6 +15,8 @@
 Therefore, every acquired original byte sequence, extracted member, public source tree, firmware resource, emulator/runtime configuration, third-party comparison artifact, execution record, disassembly, control-flow export, decompiler output, symbol map, and analytical note is retained and published in the repository.
 
 Provenance fields remain mandatory because they make the corpus reproducible, explain source lineage, distinguish original from derived content, and permit independent scientific checking. They are **not** publication or analysis blockers within this authorized corpus.
+
+> **SELF-CONTAINED REGENERATION: REQUIRED.** Universal authorization permits retaining and using external emulators, decompilers, browsers, firmware, and validators, but it does not permit a promoted result to depend silently on one. Every primary derived claim must meet the [global self-contained regeneration standard](../SELF_CONTAINED_REGENERATION.md); external tools are documented acquisition methods or independent validators unless their behavior is reproduced by the repository-native command.
 
 | Record class | Required retained evidence | Corpus outcome | Scientific boundary |
 | --- | --- | --- | --- |

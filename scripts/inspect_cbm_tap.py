@@ -405,6 +405,73 @@ def _loader_01b6_chained_frames(
     return chains
 
 
+def _loader_01b6_reference_chunk_matches(
+    pulses: list[Pulse], reference: bytes | None, chunk_size: int = 16
+) -> list[dict[str, object]]:
+    """Locate exact reference chunks under the measured fixed custom reader.
+
+    This is a diagnostic locator, not an extraction mechanism. It tests whether
+    known runtime bytes occur verbatim in the raw pulse stream at a stated
+    segment and ten-pulse phase—even if a surrounding frame header is not yet
+    recognized. Matches provide a reproducible bridge between physical timing
+    and runtime evidence without promoting reference-dependent bytes as a
+    general decoder output.
+    """
+    if reference is None or len(reference) < chunk_size:
+        return []
+    chunks: dict[bytes, list[int]] = {}
+    for offset in range(0, len(reference) - chunk_size + 1, chunk_size):
+        chunks.setdefault(reference[offset:offset + chunk_size], []).append(offset)
+
+    segments: list[list[Pulse]] = [[]]
+    for pulse in pulses:
+        if pulse.kind == "exact_extended" and pulse.cycles is not None and pulse.cycles >= 100_000:
+            segments.append([])
+            continue
+        if pulse.cycles is not None:
+            segments[-1].append(pulse)
+
+    matches: list[dict[str, object]] = []
+    seen: set[tuple[int, int, int, int]] = set()
+    for segment_index, regular in enumerate(segments):
+        for phase in range(10):
+            value = 0x7F
+            decoded: list[tuple[int, int]] = []
+            index = phase
+            while index + 10 <= len(regular):
+                group = regular[index:index + 10]
+                for pulse in group:
+                    carry = int(pulse.cycles > 0x01B6)
+                    value = ((carry << 7) | (value >> 1)) & 0xFF
+                decoded.append((group[0].stream_offset, value))
+                index += 10
+            values = bytes(value for _, value in decoded)
+            for decoded_offset in range(0, len(values) - chunk_size + 1):
+                reference_offsets = chunks.get(values[decoded_offset:decoded_offset + chunk_size])
+                if reference_offsets is None:
+                    continue
+                for reference_offset in reference_offsets:
+                    key = (segment_index, phase, decoded_offset, reference_offset)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    matches.append(
+                        {
+                            "segment_index": segment_index,
+                            "phase": phase,
+                            "stream_offset": decoded[decoded_offset][0],
+                            "reference_offset": reference_offset,
+                            "matched_chunk_size": chunk_size,
+                            "matched_chunk_sha256": hashlib.sha256(
+                                reference[reference_offset:reference_offset + chunk_size]
+                            ).hexdigest(),
+                        }
+                    )
+                    if len(matches) >= 256:
+                        return matches
+    return matches
+
+
 def _measured_loader_reference_matches(
     pulses: list[Pulse], reference: bytes | None
 ) -> list[dict[str, object]]:
@@ -717,7 +784,7 @@ def inspect(
     loader_model = _loader_01b6_preview(pulses, validation_ram)
     kernal_model = _kernal_packet_summary(pulses, reference_ddb)
     return {
-        "path": str(path),
+        "path": path.name,
         "sha256": hashlib.sha256(data).hexdigest(),
         "file_size": len(data),
         "header": header,
@@ -738,6 +805,9 @@ def inspect(
         "measured_loader_01b6_plausible_frames": loader_model["plausible_frames"],
         "measured_loader_01b6_chained_frame_candidates": _loader_01b6_chained_frames(
             pulses, validation_ram
+        ),
+        "measured_loader_reference_chunk_matches": _loader_01b6_reference_chunk_matches(
+            pulses, reference_ddb, chunk_size=64
         ),
         "measured_loader_reference_prefix_matches": _measured_loader_reference_matches(
             pulses, reference_ddb

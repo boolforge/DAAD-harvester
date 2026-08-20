@@ -124,6 +124,21 @@ def test_measured_loader_chains_frames_without_a_second_sync() -> None:
     )
 
 
+def test_measured_loader_locates_reference_chunk_without_frame_claim() -> None:
+    reference = bytes(range(16))
+    pulses = _loader_pulses_for_bytes(list(reference))
+
+    matches = TAP._loader_01b6_reference_chunk_matches(pulses, reference)
+
+    assert any(
+        match["segment_index"] == 0
+        and match["phase"] == 0
+        and match["reference_offset"] == 0
+        and match["matched_chunk_size"] == 16
+        for match in matches
+    )
+
+
 def test_retained_jabato_side_a_kernal_packets_are_reproducible() -> None:
     tap_path = ROOT / "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap"
     reference = ROOT / "preservation_corpus/derived/commodore_loader/jabato_side_a_tap_second_space_part1.ddb"

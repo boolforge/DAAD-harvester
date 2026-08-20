@@ -3,7 +3,7 @@
 | Header field | Value |
 | --- | --- |
 | **Question** | What reproducibility information must an analysis workflow capture before a DAAD interpreter/disassembly result can be reviewed by architecture? |
-| **Evidence scope** | P0 published tool/processor documentation; P1 retained binary hash, load model, commands, and generated-output checksums. |
+| **Evidence scope** | P0 published tool/processor documentation; P1 retained binary hash, load model, commands, and generated-output checksums. Promoted P1 claims additionally require the global [`../SELF_CONTAINED_REGENERATION.md`](../SELF_CONTAINED_REGENERATION.md) primary path. |
 | **Status** | measured implementation; every retained official exact-hash profile analyzed by all configured static tools |
 | **Implementation links** | [`../../reverse_engineering/workflows/toolchain.json`](../../reverse_engineering/workflows/toolchain.json), [`../../scripts/run_reverse_analysis.py`](../../scripts/run_reverse_analysis.py), [`../schemas/REVERSE_ENGINEERING_MANIFEST.md`](../schemas/REVERSE_ENGINEERING_MANIFEST.md), [`CROSS_TOOL_VERIFICATION.md`](CROSS_TOOL_VERIFICATION.md) |
 | **Non-claims** | A platform name does not itself establish an executable’s CPU mode, load address, banking behavior, entry point, or correct tool configuration. |
@@ -23,7 +23,9 @@ The table is an analysis-planning taxonomy, not an assertion about a particular 
 
 ## Installed redundant tool stack
 
-The exact command, processor mode, version, and output hashes are retained in [`toolchain.json`](../../reverse_engineering/workflows/toolchain.json) and each artifact’s `analysis-run.json`. Ghidra provides a structured listing, function table, and **tool-derived pseudocode**; radare2 produces an independent control-flow-aware listing; each processor family has a separate static disassembler. Hatari and DOSBox-X are installed as future behavioral/emulator verification tools, but no emulator trace is claimed by the current static pilots.[1] [2] [3]
+The exact command, processor mode, version, and output hashes are retained in [`toolchain.json`](../../reverse_engineering/workflows/toolchain.json) and each artifact’s `analysis-run.json`. Ghidra provides a structured listing, function table, and **tool-derived pseudocode**; radare2 produces an independent control-flow-aware listing; each processor family has a separate static disassembler. Hatari and DOSBox-X are future behavioral/emulator tools. These external tools are retained as independent validators and acquisition-time analysis instruments; their output is not a self-contained primary result until a committed native parser/verifier reproduces the promoted claim from hash-pinned inputs.[1] [2] [3]
+
+> **SELF-CONTAINED REGENERATION: REQUIRED.** Every promoted disassembly, decompilation, control-flow observation, or behavioral comparison must have a repository-native, network-free regeneration entry with input and output hashes. A Ghidra, radare2, emulator, or standalone disassembler run may corroborate it, but no external program may be a silent mandatory dependency for regeneration.
 
 | Architecture | Structured analyzer/decompiler | Independent control-flow analyzer | Independent static disassembler | Required future behavioral model |
 | --- | --- | --- | --- | --- |
@@ -37,7 +39,7 @@ All current pilots intentionally use `raw_binary_base_0_unverified`. That suppor
 
 ## Measured all-profile analysis
 
-The runner produced a self-contained output directory for **all 42 retained exact-profile inputs**. Every input generated seven retained files: radare2 analysis, architecture-specific static disassembly, Ghidra headless log, Ghidra listing, function metadata, decompiler pseudocode, and an output-hash manifest. This yielded **294 retained derived outputs**. All three tool invocations returned zero for every profile, and every generated output matched its recorded SHA-256 value.
+The runner produced a retained comparison-output directory for **all 42 retained exact-profile inputs**. Every input generated seven retained files: radare2 analysis, architecture-specific static disassembly, Ghidra headless log, Ghidra listing, function metadata, decompiler pseudocode, and an output-hash manifest. This yielded **294 retained derived outputs**. All three tool invocations returned zero for every profile, and every generated output matched its recorded SHA-256 value. These artifacts remain valuable cross-tool evidence, but are not yet classified as repository-native primary regeneration paths; the global manifest audit must add a native verifier before promoting any conclusion that depends on them.
 
 | Architecture | Exact profiles analyzed | Retained output directory |
 | --- | --- | --- |

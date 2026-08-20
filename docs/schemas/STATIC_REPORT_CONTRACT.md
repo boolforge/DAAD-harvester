@@ -3,7 +3,7 @@
 | Header field | Value |
 | --- | --- |
 | **Question** | What browser-safe evidence fields does `report_data.json` publish, and what safety/meaning rules govern them? |
-| **Evidence scope** | P1 static exporter and report-viewer source. |
+| **Evidence scope** | P1 static exporter and report-viewer source, subject to the global [`../SELF_CONTAINED_REGENERATION.md`](../SELF_CONTAINED_REGENERATION.md) primary-path requirement. |
 | **Status** | implementation contract |
 | **Implementation links** | [`../../daad_harvester/report_export.py`](../../daad_harvester/report_export.py), [`../../daad_harvester/catalog.py`](../../daad_harvester/catalog.py), [`../../web/report-viewer/src/Home.tsx`](../../web/report-viewer/src/Home.tsx) |
 | **Non-claims** | A static report is a read-only summary; it is not a SQLite dump, live scanner, downloadable local filesystem, or source of unmeasured version claims. |
@@ -25,6 +25,8 @@
 ## Privacy and semantic policy
 
 Before export, every catalog artifact has `extracted_path` removed. Library links are relative retained-artifact paths; the report must never publish a sandbox/workstation filesystem path. The published policy explicitly says unknown values remain unknown and that a verified DDB structural result has independent interpreter identity evidence.[1]
+
+> **SELF-CONTAINED REGENERATION: REQUIRED.** A published report may summarize a promoted result only when its source evidence resolves to a hash-pinned, repository-native regeneration entry. Report export itself must run from committed/persisted inputs and declared dependencies, without a browser, network endpoint, local GUI program, or hidden workstation path. External report viewers and acquisition tools are optional consumers or validators, not part of the report’s primary evidence computation.
 
 | Subobject | Browser-safe contract | Viewer behavior |
 | --- | --- | --- |

@@ -12,6 +12,8 @@ The project exists because preservation evidence is fragmented. A title can have
 
 The implementation notes, format boundaries, version chronology, derivative taxonomy, source register, TUI capture method, and Pages contract are modularized under [`docs/`](docs/README.md). The public static report is published at [boolforge.github.io/DAAD-harvester](https://boolforge.github.io/DAAD-harvester/).
 
+> **SELF-CONTAINED REGENERATION: REQUIRED.** Every promoted result must be reproducible from committed inputs, repository code, declared dependencies, and a documented network-free command. VICE, Ghidra, radare2, browser sessions, archive services, and other external applications may provide independent corroboration or acquisition-time observations, but never a hidden primary prerequisite. The complete mandatory policy, manifest contract, and CI gate are documented in [`docs/SELF_CONTAINED_REGENERATION.md`](docs/SELF_CONTAINED_REGENERATION.md).
+
 ## The preservation model
 
 A reliable preservation tool should not turn every web page into a download job. DAAD Harvester separates release evidence, artifact acquisition, media extraction, database verification, runtime identification, and library materialization.
@@ -189,7 +191,7 @@ A library path is a convenience classification, not an emulation claim. The pipe
 
 ## Validation status and limits
 
-The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, official interpreter-profile tests, source-adapter tests, all-mode DMS fixtures, typed tape-block fixtures, FAT12/FAT16 traversal, and native-media corruption boundaries. The current suite contains **210 passing tests**.
+The implementation is tested with deterministic modern DRC V2/V3 and historical V1/V2 DDB fixtures across all **nine** canonical targets, negative controls, embedded-payload recovery, official interpreter-profile tests, source-adapter tests, all-mode DMS fixtures, typed tape-block fixtures, FAT12/FAT16 traversal, native-media corruption boundaries, and a hash-pinned repository-native regeneration gate. The current suite contains **236 passing tests**.
 
 A fresh isolated public-source audit produced **174** source records. Its deliberately bounded six-source acquisition accepted **five** public downloads and retained **37** extracted/measured artifacts from Spectrum and Commodore/Plus/4 media. No member passed the structural DDB contract, so the run records **zero verified DDBs** rather than inventing a DAAD version. The full command sequence, counts, and source-failure boundary are recorded in [`docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md`](docs/audits/2026-08-19_FINAL_LIVE_AUDIT.md). An earlier retained sample also contained the exact Plus/4 `EDIPLUS4` runtime match described above.
 

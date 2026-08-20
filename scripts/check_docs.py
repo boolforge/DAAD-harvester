@@ -31,6 +31,16 @@ LEGACY_OR_INDEX = {
     "SOURCE_REGISTER.md",
 }
 REQUIRED_MARKERS = ("**Question**", "**Evidence scope**", "**Non-claims**", "## References")
+REGENERATION_POLICY_LINK = "SELF_CONTAINED_REGENERATION.md"
+REGENERATION_POLICY_DOCUMENTS = (
+    ROOT / "README.md",
+    DOCS / "README.md",
+    DOCS / "RESEARCH_METHODOLOGY.md",
+    DOCS / "schemas" / "EVIDENCE_MODEL.md",
+    DOCS / "schemas" / "STATIC_REPORT_CONTRACT.md",
+    DOCS / "reverse_engineering" / "AUTHORIZATION_AND_HANDLING.md",
+    DOCS / "reverse_engineering" / "ARCHITECTURE_WORKFLOWS.md",
+)
 
 
 def check_relative_links(errors: list[str]) -> int:
@@ -72,16 +82,37 @@ def check_mermaid_sources(errors: list[str]) -> int:
     return checked
 
 
+def check_regeneration_policy_links(errors: list[str]) -> int:
+    """Ensure core policy surfaces cannot silently omit the global rule."""
+    checked = 0
+    policy = DOCS / REGENERATION_POLICY_LINK
+    if not policy.is_file():
+        errors.append(f"missing self-contained regeneration policy: {policy.relative_to(ROOT)}")
+        return checked
+    for document in REGENERATION_POLICY_DOCUMENTS:
+        checked += 1
+        if REGENERATION_POLICY_LINK not in document.read_text(encoding="utf-8"):
+            errors.append(
+                f"missing self-contained regeneration policy link: {document.relative_to(ROOT)}"
+            )
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     links = check_relative_links(errors)
     modules = check_focused_module_headers(errors)
     diagrams = check_mermaid_sources(errors)
+    policy_documents = check_regeneration_policy_links(errors)
     if errors:
         print("Documentation integrity check failed:")
         print("\n".join(f"- {error}" for error in errors))
         return 1
-    print(f"Documentation integrity check passed: {links} relative links, {modules} focused modules, {diagrams} Mermaid sources.")
+    print(
+        "Documentation integrity check passed: "
+        f"{links} relative links, {modules} focused modules, {diagrams} Mermaid sources, "
+        f"{policy_documents} required regeneration-policy links."
+    )
     return 0
 
 

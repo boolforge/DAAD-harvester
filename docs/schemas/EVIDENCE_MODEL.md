@@ -3,7 +3,7 @@
 | Header field | Value |
 | --- | --- |
 | **Question** | How are sources, artifacts, media observations, DDB measurements, runtime identities, and version claims represented without collapsing their evidence? |
-| **Evidence scope** | P0–P4 according to [`../RESEARCH_METHODOLOGY.md`](../RESEARCH_METHODOLOGY.md); persisted values are P1 only when derived from reproducible measurement. |
+| **Evidence scope** | P0–P4 according to [`../RESEARCH_METHODOLOGY.md`](../RESEARCH_METHODOLOGY.md); persisted values are P1 only when derived from reproducible measurement that satisfies the global [`../SELF_CONTAINED_REGENERATION.md`](../SELF_CONTAINED_REGENERATION.md) policy. |
 | **Status** | implementation contract |
 | **Implementation links** | [`../../daad_harvester/models.py`](../../daad_harvester/models.py), [`../../daad_harvester/db.py`](../../daad_harvester/db.py), [`../../daad_harvester/fingerprint.py`](../../daad_harvester/fingerprint.py), [`../../daad_harvester/provenance.py`](../../daad_harvester/provenance.py) |
 | **Non-claims** | A relation in this model does not grant a claim a higher confidence than its independently recorded evidence permits. |
@@ -51,6 +51,20 @@ The standalone version of this model is [`../diagrams/RESEARCH_EVIDENCE_FLOW.mmd
 ## Immutability and provenance
 
 `original_filename`, source relation, archive depth, and hashes preserve chain-of-custody context. Local extraction paths are operational values and must not be published in the static report. Derived objects retain parent SHA-256, parser identity/version, extraction depth, and block/sector/member location where applicable.[1]
+
+## Self-contained regeneration metadata
+
+> **SELF-CONTAINED REGENERATION: REQUIRED.** A P1 structural measurement, generated evidence report, reverse-engineering output, or promoted library classification must resolve to a manifest entry satisfying the global [self-contained regeneration standard](../SELF_CONTAINED_REGENERATION.md).
+
+| Field | Required primary-path value | Boundary enforced |
+| --- | --- | --- |
+| `regeneration_manifest_id` | Stable entry ID in `preservation_corpus/regeneration_manifest.json`. | The claim is discoverable as a deterministic computation rather than an opaque file. |
+| `input_sha256` | Hashes for every committed source, fixture, capture, and configuration read by the command. | A changed input cannot silently preserve a result label. |
+| `native_command` | Repository-local, network-free command using declared dependencies only. | A GUI tool, host executable, browser session, or remote endpoint cannot become a hidden requirement. |
+| `output_sha256` | Exact output hash or byte-comparison target asserted by CI. | The regenerated result must match the retained evidence. |
+| `external_validators` | Explicit list, including `[]` when absent, with tool/version/role. | Independent applications may corroborate but cannot become the primary regeneration path. |
+
+An emulator-produced RAM snapshot may be a hash-pinned immutable input when live emulation acquired it, but the promoted downstream measurement must execute from that committed snapshot through a repository-native parser/verifier. Live emulation remains acquisition evidence, not a future regeneration prerequisite.
 
 ## References
 

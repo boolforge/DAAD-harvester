@@ -6,6 +6,8 @@ This corpus is intended as an engineering reference for **digital preservation**
 
 > **Methodological rule:** The documentation must preserve uncertainty. When a behavior is known only from a derivative, a public manual, or a measured binary, the document names that boundary. It never converts a plausible historical narrative into a format fact.
 
+> **SELF-CONTAINED REGENERATION: REQUIRED.** All P1 measurements and every promoted derivative result must satisfy the global [self-contained regeneration standard](SELF_CONTAINED_REGENERATION.md): committed hash-pinned inputs, repository-local code, declared dependencies, a network-free verifier, and explicit optional-validator classification.
+
 The official DAAD repository says that DAAD was contributed to the public domain, but also states that original interpreter sources are not currently supplied.[1] Consequently, this project documents published manuals, public source releases, released media, measured structures, and lawfully obtained checksums. It does not redistribute proprietary interpreter code, publish decompiled proprietary routines, or present a derivative implementation as proof of undocumented original behavior.
 
 ## Evidence ladder
@@ -67,7 +69,7 @@ Every detailed module must contain the following sections where applicable.
 
 ## Reproducibility packet
 
-For a future artifact study, retain a minimal packet containing the original acquisition URL and timestamp, legal/access status, response metadata, immutable SHA-256, parent-container hash, extraction path expressed as member lineage rather than local filesystem path, parser decision, all parser warnings, measured DDB/interpreter evidence, and the exact Harvester revision and test fixture used. This packet permits independent reanalysis even if a public mirror later disappears.
+For a future artifact study, retain a minimal packet containing the original acquisition URL and timestamp, legal/access status, response metadata, immutable SHA-256, parent-container hash, extraction path expressed as member lineage rather than local filesystem path, parser decision, all parser warnings, measured DDB/interpreter evidence, exact Harvester revision, test fixture, repository-native regeneration command, declared dependencies, output hash, and optional external-validator classification. This packet permits independent reanalysis even if a public mirror later disappears without requiring a historical workstation or external application.
 
 ## References
 
