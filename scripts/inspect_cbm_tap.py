@@ -312,6 +312,99 @@ def _loader_01b6_preview(
     return {"sync_candidates": previews, "plausible_frames": frames}
 
 
+def _loader_01b6_chained_frames(
+    pulses: list[Pulse], validation_ram: bytes | None
+) -> list[dict[str, object]]:
+    """Parse sequential custom-loader frames after one measured `$16` sync.
+
+    The retained original code does *not* return to the zero-run/$16 sync loop
+    after a payload reaches its exclusive end pointer. `$03B9` branches back to
+    `$03A3`, which reads the next descending EAH/EAL/SAH/SAL header directly.
+    This parser preserves that control flow. It reports bounded candidates only;
+    a frame is physically verified only when a complete payload exactly matches
+    the independently captured 64 KiB runtime RAM image.
+    """
+    segments: list[list[Pulse]] = [[]]
+    for pulse in pulses:
+        if pulse.kind == "exact_extended" and pulse.cycles is not None and pulse.cycles >= 100_000:
+            segments.append([])
+            continue
+        if pulse.cycles is not None:
+            segments[-1].append(pulse)
+
+    chains: list[dict[str, object]] = []
+    for segment_index, regular in enumerate(segments):
+        for phase in range(10):
+            value = 0x7F
+            decoded: list[tuple[int, int]] = []
+            index = phase
+            while index + 10 <= len(regular):
+                group = regular[index:index + 10]
+                for pulse in group:
+                    carry = int(pulse.cycles > 0x01B6)
+                    value = ((carry << 7) | (value >> 1)) & 0xFF
+                decoded.append((group[0].stream_offset, value))
+                index += 10
+
+            zero_run = 0
+            for byte_index, (sync_offset, decoded_byte) in enumerate(decoded):
+                if decoded_byte == 0:
+                    zero_run += 1
+                    continue
+                # `$0390` first waits for zero, `$0395` requires at least one
+                # additional zero before `$039F` accepts `$16` as the sync.
+                if decoded_byte != 0x16 or zero_run < 2:
+                    zero_run = 0
+                    continue
+
+                header_index = byte_index + 1
+                frames: list[dict[str, object]] = []
+                while header_index + 4 <= len(decoded) and len(frames) < 128:
+                    header = [value for _, value in decoded[header_index:header_index + 4]]
+                    end = header[1] | (header[0] << 8)
+                    start = header[3] | (header[2] << 8)
+                    expected_size = end - start
+                    if not (0 < expected_size and end <= 0x10000):
+                        break
+                    payload_start = header_index + 4
+                    payload_end = payload_start + expected_size
+                    payload = bytes(value for _, value in decoded[payload_start:min(payload_end, len(decoded))])
+                    frame: dict[str, object] = {
+                        "frame_index": len(frames),
+                        "header_stream_offset": decoded[header_index][0],
+                        "start_address": start,
+                        "end_address_exclusive": end,
+                        "expected_payload_size": expected_size,
+                        "available_payload_size": len(payload),
+                        "complete_payload": len(payload) == expected_size,
+                        "available_payload_sha256": hashlib.sha256(payload).hexdigest(),
+                    }
+                    if validation_ram is not None and len(payload) == expected_size:
+                        runtime = validation_ram[start:end]
+                        frame["runtime_byte_matches"] = sum(
+                            left == right for left, right in zip(payload, runtime)
+                        )
+                        frame["runtime_exact_match"] = payload == runtime
+                    frames.append(frame)
+                    if payload_end > len(decoded):
+                        break
+                    # `$03B9` routes a completed frame straight to `$03A3`.
+                    header_index = payload_end
+                if frames and len(chains) < 64:
+                    chains.append(
+                        {
+                            "segment_index": segment_index,
+                            "phase": phase,
+                            "sync_stream_offset": sync_offset,
+                            "preceding_zero_byte_run": zero_run,
+                            "frame_count": len(frames),
+                            "frames": frames,
+                        }
+                    )
+                zero_run = 0
+    return chains
+
+
 def _measured_loader_reference_matches(
     pulses: list[Pulse], reference: bytes | None
 ) -> list[dict[str, object]]:
@@ -375,17 +468,15 @@ def _kernal_pulse_class(cycles: int) -> str:
     return "invalid"
 
 
-def _kernal_packet_summary(
-    pulses: list[Pulse], reference: bytes | None
+def _kernal_packet_summary_from_classes(
+    events: list[tuple[Pulse, str]], reference: bytes | None
 ) -> dict[str, object]:
-    """Boundedly model the ROM reader's leader, byte, and parity states.
+    """Model KERNAL framing from explicitly classified timing events.
 
-    The state transitions mirror the independent retained C64 KERNAL source:
-    twenty short leader pulses, a long byte-start pulse, then differing
-    short/medium dipole pairs.  This deliberately omits the ROM software
-    servo, duplicated-block retry, header interpretation, and checksum claim.
-    It can therefore identify an exact known prefix but cannot yet materialize
-    a verified TAP member by itself.
+    The state transitions reflect the retained C64 KERNAL source: a short
+    leader, a long byte-start pulse, then differing short/medium dipole pairs.
+    Callers choose either the historic fixed diagnostic classifier or the
+    source-driven `cmp0` software-servo classifier.
     """
     packet_summaries: list[dict[str, object]] = []
     matches: list[dict[str, object]] = []
@@ -429,14 +520,13 @@ def _kernal_packet_summary(
         packet = []
         packet_start = None
 
-    for pulse in pulses:
-        if pulse.cycles is None:
+    for pulse, pulse_class in events:
+        if pulse_class == "invalid":
             flush()
             state = "none"
             short_run = 0
             last_pulse = "invalid"
             continue
-        pulse_class = _kernal_pulse_class(pulse.cycles)
         if state == "none":
             short_run = short_run + 1 if pulse_class == "short" else 0
             if short_run >= 20:
@@ -487,15 +577,125 @@ def _kernal_packet_summary(
         last_pulse = pulse_class
     flush()
     return {
-        "timing_bounds": {
-            "short_medium_boundary": ROM_SHORT_MEDIUM_BOUNDARY,
-            "medium_long_boundary": ROM_MEDIUM_LONG_BOUNDARY,
-            "max_long": ROM_MAX_LONG,
-        },
         "packet_count": len(packet_summaries),
         "packets": packet_summaries[:64],
         "reference_prefix_matches": matches[:32],
     }
+
+
+def _kernal_packet_summary(
+    pulses: list[Pulse], reference: bytes | None
+) -> dict[str, object]:
+    """Run the historical fixed-boundary KERNAL diagnostic model.
+
+    This retained bounded diagnostic is intentionally distinct from the ROM
+    source-driven adaptive model below. It remains useful for comparing the
+    original broad timing clusters, but it is not a complete KERNAL reader.
+    """
+    result = _kernal_packet_summary_from_classes(
+        [
+            (pulse, "invalid" if pulse.cycles is None else _kernal_pulse_class(pulse.cycles))
+            for pulse in pulses
+        ],
+        reference,
+    )
+    result["timing_bounds"] = {
+        "short_medium_boundary": ROM_SHORT_MEDIUM_BOUNDARY,
+        "medium_long_boundary": ROM_MEDIUM_LONG_BOUNDARY,
+        "max_long": ROM_MAX_LONG,
+    }
+    return result
+
+
+def _adc8(left: int, right: int, carry: int) -> tuple[int, int]:
+    """Return an 8-bit 6502 ADC result and carry for non-decimal KERNAL code."""
+    result = left + right + carry
+    return result & 0xFF, int(result > 0xFF)
+
+
+def _sbc8(left: int, right: int, carry: int) -> tuple[int, int]:
+    """Return an 8-bit 6502 SBC result and no-borrow carry bit."""
+    result = left - right - (1 - carry)
+    return result & 0xFF, int(result >= 0)
+
+
+@dataclass
+class _KernalServo:
+    """Exact state retained across dipoles by the KERNAL `read.s` routine."""
+
+    cmp0: int = 0
+    svxt: int = 0
+    firt: int = 0
+    adjustments: int = 0
+
+    def classify(self, cycles: int | None) -> str:
+        """Classify one ROM-reader timing using `read.s` arithmetic.
+
+        `read.s` converts the CIA timer difference to a quarter-cycle byte,
+        derives short/medium/long-long bounds from `cmp0`, and adjusts `cmp0`
+        after each complete dipole. Long physical pauses and unsupported timer
+        values terminate framing without inventing a pulse class.
+        """
+        if cycles is None or cycles > 1020:
+            return "invalid"
+        temp = cycles >> 2
+        # read: LDA cmp0 / CLC / ADC #60 / CMP temp.
+        value, carry = _adc8(self.cmp0, 60, 0)
+        if value >= temp:
+            return "invalid"
+        # `CMP` falls through with carry clear when the pulse exceeds a bound.
+        value, carry = _adc8(value, 48, 0)
+        value, carry = _adc8(value, self.cmp0, carry)
+        if value >= temp:
+            pulse_class = "short"
+        else:
+            value, carry = _adc8(value, 38, 0)
+            value, carry = _adc8(value, self.cmp0, carry)
+            if value >= temp:
+                pulse_class = "medium"
+            else:
+                value, carry = _adc8(value, 44, 0)
+                value, carry = _adc8(value, self.cmp0, carry)
+                if value < temp:
+                    return "invalid"
+                return "long"
+
+        # rad5: SEC / SBC #19 / SBC temp / ADC svxt / STA svxt.
+        value, carry = _sbc8(value, 19, 1)
+        value, carry = _sbc8(value, temp, carry)
+        self.svxt, _ = _adc8(value, self.svxt, carry)
+        self.firt ^= 1
+        if self.firt == 0 and self.svxt:
+            if self.svxt & 0x80:
+                self.cmp0 = (self.cmp0 + 1) & 0xFF
+            else:
+                self.cmp0 = (self.cmp0 - 1) & 0xFF
+            self.adjustments += 1
+            self.svxt = 0
+        return pulse_class
+
+
+def _kernal_adaptive_packet_summary(
+    pulses: list[Pulse], reference: bytes | None
+) -> dict[str, object]:
+    """Model KERNAL packets with the retained `cmp0` software-servo.
+
+    This is a framing and byte/parity model, not a file extractor: duplicated
+    block retry, header interpretation, and checksum validation remain outside
+    this bounded routine. It does, however, preserve how `read.s` alters pulse
+    classes rather than substituting global timing thresholds.
+    """
+    servo = _KernalServo()
+    events = [(pulse, servo.classify(pulse.cycles)) for pulse in pulses]
+    result = _kernal_packet_summary_from_classes(events, reference)
+    result["servo"] = {
+        "initial_cmp0": 0,
+        "final_cmp0": servo.cmp0,
+        "pending_svxt": servo.svxt,
+        "pending_half_dipole": servo.firt,
+        "adjustment_count": servo.adjustments,
+    }
+    return result
 
 
 def inspect(
@@ -536,10 +736,14 @@ def inspect(
         "segment_timing_profiles": _segment_timing_profiles(pulses),
         "measured_loader_01b6_sync_candidates": loader_model["sync_candidates"],
         "measured_loader_01b6_plausible_frames": loader_model["plausible_frames"],
+        "measured_loader_01b6_chained_frame_candidates": _loader_01b6_chained_frames(
+            pulses, validation_ram
+        ),
         "measured_loader_reference_prefix_matches": _measured_loader_reference_matches(
             pulses, reference_ddb
         ),
         "kernal_compatible_decoder": kernal_model,
+        "kernal_adaptive_decoder": _kernal_adaptive_packet_summary(pulses, reference_ddb),
         "dominant_exact_pulse_cycles": [
             {"cycles": cycles, "count": count, "tap_value": cycles // 8 if cycles % 8 == 0 else None}
             for cycles, count in common[:16]

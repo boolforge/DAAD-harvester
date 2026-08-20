@@ -212,6 +212,51 @@
     "version": 1,
     "video_standard": 0
   },
+  "kernal_adaptive_decoder": {
+    "packet_count": 4,
+    "packets": [
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "898887868584838281039f02c0034a414241544f2032202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "2bc86123547bc26586748e8013f94d561f4ecdd45234be2d74a95402236f6523",
+        "stream_end": 31174,
+        "stream_start": 27136
+      },
+      {
+        "byte_count": 202,
+        "first_64_bytes_hex": "090807060504030201039f02c0034a414241544f2032202020202020202020202020202020202020202020202020202020202020202020202020202020202020",
+        "parity_valid_byte_count": 202,
+        "sha256": "3dbf1ccfb1c505f3544d903f8161a05b66f778e288d81ccd88705a7893b4ff0d",
+        "stream_end": 35295,
+        "stream_start": 31257
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "898887868584838281a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "128466f13a562463d6efc9e1f62edcc99f281c2b0f57527c574fc8adbe5398b6",
+        "stream_end": 46738,
+        "stream_start": 40760
+      },
+      {
+        "byte_count": 299,
+        "first_64_bytes_hex": "090807060504030201a80200119011000100a920a208a00091ac20dbfce4add0f7a2d0b9d1fc91acc8d0f8e6ade4add0f2a980859da9008d000885c64c780300",
+        "parity_valid_byte_count": 299,
+        "sha256": "efff9feb59d2edbace9f9387e2d6efbc4a817138c29582283ad19c204c61d0f7",
+        "stream_end": 52799,
+        "stream_start": 46821
+      }
+    ],
+    "reference_prefix_matches": [],
+    "servo": {
+      "adjustment_count": 198188,
+      "final_cmp0": 246,
+      "initial_cmp0": 0,
+      "pending_half_dipole": 1,
+      "pending_svxt": 255
+    }
+  },
   "kernal_compatible_decoder": {
     "packet_count": 4,
     "packets": [
@@ -255,6 +300,131 @@
       "short_medium_boundary": 440
     }
   },
+  "measured_loader_01b6_chained_frame_candidates": [
+    {
+      "frame_count": 1,
+      "frames": [
+        {
+          "available_payload_sha256": "81b949b0dfa949f7aac1ea2c8acca24acfec20d804a47a4a12c855a46bdae7e6",
+          "available_payload_size": 3290,
+          "complete_payload": false,
+          "end_address_exclusive": 5877,
+          "expected_payload_size": 5633,
+          "frame_index": 0,
+          "header_stream_offset": 162958,
+          "start_address": 244
+        }
+      ],
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 162948
+    },
+    {
+      "frame_count": 1,
+      "frames": [
+        {
+          "available_payload_sha256": "c6d3e74bf65747d34d3e742bf6c208f52aa3ac1c598f0233cb302e7f7d57c3e9",
+          "available_payload_size": 256,
+          "complete_payload": true,
+          "end_address_exclusive": 63744,
+          "expected_payload_size": 256,
+          "frame_index": 0,
+          "header_stream_offset": 176348,
+          "runtime_byte_matches": 256,
+          "runtime_exact_match": true,
+          "start_address": 63488
+        }
+      ],
+      "phase": 4,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 7,
+      "sync_stream_offset": 176338
+    },
+    {
+      "frame_count": 3,
+      "frames": [
+        {
+          "available_payload_sha256": "4f80a92138688e52c86075cf33a36061a18b3680880d0898bbf882d9e3eb7bcf",
+          "available_payload_size": 5377,
+          "complete_payload": true,
+          "end_address_exclusive": 5648,
+          "expected_payload_size": 5377,
+          "frame_index": 0,
+          "header_stream_offset": 221270,
+          "runtime_byte_matches": 17,
+          "runtime_exact_match": false,
+          "start_address": 271
+        },
+        {
+          "available_payload_sha256": "c3ff8f225e93b06aafb1800d267516521653b5a17a9b7a5fd3f1658b0d509b2c",
+          "available_payload_size": 5725,
+          "complete_payload": true,
+          "end_address_exclusive": 6018,
+          "expected_payload_size": 5725,
+          "frame_index": 1,
+          "header_stream_offset": 275080,
+          "runtime_byte_matches": 32,
+          "runtime_exact_match": false,
+          "start_address": 293
+        },
+        {
+          "available_payload_sha256": "1e9a5361676afddcf1ecfb75b2f51827658ff846723c400a8d3abdaae298c301",
+          "available_payload_size": 687,
+          "complete_payload": false,
+          "end_address_exclusive": 4092,
+          "expected_payload_size": 3069,
+          "frame_index": 2,
+          "header_stream_offset": 332370,
+          "start_address": 1023
+        }
+      ],
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 221260
+    },
+    {
+      "frame_count": 1,
+      "frames": [
+        {
+          "available_payload_sha256": "ef4b2cbd36d8249141c149786e8c95b881b5ee185959a7f0e319d38b0f285139",
+          "available_payload_size": 4425,
+          "complete_payload": false,
+          "end_address_exclusive": 5674,
+          "expected_payload_size": 5377,
+          "frame_index": 0,
+          "header_stream_offset": 294990,
+          "start_address": 297
+        }
+      ],
+      "phase": 9,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 8,
+      "sync_stream_offset": 294980
+    },
+    {
+      "frame_count": 1,
+      "frames": [
+        {
+          "available_payload_sha256": "9ac2e30ee6cc76d444252023718b1c948aff699076d860e8eeeacd80a999f31d",
+          "available_payload_size": 256,
+          "complete_payload": true,
+          "end_address_exclusive": 42359,
+          "expected_payload_size": 256,
+          "frame_index": 0,
+          "header_stream_offset": 657706,
+          "runtime_byte_matches": 256,
+          "runtime_exact_match": true,
+          "start_address": 42103
+        }
+      ],
+      "phase": 8,
+      "preceding_zero_byte_run": 3,
+      "segment_index": 10,
+      "sync_stream_offset": 657696
+    }
+  ],
   "measured_loader_01b6_plausible_frames": [
     {
       "available_payload_sha256": "81b949b0dfa949f7aac1ea2c8acca24acfec20d804a47a4a12c855a46bdae7e6",

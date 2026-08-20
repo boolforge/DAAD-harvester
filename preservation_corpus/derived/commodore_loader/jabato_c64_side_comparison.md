@@ -26,3 +26,14 @@ The physical comparison isolates one shared component and one unresolved boundar
 | [Side A runtime evidence](jabato_c64_external_evidence.md) | Controlled original Side A execution, Part 1 recovery, and loader trace. |
 | [Side B acquisition and runtime evidence](jabato_side_b_acquisition.md) | Public acquisition, timed execution, and Part 2 recovery. |
 | [ADP comparison scope](adp_jabato_comparison_scope.md) | Fixture provenance and both byte-identity results. |
+
+## External decoding cross-checks
+
+The planned decoder remains constrained by the retained C64 KERNAL `read.s` source and the observed Jabato code path. Independent loader analysis explains why the current evidence separates conventional boot packets from a later turbo/adaptive stream: C64 ROM encoding uses short, medium, and long pulse classes, while commercial turbo loaders commonly use a thresholded pulse decision, bit rotation, leader alignment, and a separately loaded low-memory bootstrap.[1] This matches the observed standard ROM packets and the measured `$01B6`/`$16` later loader contract, but does not identify a named Jabato loader or replace byte-level validation.
+
+Independent preservation guidance also supports the project’s validation policy: checksums alone do not prove that all tape objects were recognized, while cross-copy comparison, object-level extraction, and consistency checks provide stronger evidence.[2] Accordingly, this work promotes only byte-identical original-runtime and ADP-correlated DDB ranges; incomplete physical-stream decoding remains an active implementation task.
+
+## References
+
+[1]: https://github.com/binaryfields/zinc64/blob/master/doc/Analyzing%20C64%20tape%20loaders.txt "Analyzing C64 tape loaders — Luigi Di Fraia"
+[2]: https://www.pagetable.com/?p=1002 "Archiving C64 Tapes Correctly — Michael Steil"

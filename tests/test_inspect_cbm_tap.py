@@ -87,12 +87,50 @@ def test_measured_loader_uses_descending_pointer_header_order() -> None:
     )
 
 
+def test_measured_loader_chains_frames_without_a_second_sync() -> None:
+    # Two zero bytes, $16 sync, then two adjacent EAH/EAL/SAH/SAL frames.
+    pulses = _loader_pulses_for_bytes(
+        [
+            0x00,
+            0x00,
+            0x16,
+            0x40,
+            0x02,
+            0x40,
+            0x00,
+            0xAA,
+            0xBB,
+            0x40,
+            0x04,
+            0x40,
+            0x02,
+            0xCC,
+            0xDD,
+        ]
+    )
+    ram = bytearray(65536)
+    ram[0x4000:0x4002] = b"\xaa\xbb"
+    ram[0x4002:0x4004] = b"\xcc\xdd"
+
+    chains = TAP._loader_01b6_chained_frames(pulses, bytes(ram))
+
+    assert any(
+        [(frame["start_address"], frame["end_address_exclusive"]) for frame in chain["frames"]] == [
+            (0x4000, 0x4002),
+            (0x4002, 0x4004),
+        ]
+        and all(frame["runtime_exact_match"] for frame in chain["frames"])
+        for chain in chains
+    )
+
+
 def test_retained_jabato_side_a_kernal_packets_are_reproducible() -> None:
     tap_path = ROOT / "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap"
     reference = ROOT / "preservation_corpus/derived/commodore_loader/jabato_side_a_tap_second_space_part1.ddb"
 
     result = TAP.inspect(tap_path, None, reference_ddb=reference.read_bytes())
     kernal = result["kernal_compatible_decoder"]
+    adaptive = result["kernal_adaptive_decoder"]
 
     assert kernal["packet_count"] == 4
     assert [packet["byte_count"] for packet in kernal["packets"]] == [202, 202, 299, 299]
@@ -103,3 +141,27 @@ def test_retained_jabato_side_a_kernal_packets_are_reproducible() -> None:
     assert len(profiles) == 12
     assert profiles[0]["dominant_cycles"][0] == {"cycles": 384, "count": 18175, "tap_value": 48}
     assert profiles[2]["dominant_cycles"][0] == {"cycles": 280, "count": 1836, "tap_value": 35}
+    assert adaptive["packet_count"] == 4
+    assert [packet["byte_count"] for packet in adaptive["packets"]] == [202, 202, 299, 299]
+    assert adaptive["servo"]["adjustment_count"] > 0
+
+
+def test_retained_jabato_side_b_packets_and_runtime_frames_are_reproducible() -> None:
+    tap_path = ROOT / "preservation_corpus/extracted/depth1_5114b2dd_Jabato (1989)(Aventuras AD)(Side B).tap"
+    reference = ROOT / "preservation_corpus/derived/commodore_loader/jabato_side_b_tap_post_input_12_part2.ddb"
+    ram = ROOT / "preservation_corpus/derived/commodore_loader/vice/jabato_side_b_tap_post_input_12.ram"
+
+    result = TAP.inspect(tap_path, None, validation_ram=ram.read_bytes(), reference_ddb=reference.read_bytes())
+    kernal = result["kernal_compatible_decoder"]
+    frames = result["measured_loader_01b6_plausible_frames"]
+    exact = [frame for frame in frames if frame.get("runtime_exact_match")]
+
+    assert kernal["packet_count"] == 4
+    assert [packet["byte_count"] for packet in kernal["packets"]] == [202, 202, 299, 299]
+    assert [packet["parity_valid_byte_count"] for packet in kernal["packets"]] == [202, 202, 299, 299]
+    assert kernal["packets"][0]["first_64_bytes_hex"].startswith("898887868584838281039f02c0034a414241544f2032")
+    assert len([frame for frame in frames if "runtime_exact_match" in frame]) == 3
+    assert {(frame["segment_index"], frame["start_address"], frame["end_address_exclusive"]) for frame in exact} == {
+        (7, 0xF800, 0xF900),
+        (10, 0xA477, 0xA577),
+    }
