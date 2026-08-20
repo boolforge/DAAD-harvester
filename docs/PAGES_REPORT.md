@@ -31,3 +31,16 @@ https://boolforge.github.io/DAAD-harvester/
 ```
 
 GitHub Pages project paths are case-sensitive. The capitalized `DAAD-harvester` path above is canonical; `https://boolforge.github.io/daad-harvester/` is not an equivalent URL and may return 404.
+
+## Shareable evidence links and accessibility
+
+The report is a static application, so shareable evidence views use browser-safe route state rather than server-side records. A link must identify the current report section plus an exported entity ID—such as a known-game ID, retained artifact ID, source ID, or the generated detection handoff—and may include a safe filter/platform query. Opening that link must restore the requested evidence detail directly, without a private database connection, local extraction path, or implied game-port claim.
+
+| Link target | Stable identifier | Restored view | Boundary retained in the view |
+| --- | --- | --- | --- |
+| Game | Known-game `game_id` | Title detail with catalog, source, and measured-artifact platform layers. | A platform row is evidence, not proof of a runnable release. |
+| Artifact | Numeric exported artifact ID | Artifact detail with source association, full checksum suite, structural and interpreter evidence. | The artifact’s retained bytes are not automatically published. |
+| Source/port evidence | Numeric exported source ID plus associated game context. | Source provenance and linked retained artifact evidence. | A source record does not become a verified binary. |
+| Detection handoff | Fixed generated-header target. | Header provenance, preview, checksum, and conditional download. | The header is metadata, not an engine/equivalence claim. |
+
+Every entity entry point must be keyboard-operable, visibly focused, have a descriptive accessible name, and provide a deterministic return path to its parent list. Compact library/list cards are not a sufficient interface by themselves: each must expose a semantic control that opens its recorded detail.
