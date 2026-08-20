@@ -1,6 +1,7 @@
 """Interactive, Async, Termux-friendly Rich TUI Dashboard for DAAD Harvester."""
 
 import asyncio
+from hashlib import sha256
 import json
 import sys
 import time
@@ -19,6 +20,7 @@ from rich.markup import escape
 from daad_harvester import __version__
 from daad_harvester.config import settings
 from daad_harvester.db import Database
+from daad_harvester.known_games import iter_known_games
 
 
 TUI_THEMES = (
@@ -45,8 +47,14 @@ class TUIDashboard:
         self.active_phase = "INIT"
 
         # Interactive state
-        self.active_tab = 0  # 0: artifact evidence, 1: prioritized acquisition queue, 2: metrics
-        self.tabs = ["1. ARTIFACT EVIDENCE", "2. PRIORITY ACQUISITION", "3. SYSTEM CONFIG & METRICS"]
+        self.active_tab = 0  # artifact evidence, source queue, game/port evidence, detection handoff, metrics
+        self.tabs = [
+            "1. ARTIFACT EVIDENCE",
+            "2. PRIORITY ACQUISITION",
+            "3. GAME & PORT EVIDENCE",
+            "4. SCUMMVM HANDOFF",
+            "5. SYSTEM CONFIG & METRICS",
+        ]
         self.selected_index = 0
         self.search_filter = ""
         self.in_search_mode = False
@@ -70,6 +78,7 @@ class TUIDashboard:
                 if filter_text in (artifact.title or "").lower()
                 or filter_text in (artifact.original_filename or "").lower()
                 or filter_text in (artifact.platform_hint or "").lower()
+                or filter_text in (artifact.sha256 or "").lower()
                 or filter_text in (artifact.md5_full or "").lower()
             ]
         if not artifacts:
@@ -260,7 +269,7 @@ class TUIDashboard:
         table.add_column("Platform", style="cyan", width=10)
         table.add_column("Evidence", style="green", width=16)
         table.add_column("Status", width=11)
-        table.add_column("MD5 (Full)", style="magenta", width=18)
+        table.add_column("SHA-256", style="magenta", width=18)
         table.add_column("Size", justify="right", width=10)
 
         for art in display_arts:
@@ -272,14 +281,14 @@ class TUIDashboard:
             platform = (art.platform_hint or "unknown").upper()
             version = art.daad_version_guess or art.media_validation or art.container_format or "retained"
             status = "VERIFIED" if art.is_daad_payload else (art.media_status or "retained").upper()
-            md5_short = art.md5_full[:16] + "..." if art.md5_full and len(art.md5_full) > 16 else (art.md5_full or "N/A")
+            sha256_short = art.sha256[:16] + "..." if art.sha256 and len(art.sha256) > 16 else (art.sha256 or "N/A")
             size_str = f"{art.file_size / 1024:.1f} KB" if art.file_size else "0 KB"
 
             actual_idx = daad_arts.index(art)
             style = f"bold black on {accent}" if actual_idx == self.selected_index else None
             # Wrap in Text() (not raw str) so titles/filenames pulled from harvested
             # archives can never be misparsed as Rich markup (e.g. "Game [1988].zip").
-            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(status), Text(md5_short), Text(size_str), style=style)
+            table.add_row(str(art.id), Text(title), Text(platform), Text(version), Text(status), Text(sha256_short), Text(size_str), style=style)
 
         verified_count = sum(1 for artifact in daad_arts if artifact.is_daad_payload)
         title_str = f"[bold {accent}]Artifact Evidence Ledger — {verified_count} Verified DDBs[/bold {accent}]"
@@ -334,6 +343,117 @@ class TUIDashboard:
             )
         return Panel(table, title=f"[bold {accent}]Evidence-Led Source Queue[/bold {accent}]", border_style=border)
 
+    def _make_game_port_table(self) -> Panel:
+        """Render catalog, source, and measured-artifact platforms as separate layers."""
+
+        _, accent, _, border = self.theme
+        sources = self.db.get_all_sources()
+        artifacts_by_source: dict[int, list[Any]] = {}
+        for artifact in self.db.get_all_artifacts():
+            if artifact.source_id is not None:
+                artifacts_by_source.setdefault(artifact.source_id, []).append(artifact)
+
+        rows: list[tuple[Any, list[Any], list[Any]]] = []
+        filter_text = self.search_filter.lower()
+        for game in iter_known_games():
+            matched_sources = [source for source in sources if source.known_game_id == game.game_id]
+            matched_artifacts = [
+                artifact
+                for source in matched_sources
+                for artifact in artifacts_by_source.get(source.id or -1, [])
+            ]
+            haystack = " ".join(
+                [
+                    game.game_id,
+                    game.title,
+                    *game.platforms,
+                    *[(source.platform or "") for source in matched_sources],
+                    *[
+                        f"{artifact.original_filename} {artifact.sha256} "
+                        f"{artifact.measured_platform or artifact.platform_hint or ''}"
+                        for artifact in matched_artifacts
+                    ],
+                ]
+            ).lower()
+            if not filter_text or filter_text in haystack:
+                rows.append((game, matched_sources, matched_artifacts))
+
+        page_size = 10
+        if not rows:
+            self.selected_index = 0
+            displayed = []
+        else:
+            self.selected_index = max(0, min(self.selected_index, len(rows) - 1))
+            start = max(0, min(self.selected_index - page_size // 2, len(rows) - page_size))
+            displayed = rows[start:start + page_size]
+
+        table = Table(
+            title=f"Game / Port Evidence Matrix (Showing {len(displayed)} of {len(rows)})",
+            expand=True,
+            show_lines=True,
+        )
+        table.add_column("Title", style="bold yellow", min_width=20)
+        table.add_column("Catalog platforms", style="cyan", min_width=14)
+        table.add_column("Source platforms", style="blue", min_width=14)
+        table.add_column("Measured artifact platforms", style="green", min_width=16)
+        table.add_column("Retained artifact / SHA-256", min_width=28)
+        for index, (game, matched_sources, matched_artifacts) in enumerate(displayed):
+            catalog_platforms = ", ".join(platform.upper() for platform in game.platforms) or "not recorded"
+            source_platforms = ", ".join(
+                sorted({(source.platform or "unknown").upper() for source in matched_sources})
+            ) or "no matched source"
+            measured_platforms = ", ".join(
+                sorted(
+                    {
+                        (artifact.measured_platform or artifact.platform_hint or "unknown").upper()
+                        for artifact in matched_artifacts
+                    }
+                )
+            ) or "no measured artifact"
+            artifact_text = "\n".join(
+                f"{artifact.original_filename} | {artifact.sha256}"
+                for artifact in matched_artifacts[:3]
+            ) or "no source-associated retained artifact"
+            if len(matched_artifacts) > 3:
+                artifact_text += f"\n… {len(matched_artifacts) - 3} more retained artifacts"
+            actual_index = rows.index((game, matched_sources, matched_artifacts))
+            style = f"bold black on {accent}" if actual_index == self.selected_index else None
+            table.add_row(
+                Text(f"{game.title}\n{game.game_id}"),
+                Text(catalog_platforms),
+                Text(source_platforms),
+                Text(measured_platforms),
+                Text(artifact_text),
+                style=style,
+            )
+        subtitle = "Catalog, source, and measured artifact platforms are separate evidence layers; no row asserts a runnable port."
+        return Panel(table, title=f"[bold {accent}]GAME & PORT EXPLORER[/bold {accent}]", subtitle=subtitle, border_style=border)
+
+    def _make_detection_panel(self) -> Panel:
+        """Expose the generated ScummVM-oriented header without overclaiming an engine."""
+
+        _, accent, _, border = self.theme
+        header = Path(settings.output_dir) / "detection_tables.h"
+        if header.is_file():
+            payload = header.read_bytes()
+            preview = payload.decode("utf-8", errors="replace")[:1800]
+            status = "available"
+            checksum = sha256(payload).hexdigest()
+        else:
+            preview = "// No detection header exists for the configured output directory.\n// Run the deterministic synthesis/report workflow first."
+            status = "unavailable"
+            checksum = "not recorded"
+        table = Table.grid(expand=True, padding=(0, 1))
+        table.add_column("Field", style=f"bold {accent}", width=20)
+        table.add_column("Recorded value", overflow="fold")
+        table.add_row("Status", status)
+        table.add_row("Generator", "daad_harvester.synthesize.Synthesizer")
+        table.add_row("Artifact", "detection_tables.h")
+        table.add_row("SHA-256", checksum)
+        table.add_row("Boundary", "Detection metadata only; not a complete ScummVM engine, playable-title proof, or emulator-equivalence result.")
+        table.add_row("Header preview", Text(preview))
+        return Panel(table, title=f"[bold {accent}]SCUMMVM DETECTION HANDOFF[/bold {accent}]", border_style=border)
+
 
     def render(self) -> Layout:
         layout = Layout()
@@ -350,6 +470,10 @@ class TUIDashboard:
             layout["body"].update(self._make_daad_games_table())
         elif self.active_tab == 1:
             layout["body"].update(self._make_sources_table())
+        elif self.active_tab == 2:
+            layout["body"].update(self._make_game_port_table())
+        elif self.active_tab == 3:
+            layout["body"].update(self._make_detection_panel())
         else:
             layout["body"].split_row(
                 Layout(self._make_config_panel(), ratio=1),
@@ -365,7 +489,7 @@ class TUIDashboard:
         footer_text = (
             r"[bold yellow]\[Tab][/bold yellow] Switch Tab  |  "
             r"[bold yellow]\[Up/Down][/bold yellow] Select/Scroll  |  "
-            r"[bold yellow]\[Enter][/bold yellow] Inspect  |  "
+            r"[bold yellow]\[Enter][/bold yellow] Inspect artifact  |  "
             r"[bold yellow]\[H][/bold yellow] Theme  |  "
             r"[bold yellow]\[/][/bold yellow] Search  |  "
             r"[bold yellow]\[C][/bold yellow] Clear Filter  |  "

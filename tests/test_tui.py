@@ -27,7 +27,11 @@ def test_tui_dashboard_navigation(tmp_path):
     tui.handle_key_input("\t")
     assert tui.active_tab == 2
 
-    # Simulate pressing Tab key again (wrap around)
+    # The evidence console now has dedicated game/port and detection handoff tabs.
+    tui.handle_key_input("\t")
+    assert tui.active_tab == 3
+    tui.handle_key_input("\t")
+    assert tui.active_tab == 4
     tui.handle_key_input("\t")
     assert tui.active_tab == 0
 

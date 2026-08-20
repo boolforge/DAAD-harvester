@@ -18,7 +18,7 @@ from daad_harvester.models import ArtifactRecord
 from daad_harvester.tui import TUIDashboard
 
 
-def _render(dash: TUIDashboard, tabs=(0, 1, 2), width: int = 140) -> str:
+def _render(dash: TUIDashboard, tabs=(0, 1, 2, 3, 4), width: int = 140) -> str:
     """Renders the given tabs through a real Console and returns plain text."""
     console = Console(record=True, width=width, force_terminal=True)
     for tab in tabs:
@@ -128,9 +128,48 @@ def test_render_priority_queue_exposes_catalog_and_platform_neutral_priority(tmp
         acquisition_priority=1000,
     )
     dash = TUIDashboard(db)
-    text = _render(dash, tabs=(1, 2))
+    text = _render(dash, tabs=(1, 4))
 
     assert "Priority Acquisition" in text
     assert "chichen_itza" in text
     assert "1000" in text
     assert "Evidence-Prioritized Candidates" in text
+
+
+def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
+    db = Database(tmp_path / "test.db")
+    source_id = db.add_source(
+        "https://example.com/chichen.dsk",
+        "archive",
+        title="Chichén Itzá",
+        platform="cpc",
+        known_game_id="chichen_itza",
+    )
+    artifact = ArtifactRecord(
+        id=None,
+        source_id=source_id,
+        original_filename="CHICHEN.DDB",
+        extracted_path=str(tmp_path / "CHICHEN.DDB"),
+        archive_depth=1,
+        file_size=24576,
+        md5_full="a" * 32,
+        md5_5000="b" * 32,
+        sha256="c" * 64,
+        is_daad_payload=True,
+        measured_platform="cpc",
+        ddb_format="daad-v2",
+    )
+    db.add_artifact(artifact)
+    dash = TUIDashboard(db)
+    dash.search_filter = "chichen"
+
+    text = _render(dash, tabs=(2, 3), width=180)
+
+    assert "GAME & PORT EXPLORER" in text
+    assert "Chichén Itzá" in text
+    assert "Catalog platforms" in text
+    assert "Measured artifact platforms" in text
+    assert "CHICHEN.DDB" in text
+    assert "c" * 16 in text
+    assert "SCUMMVM DETECTION HANDOFF" in text
+    assert "Detection metadata only" in text
