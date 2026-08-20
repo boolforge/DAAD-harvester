@@ -17,6 +17,13 @@ from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.db import Database
 
 
+ARTIFACT_CHECKSUM_FIELDS = (
+    "md5_full", "md5_5000", "md5_tail5000", "sha1", "sha224", "sha256",
+    "sha384", "sha512", "sha3_256", "sha3_512", "blake2b", "blake2s",
+    "crc32", "adler32", "xxh32", "xxh64", "xxh128",
+)
+
+
 class StaticReportExporter:
     """Write a reviewable, frontend-safe summary of recorded pipeline evidence."""
 
@@ -78,12 +85,7 @@ class StaticReportExporter:
                             "original_filename": artifact["original_filename"],
                             "sha256": artifact["sha256"],
                             "checksums": {
-                                "sha256": artifact["sha256"],
-                                "sha1": artifact.get("sha1"),
-                                "md5_full": artifact.get("md5_full"),
-                                "md5_5000": artifact.get("md5_5000"),
-                                "crc32": artifact.get("crc32"),
-                                "xxh64": artifact.get("xxh64"),
+                                field: artifact.get(field) for field in ARTIFACT_CHECKSUM_FIELDS
                             },
                             "file_size": artifact["file_size"],
                             "measured_platform": measured_platform,
