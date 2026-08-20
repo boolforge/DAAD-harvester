@@ -11,7 +11,7 @@
 
 This guide complements the mandatory [self-contained regeneration policy](SELF_CONTAINED_REGENERATION.md). The policy defines what may be promoted as primary evidence; this guide defines how a new maintainer works safely and deterministically.
 
-The repository-wide [requirements, evidence, and continuity contract](requirements/TRACEABILITY_AND_CONTINUITY.md) defines the mandatory handoff record for every concern and future change. Read it after this guide’s orientation sections when planning or reviewing a modification.
+The repository-wide [requirements, evidence, and continuity contract](requirements/TRACEABILITY_AND_CONTINUITY.md) defines the mandatory handoff record for every concern and future change. Read it after this guide’s orientation sections when planning or reviewing a modification. The [atomic remote delivery policy](ATOMIC_REMOTE_DELIVERY.md) is equally mandatory once a bounded change has passed its relevant checks: validated work is committed and pushed before an unrelated concern begins.
 
 ## 1. Distinguish host automation from historical target coverage
 
@@ -105,7 +105,7 @@ Follow this sequence for every parser, loader, decompiler, runtime, or variant c
 5. **Regenerate through repository code.** Refresh only the affected corpus, fingerprint, library, report, and evidence outputs using committed commands. Re-run the offline gate.
 6. **Register promoted evidence.** Add a manifest entry with all input/output hashes, declared dependencies, a local command, and an empty or explicit external-validator list.
 7. **Update the ledger and documentation.** Record what changed, what exact claim is now verified, and what remains open. Update the static report if its state changed.
-8. **Commit atomically.** A commit may contain one coherent evidence claim and its code, tests, generated evidence, manifest, and documentation. Push only after the full relevant gate passes.
+8. **Commit and push one layer at a time.** A commit may contain one coherent evidence claim and its direct code, tests, generated evidence, manifest, and documentation. Before committing, read `git diff --cached --name-only` and `git diff --cached --stat`; if the staged set tells more than one independently testable story, unstage and split it. Push immediately after the relevant gate passes, confirm remote/CI state, and only then begin an unrelated concern. Follow the [atomic remote delivery policy](ATOMIC_REMOTE_DELIVERY.md); do not accumulate locally validated changes or bundle methodology with unrelated implementation.
 
 ## 7. Working on a blocker
 

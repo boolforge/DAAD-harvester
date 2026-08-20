@@ -122,7 +122,7 @@ pytest -q
 
 Read [`TODO.md`](TODO.md), the [format capability matrix](docs/formats/FORMAT_CAPABILITY_MATRIX.md), the [evidence model](docs/schemas/EVIDENCE_MODEL.md), the [coverage ledger](preservation_corpus/COVERAGE_LEDGER.md), and the [self-contained regeneration policy](docs/SELF_CONTAINED_REGENERATION.md) before modifying a parser or promoted claim. A new profile requires retained input bytes, an explicit format contract, positive and malformed fixtures, a real-artifact regression, deterministic output regeneration, a manifest entry, and refreshed documentation. No private model context or undocumented workstation setup is part of this workflow.
 
-The complete prompt-free handoff procedure, including optional-validator automation and recovery boundaries, is in the [clone-to-contribution continuation guide](docs/CONTRIBUTOR_CONTINUATION.md).
+The complete prompt-free handoff procedure, including optional-validator automation and recovery boundaries, is in the [clone-to-contribution continuation guide](docs/CONTRIBUTOR_CONTINUATION.md). Every validated bounded change must then follow the [atomic remote delivery policy](docs/ATOMIC_REMOTE_DELIVERY.md): review only its scoped diff, commit it atomically, push it immediately, and confirm CI before starting unrelated work.
 
 The [requirements, evidence, and continuity contract](docs/requirements/TRACEABILITY_AND_CONTINUITY.md) shows how every current and future claim must link its evidence, code, tests, deterministic regeneration, CI behavior, public representation, recovery boundary, and continuation instruction for both humans and deterministic agents.
 

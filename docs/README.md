@@ -5,6 +5,7 @@ This documentation corpus describes **what DAAD Harvester can measure**, the evi
 | Module | Scope |
 | --- | --- |
 | [Clone-to-contribution continuation guide](CONTRIBUTOR_CONTINUATION.md) | Prompt-free bootstrap, offline verification, evidence vocabulary, profile-change protocol, optional-tool boundary, and review/recovery workflow for humans and agents. |
+| [Atomic remote delivery policy](ATOMIC_REMOTE_DELIVERY.md) | Mandatory small-commit, immediate-push, staging-hygiene, CI-observation, and recovery discipline for every validated change. |
 | [Self-contained regeneration standard](SELF_CONTAINED_REGENERATION.md) | Mandatory global policy, manifest contract, CI gate, and external-validator boundary for every promoted result. |
 | [Research methodology](RESEARCH_METHODOLOGY.md) | Evidence ladder, lawful reverse-engineering boundary, documentation anatomy, and reproducibility packet. |
 | [Documentation map](DOCUMENTATION_MAP.md) | Directory ownership, modular migration ledger, required module header, and cross-reference rules. |

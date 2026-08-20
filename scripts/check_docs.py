@@ -50,6 +50,12 @@ TRACEABILITY_NAVIGATION_DOCUMENTS = (
     DOCS / "DOCUMENTATION_MAP.md",
     DOCS / "CONTRIBUTOR_CONTINUATION.md",
 )
+ATOMIC_DELIVERY_DOCUMENT = DOCS / "ATOMIC_REMOTE_DELIVERY.md"
+ATOMIC_DELIVERY_NAVIGATION_DOCUMENTS = (
+    ROOT / "README.md",
+    DOCS / "README.md",
+    DOCS / "CONTRIBUTOR_CONTINUATION.md",
+)
 
 
 def check_relative_links(errors: list[str]) -> int:
@@ -122,6 +128,21 @@ def check_traceability_navigation(errors: list[str]) -> int:
     return checked
 
 
+def check_atomic_delivery_navigation(errors: list[str]) -> int:
+    """Ensure clean-clone contributors can discover the delivery discipline."""
+
+    checked = 0
+    if not ATOMIC_DELIVERY_DOCUMENT.is_file():
+        errors.append(f"missing atomic remote delivery policy: {ATOMIC_DELIVERY_DOCUMENT.relative_to(ROOT)}")
+        return checked
+    required_link = "ATOMIC_REMOTE_DELIVERY.md"
+    for document in ATOMIC_DELIVERY_NAVIGATION_DOCUMENTS:
+        checked += 1
+        if required_link not in document.read_text(encoding="utf-8"):
+            errors.append(f"missing atomic remote delivery policy link: {document.relative_to(ROOT)}")
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     links = check_relative_links(errors)
@@ -129,6 +150,7 @@ def main() -> int:
     diagrams = check_mermaid_sources(errors)
     policy_documents = check_regeneration_policy_links(errors)
     traceability_documents = check_traceability_navigation(errors)
+    atomic_delivery_documents = check_atomic_delivery_navigation(errors)
     if errors:
         print("Documentation integrity check failed:")
         print("\n".join(f"- {error}" for error in errors))
@@ -137,7 +159,8 @@ def main() -> int:
         "Documentation integrity check passed: "
         f"{links} relative links, {modules} focused modules, {diagrams} Mermaid sources, "
         f"{policy_documents} required regeneration-policy links, "
-        f"{traceability_documents} traceability-navigation links."
+        f"{traceability_documents} traceability-navigation links, "
+        f"{atomic_delivery_documents} atomic-delivery navigation links."
     )
     return 0
 
