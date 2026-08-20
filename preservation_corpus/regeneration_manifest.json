@@ -64,6 +64,51 @@
           "role": "independent ROM-bootstrap corroboration only; not invoked by the primary regeneration command"
         }
       ]
+    },
+    {
+      "id": "c64-jabato-original-runtime-ddb-recovery",
+      "description": "Structurally parses and byte-verifies the committed Part 1 and Part 2 DDB recoveries directly from retained 64 KiB original-runtime RAM captures.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_jabato_c64_runtime_recovery.py",
+        "arguments": []
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.ram",
+          "sha256": "e2ebd0b931dcab49ea71e2221add54d19d2edaa23ee5fd7fb0dc33f569a7eee6"
+        },
+        {
+          "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_b_tap_post_input_12.ram",
+          "sha256": "ff40ccec1e164de11b2b944fa0952f28eee07e8bb6f0ae6ea14661043724f6c3"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/commodore_loader/jabato_side_a_tap_second_space_part1.ddb",
+          "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6"
+        },
+        {
+          "path": "preservation_corpus/derived/commodore_loader/jabato_side_b_tap_post_input_12_part2.ddb",
+          "sha256": "ee3b41f61fc01c27ad776e271f313a2e3fc88875cc9c8e0debebe6904fa48e69"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "VICE",
+          "role": "acquisition-time RAM-capture producer only; not invoked by the primary recovery verification command"
+        },
+        {
+          "name": "ADP fixtures",
+          "role": "independent retained byte-identity corroboration only; not read by the primary recovery verification command"
+        }
+      ]
     }
   ]
 }
