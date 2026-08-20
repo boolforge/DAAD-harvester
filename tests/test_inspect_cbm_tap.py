@@ -35,6 +35,31 @@ def _pulse_stream_for_byte(value: int) -> list[object]:
     return pulses
 
 
+def _loader_pulses_for_bytes(values: list[int]) -> list[object]:
+    """Encode exact ten-pulse ROR states for the measured Side A loader."""
+    pulses: list[object] = []
+    state = 0x7F
+    offset = 0
+    for target in values:
+        carries: list[int] | None = None
+        for candidate in range(1 << 10):
+            candidate_state = state
+            candidate_carries = []
+            for bit in range(10):
+                carry = (candidate >> bit) & 1
+                candidate_carries.append(carry)
+                candidate_state = ((carry << 7) | (candidate_state >> 1)) & 0xFF
+            if candidate_state == target:
+                carries = candidate_carries
+                break
+        assert carries is not None
+        for carry in carries:
+            pulses.append(TAP.Pulse(offset, 1, 592 if carry else 280, "quantized"))
+            offset += 1
+        state = target
+    return pulses
+
+
 def test_kernal_decoder_recovers_parity_checked_synthetic_byte() -> None:
     result = TAP._kernal_packet_summary(_pulse_stream_for_byte(0xA5), b"\xA5")
 
@@ -43,6 +68,23 @@ def test_kernal_decoder_recovers_parity_checked_synthetic_byte() -> None:
     assert result["packets"][0]["parity_valid_byte_count"] == 1
     assert result["packets"][0]["first_64_bytes_hex"] == "a5"
     assert result["reference_prefix_matches"][0]["matched_prefix_size"] == 1
+
+
+def test_measured_loader_uses_descending_pointer_header_order() -> None:
+    # zero leader, $16 sync, EAH/EAL/SAH/SAL, then a three-byte payload.
+    pulses = _loader_pulses_for_bytes([0x00, 0x16, 0x40, 0x03, 0x40, 0x00, 0xAA, 0xBB, 0xCC])
+    ram = bytearray(65536)
+    ram[0x4000:0x4003] = b"\xaa\xbb\xcc"
+
+    frames = TAP._loader_01b6_preview(pulses, bytes(ram))["plausible_frames"]
+
+    assert any(
+        frame["start_address"] == 0x4000
+        and frame["end_address_exclusive"] == 0x4003
+        and frame["complete_payload"]
+        and frame["runtime_exact_match"]
+        for frame in frames
+    )
 
 
 def test_retained_jabato_side_a_kernal_packets_are_reproducible() -> None:

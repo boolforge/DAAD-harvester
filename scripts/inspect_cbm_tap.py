@@ -278,12 +278,14 @@ def _loader_01b6_preview(
                 if len(previews) < 32:
                     previews.append(candidate)
                 if len(following) >= 4:
-                    # The code stores the four post-sync bytes in descending
-                    # Y order at $AC-$AF, then uses ($AC),X and the KERNAL
-                    # `incsal`/`cmpste` helpers: bytes 0-1 are the exclusive
-                    # end pointer and bytes 2-3 are the start pointer.
-                    end = following[0] | (following[1] << 8)
-                    start = following[2] | (following[3] << 8)
+                    # The code reads with Y=3 down to 0 and stores to $AC,Y.
+                    # The first byte therefore becomes EAH ($AF), the second
+                    # EAL ($AE), the third SAH ($AD), and the fourth SAL
+                    # ($AC).  `($AC),X`, `incsal`, and `cmpste` then use
+                    # SAL/SAH as the active destination and EAL/EAH as the
+                    # exclusive terminal address.
+                    end = following[1] | (following[0] << 8)
+                    start = following[3] | (following[2] << 8)
                     expected_size = end - start
                     if 0 < expected_size and end <= 0x10000:
                         payload = bytes(following[4:4 + expected_size])

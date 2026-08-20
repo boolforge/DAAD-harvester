@@ -22,6 +22,12 @@ def inspect(path: Path) -> dict[str, object]:
             continue
         legacy_marker = data[offset + 2] == 0x5F
         mode = "legacy" if legacy_marker else "modern_or_other"
+        wrapper = {"format": "embedded_candidate"}
+        validated = parser._validate_at(data, offset, wrapper, allow_trailing=True)
+        if validated is None:
+            validated = parser._validate_at(
+                data, offset, wrapper, allow_trailing=True, legacy=True
+            )
         analysis = parser.parse_ddb(data[offset:], f"embedded_{path.name}.ddb")
         candidate: dict[str, object] = {
             "offset": offset,
@@ -29,9 +35,22 @@ def inspect(path: Path) -> dict[str, object]:
             "machine_language_byte": data[offset + 1],
             "legacy_marker": legacy_marker,
             "mode": mode,
-            "validated": bool(analysis["is_daad"]),
-            "reason": analysis["reason"],
+            "validated": validated is not None,
+            "reason": (
+                f"verified_structural_{validated['header'].layout}_ddb"
+                if validated is not None
+                else analysis["reason"]
+            ),
         }
+        if validated is not None:
+            header = validated["header"]
+            candidate["ddb_format"] = (
+                f"daad-v{header.major_version}"
+                if header.layout == "drc"
+                else f"daad-v{header.major_version}-legacy"
+            )
+            candidate["platform"] = header.platform
+            candidate["payload_size"] = validated["payload_size"]
         if legacy_marker:
             header = parser._parse_legacy_header(data, offset)
             if header is not None:

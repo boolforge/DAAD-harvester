@@ -732,8 +732,7 @@
             54701,
             10498,
             36191,
-            725,
-            54957
+            725
           ],
           "process_count": 210,
           "submachine": 95,
@@ -752,8 +751,7 @@
           40237,
           null,
           21727,
-          null,
-          40493
+          null
         ],
         "machine_language_byte": 41,
         "major_byte": 2,
@@ -799,8 +797,7 @@
             9340,
             54701,
             10498,
-            36191,
-            725
+            36191
           ],
           "process_count": 214,
           "submachine": 95,
@@ -819,8 +816,7 @@
           9340,
           54701,
           10498,
-          36191,
-          725
+          36191
         ],
         "machine_language_byte": 41,
         "major_byte": 2,
@@ -857,8 +853,7 @@
             5152,
             19495,
             4196,
-            29984,
-            19495
+            29984
           ],
           "process_count": 24,
           "submachine": 95,
@@ -877,8 +872,7 @@
           null,
           5031,
           null,
-          15520,
-          5031
+          15520
         ],
         "machine_language_byte": 41,
         "major_byte": 2,
@@ -1735,12 +1729,12 @@
       },
       {
         "legacy_available_size": 57208,
-        "legacy_expected_size": 10029,
+        "legacy_expected_size": 8875,
         "legacy_header": {
-          "base_address": 14464,
+          "base_address": 0,
           "endianness": "little",
-          "file_length": 24493,
-          "header_size": 34,
+          "file_length": 8875,
+          "header_size": 32,
           "language": "en",
           "layout": "legacy",
           "location_count": 208,
@@ -1760,9 +1754,7 @@
             44053,
             709,
             18464,
-            8226,
-            8875,
-            24493
+            8226
           ],
           "process_count": 16,
           "submachine": 95,
@@ -1770,19 +1762,17 @@
         },
         "legacy_marker": true,
         "legacy_pointer_offsets": [
-          28588,
-          38786,
-          29852,
-          null,
-          null,
-          49312,
-          30630,
-          29589,
-          null,
-          4000,
-          null,
-          null,
-          10029
+          43052,
+          53250,
+          44316,
+          13918,
+          6128,
+          63776,
+          45094,
+          44053,
+          709,
+          18464,
+          8226
         ],
         "machine_language_byte": 44,
         "major_byte": 1,
@@ -2557,8 +2547,7 @@
             9600,
             2217,
             32800,
-            19493,
-            9573
+            19493
           ],
           "process_count": 173,
           "submachine": 95,
@@ -2577,8 +2566,7 @@
           9600,
           2217,
           32800,
-          19493,
-          9573
+          19493
         ],
         "machine_language_byte": 44,
         "major_byte": 2,
@@ -4091,13 +4079,14 @@
         "validated": false
       },
       {
+        "ddb_format": "daad-v1-legacy",
         "legacy_available_size": 51072,
-        "legacy_expected_size": 34110,
+        "legacy_expected_size": 24899,
         "legacy_header": {
           "base_address": 14464,
           "endianness": "little",
-          "file_length": 48574,
-          "header_size": 34,
+          "file_length": 39363,
+          "header_size": 32,
           "language": "es",
           "layout": "legacy",
           "location_count": 45,
@@ -4117,9 +4106,7 @@
             14496,
             32659,
             32587,
-            32635,
-            39363,
-            48574
+            32635
           ],
           "process_count": 40,
           "submachine": 95,
@@ -4137,16 +4124,16 @@
           32,
           18195,
           18123,
-          18171,
-          24899,
-          34110
+          18171
         ],
         "machine_language_byte": 33,
         "major_byte": 1,
         "mode": "legacy",
         "offset": 14464,
-        "reason": "no_valid_target_aware_ddb_structure",
-        "validated": false
+        "payload_size": 24899,
+        "platform": "c64",
+        "reason": "verified_structural_legacy_ddb",
+        "validated": true
       },
       {
         "legacy_marker": false,
@@ -18907,7 +18894,10 @@
       "reason": "no_valid_target_aware_ddb_structure",
       "version": null
     },
-    "embedded": null,
+    "embedded": {
+      "offset": 14464,
+      "size": 24899
+    },
     "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.ram",
     "size": 65536
   }
