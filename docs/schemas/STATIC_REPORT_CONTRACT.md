@@ -32,7 +32,7 @@ Before export, every catalog artifact has `extracted_path` removed. Library link
 | Subobject | Browser-safe contract | Viewer behavior |
 | --- | --- | --- |
 | `game_port_matrix` | `game_id`, `title`, `catalog_platforms`, `source_platforms`, `measured_artifact_platforms`, `source_count`, and source-associated artifact records. | Lets a consumer browse each layer separately; it never calls a listed platform a runnable port. |
-| `game_port_matrix[].artifacts[]` | Artifact/source IDs, filename, SHA-256, size, measured platform when present, DDB/interpreter fields, and `verified_ddb` or `retained_artifact` evidence state. | Displays/copies the checksum for that exact retained byte sequence; missing fields remain unknown. |
+| `game_port_matrix[].artifacts[]` | Artifact/source IDs, filename, size, measured platform when present, DDB/interpreter fields, evidence state, and a labelled complete checksum map. | The map contains every digest persisted by the native checksum suite: MD5 full/head/tail, SHA-1/224/256/384/512, SHA3-256/512, BLAKE2b/s, CRC-32, Adler-32, and XXH32/64/128. An absent required digest is an integrity failure for retained bytes, not an inferred unknown. |
 | `detections` | `available`, `download_path`, `entry_count`, `preview` (maximum 12,000 text characters), SHA-256, generator, input-catalog name, and explicit boundary. | Exposes a download link only when an export exists and labels the header as generated detection metadata rather than engine proof. |
 | `library` | Manifest or unavailable sentinel with summary/artifacts. | Links only to relative deployment assets. |
 | `logs` | Last 120 lines per named log candidate. | Displays retained lines; never invents events. |

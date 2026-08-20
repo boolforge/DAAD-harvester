@@ -60,6 +60,7 @@ python scripts/run_primary_workflow.py
 python scripts/verify_regeneration_manifest.py
 python scripts/verify_runtime_resources.py
 python scripts/verify_game_corpus.py
+python scripts/verify_artifact_checksums.py
 python scripts/verify_reverse_corpus.py
 python scripts/check_docs.py
 python -m pyflakes daad_harvester scripts
@@ -67,6 +68,8 @@ pytest -q
 ```
 
 `python scripts/run_primary_workflow.py --list` prints the exact cross-host command plan without running it. `--quick` runs only the deterministic corpus/report/documentation verification portion. Neither form invokes a network endpoint, GUI application, emulator, external disassembler, or LLM.
+
+`python scripts/verify_artifact_checksums.py --backfill` is the controlled historical repair command. It rereads retained bytes and fills only absent canonical digest fields; it fails rather than overwriting a stored mismatch. Normal verification is read-only and is part of the primary workflow, so a retained artifact with missing or divergent checksum evidence blocks promotion.
 
 > A manifest mismatch is not database corruption by itself. It says that a hash-pinned state or generated output changed after a controlled operation and must be regenerated, remeasured, reviewed, and explicitly re-pinned in the same evidence change. Never edit a manifest hash merely to make a failure disappear.
 

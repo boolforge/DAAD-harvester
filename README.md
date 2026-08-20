@@ -114,6 +114,7 @@ The preservation-critical pipeline has **no LLM runtime dependency**. A human co
 python scripts/verify_regeneration_manifest.py
 python scripts/verify_runtime_resources.py
 python scripts/verify_game_corpus.py
+python scripts/verify_artifact_checksums.py
 python scripts/verify_reverse_corpus.py
 python scripts/check_docs.py
 python -m pyflakes daad_harvester scripts
