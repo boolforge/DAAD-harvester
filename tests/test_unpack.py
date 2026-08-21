@@ -7,6 +7,7 @@ from pathlib import Path
 from daad_harvester.db import Database
 from daad_harvester import unpack as unpack_module
 from daad_harvester.unpack import Unpacker, compute_hashes
+from daad_harvester.daad_parser import DAADBytecodeParser
 
 def test_compute_hashes():
     data = b"Hello DAAD Harvester " * 500
@@ -191,6 +192,19 @@ def test_unpack_source_single_status_update(tmp_path):
     updated_sources = db.get_all_sources()
     updated_src = next(s for s in updated_sources if s.id == src_id)
     assert updated_src.status == SourceStatus.UNPACKED.value
+
+
+def test_unpack_retained_torreoscura_cpc_system_dsk_extracts_ddb() -> None:
+    root = Path(__file__).resolve().parents[1]
+    disk = root / "preservation_corpus/extracted/depth1_d3410775_TO2.DSK"
+    unpacker = Unpacker(Database(root / "preservation_corpus/state.db"))
+    files = dict(unpacker.unpack_dsk(disk.read_bytes()))
+    assert {"PARTE002.CHR", "PARTE002.DAT", "PARTE002.DDB"} <= set(files)
+    parsed = DAADBytecodeParser().parse_ddb(files["PARTE002.DDB"], "PARTE002.DDB")
+    assert parsed["is_daad"] is True
+    assert parsed["ddb_format"] == "daad-v2-legacy"
+    assert parsed["platform"] == "pcw"
+    assert parsed["details"]["payload_size"] == 14817
 
 def test_unpack_zip_error_cli_fallback(tmp_path):
     db = Database(tmp_path / "test.db")

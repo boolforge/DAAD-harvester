@@ -415,6 +415,7 @@ class Unpacker:
             track_sizes = data[0x34:0x34 + tracks * sides] if extended else b""
             pos = 0x100
             logical_sectors = bytearray()
+            track_payload_sizes: List[int] = []
 
             for track_index in range(tracks * sides):
                 track_size = (track_sizes[track_index] * 256) if extended else fixed_track_size
@@ -431,6 +432,7 @@ class Unpacker:
                 sector_count = track_header[0x15]
                 sector_pos = pos + 0x100
                 track_end = min(pos + track_size, len(data))
+                track_sectors: List[Tuple[int, bytes]] = []
                 for sector_index in range(sector_count):
                     descriptor_offset = 0x18 + sector_index * 8
                     descriptor = track_header[descriptor_offset:descriptor_offset + 8]
@@ -444,8 +446,11 @@ class Unpacker:
                         sector_size = 128 << size_code
                     if sector_pos + sector_size > track_end:
                         break
-                    logical_sectors.extend(data[sector_pos:sector_pos + sector_size])
+                    track_sectors.append((descriptor[2], data[sector_pos:sector_pos + sector_size]))
                     sector_pos += sector_size
+                for _, sector_data in sorted(track_sectors, key=lambda record: record[0]):
+                    logical_sectors.extend(sector_data)
+                track_payload_sizes.append(sum(len(sector_data) for _, sector_data in track_sectors))
                 pos += track_size
 
             if len(logical_sectors) < 1024:
@@ -457,41 +462,53 @@ class Unpacker:
                     return ""
                 return cleaned
 
-            file_extents: Dict[str, List[Tuple[int, int, bytes]]] = {}
-            # Standard CPC data formats reserve a small number of initial
-            # directory blocks. Scanning the first 2 KiB covers the common
-            # 64-entry directory while validating every entry before use.
-            for entry_offset in range(0, min(len(logical_sectors), 2048) - 31, 32):
-                entry = logical_sectors[entry_offset:entry_offset + 32]
-                user_number = entry[0]
-                if user_number > 15 or user_number == 0xE5:
-                    continue
-                base_name = decode_cpm_name(entry[1:9])
-                extension = decode_cpm_name(entry[9:12])
-                record_count = entry[15]
-                if not base_name or record_count == 0:
-                    continue
-                filename = f"{base_name}.{extension}" if extension else base_name
-                extent_number = entry[12] + 32 * (entry[14] & 0x3F)
-                blocks = bytes(block for block in entry[16:32] if block)
-                if not blocks:
-                    continue
-                file_extents.setdefault(filename, []).append((extent_number, record_count, blocks))
+            # CPC data media begin at track zero, while CPC system media reserve
+            # two 9×512-byte boot tracks. Probe only these documented layouts;
+            # both the directory and 1 KiB allocation blocks are relative to
+            # the selected filesystem origin.
+            filesystem_origins = [0]
+            cpc_system_origin = sum(track_payload_sizes[:2])
+            if cpc_system_origin and cpc_system_origin < len(logical_sectors):
+                filesystem_origins.append(cpc_system_origin)
 
-            extracted: List[Tuple[str, bytes]] = []
-            for filename, extents in file_extents.items():
-                file_data = bytearray()
-                for _, record_count, blocks in sorted(extents):
-                    extent_data = bytearray()
-                    for block_number in blocks:
-                        start = block_number * 1024
-                        if start >= len(logical_sectors):
-                            continue
-                        extent_data.extend(logical_sectors[start:start + 1024])
-                    file_data.extend(extent_data[:record_count * 128])
-                if file_data:
-                    extracted.append((filename, bytes(file_data)))
-            return extracted
+            for filesystem_origin in filesystem_origins:
+                file_extents: Dict[str, List[Tuple[int, int, bytes]]] = {}
+                # The CPC system/data definitions have 64 directory entries,
+                # occupying two 1 KiB allocation blocks at the volume origin.
+                directory_end = min(len(logical_sectors), filesystem_origin + 2048)
+                for entry_offset in range(filesystem_origin, directory_end - 31, 32):
+                    entry = logical_sectors[entry_offset:entry_offset + 32]
+                    user_number = entry[0]
+                    if user_number > 15 or user_number == 0xE5:
+                        continue
+                    base_name = decode_cpm_name(entry[1:9])
+                    extension = decode_cpm_name(entry[9:12])
+                    record_count = entry[15]
+                    if not base_name or record_count == 0:
+                        continue
+                    filename = f"{base_name}.{extension}" if extension else base_name
+                    extent_number = entry[12] + 32 * (entry[14] & 0x3F)
+                    blocks = bytes(block for block in entry[16:32] if block)
+                    if not blocks:
+                        continue
+                    file_extents.setdefault(filename, []).append((extent_number, record_count, blocks))
+
+                extracted: List[Tuple[str, bytes]] = []
+                for filename, extents in file_extents.items():
+                    file_data = bytearray()
+                    for _, record_count, blocks in sorted(extents):
+                        extent_data = bytearray()
+                        for block_number in blocks:
+                            start = filesystem_origin + block_number * 1024
+                            if start >= len(logical_sectors):
+                                continue
+                            extent_data.extend(logical_sectors[start:start + 1024])
+                        file_data.extend(extent_data[:record_count * 128])
+                    if file_data:
+                        extracted.append((filename, bytes(file_data)))
+                if extracted:
+                    return extracted
+            return []
         except Exception as exc:
             logger.warning("dsk_parse_error", error=str(exc))
             return []

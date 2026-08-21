@@ -340,7 +340,19 @@ class DAADBytecodeParser:
         if expected_size < header.header_size or expected_size > available_size:
             return None
         if not allow_trailing and expected_size != available_size:
-            return None
+            padding = available_size - expected_size
+            padded_end = ((expected_size + 127) // 128) * 128
+            padding_bytes = data[offset + expected_size:offset + available_size]
+            # CP/M stores the final logical record in a complete 128-byte
+            # physical record. Accept only the exact rounded boundary with
+            # zero-filled padding; arbitrary appended bytes remain invalid.
+            if not (
+                legacy
+                and 0 < padding < 128
+                and available_size == padded_end
+                and padding_bytes == b"\x00" * padding
+            ):
+                return None
         payload_size = expected_size
         if not legacy and header.submachine != 95 and header.machine_id != 0xF:
             return None
