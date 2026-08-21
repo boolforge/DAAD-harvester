@@ -48417,7 +48417,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 130,
@@ -48457,7 +48463,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 131,
@@ -48497,7 +48509,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 141,
@@ -48537,7 +48555,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
@@ -48606,7 +48630,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 5,
@@ -48646,7 +48676,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 8,
@@ -48686,7 +48722,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 13,
@@ -48726,7 +48768,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 107,
@@ -48766,7 +48814,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v1-legacy",
           "interpreter_identity": null,
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 108,
@@ -48806,7 +48860,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v1-legacy",
           "interpreter_identity": null,
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 201,
@@ -48846,7 +48906,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 207,
@@ -48886,7 +48952,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 209,
@@ -48926,7 +48998,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 92,
@@ -48966,7 +49044,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 94,
@@ -49006,7 +49090,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 95,
@@ -49046,7 +49136,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 96,
@@ -49086,7 +49182,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 97,
@@ -49126,7 +49228,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 98,
@@ -49166,7 +49274,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 105,
@@ -49206,7 +49320,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v1-legacy",
           "interpreter_identity": null,
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 99,
@@ -49246,7 +49366,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 100,
@@ -49286,7 +49412,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 101,
@@ -49326,7 +49458,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 102,
@@ -49366,7 +49504,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 103,
@@ -49406,7 +49550,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 104,
@@ -49446,7 +49596,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 106,
@@ -49486,7 +49642,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v1-legacy",
           "interpreter_identity": null,
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
@@ -49555,7 +49717,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 120,
@@ -49595,7 +49763,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 158,
@@ -49635,7 +49809,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 125,
@@ -49675,7 +49855,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 133,
@@ -49715,7 +49901,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 143,
@@ -49755,7 +49947,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 148,
@@ -49795,7 +49993,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 163,
@@ -49835,7 +50039,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 177,
@@ -49875,7 +50085,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 186,
@@ -49915,7 +50131,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 110,
@@ -49955,7 +50177,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 119,
@@ -49995,7 +50223,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 115,
@@ -50035,7 +50269,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 123,
@@ -50075,7 +50315,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 154,
@@ -50115,7 +50361,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 127,
@@ -50155,7 +50407,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 137,
@@ -50195,7 +50453,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 146,
@@ -50235,7 +50499,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 112,
@@ -50275,7 +50545,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 121,
@@ -50315,7 +50591,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 174,
@@ -50355,7 +50637,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 126,
@@ -50395,7 +50683,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 151,
@@ -50435,7 +50729,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 167,
@@ -50475,7 +50775,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 111,
@@ -50515,7 +50821,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 117,
@@ -50555,7 +50867,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 156,
@@ -50595,7 +50913,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 124,
@@ -50635,7 +50959,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 134,
@@ -50675,7 +51005,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 139,
@@ -50715,7 +51051,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 160,
@@ -50755,7 +51097,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 164,
@@ -50795,7 +51143,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 169,
@@ -50835,7 +51189,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 140,
@@ -50875,7 +51235,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 144,
@@ -50915,7 +51281,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 147,
@@ -50955,7 +51327,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 162,
@@ -50995,7 +51373,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 172,
@@ -51035,7 +51419,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 175,
@@ -51075,7 +51465,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 181,
@@ -51115,7 +51511,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 188,
@@ -51155,7 +51557,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 217,
@@ -51195,7 +51603,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 191,
@@ -51235,7 +51649,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 199,
@@ -51275,7 +51695,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 205,
@@ -51315,7 +51741,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 211,
@@ -51355,7 +51787,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 220,
@@ -51395,7 +51833,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 223,
@@ -51435,7 +51879,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 226,
@@ -51475,7 +51925,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 182,
@@ -51515,7 +51971,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 189,
@@ -51555,7 +52017,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 225,
@@ -51595,7 +52063,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 208,
@@ -51635,7 +52109,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 214,
@@ -51675,7 +52155,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 218,
@@ -51715,7 +52201,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 184,
@@ -51755,7 +52247,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 192,
@@ -51795,7 +52293,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 210,
@@ -51835,7 +52339,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 194,
@@ -51875,7 +52385,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 196,
@@ -51915,7 +52431,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 202,
@@ -51955,7 +52477,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 185,
@@ -51995,7 +52523,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 193,
@@ -52035,7 +52569,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 212,
@@ -52075,7 +52615,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 195,
@@ -52115,7 +52661,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 198,
@@ -52155,7 +52707,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 204,
@@ -52195,7 +52753,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 215,
@@ -52235,7 +52799,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 219,
@@ -52275,7 +52845,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 222,
@@ -52315,7 +52891,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
@@ -52440,7 +53022,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 83,
@@ -52480,7 +53068,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 88,
@@ -52520,7 +53114,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 84,
@@ -52560,7 +53160,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 85,
@@ -52600,7 +53206,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 86,
@@ -52640,7 +53252,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 89,
@@ -52680,7 +53298,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 90,
@@ -52720,7 +53344,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 87,
@@ -52760,7 +53390,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 91,
@@ -52800,7 +53436,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 109,
@@ -52840,7 +53482,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 118,
@@ -52880,7 +53528,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 157,
@@ -52920,7 +53574,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 129,
@@ -52960,7 +53620,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 135,
@@ -53000,7 +53666,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 138,
@@ -53040,7 +53712,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 161,
@@ -53080,7 +53758,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 176,
@@ -53120,7 +53804,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 142,
@@ -53160,7 +53850,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 178,
@@ -53200,7 +53896,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 150,
@@ -53240,7 +53942,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 153,
@@ -53280,7 +53988,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 183,
@@ -53320,7 +54034,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 155,
@@ -53360,7 +54080,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 168,
@@ -53400,7 +54126,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 170,
@@ -53440,7 +54172,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 187,
@@ -53480,7 +54218,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 203,
@@ -53520,7 +54264,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 173,
@@ -53560,7 +54310,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 206,
@@ -53600,7 +54356,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 165,
@@ -53640,7 +54402,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 179,
@@ -53680,7 +54448,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 213,
@@ -53720,7 +54494,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 180,
@@ -53760,7 +54540,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 190,
@@ -53800,7 +54586,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 197,
@@ -53840,7 +54632,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 216,
@@ -53880,7 +54678,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 221,
@@ -53920,7 +54724,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 200,
@@ -53960,7 +54770,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 224,
@@ -54000,7 +54816,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 10,
@@ -54040,7 +54862,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 64,
@@ -54080,7 +54908,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 65,
@@ -54120,7 +54954,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 66,
@@ -54160,7 +55000,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 67,
@@ -54200,7 +55046,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 68,
@@ -54240,7 +55092,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-amiga-edi1-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 69,
@@ -54280,7 +55138,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 70,
@@ -54320,7 +55184,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 71,
@@ -54360,7 +55230,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 72,
@@ -54400,7 +55276,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 73,
@@ -54440,7 +55322,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 74,
@@ -54480,7 +55368,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 75,
@@ -54520,7 +55414,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-amiga-sdi2-official",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 76,
@@ -54560,7 +55460,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-amiga-edi1-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 77,
@@ -54600,7 +55506,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 78,
@@ -54640,7 +55552,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 79,
@@ -54680,7 +55598,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 80,
@@ -54720,7 +55644,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 81,
@@ -54760,7 +55690,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 82,
@@ -54800,7 +55736,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
@@ -54974,7 +55916,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1228,
@@ -55014,7 +55962,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1248,
@@ -55054,7 +56008,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1260,
@@ -55094,7 +56054,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1231,
@@ -55134,7 +56100,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1235,
@@ -55174,7 +56146,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1239,
@@ -55214,7 +56192,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1249,
@@ -55254,7 +56238,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1252,
@@ -55294,7 +56284,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1253,
@@ -55334,7 +56330,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1241,
@@ -55374,7 +56376,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1255,
@@ -55414,7 +56422,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-zx-ds48ie-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1219,
@@ -55454,7 +56468,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1223,
@@ -55494,7 +56514,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1246,
@@ -55534,7 +56560,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1262,
@@ -55574,7 +56606,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1224,
@@ -55614,7 +56652,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1225,
@@ -55654,7 +56698,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1226,
@@ -55694,7 +56744,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1230,
@@ -55734,7 +56790,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1234,
@@ -55774,7 +56836,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1236,
@@ -55814,7 +56882,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1242,
@@ -55854,7 +56928,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1244,
@@ -55894,7 +56974,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1250,
@@ -55934,7 +57020,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1254,
@@ -55974,7 +57066,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1258,
@@ -56014,7 +57112,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1238,
@@ -56054,7 +57158,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1256,
@@ -56094,7 +57204,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-msx-msxedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1220,
@@ -56134,7 +57250,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1307,
@@ -56174,7 +57296,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1313,
@@ -56214,7 +57342,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1317,
@@ -56254,7 +57388,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1308,
@@ -56294,7 +57434,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1309,
@@ -56334,7 +57480,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1310,
@@ -56374,7 +57526,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1311,
@@ -56414,7 +57572,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-pcw-pcwedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1312,
@@ -56454,7 +57618,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1314,
@@ -56494,7 +57664,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1315,
@@ -56534,7 +57710,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1316,
@@ -56574,7 +57756,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-pcw-pcwedi-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1221,
@@ -56614,7 +57802,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1229,
@@ -56654,7 +57848,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1232,
@@ -56694,7 +57894,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1237,
@@ -56734,7 +57940,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1240,
@@ -56774,7 +57986,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-dos-inte1-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1243,
@@ -56814,7 +58032,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1245,
@@ -56854,7 +58078,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1247,
@@ -56894,7 +58124,13 @@
           "is_daad_payload": true,
           "ddb_format": "daad-v2-legacy",
           "interpreter_identity": "daad-dos-inte1-official",
-          "evidence_state": "verified_ddb"
+          "evidence_state": "verified_ddb",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1251,
@@ -56934,7 +58170,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1259,
@@ -56974,7 +58216,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-dos-intecga2-official",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 1261,
@@ -57014,7 +58262,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
@@ -57093,7 +58347,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 9,
@@ -57133,7 +58393,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 12,
@@ -57173,7 +58439,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 15,
@@ -57213,7 +58485,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 18,
@@ -57253,7 +58531,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 19,
@@ -57293,7 +58577,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 21,
@@ -57333,7 +58623,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-c64-edi64-official",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 23,
@@ -57373,7 +58669,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-plus4-ediplus4-historical",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 24,
@@ -57413,7 +58715,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 26,
@@ -57453,7 +58761,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 116,
@@ -57493,7 +58807,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 122,
@@ -57533,7 +58853,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 128,
@@ -57573,7 +58899,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 132,
@@ -57613,7 +58945,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 136,
@@ -57653,7 +58991,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 145,
@@ -57693,7 +59037,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 149,
@@ -57733,7 +59083,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-c64-edi64-official",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 152,
@@ -57773,7 +59129,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": "daad-plus4-ediplus4-historical",
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": "C64 BASIC SYS launcher",
+            "status": "validated C64 program medium; not a DDB",
+            "boundary": "The retained launcher byte is structurally validated as a C64 BASIC SYS program. It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record.",
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 159,
@@ -57813,7 +59175,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 166,
@@ -57853,7 +59221,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 171,
@@ -57893,7 +59267,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         },
         {
           "artifact_id": 114,
@@ -57933,7 +59313,13 @@
           "is_daad_payload": false,
           "ddb_format": null,
           "interpreter_identity": null,
-          "evidence_state": "retained_artifact"
+          "evidence_state": "retained_artifact",
+          "presentation": {
+            "role": null,
+            "status": null,
+            "boundary": null,
+            "runtime_ddb_link": null
+          }
         }
       ],
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."

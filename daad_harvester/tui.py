@@ -96,6 +96,8 @@ class TUIDashboard:
         extension = Path(artifact.original_filename or "").suffix.lower()
         if artifact.is_daad_payload:
             return "game database"
+        if artifact.media_parser == "c64-basic-sys-prg":
+            return "C64 BASIC SYS launcher (not a DDB)"
         if artifact.media_parser == "daad-legacy-chr" or extension in {".chr", ".ch0", ".fnt"}:
             return "character set"
         if artifact.media_parser == "daad-pcw-dat-v1" or extension == ".dat":
@@ -115,6 +117,11 @@ class TUIDashboard:
         extension = Path(artifact.original_filename or "").suffix.lower()
         if artifact.media_parser == "daad-pcw-dat-v1":
             return "PCW DAT structure and image-resource decode measured; no published preview derivative."
+        if artifact.media_parser == "c64-basic-sys-prg":
+            return (
+                "Validated C64 BASIC SYS launcher; this byte is not a DDB. "
+                "Any runtime-derived DDB must remain a separate linked evidence record."
+            )
         if artifact.media_parser == "daad-legacy-chr":
             return "CHR container/header measured; glyph-atlas publication remains separate evidence."
         if extension == ".pic":

@@ -57,6 +57,22 @@ class StaticReportExporter:
         return "retained_byte"
 
     @staticmethod
+    def _artifact_presentation(artifact: Dict[str, Any]) -> Dict[str, str | None]:
+        """Expose measured launcher semantics without correlating it to a DDB."""
+
+        if artifact.get("media_parser") == "c64-basic-sys-prg":
+            return {
+                "role": "C64 BASIC SYS launcher",
+                "status": "validated C64 program medium; not a DDB",
+                "boundary": (
+                    "The retained launcher byte is structurally validated as a C64 BASIC SYS program. "
+                    "It is not itself a DAAD database, and any runtime-derived DDB remains a separate evidence record."
+                ),
+                "runtime_ddb_link": None,
+            }
+        return {"role": None, "status": None, "boundary": None, "runtime_ddb_link": None}
+
+    @staticmethod
     def _catalog_title_matrix(catalog: Dict[str, Any]) -> list[Dict[str, Any]]:
         """Join explicit source-game associations to retained artifacts safely.
 
@@ -108,6 +124,7 @@ class StaticReportExporter:
                             "ddb_format": artifact.get("ddb_format"),
                             "interpreter_identity": artifact.get("interpreter_identity"),
                             "evidence_state": "verified_ddb" if artifact["is_daad_payload"] else "retained_artifact",
+                            "presentation": StaticReportExporter._artifact_presentation(artifact),
                         }
                     )
             linked_artifacts.sort(
