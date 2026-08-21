@@ -62,8 +62,11 @@ Run the following before editing code, documentation, corpus state, or generated
 # Independent read-only gates run concurrently and report all failures together:
 python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4
 
-# Ordered release gate, including any commands that require sequencing:
+# Primary release gate; independent checks run concurrently by default:
 python scripts/run_primary_workflow.py
+
+# Strictly ordered diagnostic/recovery mode:
+python scripts/run_primary_workflow.py --ordered
 # Equivalent expanded plan follows for diagnostics or individual reruns:
 python scripts/verify_regeneration_manifest.py
 python scripts/verify_runtime_resources.py
@@ -75,7 +78,7 @@ python -m pyflakes daad_harvester scripts
 pytest -q
 ```
 
-`python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4` is the preferred fast path for independent read-only checks. Its allowlisted gates use isolated subprocesses, bounded concurrency, captured output, deterministic reporting, and aggregate failure status. `python scripts/run_primary_workflow.py --list` prints the exact ordered cross-host command plan without running it. `--quick` runs only the deterministic corpus/report/documentation verification portion. Neither form invokes a network endpoint, GUI application, emulator, external disassembler, or LLM.
+`python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4` is the explicit fast path for independent read-only checks. `python scripts/run_primary_workflow.py` now uses that scheduler by default and then runs the regression suite; `--ordered` selects the legacy sequential plan for diagnostics or strict recovery. Its allowlisted gates use isolated subprocesses, bounded concurrency, captured output, deterministic reporting, and aggregate failure status. `--list` prints the exact ordered cross-host command plan without running it. `--quick` omits the regression suite. Neither form invokes a network endpoint, GUI application, emulator, external disassembler, or LLM.
 
 `python scripts/verify_artifact_checksums.py --backfill` is the controlled historical repair command. It rereads retained bytes and fills only absent canonical digest fields; it fails rather than overwriting a stored mismatch. Normal verification is read-only and is part of the primary workflow, so a retained artifact with missing or divergent checksum evidence blocks promotion.
 

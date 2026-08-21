@@ -47,8 +47,27 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
     return commands
 
 
-def run_workflow(*, include_tests: bool) -> None:
-    """Execute the ordered gate and stop at the first actionable failure."""
+def run_workflow(*, include_tests: bool, ordered: bool = False) -> None:
+    """Execute independent gates concurrently unless strict ordering is requested."""
+
+    if not ordered:
+        parallel_command = [
+            sys.executable,
+            str(ROOT / "scripts" / "run_parallel_workflow.py"),
+            "--groups",
+            "evidence",
+            "publication",
+            "analysis",
+            "--workers",
+            "4",
+        ]
+        print(f"==> parallel deterministic gates: {' '.join(parallel_command)}", flush=True)
+        subprocess.run(parallel_command, cwd=ROOT, check=True)
+        if include_tests:
+            test_command = [sys.executable, "-m", "pytest", "-q"]
+            print(f"==> regression suite: {' '.join(test_command)}", flush=True)
+            subprocess.run(test_command, cwd=ROOT, check=True)
+        return
 
     for label, arguments in workflow_commands(include_tests=include_tests):
         command = [sys.executable, *arguments]
@@ -68,13 +87,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="print the ordered command plan without executing it",
     )
+    parser.add_argument(
+        "--ordered",
+        action="store_true",
+        help="disable parallel scheduling and run the legacy ordered gate plan",
+    )
     args = parser.parse_args(argv)
     include_tests = not args.quick
     if args.list:
         for label, arguments in workflow_commands(include_tests=include_tests):
             print(f"{label}: {sys.executable} {' '.join(arguments)}")
         return 0
-    run_workflow(include_tests=include_tests)
+    run_workflow(include_tests=include_tests, ordered=args.ordered)
     print("Primary deterministic workflow verified.")
     return 0
 

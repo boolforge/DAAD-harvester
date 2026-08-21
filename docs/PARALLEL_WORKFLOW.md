@@ -28,14 +28,17 @@ Each subprocess runs from the repository root with captured standard output and 
 
 ## Local and CI parity
 
-GitHub Actions invokes the same scheduler and gate groups as a clean local clone. The test suite and CLI smoke checks remain separate because they have different lifecycle and resource characteristics. The ordered primary workflow remains available for release debugging, exact gate sequencing, or environments where concurrent execution is not desired.
+GitHub Actions invokes the same scheduler and gate groups as a clean local clone. The test suite and CLI smoke checks remain separate because they have different lifecycle and resource characteristics. The primary workflow now uses this parallel scheduler by default and remains available with `--ordered` for release debugging, exact gate sequencing, or environments where concurrent execution is not desired.
 
 ```bash
 # Fast independent verification
 python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4
 
-# Ordered release gate
+# Primary release gate (parallel by default)
 python scripts/run_primary_workflow.py
+
+# Strictly ordered diagnostic/recovery gate
+python scripts/run_primary_workflow.py --ordered
 ```
 
 A scheduler change requires focused tests in `tests/test_run_parallel_workflow.py`, a full regression run, and an atomic commit containing the scheduler, tests, CI wiring, and this documentation. The active TODO and evidence index must describe any new boundary or failed gate rather than silently dropping it.
