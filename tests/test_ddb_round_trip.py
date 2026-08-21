@@ -47,6 +47,20 @@ C64_V1_DDB_PROFILE = DDBProfile(
     base_address=0x3880,
     wrapper="raw",
 )
+ZX_V2_DDB = (
+    REPOSITORY_ROOT
+    / "preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb"
+)
+ZX_V2_DDB_SHA256 = "7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab"
+ZX_V2_DDB_PROFILE = DDBProfile(
+    layout="legacy",
+    major_version=2,
+    machine_id=1,
+    platform="zx",
+    endianness="little",
+    base_address=0x8400,
+    wrapper="raw",
+)
 
 
 def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None:
@@ -110,6 +124,21 @@ def test_retained_legacy_v1_c64_target_memory_ddb_round_trips_byte_identically()
     recompiled = recompile_ddb(ir, C64_V1_DDB_PROFILE)
 
     assert ir.profile.base_address == 0x3880
+    assert len(original_hashes) == 17
+    assert recompiled == original
+    assert compute_hashes(recompiled) == original_hashes
+
+
+def test_retained_legacy_v2_zx_target_memory_ddb_round_trips_byte_identically() -> None:
+    original = ZX_V2_DDB.read_bytes()
+
+    assert len(original) == 22194
+    assert sha256(original).hexdigest() == ZX_V2_DDB_SHA256
+    original_hashes = compute_hashes(original)
+    ir = decompile_ddb(original, ZX_V2_DDB_PROFILE)
+    recompiled = recompile_ddb(ir, ZX_V2_DDB_PROFILE)
+
+    assert ir.profile.base_address == 0x8400
     assert len(original_hashes) == 17
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes

@@ -1,5 +1,5 @@
 {
-  "fixture_count": 2,
+  "fixture_count": 3,
   "records": [
     {
       "byte_comparison": {
@@ -427,6 +427,262 @@
       },
       "source_path": "preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
       "source_size": 24899
+    },
+    {
+      "byte_comparison": {
+        "byte_identical": true,
+        "first_difference": null
+      },
+      "opaque_ranges": [
+        {
+          "byte_end": 122,
+          "byte_start": 34,
+          "reason": "legacy_header_extension_pending_grammar"
+        },
+        {
+          "byte_end": 2479,
+          "byte_start": 2167,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 16043,
+          "byte_start": 15959,
+          "reason": "legacy_object_words_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 16212,
+          "byte_start": 16211,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 16448,
+          "byte_start": 16447,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17219,
+          "byte_start": 17218,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17332,
+          "byte_start": 17331,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17360,
+          "byte_start": 17359,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17401,
+          "byte_start": 17400,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17430,
+          "byte_start": 17429,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17475,
+          "byte_start": 17474,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17704,
+          "byte_start": 17703,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17717,
+          "byte_start": 17716,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17730,
+          "byte_start": 17729,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17749,
+          "byte_start": 17748,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17841,
+          "byte_start": 17840,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17874,
+          "byte_start": 17873,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17894,
+          "byte_start": 17893,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17906,
+          "byte_start": 17905,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17930,
+          "byte_start": 17929,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 17992,
+          "byte_start": 17991,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18021,
+          "byte_start": 18020,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18047,
+          "byte_start": 18046,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18117,
+          "byte_start": 18116,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18156,
+          "byte_start": 18155,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18178,
+          "byte_start": 18177,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18355,
+          "byte_start": 18354,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 20963,
+          "byte_start": 20962,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21123,
+          "byte_start": 21122,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21280,
+          "byte_start": 21279,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21303,
+          "byte_start": 21302,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21356,
+          "byte_start": 21355,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21414,
+          "byte_start": 21413,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21654,
+          "byte_start": 21653,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21827,
+          "byte_start": 21826,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 22008,
+          "byte_start": 22007,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 22049,
+          "byte_start": 22048,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 22074,
+          "byte_start": 22073,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 22124,
+          "byte_start": 22123,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        }
+      ],
+      "profile": {
+        "base_address": 33792,
+        "endianness": "little",
+        "extension_dialect": null,
+        "layout": "legacy",
+        "machine_id": 1,
+        "major_version": 2,
+        "platform": "zx",
+        "wrapper": "raw"
+      },
+      "profile_id": "legacy-v2-zx-little-0x8400-raw-chichen-embedded-code",
+      "recompiled_digests": {
+        "adler32": "f73f9ac8",
+        "blake2b": "1fbf53a160943cdd65cd539b09e506873109c68b4560fc34cb582900b5f4a799e247ae42e9144d2fc1ce0b33753340fb23e9c6984eb5bfbce67431f79520989c",
+        "blake2s": "cd22c6b1618571983b3cf7d4ca1ac4752cf42485896cd09917a516897b65d06a",
+        "crc32": "4e7eb44b",
+        "md5_5000": "ebc9e82e2fa47e884022d130d9a71149",
+        "md5_full": "25a67864283f05f41b11a83e808e8b61",
+        "md5_tail5000": "3fee871d65a1607870adddc4a6b53db8",
+        "sha1": "397801cbd41d64ec3bf71a9c905384288d3fe9a5",
+        "sha224": "dfb2e3e14b43e185a163d0e211fce30ceef719a761510bd1acc104bf",
+        "sha256": "7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab",
+        "sha384": "cc449103c7e7f30792e3c41cef4e308e988f66198ae2ce386f35588184ae371b003f6b584fcf00a36b45fe76b4e6c7e8",
+        "sha3_256": "ce162e933cb5fad82e6bba2d809afdf668542e990b43778bc942fd4d9299c8d2",
+        "sha3_512": "1b563d6b04908414876daf90e28adb7934fdcfe183db85f9aaa272f2276283343fed5838431c3568379fd311583c1138b62fb087b32257dc05fc01590a6f3ab5",
+        "sha512": "0fe304d0a5eee60f7b7ddb8990f8d72a7530bd387e205495f0dc25e8316694eb89392841b59128d4b29e05c275480f513757879853dce772e37e3f77c7d15d92",
+        "xxh128": "09b3f11a980dbeb9a03b9667c1c498d1",
+        "xxh32": "a9edc5cc",
+        "xxh64": "5d8fc7e3b8609ece"
+      },
+      "recompiled_size": 22194,
+      "semantic_status": "structurally_bounded",
+      "source_digests": {
+        "adler32": "f73f9ac8",
+        "blake2b": "1fbf53a160943cdd65cd539b09e506873109c68b4560fc34cb582900b5f4a799e247ae42e9144d2fc1ce0b33753340fb23e9c6984eb5bfbce67431f79520989c",
+        "blake2s": "cd22c6b1618571983b3cf7d4ca1ac4752cf42485896cd09917a516897b65d06a",
+        "crc32": "4e7eb44b",
+        "md5_5000": "ebc9e82e2fa47e884022d130d9a71149",
+        "md5_full": "25a67864283f05f41b11a83e808e8b61",
+        "md5_tail5000": "3fee871d65a1607870adddc4a6b53db8",
+        "sha1": "397801cbd41d64ec3bf71a9c905384288d3fe9a5",
+        "sha224": "dfb2e3e14b43e185a163d0e211fce30ceef719a761510bd1acc104bf",
+        "sha256": "7d7b26973b9c36a6dca4e804e2c4dbfccda663985f6052080ac85151bb1386ab",
+        "sha384": "cc449103c7e7f30792e3c41cef4e308e988f66198ae2ce386f35588184ae371b003f6b584fcf00a36b45fe76b4e6c7e8",
+        "sha3_256": "ce162e933cb5fad82e6bba2d809afdf668542e990b43778bc942fd4d9299c8d2",
+        "sha3_512": "1b563d6b04908414876daf90e28adb7934fdcfe183db85f9aaa272f2276283343fed5838431c3568379fd311583c1138b62fb087b32257dc05fc01590a6f3ab5",
+        "sha512": "0fe304d0a5eee60f7b7ddb8990f8d72a7530bd387e205495f0dc25e8316694eb89392841b59128d4b29e05c275480f513757879853dce772e37e3f77c7d15d92",
+        "xxh128": "09b3f11a980dbeb9a03b9667c1c498d1",
+        "xxh32": "a9edc5cc",
+        "xxh64": "5d8fc7e3b8609ece"
+      },
+      "source_path": "preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb",
+      "source_size": 22194
     }
   ],
   "schema_version": 1

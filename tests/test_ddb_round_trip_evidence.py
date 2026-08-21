@@ -9,11 +9,12 @@ def test_retained_round_trip_evidence_has_complete_digests_and_visible_boundarie
     evidence = retained_ddb_round_trip_evidence()
 
     assert evidence["schema_version"] == 1
-    assert evidence["fixture_count"] == 2
+    assert evidence["fixture_count"] == 3
     records = {record["profile_id"]: record for record in evidence["records"]}
     assert set(records) == {
         "legacy-v2-dos-little-raw-blank-r4",
         "legacy-v1-c64-little-0x3880-raw-jabato-ass-part1",
+        "legacy-v2-zx-little-0x8400-raw-chichen-embedded-code",
     }
     for record in records.values():
         assert record["byte_comparison"] == {
@@ -26,3 +27,4 @@ def test_retained_round_trip_evidence_has_complete_digests_and_visible_boundarie
         assert record["semantic_status"] == "structurally_bounded"
         assert record["opaque_ranges"]
     assert records["legacy-v1-c64-little-0x3880-raw-jabato-ass-part1"]["profile"]["base_address"] == 0x3880
+    assert records["legacy-v2-zx-little-0x8400-raw-chichen-embedded-code"]["profile"]["base_address"] == 0x8400
