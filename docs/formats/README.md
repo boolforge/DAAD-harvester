@@ -10,6 +10,7 @@
 | [Extended DSK generation](EXTENDED_DSK_GENERATION.md) | Deterministic Extended DSK writer, validator, comparison, and public-evidence contract. | Implementation contract |
 | [FAT media](FAT_MEDIA.md) | FAT12/FAT16, VFAT, MSX/Atari/DOS media. | Implementation contract |
 | [Amiga media](AMIGA_MEDIA.md) | ADF/ADZ/DMS and OFS/FFS boundaries. | Implementation contract |
+| [Amiga ADF/OFS generation](AMIGA_ADF_GENERATION.md) | Deterministic blank ADF/OFS writer, validation, comparison, and publication contract. | Generation contract |
 | [Atari protected media](ATARI_PROTECTED_MEDIA.md) | STX/Pasti and IPF preservation evidence. | Implementation contract |
 | [Archive wrappers](ARCHIVE_WRAPPERS.md) | Recursive archive/container safety contract. | Contract plus open native-decoder gates |
 | [Executable and snapshot evidence](EXECUTABLE_AND_SNAPSHOT_EVIDENCE.md) | MZ/COM, ROM, and snapshot structural-only handling. | Implementation contract |
