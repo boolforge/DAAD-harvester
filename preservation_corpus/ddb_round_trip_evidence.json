@@ -1,5 +1,5 @@
 {
-  "fixture_count": 6,
+  "fixture_count": 7,
   "records": [
     {
       "byte_comparison": {
@@ -809,6 +809,222 @@
       },
       "source_path": "preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb",
       "source_size": 22194
+    },
+    {
+      "byte_comparison": {
+        "byte_identical": true,
+        "first_difference": null
+      },
+      "opaque_ranges": [
+        {
+          "byte_end": 60,
+          "byte_start": 36,
+          "reason": "legacy_header_extension_pending_grammar"
+        },
+        {
+          "byte_end": 19529,
+          "byte_start": 19528,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 19923,
+          "byte_start": 19922,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 20994,
+          "byte_start": 20993,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21107,
+          "byte_start": 21106,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21135,
+          "byte_start": 21134,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21186,
+          "byte_start": 21185,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21215,
+          "byte_start": 21214,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21260,
+          "byte_start": 21259,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21437,
+          "byte_start": 21436,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21456,
+          "byte_start": 21455,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21502,
+          "byte_start": 21501,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21522,
+          "byte_start": 21521,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21534,
+          "byte_start": 21533,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21558,
+          "byte_start": 21557,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21608,
+          "byte_start": 21607,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21637,
+          "byte_start": 21636,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21663,
+          "byte_start": 21662,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24471,
+          "byte_start": 24470,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24937,
+          "byte_start": 24936,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 25818,
+          "byte_start": 25817,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 25925,
+          "byte_start": 25924,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 25954,
+          "byte_start": 25953,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26062,
+          "byte_start": 26061,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26098,
+          "byte_start": 26097,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26131,
+          "byte_start": 26130,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26244,
+          "byte_start": 26243,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26292,
+          "byte_start": 26291,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26318,
+          "byte_start": 26317,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26354,
+          "byte_start": 26353,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 26431,
+          "byte_start": 26430,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        }
+      ],
+      "profile": {
+        "base_address": 33792,
+        "endianness": "little",
+        "extension_dialect": null,
+        "layout": "legacy",
+        "machine_id": 1,
+        "major_version": 2,
+        "platform": "zx",
+        "wrapper": "raw"
+      },
+      "profile_id": "legacy-v2-zx-little-0x8400-raw-chichen-side2-code",
+      "recompiled_digests": {
+        "adler32": "c4b406c8",
+        "blake2b": "35905c7f1d7420835ac047a0f287413e14276c78e9d9ba5f66eb8eefc5b96465a83060e94241732d1b8ad51613313a5cfbd5801909f4b1a89f9abb99ba30612c",
+        "blake2s": "6abefa45d168c6b2f87192f78afc28e9436e4913e1bae5b333e119f23fa95e31",
+        "crc32": "347e109c",
+        "md5_5000": "1a8f786d3382ec8a35a79de5a62a2ea8",
+        "md5_full": "baf4ceb24cc82eda8d0845507a08eb9f",
+        "md5_tail5000": "c6c8c64a7fdeac57e48356951b26da6b",
+        "sha1": "6f88ce417f7d339f7d121b375936c02e67df353b",
+        "sha224": "2e2116bb747a6662550e4caa6c34327fd7bae5ef4f31e2a26ab3f2a8",
+        "sha256": "8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474",
+        "sha384": "b845b9c64b13ae3c7dabe79b5ea45835d4e60b80888f2b0c7828a64ec384a00c3409251a3261576208f038d64e1a7675",
+        "sha3_256": "c3da48c35343f8172f6210b77bbe8c8305d34ee2a4a4523f39558da42ab288e9",
+        "sha3_512": "7b18723a4a655b890d94c92b1698a8b911abf9876961098605f918b9a71ab79614c346715f2f8b9242eaabfd02444ada379705f5765971985d61bfc90f029d3f",
+        "sha512": "8ad89907d037c6b34f74e15daeb9972b57de04f222e6087fec07e98cb2407d768f018378c89d4639a36054669a78ac675d2ff93b46b163c03789b12a9f201510",
+        "xxh128": "6416226e3c041b4ef221a6b9b5fc3085",
+        "xxh32": "aeb0f52f",
+        "xxh64": "d5609808d6654111"
+      },
+      "recompiled_size": 26489,
+      "semantic_status": "structurally_bounded",
+      "source_digests": {
+        "adler32": "c4b406c8",
+        "blake2b": "35905c7f1d7420835ac047a0f287413e14276c78e9d9ba5f66eb8eefc5b96465a83060e94241732d1b8ad51613313a5cfbd5801909f4b1a89f9abb99ba30612c",
+        "blake2s": "6abefa45d168c6b2f87192f78afc28e9436e4913e1bae5b333e119f23fa95e31",
+        "crc32": "347e109c",
+        "md5_5000": "1a8f786d3382ec8a35a79de5a62a2ea8",
+        "md5_full": "baf4ceb24cc82eda8d0845507a08eb9f",
+        "md5_tail5000": "c6c8c64a7fdeac57e48356951b26da6b",
+        "sha1": "6f88ce417f7d339f7d121b375936c02e67df353b",
+        "sha224": "2e2116bb747a6662550e4caa6c34327fd7bae5ef4f31e2a26ab3f2a8",
+        "sha256": "8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474",
+        "sha384": "b845b9c64b13ae3c7dabe79b5ea45835d4e60b80888f2b0c7828a64ec384a00c3409251a3261576208f038d64e1a7675",
+        "sha3_256": "c3da48c35343f8172f6210b77bbe8c8305d34ee2a4a4523f39558da42ab288e9",
+        "sha3_512": "7b18723a4a655b890d94c92b1698a8b911abf9876961098605f918b9a71ab79614c346715f2f8b9242eaabfd02444ada379705f5765971985d61bfc90f029d3f",
+        "sha512": "8ad89907d037c6b34f74e15daeb9972b57de04f222e6087fec07e98cb2407d768f018378c89d4639a36054669a78ac675d2ff93b46b163c03789b12a9f201510",
+        "xxh128": "6416226e3c041b4ef221a6b9b5fc3085",
+        "xxh32": "aeb0f52f",
+        "xxh64": "d5609808d6654111"
+      },
+      "source_path": "preservation_corpus/extracted/depth3_baf4ceb2_CODE__embedded_002400.ddb",
+      "source_size": 26489
     },
     {
       "byte_comparison": {

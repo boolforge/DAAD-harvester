@@ -93,6 +93,21 @@ RETAINED_DDB_ROUND_TRIP_FIXTURES: Final = (
         ),
     ),
     RetainedDDBRoundTripFixture(
+        profile_id="legacy-v2-zx-little-0x8400-raw-chichen-side2-code",
+        source_path="preservation_corpus/extracted/depth3_baf4ceb2_CODE__embedded_002400.ddb",
+        expected_size=26489,
+        expected_sha256="8002699b5958444129348bed0258833467e41cd7651ee10e61733300113ae474",
+        profile=DDBProfile(
+            layout="legacy",
+            major_version=2,
+            machine_id=1,
+            platform="zx",
+            endianness="little",
+            base_address=0x8400,
+            wrapper="raw",
+        ),
+    ),
+    RetainedDDBRoundTripFixture(
         profile_id="legacy-v2-amiga-big-raw-chichen-part1",
         source_path="preservation_corpus/extracted/depth2_92aef478_PART1.DDB",
         expected_size=2872,
