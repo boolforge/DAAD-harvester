@@ -1,0 +1,25 @@
+0 N "^E" cursor up
+0 S "^R"
+0 C "^'#9E'"
+1 N "^D" cursor right
+1 S "^F"
+1 C "^'#9C'"
+2 N "^X" cursor down
+2 S "^C"
+2 C "^'#9F'"
+8 N S "^S" cursor left
+8 S "^A"
+8 C "^'#9D'"
+16 N "^G" clr
+16 S "^T"
+16 C "^'#9A'"
+66 N S C "^'27'" esc
+68 C "^V" tab
+79 C "^'#9B'"
+E #9A "^QY"
+E #9B "^Q^'127'"
+E #9C "^QD"
+E #9D "^QS"
+E #9E "^QE"
+E #9F "^QX"
+

@@ -4,9 +4,9 @@
 | --- | --- |
 | **Question** | Under what evidence-backed conditions may the native parser recognize an MSX-DOS FAT12 volume that omits the IBM-PC `55 AA` boot-code trailer? |
 | **Evidence scope** | The retained official DAAD R4 `MSX.DSK`, its measured BPB and extracted directory, the MSX technical handbook, and the bounded native parser/regression contract. |
-| **Non-claims** | This dossier does not claim that four profiles exhaust historical MSX media, that every zero-trailer disk is FAT12, or that extracted package members have already completed interpreter-semantic analysis. |
+| **Non-claims** | This dossier does not claim that four profiles exhaust historical MSX media, that every zero-trailer disk is FAT12, or that extracted package members have completed emulator-equivalence or complete internal-format analysis. |
 
-> **Status:** Active retained-sample support loop. This note records the format contract that the native parser must implement and test; it does not claim complete MSX package support before member extraction and platform attribution are verified.
+> **Status:** Native FAT12 extraction, retained-sample regression, and source-250 corpus materialization are complete. Package-member structural roles are recorded below; byte-level interpreter identity and complete companion-resource grammars remain separate evidence loops.
 
 ## Retained sample
 
@@ -31,11 +31,23 @@ Therefore, the native FAT12 parser must not treat `55 AA` as a universal filesys
 
 The four profiles in the handbook table are the **current evidence-backed exception set**, not a final MSX geometry whitelist. A newly encountered coherent MSX medium must be retained and investigated rather than silently rejected: primary documentation and at least one real sample must establish its profile, then the parser must receive an explicit acceptance contract, malformed-image negative tests, a real-artifact regression, and a self-contained regeneration entry before that profile is promoted.
 
-## Required closure evidence
+## Native extraction and package boundary
 
-The implementation loop must add a retained `MSX.DSK` regression that emits its directory members, rejects a corrupted BPB/FAT/cluster chain, preserves member provenance, and regenerates a hash-pinned report without a disk emulator. Any emulator run remains an acquisition or independent-validation aid only under the project-wide [self-contained regeneration standard](../SELF_CONTAINED_REGENERATION.md).
+The native FAT12 parser now accepts this measured MSX-DOS profile without an IBM-PC trailer, bounds every BPB-derived region, walks cycle-free cluster chains, and emits the five root members below. `tests/test_platform_media.py::test_extracts_retained_official_r4_msx_dos_disk` pins both member names, lengths, and SHA-256 values; a malformed BPB regression rejects the otherwise similar `EB FE 90` prefix. Source 250 was re-unpacked and fingerprinted so each member now has its own retained corpus record, lineage, and complete digest suite.
+
+| Member | Length | Measured/derived role | Boundary |
+| --- | ---: | --- | --- |
+| `MSXDOS.SYS` | 2,432 bytes | MSX-DOS system-file candidate | Native filesystem membership is verified; system-runtime behavior is not inferred from a filename alone. |
+| `COMMAND.COM` | 7,168 bytes | Command-processor candidate | Preserved opaque program image; no DAAD or interpreter identity claim. |
+| `DAAD.MDG` | 2,105 bytes | Font/graphics package build input | The retained public MSX build script calls this the font-preparation input and replaces its central character-set region before disk staging.[3] Its complete internal grammar remains unpromoted. |
+| `DAAD.Z80` | 8,400 bytes | Exact-hash MSX English DAAD interpreter profile | Its SHA-256 matches `daad-msx-msxedi-official` exactly.[4] The retained public build script proves the generic language-selection convention, but its currently retained `DMSXIEF3.BIN` and `DMSXISF3.BIN` samples have different hashes; they are not substituted for this R4 byte identity.[3] The recorded static analysis still has an unverified raw-base load model. |
+| `YOURGAME.COM` | 559 bytes | Game launcher candidate | Preserved opaque program image; its invocation and load behavior require byte-level or runtime evidence. |
+
+The extraction and report regeneration are repository-native; an emulator remains an independent validation aid only under the project-wide [self-contained regeneration standard](../SELF_CONTAINED_REGENERATION.md).
 
 ## References
 
 [1]: [MSX2 Technical Handbook, Chapter 3: MSX-DOS](https://konamiman.github.io/MSX2-Technical-Handbook/md/Chapter3.html)
 [2]: [Design of the FAT file system — boot-sector compatibility and MSX-DOS 2 note](https://en.wikipedia.org/wiki/Design_of_the_FAT_file_system)
+[3]: [Retained public MSX build script — DAAD.MDG font preparation and DAAD.Z80 interpreter selection](../../reverse_engineering/public_sources/daad-ready-public-source-material/MSX1.BAT)
+[4]: [Official interpreter profile manifest — MSX English profile](../../reverse_engineering/manifests/official_interpreters.json)
