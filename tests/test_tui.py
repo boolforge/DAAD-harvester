@@ -33,6 +33,8 @@ def test_tui_dashboard_navigation(tmp_path):
     tui.handle_key_input("\t")
     assert tui.active_tab == 4
     tui.handle_key_input("\t")
+    assert tui.active_tab == 5
+    tui.handle_key_input("\t")
     assert tui.active_tab == 0
 
 
