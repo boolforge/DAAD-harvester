@@ -7,7 +7,7 @@
 | **Question** | What can the maintained public ADP implementation establish about its own DAAD compatibility, platforms, tools, and current verification result? |
 | **Evidence scope** | P0 ADP maintainer README, distribution documentation, MIT license, source tree, and published releases at the pinned revision; P1 retained mirror and local build/test log. |
 | **Status** | source-backed; complete pinned source and published-release mirror retained. |
-| **Implementation links** | [`../../reverse_engineering/manifests/adp_implementation.json`](../../reverse_engineering/manifests/adp_implementation.json), [`../../reverse_engineering/manifests/adp_verification.json`](../../reverse_engineering/manifests/adp_verification.json), [`../reverse_engineering/ARCHITECTURE_WORKFLOWS.md`](../reverse_engineering/ARCHITECTURE_WORKFLOWS.md) |
+| **Implementation links** | [`ADP_TOOLCHAIN_ANALYSIS.md`](ADP_TOOLCHAIN_ANALYSIS.md), [`../../reverse_engineering/manifests/adp_implementation.json`](../../reverse_engineering/manifests/adp_implementation.json), [`../../reverse_engineering/manifests/adp_verification.json`](../../reverse_engineering/manifests/adp_verification.json), [`../reverse_engineering/ARCHITECTURE_WORKFLOWS.md`](../reverse_engineering/ARCHITECTURE_WORKFLOWS.md) |
 | **Non-claims** | ADP source, binaries, tests, and tool output do not recover original DAAD interpreter source, prove byte identity with an official runtime, or establish behavior of an unmeasured historical game. |
 
 ## Identity and retained material

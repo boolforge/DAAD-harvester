@@ -4,4 +4,4 @@ This section records independently maintained interpreters and toolchains that r
 
 | Implementation | Classification | Dossier |
 | --- | --- | --- |
-| ADP — ADventure Player | Independent DAAD interpreter and toolchain | [ADP.md](ADP.md) |
+| ADP — ADventure Player | Independent DAAD interpreter and toolchain | [Identity and scope](ADP.md); [source-level toolchain analysis](ADP_TOOLCHAIN_ANALYSIS.md) |
