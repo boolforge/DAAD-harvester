@@ -43,15 +43,6 @@ class StaticReportExporter:
             return fallback
 
     @staticmethod
-    def _tail(path: Path, limit: int = 120) -> list[str]:
-        if not path.is_file():
-            return []
-        try:
-            return path.read_text(encoding="utf-8", errors="replace").splitlines()[-limit:]
-        except OSError:
-            return []
-
-    @staticmethod
     def _lineage_role(artifact: Dict[str, Any]) -> str:
         """Classify retained lineage without inferring the member's semantics."""
 
@@ -165,10 +156,6 @@ class StaticReportExporter:
         )
         catalog_entries = self._read_json(self.output_dir / "daad_catalog.json", [])
         generator_entries = verify_native_generators()
-        log_candidates = {
-            "general": self.output_dir / "logs" / "daad_general.log",
-            "games": self.output_dir / "daad_games.log",
-        }
         return {
             "schema_version": 1,
             "generated_at": self.generated_at or datetime.now(timezone.utc).isoformat(),
@@ -208,7 +195,16 @@ class StaticReportExporter:
                 ),
             },
             "library": library,
-            "logs": {name: self._tail(path) for name, path in log_candidates.items()},
+            "logs": {
+                "general": [
+                    "Mutable operational logs are intentionally excluded from this deterministic static report.",
+                    "Run the local pipeline or inspect committed issue records for reproducible execution evidence.",
+                ],
+                "games": [
+                    "Per-game live log tails are not exported because they change outside the committed evidence contract.",
+                    "Use source, artifact, checksum, and report records for portable preservation evidence.",
+                ],
+            },
         }
 
     def write(self) -> Path:

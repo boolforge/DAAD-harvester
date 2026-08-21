@@ -48,7 +48,7 @@ class TUIDashboard:
         self.active_phase = "INIT"
 
         # Interactive state
-        self.active_tab = 0  # artifact evidence, source queue, game/port evidence, generators, detection handoff, metrics
+        self.active_tab = 0  # artifact evidence, source queue, game/port evidence, generators, detection handoff, metrics, resources
         self.tabs = [
             "1. ARTIFACT EVIDENCE",
             "2. PRIORITY ACQUISITION",
@@ -56,6 +56,7 @@ class TUIDashboard:
             "4. NATIVE GENERATORS",
             "5. SCUMMVM HANDOFF",
             "6. SYSTEM CONFIG & METRICS",
+            "7. RESOURCE & ANALYSIS EVIDENCE",
         ]
         self.selected_index = 0
         self.search_filter = ""
@@ -89,6 +90,69 @@ class TUIDashboard:
         return artifacts[self.selected_index]
 
     @staticmethod
+    def _resource_role(artifact: Any) -> str:
+        """Classify a retained byte for navigation without inventing its semantics."""
+
+        extension = Path(artifact.original_filename or "").suffix.lower()
+        if artifact.is_daad_payload:
+            return "game database"
+        if artifact.media_parser == "daad-legacy-chr" or extension in {".chr", ".ch0", ".fnt"}:
+            return "character set"
+        if artifact.media_parser == "daad-pcw-dat-v1" or extension == ".dat":
+            return "resource table"
+        if extension == ".pic":
+            return "picture candidate"
+        if artifact.media_parser:
+            return "validated technical medium"
+        if extension in {".tap", ".tzx", ".cdt", ".d64", ".dsk", ".adf", ".cas"}:
+            return "technical medium"
+        return "retained companion byte"
+
+    @staticmethod
+    def _resource_boundary(artifact: Any) -> str:
+        """State the publication boundary without turning retained bytes into previews."""
+
+        extension = Path(artifact.original_filename or "").suffix.lower()
+        if artifact.media_parser == "daad-pcw-dat-v1":
+            return "PCW DAT structure and image-resource decode measured; no published preview derivative."
+        if artifact.media_parser == "daad-legacy-chr":
+            return "CHR container/header measured; glyph-atlas publication remains separate evidence."
+        if extension == ".pic":
+            return "Picture candidate only; filename and size do not establish a decoder."
+        if artifact.is_daad_payload:
+            return "Measured DDB; decompilation publication is not implied by recognition."
+        if artifact.media_parser:
+            return "Native structural evidence; no decoded-media or analysis derivative published."
+        return "Retained byte without a promoted resource decoder or analysis derivative."
+
+    def _resource_artifacts(self) -> list[Any]:
+        artifacts = self.db.get_all_artifacts()
+        if self.search_filter:
+            filter_text = self.search_filter.lower()
+            artifacts = [
+                artifact for artifact in artifacts
+                if filter_text in (artifact.title or "").lower()
+                or filter_text in (artifact.original_filename or "").lower()
+                or filter_text in (artifact.platform_hint or "").lower()
+                or filter_text in (artifact.sha256 or "").lower()
+                or filter_text in self._resource_role(artifact)
+            ]
+        return [
+            artifact for artifact in artifacts
+            if artifact.is_daad_payload
+            or artifact.media_parser
+            or Path(artifact.original_filename or "").suffix.lower()
+            in {".chr", ".ch0", ".fnt", ".dat", ".pic", ".tap", ".tzx", ".cdt", ".d64", ".dsk", ".adf", ".cas"}
+        ]
+
+    def _selected_resource_artifact(self) -> Any | None:
+        artifacts = self._resource_artifacts()
+        if not artifacts:
+            return None
+        self.selected_index = max(0, min(self.selected_index, len(artifacts) - 1))
+        return artifacts[self.selected_index]
+
+    @staticmethod
     def _lineage_role(artifact: Any) -> str:
         """Describe a stored artifact relation without claiming an unmeasured medium."""
         if artifact.is_daad_payload:
@@ -110,7 +174,7 @@ class TUIDashboard:
         )
 
     def _make_detail_panel(self) -> Panel:
-        artifact = self._selected_artifact()
+        artifact = self._selected_resource_artifact() if self.active_tab == 6 else self._selected_artifact()
         theme_name, accent, _, border = self.theme
         if artifact is None:
             return Panel("No verified DAAD artifact is selected.", title="Artifact Inspector", border_style=border)
@@ -170,8 +234,9 @@ class TUIDashboard:
 
         if self.show_detail and key in ("\r", "\n", "\x1b", "d", "D"):
             self.show_detail = False
-        elif key in ("\r", "\n", "d", "D") and self.active_tab == 0:
-            self.show_detail = self._selected_artifact() is not None
+        elif key in ("\r", "\n", "d", "D") and self.active_tab in {0, 6}:
+            selected = self._selected_resource_artifact() if self.active_tab == 6 else self._selected_artifact()
+            self.show_detail = selected is not None
         elif key in ("h", "H"):
             self.theme_index = (self.theme_index + 1) % len(TUI_THEMES)
         elif key in ("\t", "t", "T"):  # Tab key to switch tabs
@@ -494,6 +559,53 @@ class TUIDashboard:
         table.add_row("Header preview", Text(preview))
         return Panel(table, title=f"[bold {accent}]SCUMMVM DETECTION HANDOFF[/bold {accent}]", border_style=border)
 
+    def _make_resource_panel(self) -> Panel:
+        """Render retained resources with explicit decoder and publication boundaries."""
+
+        _, accent, _, border = self.theme
+        artifacts = self._resource_artifacts()
+        page_size = 8
+        if not artifacts:
+            self.selected_index = 0
+            displayed: list[Any] = []
+        else:
+            self.selected_index = max(0, min(self.selected_index, len(artifacts) - 1))
+            start = max(0, min(self.selected_index - page_size // 2, len(artifacts) - page_size))
+            displayed = artifacts[start:start + page_size]
+
+        table = Table(
+            title=f"Resource / Analysis Evidence (Showing {len(displayed)} of {len(artifacts)})",
+            expand=True,
+            show_lines=True,
+        )
+        table.add_column("Role", style="bold cyan", width=22)
+        table.add_column("Original retained artifact", style="bold yellow", min_width=25)
+        table.add_column("Native evidence", style="green", min_width=22)
+        table.add_column("Publication boundary", min_width=36)
+        for artifact in displayed:
+            actual_index = artifacts.index(artifact)
+            style = f"bold black on {accent}" if actual_index == self.selected_index else None
+            native_evidence = (
+                f"{artifact.media_parser}\n{artifact.media_validation or 'native record'}"
+                if artifact.media_parser
+                else "no promoted native parser"
+            )
+            table.add_row(
+                Text(self._resource_role(artifact)),
+                Text(
+                    f"{artifact.original_filename}\n"
+                    f"{(artifact.platform_hint or 'unknown').upper()} | {artifact.sha256[:16]}..."
+                ),
+                Text(native_evidence),
+                Text(self._resource_boundary(artifact)),
+                style=style,
+            )
+        subtitle = (
+            "Enter opens the complete artifact inspector. No preview, playback, glyph atlas, "
+            "or decompilation is claimed until a checksum-pinned native derivative exists."
+        )
+        return Panel(table, title=f"[bold {accent}]RESOURCE & ANALYSIS EXPLORER[/bold {accent}]", subtitle=subtitle, border_style=border)
+
     def _make_native_generator_panel(self) -> Panel:
         """Show the same CI-gated native generator evidence as the static report."""
 
@@ -575,6 +687,8 @@ class TUIDashboard:
             layout["body"].update(self._make_native_generator_panel())
         elif self.active_tab == 4:
             layout["body"].update(self._make_detection_panel())
+        elif self.active_tab == 6:
+            layout["body"].update(self._make_resource_panel())
         else:
             layout["body"].split_row(
                 Layout(self._make_config_panel(), ratio=1),
@@ -590,7 +704,7 @@ class TUIDashboard:
         footer_text = (
             r"[bold yellow]\[Tab][/bold yellow] Switch Tab  |  "
             r"[bold yellow]\[Up/Down][/bold yellow] Select/Scroll  |  "
-            r"[bold yellow]\[Enter][/bold yellow] Inspect artifact  |  "
+            r"[bold yellow]\[Enter][/bold yellow] Inspect  |  "
             r"[bold yellow]\[H][/bold yellow] Theme  |  "
             r"[bold yellow]\[/][/bold yellow] Search  |  "
             r"[bold yellow]\[C][/bold yellow] Clear Filter  |  "

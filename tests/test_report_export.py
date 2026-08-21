@@ -87,3 +87,26 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert matrix["artifacts"][0]["media_validation"] == "validated_member_emission"
     assert matrix["artifacts"][0]["lineage_role"] == "extracted_medium"
     assert "runnable game port" in matrix["boundary"]
+
+
+def test_static_report_ignores_mutable_live_log_tails(tmp_path: Path) -> None:
+    output_dir = tmp_path / "output"
+    db = Database(output_dir / "state.db")
+    logs_dir = output_dir / "logs"
+    logs_dir.mkdir(parents=True)
+    general_log = logs_dir / "daad_general.log"
+    games_log = logs_dir / "daad_games.log"
+    general_log.write_text("first mutable event\n", encoding="utf-8")
+    games_log.write_text("first game event\n", encoding="utf-8")
+
+    exporter = StaticReportExporter(db, output_dir, generated_at="2000-01-01T00:00:00+00:00")
+    first = exporter.write().read_bytes()
+
+    general_log.write_text("second mutable event\n", encoding="utf-8")
+    games_log.write_text("second game event\n", encoding="utf-8")
+    second = exporter.write().read_bytes()
+    report = json.loads(second)
+
+    assert second == first
+    assert report["logs"]["general"][0].startswith("Mutable operational logs are intentionally excluded")
+    assert report["logs"]["games"][0].startswith("Per-game live log tails are not exported")

@@ -35,6 +35,8 @@ def test_tui_dashboard_navigation(tmp_path):
     tui.handle_key_input("\t")
     assert tui.active_tab == 5
     tui.handle_key_input("\t")
+    assert tui.active_tab == 6
+    tui.handle_key_input("\t")
     assert tui.active_tab == 0
 
 
@@ -81,3 +83,27 @@ def test_tui_cycles_theme_and_opens_selected_artifact_inspector(tmp_path: Path):
     dashboard.console.print(dashboard.render())
     assert "ARTIFACT INSPECTOR" in output.getvalue()
     assert "ADVENTURE.DDB" in output.getvalue()
+
+
+def test_tui_resource_explorer_opens_retained_resource_detail(tmp_path: Path):
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/font", "fixture")
+    payload = bytes(2176)
+    path = tmp_path / "ADVENTURE.CHR"
+    path.write_bytes(payload)
+    db.add_artifact(
+        ArtifactRecord(
+            id=None, source_id=source_id, original_filename="ADVENTURE.CHR", extracted_path=str(path), archive_depth=1,
+            file_size=len(payload), md5_full=md5(payload).hexdigest(), md5_5000=md5(payload).hexdigest(),
+            sha256=sha256(payload).hexdigest(), media_parser="daad-legacy-chr", media_validation="validated_legacy_chr_container",
+        )
+    )
+    dashboard = TUIDashboard(db)
+    dashboard.active_tab = 6
+    output = StringIO()
+    dashboard.console = Console(file=output, force_terminal=False, width=140)
+    dashboard.console.print(dashboard.render())
+    assert "RESOURCE & ANALYSIS EXPLORER" in output.getvalue()
+    assert "character set" in output.getvalue()
+    dashboard.handle_key_input("\n")
+    assert dashboard.show_detail is True

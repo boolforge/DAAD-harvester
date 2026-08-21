@@ -18,7 +18,7 @@ from daad_harvester.models import ArtifactRecord
 from daad_harvester.tui import TUIDashboard
 
 
-def _render(dash: TUIDashboard, tabs=(0, 1, 2, 3, 4, 5), width: int = 140) -> str:
+def _render(dash: TUIDashboard, tabs=(0, 1, 2, 3, 4, 5, 6), width: int = 140) -> str:
     """Renders the given tabs through a real Console and returns plain text."""
     console = Console(record=True, width=width, force_terminal=True)
     for tab in tabs:
