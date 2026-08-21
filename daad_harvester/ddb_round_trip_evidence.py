@@ -47,6 +47,21 @@ RETAINED_DDB_ROUND_TRIP_FIXTURES: Final = (
             wrapper="raw",
         ),
     ),
+    RetainedDDBRoundTripFixture(
+        profile_id="legacy-v1-c64-little-0x3880-raw-jabato-ass-part1",
+        source_path="preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
+        expected_size=24899,
+        expected_sha256="7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6",
+        profile=DDBProfile(
+            layout="legacy",
+            major_version=1,
+            machine_id=2,
+            platform="c64",
+            endianness="little",
+            base_address=0x3880,
+            wrapper="raw",
+        ),
+    ),
 )
 
 

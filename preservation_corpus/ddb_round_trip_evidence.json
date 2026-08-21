@@ -1,5 +1,5 @@
 {
-  "fixture_count": 1,
+  "fixture_count": 2,
   "records": [
     {
       "byte_comparison": {
@@ -151,6 +151,282 @@
       },
       "source_path": "preservation_corpus/extracted/depth1_98397784_BLANK.DDB",
       "source_size": 2652
+    },
+    {
+      "byte_comparison": {
+        "byte_identical": true,
+        "first_difference": null
+      },
+      "opaque_ranges": [
+        {
+          "byte_end": 2334,
+          "byte_start": 2049,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18171,
+          "byte_start": 18123,
+          "reason": "legacy_object_words_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 18220,
+          "byte_start": 18219,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21091,
+          "byte_start": 21090,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 21580,
+          "byte_start": 21579,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 22006,
+          "byte_start": 22005,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23058,
+          "byte_start": 23057,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23149,
+          "byte_start": 23148,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23175,
+          "byte_start": 23174,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23362,
+          "byte_start": 23361,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23640,
+          "byte_start": 23639,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23785,
+          "byte_start": 23784,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23830,
+          "byte_start": 23829,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23865,
+          "byte_start": 23864,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 23974,
+          "byte_start": 23973,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24001,
+          "byte_start": 24000,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24012,
+          "byte_start": 24011,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24025,
+          "byte_start": 24024,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24035,
+          "byte_start": 24034,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24037,
+          "byte_start": 24036,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24039,
+          "byte_start": 24038,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24041,
+          "byte_start": 24040,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24050,
+          "byte_start": 24049,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24052,
+          "byte_start": 24051,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24102,
+          "byte_start": 24101,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24179,
+          "byte_start": 24178,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24232,
+          "byte_start": 24231,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24258,
+          "byte_start": 24257,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24303,
+          "byte_start": 24302,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24305,
+          "byte_start": 24304,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24316,
+          "byte_start": 24315,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24447,
+          "byte_start": 24446,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24490,
+          "byte_start": 24489,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24520,
+          "byte_start": 24519,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24617,
+          "byte_start": 24616,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24661,
+          "byte_start": 24660,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24718,
+          "byte_start": 24717,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24720,
+          "byte_start": 24719,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24756,
+          "byte_start": 24755,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24773,
+          "byte_start": 24772,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24795,
+          "byte_start": 24794,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24797,
+          "byte_start": 24796,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 24819,
+          "byte_start": 24818,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        }
+      ],
+      "profile": {
+        "base_address": 14464,
+        "endianness": "little",
+        "extension_dialect": null,
+        "layout": "legacy",
+        "machine_id": 2,
+        "major_version": 1,
+        "platform": "c64",
+        "wrapper": "raw"
+      },
+      "profile_id": "legacy-v1-c64-little-0x3880-raw-jabato-ass-part1",
+      "recompiled_digests": {
+        "adler32": "d16b2cfc",
+        "blake2b": "243df7209bc02581a1ad371d80afe65220afe2a4c80a19df70ac07a7bf5c1991efae46dfe564abd90f91314d43461da769298993d87b61525ce58679c91d04ff",
+        "blake2s": "21d78172e677639f5437b63f56029fb16a68a102ef7ee8507262691aa55be616",
+        "crc32": "6c2ad6d4",
+        "md5_5000": "b71b078098380ddbf8c6cf17557ac94f",
+        "md5_full": "8b68cff0783d1e14776967521e570b5f",
+        "md5_tail5000": "53998df88099f24971b153f0e98ab6f2",
+        "sha1": "4f66c4624e2b322e43da7598ba10119ebea4290b",
+        "sha224": "8d963442dd2ec1b65a1e67b238fd46ff5854fe9d4d1fe7530ff5ba9e",
+        "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6",
+        "sha384": "0acae8dcc694b04344a11cb4a70f46d6dc21ac998d51e2054157fdd5c2b7b56bf95a0c73cef71531720d6344fced399d",
+        "sha3_256": "a578a6399d87fc362f7dcc72d7a41adb0184fcbd41d29faf0e9bf632c8e4b36a",
+        "sha3_512": "099f8b95af460f9cdee5294855847baa70cad93445cfe3ca2e6976b8f422adb67ab6fee28c28e27193526a822b691f78ca725a67b7d526fd6a3a6eb71fa5c902",
+        "sha512": "7edf152ef911fc80c9399935a903623aaaee7617c6ceb629cb9b5a7d755b1aab3f8ee287782409198cf330f048b09c6e8b58fcb1d9607215d518cac4065ba4b7",
+        "xxh128": "c0a9fc9e7d9fdd1d07d8799b4dc966c9",
+        "xxh32": "a943d2ad",
+        "xxh64": "bf329f98c63a7890"
+      },
+      "recompiled_size": 24899,
+      "semantic_status": "structurally_bounded",
+      "source_digests": {
+        "adler32": "d16b2cfc",
+        "blake2b": "243df7209bc02581a1ad371d80afe65220afe2a4c80a19df70ac07a7bf5c1991efae46dfe564abd90f91314d43461da769298993d87b61525ce58679c91d04ff",
+        "blake2s": "21d78172e677639f5437b63f56029fb16a68a102ef7ee8507262691aa55be616",
+        "crc32": "6c2ad6d4",
+        "md5_5000": "b71b078098380ddbf8c6cf17557ac94f",
+        "md5_full": "8b68cff0783d1e14776967521e570b5f",
+        "md5_tail5000": "53998df88099f24971b153f0e98ab6f2",
+        "sha1": "4f66c4624e2b322e43da7598ba10119ebea4290b",
+        "sha224": "8d963442dd2ec1b65a1e67b238fd46ff5854fe9d4d1fe7530ff5ba9e",
+        "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6",
+        "sha384": "0acae8dcc694b04344a11cb4a70f46d6dc21ac998d51e2054157fdd5c2b7b56bf95a0c73cef71531720d6344fced399d",
+        "sha3_256": "a578a6399d87fc362f7dcc72d7a41adb0184fcbd41d29faf0e9bf632c8e4b36a",
+        "sha3_512": "099f8b95af460f9cdee5294855847baa70cad93445cfe3ca2e6976b8f422adb67ab6fee28c28e27193526a822b691f78ca725a67b7d526fd6a3a6eb71fa5c902",
+        "sha512": "7edf152ef911fc80c9399935a903623aaaee7617c6ceb629cb9b5a7d755b1aab3f8ee287782409198cf330f048b09c6e8b58fcb1d9607215d518cac4065ba4b7",
+        "xxh128": "c0a9fc9e7d9fdd1d07d8799b4dc966c9",
+        "xxh32": "a943d2ad",
+        "xxh64": "bf329f98c63a7890"
+      },
+      "source_path": "preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
+      "source_size": 24899
     }
   ],
   "schema_version": 1

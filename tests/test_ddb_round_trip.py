@@ -33,6 +33,20 @@ BLANK_DDB_PROFILE = DDBProfile(
     base_address=0,
     wrapper="raw",
 )
+C64_V1_DDB = (
+    REPOSITORY_ROOT
+    / "preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb"
+)
+C64_V1_DDB_SHA256 = "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6"
+C64_V1_DDB_PROFILE = DDBProfile(
+    layout="legacy",
+    major_version=1,
+    machine_id=2,
+    platform="c64",
+    endianness="little",
+    base_address=0x3880,
+    wrapper="raw",
+)
 
 
 def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None:
@@ -82,5 +96,20 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     assert connection_nodes
     assert all(node.raw_bytes.endswith(b"\xff") for node in connection_nodes)
     assert len(recompiled) == len(original)
+    assert recompiled == original
+    assert compute_hashes(recompiled) == original_hashes
+
+
+def test_retained_legacy_v1_c64_target_memory_ddb_round_trips_byte_identically() -> None:
+    original = C64_V1_DDB.read_bytes()
+
+    assert len(original) == 24899
+    assert sha256(original).hexdigest() == C64_V1_DDB_SHA256
+    original_hashes = compute_hashes(original)
+    ir = decompile_ddb(original, C64_V1_DDB_PROFILE)
+    recompiled = recompile_ddb(ir, C64_V1_DDB_PROFILE)
+
+    assert ir.profile.base_address == 0x3880
+    assert len(original_hashes) == 17
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
