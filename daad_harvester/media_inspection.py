@@ -624,6 +624,35 @@ def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
                 entry_index=index, resource_offset=offset, payload_floor=payload_floor,
                 file_size=len(data),
             )
+        if offset + 6 > len(data):
+            return _result(
+                "daad-pcw-dat-v1", "rejected", "truncated_resource_header",
+                entry_index=index, resource_offset=offset, file_size=len(data),
+            )
+        width_word = int.from_bytes(data[offset:offset + 2], "little")
+        height_word = int.from_bytes(data[offset + 2:offset + 4], "little")
+        payload_length = int.from_bytes(data[offset + 4:offset + 6], "little")
+        width = width_word & 0x7FFF
+        height = height_word & 0x7FFF
+        compressed = bool(width_word & 0x8000)
+        audio = bool(height_word & 0x8000)
+        payload_end = offset + 6 + payload_length
+        if payload_end > len(data):
+            return _result(
+                "daad-pcw-dat-v1", "rejected", "resource_payload_out_of_bounds",
+                entry_index=index, resource_offset=offset, payload_length=payload_length,
+                file_size=len(data),
+            )
+        if not audio and (width == 0 or height == 0 or payload_length == 0):
+            return _result(
+                "daad-pcw-dat-v1", "rejected", "invalid_image_resource_header",
+                entry_index=index, width=width, height=height, payload_length=payload_length,
+            )
+        if not audio and (width > 1024 or height > 1024):
+            return _result(
+                "daad-pcw-dat-v1", "rejected", "image_resource_dimensions_out_of_bounds",
+                entry_index=index, width=width, height=height,
+            )
         entries.append(
             {
                 "index": index,
@@ -633,6 +662,13 @@ def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
                 "y": int.from_bytes(entry[8:10], "little", signed=True),
                 "buffered": bool(flags & 0x0002),
                 "fixed": not bool(flags & 0x0001),
+                "width": width,
+                "height": height,
+                "payload_length": payload_length,
+                "payload_offset": offset + 6,
+                "payload_end": payload_end,
+                "compressed": compressed,
+                "audio": audio,
             }
         )
     if picture_count != len(entries):

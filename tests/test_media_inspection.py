@@ -230,6 +230,8 @@ def test_retained_torreoscura_pcw_dat_validates_resource_directories() -> None:
         assert result.validation == "validated_pcw_v1_resource_directory"
         assert result.evidence["picture_count"] == picture_count
         assert len(result.evidence["resources"]) == picture_count
+        assert all(entry["payload_offset"] >= result.evidence["payload_floor"] for entry in result.evidence["resources"])
+        assert all(entry["payload_end"] <= (root / "preservation_corpus" / "extracted" / filename).stat().st_size for entry in result.evidence["resources"])
         assert result.evidence["resource_payload_codec"] == "unresolved_profile_specific_support_loop"
 
 
@@ -244,6 +246,23 @@ def test_pcw_dat_rejects_resource_offset_before_fixed_directory() -> None:
     assert result.parser == "daad-pcw-dat-v1"
     assert result.status == "rejected"
     assert result.validation == "resource_offset_out_of_bounds"
+
+
+def test_pcw_dat_rejects_resource_payload_past_file_end() -> None:
+    data = bytearray(6 + 2560 + 6)
+    data[2:4] = (4).to_bytes(2, "little")
+    data[4:6] = (1).to_bytes(2, "little")
+    data[6:10] = (6 + 2560).to_bytes(4, "little")
+    resource = 6 + 2560
+    data[resource:resource + 2] = (8).to_bytes(2, "little")
+    data[resource + 2:resource + 4] = (8).to_bytes(2, "little")
+    data[resource + 4:resource + 6] = (1).to_bytes(2, "little")
+
+    result = inspect_native_media("broken.dat", bytes(data))
+
+    assert result.parser == "daad-pcw-dat-v1"
+    assert result.status == "rejected"
+    assert result.validation == "resource_payload_out_of_bounds"
 
 
 def test_media_evidence_is_json_serializable() -> None:
