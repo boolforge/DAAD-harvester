@@ -21,10 +21,10 @@ For the compact legacy layouts currently measured in the retained corpus, the na
 | `0x12` | System messages pointer | System messages pointer | System messages table | Typed pointers and XOR-terminated text-record boundaries; token expansion remains separate. |
 | `0x14` | Connections pointer | Connections pointer | Connections table | Typed pointer words and resolved record starts; connection-record grammar pending. |
 | `0x16` | Vocabulary pointer | Vocabulary pointer | Vocabulary | Typed seven-byte records: five XOR-decoded characters, raw index/type, and raw `0x00` terminator. |
-| `0x18` | Object locations pointer | Object locations pointer | Object locations table | Bounded; object-location grammar pending. |
-| `0x1A` | Object words pointer | Object words pointer | Object words table | Bounded; object-word grammar pending. |
-| `0x1C` | Object attributes pointer | Object attributes pointer | Object attributes table | Bounded; object-attribute grammar pending. |
-| `0x1E` | Declared size | Extended object-attributes pointer | Extended object attributes table in V2 | V2 bounded; attribute grammar pending. |
+| `0x18` | Object locations pointer | Object locations pointer | Object locations table | Typed one-byte scalar entries. |
+| `0x1A` | Object words pointer | Object words pointer | Object words table | Active cross-check required before promotion: ADP dump uses noun/adjective pairs while loader validates only a one-byte-per-object minimum span. |
+| `0x1C` | Object attributes pointer | Object attributes pointer | Object attributes table | Typed one-byte scalar entries. |
+| `0x1E` | Declared size | Extended object-attributes pointer | Extended object attributes table in V2 | Typed V2 target-endian two-byte scalar entries. |
 | `0x20` | External-data pointer | Declared size | External data field | Separate header/extension grammar pending. |
 | `0x22` | — | External-data pointer | External data field | Separate header/extension grammar pending. |
 

@@ -34,17 +34,12 @@
         },
         {
           "byte_end": 2254,
-          "byte_start": 2252,
+          "byte_start": 2253,
           "reason": "legacy_object_attributes_table_payload_pending_grammar"
         },
         {
-          "byte_end": 2256,
-          "byte_start": 2254,
-          "reason": "legacy_extended_object_attributes_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 2258,
-          "byte_start": 2256,
+          "byte_start": 2257,
           "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {

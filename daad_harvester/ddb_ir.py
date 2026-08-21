@@ -89,6 +89,15 @@ class VocabularyNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ObjectTableNode(DDBNode):
+    """A fixed-width legacy object table with source-decoded scalar entries."""
+
+    table_kind: str
+    entry_width: int
+    values: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
     """A XOR-encoded text record with its decoded terminator and table references."""
 
@@ -137,6 +146,7 @@ TopLevelDDBNode: TypeAlias = (
     | ProcessPointerTableNode
     | OffsetTableNode
     | VocabularyNode
+    | ObjectTableNode
     | TextNode
     | TokenNode
     | CondActStreamNode
@@ -502,6 +512,51 @@ def _vocabulary_nodes(
     raise ValueError("verified DDB vocabulary lacks its raw 0x00 terminator")
 
 
+def _object_table_nodes(
+    data: bytes,
+    *,
+    payload_offset: int,
+    payload_size: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+) -> list[ObjectTableNode]:
+    """Decode source-backed fixed-width location and attribute object tables."""
+
+    object_count = header["object_count"]
+    payload_end = payload_offset + payload_size
+    table_specs = [("object_locations_table", 8, 1), ("object_attributes_table", 10, 1)]
+    if header["major_version"] >= 2:
+        table_specs.append(("extended_object_attributes_table", 11, 2))
+    nodes: list[ObjectTableNode] = []
+    for table_kind, pointer_index, entry_width in table_specs:
+        table_address = header["pointers"][pointer_index]
+        if not table_address:
+            continue
+        table_start = payload_offset + _pointer_to_offset(table_address, header["base_address"])
+        table_end = table_start + object_count * entry_width
+        if table_start < payload_offset + header["header_size"] or table_end > payload_end:
+            raise ValueError(f"verified DDB {table_kind} is outside its payload")
+        values = tuple(
+            int.from_bytes(
+                data[table_start + index * entry_width:table_start + (index + 1) * entry_width],
+                header["endianness"],
+            )
+            for index in range(object_count)
+        )
+        nodes.append(
+            ObjectTableNode(
+                table_start,
+                table_end,
+                profile,
+                data[table_start:table_end],
+                table_kind,
+                entry_width,
+                values,
+            )
+        )
+    return nodes
+
+
 def _text_nodes(
     data: bytes,
     *,
@@ -717,6 +772,15 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
                 data,
                 payload_offset=payload_offset,
                 payload_end=payload_end,
+                header=header,
+                profile=profile,
+            )
+        )
+        known_nodes.extend(
+            _object_table_nodes(
+                data,
+                payload_offset=payload_offset,
+                payload_size=payload_size,
                 header=header,
                 profile=profile,
             )

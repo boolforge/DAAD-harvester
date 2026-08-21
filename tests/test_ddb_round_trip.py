@@ -8,6 +8,7 @@ from pathlib import Path
 from daad_harvester.ddb_grammar import DDBProfile
 from daad_harvester.ddb_ir import (
     OffsetTableNode,
+    ObjectTableNode,
     TextNode,
     VocabularyNode,
     decompile_ddb,
@@ -69,6 +70,13 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     assert vocabulary_nodes[-1].is_terminator is True
     assert vocabulary_nodes[-1].raw_bytes == b"\x00"
     assert all(node.word_index is not None for node in vocabulary_nodes[:-1])
+    assert {
+        node.table_kind for node in ir.nodes if isinstance(node, ObjectTableNode)
+    } == {
+        "object_locations_table",
+        "object_attributes_table",
+        "extended_object_attributes_table",
+    }
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
