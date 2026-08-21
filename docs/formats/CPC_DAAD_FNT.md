@@ -11,6 +11,8 @@
 
 The official DAAD changelog identifies `DAAD.FNT` as the standard CPC font used by the CPC tape loader.[1] At the recorded public revision, both `Deprecated/TAPMAST/DAAD.FNT` and `Interpreters/CPC/DAAD.FNT` are 896 bytes and have SHA-256 `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a`. The retained `depth1_dcd3ab68_DAAD.FNT` artifact has the same size and digest, establishing exact byte identity with both official copies.
 
+The official CPC release readme independently describes `DAAD.FNT` as the standard CPC font “used by the loader only.” The 994-byte tokenized BASIC `Deprecated/TAPMAST/DLPART1.BAS` contains the literal filename `DAAD.FNT`, which establishes its packaging linkage without requiring an unsupported reconstruction of BASIC-token semantics. Harvester does not yet contain an AMSDOS header parser, so the apparent 128-byte leading region and remaining bytes are not promoted as a decoded header/payload grammar.
+
 | Record | Size | SHA-256 | Evidence result |
 | --- | ---: | --- | --- |
 | Official `Deprecated/TAPMAST/DAAD.FNT` | 896 | `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a` | Official source byte. |
