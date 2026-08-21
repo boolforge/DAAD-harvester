@@ -7,6 +7,7 @@
 | [Tape streams](TAPE_STREAMS.md) | TAP, TZX/CDT, CBM TAP, CAS/TSX boundaries. | Implementation contract |
 | [CBM disk and program media](CBM_DISK_AND_PROGRAM.md) | D64/D71, T64, P00/PRG, G64 preservation evidence. | Implementation contract |
 | [CP/M DSK](CPM_DSK.md) | CPC/PCW DSK and allocation/extent rules. | Implementation contract |
+| [Extended DSK generation](EXTENDED_DSK_GENERATION.md) | Deterministic Extended DSK writer, validator, comparison, and public-evidence contract. | Implementation contract |
 | [FAT media](FAT_MEDIA.md) | FAT12/FAT16, VFAT, MSX/Atari/DOS media. | Implementation contract |
 | [Amiga media](AMIGA_MEDIA.md) | ADF/ADZ/DMS and OFS/FFS boundaries. | Implementation contract |
 | [Atari protected media](ATARI_PROTECTED_MEDIA.md) | STX/Pasti and IPF preservation evidence. | Implementation contract |
