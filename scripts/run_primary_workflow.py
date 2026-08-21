@@ -23,6 +23,7 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
     """Return the ordered, cross-host-safe primary verification commands."""
 
     commands = [
+        ("active backlog index", ("scripts/build_active_backlog_index.py", "--check")),
         ("regeneration manifest", ("scripts/verify_regeneration_manifest.py",)),
         ("runtime resources", ("scripts/verify_runtime_resources.py",)),
         ("retained game corpus", ("scripts/verify_game_corpus.py",)),

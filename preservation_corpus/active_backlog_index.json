@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 156,
+  "unchecked_item_count": 155,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 39,
+    "Active evidence-interface correction": 38,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -299,29 +299,6 @@
       ],
       "required_real_artifact_regression": false,
       "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
-      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
-    },
-    {
-      "id": "todo-0027",
-      "line": 27,
-      "section": "Active evidence-interface correction",
-      "text": "Build and maintain a deterministic active-backlog index that groups every unchecked work-register item by evidence input, affected subsystem, dependency, required real-artifact regression, regeneration/report impact, and atomic-delivery boundary. The index must identify safely independent workstreams and must never mark a broad requirement complete merely because one child task passes.",
-      "evidence_inputs": [
-        "independent external comparator",
-        "real-artifact regression",
-        "report or interface output",
-        "retained original bytes"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "tooling and workflow gates",
-        "web report and publication"
-      ],
-      "dependencies": [
-        "none stated; retain unresolved boundaries"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
