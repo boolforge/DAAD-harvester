@@ -63,11 +63,20 @@ class PointerTableNode(DDBNode):
 
 @dataclass(frozen=True, slots=True)
 class HeaderExtensionNode(DDBNode):
-    """A versioned compact-header external-data field before the first section."""
+    """A native V1/V2 external-data field that is structurally inside the header."""
 
-    external_pointer: int
+    stored_pointer: int
     resolved_offset: int | None
     is_absent: bool
+
+
+@dataclass(frozen=True, slots=True)
+class ExternalVectorTableNode(DDBNode):
+    """Thirteen target-endian V2 external-vector words beginning at `0x22`."""
+
+    stored_vectors: tuple[int, ...]
+    primary_external_data_pointer: int
+    external_psg_table_pointer: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -188,6 +197,7 @@ TopLevelDDBNode: TypeAlias = (
     | HeaderNode
     | PointerTableNode
     | HeaderExtensionNode
+    | ExternalVectorTableNode
     | ProcessPointerTableNode
     | OffsetTableNode
     | VocabularyNode
@@ -981,8 +991,8 @@ def _header_extension_node(
     payload_end: int,
     header: dict[str, Any],
     profile: DDBProfile,
-) -> HeaderExtensionNode | None:
-    """Decode ADP's V1/V2 external-data field when it precedes all sections."""
+) -> HeaderExtensionNode | ExternalVectorTableNode | None:
+    """Decode the short external field or complete DRC V2 vector-table header."""
 
     field_offset = 32 if header["major_version"] == 1 else 34
     field_start = payload_offset + field_offset
@@ -994,6 +1004,22 @@ def _header_extension_node(
     ]
     if field_end > payload_end or not section_offsets or field_end > min(section_offsets):
         return None
+    first_section_offset = min(section_offsets)
+    vector_table_end = field_start + 13 * 2
+    if header["major_version"] >= 2 and vector_table_end <= first_section_offset:
+        stored_vectors = tuple(
+            _read_word(data, field_start + index * 2, header["endianness"])
+            for index in range(13)
+        )
+        return ExternalVectorTableNode(
+            field_start,
+            vector_table_end,
+            profile,
+            data[field_start:vector_table_end],
+            stored_vectors,
+            stored_vectors[0],
+            stored_vectors[3],
+        )
     pointer = _read_word(data, field_start, header["endianness"])
     resolved_offset: int | None = None
     if pointer:

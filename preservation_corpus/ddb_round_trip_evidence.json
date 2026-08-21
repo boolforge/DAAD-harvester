@@ -6,13 +6,7 @@
         "byte_identical": true,
         "first_difference": null
       },
-      "opaque_ranges": [
-        {
-          "byte_end": 60,
-          "byte_start": 36,
-          "reason": "legacy_header_extension_pending_grammar"
-        }
-      ],
+      "opaque_ranges": [],
       "profile": {
         "base_address": 0,
         "endianness": "little",
@@ -44,7 +38,7 @@
         "xxh64": "440c66e466bced68"
       },
       "recompiled_size": 2652,
-      "semantic_status": "structurally_bounded",
+      "semantic_status": "semantically_decoded",
       "source_digests": {
         "adler32": "73e5dbd1",
         "blake2b": "2d0f2e741b452e44ce1c5c4a19e8366d59f72f00af16cb6e07b78000d31b34480596b7eec8a5c7dae6a3dbcfdb1a97f49762ae1c8e4b03879169a5a2f14db1ca",
@@ -72,13 +66,7 @@
         "byte_identical": true,
         "first_difference": null
       },
-      "opaque_ranges": [
-        {
-          "byte_end": 60,
-          "byte_start": 36,
-          "reason": "legacy_header_extension_pending_grammar"
-        }
-      ],
+      "opaque_ranges": [],
       "profile": {
         "base_address": 0,
         "endianness": "little",
@@ -110,7 +98,7 @@
         "xxh64": "8f5469993613c19b"
       },
       "recompiled_size": 2326,
-      "semantic_status": "structurally_bounded",
+      "semantic_status": "semantically_decoded",
       "source_digests": {
         "adler32": "56f715ab",
         "blake2b": "c8fd9427819d82cc716b02963b27cfc3c66bc5fe2e147ba23e242bce90c0e39c01f21273bdba158997f35d06f7ff02ad925d5e4243297375267521f76e781f2b",
@@ -201,7 +189,7 @@
       "opaque_ranges": [
         {
           "byte_end": 122,
-          "byte_start": 36,
+          "byte_start": 60,
           "reason": "legacy_header_extension_pending_grammar"
         }
       ],
@@ -264,13 +252,7 @@
         "byte_identical": true,
         "first_difference": null
       },
-      "opaque_ranges": [
-        {
-          "byte_end": 60,
-          "byte_start": 36,
-          "reason": "legacy_header_extension_pending_grammar"
-        }
-      ],
+      "opaque_ranges": [],
       "profile": {
         "base_address": 33792,
         "endianness": "little",
@@ -302,7 +284,7 @@
         "xxh64": "d5609808d6654111"
       },
       "recompiled_size": 26489,
-      "semantic_status": "structurally_bounded",
+      "semantic_status": "semantically_decoded",
       "source_digests": {
         "adler32": "c4b406c8",
         "blake2b": "35905c7f1d7420835ac047a0f287413e14276c78e9d9ba5f66eb8eefc5b96465a83060e94241732d1b8ad51613313a5cfbd5801909f4b1a89f9abb99ba30612c",
@@ -330,13 +312,7 @@
         "byte_identical": true,
         "first_difference": null
       },
-      "opaque_ranges": [
-        {
-          "byte_end": 60,
-          "byte_start": 36,
-          "reason": "legacy_header_extension_pending_grammar"
-        }
-      ],
+      "opaque_ranges": [],
       "profile": {
         "base_address": 0,
         "endianness": "big",
@@ -368,7 +344,7 @@
         "xxh64": "3deac27a322d1184"
       },
       "recompiled_size": 2872,
-      "semantic_status": "structurally_bounded",
+      "semantic_status": "semantically_decoded",
       "source_digests": {
         "adler32": "14f52b54",
         "blake2b": "bf99688f35da6860326cc9f6a9255015de78a1c64dda7038900e842d22fd00ffd4fcb37127a8ad6000e3444c3a86ab2de69b48cdd78d738c51e12fc0af01aa25",
@@ -396,13 +372,7 @@
         "byte_identical": true,
         "first_difference": null
       },
-      "opaque_ranges": [
-        {
-          "byte_end": 60,
-          "byte_start": 36,
-          "reason": "legacy_header_extension_pending_grammar"
-        }
-      ],
+      "opaque_ranges": [],
       "profile": {
         "base_address": 0,
         "endianness": "big",
@@ -434,7 +404,7 @@
         "xxh64": "7a8ccde220205031"
       },
       "recompiled_size": 43990,
-      "semantic_status": "structurally_bounded",
+      "semantic_status": "semantically_decoded",
       "source_digests": {
         "adler32": "c0942914",
         "blake2b": "a9bb7e597888de54a0ed67d64d9c780ff4737d1147a31a79f87f7cb7f775cbb60eefc4214569812db04e263d6218198791e5d7bf620178f0a2f20c076ea17d82",

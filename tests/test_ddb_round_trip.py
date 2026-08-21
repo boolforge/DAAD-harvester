@@ -13,6 +13,7 @@ from daad_harvester.ddb_ir import (
     OffsetTableNode,
     ObjectTableNode,
     ConnectionListNode,
+    ExternalVectorTableNode,
     HeaderExtensionNode,
     ProcessCodeAlignmentNode,
     ProcessEntryNode,
@@ -129,8 +130,24 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     assert vocabulary_nodes[-1].raw_bytes == b"\x00"
     assert all(node.word_index is not None for node in vocabulary_nodes[:-1])
     header_extensions = [node for node in ir.nodes if isinstance(node, HeaderExtensionNode)]
-    assert len(header_extensions) == 1
-    assert header_extensions[0].is_absent is True
+    assert not header_extensions
+    external_vector_tables = [
+        node for node in ir.nodes if isinstance(node, ExternalVectorTableNode)
+    ]
+    assert len(external_vector_tables) == 1
+    assert external_vector_tables[0].byte_start == 0x22
+    assert external_vector_tables[0].byte_end == 0x3C
+    assert external_vector_tables[0].stored_vectors == (0,) * 13
+    assert external_vector_tables[0].primary_external_data_pointer == 0
+    assert external_vector_tables[0].external_psg_table_pointer == 0
+    mutated = bytearray(original)
+    mutated[0x24] = 0x01
+    mutated_ir = decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
+    mutated_vectors = [
+        node for node in mutated_ir.nodes if isinstance(node, ExternalVectorTableNode)
+    ]
+    assert mutated_vectors[0].stored_vectors[1] == 1
+    assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
     token_nodes = [node for node in ir.nodes if isinstance(node, TokenNode)]
     assert token_nodes[0].node_kind == "block_marker"
     assert token_nodes[-1].token_index == 0xFF
@@ -214,6 +231,13 @@ def test_retained_legacy_v2_spanish_dos_object_attribute_padding_is_bounded() ->
     original = SPANISH_DOS_V2_DDB.read_bytes()
     ir = decompile_ddb(original, SPANISH_DOS_V2_DDB_PROFILE)
 
+    external_vector_tables = [
+        node for node in ir.nodes if isinstance(node, ExternalVectorTableNode)
+    ]
+    assert [
+        (node.byte_start, node.byte_end, node.stored_vectors)
+        for node in external_vector_tables
+    ] == [(0x22, 0x3C, (0,) * 13)]
     assert [
         (node.byte_start, node.byte_end, node.raw_bytes, node.following_table_kind)
         for node in ir.nodes
