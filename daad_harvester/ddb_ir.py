@@ -70,6 +70,15 @@ class ProcessPointerTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class OffsetTableNode(DDBNode):
+    """A source-backed count-indexed table of stored and resolved DDB offsets."""
+
+    table_kind: str
+    stored_pointers: tuple[int, ...]
+    resolved_offsets: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
     """Reserved typed node for a source-backed DDB text record grammar."""
 
@@ -114,6 +123,7 @@ TopLevelDDBNode: TypeAlias = (
     | HeaderNode
     | PointerTableNode
     | ProcessPointerTableNode
+    | OffsetTableNode
     | TextNode
     | TokenNode
     | CondActStreamNode
@@ -135,6 +145,15 @@ LEGACY_SECTION_NAMES: tuple[str, ...] = (
     "object_words_table",
     "object_attributes_table",
     "extended_object_attributes_table",
+)
+
+
+LEGACY_OFFSET_TABLES: tuple[tuple[str, int, str], ...] = (
+    ("object_names_table", 2, "object_count"),
+    ("location_descriptions_table", 3, "location_count"),
+    ("messages_table", 4, "message_count"),
+    ("system_messages_table", 5, "system_message_count"),
+    ("connections_table", 6, "location_count"),
 )
 
 
@@ -364,6 +383,55 @@ def _stream_nodes(
     return streams
 
 
+def _offset_table_nodes(
+    data: bytes,
+    *,
+    payload_offset: int,
+    payload_size: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+) -> list[OffsetTableNode]:
+    """Decode ADP-validated legacy count-indexed pointer tables losslessly."""
+
+    nodes: list[OffsetTableNode] = []
+    base_address = header["base_address"]
+    payload_end = payload_offset + payload_size
+    for table_kind, pointer_index, count_field in LEGACY_OFFSET_TABLES:
+        table_address = header["pointers"][pointer_index]
+        count = header[count_field]
+        if not table_address or count == 0:
+            continue
+        table_start = payload_offset + _pointer_to_offset(table_address, base_address)
+        table_end = table_start + count * 2
+        if table_start < payload_offset + header["header_size"] or table_end > payload_end:
+            raise ValueError(f"verified DDB {table_kind} is outside its payload")
+        stored_pointers = tuple(
+            _read_word(data, table_start + index * 2, header["endianness"])
+            for index in range(count)
+        )
+        resolved_offsets = tuple(
+            payload_offset + _pointer_to_offset(pointer, base_address)
+            for pointer in stored_pointers
+        )
+        if any(
+            offset < payload_offset + header["header_size"] or offset >= payload_end
+            for offset in resolved_offsets
+        ):
+            raise ValueError(f"verified DDB {table_kind} contains an out-of-range pointer")
+        nodes.append(
+            OffsetTableNode(
+                table_start,
+                table_end,
+                profile,
+                data[table_start:table_end],
+                table_kind,
+                stored_pointers,
+                resolved_offsets,
+            )
+        )
+    return nodes
+
+
 def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
@@ -533,6 +601,16 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             resolved_process_offsets,
         )
     )
+    if profile.layout == "legacy":
+        known_nodes.extend(
+            _offset_table_nodes(
+                data,
+                payload_offset=payload_offset,
+                payload_size=payload_size,
+                header=header,
+                profile=profile,
+            )
+        )
     known_nodes.extend(entries)
     known_nodes.extend(
         _stream_nodes(

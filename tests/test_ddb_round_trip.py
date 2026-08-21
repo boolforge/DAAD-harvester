@@ -6,7 +6,7 @@ from hashlib import sha256
 from pathlib import Path
 
 from daad_harvester.ddb_grammar import DDBProfile
-from daad_harvester.ddb_ir import decompile_ddb, recompile_ddb
+from daad_harvester.ddb_ir import OffsetTableNode, decompile_ddb, recompile_ddb
 from daad_harvester.unpack import compute_hashes
 
 
@@ -39,6 +39,15 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     recompiled = recompile_ddb(ir, BLANK_DDB_PROFILE)
 
     assert ir.source_sha256 == BLANK_DDB_SHA256
+    assert {
+        node.table_kind for node in ir.nodes if isinstance(node, OffsetTableNode)
+    } == {
+        "object_names_table",
+        "location_descriptions_table",
+        "messages_table",
+        "system_messages_table",
+        "connections_table",
+    }
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes

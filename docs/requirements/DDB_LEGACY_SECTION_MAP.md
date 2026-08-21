@@ -15,11 +15,11 @@ For the compact legacy layouts currently measured in the retained corpus, the na
 | --- | --- | --- | --- | --- |
 | `0x08` | Token block pointer | Token block pointer | Token block | Bounded; token compression grammar pending. |
 | `0x0A` | Process table pointer | Process table pointer | Process table | Typed source-backed pointer words and resolved offsets; process-entry grammar is separately decoded. |
-| `0x0C` | Object names pointer | Object names pointer | Object names table | Bounded; text table grammar pending. |
-| `0x0E` | Location descriptions pointer | Location descriptions pointer | Location descriptions table | Bounded; text table grammar pending. |
-| `0x10` | Messages pointer | Messages pointer | Messages table | Bounded; text table grammar pending. |
-| `0x12` | System messages pointer | System messages pointer | System messages table | Bounded; text table grammar pending. |
-| `0x14` | Connections pointer | Connections pointer | Connections table | Bounded; connection-record grammar pending. |
+| `0x0C` | Object names pointer | Object names pointer | Object names table | Typed pointer words and resolved text starts; text-record grammar pending. |
+| `0x0E` | Location descriptions pointer | Location descriptions pointer | Location descriptions table | Typed pointer words and resolved text starts; text-record grammar pending. |
+| `0x10` | Messages pointer | Messages pointer | Messages table | Typed pointer words and resolved text starts; text-record grammar pending. |
+| `0x12` | System messages pointer | System messages pointer | System messages table | Typed pointer words and resolved text starts; text-record grammar pending. |
+| `0x14` | Connections pointer | Connections pointer | Connections table | Typed pointer words and resolved record starts; connection-record grammar pending. |
 | `0x16` | Vocabulary pointer | Vocabulary pointer | Vocabulary | Bounded; vocabulary-record grammar pending. |
 | `0x18` | Object locations pointer | Object locations pointer | Object locations table | Bounded; object-location grammar pending. |
 | `0x1A` | Object words pointer | Object words pointer | Object words table | Bounded; object-word grammar pending. |
