@@ -482,6 +482,59 @@ def _inspect_daad_chr(data: bytes) -> MediaInspection:
     return _result("daad-legacy-chr", "recognized_evidence", "validated_legacy_chr_container", **evidence)
 
 
+def _inspect_legacy_dat_v2(data: bytes) -> MediaInspection:
+    """Validate the bounded V2 table grammar without decoding image payloads."""
+
+    table_offset = 0x000A
+    entry_size = 48
+    entry_count = 256
+    payload_floor = table_offset + entry_size * entry_count
+    if len(data) < payload_floor:
+        return _result("daad-legacy-dat-v2", "rejected", "truncated_v2_entry_table", size=len(data), minimum_size=payload_floor)
+    if data[:2] == b"\x03\x00":
+        byte_order = "big"
+    elif data[:2] == b"\xff\xff":
+        byte_order = "little"
+    else:
+        return _result("daad-legacy-dat-v2", "rejected", "missing_v2_signature", size=len(data))
+    declared_size = int.from_bytes(data[6:10], byte_order)
+    image_entries = 0
+    audio_entries = 0
+    populated_entries = 0
+    buffered_entries = 0
+    fixed_entries = 0
+    for index in range(entry_count):
+        offset = table_offset + index * entry_size
+        entry = data[offset:offset + entry_size]
+        member_offset = int.from_bytes(entry[0:4], byte_order)
+        flags = int.from_bytes(entry[4:6], byte_order)
+        if member_offset == 0:
+            continue
+        if member_offset < payload_floor or member_offset >= len(data):
+            return _result(
+                "daad-legacy-dat-v2", "rejected", "entry_offset_out_of_bounds",
+                byte_order=byte_order, entry_index=index, member_offset=member_offset,
+                payload_floor=payload_floor, file_size=len(data),
+            )
+        populated_entries += 1
+        if flags & 0x0010:
+            audio_entries += 1
+        else:
+            image_entries += 1
+        if flags & 0x0002:
+            buffered_entries += 1
+        if not flags & 0x0001:
+            fixed_entries += 1
+    return _result(
+        "daad-legacy-dat-v2", "recognized_evidence", "validated_v2_header_and_entry_offsets",
+        byte_order=byte_order, declared_size=declared_size, declared_size_matches_file=declared_size == len(data),
+        entry_table_offset=table_offset, entry_table_bytes=entry_size * entry_count,
+        payload_floor=payload_floor, populated_entries=populated_entries, image_entries=image_entries,
+        audio_entries=audio_entries, buffered_entries=buffered_entries, fixed_entries=fixed_entries,
+        payload_boundary="offsets_only_no_length_or_codec_validation",
+    )
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -520,6 +573,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_msx_rom(data)
     if extension == ".chr":
         return _inspect_daad_chr(data)
+    if extension == ".dat" and data[:2] in {b"\x03\x00", b"\xff\xff"}:
+        return _inspect_legacy_dat_v2(data)
     if len(data) >= 512 and (
         data[510:512] == b"\x55\xaa" or is_msx_dos_fat12_boot_sector(data)
     ):
