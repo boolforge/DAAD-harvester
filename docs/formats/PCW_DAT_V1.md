@@ -31,6 +31,8 @@ The source-253 PCW package contains two structurally validated DAT files. Their 
 | `PARTE002.DAT` | 38,528 bytes | 10 | `validated_pcw_v1_resource_directory` |
 | `PARTE000.PIC` | 16,000 bytes | Not yet decoded | Retained, explicitly unresolved picture-resource profile. |
 
+The PIC size alone is insufficient to identify a PCW screen profile. An independent PCW video-memory reference describes a native 720×256 monochrome image with roller-RAM line addressing, which does not match an unqualified 16,000-byte full-frame claim.[3] The file is therefore not routed through the DAT resource decoder or labelled a raw PCW screen.
+
 ## Rejection behavior and next evidence
 
 The native inspector rejects a truncated fixed directory, invalid machine/mode/count header, any nonzero resource offset before `0x0A06`, any offset outside the file, and a declared-count/directory-population mismatch. The retained-artifact regression covers both Torreoscura DAT files and a synthetic offset-before-directory corruption case.
@@ -41,3 +43,4 @@ Native Harvester now implements the pinned ADP PCW-specific byte-stream decompre
 
 [1]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/dmg.cpp#L1174-L1334 "Pinned ADP PCW DAT V1 reader and profile detector"
 [2]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/dmg_imgc.cpp#L8-L123 "Pinned ADP PCW resource decompression and pixel-layout conversion"
+[3]: https://github.com/Zigazou/amstrad-pcw-technical-info/blob/master/video-memory/README.md "Amstrad PCW video memory and controller"
