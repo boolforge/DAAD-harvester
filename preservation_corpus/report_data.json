@@ -50878,6 +50878,74 @@
           "authentic_release": "not_applicable_blank_fixture",
           "emulator": "not_applicable_container_fixture"
         }
+      },
+      {
+        "schema_version": 1,
+        "generator_id": "adf-ofs-blank-standard-dd-v1",
+        "technical_medium": "amiga_adf_ofs",
+        "status": "generated_structurally_valid",
+        "inputs": {
+          "profile": "blank_adf_ofs_dd_1760x512",
+          "volume_name": "EMPTY",
+          "timestamp": "0_days_0_minutes_0_ticks",
+          "filesystem_claim": "empty_ofs_filesystem_no_members"
+        },
+        "output": {
+          "byte_length": 901120,
+          "sha256": "0579352c016748a32e12cc5900ce04b0f69e05d9bd04c5fd52764fd38e161468",
+          "md5_full": "d00ffe4cedd68c79b017b460c10cef88",
+          "checksums": {
+            "md5_full": "d00ffe4cedd68c79b017b460c10cef88",
+            "md5_5000": "779f9edc55483eb93e6c655156bcd861",
+            "md5_tail5000": "6bf95a48f366bdf8af3a198c7b723c77",
+            "sha1": "768e99f59eb0334472399eedb6c21dc628e3d1d3",
+            "sha224": "0b511c04a7706e24446bf36087c7e603b853e3b665b808f638803b81",
+            "sha256": "0579352c016748a32e12cc5900ce04b0f69e05d9bd04c5fd52764fd38e161468",
+            "sha384": "d7a9777d8d005278084654a3cf88680e20b21e09700e03b449ada5ae7d3cdbbf591b59efbd09fe351f60e9e59254e3df",
+            "sha512": "5e3bd9b112ac3d526a76fc84bc58cc4958caf5ed22002d7477c07f86e72aae34b4e460c0096bccd4277637ce0835eea2cf509bac75d9a61bb523597029a50253",
+            "sha3_256": "6cecaa1e7e6e5abbf57a8ea30b267621cd27d6737d2e1845af6301cc0f9327ff",
+            "sha3_512": "0d2bfb223f64959c66c9af36f42ff8e2c515b6c0b2518bfd6e606e18deda0f1c473fc41dfb9d2604a18a87b059fb791a92f36574fc9e04aa95aa27e8533f7d3d",
+            "blake2b": "4a62b83d269aef7b230ce069b923cdd6550afb9f2a77bbf183d6f3c44bbf8849191fce2d80ee45c19e623f17175f9f66faaf7f240bbc5c44320e8a2761f0f8cc",
+            "blake2s": "16575cd6699271b5aa88eef23f31b963ff1b6c2b984d5744b22b196acbb7436f",
+            "crc32": "c2e5a26d",
+            "adler32": "ad8c0797",
+            "xxh32": "c318c1ae",
+            "xxh64": "d0081078e6d7c7bc",
+            "xxh128": "2677bf3c58307234ef3d2d7fc5af3c48"
+          }
+        },
+        "native_validation": {
+          "parser": "amiga-adf",
+          "status": "recognized_evidence",
+          "validation": "validated_adf_ofs_ffs_structure",
+          "evidence": {
+            "dos_type": "DOS\u0000",
+            "filesystem": "ofs",
+            "blocks": 1760,
+            "root_block": 880,
+            "bitmap_block": 881,
+            "root_hash_table_entries": 72,
+            "writer_validation": {
+              "adf_variant": "ofs_dd_blank",
+              "block_size": 512,
+              "blocks": 1760,
+              "root_block": 880,
+              "bitmap_block": 881,
+              "volume_name": "EMPTY",
+              "timestamp": {
+                "days": 0,
+                "minutes": 0,
+                "ticks": 0
+              },
+              "filesystem_claim": "empty_ofs_filesystem_no_members"
+            }
+          }
+        },
+        "comparison_boundary": {
+          "adp": "source_crosswalk_timestamp_nondeterminism_recorded",
+          "authentic_release": "not_applicable_blank_fixture",
+          "emulator": "not_applicable_container_fixture"
+        }
       }
     ],
     "boundary": "Generator evidence proves only the listed deterministic output and native structural validation. Filesystem population, authentic-release equivalence, and target execution remain explicit per-generator comparison fields."

@@ -164,7 +164,7 @@ class StaticReportExporter:
             {"schema_version": 1, "summary": {}, "artifacts": [], "unavailable": True},
         )
         catalog_entries = self._read_json(self.output_dir / "daad_catalog.json", [])
-        generator_entries = [verify_native_generators()]
+        generator_entries = verify_native_generators()
         log_candidates = {
             "general": self.output_dir / "logs" / "daad_general.log",
             "games": self.output_dir / "daad_games.log",

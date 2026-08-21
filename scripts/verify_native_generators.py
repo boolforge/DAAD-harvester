@@ -11,7 +11,7 @@ import argparse
 import json
 from typing import Sequence
 
-from daad_harvester.generator_evidence import generated_fixture_evidence, verify_native_generators
+from daad_harvester.generator_evidence import generated_fixtures_evidence, verify_native_generators
 
 
 # Compatibility alias retained for focused callers while installed package
@@ -27,7 +27,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="print canonical fixture evidence without requiring the pinned SHA-256",
     )
     args = parser.parse_args(argv)
-    evidence = generated_fixture_evidence() if args.print_evidence else verify_native_generators()
+    evidence = generated_fixtures_evidence() if args.print_evidence else verify_native_generators()
     print(json.dumps(evidence, sort_keys=True, indent=2))
     return 0
 
