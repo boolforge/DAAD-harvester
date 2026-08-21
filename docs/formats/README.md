@@ -5,6 +5,7 @@
 | Module | Single responsibility | Status |
 | --- | --- | --- |
 | [Tape streams](TAPE_STREAMS.md) | TAP, TZX/CDT, CBM TAP, CAS/TSX boundaries. | Implementation contract |
+| [TZX/CDT generation](TZX_CDT_GENERATION.md) | Deterministic standard-speed TZX/CDT writer, validation, comparison, and publication contract. | Generation contract |
 | [CBM disk and program media](CBM_DISK_AND_PROGRAM.md) | D64/D71, T64, P00/PRG, G64 preservation evidence. | Implementation contract |
 | [CP/M DSK](CPM_DSK.md) | CPC/PCW DSK and allocation/extent rules. | Implementation contract |
 | [Extended DSK generation](EXTENDED_DSK_GENERATION.md) | Deterministic Extended DSK writer, validator, comparison, and public-evidence contract. | Implementation contract |
