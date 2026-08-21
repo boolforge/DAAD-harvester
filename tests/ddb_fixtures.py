@@ -93,7 +93,9 @@ def make_legacy_ddb(platform: str, *, major: int = 2, spanish: bool = False) -> 
     data[40] = 0x80  # bounded vocabulary placeholder
     data[56:60] = bytes((1, 1)) + (64).to_bytes(2, endianness)
     data[60] = 0  # end of process-entry list
-    data[64:66] = b"\x01\xff"
+    # DONE has no operands, so the following 0xFF is an actual end-of-entry
+    # marker rather than a byte accidentally consumed as an operand.
+    data[64:66] = b"\x16\xff"
     _write_word(data, 72, 56, endianness)
     return bytes(data)
 
