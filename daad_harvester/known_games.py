@@ -24,6 +24,7 @@ CASA_CHICHEN_ITZA_URL = "https://solutionarchive.com/game/id%2C2602/Chichen+Itza
 CPC_POWER_CHICHEN_ITZA_URL = "https://www.cpc-power.com/index.php?page=detail&num=549"
 EIGHT_FEET_UNDER_URL = "https://8bitgames.itch.io/eight-feet-under"
 CSDB_REVENGE_OF_MORIARTY_URL = "https://csdb.dk/release/?id=182937"
+TORREOSCURA_PUBLISHER_DOWNLOADS_URL = "https://zonafi.es/torreoscura/descargas_eng.html"
 
 
 @dataclass(frozen=True)
@@ -194,7 +195,7 @@ KNOWN_GAMES: Tuple[KnownGame, ...] = (
         engine_family="DAAD",
         engine_version_evidence="DAAD engine-family evidence; exact DDB/interpreter build must be measured from each release.",
         platforms=("zx", "cpc", "c64", "msx", "pcw", "dos"),
-        evidence_urls=(COMPUTER_EMUZONE_DAAD_URL,),
+        evidence_urls=(COMPUTER_EMUZONE_DAAD_URL, TORREOSCURA_PUBLISHER_DOWNLOADS_URL),
     ),
     KnownGame(
         game_id="venganza_la_sierva_de_la_muerte",

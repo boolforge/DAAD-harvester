@@ -51,6 +51,14 @@ def main() -> None:
         help="Maximum pending sources to fetch after priority ordering"
     )
     parser.add_argument(
+        "--fetch-source",
+        type=int,
+        action="append",
+        default=[],
+        metavar="SOURCE_ID",
+        help="Fetch only a pending source ID; repeatable"
+    )
+    parser.add_argument(
         "--reunpack-source",
         type=int,
         action="append",
@@ -144,7 +152,11 @@ def main() -> None:
                 dashboard.set_active_phase("3. FETCH")
             logger.info("executing_phase_fetch")
             fetcher = Fetcher(db, download_dir=settings.output_dir / "downloads")
-            await fetcher.fetch_pending_sources(parallel=args.parallel, max_sources=args.max_sources)
+            await fetcher.fetch_pending_sources(
+                parallel=args.parallel,
+                max_sources=args.max_sources,
+                source_ids=args.fetch_source or None,
+            )
 
         # Phase 4: Unpack
         if phase in ("unpack", "all"):

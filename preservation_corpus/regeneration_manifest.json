@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
+          "sha256": "a77e2b5ebb78e75c836344a1f5c389c93333d1736f4e165a2dd232a14f3735d6"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
+          "sha256": "a77e2b5ebb78e75c836344a1f5c389c93333d1736f4e165a2dd232a14f3735d6"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
+          "sha256": "a77e2b5ebb78e75c836344a1f5c389c93333d1736f4e165a2dd232a14f3735d6"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -278,20 +278,12 @@
         {
           "path": "preservation_corpus/daad_catalog.json",
           "sha256": "516a1fe9926b964a80295f49681c1012dd095d7d691fbdde7f064b3c97c3d09f"
-        },
-        {
-          "path": "preservation_corpus/logs/daad_general.log",
-          "sha256": "a1f2305c173e3c2b72a9d1d99ed04d6a2b662e5b53f86619f5491aa982be0ca7"
-        },
-        {
-          "path": "preservation_corpus/logs/daad_games.log",
-          "sha256": "1aeae80ec6dd8c4fa1ed2ee330a25f5f56610f2c266d3c01383c2364db200b9e"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "a03850bd2e2b2211cd8c724a7824a18e5fd11a4d6f40efd4931c1bdfded6d07c"
+          "sha256": "f6c0c1e3c64a9528bafe9c6151fc71852bd825814668dc8dcc2f8b81d4f5cd97"
         }
       ],
       "external_validators": [
@@ -321,13 +313,13 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "fec54a918ee954043f767e7740974c23a851712f5c2f591c73ad23863b20fc90"
+          "sha256": "a77e2b5ebb78e75c836344a1f5c389c93333d1736f4e165a2dd232a14f3735d6"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/public_artifacts_manifest.json",
-          "sha256": "7b5bd1e68b1ae1f376c0b745e26367e0819bccc7c6751bed41b1e7fe1ca69103"
+          "sha256": "5e5e999bcc8912209b72fbb5296338d3a0c2d092c9ddef0064e380c2cd571306"
         }
       ],
       "external_validators": [

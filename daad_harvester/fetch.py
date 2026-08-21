@@ -4,7 +4,7 @@ import asyncio
 import hashlib
 import random
 from pathlib import Path
-from typing import Optional
+from typing import Iterable, Optional
 from urllib.parse import urlparse, quote
 import httpx
 import aiofiles
@@ -268,9 +268,17 @@ class Fetcher:
         )
         return False
 
-    async def fetch_pending_sources(self, parallel: int = 8, max_sources: Optional[int] = None) -> int:
+    async def fetch_pending_sources(
+        self,
+        parallel: int = 8,
+        max_sources: Optional[int] = None,
+        source_ids: Optional[Iterable[int]] = None,
+    ) -> int:
         """Fetch pending sources in database priority order, optionally with a bounded batch."""
         pending = self.db.get_pending_sources()
+        if source_ids is not None:
+            selected_ids = frozenset(source_ids)
+            pending = [source for source in pending if source.id in selected_ids]
         if max_sources is not None:
             pending = pending[:max_sources]
         if not pending:

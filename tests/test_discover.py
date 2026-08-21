@@ -251,7 +251,7 @@ async def test_run_all_discovery_wires_proxy_into_client_and_logs_adapter_except
         name: AsyncMock(return_value=0)
         for name in [
             "discover_internet_archive", "discover_aminet", "discover_csdb",
-            "discover_plus4world", "discover_generation_msx", "discover_computeremuzone", "discover_atarimania",
+            "discover_plus4world", "discover_generation_msx", "discover_computeremuzone", "discover_zonafi_torreoscura", "discover_atarimania",
             "discover_github", "discover_itchio", "discover_ifdb", "discover_zxdb",
             "discover_wikicaad", "discover_world_of_spectrum", "discover_ifarchive", "discover_web_search",
         ]
@@ -422,6 +422,33 @@ async def test_computeremuzone_catalogs_badged_endpoints_without_queuing_blocked
     assert all(source.source_role == "release_catalog" for source in sources)
     assert all(source.source_record_url == source.url for source in sources)
     assert {source.source_release_id for source in sources} == {"858", "286", "991", "287", "181", "650", "228"}
+
+
+@pytest.mark.anyio
+async def test_zonafi_torreoscura_admits_only_explicit_named_port_archives(tmp_path):
+    db = Database(tmp_path / "test.db")
+    discoverer = Discoverer(db)
+    html = """
+    <a href="to_zx_eng.zip">ZX SPECTRUM</a>
+    <a href="to_msx_eng.zip">MSX</a>
+    <a href="to_pcw_eng.zip">Amstrad PCW</a>
+    <a href="to_cga_eng.zip">PC MS-DOS CGA</a>
+    <a href="index_eng.html">Home</a>
+    <a href="https://example.org/unrelated.zip">Unrelated</a>
+    """
+    with patch.object(discoverer, "_fetch_url", new_callable=AsyncMock, return_value=html):
+        async with httpx.AsyncClient() as client:
+            assert await discoverer.discover_zonafi_torreoscura(client) == 4
+    sources = db.get_pending_sources()
+    assert {(source.platform, source.url) for source in sources} == {
+        ("zx", "https://zonafi.es/torreoscura/to_zx_eng.zip"),
+        ("msx", "https://zonafi.es/torreoscura/to_msx_eng.zip"),
+        ("pcw", "https://zonafi.es/torreoscura/to_pcw_eng.zip"),
+        ("dos", "https://zonafi.es/torreoscura/to_cga_eng.zip"),
+    }
+    assert all(source.title == "Torreoscura" for source in sources)
+    assert all(source.known_game_id == "torreoscura" for source in sources)
+    assert all(source.source_record_url == "https://zonafi.es/torreoscura/descargas_eng.html" for source in sources)
 
 
 @pytest.mark.anyio

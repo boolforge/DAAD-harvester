@@ -113,6 +113,25 @@ async def test_fetch_source_falls_back_to_wayback_after_connection_errors_exhaus
 
 
 @pytest.mark.anyio
+async def test_fetch_pending_sources_filters_to_explicit_source_ids_before_fetch(tmp_path, monkeypatch):
+    db = Database(tmp_path / "test.db")
+    first_id = db.add_source(url="https://example.test/first.zip", source_tier="archive")
+    selected_id = db.add_source(url="https://example.test/selected.zip", source_tier="archive")
+    fetcher = Fetcher(db, download_dir=tmp_path / "downloads")
+    fetched_ids: list[int] = []
+
+    async def fake_fetch(source, client):
+        fetched_ids.append(source.id)
+        return True
+
+    monkeypatch.setattr(fetcher, "fetch_source", fake_fetch)
+    await fetcher.fetch_pending_sources(parallel=1, source_ids=[selected_id])
+
+    assert first_id not in fetched_ids
+    assert fetched_ids == [selected_id]
+
+
+@pytest.mark.anyio
 async def test_fetch_source_falls_back_to_wayback_on_dead_link_http_status(tmp_path, monkeypatch):
     """Coverage for the *original* wayback path (HTTP 404/410), which had no
     dedicated test before this session despite being the primary fallback

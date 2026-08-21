@@ -75,6 +75,7 @@ ARCHIVE_METADATA_URL = "https://archive.org/metadata/{identifier}"
 ZXINFO_SEARCH_URL = "https://api.zxinfo.dk/v3/search"
 SPECTRUM_COMPUTING_BASE_URL = "https://spectrumcomputing.co.uk"
 WORLD_OF_SPECTRUM_PUBLISHER_URL = "https://worldofspectrum.org/archive/publishers/Aventuras-AD-SA"
+TORREOSCURA_PUBLISHER_DOWNLOADS_URL = "https://zonafi.es/torreoscura/descargas_eng.html"
 # Atarimania does not expose a working DAAD search index. These are maintained
 # public Atari ST record pages independently found through its indexed catalog;
 # every page is re-verified for DAAD wording before it is retained as evidence.
@@ -668,6 +669,54 @@ class Discoverer:
         self.logger_suite.log_discovery("COMPUTER EMUZONE", index_url, inserted)
         return inserted
 
+    async def discover_zonafi_torreoscura(self, client: httpx.AsyncClient) -> int:
+        """Discover only explicit public Torreoscura ZIP ports from its release page."""
+
+        content = await self._fetch_url(client, TORREOSCURA_PUBLISHER_DOWNLOADS_URL)
+        if not content:
+            self.logger_suite.log_discovery(
+                "ZONA F.I. TORREOSCURA",
+                TORREOSCURA_PUBLISHER_DOWNLOADS_URL,
+                0,
+                status="UNAVAILABLE",
+            )
+            return 0
+        platforms = {
+            "zx spectrum": "zx",
+            "msx": "msx",
+            "amstrad pcw": "pcw",
+            "pc ms-dos cga": "dos",
+        }
+        inserted = 0
+        soup = BeautifulSoup(content, "html.parser")
+        for anchor in soup.find_all("a", href=True):
+            label = anchor.get_text(" ", strip=True).casefold()
+            platform = platforms.get(label)
+            if not platform:
+                continue
+            artifact_url = self._canonical_url(
+                urljoin(TORREOSCURA_PUBLISHER_DOWNLOADS_URL, anchor["href"])
+            )
+            if self._add_source(
+                artifact_url,
+                SourceTier.ARCHIVE,
+                title="Torreoscura",
+                platform=platform,
+                source_name="Zona F.I. Torreoscura release page",
+                source_record_url=TORREOSCURA_PUBLISHER_DOWNLOADS_URL,
+                source_release_id=f"torreoscura-{platform}-eng",
+                provenance_json=json.dumps({
+                    "adapter": "zonafi_torreoscura",
+                    "page_label": anchor.get_text(" ", strip=True),
+                    "release_page": TORREOSCURA_PUBLISHER_DOWNLOADS_URL,
+                }),
+            ):
+                inserted += 1
+        self.logger_suite.log_discovery(
+            "ZONA F.I. TORREOSCURA", TORREOSCURA_PUBLISHER_DOWNLOADS_URL, inserted
+        )
+        return inserted
+
     async def discover_atarimania(self, client: httpx.AsyncClient) -> int:
         """Catalog bounded, independently indexed Atari ST DAAD release records."""
         inserted = 0
@@ -967,6 +1016,7 @@ class Discoverer:
             "plus4world": self.discover_plus4world,
             "generation_msx": self.discover_generation_msx,
             "computeremuzone": self.discover_computeremuzone,
+            "zonafi_torreoscura": self.discover_zonafi_torreoscura,
             "atarimania": self.discover_atarimania,
             "github": self.discover_github,
             "itchio": self.discover_itchio,
