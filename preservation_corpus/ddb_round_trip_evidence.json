@@ -28,11 +28,6 @@
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
         },
         {
-          "byte_end": 2252,
-          "byte_start": 2250,
-          "reason": "legacy_object_words_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 2254,
           "byte_start": 2253,
           "reason": "legacy_object_attributes_table_payload_pending_grammar"
@@ -162,11 +157,6 @@
           "byte_end": 2334,
           "byte_start": 2049,
           "reason": "legacy_token_block_payload_pending_grammar"
-        },
-        {
-          "byte_end": 18171,
-          "byte_start": 18123,
-          "reason": "legacy_object_words_table_payload_pending_grammar"
         },
         {
           "byte_end": 18220,
@@ -445,11 +435,6 @@
           "reason": "legacy_token_block_payload_pending_grammar"
         },
         {
-          "byte_end": 16043,
-          "byte_start": 15959,
-          "reason": "legacy_object_words_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 16212,
           "byte_start": 16211,
           "reason": "legacy_object_locations_table_payload_pending_grammar"
@@ -726,11 +711,6 @@
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
         },
         {
-          "byte_end": 2488,
-          "byte_start": 2484,
-          "reason": "legacy_object_words_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 2497,
           "byte_start": 2496,
           "reason": "legacy_object_locations_table_payload_pending_grammar"
@@ -880,11 +860,6 @@
           "byte_end": 34740,
           "byte_start": 34739,
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 34964,
-          "byte_start": 34890,
-          "reason": "legacy_object_words_table_payload_pending_grammar"
         },
         {
           "byte_end": 35002,

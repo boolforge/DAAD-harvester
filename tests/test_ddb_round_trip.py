@@ -118,6 +118,7 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
         node.table_kind for node in ir.nodes if isinstance(node, ObjectTableNode)
     } == {
         "object_locations_table",
+        "object_words_table",
         "object_attributes_table",
         "extended_object_attributes_table",
     }

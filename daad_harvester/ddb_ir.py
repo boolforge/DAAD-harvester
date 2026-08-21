@@ -543,7 +543,11 @@ def _object_table_nodes(
 
     object_count = header["object_count"]
     payload_end = payload_offset + payload_size
-    table_specs = [("object_locations_table", 8, 1), ("object_attributes_table", 10, 1)]
+    table_specs = [
+        ("object_locations_table", 8, 1),
+        ("object_words_table", 9, 2),
+        ("object_attributes_table", 10, 1),
+    ]
     if header["major_version"] >= 2:
         table_specs.append(("extended_object_attributes_table", 11, 2))
     nodes: list[ObjectTableNode] = []
