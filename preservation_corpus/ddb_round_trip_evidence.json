@@ -24,7 +24,7 @@
         },
         {
           "byte_end": 2244,
-          "byte_start": 2236,
+          "byte_start": 2243,
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
         },
         {

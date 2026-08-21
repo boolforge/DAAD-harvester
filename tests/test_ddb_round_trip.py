@@ -9,6 +9,7 @@ from daad_harvester.ddb_grammar import DDBProfile
 from daad_harvester.ddb_ir import (
     OffsetTableNode,
     ObjectTableNode,
+    ConnectionListNode,
     TextNode,
     VocabularyNode,
     decompile_ddb,
@@ -77,6 +78,9 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
         "object_attributes_table",
         "extended_object_attributes_table",
     }
+    connection_nodes = [node for node in ir.nodes if isinstance(node, ConnectionListNode)]
+    assert connection_nodes
+    assert all(node.raw_bytes.endswith(b"\xff") for node in connection_nodes)
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes

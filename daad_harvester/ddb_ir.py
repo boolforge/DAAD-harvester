@@ -98,6 +98,14 @@ class ObjectTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ConnectionListNode(DDBNode):
+    """A legacy location connection list of verb/destination pairs and `0xFF`."""
+
+    table_references: tuple[str, ...]
+    pairs: tuple[tuple[int, int], ...]
+
+
+@dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
     """A XOR-encoded text record with its decoded terminator and table references."""
 
@@ -147,6 +155,7 @@ TopLevelDDBNode: TypeAlias = (
     | OffsetTableNode
     | VocabularyNode
     | ObjectTableNode
+    | ConnectionListNode
     | TextNode
     | TokenNode
     | CondActStreamNode
@@ -557,6 +566,46 @@ def _object_table_nodes(
     return nodes
 
 
+def _connection_list_nodes(
+    data: bytes,
+    *,
+    offset_tables: list[OffsetTableNode],
+    payload_end: int,
+    profile: DDBProfile,
+) -> list[ConnectionListNode]:
+    """Decode ADP's verb/destination pairs ending in a raw `0xFF` byte."""
+
+    references: dict[int, list[str]] = {}
+    for table in offset_tables:
+        if table.table_kind != "connections_table":
+            continue
+        for index, offset in enumerate(table.resolved_offsets):
+            references.setdefault(offset, []).append(f"connections_table[{index}]")
+    nodes: list[ConnectionListNode] = []
+    for start, table_references in sorted(references.items()):
+        position = start
+        pairs: list[tuple[int, int]] = []
+        while position < payload_end and data[position] != 0xFF:
+            if position + 2 > payload_end:
+                raise ValueError("truncated verified DDB connection pair")
+            pairs.append((data[position], data[position + 1]))
+            position += 2
+        if position >= payload_end:
+            raise ValueError("verified DDB connection list lacks its 0xFF terminator")
+        byte_end = position + 1
+        nodes.append(
+            ConnectionListNode(
+                start,
+                byte_end,
+                profile,
+                data[start:byte_end],
+                tuple(table_references),
+                tuple(pairs),
+            )
+        )
+    return nodes
+
+
 def _text_nodes(
     data: bytes,
     *,
@@ -793,6 +842,14 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             profile=profile,
         )
         known_nodes.extend(offset_tables)
+        known_nodes.extend(
+            _connection_list_nodes(
+                data,
+                offset_tables=offset_tables,
+                payload_end=payload_end,
+                profile=profile,
+            )
+        )
         known_nodes.extend(
             _text_nodes(
                 data,
