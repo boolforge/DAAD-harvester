@@ -498,7 +498,16 @@ class TUIDashboard:
         """Show the same CI-gated native generator evidence as the static report."""
 
         _, accent, _, border = self.theme
-        evidence = verify_native_generators()
+        records = verify_native_generators()
+        if not records:
+            return Panel("No canonical native-generator evidence is available.", border_style=border)
+        first_output = records[0]["output"]
+        assert isinstance(first_output, dict)
+        first_checksums = first_output["checksums"]
+        assert isinstance(first_checksums, dict)
+        slots_per_generator = len(first_checksums) + 1
+        evidence_index, record_index = divmod(self.selected_index % (len(records) * slots_per_generator), slots_per_generator)
+        evidence = records[evidence_index]
         output = evidence["output"]
         validation = evidence["native_validation"]
         inputs = evidence["inputs"]
@@ -513,7 +522,8 @@ class TUIDashboard:
         table.add_column("Field", style=f"bold {accent}", width=24)
         table.add_column("Recorded value", overflow="fold")
         checksum_items = list(checksums.items())
-        if self.selected_index == 0:
+        if record_index == 0:
+            table.add_row("Generator record", f"{evidence_index + 1} of {len(records)}")
             table.add_row("Generator ID", str(evidence["generator_id"]))
             table.add_row("Technical medium", str(evidence["technical_medium"]))
             table.add_row("Status", str(evidence["status"]))
@@ -522,14 +532,15 @@ class TUIDashboard:
             table.add_row("Output size", str(output["byte_length"]))
             table.add_row("Native validator", f"{validation['parser']} · {validation['status']} · {validation['validation']}")
             table.add_row("Measured container evidence", Text(json.dumps(validation["evidence"], sort_keys=True)))
-            table.add_row("Checksums", "17 complete digests recorded. Press Down to browse the integrity window.")
+            table.add_row("Checksums", "17 complete digests recorded. Press Down to browse the integrity window and next generator.")
             table.add_row("ADP comparison", str(boundaries.get("adp", "not recorded")))
             table.add_row("Authentic release", str(boundaries.get("authentic_release", "not recorded")))
             table.add_row("Emulator", str(boundaries.get("emulator", "not recorded")))
         else:
-            selected_checksum = min(self.selected_index - 1, len(checksum_items) - 1)
+            selected_checksum = min(record_index - 1, len(checksum_items) - 1)
             window_start = min(selected_checksum, max(0, len(checksum_items) - 8))
             window = checksum_items[window_start:window_start + 8]
+            table.add_row("Generator record", f"{evidence_index + 1} of {len(records)}")
             table.add_row("Generator ID", str(evidence["generator_id"]))
             table.add_row("Integrity window", f"{window_start + 1}–{window_start + len(window)} of {len(checksum_items)} complete digests")
             table.add_row("Native validation", str(validation["validation"]))
@@ -538,7 +549,7 @@ class TUIDashboard:
         return Panel(
             table,
             title=f"[bold {accent}]NATIVE FORMAT GENERATOR EVIDENCE[/bold {accent}]",
-            subtitle="CI-gated container evidence. Up/Down opens all checksum windows; no filesystem, historical-release, or target-execution claim is inferred.",
+            subtitle="CI-gated container evidence. Up/Down opens all checksum windows and then the next generator; no filesystem, historical-release, or target-execution claim is inferred.",
             border_style=border,
         )
 
