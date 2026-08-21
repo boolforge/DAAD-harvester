@@ -114,6 +114,21 @@ def test_retained_r4_msx_mdg_is_exact_canonical_template() -> None:
     assert result.evidence["grammar_boundary"] == "exact_template_only_no_generic_mdg_decoder"
 
 
+def test_retained_source250_ch0_is_validated_as_legacy_chr_by_exact_duplicate_evidence() -> None:
+    root = Path(__file__).resolve().parents[1]
+    ch0 = (root / "preservation_corpus" / "extracted" / "depth2_918656c1_PART1.CH0").read_bytes()
+    chr_data = (root / "preservation_corpus" / "extracted" / "depth2_918656c1_PARTE001.CHR").read_bytes()
+
+    result = inspect_native_media("PART1.CH0", ch0)
+
+    assert ch0 == chr_data
+    assert result.parser == "daad-legacy-chr"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_legacy_chr_container"
+    assert result.evidence["header_profile"] == "adp_legacy_chr_writer"
+    assert result.evidence["glyph_geometry"] == "256 glyphs × 8 rows × 8 bits"
+
+
 def test_same_size_mdx_mutation_remains_an_explicit_unrecognized_profile() -> None:
     root = Path(__file__).resolve().parents[1]
     data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes())

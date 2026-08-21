@@ -920,7 +920,7 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_msx_rom(data)
     if extension == ".mdg":
         return _inspect_msx_r4_mdg(data)
-    if extension == ".chr":
+    if extension in {".ch0", ".chr"}:
         return _inspect_daad_chr(data)
     if extension == ".dat" and data[:4] == b"\x00\x00\x04\x00":
         return _inspect_pcw_dat_v1(data)
