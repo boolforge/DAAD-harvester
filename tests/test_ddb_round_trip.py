@@ -5,6 +5,8 @@ from __future__ import annotations
 from hashlib import sha256
 from pathlib import Path
 
+import pytest
+
 from daad_harvester.ddb_grammar import DDBProfile
 from daad_harvester.ddb_ir import (
     AlignmentPaddingNode,
@@ -12,6 +14,8 @@ from daad_harvester.ddb_ir import (
     ObjectTableNode,
     ConnectionListNode,
     HeaderExtensionNode,
+    ProcessCodeAlignmentNode,
+    ProcessEntryNode,
     ProcessSectionMarkerNode,
     TokenNode,
     TextNode,
@@ -182,6 +186,25 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     mutated_ir = decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
     assert not any(isinstance(node, ProcessSectionMarkerNode) for node in mutated_ir.nodes)
     assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.alignment)
+        for node in ir.nodes
+        if isinstance(node, ProcessCodeAlignmentNode)
+    ] == [
+        (0x08F9, 0x08FA, b"\x00", 2),
+        (0x0945, 0x0946, b"\x00", 2),
+        (0x0971, 0x0972, b"\x00", 2),
+        (0x0981, 0x0982, b"\x00", 2),
+    ]
+    process_terminators = [
+        node for node in ir.nodes if isinstance(node, ProcessEntryNode) and node.is_terminator
+    ]
+    assert process_terminators
+    assert all(node.raw_bytes == b"\x00\x00" for node in process_terminators)
+    mutated = bytearray(original)
+    mutated[0x0987] = 0x01
+    with pytest.raises(ValueError, match="two-byte zero terminator"):
+        decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
@@ -216,6 +239,26 @@ def test_retained_legacy_v2_spanish_dos_object_attribute_padding_is_bounded() ->
     mutated_ir = decompile_ddb(bytes(mutated), SPANISH_DOS_V2_DDB_PROFILE)
     assert not any(isinstance(node, ProcessSectionMarkerNode) for node in mutated_ir.nodes)
     assert recompile_ddb(mutated_ir, SPANISH_DOS_V2_DDB_PROFILE) == bytes(mutated)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.alignment)
+        for node in ir.nodes
+        if isinstance(node, ProcessCodeAlignmentNode)
+    ] == [
+        (0x07B7, 0x07B8, b"\x00", 2),
+        (0x0803, 0x0804, b"\x00", 2),
+        (0x082F, 0x0830, b"\x00", 2),
+        (0x083F, 0x0840, b"\x00", 2),
+        (0x08F5, 0x08F6, b"\x00", 2),
+    ]
+    process_terminators = [
+        node for node in ir.nodes if isinstance(node, ProcessEntryNode) and node.is_terminator
+    ]
+    assert process_terminators
+    assert all(node.raw_bytes == b"\x00\x00" for node in process_terminators)
+    mutated = bytearray(original)
+    mutated[0x0845] = 0x01
+    with pytest.raises(ValueError, match="two-byte zero terminator"):
+        decompile_ddb(bytes(mutated), SPANISH_DOS_V2_DDB_PROFILE)
 
 
 def test_retained_legacy_v1_c64_target_memory_ddb_round_trips_byte_identically() -> None:

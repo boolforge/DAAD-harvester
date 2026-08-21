@@ -149,6 +149,15 @@ class ProcessSectionMarkerNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ProcessCodeAlignmentNode(DDBNode):
+    """ADP's raw zero aligning final odd-length CondAct code before entries."""
+
+    alignment: int
+    preceding_stream_offset: int
+    following_process_index: int
+
+
+@dataclass(frozen=True, slots=True)
 class CondActStreamNode(DDBNode):
     """A terminated executable stream decoded by the selected native grammar."""
 
@@ -158,7 +167,7 @@ class CondActStreamNode(DDBNode):
 
 @dataclass(frozen=True, slots=True)
 class ProcessEntryNode(DDBNode):
-    """A verb/noun/stream-pointer record or its one-byte process-list terminator."""
+    """A verb/noun/stream-pointer record or its two-byte process-list terminator."""
 
     process_index: int
     verb: int | None
@@ -188,6 +197,7 @@ TopLevelDDBNode: TypeAlias = (
     | TokenNode
     | AlignmentPaddingNode
     | ProcessSectionMarkerNode
+    | ProcessCodeAlignmentNode
     | CondActStreamNode
     | ProcessEntryNode
     | OpaqueNode
@@ -377,12 +387,15 @@ def _process_entry_nodes(
         entry_offset = process_start
         while entry_offset < payload_end:
             if data[entry_offset] == 0:
+                terminator_end = entry_offset + 2
+                if terminator_end > payload_end or data[entry_offset:terminator_end] != b"\x00\x00":
+                    raise ValueError("verified DDB process-entry list lacks its two-byte zero terminator")
                 entries.append(
                     ProcessEntryNode(
                         entry_offset,
-                        entry_offset + 1,
+                        terminator_end,
                         profile,
-                        data[entry_offset:entry_offset + 1],
+                        data[entry_offset:terminator_end],
                         process_index,
                         None,
                         None,
@@ -824,6 +837,43 @@ def _process_section_marker_node(
     )
 
 
+def _process_code_alignment_nodes(
+    data: bytes,
+    *,
+    stream_nodes: list[CondActStreamNode],
+    process_entries: list[ProcessEntryNode],
+    profile: DDBProfile,
+) -> list[ProcessCodeAlignmentNode]:
+    """Decode ADP's odd CondAct-code alignment immediately before entry lists."""
+
+    entries_by_start = {
+        entry.byte_start: entry
+        for entry in process_entries
+        if not entry.is_terminator
+    }
+    nodes: list[ProcessCodeAlignmentNode] = []
+    for stream in stream_nodes:
+        padding_start = stream.byte_end
+        following_entry = entries_by_start.get(padding_start + 1)
+        if (
+            padding_start & 1
+            and data[padding_start:padding_start + 1] == b"\x00"
+            and following_entry is not None
+        ):
+            nodes.append(
+                ProcessCodeAlignmentNode(
+                    padding_start,
+                    padding_start + 1,
+                    profile,
+                    data[padding_start:padding_start + 1],
+                    2,
+                    stream.byte_start,
+                    following_entry.process_index,
+                )
+            )
+    return nodes
+
+
 def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
@@ -1116,6 +1166,14 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         )
         if process_section_marker is not None:
             known_nodes.append(process_section_marker)
+        known_nodes.extend(
+            _process_code_alignment_nodes(
+                data,
+                stream_nodes=stream_nodes,
+                process_entries=entries,
+                profile=profile,
+            )
+        )
     ir = DDBIR(
         profile,
         sha256(data).hexdigest(),

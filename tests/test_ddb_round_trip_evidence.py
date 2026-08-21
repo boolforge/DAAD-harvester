@@ -20,6 +20,9 @@ def test_retained_round_trip_evidence_has_complete_digests_and_visible_boundarie
         "legacy-v2-amiga-big-raw-chichen-part1",
         "legacy-v2-amiga-big-raw-chichen-part2",
     }
+    semantic_statuses = {record["semantic_status"] for record in records.values()}
+    assert semantic_statuses <= {"semantically_decoded", "structurally_bounded"}
+    assert "semantically_decoded" in semantic_statuses
     for record in records.values():
         assert record["byte_comparison"] == {
             "byte_identical": True,
@@ -28,7 +31,9 @@ def test_retained_round_trip_evidence_has_complete_digests_and_visible_boundarie
         assert record["source_digests"] == record["recompiled_digests"]
         assert len(record["source_digests"]) == 17
         assert all(record["source_digests"].values())
-        assert record["semantic_status"] == "structurally_bounded"
-        assert record["opaque_ranges"]
+        if record["semantic_status"] == "structurally_bounded":
+            assert record["opaque_ranges"]
+        else:
+            assert record["opaque_ranges"] == []
     assert records["legacy-v1-c64-little-0x3880-raw-jabato-ass-part1"]["profile"]["base_address"] == 0x3880
     assert records["legacy-v2-zx-little-0x8400-raw-chichen-embedded-code"]["profile"]["base_address"] == 0x8400
