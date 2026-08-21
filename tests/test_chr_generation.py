@@ -13,6 +13,7 @@ from daad_harvester.chr_generation import (
     build_daad_chr,
     validate_daad_chr,
 )
+from daad_harvester.media_inspection import inspect_native_media
 
 
 def test_blank_chr_fixture_is_deterministic_and_structurally_partitioned() -> None:
@@ -24,6 +25,9 @@ def test_blank_chr_fixture_is_deterministic_and_structurally_partitioned() -> No
     assert evidence["glyph_count"] == CHR_GLYPH_COUNT
     assert evidence["runtime_payload_offset"] == CHR_HEADER_SIZE
     assert fixture[CHR_HEADER_SIZE:] == bytes(CHR_PAYLOAD_SIZE)
+    inspection = inspect_native_media("fixture.chr", fixture)
+    assert inspection.validation == "validated_legacy_chr_container"
+    assert inspection.evidence["header_semantics"] == "opaque_explicit_bytes_not_promoted"
 
 
 def test_chr_builder_preserves_explicit_header_and_glyph_bytes() -> None:
@@ -45,3 +49,6 @@ def test_chr_builder_and_validator_reject_invalid_bounds() -> None:
         build_daad_chr(header=bytearray(CHR_HEADER_SIZE), glyph_bytes=bytes(CHR_PAYLOAD_SIZE))
     with pytest.raises(ValueError, match="2176"):
         validate_daad_chr(b"\x00" * (CHR_FILE_SIZE - 1))
+    inspection = inspect_native_media("short.chr", b"\x00" * (CHR_FILE_SIZE - 1))
+    assert inspection.status == "rejected"
+    assert inspection.validation == "invalid_chr_container_size"

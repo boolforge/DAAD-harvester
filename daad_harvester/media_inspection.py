@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 from daad_harvester.adf_generation import adf_boot_checksum, adf_normal_checksum
+from daad_harvester.chr_generation import validate_daad_chr
 from daad_harvester.dms import crc16_arc
 from daad_harvester.platform_media import is_msx_dos_fat12_boot_sector, parse_tzx_blocks
 
@@ -471,6 +472,16 @@ def _inspect_msx_rom(data: bytes) -> MediaInspection:
     )
 
 
+def _inspect_daad_chr(data: bytes) -> MediaInspection:
+    """Validate the known fixed-size legacy character-set container boundary."""
+
+    try:
+        evidence = validate_daad_chr(data)
+    except (TypeError, ValueError) as exc:
+        return _result("daad-legacy-chr", "rejected", "invalid_chr_container_size", error=str(exc), size=len(data))
+    return _result("daad-legacy-chr", "recognized_evidence", "validated_legacy_chr_container", **evidence)
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -507,6 +518,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_ipf(data)
     if extension == ".rom":
         return _inspect_msx_rom(data)
+    if extension == ".chr":
+        return _inspect_daad_chr(data)
     if len(data) >= 512 and (
         data[510:512] == b"\x55\xaa" or is_msx_dos_fat12_boot_sector(data)
     ):
