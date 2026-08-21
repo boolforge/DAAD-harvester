@@ -10,6 +10,7 @@ from daad_harvester.ddb_ir import (
     DDBProfileMismatch,
     OpaqueNode,
     ProcessEntryNode,
+    ProcessPointerTableNode,
     WrapperNode,
     decompile_ddb,
     recompile_ddb,
@@ -42,6 +43,7 @@ def test_legacy_ddb_decompiles_to_a_complete_non_overlapping_byte_ledger() -> No
     assert ir.nodes[0].byte_start == 0
     assert ir.nodes[-1].byte_end == len(original)
     assert any(isinstance(node, ProcessEntryNode) for node in ir.nodes)
+    assert any(isinstance(node, ProcessPointerTableNode) for node in ir.nodes)
     assert any(isinstance(node, CondActStreamNode) for node in ir.nodes)
     assert any(isinstance(node, OpaqueNode) for node in ir.nodes)
     assert ir.is_semantically_complete is False
@@ -52,6 +54,11 @@ def test_legacy_ddb_decompiles_to_a_complete_non_overlapping_byte_ledger() -> No
     )
     assert any(
         node.structure_hint == "legacy_vocabulary_payload_pending_grammar"
+        for node in ir.nodes
+        if isinstance(node, OpaqueNode)
+    )
+    assert all(
+        node.structure_hint != "process_pointer_table_structure_pending"
         for node in ir.nodes
         if isinstance(node, OpaqueNode)
     )

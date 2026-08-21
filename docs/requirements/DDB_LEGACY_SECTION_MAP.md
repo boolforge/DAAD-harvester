@@ -14,7 +14,7 @@ For the compact legacy layouts currently measured in the retained corpus, the na
 | Header offset | V1 | V2 | ADP loader/table ownership | Current IR status |
 | --- | --- | --- | --- | --- |
 | `0x08` | Token block pointer | Token block pointer | Token block | Bounded; token compression grammar pending. |
-| `0x0A` | Process table pointer | Process table pointer | Process table | Bounded; pointer-table grammar pending. |
+| `0x0A` | Process table pointer | Process table pointer | Process table | Typed source-backed pointer words and resolved offsets; process-entry grammar is separately decoded. |
 | `0x0C` | Object names pointer | Object names pointer | Object names table | Bounded; text table grammar pending. |
 | `0x0E` | Location descriptions pointer | Location descriptions pointer | Location descriptions table | Bounded; text table grammar pending. |
 | `0x10` | Messages pointer | Messages pointer | Messages table | Bounded; text table grammar pending. |

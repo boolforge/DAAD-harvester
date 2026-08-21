@@ -62,6 +62,14 @@ class PointerTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ProcessPointerTableNode(DDBNode):
+    """A decoded process-table word sequence with stored and source offsets."""
+
+    stored_pointers: tuple[int, ...]
+    resolved_offsets: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
     """Reserved typed node for a source-backed DDB text record grammar."""
 
@@ -105,6 +113,7 @@ TopLevelDDBNode: TypeAlias = (
     WrapperNode
     | HeaderNode
     | PointerTableNode
+    | ProcessPointerTableNode
     | TextNode
     | TokenNode
     | CondActStreamNode
@@ -243,7 +252,13 @@ def _process_entry_nodes(
     payload_size: int,
     header: dict[str, Any],
     profile: DDBProfile,
-) -> tuple[list[ProcessEntryNode], dict[int, list[int]], tuple[int, int]]:
+) -> tuple[
+    list[ProcessEntryNode],
+    dict[int, list[int]],
+    tuple[int, int],
+    tuple[int, ...],
+    tuple[int, ...],
+]:
     """Parse bounded process records without claiming unimplemented table grammar."""
 
     base_address = header["base_address"]
@@ -258,12 +273,16 @@ def _process_entry_nodes(
     entries: list[ProcessEntryNode] = []
     stream_references: dict[int, list[int]] = {}
     seen_process_offsets: set[int] = set()
+    stored_process_pointers: list[int] = []
+    resolved_process_offsets: list[int] = []
     for process_index in range(process_count):
         process_address = _read_word(data, process_table_start + process_index * 2, endianness)
         process_relative = _pointer_to_offset(process_address, base_address)
         process_start = payload_offset + process_relative
         if process_relative < header["header_size"] or process_start >= payload_end:
             raise ValueError("verified DDB process pointer is outside its payload")
+        stored_process_pointers.append(process_address)
+        resolved_process_offsets.append(process_start)
         if process_start in seen_process_offsets:
             continue
         seen_process_offsets.add(process_start)
@@ -308,7 +327,13 @@ def _process_entry_nodes(
             entry_offset += 4
         else:
             raise ValueError("unterminated verified DDB process-entry list")
-    return entries, stream_references, (process_table_start, process_table_end)
+    return (
+        entries,
+        stream_references,
+        (process_table_start, process_table_end),
+        tuple(stored_process_pointers),
+        tuple(resolved_process_offsets),
+    )
 
 
 def _stream_nodes(
@@ -485,7 +510,13 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             ),
         )
     )
-    entries, stream_references, process_table_range = _process_entry_nodes(
+    (
+        entries,
+        stream_references,
+        process_table_range,
+        stored_process_pointers,
+        resolved_process_offsets,
+    ) = _process_entry_nodes(
         data,
         payload_offset=payload_offset,
         payload_size=payload_size,
@@ -493,12 +524,13 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         profile=profile,
     )
     known_nodes.append(
-        OpaqueNode(
+        ProcessPointerTableNode(
             process_table_range[0],
             process_table_range[1],
             profile,
             data[process_table_range[0]:process_table_range[1]],
-            "process_pointer_table_structure_pending",
+            stored_process_pointers,
+            resolved_process_offsets,
         )
     )
     known_nodes.extend(entries)
