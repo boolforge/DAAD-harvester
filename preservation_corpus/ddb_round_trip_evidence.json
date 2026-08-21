@@ -13,11 +13,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 902,
-          "byte_start": 593,
-          "reason": "legacy_token_block_payload_pending_grammar"
-        },
-        {
           "byte_end": 2114,
           "byte_start": 2113,
           "reason": "legacy_system_messages_table_payload_pending_grammar"
@@ -153,11 +148,6 @@
         "first_difference": null
       },
       "opaque_ranges": [
-        {
-          "byte_end": 2334,
-          "byte_start": 2049,
-          "reason": "legacy_token_block_payload_pending_grammar"
-        },
         {
           "byte_end": 18220,
           "byte_start": 18219,
@@ -430,11 +420,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 2479,
-          "byte_start": 2167,
-          "reason": "legacy_token_block_payload_pending_grammar"
-        },
-        {
           "byte_end": 16212,
           "byte_start": 16211,
           "reason": "legacy_object_locations_table_payload_pending_grammar"
@@ -681,11 +666,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 1005,
-          "byte_start": 621,
-          "reason": "legacy_token_block_payload_pending_grammar"
-        },
-        {
           "byte_end": 2060,
           "byte_start": 2059,
           "reason": "legacy_token_block_payload_pending_grammar"
@@ -840,11 +820,6 @@
           "byte_end": 60,
           "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
-        },
-        {
-          "byte_end": 2909,
-          "byte_start": 2630,
-          "reason": "legacy_token_block_payload_pending_grammar"
         },
         {
           "byte_end": 27102,

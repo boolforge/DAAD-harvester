@@ -11,6 +11,7 @@ from daad_harvester.ddb_ir import (
     ObjectTableNode,
     ConnectionListNode,
     HeaderExtensionNode,
+    TokenNode,
     TextNode,
     VocabularyNode,
     decompile_ddb,
@@ -114,6 +115,10 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     header_extensions = [node for node in ir.nodes if isinstance(node, HeaderExtensionNode)]
     assert len(header_extensions) == 1
     assert header_extensions[0].is_absent is True
+    token_nodes = [node for node in ir.nodes if isinstance(node, TokenNode)]
+    assert token_nodes[0].node_kind == "block_marker"
+    assert token_nodes[-1].token_index == 0xFF
+    assert len([node for node in token_nodes if node.node_kind == "token_record"]) == 128
     assert {
         node.table_kind for node in ir.nodes if isinstance(node, ObjectTableNode)
     } == {

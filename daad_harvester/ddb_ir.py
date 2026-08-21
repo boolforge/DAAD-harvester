@@ -125,9 +125,11 @@ class TextNode(DDBNode):
 
 @dataclass(frozen=True, slots=True)
 class TokenNode(DDBNode):
-    """Reserved typed node for a source-backed compressed-token grammar."""
+    """A bounded non-PAWS token-block marker, record, or early sentinel."""
 
-    token_value: int | None = None
+    token_index: int | None
+    decoded_bytes: bytes
+    node_kind: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -531,6 +533,63 @@ def _vocabulary_nodes(
     raise ValueError("verified DDB vocabulary lacks its raw 0x00 terminator")
 
 
+def _token_nodes(
+    data: bytes,
+    *,
+    payload_offset: int,
+    payload_end: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+) -> list[TokenNode]:
+    """Decode ADP's bounded non-PAWS token records without over-scanning text."""
+
+    token_address = header["pointers"][0]
+    if not token_address or profile.grammar_dialect == "paws":
+        return []
+    start = payload_offset + _pointer_to_offset(token_address, header["base_address"])
+    if start < payload_offset + header["header_size"] or start >= payload_end:
+        raise ValueError("verified DDB token block is outside its payload")
+    nodes = [
+        TokenNode(start, start + 1, profile, data[start:start + 1], None, b"", "block_marker")
+    ]
+    position = start + 1
+    for token_index in range(0x80, 0x100):
+        if position >= payload_end:
+            raise ValueError("verified DDB token block exceeds its payload")
+        if data[position] == 0:
+            nodes.append(
+                TokenNode(
+                    position,
+                    position + 1,
+                    profile,
+                    data[position:position + 1],
+                    None,
+                    b"",
+                    "early_block_sentinel",
+                )
+            )
+            return nodes
+        token_start = position
+        while position < payload_end and (data[position] & 0x80) == 0 and data[position] != 0:
+            position += 1
+        if position >= payload_end or data[position] == 0:
+            raise ValueError("verified DDB token record lacks a high-bit terminator")
+        position += 1
+        raw = data[token_start:position]
+        nodes.append(
+            TokenNode(
+                token_start,
+                position,
+                profile,
+                raw,
+                token_index,
+                bytes((*raw[:-1], raw[-1] & 0x7F)),
+                "token_record",
+            )
+        )
+    return nodes
+
+
 def _object_table_nodes(
     data: bytes,
     *,
@@ -843,6 +902,15 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         )
     )
     if profile.layout == "legacy":
+        known_nodes.extend(
+            _token_nodes(
+                data,
+                payload_offset=payload_offset,
+                payload_end=payload_end,
+                header=header,
+                profile=profile,
+            )
+        )
         header_extension = _header_extension_node(
             data,
             payload_offset=payload_offset,
