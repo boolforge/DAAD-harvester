@@ -13,6 +13,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict
 
+from daad_harvester.adf_generation import adf_boot_checksum, adf_normal_checksum
 from daad_harvester.dms import crc16_arc
 from daad_harvester.platform_media import is_msx_dos_fat12_boot_sector, parse_tzx_blocks
 
@@ -245,10 +246,35 @@ def _inspect_msa(data: bytes) -> MediaInspection:
 def _inspect_adf(data: bytes) -> MediaInspection:
     if len(data) < 2048 or len(data) % 512 or not data.startswith(b"DOS"):
         return _result("amiga-adf", "rejected", "invalid_boot_block")
+    if data[3] not in {0, 1, 2, 3}:
+        return _result("amiga-adf", "rejected", "unsupported_dos_type", dos_type=data[:4].decode("latin-1", "replace"))
+    boot = data[:1024]
+    if int.from_bytes(boot[4:8], "big") != adf_boot_checksum(boot):
+        return _result("amiga-adf", "rejected", "boot_checksum_mismatch", dos_type=data[:4].decode("latin-1", "replace"))
+    block_count = len(data) // 512
+    root_block = int.from_bytes(data[8:12], "big")
+    if not 2 <= root_block < block_count:
+        return _result("amiga-adf", "rejected", "root_block_out_of_range", root_block=root_block, blocks=block_count)
+    root_start = root_block * 512
+    root = data[root_start:root_start + 512]
+    if int.from_bytes(root[:4], "big") != 2 or int.from_bytes(root[508:512], "big", signed=True) != 1:
+        return _result("amiga-adf", "rejected", "invalid_root_block_type", root_block=root_block)
+    if int.from_bytes(root[20:24], "big") != adf_normal_checksum(root, 20):
+        return _result("amiga-adf", "rejected", "root_checksum_mismatch", root_block=root_block)
+    bitmap_block = int.from_bytes(root[79 * 4:80 * 4], "big")
+    if not 2 <= bitmap_block < block_count:
+        return _result("amiga-adf", "rejected", "bitmap_block_out_of_range", root_block=root_block, bitmap_block=bitmap_block)
+    bitmap = data[bitmap_block * 512:(bitmap_block + 1) * 512]
+    if int.from_bytes(bitmap[:4], "big") != adf_normal_checksum(bitmap, 0):
+        return _result("amiga-adf", "rejected", "bitmap_checksum_mismatch", root_block=root_block, bitmap_block=bitmap_block)
     return _result(
-        "amiga-adf", "recognized_evidence", "valid_boot_block",
-        dos_type=data[:4].decode("latin-1", "replace"), blocks=len(data) // 512,
-        root_block=int.from_bytes(data[8:12], "big"),
+        "amiga-adf", "recognized_evidence", "validated_adf_ofs_ffs_structure",
+        dos_type=data[:4].decode("latin-1", "replace"),
+        filesystem="ffs" if data[3] & 0x01 else "ofs",
+        blocks=block_count,
+        root_block=root_block,
+        bitmap_block=bitmap_block,
+        root_hash_table_entries=int.from_bytes(root[12:16], "big"),
     )
 
 
