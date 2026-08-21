@@ -11,6 +11,7 @@ Shared terminology does not establish behavioral identity. A preservation pipeli
 | Maluva | Runtime-side extension | Extends selected targets with external graphics, text, and save/load mechanisms.[2] | Preserve extension media and claims separately from core DDB identity. |
 | MSX2DAAD | Independent compatible interpreter | Documents V2/Maluva compatibility and V3 auto-detection from v3.0.0, with documented differences.[3] | Do not label as original MSX runtime without its own hash/source evidence. |
 | PCDAAD | DOS VGA/VESA compatible runtime | Documents both supported behavior and explicit feature divergences.[4] | Treat as a separate runtime family, not a transparent replacement. |
+| ADP — ADventure Player | Independent DAAD interpreter and toolchain | Maintained C++ player and tool suite with its own source, release artifacts, format readers/writers, and documented beta compatibility boundary. | Record under [`../implementations/ADP.md`](../implementations/ADP.md); never classify it as a DAAD derivative, original interpreter, or native Harvester parser. |
 | DAAD Ready | Packaging/build/test suite | Uses a modern tool ecosystem around DAAD-oriented targets.[5] | Source-side/package evidence, not a runtime identity. |
 | UnDAAD | Database extractor | Archaeology/reference tool for database recovery.[5] | Useful analysis reference; not proof a payload is executable. |
 | PAWS2DAAD / unPAWs | Migration/extraction tools | Related-system conversion and extraction tooling.[5] | Explicitly non-DAAD binary evidence. |

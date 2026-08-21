@@ -1,5 +1,7 @@
 # ADP — ADventure Player
 
+> **Classification:** ADP is an independently maintained DAAD interpreter and toolchain. It is not a DAAD derivative or an extension of the historical DAAD format.
+
 | Header field | Value |
 | --- | --- |
 | **Question** | What can the maintained public ADP implementation establish about its own DAAD compatibility, platforms, tools, and current verification result? |
@@ -36,6 +38,24 @@ ADP describes itself as a portable interpreter designed for DAAD games. Its dist
 ## Public tools and evidence value
 
 ADP packages a graphical `player`, command-line `ddb` player/diagnostic tool, `adpc` compiler, `dmg` graphics-database tool, `chr` character/font converter, and `dsk` disk-image utility.[1] These are valuable independent implementations for comparison with the Harvester’s structural parsers and future execution traces. They do not supersede original media evidence, official profile identity, or per-game DDB measurements.
+
+## Pinned format and medium capability matrix
+
+This matrix reports what the retained ADP revision documents or includes in its own curated game material. It is deliberately **not** a claim that every file with a matching suffix is playable, structurally valid, or behaviorally equivalent to an original interpreter. `Native Harvester status` is independently governed by the format capability matrix and retained-artifact evidence; ADP is a comparison implementation and does not replace a native parser.[2] [5]
+
+| Family or exact extension | ADP role at pinned revision | Scope or boundary recorded by ADP | Native Harvester status / integration boundary |
+| --- | --- | --- | --- |
+| `.DDB` | Primary DAAD game database accepted by `ddb` and `player`. | Direct 16-bit Amiga, Atari ST, and PC DDB operation is documented; V1/V2/V3 are stated supported, with reconstructed V1 compatibility boundaries. | Native structural DDB fingerprinting remains authoritative. ADP loading is optional execution/comparison evidence. |
+| `.DAT`, `.EGA`, `.CGA` | Companion graphics database for a same-base-name DDB; `dmg` inspects and modifies graphics databases. | ADP also documents DAT5 as an ADP-specific extension. | Retain and classify each exact byte independently; do not infer a game database from graphics presence. |
+| `.CHR`, Atari ST `.CH0`, `.FNT` | Character set or font companions; `chr` converts character/font data. | `.FNT` takes precedence where present; SINTAC proportional font support is described for PC DAAD. | Resource payloads require their own media/evidence role, checksums, and parent relationship. |
+| `.SCR`, `.EGS`, `.CGS`, `.VGS`; PC `.PCX` | Loading/splash or external graphics companions. | `.PCX` support is stated for PC VGA/SVGA games. | Support-asset identity must never be rendered as a DDB/interpreter correlation. |
+| Amiga `.ADF`; Atari ST `.ST`; PC/DOS FAT images; PCW/other 8-bit PCM disk images | Desktop/web discovery and `dsk` inspection/manipulation. | ADP calls image discovery experimental and expects well-formed, unprotected images; `dsk` documents MS-DOS/Atari ST FAT, Amiga ADF, and PCM disk support. | Native medium parsers remain required per geometry/filesystem profile. ADP can be recorded as an independent parser/runner observation only. |
+| Spectrum `.TAP`, `.TZX`, `.SNA`, `.Z80` | Experimental 8-bit loading/extraction; retained ADP source explicitly documents PAWS SDB extraction from TAP/TZX and 48K/128K SNA/Z80. | BASIC loaders, presentation code, and unrelated blocks can be ignored by ADP’s PAWS extractor; this is not universal tape reconstruction. | Harvester must preserve block/timing/snapshot evidence and cannot promote ADP extraction to a complete tape decode. |
+| CPC `.CDT` / `.DSK`; MSX `.CAS` / `.DSK`; C64 direct `.DDB` plus `.CDG` | Present in ADP’s curated multi-platform release-game manifest. | These retained ADP fixtures demonstrate the project’s tested media set, but a fixture suffix does not define a general parser contract. | Treat each as an ADP fixture/provenance reference. Native CPC/MSX/C64 support must meet the separate Harvester format contract. |
+| PAWS `.SDB`, source `.SCE` | `ddb`/`player` may load SDB; `adpc` compiles PAWS source, including a donor-SDB mode. | ADP documents experimental 48K/128K PAWS support and explicitly excludes PC PAW `.PDB`. | PAWS is a separate dialect and must not contaminate DAAD measurements; ADP SDB output is comparison evidence only. |
+| PC PAW `.PDB` | Explicitly unsupported. | ADP distinguishes it from Spectrum PAWS/SDB. | Record as an unimplemented external capability, never as a DAAD media claim. |
+
+The existing retained package already satisfies source and release packaging: its manifest pins 2,560 source files, 20 published release assets, the license, and the exact upstream revision. A future **deterministic Harvester interoperability adapter** may invoke a locally built ADP tool only as an optional validator, store command/version/input/output hashes, and compare the result with a native Harvester parser. It may not make network calls, replace native promotion logic, or turn ADP’s beta compatibility statement into an all-format support claim.[1] [4]
 
 > “ADP is beta software. Bugs and compatibility problems are expected, particularly with experimental formats.” — ADP maintainer README.[1]
 

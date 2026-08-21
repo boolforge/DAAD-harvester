@@ -9,5 +9,5 @@
 | [Maluva](MALUVA.md) | Documented extension/compatibility boundary. | Source-backed |
 | PCDAAD](PCDAAD.md) | DOS/VGA interpreter provenance and boundary. | Source-backed |
 | [UnDAAD](UNDAAD.md) | Publicly documented project scope and non-equivalence. | Source-backed |
-| [ADP](ADP.md) | Portable DAAD player/toolchain source, release, and verification scope. | Source-backed; retained mirror |
+| [ADP — independent implementation](../implementations/ADP.md) | Independently maintained DAAD player/toolchain source, release, and verification scope. | Source-backed; retained mirror; not a derivative |
 | [Legacy taxonomy](COMPATIBILITY_TAXONOMY.md) | Comparative index during migration. | Migration source |
