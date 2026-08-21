@@ -8,6 +8,7 @@
 | [TZX/CDT generation](TZX_CDT_GENERATION.md) | Deterministic standard-speed TZX/CDT writer, validation, comparison, and publication contract. | Generation contract |
 | [Legacy `.CHR` generation](DAAD_CHR_GENERATION.md) | Fixed-size DAAD character-set container, opaque-prefix boundary, corpus comparison, and promotion requirements. | Structural implementation |
 | [Legacy DAT V2 inspection](LEGACY_DAT_V2.md) | Endian-aware legacy graphics database header/table validation with retained-corpus crosswalk and explicit payload boundary. | Structural implementation |
+| [PCW DAT V1 resource directory](PCW_DAT_V1.md) | Little-endian PCW DAT header and 256-entry resource-directory validation with explicit picture-codec boundary. | Structural implementation |
 | [CPC `DAAD.FNT` provenance](CPC_DAAD_FNT.md) | Official CPC tape-loader font byte identity and explicit non-decoding boundary. | Primary-source equality |
 | [CBM disk and program media](CBM_DISK_AND_PROGRAM.md) | D64/D71, T64, P00/PRG, G64 preservation evidence. | Implementation contract |
 | [CP/M DSK](CPM_DSK.md) | CPC/PCW DSK and allocation/extent rules. | Implementation contract |

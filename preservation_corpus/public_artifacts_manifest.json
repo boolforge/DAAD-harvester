@@ -29503,10 +29503,10 @@
       }
     },
     {
-      "artifact_id": 1263,
+      "artifact_id": 1274,
       "source_id": 253,
       "original_filename": "TO.DSK",
-      "public_path": "artifacts/001263_TO.DSK",
+      "public_path": "artifacts/001274_TO.DSK",
       "file_size": 194816,
       "checksums": {
         "md5_full": "65a49c5adfbda1615ecb58ca19cdaaec",
@@ -29544,10 +29544,10 @@
       }
     },
     {
-      "artifact_id": 1264,
+      "artifact_id": 1275,
       "source_id": 253,
       "original_filename": "PARTE000.PIC",
-      "public_path": "artifacts/001264_PARTE000.PIC",
+      "public_path": "artifacts/001275_PARTE000.PIC",
       "file_size": 16000,
       "checksums": {
         "md5_full": "18e248a08cad4fdebbe475f1341f8ea0",
@@ -29585,10 +29585,10 @@
       }
     },
     {
-      "artifact_id": 1265,
+      "artifact_id": 1276,
       "source_id": 253,
       "original_filename": "PARTE001.CHR",
-      "public_path": "artifacts/001265_PARTE001.CHR",
+      "public_path": "artifacts/001276_PARTE001.CHR",
       "file_size": 2176,
       "checksums": {
         "md5_full": "918656c1fe151431a44a22ffb44cfffe",
@@ -29626,10 +29626,10 @@
       }
     },
     {
-      "artifact_id": 1266,
+      "artifact_id": 1277,
       "source_id": 253,
       "original_filename": "PARTE001.DAT",
-      "public_path": "artifacts/001266_PARTE001.DAT",
+      "public_path": "artifacts/001277_PARTE001.DAT",
       "file_size": 102144,
       "checksums": {
         "md5_full": "0d5b9dbffe80cd9565422c4703f5d696",
@@ -29667,10 +29667,10 @@
       }
     },
     {
-      "artifact_id": 1267,
+      "artifact_id": 1278,
       "source_id": 253,
       "original_filename": "PARTE001.DDB",
-      "public_path": "artifacts/001267_PARTE001.DDB",
+      "public_path": "artifacts/001278_PARTE001.DDB",
       "file_size": 17024,
       "checksums": {
         "md5_full": "227b2058c5a6d97b7c2f918e474c18de",
@@ -29708,10 +29708,10 @@
       }
     },
     {
-      "artifact_id": 1268,
+      "artifact_id": 1279,
       "source_id": 253,
       "original_filename": "TO.COM",
-      "public_path": "artifacts/001268_TO.COM",
+      "public_path": "artifacts/001279_TO.COM",
       "file_size": 8704,
       "checksums": {
         "md5_full": "6aeeb5d20a775ac091593acace34d8fe",
@@ -29749,10 +29749,10 @@
       }
     },
     {
-      "artifact_id": 1269,
+      "artifact_id": 1280,
       "source_id": 253,
       "original_filename": "TO2.DSK",
-      "public_path": "artifacts/001269_TO2.DSK",
+      "public_path": "artifacts/001280_TO2.DSK",
       "file_size": 194816,
       "checksums": {
         "md5_full": "d3410775fe48972a8ab784e041c3b5f1",
@@ -29790,10 +29790,10 @@
       }
     },
     {
-      "artifact_id": 1270,
+      "artifact_id": 1281,
       "source_id": 253,
       "original_filename": "PARTE002.CHR",
-      "public_path": "artifacts/001270_PARTE002.CHR",
+      "public_path": "artifacts/001281_PARTE002.CHR",
       "file_size": 2176,
       "checksums": {
         "md5_full": "918656c1fe151431a44a22ffb44cfffe",
@@ -29831,10 +29831,10 @@
       }
     },
     {
-      "artifact_id": 1271,
+      "artifact_id": 1282,
       "source_id": 253,
       "original_filename": "PARTE002.DAT",
-      "public_path": "artifacts/001271_PARTE002.DAT",
+      "public_path": "artifacts/001282_PARTE002.DAT",
       "file_size": 38528,
       "checksums": {
         "md5_full": "b9b758eb483780071042b41fcc09ce78",
@@ -29872,10 +29872,10 @@
       }
     },
     {
-      "artifact_id": 1272,
+      "artifact_id": 1283,
       "source_id": 253,
       "original_filename": "PARTE002.DDB",
-      "public_path": "artifacts/001272_PARTE002.DDB",
+      "public_path": "artifacts/001283_PARTE002.DDB",
       "file_size": 14848,
       "checksums": {
         "md5_full": "944d53570f4c58f93b7573aab1faab7c",
@@ -29913,10 +29913,10 @@
       }
     },
     {
-      "artifact_id": 1273,
+      "artifact_id": 1284,
       "source_id": 253,
       "original_filename": "Torreoscura (english).pdf",
-      "public_path": "artifacts/001273_Torreoscura_english_.pdf",
+      "public_path": "artifacts/001284_Torreoscura_english_.pdf",
       "file_size": 3233293,
       "checksums": {
         "md5_full": "2bdcaf90cee0769d92f786a0396946f0",

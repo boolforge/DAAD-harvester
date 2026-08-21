@@ -535,6 +535,80 @@ def _inspect_legacy_dat_v2(data: bytes) -> MediaInspection:
     )
 
 
+def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
+    """Validate the documented PCW V1 DAT directory without decoding pictures.
+
+    ADP's shared DMG reader accepts this profile only when the little-endian
+    header declares machine zero, high-resolution mode four, and a bounded
+    picture count. It then reads the fixed 256-entry, ten-byte directory at
+    offset six; payload offsets must start after the complete directory. This
+    validator records those cross-file resource references but intentionally
+    does not claim a PIC payload codec or rendering grammar.
+    """
+
+    directory_offset = 6
+    entry_count = 256
+    entry_size = 10
+    directory_size = entry_count * entry_size
+    payload_floor = directory_offset + directory_size
+    if len(data) < payload_floor:
+        return _result(
+            "daad-pcw-dat-v1", "rejected", "truncated_fixed_directory",
+            file_size=len(data), minimum_size=payload_floor,
+        )
+    machine = int.from_bytes(data[0:2], "little")
+    screen_mode = int.from_bytes(data[2:4], "little")
+    picture_count = int.from_bytes(data[4:6], "little")
+    if machine != 0 or screen_mode != 4 or picture_count > entry_count:
+        return _result(
+            "daad-pcw-dat-v1", "rejected", "invalid_pcw_v1_header",
+            machine=machine, screen_mode=screen_mode, picture_count=picture_count,
+        )
+
+    entries: list[dict[str, int | bool]] = []
+    for index in range(entry_count):
+        position = directory_offset + index * entry_size
+        entry = data[position:position + entry_size]
+        offset = int.from_bytes(entry[0:4], "little")
+        flags = int.from_bytes(entry[4:6], "little")
+        if offset == 0:
+            continue
+        if offset < payload_floor or offset >= len(data):
+            return _result(
+                "daad-pcw-dat-v1", "rejected", "resource_offset_out_of_bounds",
+                entry_index=index, resource_offset=offset, payload_floor=payload_floor,
+                file_size=len(data),
+            )
+        entries.append(
+            {
+                "index": index,
+                "offset": offset,
+                "flags": flags,
+                "x": int.from_bytes(entry[6:8], "little", signed=True),
+                "y": int.from_bytes(entry[8:10], "little", signed=True),
+                "buffered": bool(flags & 0x0002),
+                "fixed": not bool(flags & 0x0001),
+            }
+        )
+    if picture_count != len(entries):
+        return _result(
+            "daad-pcw-dat-v1", "rejected", "picture_count_directory_mismatch",
+            picture_count=picture_count, populated_entries=len(entries),
+        )
+    return _result(
+        "daad-pcw-dat-v1", "recognized_evidence", "validated_pcw_v1_resource_directory",
+        machine=machine,
+        screen_mode=screen_mode,
+        picture_count=picture_count,
+        directory_offset=directory_offset,
+        directory_entry_count=entry_count,
+        directory_entry_size=entry_size,
+        payload_floor=payload_floor,
+        resources=entries,
+        resource_payload_codec="unresolved_profile_specific_support_loop",
+    )
+
+
 def _inspect_snapshot(extension: str, data: bytes) -> MediaInspection:
     # Snapshot formats are machine-state evidence, not raw executable members.
     known_size = len(data) in {49179, 131103, 147487}
@@ -573,6 +647,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_msx_rom(data)
     if extension == ".chr":
         return _inspect_daad_chr(data)
+    if extension == ".dat" and data[:4] == b"\x00\x00\x04\x00":
+        return _inspect_pcw_dat_v1(data)
     if extension == ".dat" and data[:2] in {b"\x03\x00", b"\xff\xff"}:
         return _inspect_legacy_dat_v2(data)
     if len(data) >= 512 and (

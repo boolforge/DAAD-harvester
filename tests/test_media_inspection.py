@@ -198,6 +198,35 @@ def test_retained_cpc_dsk_records_nonstandard_cpm_geometry() -> None:
     assert result.evidence["present_tracks"] == 40
 
 
+def test_retained_torreoscura_pcw_dat_validates_resource_directories() -> None:
+    root = Path(__file__).resolve().parents[1]
+    expected = {
+        "depth2_0d5b9dbf_PARTE001.DAT": 20,
+        "depth2_b9b758eb_PARTE002.DAT": 10,
+    }
+    for filename, picture_count in expected.items():
+        result = inspect_native_media(filename, (root / "preservation_corpus" / "extracted" / filename).read_bytes())
+        assert result.parser == "daad-pcw-dat-v1"
+        assert result.status == "recognized_evidence"
+        assert result.validation == "validated_pcw_v1_resource_directory"
+        assert result.evidence["picture_count"] == picture_count
+        assert len(result.evidence["resources"]) == picture_count
+        assert result.evidence["resource_payload_codec"] == "unresolved_profile_specific_support_loop"
+
+
+def test_pcw_dat_rejects_resource_offset_before_fixed_directory() -> None:
+    data = bytearray(6 + 2560)
+    data[2:4] = (4).to_bytes(2, "little")
+    data[4:6] = (1).to_bytes(2, "little")
+    data[6:10] = (0xA05).to_bytes(4, "little")
+
+    result = inspect_native_media("broken.dat", bytes(data))
+
+    assert result.parser == "daad-pcw-dat-v1"
+    assert result.status == "rejected"
+    assert result.validation == "resource_offset_out_of_bounds"
+
+
 def test_media_evidence_is_json_serializable() -> None:
     result = inspect_native_media("unknown.bin", b"not media")
     encoded = json.dumps(result.evidence, sort_keys=True)

@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "a6bb4ff2a5a9d6e24a4768153829eae52e36910c5e2052b2a07e378232f67d3b"
+          "sha256": "9a0dc4ca46f186f02b6fca842fb4dca3953ad4e14bd102f055436d186261b9a4"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "a6bb4ff2a5a9d6e24a4768153829eae52e36910c5e2052b2a07e378232f67d3b"
+          "sha256": "9a0dc4ca46f186f02b6fca842fb4dca3953ad4e14bd102f055436d186261b9a4"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "a6bb4ff2a5a9d6e24a4768153829eae52e36910c5e2052b2a07e378232f67d3b"
+          "sha256": "9a0dc4ca46f186f02b6fca842fb4dca3953ad4e14bd102f055436d186261b9a4"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -283,7 +283,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "bff63b7dcaf4e5d4049685b82f09771109b7d9abc843b7887670b87c356289e2"
+          "sha256": "11b7a87e93e101e6c44693a951ae6bea3f90854dd93b3d2dd37c9a100adf213a"
         }
       ],
       "external_validators": [
@@ -313,13 +313,13 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "a6bb4ff2a5a9d6e24a4768153829eae52e36910c5e2052b2a07e378232f67d3b"
+          "sha256": "9a0dc4ca46f186f02b6fca842fb4dca3953ad4e14bd102f055436d186261b9a4"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/public_artifacts_manifest.json",
-          "sha256": "8ac05278640cedc6641a0a34d57b17300ef9cdf7fa27e6b7e3d546993981fc8b"
+          "sha256": "28feec0f86c06b71454c9434c489ad6878c20d2dadc06449196c1984265afdcb"
         }
       ],
       "external_validators": [
