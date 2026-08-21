@@ -126,6 +126,22 @@ Every future contribution must add or update the following before review. This r
 
 `scripts/check_docs.py` enforces relative-link integrity, focused-module headers, Mermaid declaration validity, the global regeneration-policy link, and required continuation/traceability navigation. Code review and the primary gate enforce the remaining executable portions of this table.
 
+## 7.1 Global conflict and issue lifecycle
+
+This rule applies to **every** repository concern: code, corpus bytes, source acquisition, format grammar, checksum, parser decision, decompiler/recompiler, test, verifier, report, TUI, CI, external comparison, emulator observation, and future ScummVM work. A conflict is any disagreement, contradiction, unexpected range overlap, failed hypothesis, failed gate, failed assertion, corrupted/ambiguous input, divergent external result, rejected candidate rule, or implementation defect.
+
+| Lifecycle state | Mandatory repository record | Required next transition |
+| --- | --- | --- |
+| `observed` | Stable issue identifier; affected artifact/profile/component; exact symptom; source URL or retained path and hash; byte range/reproducer/command when applicable; current non-claim; and next experiment. | Reproduce and classify with deterministic evidence. |
+| `investigating` | Competing hypotheses, independent evidence links, retained outputs/logs where permitted, and every rejected rule or failed experiment. | Implement only a bounded, evidence-backed candidate. |
+| `implemented_pending_verification` | Code location, expected behavioral change, positive and rejection tests, regeneration command, and generated-output boundary. | Run the relevant deterministic gate and inspect all changed evidence. |
+| `resolved_verified` | Root cause; exact implementation and commit reference; real-artifact and malformed-input regression results; regenerated evidence/report/manifest effect; verification command; and remaining non-claims. | Preserve the record as historical resolution evidence. |
+| `reopened` | New contradictory evidence, affected previous resolution, fresh reproducer, and revised closure criterion. | Return to `investigating`; never overwrite historical evidence. |
+
+> **No silent disappearance.** A passing later commit does not resolve an earlier issue unless the same issue record is updated with the reason, evidence, tests, regenerated outputs, and commit reference that demonstrate closure. Deleting a failing experiment, removing a test, changing a hash, or replacing a narrative without retaining the observed conflict is prohibited.
+
+Every new issue must be added to [`TODO.md`](../../TODO.md) and a focused dossier, ledger entry, or generated evidence record before unrelated work proceeds. Every fix must update the same durable record and its status; where deterministic reproduction is possible, a verifier and regression test must make the observation and resolution replayable from a plain clone.
+
 ## 8. Recovery and handoff
 
 Never edit `state.db`, generated report JSON, library manifests, detection tables, or manifest hashes by hand to force a passing result. Regenerate through the responsible script, examine the delta, and keep the original input lineage. If an experiment cannot be made coherent, restore a known committed version through normal version-control recovery and describe the failed reproducer in the applicable blocker/audit record.

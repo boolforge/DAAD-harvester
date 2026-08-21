@@ -124,6 +124,12 @@ retained sample → primary/reference research → documented contract
 
 If a live tool is needed to acquire a new observation, automate its bounded invocation where possible and retain its configuration, log, capture, and hashes. Then build a native verifier over the retained output. The acquisition runtime must not become a required future replay step.
 
+### 7.1 Global conflict and issue recording rule
+
+For the entire project, an issue is not merely a task comment or a failed terminal command. Every conflict, discrepancy, rejected hypothesis, malformed/corrupt or ambiguous input, test/CI failure, external-source disagreement, unexpected byte overlap, or implementation defect must be recorded immediately in versioned repository material before unrelated work continues. Add a concrete unchecked work item to [`TODO.md`](../TODO.md) and create or update a focused dossier, ledger row, or deterministic evidence record.
+
+The observation record must contain the affected artifact/profile/component, exact symptom, retained path and hashes or external evidence source, byte range/reproducer/command where applicable, non-claim, candidate hypotheses, and next experiment. When the issue is fixed, **update the same record** with the root cause, implementation location and commit, positive/rejection/real-artifact regressions, regenerated output impact, verification command, and remaining boundary. Never delete an issue record just because a later pass is green; a resolution without recorded causal evidence is incomplete. See the normative [global conflict and issue lifecycle](requirements/TRACEABILITY_AND_CONTINUITY.md#71-global-conflict-and-issue-lifecycle).
+
 ## 8. Optional validators and acquisition tools
 
 Optional tools are automated where feasible, but their role remains explicit. An adapter must expose its install/capability state, use noninteractive arguments and bounded execution, retain outputs and logs, and compare them against native evidence. On a host where a validator cannot run, the adapter must emit an actionable `unavailable` result; it must not block the primary verification gate.

@@ -56,6 +56,23 @@ ATOMIC_DELIVERY_NAVIGATION_DOCUMENTS = (
     DOCS / "README.md",
     DOCS / "CONTRIBUTOR_CONTINUATION.md",
 )
+GLOBAL_ISSUE_LIFECYCLE_REQUIREMENTS = (
+    (
+        TRACEABILITY_DOCUMENT,
+        (
+            "## 7.1 Global conflict and issue lifecycle",
+            "**No silent disappearance.**",
+            "resolved_verified",
+        ),
+    ),
+    (
+        DOCS / "CONTRIBUTOR_CONTINUATION.md",
+        (
+            "### 7.1 Global conflict and issue recording rule",
+            "update the same record",
+        ),
+    ),
+)
 
 
 def check_relative_links(errors: list[str]) -> int:
@@ -143,6 +160,24 @@ def check_atomic_delivery_navigation(errors: list[str]) -> int:
     return checked
 
 
+def check_global_issue_lifecycle(errors: list[str]) -> int:
+    """Ensure issue observation and verified-resolution updates stay mandatory."""
+
+    checked = 0
+    for document, markers in GLOBAL_ISSUE_LIFECYCLE_REQUIREMENTS:
+        checked += 1
+        if not document.is_file():
+            errors.append(f"missing global issue lifecycle document: {document.relative_to(ROOT)}")
+            continue
+        text = document.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                errors.append(
+                    f"missing global issue lifecycle marker {marker!r}: {document.relative_to(ROOT)}"
+                )
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     links = check_relative_links(errors)
@@ -151,6 +186,7 @@ def main() -> int:
     policy_documents = check_regeneration_policy_links(errors)
     traceability_documents = check_traceability_navigation(errors)
     atomic_delivery_documents = check_atomic_delivery_navigation(errors)
+    issue_lifecycle_documents = check_global_issue_lifecycle(errors)
     if errors:
         print("Documentation integrity check failed:")
         print("\n".join(f"- {error}" for error in errors))
@@ -160,7 +196,8 @@ def main() -> int:
         f"{links} relative links, {modules} focused modules, {diagrams} Mermaid sources, "
         f"{policy_documents} required regeneration-policy links, "
         f"{traceability_documents} traceability-navigation links, "
-        f"{atomic_delivery_documents} atomic-delivery navigation links."
+        f"{atomic_delivery_documents} atomic-delivery navigation links, "
+        f"{issue_lifecycle_documents} global issue-lifecycle documents."
     )
     return 0
 
