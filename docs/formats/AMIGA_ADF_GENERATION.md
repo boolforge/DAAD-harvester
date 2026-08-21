@@ -4,8 +4,8 @@
 | --- | --- |
 | **Question** | How can Harvester deterministically generate and independently validate a bounded Amiga ADF/OFS technical-medium fixture without treating ADP output as the primary specification or a historical-runtime oracle? |
 | **Evidence scope** | P0: the ADF technical reference and independent FFS/OFS structure reference; P1: pinned ADP `dim_adf.cpp`; P2: native Harvester parser/extractor, writer, regressions, and report evidence; P3: retained authentic ADF releases; P4: recorded emulator observations. |
-| **Status** | Generation contract. The current native reader/extractor recognizes limited ADF/OFS/FFS evidence; no native ADF writer is promoted by this document alone. |
-| **Implementation links** | `daad_harvester.media_inspection._inspect_adf`, `daad_harvester.platform_media.extract_adf`, `daad_harvester.unpack.Unpacker.unpack_adf`, `src-common/dim_adf.cpp` at the pinned ADP revision. |
+| **Status** | First bounded native fixture promoted as `generated_structurally_valid`: empty standard-DD `DOS0`/OFS ADF with explicit name/timestamp, boot/root/bitmap checksums, and no members. Member-writing, authentic-release comparison, and emulator observation remain separate evidence waves. |
+| **Implementation links** | `daad_harvester.adf_generation`, `daad_harvester.media_inspection._inspect_adf`, `daad_harvester.platform_media.extract_adf`, `daad_harvester.unpack.Unpacker.unpack_adf`, `daad_harvester.generator_evidence`, `scripts/verify_native_generators.py`, `src-common/dim_adf.cpp` at the pinned ADP revision. |
 | **Non-claims** | An ADF byte stream is a sector dump, not a statement that every physical disk sector, protection scheme, loader, boot path, interpreter, game database, or historical release behavior has been preserved or reproduced. |
 
 ## Scope and independent evidence
@@ -23,6 +23,8 @@ An ADF is a headerless sequence of disk blocks rather than an MFM-track preserva
 ## First bounded native output profile
 
 The first writer profile is `blank_adf_ofs_dd_v1`. It may write a standard, headerless 901,120-byte ADF containing a canonical `DOS0` Old File System bootstrap record, root block, and allocation bitmap. It is intentionally a **container/filesystem initialization fixture**, not a game disk image.
+
+The promoted fixture record is `adf-ofs-blank-standard-dd-v1`. Its deterministic SHA-256 is `0579352c016748a32e12cc5900ce04b0f69e05d9bd04c5fd52764fd38e161468`; its complete 17-digest record, strict writer validation, and independent native inspection are emitted by `python scripts/verify_native_generators.py`. The fixture has `filesystem_claim: empty_ofs_filesystem_no_members`, uses the explicit `EMPTY` volume name and `(0, 0, 0)` timestamp tuple, and does not claim a bootable disk, game payload, historical-release equality, or target runtime behavior.
 
 | Explicit input | Rule | Initial fixture value |
 | --- | --- | --- |
@@ -54,7 +56,7 @@ The native writer must construct and validate each listed layer before recording
 | OFS data blocks | When member writing is promoted, each data block carries the OFS metadata/checksum header and at most 488 payload bytes. | Independent OFS data-block structure.[2] |
 | FFS data blocks | A future FFS profile must be separate: FFS payload blocks do not reuse the OFS metadata/checksum model. | Independent FFS data-block structure.[2] |
 
-The native reader must validate every condition written by the generator. The existing lightweight media inspector currently recognizes an ADF candidate from a `DOS` prefix and 512-byte divisibility; that is insufficient for generator promotion. The writer wave must add root-address, root type, root checksum, bitmap-page, bitmap checksum, DOS-type, name-length, allocation-range, and corruption rejection checks before publishing a structurally valid fixture.
+The native reader validates every condition written by the generator. The media inspector now verifies supported DOS type, boot checksum, in-range root pointer, root type/secondary type/checksum, first bitmap-page pointer/checksum, block count, filesystem kind, and root hash-table size. The bounded fixture validator additionally verifies its all-zero boot-code region, empty root hash table, exact name/time inputs, and root/bitmap allocation bits. It rejects boot, root, and bitmap checksum corruption in regression tests before the record can be promoted.
 
 ## ADP source crosswalk
 
@@ -83,7 +85,7 @@ The initial regression set must include deterministic duplicate generation, exac
 
 ## Public evidence and non-claim discipline
 
-Once promoted, the generator will use the canonical `daad_harvester.generator_evidence` contract, primary CI verifier, static report `generator_evidence` export, Pages `#generators` route, and TUI Native Generators tab already used by the Extended DSK fixture. It must expose generator ID, exact input tuple, output path where published, all 17 checksums, native validation result, authentic-comparison state, ADP-source comparison state, emulator state, and a reproducer for every mismatch. Output bytes may become downloadable only after they are manifest-controlled and their published copies have been checksum-verified.
+The promoted generator uses the canonical `daad_harvester.generator_evidence` collection, primary CI verifier, static report `generator_evidence` export, Pages `#generators` route, and TUI Native Generators tab already used by the Extended DSK fixture. The report/Pages collection now carries both generator records; the TUI continues from the first record’s checksum window to the second ADF record with the same Up/Down control. Each record exposes generator ID, exact input tuple, output path where published, all 17 checksums, native validation result, authentic-comparison state, ADP-source comparison state, emulator state, and a reproducer for every mismatch. Output bytes may become downloadable only after they are manifest-controlled and their published copies have been checksum-verified.
 
 ## References
 
