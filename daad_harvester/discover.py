@@ -253,11 +253,19 @@ class Discoverer:
         self.logger_suite.log_discovery("ITCH.IO", "itch.io", found)
 
     async def discover_ifdb(self, client: httpx.AsyncClient) -> None:
-        """Query IFDB API for DAAD tags."""
+        """Query IFDB API for DAAD tags.
+
+        URL format fixed against IFDB's own API docs (ifdb.org/api/search),
+        whose documented example is `?xml&game&searchfor=Deep+Space+Drifter`
+        -- bare `xml` and `game` flags, in that order, not `xml=1` with no
+        `game` flag at all. Missing `game` means the search type is never
+        told "search for games" as opposed to lists/polls/tags/etc, which
+        the API's own PHP source keys off explicitly.
+        """
         tags = ["daad", "daad ready", "aventuras ad"]
         found = 0
         for tag in tags:
-            url = f"https://ifdb.org/search?searchfor=tag:{tag}&xml=1"
+            url = f"https://ifdb.org/search?xml&game&searchfor=tag:{tag}"
             content = await self._fetch_url(client, url)
             if content:
                 soup = BeautifulSoup(content, "xml")
@@ -326,11 +334,22 @@ class Discoverer:
         self.logger_suite.log_discovery("WIKICAAD", url, found)
 
     async def discover_ifarchive(self, client: httpx.AsyncClient) -> None:
-        """Traverse IF Archive directories for DAAD files."""
+        """Traverse IF Archive directories for DAAD files.
+
+        NOTE: dropped the "/indexes/" prefix these paths had. Confirmed live
+        that "/if-archive/programming/", "/if-archive/programming/javascript/"
+        etc. serve real directory listings at ifarchive.org directly;
+        "/indexes/if-archive/" only turned up as the bare top-level
+        category-overview page in search results, never as a working prefix
+        for a specific subdirectory like games/spanish. Not 100% certain
+        (couldn't fetch either form directly to compare), but this matches
+        every confirmed-working example found, and there's no evidence the
+        old "/indexes/" form ever worked for a subdirectory like this.
+        """
         dirs = [
-            "https://ifarchive.org/indexes/if-archive/games/spanish/",
-            "https://ifarchive.org/indexes/if-archive/games/pc/",
-            "https://ifarchive.org/indexes/if-archive/programming/daad/"
+            "https://ifarchive.org/if-archive/games/spanish/",
+            "https://ifarchive.org/if-archive/games/pc/",
+            "https://ifarchive.org/if-archive/programming/daad/"
         ]
         found = 0
         for base_url in dirs:

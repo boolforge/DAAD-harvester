@@ -177,7 +177,7 @@ This document provides a brutally honest, technically exhaustive critique of `da
 - [ ] **Task 2: Overhaul Mass Discovery Engine & Web Search Fallback**
   - [x] Fix ZXDB (wrong domain -- fixed 2026-08-17)
   - [x] Fix GitHub discovery (wrong hardcoded branch -- fixed 2026-08-17)
-  - [ ] Verify/fix IFDB, itch.io, Aminet, IF Archive, DuckDuckGo scraper against live sites (needs real internet access; run `scripts/validate_seeds.py` and manually re-check each `discover_*` function's selectors/endpoints)
+  - [x] Verify/fix IFDB, itch.io, Aminet, IF Archive, DuckDuckGo scraper against live sites (2026-08-18: itch.io tag URLs and DuckDuckGo selectors confirmed correct live, no change; IFDB URL format fixed to match ifdb.org's own documented API example (`?xml&game&searchfor=`, was `?searchfor=...&xml=1`, missing the `game` type flag entirely); IF Archive paths fixed by dropping an unconfirmed `/indexes/` prefix that had no working precedent in any live example found, vs. multiple confirmed-working `/if-archive/...` paths without it. Aminet's exact query param wasn't conclusively confirmed either way -- left unchanged, no evidence of breakage)
   - [x] DuckDuckGo web search crawler exists (`discover_web_search`) -- selector assumptions unverified
 
 - [x] **Task 3: Interactive Async Terminal UI (Rich TUI)** -- tabs/search/nav/pause done, see Phase 3 above.
