@@ -131,6 +131,21 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
     connection_nodes = [node for node in ir.nodes if isinstance(node, ConnectionListNode)]
     assert connection_nodes
     assert all(node.raw_bytes.endswith(b"\xff") for node in connection_nodes)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.following_table_kind)
+        for node in ir.nodes
+        if isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "connections_table"
+    ] == [(0x08C3, 0x08C4, b"\x00", "connections_table")]
+    mutated = bytearray(original)
+    mutated[0x08C3] = 0x01
+    mutated_ir = decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
+    assert not any(
+        isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "connections_table"
+        for node in mutated_ir.nodes
+    )
+    assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
@@ -191,6 +206,7 @@ def test_retained_legacy_v2_amiga_big_endian_ddb_round_trips_byte_identically() 
         (0x088B, 0x088C, b"\x00", 2, "messages_table"),
         (0x089D, 0x089E, b"\x00", 2, "object_names_table"),
         (0x099F, 0x09A0, b"\x00", 2, "location_descriptions_table"),
+        (0x09AD, 0x09AE, b"\x00", 2, "connections_table"),
     ]
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes

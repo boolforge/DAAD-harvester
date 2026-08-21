@@ -134,7 +134,7 @@ class TokenNode(DDBNode):
 
 @dataclass(frozen=True, slots=True)
 class AlignmentPaddingNode(DDBNode):
-    """A raw zero byte aligning a legacy XOR-text payload's word-offset table."""
+    """A source-backed raw zero byte aligning a legacy payload's word-offset table."""
 
     alignment: int
     following_table_kind: str
@@ -727,36 +727,27 @@ def _text_nodes(
     return nodes
 
 
-def _message_table_alignment_nodes(
+def _legacy_alignment_padding_nodes(
     data: bytes,
     *,
     offset_tables: list[OffsetTableNode],
     text_nodes: list[TextNode],
+    connection_nodes: list[ConnectionListNode],
     profile: DDBProfile,
 ) -> list[AlignmentPaddingNode]:
-    """Decode ADP's odd-byte XOR-text payload padding before its word table.
+    """Decode ADP's odd-byte text and connection payload alignment before word tables.
 
-    `AppendMessageTable()` emits a raw zero only when the just-written message
-    payload has odd length, then emits its target-endian two-byte offset table.
-    The condition is retained here exactly: a known text table must begin one
-    byte after its final referenced text record, that final record must end at
-    an odd source offset, and the intervening byte must be zero.  Any other
-    gap remains visible through the opaque byte ledger.
+    `AppendMessageTable()` and `AppendConnections()` each emit a raw zero only
+    when their respective payload has odd length, then emit their target-endian
+    two-byte offset table. The predicates below deliberately retain those two
+    writer grammars separately. Any other gap remains visible through the
+    opaque byte ledger.
     """
 
     nodes: list[AlignmentPaddingNode] = []
-    for table in offset_tables:
-        if table.table_kind not in LEGACY_TEXT_TABLE_KINDS:
-            continue
-        table_references = f"{table.table_kind}["
-        table_text_nodes = [
-            node
-            for node in text_nodes
-            if any(reference.startswith(table_references) for reference in node.table_references)
-        ]
-        if not table_text_nodes:
-            continue
-        payload_end = max(node.byte_end for node in table_text_nodes)
+    tables_by_kind = {table.table_kind: table for table in offset_tables}
+
+    def append_if_aligned(payload_end: int, table: OffsetTableNode) -> None:
         if (
             payload_end & 1
             and table.byte_start == payload_end + 1
@@ -772,6 +763,23 @@ def _message_table_alignment_nodes(
                     table.table_kind,
                 )
             )
+
+    for table in offset_tables:
+        if table.table_kind not in LEGACY_TEXT_TABLE_KINDS:
+            continue
+        table_references = f"{table.table_kind}["
+        table_text_nodes = [
+            node
+            for node in text_nodes
+            if any(reference.startswith(table_references) for reference in node.table_references)
+        ]
+        if not table_text_nodes:
+            continue
+        append_if_aligned(max(node.byte_end for node in table_text_nodes), table)
+
+    connections_table = tables_by_kind.get("connections_table")
+    if connections_table is not None and connection_nodes:
+        append_if_aligned(max(node.byte_end for node in connection_nodes), connections_table)
     return nodes
 
 
@@ -1028,14 +1036,13 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             profile=profile,
         )
         known_nodes.extend(offset_tables)
-        known_nodes.extend(
-            _connection_list_nodes(
-                data,
-                offset_tables=offset_tables,
-                payload_end=payload_end,
-                profile=profile,
-            )
+        connection_nodes = _connection_list_nodes(
+            data,
+            offset_tables=offset_tables,
+            payload_end=payload_end,
+            profile=profile,
         )
+        known_nodes.extend(connection_nodes)
         text_nodes = _text_nodes(
             data,
             offset_tables=offset_tables,
@@ -1044,10 +1051,11 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         )
         known_nodes.extend(text_nodes)
         known_nodes.extend(
-            _message_table_alignment_nodes(
+            _legacy_alignment_padding_nodes(
                 data,
                 offset_tables=offset_tables,
                 text_nodes=text_nodes,
+                connection_nodes=connection_nodes,
                 profile=profile,
             )
         )
