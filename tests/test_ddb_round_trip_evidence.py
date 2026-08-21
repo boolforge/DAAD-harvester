@@ -9,12 +9,13 @@ def test_retained_round_trip_evidence_has_complete_digests_and_visible_boundarie
     evidence = retained_ddb_round_trip_evidence()
 
     assert evidence["schema_version"] == 1
-    assert evidence["fixture_count"] == 3
+    assert evidence["fixture_count"] == 4
     records = {record["profile_id"]: record for record in evidence["records"]}
     assert set(records) == {
         "legacy-v2-dos-little-raw-blank-r4",
         "legacy-v1-c64-little-0x3880-raw-jabato-ass-part1",
         "legacy-v2-zx-little-0x8400-raw-chichen-embedded-code",
+        "legacy-v2-amiga-big-raw-chichen-part1",
     }
     for record in records.values():
         assert record["byte_comparison"] == {

@@ -1,5 +1,5 @@
 {
-  "fixture_count": 3,
+  "fixture_count": 4,
   "records": [
     {
       "byte_comparison": {
@@ -683,6 +683,172 @@
       },
       "source_path": "preservation_corpus/extracted/depth3_25a67864_CODE__embedded_002400.ddb",
       "source_size": 22194
+    },
+    {
+      "byte_comparison": {
+        "byte_identical": true,
+        "first_difference": null
+      },
+      "opaque_ranges": [
+        {
+          "byte_end": 60,
+          "byte_start": 34,
+          "reason": "legacy_header_extension_pending_grammar"
+        },
+        {
+          "byte_end": 1005,
+          "byte_start": 621,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2060,
+          "byte_start": 2059,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2188,
+          "byte_start": 2187,
+          "reason": "legacy_system_messages_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2206,
+          "byte_start": 2205,
+          "reason": "legacy_messages_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2464,
+          "byte_start": 2463,
+          "reason": "legacy_object_names_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2478,
+          "byte_start": 2477,
+          "reason": "legacy_location_descriptions_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2488,
+          "byte_start": 2484,
+          "reason": "legacy_object_words_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2497,
+          "byte_start": 2496,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2532,
+          "byte_start": 2531,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2558,
+          "byte_start": 2557,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2604,
+          "byte_start": 2603,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2638,
+          "byte_start": 2637,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2648,
+          "byte_start": 2647,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2658,
+          "byte_start": 2657,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2664,
+          "byte_start": 2663,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2670,
+          "byte_start": 2669,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2672,
+          "byte_start": 2671,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2794,
+          "byte_start": 2793,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2840,
+          "byte_start": 2839,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2858,
+          "byte_start": 2857,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        }
+      ],
+      "profile": {
+        "base_address": 0,
+        "endianness": "big",
+        "extension_dialect": null,
+        "layout": "legacy",
+        "machine_id": 6,
+        "major_version": 2,
+        "platform": "amiga",
+        "wrapper": "raw"
+      },
+      "profile_id": "legacy-v2-amiga-big-raw-chichen-part1",
+      "recompiled_digests": {
+        "adler32": "14f52b54",
+        "blake2b": "bf99688f35da6860326cc9f6a9255015de78a1c64dda7038900e842d22fd00ffd4fcb37127a8ad6000e3444c3a86ab2de69b48cdd78d738c51e12fc0af01aa25",
+        "blake2s": "991e396b0e1bc5d1c99117c19a57e0a4753b39b72cba94c11a27813e3794e827",
+        "crc32": "c7ac7777",
+        "md5_5000": "92aef478b4ca9bc9895f1427fb7f1160",
+        "md5_full": "92aef478b4ca9bc9895f1427fb7f1160",
+        "md5_tail5000": "92aef478b4ca9bc9895f1427fb7f1160",
+        "sha1": "990d959f9bb9bdc0b3572daf8d12cb3aecb62cd8",
+        "sha224": "e4b502642f704366eca6560e51fbb55ebc7daed20c2721909900393e",
+        "sha256": "13389079e2a3e06e7546e082e5e3d1e5d7658333efcac20a0992a2dc9396e133",
+        "sha384": "0291c3a93b6fb79f0333b006b078f3d3286228c8d8f81dd795bc0e41c33616b05704c91d46de9c81d19caa3558a901de",
+        "sha3_256": "db736831deb5af34e0b2e695f227493701318252c18bad014805f9c14386ad27",
+        "sha3_512": "f9cbfbf8abc3dbf11bc8330e500cf7757478f0b59e56f5c57d54ec77884c2e54fe573264c39b30fa1614b1d49f244bb6a2453cb28fd114b04d32cb77e45b5ac9",
+        "sha512": "bf54b0daba7dd43782d5b991e328f5a58ea2d0e34f55dc79c52d01a4bdfb54385809ac389e553ca93a9666cd6fd8da8930549225321e0688fdf67fc0adfe3727",
+        "xxh128": "4d70e1bc00b69a453f3db15b203842bd",
+        "xxh32": "89a4afe9",
+        "xxh64": "3deac27a322d1184"
+      },
+      "recompiled_size": 2872,
+      "semantic_status": "structurally_bounded",
+      "source_digests": {
+        "adler32": "14f52b54",
+        "blake2b": "bf99688f35da6860326cc9f6a9255015de78a1c64dda7038900e842d22fd00ffd4fcb37127a8ad6000e3444c3a86ab2de69b48cdd78d738c51e12fc0af01aa25",
+        "blake2s": "991e396b0e1bc5d1c99117c19a57e0a4753b39b72cba94c11a27813e3794e827",
+        "crc32": "c7ac7777",
+        "md5_5000": "92aef478b4ca9bc9895f1427fb7f1160",
+        "md5_full": "92aef478b4ca9bc9895f1427fb7f1160",
+        "md5_tail5000": "92aef478b4ca9bc9895f1427fb7f1160",
+        "sha1": "990d959f9bb9bdc0b3572daf8d12cb3aecb62cd8",
+        "sha224": "e4b502642f704366eca6560e51fbb55ebc7daed20c2721909900393e",
+        "sha256": "13389079e2a3e06e7546e082e5e3d1e5d7658333efcac20a0992a2dc9396e133",
+        "sha384": "0291c3a93b6fb79f0333b006b078f3d3286228c8d8f81dd795bc0e41c33616b05704c91d46de9c81d19caa3558a901de",
+        "sha3_256": "db736831deb5af34e0b2e695f227493701318252c18bad014805f9c14386ad27",
+        "sha3_512": "f9cbfbf8abc3dbf11bc8330e500cf7757478f0b59e56f5c57d54ec77884c2e54fe573264c39b30fa1614b1d49f244bb6a2453cb28fd114b04d32cb77e45b5ac9",
+        "sha512": "bf54b0daba7dd43782d5b991e328f5a58ea2d0e34f55dc79c52d01a4bdfb54385809ac389e553ca93a9666cd6fd8da8930549225321e0688fdf67fc0adfe3727",
+        "xxh128": "4d70e1bc00b69a453f3db15b203842bd",
+        "xxh32": "89a4afe9",
+        "xxh64": "3deac27a322d1184"
+      },
+      "source_path": "preservation_corpus/extracted/depth2_92aef478_PART1.DDB",
+      "source_size": 2872
     }
   ],
   "schema_version": 1

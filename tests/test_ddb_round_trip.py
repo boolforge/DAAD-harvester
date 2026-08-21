@@ -61,6 +61,17 @@ ZX_V2_DDB_PROFILE = DDBProfile(
     base_address=0x8400,
     wrapper="raw",
 )
+AMIGA_V2_DDB = REPOSITORY_ROOT / "preservation_corpus/extracted/depth2_92aef478_PART1.DDB"
+AMIGA_V2_DDB_SHA256 = "13389079e2a3e06e7546e082e5e3d1e5d7658333efcac20a0992a2dc9396e133"
+AMIGA_V2_DDB_PROFILE = DDBProfile(
+    layout="legacy",
+    major_version=2,
+    machine_id=6,
+    platform="amiga",
+    endianness="big",
+    base_address=0,
+    wrapper="raw",
+)
 
 
 def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None:
@@ -139,6 +150,20 @@ def test_retained_legacy_v2_zx_target_memory_ddb_round_trips_byte_identically() 
     recompiled = recompile_ddb(ir, ZX_V2_DDB_PROFILE)
 
     assert ir.profile.base_address == 0x8400
+    assert len(original_hashes) == 17
+    assert recompiled == original
+    assert compute_hashes(recompiled) == original_hashes
+
+
+def test_retained_legacy_v2_amiga_big_endian_ddb_round_trips_byte_identically() -> None:
+    original = AMIGA_V2_DDB.read_bytes()
+
+    assert len(original) == 2872
+    assert sha256(original).hexdigest() == AMIGA_V2_DDB_SHA256
+    original_hashes = compute_hashes(original)
+    ir = decompile_ddb(original, AMIGA_V2_DDB_PROFILE)
+    recompiled = recompile_ddb(ir, AMIGA_V2_DDB_PROFILE)
+
     assert len(original_hashes) == 17
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
