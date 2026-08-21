@@ -7,6 +7,7 @@ from pathlib import Path
 
 from daad_harvester.ddb_grammar import DDBProfile
 from daad_harvester.ddb_ir import (
+    AlignmentPaddingNode,
     OffsetTableNode,
     ObjectTableNode,
     ConnectionListNode,
@@ -175,5 +176,21 @@ def test_retained_legacy_v2_amiga_big_endian_ddb_round_trips_byte_identically() 
     recompiled = recompile_ddb(ir, AMIGA_V2_DDB_PROFILE)
 
     assert len(original_hashes) == 17
+    assert [
+        (
+            node.byte_start,
+            node.byte_end,
+            node.raw_bytes,
+            node.alignment,
+            node.following_table_kind,
+        )
+        for node in ir.nodes
+        if isinstance(node, AlignmentPaddingNode)
+    ] == [
+        (0x080B, 0x080C, b"\x00", 2, "system_messages_table"),
+        (0x088B, 0x088C, b"\x00", 2, "messages_table"),
+        (0x089D, 0x089E, b"\x00", 2, "object_names_table"),
+        (0x099F, 0x09A0, b"\x00", 2, "location_descriptions_table"),
+    ]
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes

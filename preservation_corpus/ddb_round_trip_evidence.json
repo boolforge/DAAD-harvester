@@ -13,11 +13,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 2114,
-          "byte_start": 2113,
-          "reason": "legacy_system_messages_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 2244,
           "byte_start": 2243,
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
@@ -152,21 +147,6 @@
           "byte_end": 60,
           "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
-        },
-        {
-          "byte_end": 1728,
-          "byte_start": 1727,
-          "reason": "legacy_system_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 1756,
-          "byte_start": 1755,
-          "reason": "legacy_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 1908,
-          "byte_start": 1907,
-          "reason": "legacy_object_names_table_payload_pending_grammar"
         },
         {
           "byte_end": 1922,
@@ -1038,26 +1018,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 2060,
-          "byte_start": 2059,
-          "reason": "legacy_token_block_payload_pending_grammar"
-        },
-        {
-          "byte_end": 2188,
-          "byte_start": 2187,
-          "reason": "legacy_system_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 2206,
-          "byte_start": 2205,
-          "reason": "legacy_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 2464,
-          "byte_start": 2463,
-          "reason": "legacy_object_names_table_payload_pending_grammar"
-        },
-        {
           "byte_end": 2478,
           "byte_start": 2477,
           "reason": "legacy_location_descriptions_table_payload_pending_grammar"
@@ -1192,16 +1152,6 @@
           "byte_end": 60,
           "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
-        },
-        {
-          "byte_end": 27102,
-          "byte_start": 27101,
-          "reason": "legacy_system_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 34198,
-          "byte_start": 34197,
-          "reason": "legacy_object_names_table_payload_pending_grammar"
         },
         {
           "byte_end": 34740,

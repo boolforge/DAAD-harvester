@@ -133,6 +133,14 @@ class TokenNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class AlignmentPaddingNode(DDBNode):
+    """A raw zero byte aligning a legacy XOR-text payload's word-offset table."""
+
+    alignment: int
+    following_table_kind: str
+
+
+@dataclass(frozen=True, slots=True)
 class CondActStreamNode(DDBNode):
     """A terminated executable stream decoded by the selected native grammar."""
 
@@ -170,6 +178,7 @@ TopLevelDDBNode: TypeAlias = (
     | ConnectionListNode
     | TextNode
     | TokenNode
+    | AlignmentPaddingNode
     | CondActStreamNode
     | ProcessEntryNode
     | OpaqueNode
@@ -718,6 +727,54 @@ def _text_nodes(
     return nodes
 
 
+def _message_table_alignment_nodes(
+    data: bytes,
+    *,
+    offset_tables: list[OffsetTableNode],
+    text_nodes: list[TextNode],
+    profile: DDBProfile,
+) -> list[AlignmentPaddingNode]:
+    """Decode ADP's odd-byte XOR-text payload padding before its word table.
+
+    `AppendMessageTable()` emits a raw zero only when the just-written message
+    payload has odd length, then emits its target-endian two-byte offset table.
+    The condition is retained here exactly: a known text table must begin one
+    byte after its final referenced text record, that final record must end at
+    an odd source offset, and the intervening byte must be zero.  Any other
+    gap remains visible through the opaque byte ledger.
+    """
+
+    nodes: list[AlignmentPaddingNode] = []
+    for table in offset_tables:
+        if table.table_kind not in LEGACY_TEXT_TABLE_KINDS:
+            continue
+        table_references = f"{table.table_kind}["
+        table_text_nodes = [
+            node
+            for node in text_nodes
+            if any(reference.startswith(table_references) for reference in node.table_references)
+        ]
+        if not table_text_nodes:
+            continue
+        payload_end = max(node.byte_end for node in table_text_nodes)
+        if (
+            payload_end & 1
+            and table.byte_start == payload_end + 1
+            and data[payload_end:table.byte_start] == b"\x00"
+        ):
+            nodes.append(
+                AlignmentPaddingNode(
+                    payload_end,
+                    table.byte_start,
+                    profile,
+                    data[payload_end:table.byte_start],
+                    2,
+                    table.table_kind,
+                )
+            )
+    return nodes
+
+
 def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
@@ -979,11 +1036,18 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
                 profile=profile,
             )
         )
+        text_nodes = _text_nodes(
+            data,
+            offset_tables=offset_tables,
+            payload_end=payload_end,
+            profile=profile,
+        )
+        known_nodes.extend(text_nodes)
         known_nodes.extend(
-            _text_nodes(
+            _message_table_alignment_nodes(
                 data,
                 offset_tables=offset_tables,
-                payload_end=payload_end,
+                text_nodes=text_nodes,
                 profile=profile,
             )
         )

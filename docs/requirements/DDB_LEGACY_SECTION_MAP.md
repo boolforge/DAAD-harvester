@@ -4,7 +4,7 @@
 | --- | --- |
 | **Question** | Which compact legacy DDB header words own the unresolved byte ranges reported by the native lossless IR? |
 | **Evidence scope** | P0 native IR ledger and retained byte ranges; P1 pinned ADP loader and DDB map implementation. |
-| **Status** | Source-backed section ownership and bounded ranges; individual section-payload grammars remain pending. |
+| **Status** | Source-backed section ownership, XOR-text records, and odd-byte message-table alignment; individual section-payload grammars remain pending. |
 | **Implementation links** | [`../../daad_harvester/ddb_ir.py`](../../daad_harvester/ddb_ir.py), [`../../daad_harvester/daad_parser.py`](../../daad_harvester/daad_parser.py), and [`DDB_DECOMPILER_ROUND_TRIP.md`](DDB_DECOMPILER_ROUND_TRIP.md). |
 
 ## Pointer ownership
@@ -30,7 +30,7 @@ For the compact legacy layouts currently measured in the retained corpus, the na
 
 ## Evidence interpretation
 
-Pinned ADP reads the first eleven pointers at `0x08`–`0x1C` in the table order above, validates their count-dependent minimum spans, translates stored addresses with `DDB_DecodeStoredOffset`, and then stores typed in-memory section pointers.[1] Its V2 loader additionally validates the extended object-attribute pointer at `0x1E` with a `numObjects * 2` minimum span.[1] The ADP DDB tool independently prints the same field sequence and builds a sorted memory map from these section pointers.[2] ADP’s compiler writes each vocabulary word as five XOR-encoded bytes followed by raw index and type bytes; its dump path independently walks seven-byte entries to a raw zero terminator.[3] [4] Its connection serializer independently emits verb/destination byte pairs, a raw `0xFF` terminator per location list, optional alignment, and then the target-endian location pointer table.[5] The object-word serializer independently emits a noun and adjective byte for every object; the parser therefore treats the loader’s smaller validation span as a minimum acceptance condition rather than the semantic table width.[6] ADP defines V1/V2 external-data field offsets and reads a nonzero pointer only where it fits before the first section; an out-of-database target is explicitly nonfatal rather than inferred as local data.[7]
+Pinned ADP reads the first eleven pointers at `0x08`–`0x1C` in the table order above, validates their count-dependent minimum spans, translates stored addresses with `DDB_DecodeStoredOffset`, and then stores typed in-memory section pointers.[1] Its V2 loader additionally validates the extended object-attribute pointer at `0x1E` with a `numObjects * 2` minimum span.[1] The ADP DDB tool independently prints the same field sequence and builds a sorted memory map from these section pointers.[2] ADP’s compiler writes each vocabulary word as five XOR-encoded bytes followed by raw index and type bytes; its dump path independently walks seven-byte entries to a raw zero terminator.[3] [4] Its connection serializer independently emits verb/destination byte pairs, a raw `0xFF` terminator per location list, optional alignment, and then the target-endian location pointer table.[5] The same compiler’s `AppendMessageTable()` writes each XOR-text payload, inserts one raw zero byte when that payload ends on an odd byte boundary, and only then writes the target-endian two-byte offset table.[6] The retained Amiga V2 `PART1.DDB` follows that exact condition at four independently pointer-bounded boundaries: `0x080B` before system messages, `0x088B` before messages, `0x089D` before object names, and `0x099F` before location descriptions. The native IR types each byte only when all of these source-backed predicates match; any other gap remains explicit in the opaque ledger. The object-word serializer independently emits a noun and adjective byte for every object; the parser therefore treats the loader’s smaller validation span as a minimum acceptance condition rather than the semantic table width.[7] ADP defines V1/V2 external-data field offsets and reads a nonzero pointer only where it fits before the first section; an out-of-database target is explicitly nonfatal rather than inferred as local data.[8]
 
 > A section owner establishes a safe byte-boundary and a concrete next decoder target. It does **not** establish the payload’s complete syntax, text encoding, authoring origin, interpreter compatibility, or semantic decompilation.
 
@@ -50,6 +50,8 @@ This crosswalk does not claim that any pending legacy section grammar is complet
 
 [5]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP `AppendConnections`: verb/destination pairs, `0xFF` list terminator, alignment, and pointer table”
 
-[6]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP `AppendObjectWords`: noun/adjective pair serialization per object”
+[6]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP `AppendMessageTable`: XOR-text payload alignment and target-endian offset-table serialization”
 
-[7]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/ddb.cpp “Pinned ADP V1/V2 external-data field offsets and bounded external-pointer handling”
+[7]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP `AppendObjectWords`: noun/adjective pair serialization per object”
+
+[8]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/ddb.cpp “Pinned ADP V1/V2 external-data field offsets and bounded external-pointer handling”
