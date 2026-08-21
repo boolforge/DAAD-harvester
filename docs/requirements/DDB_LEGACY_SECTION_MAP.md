@@ -34,6 +34,8 @@ Pinned ADP reads the first eleven pointers at `0x08`–`0x1C` in the table order
 
 DRC V2 serialization writes thirteen target-endian external-vector words beginning at `0x22` and ending at `0x3C`; its compiler assigns vector 0 to `EXTERN`, vector 1 to `SFX`, vector 2 to `INT`, and retains vectors 3–12 as user pointers.[11] ADP independently stores the primary external-data pointer at `0x22`, recognizes the external PSG table pointer at `0x28`, and allocates 24 bytes after the V2 base header for its PC, Atari ST, and Amiga output path.[10] [12] The IR therefore replaces the narrow external-data node with an `ExternalVectorTableNode` only when all thirteen words precede the earliest pointer-defined section. Retained DOS V2 `BLANK.DDB` and `SPANISH.DDB`, ZX Side 2, and both Amiga records satisfy that exact condition with thirteen zero words; a mutated vector word remains typed and recompiles byte-identically. The longer embedded ZX gap is intentionally not absorbed: only its measured `0x22`–`0x3C` vector table is typed, while `0x3C`–`0x7A` remains a separate open range.
 
+The DAAD Version 2 manual defines CTL as the first data section after the header and documents its fixed address as the insertion point for non-relocatable machine code or data.[13] The embedded Chichén Itzá ZX V2 record has precisely such a profile-bounded interval: after its complete vector table, `ControlSectionNode(0x3C, 0x7A)` preserves its raw 62-byte CTL payload through recompilation. This node makes no claim that the nonzero bytes are executable code, screen configuration, or any other finer semantic subtype; it only establishes the manual-backed section ownership and stable bounds.
+
 > A section owner establishes a safe byte-boundary and a concrete next decoder target. It does **not** establish the payload’s complete syntax, text encoding, authoring origin, interpreter compatibility, or semantic decompilation.
 
 ## **Non-claims**
@@ -65,3 +67,5 @@ This crosswalk does not claim that any pending legacy section grammar is complet
 [11]: https://github.com/Utodev/DRC/blob/e7bb170ef94e7b4965c0719b497638cec7aeaca9/src/drb.php “Pinned DRC V2 external-vector assignments, zero initialization, and thirteen-word header serialization”
 
 [12]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP V2 target-specific extension allocation and header writer”
+
+[13]: http://www.rockersuke.com/if/ebbp/DAAD_Manual.pdf “DAAD Adventure Writer Version 2 Release 1 manual, CTL-section and fixed-address extension guidance”

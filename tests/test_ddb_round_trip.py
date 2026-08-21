@@ -11,10 +11,12 @@ from daad_harvester.ddb_grammar import DDBProfile
 from daad_harvester.ddb_ir import (
     AlignmentPaddingNode,
     OffsetTableNode,
-    ObjectTableNode,
+    AlignmentPaddingNode,
     ConnectionListNode,
+    ControlSectionNode,
     ExternalVectorTableNode,
     HeaderExtensionNode,
+    ObjectTableNode,
     ProcessCodeAlignmentNode,
     ProcessEntryNode,
     ProcessSectionMarkerNode,
@@ -311,6 +313,19 @@ def test_retained_legacy_v2_zx_target_memory_ddb_round_trips_byte_identically() 
 
     assert ir.profile.base_address == 0x8400
     assert len(original_hashes) == 17
+    control_sections = [node for node in ir.nodes if isinstance(node, ControlSectionNode)]
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes[:8], node.payload_kind)
+        for node in control_sections
+    ] == [(0x3C, 0x7A, b"\x00\x00\x00\x00\x00\x00\x00\x00", "documented_ctl_payload")]
+    mutated = bytearray(original)
+    mutated[0x44] ^= 0x01
+    mutated_ir = decompile_ddb(bytes(mutated), ZX_V2_DDB_PROFILE)
+    assert any(
+        isinstance(node, ControlSectionNode) and node.raw_bytes[8] == original[0x44] ^ 0x01
+        for node in mutated_ir.nodes
+    )
+    assert recompile_ddb(mutated_ir, ZX_V2_DDB_PROFILE) == bytes(mutated)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
 

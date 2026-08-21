@@ -80,6 +80,14 @@ class ExternalVectorTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ControlSectionNode(DDBNode):
+    """A documented fixed-address CTL payload between header vectors and sections."""
+
+    null_word: int | None
+    payload_kind: str
+
+
+@dataclass(frozen=True, slots=True)
 class ProcessPointerTableNode(DDBNode):
     """A decoded process-table word sequence with stored and source offsets."""
 
@@ -198,6 +206,7 @@ TopLevelDDBNode: TypeAlias = (
     | PointerTableNode
     | HeaderExtensionNode
     | ExternalVectorTableNode
+    | ControlSectionNode
     | ProcessPointerTableNode
     | OffsetTableNode
     | VocabularyNode
@@ -1037,6 +1046,45 @@ def _header_extension_node(
     )
 
 
+def _control_section_node(
+    data: bytes,
+    *,
+    payload_offset: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+    header_extension: HeaderExtensionNode | ExternalVectorTableNode | None,
+) -> ControlSectionNode | None:
+    """Own a ZX V2 CTL payload only between vectors and the first section."""
+
+    if (
+        profile.layout != "legacy"
+        or profile.platform != "zx"
+        or header["major_version"] != 2
+        or not isinstance(header_extension, ExternalVectorTableNode)
+    ):
+        return None
+    section_offsets = [
+        payload_offset + _pointer_to_offset(pointer, header["base_address"])
+        for pointer in header["pointers"]
+        if pointer
+    ]
+    if not section_offsets:
+        return None
+    control_start = header_extension.byte_end
+    control_end = min(section_offsets)
+    if control_end <= control_start:
+        return None
+    raw_bytes = data[control_start:control_end]
+    return ControlSectionNode(
+        control_start,
+        control_end,
+        profile,
+        raw_bytes,
+        raw_bytes[0] if raw_bytes else None,
+        "documented_ctl_payload",
+    )
+
+
 def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
     """Decompile a parser-verified DDB into a complete byte-owned native IR."""
 
@@ -1102,6 +1150,15 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         )
         if header_extension is not None:
             known_nodes.append(header_extension)
+        control_section = _control_section_node(
+            data,
+            payload_offset=payload_offset,
+            header=header,
+            profile=profile,
+            header_extension=header_extension,
+        )
+        if control_section is not None:
+            known_nodes.append(control_section)
     (
         entries,
         stream_references,
