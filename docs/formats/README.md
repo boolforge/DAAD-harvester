@@ -7,6 +7,7 @@
 | [Tape streams](TAPE_STREAMS.md) | TAP, TZX/CDT, CBM TAP, CAS/TSX boundaries. | Implementation contract |
 | [TZX/CDT generation](TZX_CDT_GENERATION.md) | Deterministic standard-speed TZX/CDT writer, validation, comparison, and publication contract. | Generation contract |
 | [Legacy `.CHR` generation](DAAD_CHR_GENERATION.md) | Fixed-size DAAD character-set container, opaque-prefix boundary, corpus comparison, and promotion requirements. | Structural implementation |
+| [Legacy DAT V2 inspection](LEGACY_DAT_V2.md) | Endian-aware legacy graphics database header/table validation with retained-corpus crosswalk and explicit payload boundary. | Structural implementation |
 | [CBM disk and program media](CBM_DISK_AND_PROGRAM.md) | D64/D71, T64, P00/PRG, G64 preservation evidence. | Implementation contract |
 | [CP/M DSK](CPM_DSK.md) | CPC/PCW DSK and allocation/extent rules. | Implementation contract |
 | [Extended DSK generation](EXTENDED_DSK_GENERATION.md) | Deterministic Extended DSK writer, validator, comparison, and public-evidence contract. | Implementation contract |
