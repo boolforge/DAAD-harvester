@@ -15,6 +15,7 @@ from typing import Any, Dict
 
 from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.db import Database
+from scripts.verify_native_generators import verify as verify_native_generators
 
 
 ARTIFACT_CHECKSUM_FIELDS = (
@@ -163,6 +164,7 @@ class StaticReportExporter:
             {"schema_version": 1, "summary": {}, "artifacts": [], "unavailable": True},
         )
         catalog_entries = self._read_json(self.output_dir / "daad_catalog.json", [])
+        generator_entries = [verify_native_generators()]
         log_candidates = {
             "general": self.output_dir / "logs" / "daad_general.log",
             "games": self.output_dir / "daad_games.log",
@@ -183,6 +185,15 @@ class StaticReportExporter:
             },
             "catalog": catalog,
             "game_port_matrix": self._catalog_title_matrix(catalog),
+            "generator_evidence": {
+                "available": True,
+                "generators": generator_entries,
+                "boundary": (
+                    "Generator evidence proves only the listed deterministic output and native structural "
+                    "validation. Filesystem population, authentic-release equivalence, and target execution "
+                    "remain explicit per-generator comparison fields."
+                ),
+            },
             "detections": {
                 "available": bool(detection_text),
                 "download_path": "detection_tables.h" if detection_text else None,

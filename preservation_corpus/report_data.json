@@ -50819,6 +50819,50 @@
       "boundary": "Catalog platforms, source platforms, and measured artifact platforms are distinct evidence layers; this matrix does not assert a runnable game port."
     }
   ],
+  "generator_evidence": {
+    "available": true,
+    "generators": [
+      {
+        "schema_version": 1,
+        "generator_id": "extended-dsk-blank-cpc-system-v1",
+        "technical_medium": "extended_cpc_dsk",
+        "status": "generated_structurally_valid",
+        "inputs": {
+          "creator": "DAAD-HARVEST",
+          "profile": "blank_cpc_system_40x1_9x512",
+          "filesystem_claim": "none"
+        },
+        "output": {
+          "byte_length": 194816,
+          "sha256": "ab33b5581e8141fd4c721a1cf6e6e98d30454e1a2632e1951168a678d10e495b",
+          "md5_full": "4d628f542ee8a7b2bfee255606819485"
+        },
+        "native_validation": {
+          "parser": "cpc-dsk",
+          "status": "recognized_evidence",
+          "validation": "validated_cpc_dsk_track_stream",
+          "evidence": {
+            "dsk_variant": "extended",
+            "tracks": 40,
+            "sides": 1,
+            "present_tracks": 40,
+            "sector_count": 360,
+            "cpm_directory_profile": "cpc_system",
+            "cpm_directory_extraction_eligible": true,
+            "observed_track_layouts": [
+              "ids=41,42,43,44,45,46,47,48,49;sizes=512,512,512,512,512,512,512,512,512"
+            ]
+          }
+        },
+        "comparison_boundary": {
+          "adp": "source_crosswalk_only",
+          "authentic_release": "not_applicable_blank_fixture",
+          "emulator": "not_applicable_container_fixture"
+        }
+      }
+    ],
+    "boundary": "Generator evidence proves only the listed deterministic output and native structural validation. Filesystem population, authentic-release equivalence, and target execution remain explicit per-generator comparison fields."
+  },
   "detections": {
     "available": true,
     "download_path": "detection_tables.h",
