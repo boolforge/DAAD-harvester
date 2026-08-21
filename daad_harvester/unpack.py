@@ -1033,15 +1033,12 @@ class Unpacker:
         logger.info("reunpacking_retained_source", source_id=source_id, path=str(root_path))
         try:
             root_data = root_path.read_bytes()
-            stale_paths = self.db.clear_derived_artifacts(source_id)
-            extract_root = self.extract_dir.resolve()
-            for stale_path in stale_paths:
-                path = Path(stale_path)
-                try:
-                    path.resolve().relative_to(extract_root)
-                    path.unlink(missing_ok=True)
-                except (OSError, ValueError):
-                    logger.warning("retained_reunpack_stale_path_not_removed", source_id=source_id, path=stale_path)
+            # A re-unpack is a parser-evidence expansion, not a destructive
+            # replacement.  A single retained root can yield different
+            # same-named members through separate embedded media or after a
+            # parser improvement.  `add_artifact()` deduplicates an identical
+            # source/name/depth/hash tuple while preserving every distinct
+            # historical byte identity and its provenance row.
             ids = self.unpack_artifact_recursive(source_id, root.original_filename, root_data)
             self.db.update_source_status(source_id, status=SourceStatus.UNPACKED.value)
             return len(ids)

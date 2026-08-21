@@ -469,6 +469,42 @@ def test_reunpacks_retained_root_without_source_download_path(tmp_path: Path) ->
     assert Path(derived_path).is_file()
 
 
+def test_reunpack_retains_prior_descendants_when_parser_recovers_new_bytes(tmp_path: Path, monkeypatch) -> None:
+    db = Database(tmp_path / "state.db")
+    source_id = db.add_source("https://example.invalid/game.bin", "fixture")
+    assert source_id is not None
+    unpacker = Unpacker(db, extract_dir=tmp_path / "extracted")
+
+    monkeypatch.setattr(
+        unpacker,
+        "extract_container",
+        lambda _path, filename, _data: [("LEGACY.BIN", b"first parser recovery")]
+        if filename == "game.bin" else [],
+    )
+    unpacker.unpack_artifact_recursive(source_id, "game.bin", b"retained root")
+    legacy = next(artifact for artifact in db.get_all_artifacts() if artifact.original_filename == "LEGACY.BIN")
+    legacy_path = Path(legacy.extracted_path)
+    assert legacy_path.read_bytes() == b"first parser recovery"
+
+    monkeypatch.setattr(
+        unpacker,
+        "extract_container",
+        lambda _path, filename, _data: [("RECOVERED.BIN", b"later parser recovery")]
+        if filename == "game.bin" else [],
+    )
+    assert unpacker.reunpack_retained_source(source_id) == 2
+
+    artifacts = db.get_all_artifacts()
+    assert [artifact.original_filename for artifact in artifacts] == [
+        "game.bin",
+        "LEGACY.BIN",
+        "RECOVERED.BIN",
+    ]
+    recovered = next(artifact for artifact in artifacts if artifact.original_filename == "RECOVERED.BIN")
+    assert legacy_path.read_bytes() == b"first parser recovery"
+    assert Path(recovered.extracted_path).read_bytes() == b"later parser recovery"
+
+
 def test_retains_distinct_equal_byte_container_members(tmp_path: Path) -> None:
     db = Database(tmp_path / "state.db")
     source_id = db.add_source("https://example.invalid/game.zip", "fixture")
