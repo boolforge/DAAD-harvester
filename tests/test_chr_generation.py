@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 from daad_harvester.chr_generation import (
@@ -38,6 +40,20 @@ def test_chr_builder_preserves_explicit_header_and_glyph_bytes() -> None:
 
     assert fixture[:CHR_HEADER_SIZE] == header
     assert fixture[CHR_HEADER_SIZE:] == glyphs
+
+
+def test_retained_torreoscura_pcw_chr_matches_adp_writer_header_profile() -> None:
+    root = Path(__file__).resolve().parents[1]
+    chr_path = next((root / "preservation_corpus" / "extracted").glob("**/*PARTE001.CHR"))
+
+    evidence = validate_daad_chr(chr_path.read_bytes())
+
+    assert evidence["header_profile"] == "adp_legacy_chr_writer"
+    assert evidence["header_filename_stem"] == "D1"
+    assert evidence["header_tag"] == "CHR"
+    assert evidence["glyph_geometry"] == "256 glyphs × 8 rows × 8 bits"
+    inspection = inspect_native_media(chr_path.name, chr_path.read_bytes())
+    assert inspection.evidence["header_semantics"] == "adp_writer_fields_structurally_validated"
 
 
 def test_chr_builder_and_validator_reject_invalid_bounds() -> None:

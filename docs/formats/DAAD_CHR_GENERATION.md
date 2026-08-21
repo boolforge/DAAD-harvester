@@ -4,9 +4,9 @@
 | --- | --- |
 | **Question** | How can Harvester generate and validate the known legacy DAAD `.CHR` outer container without inventing undocumented prefix semantics or claiming that a generated character set reproduces a historical title? |
 | **Evidence scope** | P0 retained ADP source; P1 independent ZXDAAD128 documentation; P2 retained corpus and ADP fixture bytes; P3 native writer/validator and media inspector. |
-| **Status** | First bounded native structural writer implemented. It preserves caller-supplied 128-byte prefix bytes and 2,048-byte glyph bytes exactly; prefix field semantics, per-runtime interpretation, and authentic glyph equivalence remain unpromoted. |
+| **Status** | Bounded native structural writer and validated ADP-writer header profile implemented. It preserves caller-supplied 128-byte prefix bytes and 2,048-byte glyph bytes exactly; unrecognized prefix fields, per-runtime interpretation, and authentic glyph equivalence remain unpromoted. |
 | **Implementation links** | `daad_harvester.chr_generation`, `daad_harvester.media_inspection._inspect_daad_chr`, `tests/test_chr_generation.py`, `src-common/vid_font.cpp` and `src-tools/tool_chr.cpp` at pinned ADP revision `379a6710de11a2378f3d76c25a4d71bca75073bf`. |
-| **Non-claims** | A structurally valid `.CHR` file does not establish an understood prefix, an intended glyph design, interpreter acceptance for every historical/runtime variant, source title identity, or executable behavior. |
+| **Non-claims** | A structurally valid `.CHR` file does not establish complete prefix semantics, an intended glyph design, interpreter acceptance for every historical/runtime variant, source title identity, or executable behavior. |
 
 ## Structural boundary
 
@@ -14,11 +14,25 @@ ADP’s retained `SCR_LoadCharset` implementation rejects any file whose size is
 
 | Region | Offset | Length | Promoted meaning |
 | --- | ---: | ---: | --- |
-| Prefix | `0x0000` | 128 bytes | Explicit opaque bytes. The generator preserves supplied bytes; no field decoding is claimed. |
+| Prefix | `0x0000` | 128 bytes | Explicit bytes. The generator preserves supplied bytes; the narrow ADP-writer profile below is recognized without promoting other fields. |
 | Glyph payload | `0x0080` | 2,048 bytes | 256 consecutive eight-byte character bitmaps. |
 | File | `0x0000` | 2,176 bytes | Fixed-size legacy `.CHR` outer container. |
 
-The native builder accepts only explicit `bytes` values with those exact lengths. `build_blank_daad_chr()` emits an all-zero structural fixture; `validate_daad_chr()` confirms only the bounded outer partition; and the `.chr` media-inspection route emits `validated_legacy_chr_container` with `header_semantics: opaque_explicit_bytes_not_promoted`.
+The native builder accepts only explicit `bytes` values with those exact lengths. `build_blank_daad_chr()` emits an all-zero structural fixture. A nonmatching header remains `opaque_explicit_bytes_not_promoted`; `.chr` inspection always reports the bounded container without treating an extension as a complete format claim.
+
+## ADP-writer header profile
+
+Pinned ADP `SaveCHR` writes a repeatable subset of the prefix fields.[2] The native validator recognizes that conjunction only when all measured constants match, then records an `adp_legacy_chr_writer` profile. Recognition does not reject another valid fixed-size CHR container and does not assign semantics to fields that the retained writer merely emits.
+
+| Offset | Measured value | Native evidence field | Promotion boundary |
+| --- | --- | --- | --- |
+| `0x01–0x08` | Uppercase padded filename stem | `header_filename_stem` | Observable writer output, not a game-title identity claim. |
+| `0x09–0x0B` | ASCII `CHR` | `header_tag` | Narrow ADP-writer signature only. |
+| `0x12` | `0x02` | `header_writer_marker` | Writer-emitted constant; version semantics remain unpromoted. |
+| `0x41` | `0x08` | `glyph_height` | Consistent with the promoted eight-row glyph payload. |
+| `0x43–0x44` | Little-endian `0x0224` | `header_trailer_word` | Recorded writer constant; field meaning remains unknown. |
+
+The retained Torreoscura PCW `PARTE001.CHR` and `PARTE002.CHR` both match this profile with a `D1` stem and a `256 glyphs × 8 rows × 8 bits` payload geometry. The profile is pinned by a real-artifact regression; malformed or unrelated 128-byte prefixes remain explicit, non-promoted bytes.
 
 ## Cross-comparison record
 
@@ -36,3 +50,4 @@ The current builder is not yet in canonical generator evidence because a blank o
 ## References
 
 [1]: https://github.com/cronomantic/ZXDAAD128 “ZXDAAD128 README: character set file requirements”
+[2]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/tool_chr.cpp#L562-L599 “Pinned ADP CHR writer”
