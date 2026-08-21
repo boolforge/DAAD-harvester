@@ -79,6 +79,16 @@ class OffsetTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class VocabularyNode(DDBNode):
+    """A legacy seven-byte vocabulary record or its raw block terminator."""
+
+    decoded_word: bytes
+    word_index: int | None
+    word_type: int | None
+    is_terminator: bool
+
+
+@dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
     """A XOR-encoded text record with its decoded terminator and table references."""
 
@@ -126,6 +136,7 @@ TopLevelDDBNode: TypeAlias = (
     | PointerTableNode
     | ProcessPointerTableNode
     | OffsetTableNode
+    | VocabularyNode
     | TextNode
     | TokenNode
     | CondActStreamNode
@@ -441,6 +452,56 @@ def _offset_table_nodes(
     return nodes
 
 
+def _vocabulary_nodes(
+    data: bytes,
+    *,
+    payload_offset: int,
+    payload_end: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+) -> list[VocabularyNode]:
+    """Decode ADP's compact legacy vocabulary record and terminator grammar."""
+
+    vocabulary_address = header["pointers"][7]
+    vocabulary_start = payload_offset + _pointer_to_offset(vocabulary_address, header["base_address"])
+    if vocabulary_start < payload_offset + header["header_size"] or vocabulary_start >= payload_end:
+        raise ValueError("verified DDB vocabulary is outside its payload")
+    nodes: list[VocabularyNode] = []
+    position = vocabulary_start
+    while position < payload_end:
+        if data[position] == 0:
+            nodes.append(
+                VocabularyNode(
+                    position,
+                    position + 1,
+                    profile,
+                    data[position:position + 1],
+                    b"",
+                    None,
+                    None,
+                    True,
+                )
+            )
+            return nodes
+        if position + 7 > payload_end:
+            raise ValueError("truncated verified DDB vocabulary record")
+        raw = data[position:position + 7]
+        nodes.append(
+            VocabularyNode(
+                position,
+                position + 7,
+                profile,
+                raw,
+                bytes((byte ^ 0xFF) & 0x7F for byte in raw[:5]),
+                raw[5],
+                raw[6],
+                False,
+            )
+        )
+        position += 7
+    raise ValueError("verified DDB vocabulary lacks its raw 0x00 terminator")
+
+
 def _text_nodes(
     data: bytes,
     *,
@@ -651,6 +712,15 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
     )
     offset_tables: list[OffsetTableNode] = []
     if profile.layout == "legacy":
+        known_nodes.extend(
+            _vocabulary_nodes(
+                data,
+                payload_offset=payload_offset,
+                payload_end=payload_end,
+                header=header,
+                profile=profile,
+            )
+        )
         offset_tables = _offset_table_nodes(
             data,
             payload_offset=payload_offset,

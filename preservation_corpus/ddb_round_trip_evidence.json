@@ -13,11 +13,6 @@
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
-          "byte_end": 593,
-          "byte_start": 60,
-          "reason": "legacy_vocabulary_payload_pending_grammar"
-        },
-        {
           "byte_end": 902,
           "byte_start": 593,
           "reason": "legacy_token_block_payload_pending_grammar"
