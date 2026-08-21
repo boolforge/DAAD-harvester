@@ -12,6 +12,7 @@ from daad_harvester.ddb_ir import (
     ObjectTableNode,
     ConnectionListNode,
     HeaderExtensionNode,
+    ProcessSectionMarkerNode,
     TokenNode,
     TextNode,
     VocabularyNode,
@@ -171,6 +172,16 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
         for node in mutated_ir.nodes
     )
     assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.marker_value, node.first_stream_offset)
+        for node in ir.nodes
+        if isinstance(node, ProcessSectionMarkerNode)
+    ] == [(0x08D1, 0x08D2, b"\xff", 0xFF, 0x08D2)]
+    mutated = bytearray(original)
+    mutated[0x08D1] = 0xFE
+    mutated_ir = decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
+    assert not any(isinstance(node, ProcessSectionMarkerNode) for node in mutated_ir.nodes)
+    assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
@@ -194,6 +205,16 @@ def test_retained_legacy_v2_spanish_dos_object_attribute_padding_is_bounded() ->
         and node.following_table_kind == "extended_object_attributes_table"
         for node in mutated_ir.nodes
     )
+    assert recompile_ddb(mutated_ir, SPANISH_DOS_V2_DDB_PROFILE) == bytes(mutated)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.marker_value, node.first_stream_offset)
+        for node in ir.nodes
+        if isinstance(node, ProcessSectionMarkerNode)
+    ] == [(0x078F, 0x0790, b"\xff", 0xFF, 0x0790)]
+    mutated = bytearray(original)
+    mutated[0x078F] = 0xFE
+    mutated_ir = decompile_ddb(bytes(mutated), SPANISH_DOS_V2_DDB_PROFILE)
+    assert not any(isinstance(node, ProcessSectionMarkerNode) for node in mutated_ir.nodes)
     assert recompile_ddb(mutated_ir, SPANISH_DOS_V2_DDB_PROFILE) == bytes(mutated)
 
 

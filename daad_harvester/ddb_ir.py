@@ -141,6 +141,14 @@ class AlignmentPaddingNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class ProcessSectionMarkerNode(DDBNode):
+    """ADP's raw `0xFF` marker immediately before the first CondAct stream."""
+
+    marker_value: int
+    first_stream_offset: int
+
+
+@dataclass(frozen=True, slots=True)
 class CondActStreamNode(DDBNode):
     """A terminated executable stream decoded by the selected native grammar."""
 
@@ -179,6 +187,7 @@ TopLevelDDBNode: TypeAlias = (
     | TextNode
     | TokenNode
     | AlignmentPaddingNode
+    | ProcessSectionMarkerNode
     | CondActStreamNode
     | ProcessEntryNode
     | OpaqueNode
@@ -791,6 +800,30 @@ def _legacy_alignment_padding_nodes(
     return nodes
 
 
+def _process_section_marker_node(
+    data: bytes,
+    *,
+    stream_nodes: list[CondActStreamNode],
+    profile: DDBProfile,
+) -> ProcessSectionMarkerNode | None:
+    """Decode the ADP process-section `0xFF` prologue only at its exact boundary."""
+
+    if not stream_nodes:
+        return None
+    first_stream_offset = min(node.byte_start for node in stream_nodes)
+    marker_offset = first_stream_offset - 1
+    if marker_offset < 0 or data[marker_offset:first_stream_offset] != b"\xff":
+        return None
+    return ProcessSectionMarkerNode(
+        marker_offset,
+        first_stream_offset,
+        profile,
+        data[marker_offset:first_stream_offset],
+        0xFF,
+        first_stream_offset,
+    )
+
+
 def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
@@ -1068,14 +1101,21 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             )
         )
     known_nodes.extend(entries)
-    known_nodes.extend(
-        _stream_nodes(
-            data,
-            stream_references=stream_references,
-            profile=profile,
-            payload_end=payload_end,
-        )
+    stream_nodes = _stream_nodes(
+        data,
+        stream_references=stream_references,
+        profile=profile,
+        payload_end=payload_end,
     )
+    known_nodes.extend(stream_nodes)
+    if profile.layout == "legacy":
+        process_section_marker = _process_section_marker_node(
+            data,
+            stream_nodes=stream_nodes,
+            profile=profile,
+        )
+        if process_section_marker is not None:
+            known_nodes.append(process_section_marker)
     ir = DDBIR(
         profile,
         sha256(data).hexdigest(),
