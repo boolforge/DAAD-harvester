@@ -46,20 +46,8 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-asyncio pyflakes
 
-      - name: Lint (pyflakes)
-        run: python -m pyflakes daad_harvester/
-
-      - name: Check documentation integrity
-        run: python scripts/check_docs.py
-
-      - name: Verify reverse-engineering corpus
-        run: python scripts/verify_reverse_corpus.py
-
-      - name: Verify retained game corpus
-        run: python scripts/verify_game_corpus.py
-
-      - name: Verify runtime resources and reconstruction captures
-        run: python scripts/verify_runtime_resources.py
+      - name: Run independent deterministic gates in parallel
+        run: python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4
 
       - name: Run test suite
         run: PYTHONPATH=. python -m pytest tests/ -v
