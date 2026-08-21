@@ -124,6 +124,51 @@ def _inspect_p00(data: bytes) -> MediaInspection:
     return _result("cbm-p00", "recognized_evidence", "valid_wrapper", name=name, payload_size=len(data) - 26)
 
 
+def _inspect_c64_basic_sys_prg(data: bytes) -> MediaInspection:
+    """Recognize a strict C64 BASIC SYS launcher without trusting a filename.
+
+    This profile is deliberately narrower than a generic PRG claim: it requires
+    the canonical BASIC load address, one tokenized SYS line, an ASCII decimal
+    target, a line terminator, and the terminal null link. It identifies a C64
+    program medium only; it does not establish DAAD content or an interpreter.
+    """
+
+    if len(data) < 15:
+        return _result("c64-basic-sys-prg", "rejected", "truncated_basic_sys_stub", size=len(data))
+    load_address = int.from_bytes(data[0:2], "little")
+    if load_address != 0x0801:
+        return _result("c64-basic-sys-prg", "rejected", "unexpected_basic_load_address", load_address=load_address)
+    next_line = int.from_bytes(data[2:4], "little")
+    line_number = int.from_bytes(data[4:6], "little")
+    if data[6] != 0x9E:
+        return _result("c64-basic-sys-prg", "rejected", "missing_basic_sys_token", token=data[6])
+    terminator = data.find(b"\x00", 7, min(len(data), 14))
+    if terminator < 8:
+        return _result("c64-basic-sys-prg", "rejected", "missing_or_empty_sys_target")
+    target_bytes = data[7:terminator]
+    if not target_bytes.isdigit():
+        return _result("c64-basic-sys-prg", "rejected", "non_decimal_sys_target")
+    sys_target = int(target_bytes)
+    terminal_link = terminator + 3
+    if terminal_link > len(data) or data[terminator + 1:terminal_link] != b"\x00\x00":
+        return _result("c64-basic-sys-prg", "rejected", "missing_terminal_basic_link")
+    if next_line != load_address + (terminator - 2 + 1):
+        return _result(
+            "c64-basic-sys-prg", "rejected", "inconsistent_basic_next_line_pointer",
+            load_address=load_address, next_line=next_line,
+        )
+    if not 0 <= sys_target <= 0xFFFF:
+        return _result("c64-basic-sys-prg", "rejected", "sys_target_out_of_range", sys_target=sys_target)
+    return _result(
+        "c64-basic-sys-prg", "recognized_evidence", "validated_c64_basic_sys_launcher",
+        load_address=load_address,
+        basic_line_number=line_number,
+        sys_target=sys_target,
+        basic_program_end_offset=terminal_link,
+        machine_code_offset=terminal_link,
+    )
+
+
 def _inspect_tzx(data: bytes) -> MediaInspection:
     if len(data) < 10 or not data.startswith(b"ZXTape!\x1a"):
         return _result("tzx-cdt", "rejected", "signature_mismatch")
@@ -629,6 +674,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_g64(data)
     if data.startswith(b"C64File\x00"):
         return _inspect_p00(data)
+    if len(data) >= 2 and data[:2] == b"\x01\x08":
+        return _inspect_c64_basic_sys_prg(data)
     if data.startswith(b"ZXTape!\x1a"):
         return _inspect_tzx(data)
     if data.startswith((b"EXTENDED CPC DSK", b"MV - CPCEMU")):

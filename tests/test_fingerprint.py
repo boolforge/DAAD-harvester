@@ -56,6 +56,25 @@ def test_fingerprint_persists_verified_target_aware_measurement(tmp_path: Path, 
     assert {EvidenceKind.DDB_FORMAT.value, EvidenceKind.PLATFORM_RELEASE.value} <= kinds
 
 
+def test_fingerprint_persists_structural_c64_launcher_platform_without_daad_claim(tmp_path: Path) -> None:
+    db = Database(tmp_path / "state.db")
+    launcher_path = tmp_path / "JABATO P.1"
+    launcher_path.write_bytes(b"\x01\x08\x0B\x08\xEF\x00\x9E2063\x00\x00\x00\x78\xEA")
+    artifact = _artifact(db, launcher_path, filename="JABATO P.1")
+    artifact.id = db.add_artifact(artifact)
+
+    assert Fingerprinter(db).scan_artifact(artifact) is False
+
+    persisted = db.get_all_artifacts()[0]
+    assert persisted.is_daad_payload is False
+    assert persisted.measured_platform == "c64"
+    assert persisted.media_parser == "c64-basic-sys-prg"
+    assert persisted.interpreter_identity is None
+    evidence = db.get_version_evidence(artifact_id=artifact.id)
+    assert evidence[0].kind == EvidenceKind.MEDIA_PLATFORM.value
+    assert evidence[0].value == "c64"
+
+
 def test_fingerprint_correlates_neighbouring_interpreter_filename_without_overclaiming_exact_hash(tmp_path: Path) -> None:
     db = Database(tmp_path / "state.db")
     payload_path = tmp_path / "adventure.ddb"

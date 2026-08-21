@@ -19,6 +19,7 @@ from daad_harvester.daad_logger import LoggerSuite
 from daad_harvester.daad_parser import DAADParser
 from daad_harvester.db import Database
 from daad_harvester.interpreter_profiles import InterpreterMatch, identify_interpreter_file
+from daad_harvester.media_inspection import MediaInspection, inspect_native_media
 from daad_harvester.models import ArtifactRecord
 from daad_harvester.provenance import EvidenceConfidence, EvidenceKind, VersionEvidence
 
@@ -128,6 +129,35 @@ class Fingerprinter:
             )
         )
 
+    def _record_media_platform(self, artifact: ArtifactRecord, inspection: MediaInspection, platform: str) -> None:
+        """Persist a structural medium target without promoting a DDB claim."""
+
+        evidence = json.dumps(
+            {
+                "media_parser": inspection.parser,
+                "media_validation": inspection.validation,
+                "media_evidence": inspection.evidence,
+            },
+            sort_keys=True,
+        )
+        self.db.update_artifact_fingerprint(
+            artifact.id,
+            False,
+            platform_hint=platform,
+            measured_platform=platform,
+            fingerprint_confidence=EvidenceConfidence.VERIFIED.value,
+            fingerprint_evidence_json=evidence,
+        )
+        self.db.add_version_evidence(
+            VersionEvidence(
+                kind=EvidenceKind.MEDIA_PLATFORM.value,
+                value=platform,
+                confidence=EvidenceConfidence.VERIFIED.value,
+                artifact_id=artifact.id,
+                details_json=evidence,
+            )
+        )
+
     def scan_artifact(self, artifact: ArtifactRecord) -> bool:
         """Measure one artifact and persist explainable, source-scoped evidence."""
         path = Path(artifact.extracted_path)
@@ -135,6 +165,15 @@ class Fingerprinter:
             return False
         try:
             data = path.read_bytes()
+            inspection = inspect_native_media(artifact.original_filename, data)
+            if artifact.media_parser in {None, "none"} and inspection.parser != "none":
+                self.db.update_artifact_media(
+                    artifact.id,
+                    parser=inspection.parser,
+                    status=inspection.status,
+                    validation=inspection.validation,
+                    evidence_json=json.dumps(inspection.evidence, sort_keys=True),
+                )
             analysis = self.parser.parse_ddb(data, artifact.original_filename)
             embedded_offset: Optional[int] = None
             # Archive roots are provenance containers, not runnable payloads.
@@ -150,6 +189,10 @@ class Fingerprinter:
             own_match = identify_interpreter_file(path, observed_filename=artifact.original_filename)
             self.db.clear_artifact_interpreter_evidence(artifact.id)
             if not analysis["is_daad"]:
+                media_platform = "c64" if inspection.parser == "c64-basic-sys-prg" and inspection.status == "recognized_evidence" else None
+                if media_platform is not None:
+                    self._record_media_platform(artifact, inspection, media_platform)
+                    return False
                 # A non-DDB file has no measured target platform with which to
                 # filter a bundle.  Only its own filename/hash may establish an
                 # interpreter identity; source-wide filesystem siblings are not

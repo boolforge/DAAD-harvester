@@ -34,6 +34,7 @@ class EvidenceKind(str, Enum):
     INTERPRETER_IDENTITY = "interpreter_identity"
     INTERPRETER_VERSION = "interpreter_version"
     CONTAINER_FORMAT = "container_format"
+    MEDIA_PLATFORM = "media_platform"
 
 
 class EvidenceConfidence(str, Enum):

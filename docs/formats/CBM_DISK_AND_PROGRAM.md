@@ -19,6 +19,12 @@
 | G64/G71 | Low-level GCR track representation. | Recognize/record track evidence; no filesystem reconstruction unless a validated GCR decoder succeeds. |
 | CBM TAP | Pulse timing stream. | Recognize/record pulse evidence; no generic file extraction. |
 
+## Extensionless C64 BASIC SYS launchers
+
+A filename is not required to recognize the narrow retained launcher profile. Native inspection accepts only a C64 BASIC program with load address `0x0801`, a tokenized `SYS` line, an ASCII decimal target, a consistent next-line pointer, and the terminal BASIC null link. It records the resulting `c64-basic-sys-prg` medium evidence as C64 platform evidence only; it does **not** assert that the program contains a DAAD DDB or identify an interpreter.
+
+The retained `JABATO P.1` and `JABATO P.2` D64 members both satisfy this contract and invoke `SYS 2061`. Their related DDB evidence is retained separately as runtime-derived recovery evidence, so a browser or TUI must not present the launcher byte itself as a DDB or as an interpreter-correlated binary. A malformed non-decimal `SYS` target is a pinned rejection case.
+
 ## Recognition, bounds, and integrity
 
 VICE distinguishes program wrappers, tape images, sector images, and GCR media. That distinction is preservation-critical: a low-level GCR/pulse object may contain protection or nonstandard encoding that a filesystem parser cannot faithfully represent.[1]

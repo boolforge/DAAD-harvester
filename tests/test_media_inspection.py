@@ -81,6 +81,25 @@ def test_p00_and_dms_are_preserved_as_distinct_evidence_families() -> None:
     assert dms_result.validation == "validated_archive_header"
 
 
+def test_extensionless_retained_jabato_members_are_structural_c64_basic_sys_prgs() -> None:
+    root = Path(__file__).resolve().parents[1]
+    for filename in ("depth1_a05bba25_JABATO P.1", "depth1_20a1cd01_JABATO P.2"):
+        result = inspect_native_media(filename, (root / "preservation_corpus" / "extracted" / filename).read_bytes())
+        assert result.parser == "c64-basic-sys-prg"
+        assert result.status == "recognized_evidence"
+        assert result.validation == "validated_c64_basic_sys_launcher"
+        assert result.evidence["load_address"] == 0x0801
+        assert result.evidence["sys_target"] == 2061
+
+
+def test_c64_basic_sys_prg_rejects_nondecimal_target() -> None:
+    invalid = b"\x01\x08\x0B\x08\xEF\x00\x9E20A3\x00\x00\x00\x78"
+    result = inspect_native_media("unknown", invalid)
+    assert result.parser == "c64-basic-sys-prg"
+    assert result.status == "rejected"
+    assert result.validation == "non_decimal_sys_target"
+
+
 def test_dms_header_crc_failure_is_rejected_before_unpacking() -> None:
     result = inspect_native_media("broken.dms", b"DMS!" + b"\x00" * 52)
     assert result.status == "recognized_evidence"  # all-zero DMS CRC is valid

@@ -216,8 +216,8 @@
       "media": {
         "container_format": null,
         "container_member": "JABATO P.1",
-        "measured_platform": null,
-        "platform_hint": null,
+        "measured_platform": "c64",
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": null
       },
@@ -257,8 +257,8 @@
       "media": {
         "container_format": null,
         "container_member": "JABATO P.2",
-        "measured_platform": null,
-        "platform_hint": null,
+        "measured_platform": "c64",
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": null
       },
@@ -421,8 +421,8 @@
       "media": {
         "container_format": null,
         "container_member": "JABATO PIC",
-        "measured_platform": null,
-        "platform_hint": null,
+        "measured_platform": "c64",
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": null
       },
@@ -3455,8 +3455,8 @@
       "media": {
         "container_format": null,
         "container_member": "AVENTURA OR. P.1",
-        "measured_platform": null,
-        "platform_hint": null,
+        "measured_platform": "c64",
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": null
       },
@@ -3865,8 +3865,8 @@
       "media": {
         "container_format": null,
         "container_member": "AVENTURA OR. P.2",
-        "measured_platform": null,
-        "platform_hint": null,
+        "measured_platform": "c64",
+        "platform_hint": "c64",
         "ddb_format": null,
         "interpreter_identity": null
       },
