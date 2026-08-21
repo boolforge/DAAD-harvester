@@ -50946,6 +50946,89 @@
           "authentic_release": "not_applicable_blank_fixture",
           "emulator": "not_applicable_container_fixture"
         }
+      },
+      {
+        "schema_version": 1,
+        "generator_id": "tzx-standard-data-synthetic-pair-v1",
+        "technical_medium": "tzx_cdt_standard_data",
+        "status": "generated_extraction_verified",
+        "inputs": {
+          "profile": "tzx_v1_20_standard_data_header_data_pair",
+          "block_count": "2",
+          "filesystem_claim": "none_tape_stream_with_supported_member_pair",
+          "semantic_claim": "explicit_standard_data_bytes_no_loader_or_runtime_claim"
+        },
+        "output": {
+          "byte_length": 48,
+          "sha256": "a6175d4413b42e61d9b5e2dd7956ba547a48ad48ca1c71b121ad9e5dcab48411",
+          "md5_full": "1b5729dfdee014c22525bcdc24269bde",
+          "checksums": {
+            "md5_full": "1b5729dfdee014c22525bcdc24269bde",
+            "md5_5000": "1b5729dfdee014c22525bcdc24269bde",
+            "md5_tail5000": "1b5729dfdee014c22525bcdc24269bde",
+            "sha1": "a0839266d6f3a039a94a5ff48aa13d72b3251bec",
+            "sha224": "739ee12082ee2983fc1bfb21081b1383458fe76bc04facd9b11ed1e1",
+            "sha256": "a6175d4413b42e61d9b5e2dd7956ba547a48ad48ca1c71b121ad9e5dcab48411",
+            "sha384": "a585d6b0b909a5be7b12d8c77221d143c83114b62d1042dca3d8dd73c383ca8f368ad2061a317de9bcfc6ab98d9b513e",
+            "sha512": "a047dde65eac6a86b759b2d2d2feebea60070af8d828358de10e7f6dbbfefa6ad84076de499fae41373e8b922c4fefb8f75a3225d968ec267827cf3145b6b251",
+            "sha3_256": "e72fafa2aabb2da2d4753834d91c0cc934475f64a20d7ac9614ba9709f7256c4",
+            "sha3_512": "f9498d533bda2b016973f5ed69263eaf476f5c084599f9ff44228670a336622c99a035b4cb4c77781cf6ce40be3be33619982fe0811f73ba9ee72b41ac1d98ed",
+            "blake2b": "6f38c8bc0f96fa580b7b5662609006641762e3b5c5f56ecf43df0fe93ede8f721e8c52e5673d85e483950a3124b4ab01f0a029a815f8e717b96aa09f0a564aea",
+            "blake2s": "165b5476a33add41842cd9c43665c7a33c41e6e6a620020a0c85eb86397dbe8f",
+            "crc32": "d3e8cd27",
+            "adler32": "f9900a0c",
+            "xxh32": "203d2b69",
+            "xxh64": "e117071c34c18691",
+            "xxh128": "f4854e61c83aa6015e7f9b1bd59659cf"
+          }
+        },
+        "native_validation": {
+          "parser": "tzx-cdt",
+          "status": "recognized_evidence",
+          "validation": "validated_tzx_v1_block_stream",
+          "evidence": {
+            "major": 1,
+            "minor": 20,
+            "block_count": 2,
+            "data_block_count": 2,
+            "control_block_count": 0,
+            "block_types": [
+              "standard_data"
+            ],
+            "writer_validation": {
+              "tape_variant": "tzx_v1_20_standard_data",
+              "version": {
+                "major": 1,
+                "minor": 20
+              },
+              "block_count": 2,
+              "block_kinds": [
+                "standard_data",
+                "standard_data"
+              ],
+              "pause_ms": [
+                1000,
+                1000
+              ],
+              "data_lengths": [
+                19,
+                9
+              ],
+              "semantic_claim": "explicit_standard_data_bytes_no_loader_or_runtime_claim"
+            },
+            "extracted_members": [
+              {
+                "name": "DAAD GAME.bas",
+                "byte_length": 7
+              }
+            ]
+          }
+        },
+        "comparison_boundary": {
+          "adp": "not_applicable_adp_has_no_tzx_writer_crosswalk",
+          "authentic_release": "not_applicable_synthetic_fixture",
+          "emulator": "not_applicable_container_fixture"
+        }
       }
     ],
     "boundary": "Generator evidence proves only the listed deterministic output and native structural validation. Filesystem population, authentic-release equivalence, and target execution remain explicit per-generator comparison fields."

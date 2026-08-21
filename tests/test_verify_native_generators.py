@@ -6,6 +6,7 @@ from daad_harvester.dsk_generation import build_blank_cpc_system_dsk
 from daad_harvester.generator_evidence import (
     generated_blank_adf_ofs_fixture_evidence,
     generated_fixture_evidence,
+    generated_standard_tzx_fixture_evidence,
 )
 from daad_harvester.unpack import compute_hashes
 
@@ -40,3 +41,17 @@ def test_generated_adf_fixture_evidence_has_complete_integrity_record() -> None:
     assert isinstance(validation, dict)
     assert validation["validation"] == "validated_adf_ofs_ffs_structure"
     assert validation["evidence"]["writer_validation"]["filesystem_claim"] == "empty_ofs_filesystem_no_members"
+
+
+def test_generated_tzx_fixture_evidence_verifies_supported_extraction() -> None:
+    evidence = generated_standard_tzx_fixture_evidence()
+
+    assert evidence["generator_id"] == "tzx-standard-data-synthetic-pair-v1"
+    assert evidence["status"] == "generated_extraction_verified"
+    output = evidence["output"]
+    assert isinstance(output, dict)
+    assert len(output["checksums"]) == 17
+    validation = evidence["native_validation"]
+    assert isinstance(validation, dict)
+    assert validation["validation"] == "validated_tzx_v1_block_stream"
+    assert validation["evidence"]["extracted_members"] == [{"name": "DAAD GAME.bas", "byte_length": 7}]

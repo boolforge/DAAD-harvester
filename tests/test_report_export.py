@@ -48,7 +48,7 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert report["detections"]["sha256"] == sha256(b"#define DAAD_TEST 1\n").hexdigest()
     assert report["generator_evidence"]["available"] is True
     generators = report["generator_evidence"]["generators"]
-    assert len(generators) == 2
+    assert len(generators) == 3
     native_generator = generators[0]
     assert native_generator["generator_id"] == "extended-dsk-blank-cpc-system-v1"
     assert native_generator["status"] == "generated_structurally_valid"
@@ -63,6 +63,12 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert native_adf_generator["generator_id"] == "adf-ofs-blank-standard-dd-v1"
     assert native_adf_generator["native_validation"]["validation"] == "validated_adf_ofs_ffs_structure"
     assert native_adf_generator["inputs"]["filesystem_claim"] == "empty_ofs_filesystem_no_members"
+    native_tzx_generator = generators[2]
+    assert native_tzx_generator["generator_id"] == "tzx-standard-data-synthetic-pair-v1"
+    assert native_tzx_generator["status"] == "generated_extraction_verified"
+    assert native_tzx_generator["native_validation"]["evidence"]["extracted_members"] == [
+        {"name": "DAAD GAME.bas", "byte_length": 7}
+    ]
     assert "extracted_path" not in report["catalog"]["artifacts"][0]
     matrix = next(item for item in report["game_port_matrix"] if item["game_id"] == known_game.game_id)
     assert matrix["source_platforms"] == ["c64"]

@@ -201,7 +201,7 @@ def test_render_native_generator_tab_exposes_complete_checksum_and_boundary(tmp_
     text = _render(dash, tabs=(3,), width=180)
 
     assert "NATIVE FORMAT GENERATOR EVIDENCE" in text
-    assert "1 of 2" in text
+    assert "1 of 3" in text
     assert "extended-dsk-blank-cpc-system-v1" in text
     assert "validated_cpc_dsk_track_stream" in text
     assert "17 complete digests recorded" in text
@@ -215,6 +215,12 @@ def test_render_native_generator_tab_exposes_complete_checksum_and_boundary(tmp_
 
     dash.selected_index = 18
     adf_text = _render(dash, tabs=(3,), width=180)
-    assert "2 of 2" in adf_text
+    assert "2 of 3" in adf_text
     assert "adf-ofs-blank-standard-dd-v1" in adf_text
     assert "empty_ofs_filesystem_no_members" in adf_text
+
+    dash.selected_index = 36
+    tzx_text = _render(dash, tabs=(3,), width=180)
+    assert "3 of 3" in tzx_text
+    assert "tzx-standard-data-synthetic-pair-v1" in tzx_text
+    assert "generated_extraction_verified" in tzx_text
