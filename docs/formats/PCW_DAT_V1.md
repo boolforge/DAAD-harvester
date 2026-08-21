@@ -4,7 +4,7 @@
 | --- | --- |
 | **Question** | How can the legacy PCW DAAD V1 DAT directory be recognized and structurally validated without claiming an undocumented picture codec? |
 | **Evidence scope** | P0 pinned ADP reader source; P1 retained Torreoscura PCW DAT artifacts; P2 native validator and corruption regression. |
-| **Status** | Structural directory and per-resource-header implementation. Pixel reconstruction and the relationship to a sibling `.PIC` remain active support loops. |
+| **Status** | Structural directory, per-resource-header, and native PCW DAT image-decoding implementation. The relationship to a sibling `.PIC` remains an active support loop. |
 | **Implementation links** | [`../../daad_harvester/media_inspection.py`](../../daad_harvester/media_inspection.py), [`../../tests/test_media_inspection.py`](../../tests/test_media_inspection.py), [`CP/M DSK`](CPM_DSK.md). |
 | **Non-claims** | A `.dat` extension alone does not establish PCW, DAAD, image-codec support, a rendered picture, or a relationship to a same-named `.PIC` file. |
 
@@ -35,7 +35,7 @@ The source-253 PCW package contains two structurally validated DAT files. Their 
 
 The native inspector rejects a truncated fixed directory, invalid machine/mode/count header, any nonzero resource offset before `0x0A06`, any offset outside the file, and a declared-count/directory-population mismatch. The retained-artifact regression covers both Torreoscura DAT files and a synthetic offset-before-directory corruption case.
 
-Pinned ADP source further records a PCW-specific byte-stream decompressor and monochrome layout-to-packed-pixel transformation, but no Harvester renderer/decoder is promoted yet.[2] The next closure steps are to port those algorithms under retained-resource regressions, decode and validate `PARTE000.PIC`, and establish only evidence-backed DDB/DAT/PIC cross-file references. No rendering or bundled-resource claim is currently promoted.
+Native Harvester now implements the pinned ADP PCW-specific byte-stream decompressor, the monochrome storage-layout reconstruction, and deterministic expansion to four-bit packed pixels.[2] All 30 retained Torreoscura DAT image entries—24 compressed and 6 uncompressed—validate to 23,040 packed-pixel bytes for their measured 640×72 geometry. The next closure steps are to decode and validate `PARTE000.PIC` and establish only evidence-backed DDB/DAT/PIC cross-file references. No relationship between the standalone PIC file and these DAT entries is currently promoted.
 
 ## References
 

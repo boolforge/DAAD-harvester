@@ -580,6 +580,98 @@ def _inspect_legacy_dat_v2(data: bytes) -> MediaInspection:
     )
 
 
+def _decode_pcw_byte_stream(data: bytes, expected_size: int) -> bytes:
+    """Decode ADP's bounded PCW byte stream to its exact monochrome size."""
+
+    if len(data) < 5:
+        raise ValueError("truncated_compressed_stream_header")
+    token_count = data[0]
+    if token_count > 4:
+        raise ValueError("compressed_stream_token_count_out_of_bounds")
+    tokens = data[1:5]
+    position = 5
+    output = bytearray()
+    while position < len(data) and len(output) < expected_size:
+        value = data[position]
+        position += 1
+        repeat = 1
+        if value in tokens[:token_count]:
+            if position >= len(data):
+                raise ValueError("truncated_compressed_stream_repeat")
+            repeat = data[position]
+            position += 1
+        if len(output) + repeat > expected_size:
+            raise ValueError("compressed_stream_output_overflow")
+        output.extend([value] * repeat)
+    if len(output) != expected_size or position != len(data):
+        raise ValueError("compressed_stream_length_mismatch")
+    return bytes(output)
+
+
+def _rearrange_pcw_decoded_to_stored(data: bytes, width: int, height: int) -> bytes:
+    """Restore ADP's PCW interleaved monochrome storage layout."""
+
+    row_bytes = (width + 7) >> 3
+    expected_size = row_bytes * height
+    if len(data) != expected_size or height & 1:
+        raise ValueError("invalid_pcw_decoded_geometry")
+    output = bytearray(expected_size)
+    for pair in range(height // 2):
+        source_top = pair * row_bytes * 2
+        source_bottom = source_top + row_bytes * 2 - 1
+        destination_base = (pair >> 2) * width + (pair & 3) * 2
+        for x_byte in range(row_bytes):
+            destination = destination_base + (x_byte << 3)
+            if destination + 1 >= expected_size:
+                raise ValueError("pcw_stored_layout_destination_out_of_bounds")
+            output[destination] = data[source_top + x_byte]
+            output[destination + 1] = data[source_bottom - x_byte]
+    return bytes(output)
+
+
+def _expand_pcw_stored_to_packed(data: bytes, width: int, height: int) -> bytes:
+    """Expand PCW 1-bit stored rows into deterministic four-bit packed pixels."""
+
+    row_bytes = (width + 7) >> 3
+    expected_size = row_bytes * height
+    if len(data) != expected_size:
+        raise ValueError("pcw_stored_layout_size_mismatch")
+    output = bytearray((width * height + 1) >> 1)
+    for y in range(height):
+        row_start = y * ((width + 1) >> 1)
+        base = (y >> 3) * width + (y & 7)
+        for x_byte in range(row_bytes):
+            value = data[base + (x_byte << 3)]
+            destination = row_start + x_byte * 4
+            output[destination] = (0xF0 if value & 0x80 else 0) | (0x0F if value & 0x40 else 0)
+            output[destination + 1] = (0xF0 if value & 0x20 else 0) | (0x0F if value & 0x10 else 0)
+            output[destination + 2] = (0xF0 if value & 0x08 else 0) | (0x0F if value & 0x04 else 0)
+            output[destination + 3] = (0xF0 if value & 0x02 else 0) | (0x0F if value & 0x01 else 0)
+    return bytes(output)
+
+
+def decode_pcw_dat_image_resource(data: bytes, resource: dict[str, Any]) -> bytes:
+    """Decode one validated PCW DAT image resource to four-bit packed pixels."""
+
+    if resource.get("audio"):
+        raise ValueError("audio_resource_has_no_pixel_decoder")
+    width = int(resource["width"])
+    height = int(resource["height"])
+    payload_offset = int(resource["payload_offset"])
+    payload_end = int(resource["payload_end"])
+    if not (0 < width <= 1024 and 0 < height <= 1024 and 0 <= payload_offset <= payload_end <= len(data)):
+        raise ValueError("invalid_pcw_resource_decoder_bounds")
+    mono_size = ((width + 7) >> 3) * height
+    payload = data[payload_offset:payload_end]
+    if resource.get("compressed"):
+        stored = _rearrange_pcw_decoded_to_stored(_decode_pcw_byte_stream(payload, mono_size), width, height)
+    else:
+        if len(payload) < mono_size:
+            raise ValueError("truncated_uncompressed_pcw_resource")
+        stored = payload[:mono_size]
+    return _expand_pcw_stored_to_packed(stored, width, height)
+
+
 def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
     """Validate the documented PCW V1 DAT directory without decoding pictures.
 
@@ -653,8 +745,7 @@ def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
                 "daad-pcw-dat-v1", "rejected", "image_resource_dimensions_out_of_bounds",
                 entry_index=index, width=width, height=height,
             )
-        entries.append(
-            {
+        decoded_entry: dict[str, int | bool | str] = {
                 "index": index,
                 "offset": offset,
                 "flags": flags,
@@ -670,7 +761,17 @@ def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
                 "compressed": compressed,
                 "audio": audio,
             }
-        )
+        if not audio:
+            try:
+                pixels = decode_pcw_dat_image_resource(data, decoded_entry)
+            except ValueError as exc:
+                return _result(
+                    "daad-pcw-dat-v1", "rejected", "resource_pixel_decode_failed",
+                    entry_index=index, reason=str(exc),
+                )
+            decoded_entry["packed_pixel_bytes"] = len(pixels)
+            decoded_entry["pixel_encoding"] = "pcw_1bit_to_4bit_packed"
+        entries.append(decoded_entry)
     if picture_count != len(entries):
         return _result(
             "daad-pcw-dat-v1", "rejected", "picture_count_directory_mismatch",
@@ -686,7 +787,7 @@ def _inspect_pcw_dat_v1(data: bytes) -> MediaInspection:
         directory_entry_size=entry_size,
         payload_floor=payload_floor,
         resources=entries,
-        resource_payload_codec="unresolved_profile_specific_support_loop",
+        resource_payload_codec="validated_pcw_byte_stream_and_monochrome_layout",
     )
 
 

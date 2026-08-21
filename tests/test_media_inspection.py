@@ -232,7 +232,9 @@ def test_retained_torreoscura_pcw_dat_validates_resource_directories() -> None:
         assert len(result.evidence["resources"]) == picture_count
         assert all(entry["payload_offset"] >= result.evidence["payload_floor"] for entry in result.evidence["resources"])
         assert all(entry["payload_end"] <= (root / "preservation_corpus" / "extracted" / filename).stat().st_size for entry in result.evidence["resources"])
-        assert result.evidence["resource_payload_codec"] == "unresolved_profile_specific_support_loop"
+        assert all(entry["packed_pixel_bytes"] == 23040 for entry in result.evidence["resources"])
+        assert all(entry["pixel_encoding"] == "pcw_1bit_to_4bit_packed" for entry in result.evidence["resources"])
+        assert result.evidence["resource_payload_codec"] == "validated_pcw_byte_stream_and_monochrome_layout"
 
 
 def test_pcw_dat_rejects_resource_offset_before_fixed_directory() -> None:
