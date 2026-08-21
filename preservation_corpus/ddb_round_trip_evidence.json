@@ -9,7 +9,7 @@
       "opaque_ranges": [
         {
           "byte_end": 60,
-          "byte_start": 34,
+          "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
@@ -436,7 +436,7 @@
       "opaque_ranges": [
         {
           "byte_end": 122,
-          "byte_start": 34,
+          "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
@@ -692,7 +692,7 @@
       "opaque_ranges": [
         {
           "byte_end": 60,
-          "byte_start": 34,
+          "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
         },
         {
@@ -858,7 +858,7 @@
       "opaque_ranges": [
         {
           "byte_end": 60,
-          "byte_start": 34,
+          "byte_start": 36,
           "reason": "legacy_header_extension_pending_grammar"
         },
         {

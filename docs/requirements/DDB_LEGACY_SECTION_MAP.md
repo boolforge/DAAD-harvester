@@ -25,12 +25,12 @@ For the compact legacy layouts currently measured in the retained corpus, the na
 | `0x1A` | Object words pointer | Object words pointer | Object words table | Active cross-check required before promotion: ADP dump uses noun/adjective pairs while loader validates only a one-byte-per-object minimum span. |
 | `0x1C` | Object attributes pointer | Object attributes pointer | Object attributes table | Typed one-byte scalar entries. |
 | `0x1E` | Declared size | Extended object-attributes pointer | Extended object attributes table in V2 | Typed V2 target-endian two-byte scalar entries. |
-| `0x20` | External-data pointer | Declared size | External data field | Separate header/extension grammar pending. |
-| `0x22` | — | External-data pointer | External data field | Separate header/extension grammar pending. |
+| `0x20` | External-data pointer | Declared size | External data field | V1 typed target-endian field when it precedes all mapped sections; zero denotes absence and in-payload target resolution remains bounded. |
+| `0x22` | — | External-data pointer | External data field | V2 typed target-endian field when it precedes all mapped sections; zero denotes absence and in-payload target resolution remains bounded. |
 
 ## Evidence interpretation
 
-Pinned ADP reads the first eleven pointers at `0x08`–`0x1C` in the table order above, validates their count-dependent minimum spans, translates stored addresses with `DDB_DecodeStoredOffset`, and then stores typed in-memory section pointers.[1] Its V2 loader additionally validates the extended object-attribute pointer at `0x1E` with a `numObjects * 2` minimum span.[1] The ADP DDB tool independently prints the same field sequence and builds a sorted memory map from these section pointers.[2] ADP’s compiler writes each vocabulary word as five XOR-encoded bytes followed by raw index and type bytes; its dump path independently walks seven-byte entries to a raw zero terminator.[3] [4] Its connection serializer independently emits verb/destination byte pairs, a raw `0xFF` terminator per location list, optional alignment, and then the target-endian location pointer table.[5]
+Pinned ADP reads the first eleven pointers at `0x08`–`0x1C` in the table order above, validates their count-dependent minimum spans, translates stored addresses with `DDB_DecodeStoredOffset`, and then stores typed in-memory section pointers.[1] Its V2 loader additionally validates the extended object-attribute pointer at `0x1E` with a `numObjects * 2` minimum span.[1] The ADP DDB tool independently prints the same field sequence and builds a sorted memory map from these section pointers.[2] ADP’s compiler writes each vocabulary word as five XOR-encoded bytes followed by raw index and type bytes; its dump path independently walks seven-byte entries to a raw zero terminator.[3] [4] Its connection serializer independently emits verb/destination byte pairs, a raw `0xFF` terminator per location list, optional alignment, and then the target-endian location pointer table.[5] ADP defines V1/V2 external-data field offsets and reads a nonzero pointer only where it fits before the first section; an out-of-database target is explicitly nonfatal rather than inferred as local data.[6]
 
 > A section owner establishes a safe byte-boundary and a concrete next decoder target. It does **not** establish the payload’s complete syntax, text encoding, authoring origin, interpreter compatibility, or semantic decompilation.
 
@@ -49,3 +49,5 @@ This crosswalk does not claim that any pending legacy section grammar is complet
 [4]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/ddb_dump.cpp “Pinned ADP `/VOC` dump: seven-byte vocabulary stride, XOR text, raw index/type, and zero terminator”
 
 [5]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-tools/dc_main.cpp “Pinned ADP `AppendConnections`: verb/destination pairs, `0xFF` list terminator, alignment, and pointer table”
+
+[6]: https://github.com/jlcebrian/ADP/blob/379a6710de11a2378f3d76c25a4d71bca75073bf/src-common/ddb.cpp “Pinned ADP V1/V2 external-data field offsets and bounded external-pointer handling”

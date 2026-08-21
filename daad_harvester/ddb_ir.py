@@ -62,6 +62,15 @@ class PointerTableNode(DDBNode):
 
 
 @dataclass(frozen=True, slots=True)
+class HeaderExtensionNode(DDBNode):
+    """A versioned compact-header external-data field before the first section."""
+
+    external_pointer: int
+    resolved_offset: int | None
+    is_absent: bool
+
+
+@dataclass(frozen=True, slots=True)
 class ProcessPointerTableNode(DDBNode):
     """A decoded process-table word sequence with stored and source offsets."""
 
@@ -151,6 +160,7 @@ TopLevelDDBNode: TypeAlias = (
     WrapperNode
     | HeaderNode
     | PointerTableNode
+    | HeaderExtensionNode
     | ProcessPointerTableNode
     | OffsetTableNode
     | VocabularyNode
@@ -745,6 +755,43 @@ def _legacy_section_boundaries(header: dict[str, Any], payload_offset: int) -> t
     )
 
 
+def _header_extension_node(
+    data: bytes,
+    *,
+    payload_offset: int,
+    payload_end: int,
+    header: dict[str, Any],
+    profile: DDBProfile,
+) -> HeaderExtensionNode | None:
+    """Decode ADP's V1/V2 external-data field when it precedes all sections."""
+
+    field_offset = 32 if header["major_version"] == 1 else 34
+    field_start = payload_offset + field_offset
+    field_end = field_start + 2
+    section_offsets = [
+        payload_offset + _pointer_to_offset(pointer, header["base_address"])
+        for pointer in header["pointers"]
+        if pointer
+    ]
+    if field_end > payload_end or not section_offsets or field_end > min(section_offsets):
+        return None
+    pointer = _read_word(data, field_start, header["endianness"])
+    resolved_offset: int | None = None
+    if pointer:
+        candidate = payload_offset + _pointer_to_offset(pointer, header["base_address"])
+        if field_end <= candidate < payload_end:
+            resolved_offset = candidate
+    return HeaderExtensionNode(
+        field_start,
+        field_end,
+        profile,
+        data[field_start:field_end],
+        pointer,
+        resolved_offset,
+        pointer == 0,
+    )
+
+
 def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
     """Decompile a parser-verified DDB into a complete byte-owned native IR."""
 
@@ -791,6 +838,16 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             ),
         )
     )
+    if profile.layout == "legacy":
+        header_extension = _header_extension_node(
+            data,
+            payload_offset=payload_offset,
+            payload_end=payload_end,
+            header=header,
+            profile=profile,
+        )
+        if header_extension is not None:
+            known_nodes.append(header_extension)
     (
         entries,
         stream_references,
