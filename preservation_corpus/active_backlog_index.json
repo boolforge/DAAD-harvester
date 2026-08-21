@@ -1,0 +1,3399 @@
+{
+  "schema_version": 1,
+  "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
+  "todo_source": "TODO.md",
+  "unchecked_item_count": 156,
+  "section_counts": {
+    "1. Complete format and archive coverage": 6,
+    "10. Universal decompile–recompile round-trip verification": 6,
+    "11. Future ScummVM DAAD engine": 4,
+    "12. Final emulator-equivalence and ScummVM integration gate": 8,
+    "2. Versions, interpreters, and derivatives": 1,
+    "3. Sources and metadata": 2,
+    "7. Authorization-gated reverse-engineering corpus": 10,
+    "8. All-platform retained game corpus and regression suite": 37,
+    "9. DAAD game decompiler research and differential implementation": 8,
+    "Active evidence-interface correction": 39,
+    "Deferred external-source queue (not part of the active task plan)": 13,
+    "Self-contained regeneration requirement": 22
+  },
+  "items": [
+    {
+      "id": "todo-0011",
+      "line": 11,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the Z80 reverse-engineering methodology workstream is scheduled, inspect [ZornsLemma/py8dis](https://github.com/ZornsLemma/py8dis) as a potential independent static-analysis comparator. Record its pinned revision, supported input assumptions, emitted artifacts, reproducibility boundaries, and comparison results against repository-native analysis before relying on any output.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0012",
+      "line": 12,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the historical DAAD source-catalog research workstream is scheduled, inspect [Jose Luis Cebrian’s 2023 post](https://x.com/jlcebrian/status/1700781994890678756?s=20) as a lead only. Preserve the exact cited claim and access date, locate independent corroboration, and do not promote a format, interpreter, or provenance assertion from a social-media post alone.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0013",
+      "line": 13,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the Atari ST platform-bundle workstream is scheduled, inspect [Uto’s Atari ST and DAAD article](https://medium.com/@uto_dev/the-atari-st-and-daad-9c38ab7e6446) alongside primary manuals, retained release bytes, and independent runtime evidence. Convert only cross-validated findings into an ST profile dossier and native parser/validator requirements.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0014",
+      "line": 14,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the PC/DOS interpreter-comparison workstream is scheduled, inspect [Utodev/PCDAAD](https://github.com/Utodev/PCDAAD) as an independent implementation and behavior comparator. Pin the revision and retain only permitted source/evidence metadata; compare its DDB, graphics, and runtime claims against native Harvester results and historic bytes before promotion.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0015",
+      "line": 15,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the post-active MSX interpreter-comparison workstream is scheduled, inspect [nataliapc/MSX2DAAD](https://github.com/nataliapc/msx2daad) as a modern independent implementation. Keep it distinct from the active R4 historical `DAAD.MDG` and `YOURGAME.COM` investigation unless new evidence is independently verified; pin revision, file-loading model, and all comparison boundaries.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0016",
+      "line": 16,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the ZX Spectrum interpreter-comparison workstream is scheduled, inspect [cronomantic/ZXDAAD128](https://github.com/cronomantic/ZXDAAD128) as an independent implementation/reference. Pin the revision, document machine/load assumptions and supported profiles, and use it only as a comparator until native Harvester validation and real-artifact evidence establish a claim.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0017",
+      "line": 17,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the ZX Spectrum reverse-engineering workstream is scheduled, inspect [skoolkid/skoolkit](https://github.com/skoolkid/skoolkit) as an independent Z80 analysis/disassembly comparator. Pin the revision and each control/data classification configuration; compare its output against py8dis, architecture-aware disassemblers, retained original bytes, native extraction/parsing results, and emulator observations where applicable. Preserve agreement, disagreement, false-positive, and unknown-region records rather than selecting a preferred output without evidence.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0018",
+      "line": 18,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the ZX DAAD catalog-and-corpus workstream is scheduled, inspect the [Spectrum Computing DAAD entry](https://spectrumcomputing.co.uk/entry/30013/ZX-Spectrum/DAAD) as catalog/discovery evidence only. Capture the accessed record, cited release facts, and available technical media separately; cross-check every claim against primary documentation, retained release bytes, independent catalogs, and multi-tool analysis before adding a corpus, format, interpreter, or platform support assertion.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0019",
+      "line": 19,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the MSX platform-research workstream is scheduled, inventory the repositories surfaced through [Konamiman](https://github.com/Konamiman) and select only relevant, pinned MSX-DOS, filesystem, emulator, or technical-reference material. Record repository, revision, license/provenance boundary, and exact claim; compare every promoted behavior against retained bytes, primary documentation, native parsing, and at least one independent implementation.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0020",
+      "line": 20,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the contemporary MSX corpus/discovery workstream is scheduled, inspect [xresende/msxdev](https://github.com/xresende/msxdev) for release, toolchain, and platform-context leads. Treat catalog or build metadata as discovery evidence only, preserve access/revision details, and require retained original media plus independent technical corroboration before asserting any DAAD-format or interpreter relationship.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0021",
+      "line": 21,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When multi-architecture static-analysis comparison is scheduled, evaluate [redasm-dev/redasm](https://github.com/redasm-dev/redasm) as a separately pinned analyzer. Record supported Z80/MSX target assumptions, loader configuration, output ranges, and control/data decisions; compare them against Ghidra, radare2, py8dis, SkoolKit, native evidence, and retained bytes with an explicit disagreement ledger.",
+      "evidence_inputs": [
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0022",
+      "line": 22,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the MSX reverse-engineering source-survey workstream is scheduled, inspect [retroabandon/msx-re](https://gitlab.com/retroabandon/msx-re) as an independent source lead. Pin the exact revision and retain cited findings separately from conclusions; verify each claimed load model, format structure, or symbol boundary through raw-byte comparison, complementary tools, primary documentation, and controlled runtime evidence where appropriate.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0023",
+      "line": 23,
+      "section": "Deferred external-source queue (not part of the active task plan)",
+      "text": "When the Z80 disassembly comparison workstream is scheduled, evaluate [lvitals/z80dasm](https://github.com/lvitals/z80dasm), [sarnau/Z80DisAssembler](https://github.com/sarnau/Z80DisAssembler), and [maziac/z80dismblr](https://github.com/maziac/z80dismblr) as three independent disassembly candidates. Pin version and command/configuration for each run, compare instruction decoding and control/data partitioning against Ghidra, radare2, py8dis, SkoolKit, and original bytes, and retain every material disagreement as a reproducible analysis record rather than normalizing outputs by preference.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0027",
+      "line": 27,
+      "section": "Active evidence-interface correction",
+      "text": "Build and maintain a deterministic active-backlog index that groups every unchecked work-register item by evidence input, affected subsystem, dependency, required real-artifact regression, regeneration/report impact, and atomic-delivery boundary. The index must identify safely independent workstreams and must never mark a broad requirement complete merely because one child task passes.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0029",
+      "line": 29,
+      "section": "Active evidence-interface correction",
+      "text": "Repair every retained game-card and TUI artifact view affected by the extensionless C64 PRG classification. The presentation must identify the byte as a C64 program medium, state that it is not itself a DDB, link the separate runtime-derived DDB evidence where available, and retain an explicit non-correlation boundary for the launcher byte.",
+      "evidence_inputs": [
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0030",
+      "line": 30,
+      "section": "Active evidence-interface correction",
+      "text": "Close companion-resource support as a first-class DAAD requirement: every retained `.CHR`, `.DAT`, `.PIC`, and `.DDB` family must have a profile-scoped byte contract, native parser/validator, corruption and rejection behavior, complete checksum/provenance record, real-artifact regression, deterministic regeneration command, explicit platform applicability, and report/TUI/web explanation. No resource file may be described as understood solely from its extension, filename, or an external tool.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0031",
+      "line": 31,
+      "section": "Active evidence-interface correction",
+      "text": "Decode and validate legacy DAAD `.DAT` resource tables completely per observed profile: establish table headers, byte order, entry width, offsets, flags, media kinds, length/codec boundaries, and cross-file references to `.PIC`, audio, and companion data. Retain every unexplained entry or payload region as a profile-specific support loop until its grammar and rendering/loading semantics are evidenced.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0033",
+      "line": 33,
+      "section": "Active evidence-interface correction",
+      "text": "Resolve the standalone Torreoscura PCW `PARTE000.PIC` grammar. The retained file is exactly 16,000 bytes and has no promoted header; its size is compatible with several possible bitmap geometries but does not establish one. Independent PCW video-controller documentation describes a native 720×256 monochrome image with roller-RAM addressing, whereas 16,000 bytes equals neither that full frame nor the validated 640×72 DAT resource geometry. Do not apply the DAT decoder or claim a raw PCW screen. Obtain a documented game-specific loader path, a second independently corroborating release, or a bounded byte grammar with negative controls before implementation.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0034",
+      "line": 34,
+      "section": "Active evidence-interface correction",
+      "text": "Decode and validate legacy DAAD `.CHR` and `.PIC` resources completely per observed profile: establish glyph geometry, character/code-page mapping, pixel packing, palette/attribute behavior, picture addressing, compression, frame/plane structure, and DDB/DAT reference semantics. Require native reconstruction/rendering or exact blocking-byte records with real-artifact and corruption regressions before publishing a support claim.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0037",
+      "line": 37,
+      "section": "Active evidence-interface correction",
+      "text": "Build a platform-bundle evidence model for every retained DAAD release. For ZX Spectrum, Amstrad CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS, enumerate each DDB’s associated interpreters, launchers, loaders, fonts, graphics, resource tables, audio, executable wrappers, tape/disk/cartridge media, compression, and platform-specific metadata. Every relationship must state whether it is byte-measured, structurally validated, runtime-observed, catalog-only, or unresolved; identical extensions across targets must never be assumed semantically equivalent.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0038",
+      "line": 38,
+      "section": "Active evidence-interface correction",
+      "text": "For every platform bundle, implement deterministic cross-file reference validation between DDBs and their companion resources where the profile grammar establishes one. Persist validated references, absent/optional resources, unresolved references, and corruption outcomes in the corpus/report schema; add profile-scoped real-artifact regressions and reject source-label-only bundle claims.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0039",
+      "line": 39,
+      "section": "Active evidence-interface correction",
+      "text": "Publish decoded-media derivatives only after native profile verification. For every supported image or audio resource, generate a deterministic browser-safe preview derivative from the retained original bytes, record the exact decoder profile/version, original and derived paths, complete checksums, dimensions/duration/codec metadata, provenance, validation status, and regeneration command. Original bytes remain separately downloadable; a failed, partial, heuristic, or unsupported decode must remain visible as a non-playable/non-renderable evidence record rather than receive a fabricated preview.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0040",
+      "line": 40,
+      "section": "Active evidence-interface correction",
+      "text": "Add accessible image and audio evidence views to the generated web report and equivalent TUI inspector. Each verified image preview and audio playback control must be reachable from its artifact, game, source, platform bundle, and checksum deep links; disclose the native decoder, profile, rendered/payload boundaries, original download, derived-preview checksum, and unresolved companion relationships. The default view must never autoplay media, hide the original byte record, infer audio/image semantics from an extension, or show a preview without verified decoder evidence.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "terminal interface",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0041",
+      "line": 41,
+      "section": "Active evidence-interface correction",
+      "text": "Publish verified font and character-set evidence as first-class companion resources. For every natively validated CHR, FNT, CH0, SINTAC, or platform-specific font profile, deterministically render a glyph atlas and per-glyph inspection view from the original bytes; record glyph geometry, character index/code-page mapping, bitmap/plane layout, header semantics, decoder profile/version, original and derived checksums, provenance, and DDB/runtime/bundle relationship. Unknown header fields, width tables, encodings, or target-specific rendering behavior must remain explicit rather than being normalized or guessed.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0042",
+      "line": 42,
+      "section": "Active evidence-interface correction",
+      "text": "Resolve the two official R4 source-250 896-byte `DAAD.FNT` variants as separate byte profiles. `depth2_f0f7416a_DAAD.FNT` is all `E5` bytes and remains a retained non-font claim; `depth2_dcd3ab68_DAAD.FNT` is a populated legacy candidate beginning with a `DAAD`/`FNT`-like record. Neither satisfies ADP/PCDAAD’s independently observed 6,672-byte `JSJ SINTAC FNT3` profile. Acquire a same-generation sample or loader/writer evidence, establish field boundaries, glyph and proportional-width semantics, corruption behavior, and real-artifact regression before native decoding or publication. The exact inventory is recorded in `reverse_engineering/derived/fnt/r4_fnt_evidence_inventory.md`.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0044",
+      "line": 44,
+      "section": "Active evidence-interface correction",
+      "text": "Add accessible font and glyph views to the web report and TUI. Each verified glyph atlas must provide artifact/game/platform/checksum deep links, original-byte download, derived-preview checksum, keyboard-accessible glyph navigation, rendering-profile disclosure, and explicit distinction between custom game glyphs, system/runtime fonts, and merely retained opaque font candidates. The interface must not substitute a browser font, render a guessed glyph ordering, or display an unvalidated asset as a decoded character set.",
+      "evidence_inputs": [
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0045",
+      "line": 45,
+      "section": "Active evidence-interface correction",
+      "text": "Publish profile-scoped DDB decompilation evidence in the web report and TUI. For every decompiled artifact, expose stable readable IR/source output, byte spans and section/provenance links, profile/version/platform, exact unrecognized or blocked constructs, compiler/recompiler inputs and outputs, all checksum comparisons, and byte-identical or bounded-difference status. A visual decompilation view must not turn an unsupported semantic region, unverified third-party output, or non-byte-identical recompilation into a claim of complete source recovery.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0046",
+      "line": 46,
+      "section": "Active evidence-interface correction",
+      "text": "Publish verified interpreter-analysis evidence in the web report and TUI. For every retained interpreter binary, expose immutable original-byte identity, architecture, load/base assumptions, analyzer/tool version and configuration, raw disassembly, derived decompilation or pseudocode where available, symbols, entry points, control-flow exports, output hashes, and links to exact comparison inputs. Each view must label generated analysis as derived output rather than recovered source and distinguish exact-hash profile identity from filename, bundle, or behavioral evidence.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0047",
+      "line": 47,
+      "section": "Active evidence-interface correction",
+      "text": "Add accessible interpreter-analysis comparison views. A user must be able to navigate from an interpreter profile, platform, game bundle, or analysis artifact to the outputs of multiple compatible analyzers, their shared/differing code ranges, known symbols, tool failure/rejection states, and cross-check evidence against runtime behavior and DDB loading. The web and TUI must never flatten disagreement into one authoritative pseudocode listing or imply equivalence between binaries that differ by hash, load model, or architecture.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0048",
+      "line": 48,
+      "section": "Active evidence-interface correction",
+      "text": "Gate interpreter-analysis publication in the primary workflow and CI. Each published analysis must regenerate from a committed original or explicitly authorized derived input with fixed architecture/base/tool configuration, verify original and output hashes, retain failure logs, reject unsupported tool/profile combinations explicitly, and validate every web/TUI deep link and provenance label. Any analysis lacking reproducible inputs, an architecture/load declaration, or a comparison boundary must remain unavailable for display rather than silently omitted or overstated.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0049",
+      "line": 49,
+      "section": "Active evidence-interface correction",
+      "text": "Redesign the web evidence explorer around progressive, relationship-first navigation. It must offer readable project orientation, platform and game/port entry points, persistent evidence filters, full-by-default bundle trees, artifact/resource previews, analysis readers, checksum/provenance panels, and stable shareable routes that preserve the selected section and filter state. The visual hierarchy must distinguish original bytes, decoded derivatives, decompilation outputs, structural evidence, runtime observations, unresolved blockers, and catalog-only facts without hiding any retained record behind summary cards.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0050",
+      "line": 50,
+      "section": "Active evidence-interface correction",
+      "text": "Redesign the TUI to provide functional parity with the web evidence explorer while remaining terminal-safe. It must support keyboard-first navigation among game bundles, resources, original/derived/blocked evidence, media and font previews where terminal-capable, decompilation and interpreter-analysis readers, complete checksum/provenance inspection, search/filter state, deep-link-equivalent artifact identifiers, and clear recovery paths. The TUI must not reduce, fabricate, or silently omit evidence solely because a graphical preview is unavailable.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0051",
+      "line": 51,
+      "section": "Active evidence-interface correction",
+      "text": "Add interface-quality and accessibility regressions for web and TUI evidence workflows. Tests must exercise direct game/source/artifact/checksum/resource/analysis routes, keyboard navigation, focus order, filter persistence, mobile and narrow-terminal layouts, readable contrast, original-versus-derived labelling, unavailable/blocked states, download boundaries, and error recovery. The CI build must reject UI/schema/report drift that makes a validated evidence record inaccessible or a non-claim appear as a supported feature.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0053",
+      "line": 53,
+      "section": "Active evidence-interface correction",
+      "text": "Gate decoded-media and decompilation publication in the primary workflow and CI. The gate must regenerate every derived preview and decompilation view from committed originals and native code, verify complete checksums and manifest membership, reject stale/missing/out-of-bounds derivatives or UI links, confirm accessible web/TUI navigation, and pin real-artifact plus corruption/negative controls per profile.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0055",
+      "line": 55,
+      "section": "Active evidence-interface correction",
+      "text": "Enforce open-world resource discovery for every retained platform bundle. Every extracted byte, embedded region, filesystem member, tape block, disk extent, executable segment, archive entry, and cross-file reference must enter a deterministic inventory with observed name, byte range, complete checksums, parent lineage, candidate role, platform/profile context, parser outcome, and evidence state. Unknown, extensionless, encrypted, compressed, or structurally anomalous resources must create a retained support loop with a reproducer; they may not disappear into generic “other” storage or be omitted because their family was not anticipated.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0056",
+      "line": 56,
+      "section": "Active evidence-interface correction",
+      "text": "Build a complete resource relationship graph per release and platform. It must include DDBs, interpreters, loaders, fonts, graphics, audio, text/vocabulary data, dictionaries, object/location tables, overlays, save-state/configuration data, protection metadata, executable segments, media wrappers, and every future family discovered by inspection. Relationships must distinguish measured reference, same-bundle adjacency, source/catalog assertion, derived recovery, and unresolved candidate; web, TUI, report, manifest, and CI views must expose the graph without inventing semantic links.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0057",
+      "line": 57,
+      "section": "Active evidence-interface correction",
+      "text": "Add a deterministic unknown-resource review gate. CI must fail if a newly retained member lacks a stable inventory record, complete checksums, parent/bundle provenance, a parser result or explicit rejection, and a next-action/reproducer state. The gate must summarize newly observed extensions, signatures, embedded regions, and profile deviations so that expanding the corpus automatically expands the research queue rather than silently lowering coverage.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0058",
+      "line": 58,
+      "section": "Active evidence-interface correction",
+      "text": "Audit and correct game-card lineage for retained containers, extracted members, derived recoveries, DDB payloads, and support assets. A card must not present a provenance-backed platform as `unknown`, must not imply interpreter correlation for an unrelated byte, and must explain the exact evidence boundary for every non-correlatable artifact.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0059",
+      "line": 59,
+      "section": "Active evidence-interface correction",
+      "text": "Add a responsive evidence legend and per-artifact explanation that defines container, extracted member, derived recovery, DDB, interpreter, media support asset, and image/resource payload. The interface must explain terms such as `PIC`, show parent/child relationships, and make game-ready payloads distinct from source media and auxiliary bytes.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0060",
+      "line": 60,
+      "section": "Active evidence-interface correction",
+      "text": "Make the game-port explorer complete by default across every retained technical medium. Expanded cards must show all associated D64, DSK, TAP, TZX, ZIP, PRG, DDB, image/resource, and derived-recovery records in a deterministic order; any compact mode must be an explicit optional reduction, never the default evidence view.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0061",
+      "line": 61,
+      "section": "Active evidence-interface correction",
+      "text": "Enforce the evidence-interface contract in the primary workflow and CI across all surfaces: report schema/lineage fields, generated report data, authored documentation links and terminology, the production web build and shared complete-view routes, mobile layout regressions, and the TUI’s equivalent artifact/source/format explanation. A green build must reject missing format legend text, compact-by-default game evidence, a source-backed medium displayed as unexplained `unknown`, or a schema/documentation/TUI drift.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0062",
+      "line": 62,
+      "section": "Active evidence-interface correction",
+      "text": "Establish deterministic ADP interoperability: audit `jlcebrian/ADP` input/output formats and platform coverage from committed source and primary documentation; compare it to native Harvester capability per format; package only reproducible permitted integration assets; publish a versioned capability matrix in docs, web, and TUI; and gate all compatibility claims with fixtures, byte/provenance boundaries, and CI checks. ADP output remains independent comparison evidence unless a repository-native validator proves the specific claim.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0063",
+      "line": 63,
+      "section": "Active evidence-interface correction",
+      "text": "Correctly model ADP as an independent DAAD interpreter and toolchain, not a DAAD derivative or extension. Document its accepted, extracted, generated, converted, and packaged formats per pinned upstream revision; acquire and measure available game releases in those formats; learn each format with repository-native parsers; and retain ADP operations only as independently versioned comparison evidence.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0064",
+      "line": 64,
+      "section": "Active evidence-interface correction",
+      "text": "Publish a deterministic DAAD-format download pack. For every authorized retained game/release/platform/media variant, create a browser-visible package record and a direct individual download with exact bytes, complete checksums, provenance, technical-medium/format explanation, release relationship, and optional independently verified ADP compatibility observation. The pack must be generated from committed manifests, never assembled by hand or inferred from filenames.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0065",
+      "line": 65,
+      "section": "Active evidence-interface correction",
+      "text": "Implement a scientific format-generation and comparison loop for every DAAD/ADP-relevant technical medium: document byte structure and source inputs, generate the format deterministically with repository-native code, validate it structurally, compare it to available authentic release bytes and parser observations, and record byte-identical equality or the exact justified difference. A format cannot be labelled generated/verified merely because an external tool accepts it; every unimplemented generator or unexplained difference must retain its reproducer and research state.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0066",
+      "line": 66,
+      "section": "Active evidence-interface correction",
+      "text": "For every ADP toolchain medium, study and cross-document both the pinned ADP reader/writer source and independent primary format specifications before implementation. The resulting dossier must identify the exact source files/functions, byte grammar, generator inputs, validation predicates, target/media constraints, known ADP boundaries, native Harvester comparison, real release fixtures, and test command; no format support claim may rest solely on tool behavior or a filename extension.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0067",
+      "line": 67,
+      "section": "Active evidence-interface correction",
+      "text": "Implement all promoted DAAD/ADP format generators as repository-native deterministic code and run them in the primary workflow and CI. Export each generation’s inputs, output paths, complete checksums, structural validation, authentic-release comparison result, and blocker/reproducer state into the static report; render the same evidence in the web and TUI; and publish generated bytes only through manifest-controlled public package records.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0068",
+      "line": 68,
+      "section": "Active evidence-interface correction",
+      "text": "Comprehensively document everything evidence-backed that can be learned from the pinned ADP source and releases: architecture, modules, machine profiles, database readers/writers, compiler path, disk/media path, graphics and font paths, command surface, test suite, bundled fixtures, package layouts, format grammars, compatibility differences, errors, and unresolved questions. Every dossier claim must cite exact source files/functions and, where available, an independent primary specification and a retained release fixture.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0069",
+      "line": 69,
+      "section": "Active evidence-interface correction",
+      "text": "Enforce multi-evidence comparison for every promoted ADP/DAAD format and compatibility claim. Cross-check pinned ADP source and tool output against retained interpreter disassemblies/decompilations, primary documentation, exact profile hashes, native Harvester parser/generator results, authentic release bytes, deterministic regressions, and emulator observations where applicable. Persist every agreement and disagreement with inputs, commands, versions, outputs, complete digests, evidence grades, and a reproducer; no single tool or document is authoritative in isolation.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0070",
+      "line": 70,
+      "section": "Active evidence-interface correction",
+      "text": "Add accessible authentic game identity visuals to the complete web game explorer. Every game card/detail must expose a clearly labelled original cover or logo with a provenance field, taken only from a retained asset or a registered public-source asset. Generated illustrative replacements are prohibited. If an authentic logo or cover is low quality, permit only a conservatively restored derivative that preserves the original content and links to its exact source. Preserve alt text, download/source boundaries, responsive layout, and CI checks that reject silent placeholder substitution, unregistered artwork, missing provenance, or an undisclosed restoration.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0071",
+      "line": 71,
+      "section": "Active evidence-interface correction",
+      "text": "Expand the canonical game and release catalog across the entire documented DAAD ecosystem: historic commercial titles, modern releases, contemporary revisions, platform ports, compiler/runtime evolutions, and named derivatives. Every addition requires a primary or registered evidence URL, explicit release/platform/version boundary, source/corpus acquisition result, and a clear distinction between catalog knowledge and byte-measured evidence.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0072",
+      "line": 72,
+      "section": "Active evidence-interface correction",
+      "text": "Build an authentic visual registry for every documented DAAD game/release rather than only the initial classic corpus. Each retained or public-source cover/logo must have a title/release/platform relationship, original-source URL or retained identifier, SHA-256, content type, access date, alt text, and restoration declaration; missing artwork stays explicitly absent until an authentic source is registered.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0076",
+      "line": 76,
+      "section": "Self-contained regeneration requirement",
+      "text": "Audit every promoted preservation claim and classify its regeneration path as **repository-native**, **declared Python/package dependency**, or **external independent validator**. A claim may not require an external GUI application, emulator, proprietary tool, or undeclared local resource for its primary regeneration.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0077",
+      "line": 77,
+      "section": "Self-contained regeneration requirement",
+      "text": "Add deterministic repository commands and CI-safe tests for every primary extraction, structural validation, byte comparison, report, and evidence artifact. Retained media and committed reference fixtures must be sufficient to reproduce the expected hashes and evidence tables after a documented environment setup.",
+      "evidence_inputs": [
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0078",
+      "line": 78,
+      "section": "Self-contained regeneration requirement",
+      "text": "Reclassify VICE, Ghidra, radare2, c64tapedecode, and comparable programs as optional cross-validation evidence only. Preserve their command logs and results, but implement and test an equivalent repository-native primary path before any support claim is promoted.",
+      "evidence_inputs": [
+        "repository evidence and deterministic tests"
+      ],
+      "affected_subsystems": [
+        "preservation workflow"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0079",
+      "line": 79,
+      "section": "Self-contained regeneration requirement",
+      "text": "Make all emulator-derived state claims explicitly reproducible from retained snapshots or native parsed inputs with a committed extraction script; where live emulation remains necessary to acquire a new state, record it as an acquisition method rather than a regeneration prerequisite.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0080",
+      "line": 80,
+      "section": "Self-contained regeneration requirement",
+      "text": "Publish the self-contained regeneration requirement verbatim in the project policy, README, contributor guidance, corpus/evidence contracts, format dossiers, reverse-engineering methodology, and release checklist. Every document that introduces an evidence level or support claim must link to this requirement.",
+      "evidence_inputs": [
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0081",
+      "line": 81,
+      "section": "Self-contained regeneration requirement",
+      "text": "Add an automated policy check that rejects new promoted-evidence records lacking a native regeneration command, committed input manifest, declared dependencies, output-hash assertions, and an explicit classification for every external validator.",
+      "evidence_inputs": [
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0082",
+      "line": 82,
+      "section": "Self-contained regeneration requirement",
+      "text": "Require a self-contained-regeneration attestation in every commit-level audit and release gate. CI must fail if a required primary result invokes an undeclared executable, network endpoint, external emulator, GUI program, or non-committed input.",
+      "evidence_inputs": [
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0083",
+      "line": 83,
+      "section": "Self-contained regeneration requirement",
+      "text": "Audit existing reports, screenshots, recordings, static-site artifacts, binary analyses, decompilations, media extractions, DDB outputs, and emulator observations. Replace non-self-contained primary paths or downgrade them to optional corroboration until a native regeneration path is committed and tested.",
+      "evidence_inputs": [
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0084",
+      "line": 84,
+      "section": "Self-contained regeneration requirement",
+      "text": "Enforce state-manifest coherence after every corpus mutation: an acquisition, unpack, fingerprint, synthesis, library refresh, or report refresh must either regenerate and verify all affected hash-pinned outputs in the same release gate or leave the manifest intentionally failing; no stale `state.db` or derived-output hash may be silently promoted.",
+      "evidence_inputs": [
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0085",
+      "line": 85,
+      "section": "Self-contained regeneration requirement",
+      "text": "Audit interpreter correlation boundaries across every artifact family. Non-DDB identity claims must arise from the artifact’s own exact bytes or documented filename evidence; DDB bundle correlation must be target-platform-filtered; fresh scans must delete stale revocable interpreter claims before recording replacements; and cross-platform contamination cases require retained regressions.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0086",
+      "line": 86,
+      "section": "Self-contained regeneration requirement",
+      "text": "Enforce a no-LLM-runtime rule for all preservation-critical execution paths: discovery replay from retained inputs, parsing, extraction, fingerprinting, decompilation/recompilation, byte comparison, evidence generation, report generation, and CI verification must be deterministic code with declared dependencies. Any LLM-assisted development activity must remain optional and may never be a hidden operational dependency.",
+      "evidence_inputs": [
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0087",
+      "line": 87,
+      "section": "Self-contained regeneration requirement",
+      "text": "Publish and test a contributor-independent continuation workflow: a clean clone must be able to install declared dependencies, execute the complete offline verification gate, identify every active blocker and its reproducer, add a profile through the retained-sample/contract/regression/manifest sequence, and produce a reviewable evidence delta without relying on private context, model memory, or undocumented workstation configuration.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0088",
+      "line": 88,
+      "section": "Self-contained regeneration requirement",
+      "text": "Publish a repository-root-indexed, prompt-free clone-to-contribution guide for humans and agents. It must contain the exact bootstrap commands, offline verification transcript, document-reading order, state/corpus vocabulary, active-blocker handoff format, profile-implementation checklist, evidence/manifest update sequence, atomic-commit criteria, rollback/recovery boundary, and a documentation-gate regression proving that a fresh clone can discover it without external instructions.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "real-artifact regression"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0089",
+      "line": 89,
+      "section": "Self-contained regeneration requirement",
+      "text": "Define and test the clean-clone installation contract for Linux, macOS, Windows, and Termux: minimum system packages, supported Python versions, virtual-environment setup, declared dependency installation, optional external-validator separation, offline verification command, and actionable failure diagnostics. The primary preservation path must not rely on undeclared host executables or a preconfigured developer environment.",
+      "evidence_inputs": [
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "preservation workflow"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0090",
+      "line": 90,
+      "section": "Self-contained regeneration requirement",
+      "text": "Implement and test one deterministic cross-host primary automation entry point for Linux, macOS, Windows, and Termux. It must orchestrate offline corpus/resource/manifest verification, native parsing and fingerprinting, deterministic synthesis/library/report regeneration, byte/hash comparison, and actionable nonzero failure output without a GUI, emulator, LLM, network endpoint, or undeclared host executable. Platform-specific emulation remains an explicitly non-primary acquisition or corroboration step.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0091",
+      "line": 91,
+      "section": "Self-contained regeneration requirement",
+      "text": "Implement and test cross-host, noninteractive adapters for every non-primary external validator and acquisition workflow where the tool is available. Each adapter must declare capability and installation status, use a fixed configuration and execution bound, capture logs/outputs/hashes, compare against the native evidence path, and emit an actionable explicit `unavailable` diagnostic on unsupported hosts without blocking the deterministic primary workflow. No optional workflow may require GUI interaction, hidden manual steps, or an LLM.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0092",
+      "line": 92,
+      "section": "Self-contained regeneration requirement",
+      "text": "Build an auditable CI toolchain matrix that executes every used or planned external emulator, disassembler, decompiler, compiler, converter, and comparator in headless/batch mode against retained real artifacts. Each lane must provision pinned tool/firmware versions, retain configuration and bounded logs/outputs, compare its result with the native path, publish a host-capability status, and make incompatibility explicit rather than silently skipping the tool. The native primary gate remains independently reproducible, while the extended matrix is automated on every compatible runner.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0093",
+      "line": 93,
+      "section": "Self-contained regeneration requirement",
+      "text": "Enforce local/CI primary-gate parity. CI and a clean local clone must invoke the same repository launcher and report the same verifier set, committed input identities, manifest/resource/corpus counts, static-report hash, documentation result, and test result. The parity record must declare supported interpreter/OS versions and explicit harmless environment differences; any unexplained output, count, hash, or command divergence is a reproducibility defect with a retained failure log, corrective change, and regression.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0104",
+      "line": 104,
+      "section": "Self-contained regeneration requirement",
+      "text": "Maintain a repository-wide requirements, evidence, and improvement traceability system. It must map every project objective and implementation claim—targets, formats, profiles, interpreters, derivatives, corpus acquisition, reverse engineering, decompiler/recompiler, external-tool automation, CI, report/TUI behavior, ScummVM handoff, blockers, and recovery—to its authoritative documentation, retained inputs, deterministic command, generated outputs, tests, manifest record, public representation, owner boundary, and non-claim. The documentation map and CI link gate must expose omissions rather than allowing a requirement, evidence record, or improvement decision to become orphaned.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0105",
+      "line": 105,
+      "section": "Self-contained regeneration requirement",
+      "text": "Make documentation continuity a permanent change-gate rule. Every future code, corpus, schema, toolchain, CI, report, TUI, decompiler, or ScummVM-handoff contribution must add or update its plain-language objective, scope/non-claim, evidence inputs, data contract, responsible source modules, positive/rejection tests, deterministic regeneration command, expected outputs/hashes, manifest/report impact, user-visible behavior, blocker/recovery state, and continuation instruction. The documentation checker and review checklist must reject a contribution that leaves future humans or agents unable to understand, verify, improve, or safely extend it from a clean clone.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0106",
+      "line": 106,
+      "section": "Self-contained regeneration requirement",
+      "text": "Enforce human-and-agent continuation parity. A clean clone must expose one documented reading order, machine-readable work/evidence state, deterministic command plan, structured pass/fail diagnostics, and bounded change protocol that lead both a human and an agent from project orientation to the same independently checkable action. No step may depend on interpreting a private conversation, remembering an unavailable prompt, inferring an undocumented convention, or accessing a personal workstation.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "preservation workflow"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0112",
+      "line": 112,
+      "section": "Self-contained regeneration requirement",
+      "text": "Complete a documentation-coverage audit for every relevant preservation concern: source and authorization provenance, retained media, profile/format contracts, parser/loader behavior, interpreter and DDB evidence, reverse-engineering outputs, decompiler/recompiler rules, deterministic commands, generated outputs, tests, manifests, active blockers, failure/recovery paths, contributor decisions, and final integration criteria. The documentation index must provide a direct, maintained path to each concern and CI must reject missing required navigation links.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0142",
+      "line": 142,
+      "section": "1. Complete format and archive coverage",
+      "text": "Replace any “limited,” heuristic, or filename-dependent path with documented native parsing or a deliberately rejected unsupported state. Do not silently fall back to blind copying.",
+      "evidence_inputs": [
+        "repository evidence and deterministic tests"
+      ],
+      "affected_subsystems": [
+        "preservation workflow"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0143",
+      "line": 143,
+      "section": "1. Complete format and archive coverage",
+      "text": "Cover the complete required family of DAAD-relevant containers and media: TAP/TZX/CDT; +3DOS; CPC standard/extended DSK; C64/Plus4 D64, T64, PRG, P00; MSX/PCW/DOS FAT12/FAT16 DSK; MSX CAS and ROM; Atari ST ST, MSA, STX/IPF evidence; Amiga ADF, ADZ, DMS, LHA/LZH; DOS COM/EXE; and nested ZIP/7z/RAR/LHA/ARJ/cab/gzip/tar where legally and technically applicable.",
+      "evidence_inputs": [
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0144",
+      "line": 144,
+      "section": "1. Complete format and archive coverage",
+      "text": "Add strict bounds, checksum/geometry validation, corruption cases, recursive provenance, decompression limits, and negative controls for every parser.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "real-artifact regression"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0145",
+      "line": 145,
+      "section": "1. Complete format and archive coverage",
+      "text": "Add public real-artifact audit fixtures or reproducible acquisition manifests where redistribution is not permitted.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0146",
+      "line": 146,
+      "section": "1. Complete format and archive coverage",
+      "text": "Implement native Commodore raw-TAP V0/V1/V2 pulse-stream decoding with exact declared-length validation, overflow semantics, conventional ROM-loader block recovery, byte-level provenance, corruption fixtures, and an explicit evidence path for custom-loader streams that cannot use conventional framing.",
+      "evidence_inputs": [
+        "real-artifact regression"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0147",
+      "line": 147,
+      "section": "1. Complete format and archive coverage",
+      "text": "Reconstruct the C64 KERNAL software-servo reader used by the retained *Jabato* Side A later stream from the preserved `read.s` implementation: model `cmp0` adaptation, synchronization, duplicate-pass/error handling, pointer setup, and checksums; reproduce every byte of the verified `$3880`–`$99C2` Part 1 DDB from original pulses; and add block-level runtime/ADP identity regressions before claiming complete physical recovery.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0155",
+      "line": 155,
+      "section": "2. Versions, interpreters, and derivatives",
+      "text": "Investigate historical multi-part commercial layouts using real retained artifacts; keep unresolved layouts as explicit archaeology targets, never guessed DDBs.",
+      "evidence_inputs": [
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0161",
+      "line": 161,
+      "section": "3. Sources and metadata",
+      "text": "Re-validate every adapter live and use the outcome to repair selectors, rate limits, direct-media admission, catalog-only handling, and provenance fields.",
+      "evidence_inputs": [
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0162",
+      "line": 162,
+      "section": "3. Sources and metadata",
+      "text": "Expand the evidence catalog conservatively with source URLs for title/platform/release facts and keep binary-version facts distinct.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0188",
+      "line": 188,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Replace restrictive handling statuses with the institutional-authority directive: all acquired original bytes, extracted members, third-party materials, tool outputs, decompilations, and execution records are retained, analyzed, run where safe, and published; provenance fields remain evidentiary rather than blocking.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0189",
+      "line": 189,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Complete every retained-corpus objective end-to-end—acquisition, execution, extraction, analysis, comparison, documentation, publication, regression, and audit—while preserving original/derived distinctions and reproducibility records.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0192",
+      "line": 192,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Record the user-documented European/international preservation-agreement reference as a scope-level provenance record linked from every retained interpreter and game-corpus manifest, without exposing sensitive correspondence.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0193",
+      "line": 193,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Apply the user-confirmed universal authorization scope to all retained corpus classes, while preserving individual source URL, acquisition, hash, platform, lineage, and analysis-tool records for every committed item.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0197",
+      "line": 197,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Cross-check each derived interpretation with independent tools, known DDB/runtime behavior, checksums, entry-point mappings, and reproducible test fixtures before documentation claims are promoted.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0198",
+      "line": 198,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Discover public third-party disassemblies/decompilations by platform and version; retain their provenance and verify input-byte hashes, architecture/load assumptions, and claimed ranges against locally generated analysis before use.",
+      "evidence_inputs": [
+        "repository evidence and deterministic tests"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0199",
+      "line": 199,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Retain the confirmed relevant `jlcebrian/ADP` public implementation at a pinned revision; record its license, stated platform/version scope, source/binary composition, and independent comparison outcome before incorporating its claims.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0200",
+      "line": 200,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Commit every accepted third-party comparison artifact, raw local disassembly, decompiler output, symbol/control-flow export, tool configuration, command log, and output hash in the self-contained reverse-engineering corpus.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0201",
+      "line": 201,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Retain comparative inputs in immutable `third_party/` paths and generated local outputs in separate tool/version-qualified paths; no documentation-only reference may substitute for an accepted artifact.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0202",
+      "line": 202,
+      "section": "7. Authorization-gated reverse-engineering corpus",
+      "text": "Add focused reverse-engineering dossiers, schema/provenance contracts, audit records, and CI-safe integrity checks without redistributing restricted original binaries or proprietary-source equivalents.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0206",
+      "line": 206,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Apply the global completion rule to every parser, media format, loader, runtime variant, DDB structure, companion asset, and decompiler construct: an unsupported observation must enter a retained-sample research, implementation, differential-check, and regression loop until verified support exists; no terminal unsupported omission is permitted.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "terminal interface"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0207",
+      "line": 207,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Enforce the global conflict and issue lifecycle across the entire project: every conflict, discrepancy, failed hypothesis, corrupted or ambiguous input, failed gate, implementation defect, external-source disagreement, and rejected candidate rule must receive an in-repository reproducible record when observed; its record must name evidence, byte ranges or reproducers where applicable, affected profile/artifact, next experiment, and status. When fixed, update the same record with the cause, implementation and commit references, regression evidence, regenerated outputs, and verification command; no issue may disappear merely because a later commit happens to pass.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0211",
+      "line": 211,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Enforce blocker closure: every temporary blocker record must culminate in a verified implementation, real-artifact regression, refreshed corpus output, and evidence-backed support claim. A measured but unresolved state is an investigation checkpoint only and may never be accepted as the final result for any platform, format, loader, interpreter, DDB structure, derivative, or game variant.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0212",
+      "line": 212,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "For every blocker, perform deep external research before selecting a solution: inspect primary documentation and source where available, multiple independent preservation archives/catalogs, public implementations and tools, platform-specific technical references, and comparable artifact variants. Retain source URLs, downloaded/hashed research materials where permitted, conclusions, counter-evidence, and byte-level validation against the authorized corpus; then implement, test, and iterate until verified closure.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0213",
+      "line": 213,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "When an authorized source endpoint is captcha-protected, rate-limited, or otherwise non-automatable, retain the exact access outcome and continue acquisition through independent accessible archives, mirrors, catalog-linked variants, and primary releases. The blocked endpoint must remain a provenance record, never a reason to halt comparison or closure work.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0214",
+      "line": 214,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Treat release-scene, crack, dump, trainer, and archival tags as provenance metadata rather than game semantics. Acquire and compare alternate/original variants whenever possible, identify byte-level loader/intro/interpreter modifications, and validate all conclusions against retained artifacts before modeling runtime behavior.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0215",
+      "line": 215,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Make every cracked, scene-modified, trained, fixed, translated, compilation, and archival release fully functional: preserve and execute its exact loader/intro path, recover its game data and embedded runtime behavior, distinguish modifications from the underlying game, and add real-artifact regressions plus emulator evidence until that variant reaches verified support.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0216",
+      "line": 216,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Apply this closure rule universally to every DAAD system, software and hardware platform, game, release, compiler/runtime version, historical or modern derivative, interpreter, media/container form, compression/protection scheme, loader, encoding, companion resource, and game-specific fork. No category, artifact, or variation is exempt from complete verified treatment.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0217",
+      "line": 217,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Build the complete native DDB decoder grammar for every observed DAAD ecosystem profile. The grammar must cover modern DRC V2/V3, historical V1/V2, PAWS, documented compiler/runtime extensions, wrappers, target byte order/base-address conventions, CondAct opcode/operand/indirection rules, text/token tables, process serialization, alignment, deduplication, external vectors, and every retained divergent layout. Every grammar rule requires a profile tuple, source/specification/runtime evidence, retained bytes, corruption regression, and explicit decoder acceptance/rejection behavior; an extension or opaque byte range remains an active closure blocker until decoded.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0218",
+      "line": 218,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Continue legacy V2 DOS `BLANK.DDB` section closure after its header, process pointers, offset tables, and XOR text records: establish source-backed grammars and real-artifact regressions for vocabulary records, token-block boundaries/expansion, object location/word/attribute tables, connection records, header extension/external data, and all remaining exact opaque ranges; then expand the same closure process to retained V1 C64, V2 ZX, and V2 Amiga profiles without generalizing an unverified rule.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0231",
+      "line": 231,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Build the matching complete native DDB encoder from the lossless profile-scoped intermediate representation. It must reproduce all preserved representation choices—not only equivalent game semantics—including original byte ordering, header/pointer forms, wrapper checksums, padding/alignment, stream sharing, indirection lowering, and target/subtarget exceptions. No external compiler, emulator, current time, locale, filesystem metadata, unordered traversal, or LLM may be a primary dependency.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0232",
+      "line": 232,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Close DDB support profile by profile with retained-artifact decompile → recompile → byte-for-byte comparison. For every mismatch, retain first/last differing bytes, contiguous ranges, owning IR nodes, source/profile evidence, and a minimal reproducer; research and implement the missing grammar until equality is achieved. Publish verified profile records with all 17 digests and comparison evidence in the primary workflow, CI, static report, Pages viewer, TUI, manifests, and documentation. Structural parsing, opaque pass-through, an external compiler result, or runtime observation may not be represented as round-trip completion.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0233",
+      "line": 233,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Maintain linked, platform-specific format-profile dossiers for every recognized and newly observed geometry, filesystem, disk/tape/container variant, boot convention, loader, executable/load model, encoding, and companion package. Each dossier must identify retained samples and hashes; primary and independent references; exact acceptance contract; corruption/rejection contract; profile applicability boundaries; unresolved but active variants; real-artifact regressions; deterministic regeneration command; and cross-links to the capability matrix, evidence model, coverage ledger, and report. A profile proven on one platform must never be silently generalized to another.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0234",
+      "line": 234,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Maintain an equal-priority execution and evidence matrix for ZX Spectrum, Amstrad CPC, C64, Plus/4, MSX, Amstrad PCW, Atari ST, Amiga, and IBM PC/DOS, including all known software/runtime derivatives; no platform-specific investigation may be mistaken for a platform priority or permit another platform to fall outside active coverage tracking.",
+      "evidence_inputs": [
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0235",
+      "line": 235,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Apply the institutional preservation authorization globally to supporting runtime resources required for reproducibility—including firmware, system ROMs, emulator dependencies, compilers, and reference media—while retaining each resource’s origin URL, acquisition timestamp, authorization context, version, SHA-256, and role in the evidence chain.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0236",
+      "line": 236,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Persist the universal institutional authorization directive verbatim in the project policy, corpus manifests, acquisition/reverse-engineering records, and CI-verifiable documentation: all required artifacts and tools may be acquired, retained, executed, analyzed, disassembled, decompiled, recompiled, compared, and published for the project’s scientific preservation mission, without category- or platform-specific exceptions.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0237",
+      "line": 237,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Build deterministic emulator-backed reconstruction workflows for every target whose loaders or protected media cannot be resolved statically; retain command scripts, bounded snapshots or RAM ranges, runtime configuration, execution limits, and byte-level comparisons as corpus evidence.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0238",
+      "line": 238,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Treat missing supporting firmware or a runtime dependency as a named acquisition/provenance task, not a terminal blocker: find, retain, hash, validate, and regression-test the resource under the same institutional authorization and global completion rule.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "terminal interface"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0239",
+      "line": 239,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Close the retained C64 *Jabato vs. Imperio: Libertad* tape loop: reconcile both original raw pulse streams, their controlled title/credits/loading paths, and active runtime representations; reproduce the recovered Side A Part 1 and Side B Part 2 ranges from pulses alone, compare both originals against the ASS D64 variant, implement the resulting parser/loader support, and add real-artifact regressions before promotion.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0240",
+      "line": 240,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Complete official DAAD R4 source 250’s MSX `MSX.DSK` lifecycle. The native retained-sample parser and regression establish an MSX-DOS FAT12 2DD profile (`EB FE 90`, 512-byte sectors, two sectors per cluster, two FATs, 112 root entries, 1,440 sectors, `0xF9`, three sectors per FAT, nine sectors/track, two heads) and recover five hash-pinned members: `MSXDOS.SYS`, `COMMAND.COM`, `DAAD.MDG`, `DAAD.Z80`, and `YOURGAME.COM`; a malformed geometry regression also exists. The append-only re-unpack now materializes their corpus rows, complete checksums, lineage, report records, and public-manifest entries without deleting earlier source-250 descendants. The remaining work is to classify each member’s target/runtime behavior without filename-only claims, complete MDG and launcher grammars, validate cross-file references, and register the final MSX bundle graph in the self-contained regeneration lifecycle.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0241",
+      "line": 241,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Decode the official R4 MSX `DAAD.MDG` companion-resource grammar natively. The R4 2,105-byte member is now independently exact-hash matched to the official classic `Interpreters/MSX/DAAD.MDG` template, whose `xREADME.TXT` calls it an empty graphics database with a standard character set. This establishes a canonical-template identity, not its complete internal grammar. Determine container fields, glyph geometry/code-page, graphics or font payload boundaries, compression, and loader references by comparing independent retained samples and source code. Add real-artifact, corruption, cross-file-reference, and deterministic glyph-preview regressions before publishing any font or image derivative.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0244",
+      "line": 244,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Complete the official R4 MSX `DAAD.Z80` interpreter analysis with redundant architecture-aware methods. Its materialized SHA-256 already exactly matches the retained English `daad-msx-msxedi-official` profile; the currently retained public `DMSXIEF3.BIN` and `DMSXISF3.BIN` build assets have different hashes, so the build script proves a convention rather than substituting an original byte identity. Preserve all originals and complete digests; establish load address, entry points, DDB/MDG loading behavior, and the precise relation of every distinct public interpreter sample. Publish only reproducible disassembly/decompilation outputs with tool configuration, byte ranges, and disagreement boundaries; the existing raw-base analysis remains unverified runtime semantics.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0245",
+      "line": 245,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Reverse and validate the official R4 MSX `YOURGAME.COM` launcher and its relation to `MSXDOS.SYS`, `COMMAND.COM`, `DAAD.Z80`, and `DAAD.MDG`. Establish its MSX-DOS executable/load contract, command-line or default-file behavior, memory/entry assumptions, and error boundaries from native byte analysis plus independent retained evidence. Add real-artifact and malformed-header regressions before identifying it as a functional game launcher.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0246",
+      "line": 246,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Build a source-250 MSX bundle graph linking the materialized FAT12 members through measured filesystem membership, public-build-script roles, native parser evidence, exact interpreter identity where available, and unresolved runtime relations. Persist the graph in corpus/report/TUI/web data with separate categories for measured, build-script-derived, runtime-observed, and unresolved edges; never infer a semantic link solely from a shared DAAD filename.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "report or interface output",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "terminal interface",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0247",
+      "line": 247,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Audit the complete source-250 official R4 re-unpack materialization as an intentional multi-platform corpus expansion. The current retained ledger has 164 depth-two members. A deterministic first partition found 104 without a native media signature and 39 opaque program images, alongside resource families such as `CH0`, `FNT`, `SDG`, `P3F`, `RSC`, `ACC`, extensionless C64 loaders, and platform package files; `PART1.CH0` is now closed only because its bytes exactly duplicate a validated CHR artifact. Verify every remaining child’s source-250 lineage, complete checksums, container/member relation, platform evidence, parser/rejection state, and report visibility. Divide each family into bounded platform-bundle closure tasks with real bytes and reproducible negative controls; do not treat shared extensions, same names, or source-archive adjacency as a semantic claim.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0251",
+      "line": 251,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Treat the currently verified MSX-DOS 1DD/2DD 8-/9-sector FAT12 profiles as an expandable evidence set—not a terminal geometry whitelist. Every additional MSX FAT/media geometry must enter retained-sample acquisition, primary-reference research, explicit acceptance contract, malformed-image rejection tests, real-artifact regression, and self-contained regeneration before promotion; no coherent historical geometry may be silently rejected or omitted.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "terminal interface",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0252",
+      "line": 252,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Resolve official DAAD R4 source 250’s PCW `PCWSDI.BIN` and `PCWEDI.BIN` interpreter/package structures: establish load model and target semantics using redundant analysis, preserve byte-range evidence, implement native recognition/extraction where applicable, and add real-artifact regressions.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0253",
+      "line": 253,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Inventory and classify every Atari ST and IBM PC/DOS package/member in official DAAD R4 by platform, executable/load format, interpreter lineage, and DDB/companion relationship; retain the evidence matrix and implement any missing native media support until no R4 target member remains undifferentiated.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0254",
+      "line": 254,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Convert the source-250 official DAAD R4 bundle into hash-pinned repository-native regeneration entries for its promoted MSX, PCW, Atari ST, and DOS evidence, with all third-party emulators/disassemblers retained only as acquisition or independent validation aids.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0255",
+      "line": 255,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Close the ADP-to-original C64 *Jabato* evidence loop: retain fixture provenance and hashes, preserve the verified byte-identical `JABATO-C64 1.DDB` to Side A RAM `$3880` and `JABATO-C64 2.DDB` to Side B RAM `$3880` comparisons, and convert every accepted relation into deterministic extraction and regression checks without treating ADP as a physical tape-loader substitute.",
+      "evidence_inputs": [
+        "real-artifact regression"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0258",
+      "line": 258,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Define an artifact-level authorization/retention gate for DAAD game downloads that is independent from interpreter authorization and records source terms, rights evidence, download URL, timestamps, and SHA-256.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0259",
+      "line": 259,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Run Harvester discovery/acquisition across ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS sources; preserve every candidate and outcome in a resumable source ledger.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0260",
+      "line": 260,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Compare every retained original/extracted game member and executable neighbor against official interpreter hashes and structural runtime evidence; retain every differing or unmatched interpreter candidate as a new immutable variant for separate analysis.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0261",
+      "line": 261,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Commit accepted game originals under a platform/game/source hierarchy and all safe extracted members under a separate lineage-preserving tree, with original-to-member checksum and parser evidence manifests.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0262",
+      "line": 262,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Convert accepted real artifacts into regression fixtures/manifests for media inspection, recursive unpacking, DDB validation, interpreter correlation, organization, and static-report output without fabricating detections.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0263",
+      "line": 263,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Publish platform coverage, failures, unavailable items, rights-restricted records, extraction statuses, and test use in dated audit documents and the report corpus.",
+      "evidence_inputs": [
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0264",
+      "line": 264,
+      "section": "8. All-platform retained game corpus and regression suite",
+      "text": "Produce a source-by-source coverage ledger proving which reachable catalogs, queries, pages, and downloads were exhausted; record inaccessible, missing, duplicate, and unresolved historical items as explicit gaps rather than asserting unverifiable universal completeness.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0268",
+      "line": 268,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Inventory every reachable public DAAD game decompiler, decompiler-like tool, compiler inverse, source recovery project, and format reader; retain complete pinned source/release inputs and document exact platform/version/format scope.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0269",
+      "line": 269,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Build a modular DAAD game/DDB preservation decompiler, comparable in purpose to UnDAAD but broader and evidence-linked; recover vocabulary, messages, locations, objects, connections, processes, condacts, flags, attributes, graphics/media references, and DSF/SCE-like output with byte-range lineage, confidence, ambiguity, and tool/version metadata.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0270",
+      "line": 270,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Implement platform-aware profiles for ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS, separating shared DDB semantics from platform loader/media/runtime differences.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0271",
+      "line": 271,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Replace any single-axis version classification with a multi-axis evidence profile covering DDB structure, compiler lineage, runtime/interpreter lineage, target/load model, media/loader package, graphics/sound companions, encoding/language, derivative/fork family, and game-specific variation.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0272",
+      "line": 272,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Differentially compare the new decompiler with every retained public implementation/decompiler and independently reproduce disagreements against original bytes, traces, and known game fixtures.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0273",
+      "line": 273,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Add exhaustive real-artifact regression tests, deterministic output fixtures, source-map/evidence manifests, documentation, and report integration before promoting any recovered interpretation beyond its evidence level.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "real-artifact regression",
+        "report or interface output",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0274",
+      "line": 274,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Keep the DAAD game/DDB decompiler explicitly separate from interpreter-binary disassembly/decompilation while linking both evidence layers through runtime version, media lineage, and measured execution behavior.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0275",
+      "line": 275,
+      "section": "9. DAAD game decompiler research and differential implementation",
+      "text": "Enforce corpus-complete decompiler coverage: every discovered DAAD-ecosystem artifact must have a manifest, multi-axis profile, decompilation output or explicit blocker record, output hashes, and regression status; newly acquired artifacts automatically join the required coverage set.",
+      "evidence_inputs": [
+        "real-artifact regression",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0279",
+      "line": 279,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "Define a lossless, version-neutral intermediate representation for every measured DDB byte range, including header fields, section ordering, padding, reserved bytes, compiler-specific layout choices, load address, and companion/loader provenance.",
+      "evidence_inputs": [
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0280",
+      "line": 280,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "Implement a compiler for that representation which can emit each verified historical and modern DAAD/derivative target layout without normalizing away source-byte distinctions.",
+      "evidence_inputs": [
+        "independent external comparator"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0281",
+      "line": 281,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "Require `original bytes → decompile → IR → recompile → byte-for-byte comparison` for every retained DDB and every newly acquired DDB candidate; persist input/output SHA-256 values, differing byte ranges, tool versions, target/load model, and deterministic reproducer commands.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0282",
+      "line": 282,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "When a round trip differs, automatically classify the discrepancy as unknown structure, semantic ambiguity, compiler-layout choice, companion/load-model dependency, or implementation defect; retain the mismatch and iterate until either byte identity is achieved or the exact blocking construct receives a dedicated support loop.",
+      "evidence_inputs": [
+        "repository evidence and deterministic tests"
+      ],
+      "affected_subsystems": [
+        "preservation workflow"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0283",
+      "line": 283,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "Add higher-order differential checks: decompile/recompile cycles across supported profiles, semantic process/condact traces where executable evidence is safe, independently derived interpreter behavior, and comparisons against retained public tools such as UnDAAD and ADP.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0284",
+      "line": 284,
+      "section": "10. Universal decompile–recompile round-trip verification",
+      "text": "Make byte identity, or a documented and actively iterated byte-range blocker, a mandatory promotion gate for every decompiler/compiler profile. No variant may be treated as complete solely because it produces plausible text output.",
+      "evidence_inputs": [
+        "repository evidence and deterministic tests"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0288",
+      "line": 288,
+      "section": "11. Future ScummVM DAAD engine",
+      "text": "After corpus coverage, native-media support, DDB decompiler/compiler round-trip evidence, and interpreter/runtime profiles are mature, conduct a separate ScummVM feasibility and architecture study for a universal DAAD engine.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0289",
+      "line": 289,
+      "section": "11. Future ScummVM DAAD engine",
+      "text": "Research and retain the current ScummVM engine-development documentation, coding standards, comment conventions, build/test requirements, review expectations, merged-engine histories, and comparable parser/VM engine patterns before writing ScummVM-facing code.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0290",
+      "line": 290,
+      "section": "11. Future ScummVM DAAD engine",
+      "text": "Map the DAAD preservation intermediate representation, platform load models, interpreter behavior evidence, graphics/audio companions, and detector metadata to ScummVM subsystems without importing uncertain reverse-engineering claims as runtime behavior.",
+      "evidence_inputs": [
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "media and resource inspection",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0291",
+      "line": 291,
+      "section": "11. Future ScummVM DAAD engine",
+      "text": "Build the eventual engine through upstream-quality tests, detector fixtures, save/load validation, cross-platform execution evidence, reviewable commits, and feedback-driven alignment with current ScummVM project practices.",
+      "evidence_inputs": [
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
+    },
+    {
+      "id": "todo-0295",
+      "line": 295,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Preserve execution order: do not begin native ScummVM engine source implementation until exhaustive all-platform acquisition, format/loader support, game-embedded interpreter analysis, full decompiler/compiler coverage with round-trip evidence, original-runtime differential evidence, and the corpus-completeness audit have passed their explicit gates.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "native parser or validator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence",
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0296",
+      "line": 296,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Implement the universal DAAD engine directly as a native ScummVM engine, using ScummVM subsystems, coding conventions, detector model, build system, test infrastructure, and review standards from its first production source file; no standalone engine may substitute for this deliverable.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "none stated; retain unresolved boundaries"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0297",
+      "line": 297,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Define a platform-neutral behavioral evidence format that records deterministic input scripts, frame/cycle boundaries, DDB/runtime state, flags, locations, object state, messages, graphics, audio events, disk/tape/loader transitions, save states, screenshots, and checksums for every retained executable game path.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0298",
+      "line": 298,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Run the universal DAAD engine and each corresponding original target runtime under controlled emulators with the same scripted inputs. Compare observable behavior and captured state at every defined checkpoint across all historical and modern DAAD versions, derivatives, platforms, target/load models, and game-specific forks.",
+      "evidence_inputs": [
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates",
+        "web report and publication"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0299",
+      "line": 299,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Treat every behavioral discrepancy—including a single byte, state transition, parser result, timing-sensitive load, graphic cell, text encoding difference, audio event, or save/load divergence—as a retained reproducible defect record. Diagnose, correct, retest, and repeat until equivalence is demonstrated or the exact condition is represented by an active support loop.",
+      "evidence_inputs": [
+        "native parser or validator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0300",
+      "line": 300,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Execute massive iterative differential testing over the full authorized corpus, including repeated decompile/recompile checks, interpreter comparisons, emulator snapshots, controlled interaction paths, malformed-but-retained structures, and cross-tool disagreement cases. Preserve all scripts, captures, hashes, expected results, and failure deltas.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "retained original bytes",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis"
+      ],
+      "dependencies": [
+        "profile/platform boundary"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0301",
+      "line": 301,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Require a final independent audit of source, tests, corpus manifests, provenance, reverse-engineering claims, security boundaries, build reproducibility, behavioral-equivalence records, and unresolved loops before declaring the universal engine ready for ScummVM-facing work.",
+      "evidence_inputs": [
+        "independent external comparator",
+        "runtime or emulator observation"
+      ],
+      "affected_subsystems": [
+        "corpus and provenance",
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": true,
+      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    },
+    {
+      "id": "todo-0302",
+      "line": 302,
+      "section": "12. Final emulator-equivalence and ScummVM integration gate",
+      "text": "Only after the final audit passes, create and maintain a ScummVM fork; integrate the DAAD engine through its current coding, architecture, detector, build, test, documentation, review, and contribution practices. Run the complete equivalence suite again in the fork and iterate on every discrepancy before proposing any upstream-quality integration milestone.",
+      "evidence_inputs": [
+        "report or interface output"
+      ],
+      "affected_subsystems": [
+        "runtime and reverse analysis",
+        "tooling and workflow gates"
+      ],
+      "dependencies": [
+        "explicit sequencing or prerequisite evidence"
+      ],
+      "required_real_artifact_regression": false,
+      "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
+      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
+    }
+  ]
+}
