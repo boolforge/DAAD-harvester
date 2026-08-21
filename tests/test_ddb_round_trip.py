@@ -36,6 +36,16 @@ BLANK_DDB_PROFILE = DDBProfile(
     base_address=0,
     wrapper="raw",
 )
+SPANISH_DOS_V2_DDB = REPOSITORY_ROOT / "preservation_corpus/extracted/depth1_f14c8b04_SPANISH.DDB"
+SPANISH_DOS_V2_DDB_PROFILE = DDBProfile(
+    layout="legacy",
+    major_version=2,
+    machine_id=0,
+    platform="dos",
+    endianness="little",
+    base_address=0,
+    wrapper="raw",
+)
 C64_V1_DDB = (
     REPOSITORY_ROOT
     / "preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb"
@@ -146,9 +156,45 @@ def test_retained_legacy_v2_dos_blank_ddb_round_trips_byte_identically() -> None
         for node in mutated_ir.nodes
     )
     assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.following_table_kind)
+        for node in ir.nodes
+        if isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "extended_object_attributes_table"
+    ] == [(0x08CD, 0x08CE, b"\x00", "extended_object_attributes_table")]
+    mutated = bytearray(original)
+    mutated[0x08CD] = 0x01
+    mutated_ir = decompile_ddb(bytes(mutated), BLANK_DDB_PROFILE)
+    assert not any(
+        isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "extended_object_attributes_table"
+        for node in mutated_ir.nodes
+    )
+    assert recompile_ddb(mutated_ir, BLANK_DDB_PROFILE) == bytes(mutated)
     assert len(recompiled) == len(original)
     assert recompiled == original
     assert compute_hashes(recompiled) == original_hashes
+
+
+def test_retained_legacy_v2_spanish_dos_object_attribute_padding_is_bounded() -> None:
+    original = SPANISH_DOS_V2_DDB.read_bytes()
+    ir = decompile_ddb(original, SPANISH_DOS_V2_DDB_PROFILE)
+
+    assert [
+        (node.byte_start, node.byte_end, node.raw_bytes, node.following_table_kind)
+        for node in ir.nodes
+        if isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "extended_object_attributes_table"
+    ] == [(0x078B, 0x078C, b"\x00", "extended_object_attributes_table")]
+    mutated = bytearray(original)
+    mutated[0x078B] = 0x01
+    mutated_ir = decompile_ddb(bytes(mutated), SPANISH_DOS_V2_DDB_PROFILE)
+    assert not any(
+        isinstance(node, AlignmentPaddingNode)
+        and node.following_table_kind == "extended_object_attributes_table"
+        for node in mutated_ir.nodes
+    )
+    assert recompile_ddb(mutated_ir, SPANISH_DOS_V2_DDB_PROFILE) == bytes(mutated)
 
 
 def test_retained_legacy_v1_c64_target_memory_ddb_round_trips_byte_identically() -> None:

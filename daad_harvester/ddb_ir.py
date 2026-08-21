@@ -733,15 +733,17 @@ def _legacy_alignment_padding_nodes(
     offset_tables: list[OffsetTableNode],
     text_nodes: list[TextNode],
     connection_nodes: list[ConnectionListNode],
+    object_table_nodes: list[ObjectTableNode],
     profile: DDBProfile,
 ) -> list[AlignmentPaddingNode]:
-    """Decode ADP's odd-byte text and connection payload alignment before word tables.
+    """Decode ADP's source-backed odd-byte legacy payload alignment.
 
     `AppendMessageTable()` and `AppendConnections()` each emit a raw zero only
     when their respective payload has odd length, then emit their target-endian
-    two-byte offset table. The predicates below deliberately retain those two
-    writer grammars separately. Any other gap remains visible through the
-    opaque byte ledger.
+    two-byte offset table. V2 `AppendObjectAttributes()` is followed by the
+    same parity step before `AppendObjectExtendedAttributes()`. The predicates
+    below deliberately retain those three writer grammars separately. Any
+    other gap remains visible through the opaque byte ledger.
     """
 
     nodes: list[AlignmentPaddingNode] = []
@@ -780,6 +782,12 @@ def _legacy_alignment_padding_nodes(
     connections_table = tables_by_kind.get("connections_table")
     if connections_table is not None and connection_nodes:
         append_if_aligned(max(node.byte_end for node in connection_nodes), connections_table)
+
+    object_tables_by_kind = {node.table_kind: node for node in object_table_nodes}
+    object_attributes = object_tables_by_kind.get("object_attributes_table")
+    extended_attributes = object_tables_by_kind.get("extended_object_attributes_table")
+    if object_attributes is not None and extended_attributes is not None:
+        append_if_aligned(object_attributes.byte_end, extended_attributes)
     return nodes
 
 
@@ -1019,15 +1027,14 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
                 profile=profile,
             )
         )
-        known_nodes.extend(
-            _object_table_nodes(
-                data,
-                payload_offset=payload_offset,
-                payload_size=payload_size,
-                header=header,
-                profile=profile,
-            )
+        object_table_nodes = _object_table_nodes(
+            data,
+            payload_offset=payload_offset,
+            payload_size=payload_size,
+            header=header,
+            profile=profile,
         )
+        known_nodes.extend(object_table_nodes)
         offset_tables = _offset_table_nodes(
             data,
             payload_offset=payload_offset,
@@ -1056,6 +1063,7 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
                 offset_tables=offset_tables,
                 text_nodes=text_nodes,
                 connection_nodes=connection_nodes,
+                object_table_nodes=object_table_nodes,
                 profile=profile,
             )
         )
