@@ -18,7 +18,7 @@ from daad_harvester.models import ArtifactRecord
 from daad_harvester.tui import TUIDashboard
 
 
-def _render(dash: TUIDashboard, tabs=(0, 1, 2, 3, 4), width: int = 140) -> str:
+def _render(dash: TUIDashboard, tabs=(0, 1, 2, 3, 4, 5), width: int = 140) -> str:
     """Renders the given tabs through a real Console and returns plain text."""
     console = Console(record=True, width=width, force_terminal=True)
     for tab in tabs:
@@ -128,7 +128,7 @@ def test_render_priority_queue_exposes_catalog_and_platform_neutral_priority(tmp
         acquisition_priority=1000,
     )
     dash = TUIDashboard(db)
-    text = _render(dash, tabs=(1, 4))
+    text = _render(dash, tabs=(1, 5))
 
     assert "Priority Acquisition" in text
     assert "chichen_itza" in text
@@ -179,7 +179,7 @@ def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
     dash = TUIDashboard(db)
     dash.search_filter = "chichen"
 
-    text = _render(dash, tabs=(2, 3), width=180)
+    text = _render(dash, tabs=(2, 4), width=180)
 
     assert "GAME & PORT EXPLORER" in text
     assert "Chichén Itzá" in text
@@ -193,3 +193,21 @@ def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
     assert "c" * 16 in text
     assert "SCUMMVM DETECTION HANDOFF" in text
     assert "Detection metadata only" in text
+
+
+def test_render_native_generator_tab_exposes_complete_checksum_and_boundary(tmp_path):
+    dash = TUIDashboard(Database(tmp_path / "test.db"))
+
+    text = _render(dash, tabs=(3,), width=180)
+
+    assert "NATIVE FORMAT GENERATOR EVIDENCE" in text
+    assert "extended-dsk-blank-cpc-system-v1" in text
+    assert "validated_cpc_dsk_track_stream" in text
+    assert "17 complete digests recorded" in text
+
+    dash.selected_index = 11
+    checksum_text = _render(dash, tabs=(3,), width=180)
+
+    assert "Integrity window" in checksum_text
+    assert "BLAKE2B" in checksum_text
+    assert "XXH128" in checksum_text

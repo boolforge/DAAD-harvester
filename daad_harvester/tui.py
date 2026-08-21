@@ -20,6 +20,7 @@ from rich.markup import escape
 from daad_harvester import __version__
 from daad_harvester.config import settings
 from daad_harvester.db import Database
+from daad_harvester.generator_evidence import verify_native_generators
 from daad_harvester.known_games import iter_known_games
 
 
@@ -47,13 +48,14 @@ class TUIDashboard:
         self.active_phase = "INIT"
 
         # Interactive state
-        self.active_tab = 0  # artifact evidence, source queue, game/port evidence, detection handoff, metrics
+        self.active_tab = 0  # artifact evidence, source queue, game/port evidence, generators, detection handoff, metrics
         self.tabs = [
             "1. ARTIFACT EVIDENCE",
             "2. PRIORITY ACQUISITION",
             "3. GAME & PORT EVIDENCE",
-            "4. SCUMMVM HANDOFF",
-            "5. SYSTEM CONFIG & METRICS",
+            "4. NATIVE GENERATORS",
+            "5. SCUMMVM HANDOFF",
+            "6. SYSTEM CONFIG & METRICS",
         ]
         self.selected_index = 0
         self.search_filter = ""
@@ -492,6 +494,54 @@ class TUIDashboard:
         table.add_row("Header preview", Text(preview))
         return Panel(table, title=f"[bold {accent}]SCUMMVM DETECTION HANDOFF[/bold {accent}]", border_style=border)
 
+    def _make_native_generator_panel(self) -> Panel:
+        """Show the same CI-gated native generator evidence as the static report."""
+
+        _, accent, _, border = self.theme
+        evidence = verify_native_generators()
+        output = evidence["output"]
+        validation = evidence["native_validation"]
+        inputs = evidence["inputs"]
+        boundaries = evidence["comparison_boundary"]
+        assert isinstance(output, dict)
+        assert isinstance(validation, dict)
+        assert isinstance(inputs, dict)
+        assert isinstance(boundaries, dict)
+        checksums = output["checksums"]
+        assert isinstance(checksums, dict)
+        table = Table.grid(expand=True, padding=(0, 1))
+        table.add_column("Field", style=f"bold {accent}", width=24)
+        table.add_column("Recorded value", overflow="fold")
+        checksum_items = list(checksums.items())
+        if self.selected_index == 0:
+            table.add_row("Generator ID", str(evidence["generator_id"]))
+            table.add_row("Technical medium", str(evidence["technical_medium"]))
+            table.add_row("Status", str(evidence["status"]))
+            table.add_row("Input profile", str(inputs.get("profile", "not recorded")))
+            table.add_row("Filesystem claim", str(inputs.get("filesystem_claim", "not recorded")))
+            table.add_row("Output size", str(output["byte_length"]))
+            table.add_row("Native validator", f"{validation['parser']} · {validation['status']} · {validation['validation']}")
+            table.add_row("Measured container evidence", Text(json.dumps(validation["evidence"], sort_keys=True)))
+            table.add_row("Checksums", "17 complete digests recorded. Press Down to browse the integrity window.")
+            table.add_row("ADP comparison", str(boundaries.get("adp", "not recorded")))
+            table.add_row("Authentic release", str(boundaries.get("authentic_release", "not recorded")))
+            table.add_row("Emulator", str(boundaries.get("emulator", "not recorded")))
+        else:
+            selected_checksum = min(self.selected_index - 1, len(checksum_items) - 1)
+            window_start = min(selected_checksum, max(0, len(checksum_items) - 8))
+            window = checksum_items[window_start:window_start + 8]
+            table.add_row("Generator ID", str(evidence["generator_id"]))
+            table.add_row("Integrity window", f"{window_start + 1}–{window_start + len(window)} of {len(checksum_items)} complete digests")
+            table.add_row("Native validation", str(validation["validation"]))
+            for algorithm, digest in window:
+                table.add_row(algorithm.upper().replace("_", " "), str(digest))
+        return Panel(
+            table,
+            title=f"[bold {accent}]NATIVE FORMAT GENERATOR EVIDENCE[/bold {accent}]",
+            subtitle="CI-gated container evidence. Up/Down opens all checksum windows; no filesystem, historical-release, or target-execution claim is inferred.",
+            border_style=border,
+        )
+
 
     def render(self) -> Layout:
         layout = Layout()
@@ -511,6 +561,8 @@ class TUIDashboard:
         elif self.active_tab == 2:
             layout["body"].update(self._make_game_port_table())
         elif self.active_tab == 3:
+            layout["body"].update(self._make_native_generator_panel())
+        elif self.active_tab == 4:
             layout["body"].update(self._make_detection_panel())
         else:
             layout["body"].split_row(
