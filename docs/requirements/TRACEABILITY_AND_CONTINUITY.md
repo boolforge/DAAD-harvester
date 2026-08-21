@@ -10,6 +10,12 @@
 
 > **Continuity rule.** The repository is the complete operational handoff. A contributor must not need this conversation, an unavailable agent memory, a private prompt, a hidden credential, a personal filesystem, a GUI-only procedure, or an unrecorded tool invocation to decide what a current claim means or how to continue work on it.
 
+> **American English rule.** All project-authored code, identifiers, comments, documentation, tests, generated evidence keys and values, scripts, commit messages, contributor guidance, report text, and progress communication use **American English exclusively**. A non-English string in project-authored material is an issue to record, correct, test where applicable, and close through the global issue lifecycle.
+
+Authentic retained evidence is different from project-authored material. External sources, archival captures, original code, websites, third-party public-source mirrors, source comments, test fixtures, and historical documentation may be in **any language** and must remain authentic. Materials retained under `preservation_corpus/`, `reverse_engineering/public_sources/`, and `reverse_engineering/public_implementations/` are excluded from the authored-language check, must not be silently translated or normalized, and require English provenance metadata and explanatory documentation around the retained original.
+
+Official project, product, person, place, and game names retain their authentic spelling even when that spelling includes a diacritic or a non-English word. The deterministic authored-language check has a narrow, reviewed allowlist for those proper nouns; it does not allow non-English explanatory prose, comments, labels, or behavior text.
+
 ## 1. The common path for people and agents
 
 Humans and agents use the **same repository path**. A human may read prose and inspect rendered documents; an agent may consume the same Markdown, JSON manifests, structured command output, tests, and source code. Neither path is authoritative by itself: the deterministic verification commands and hash-pinned evidence establish reproducibility.
@@ -137,6 +143,12 @@ This rule applies to **every** repository concern: code, corpus bytes, source ac
 | `implemented_pending_verification` | Code location, expected behavioral change, positive and rejection tests, regeneration command, and generated-output boundary. | Run the relevant deterministic gate and inspect all changed evidence. |
 | `resolved_verified` | Root cause; exact implementation and commit reference; real-artifact and malformed-input regression results; regenerated evidence/report/manifest effect; verification command; and remaining non-claims. | Preserve the record as historical resolution evidence. |
 | `reopened` | New contradictory evidence, affected previous resolution, fresh reproducer, and revised closure criterion. | Return to `investigating`; never overwrite historical evidence. |
+
+## 7.2 American English policy and evidence-language exception
+
+Every clean-clone contributor must write and maintain project-controlled text in American English. This includes new code comments, exception text, test names, generated JSON schema values, documentation prose, UI labels, logs authored by repository scripts, and commit messages. The deterministic language validator checks the authored source set and treats a detected non-English marker as a documented issue, not a cosmetic suggestion.
+
+The validator excludes immutable preservation-corpus outputs and external evidence whose original bytes, authentic titles, locale markers, websites, source comments, or historical-language commentary are evidence: `preservation_corpus/`, `reverse_engineering/public_sources/`, and `reverse_engineering/public_implementations/`. An exclusion does not permit new project prose in another language; it preserves source authenticity. English metadata must identify the source’s origin and relationship to the project.
 
 > **No silent disappearance.** A passing later commit does not resolve an earlier issue unless the same issue record is updated with the reason, evidence, tests, regenerated outputs, and commit reference that demonstrate closure. Deleting a failing experiment, removing a test, changing a hash, or replacing a narrative without retaining the observed conflict is prohibited.
 

@@ -13,6 +13,10 @@ This guide complements the mandatory [self-contained regeneration policy](SELF_C
 
 The repository-wide [requirements, evidence, and continuity contract](requirements/TRACEABILITY_AND_CONTINUITY.md) defines the mandatory handoff record for every concern and future change. Read it after this guide’s orientation sections when planning or reviewing a modification. The [atomic remote delivery policy](ATOMIC_REMOTE_DELIVERY.md) is equally mandatory once a bounded change has passed its relevant checks: validated work is committed and pushed before an unrelated concern begins.
 
+> **Language requirement.** Write every project-authored contribution in **American English**: code comments, identifiers, documentation, tests, generated evidence, UI strings, script output, and commit messages. External sources, original code, archival material, websites, third-party documents, and retained artifact bytes may be in any language; do not translate, normalize, or alter them when they are preservation evidence in their documented immutable source paths. Report any authored-language exception immediately through the global issue record.
+
+Keep official DAAD terminology and authentic game, person, and place names in their established spelling. A title such as *Chichén Itzá* is a proper name, not a license to add Spanish prose. Every such name must remain in the reviewed deterministic allowlist.
+
 ## 1. Distinguish host automation from historical target coverage
 
 The project has two independent platform dimensions. **Host support** means the deterministic Python workflow runs on Linux, macOS, Windows, and Termux. **Target coverage** means the evidence model and native parsers cover DAAD artifacts for ZX Spectrum, Amstrad CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS. A successful host run never proves every historical target is complete; the [format capability matrix](formats/FORMAT_CAPABILITY_MATRIX.md) and [coverage ledger](../preservation_corpus/COVERAGE_LEDGER.md) record the target-specific state.
@@ -129,6 +133,10 @@ If a live tool is needed to acquire a new observation, automate its bounded invo
 For the entire project, an issue is not merely a task comment or a failed terminal command. Every conflict, discrepancy, rejected hypothesis, malformed/corrupt or ambiguous input, test/CI failure, external-source disagreement, unexpected byte overlap, or implementation defect must be recorded immediately in versioned repository material before unrelated work continues. Add a concrete unchecked work item to [`TODO.md`](../TODO.md) and create or update a focused dossier, ledger row, or deterministic evidence record.
 
 The observation record must contain the affected artifact/profile/component, exact symptom, retained path and hashes or external evidence source, byte range/reproducer/command where applicable, non-claim, candidate hypotheses, and next experiment. When the issue is fixed, **update the same record** with the root cause, implementation location and commit, positive/rejection/real-artifact regressions, regenerated output impact, verification command, and remaining boundary. Never delete an issue record just because a later pass is green; a resolution without recorded causal evidence is incomplete. See the normative [global conflict and issue lifecycle](requirements/TRACEABILITY_AND_CONTINUITY.md#71-global-conflict-and-issue-lifecycle).
+
+### 7.2 American English and authentic-source boundary
+
+The deterministic authored-language check is part of the primary workflow. Before review, run `python scripts/check_american_english.py` and treat a failure as an open issue. The check applies to every project-authored text surface and deliberately excludes the generated/retained `preservation_corpus/` plus original third-party mirrors under `reverse_engineering/public_sources/` and `reverse_engineering/public_implementations/`. The exclusion preserves evidence fidelity; it never authorizes non-English text in a new project-controlled file. The normative policy is [American English policy and evidence-language exception](requirements/TRACEABILITY_AND_CONTINUITY.md#72-american-english-policy-and-evidence-language-exception).
 
 ## 8. Optional validators and acquisition tools
 

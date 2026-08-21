@@ -34,6 +34,7 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
         ("reverse-engineering corpus", ("scripts/verify_reverse_corpus.py",)),
         ("static preservation report", ("scripts/regenerate_preservation_report.py", "--check")),
         ("documentation integrity", ("scripts/check_docs.py",)),
+        ("American English authored-text policy", ("scripts/check_american_english.py",)),
     ]
     if include_tests:
         commands.extend(

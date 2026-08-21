@@ -73,6 +73,25 @@ GLOBAL_ISSUE_LIFECYCLE_REQUIREMENTS = (
         ),
     ),
 )
+AMERICAN_ENGLISH_POLICY_REQUIREMENTS = (
+    (
+        TRACEABILITY_DOCUMENT,
+        (
+            "## 7.2 American English policy and evidence-language exception",
+            "**American English rule.**",
+            "reverse_engineering/public_sources/",
+            "reverse_engineering/public_implementations/",
+        ),
+    ),
+    (
+        DOCS / "CONTRIBUTOR_CONTINUATION.md",
+        (
+            "### 7.2 American English and authentic-source boundary",
+            "**Language requirement.**",
+            "check_american_english.py",
+        ),
+    ),
+)
 
 
 def check_relative_links(errors: list[str]) -> int:
@@ -178,6 +197,24 @@ def check_global_issue_lifecycle(errors: list[str]) -> int:
     return checked
 
 
+def check_american_english_policy(errors: list[str]) -> int:
+    """Ensure the authored-language policy remains visible from a clean clone."""
+
+    checked = 0
+    for document, markers in AMERICAN_ENGLISH_POLICY_REQUIREMENTS:
+        checked += 1
+        if not document.is_file():
+            errors.append(f"missing American English policy document: {document.relative_to(ROOT)}")
+            continue
+        text = document.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                errors.append(
+                    f"missing American English policy marker {marker!r}: {document.relative_to(ROOT)}"
+                )
+    return checked
+
+
 def main() -> int:
     errors: list[str] = []
     links = check_relative_links(errors)
@@ -187,6 +224,7 @@ def main() -> int:
     traceability_documents = check_traceability_navigation(errors)
     atomic_delivery_documents = check_atomic_delivery_navigation(errors)
     issue_lifecycle_documents = check_global_issue_lifecycle(errors)
+    english_policy_documents = check_american_english_policy(errors)
     if errors:
         print("Documentation integrity check failed:")
         print("\n".join(f"- {error}" for error in errors))
@@ -197,7 +235,8 @@ def main() -> int:
         f"{policy_documents} required regeneration-policy links, "
         f"{traceability_documents} traceability-navigation links, "
         f"{atomic_delivery_documents} atomic-delivery navigation links, "
-        f"{issue_lifecycle_documents} global issue-lifecycle documents."
+        f"{issue_lifecycle_documents} global issue-lifecycle documents, "
+        f"{english_policy_documents} American English policy documents."
     )
     return 0
 
