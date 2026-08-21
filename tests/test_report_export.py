@@ -52,6 +52,8 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert native_generator["status"] == "generated_structurally_valid"
     assert native_generator["output"]["sha256"] == "ab33b5581e8141fd4c721a1cf6e6e98d30454e1a2632e1951168a678d10e495b"
     assert native_generator["output"]["md5_full"] == "4d628f542ee8a7b2bfee255606819485"
+    assert len(native_generator["output"]["checksums"]) == 17
+    assert native_generator["output"]["checksums"]["sha256"] == native_generator["output"]["sha256"]
     assert native_generator["native_validation"]["validation"] == "validated_cpc_dsk_track_stream"
     assert native_generator["inputs"]["filesystem_claim"] == "none"
     assert native_generator["comparison_boundary"]["authentic_release"] == "not_applicable_blank_fixture"

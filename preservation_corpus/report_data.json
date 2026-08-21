@@ -50835,7 +50835,26 @@
         "output": {
           "byte_length": 194816,
           "sha256": "ab33b5581e8141fd4c721a1cf6e6e98d30454e1a2632e1951168a678d10e495b",
-          "md5_full": "4d628f542ee8a7b2bfee255606819485"
+          "md5_full": "4d628f542ee8a7b2bfee255606819485",
+          "checksums": {
+            "md5_full": "4d628f542ee8a7b2bfee255606819485",
+            "md5_5000": "928d22997d7d81bf1c40f854e837bfa9",
+            "md5_tail5000": "5a03c7d55aa2e2e4c9d5faa021a09b85",
+            "sha1": "14f5c1b79e872bf3dfe931489c171271a194e036",
+            "sha224": "26ff0a06334ea21b95fc462ced8ed92c53aefb6f27103c697a4957ba",
+            "sha256": "ab33b5581e8141fd4c721a1cf6e6e98d30454e1a2632e1951168a678d10e495b",
+            "sha384": "b5c78810917a1cc13d40fe45a1b9f92fed6e7fc80a6ef5c9fbd00c2916c95595a44456cbda4d9b353a830de537cc51d3",
+            "sha512": "14a17e585906812382caafdd27264cb3ae19d6f541f0c5d50165a9912ee12e66d0bc1c6f2a01798210ad651577e439616e626c3b5701488648600a520be81a2c",
+            "sha3_256": "bf90572bb5abe2106a56f77bfda3d1d0ed86c0f3704a9e5a8c895c7818badb72",
+            "sha3_512": "7626619f1f9ff9937de446bae703e8fec7c0db7e9d67dae110503955646c713ef71e18b718c7a4a860c109258c4e47290a3899fc35209f32f0615302b945e1ef",
+            "blake2b": "558de4692aa6ecd05a75ac9851d7d646716a3383455df7d036a86c946187467f76d703580c9b6ff882144876a8452c2ac5b40362e310fec67f64b58066fa9642",
+            "blake2s": "37c7904218bfaf23eec7e8a189e1392fc6bf0f44a355aa75c623c4a61c55a5d3",
+            "crc32": "d09ad68b",
+            "adler32": "d8208d94",
+            "xxh32": "b1e6ba9b",
+            "xxh64": "011f2cb2f9e28949",
+            "xxh128": "c10e65737fc0ad74658fa1f4d8401672"
+          }
         },
         "native_validation": {
           "parser": "cpc-dsk",

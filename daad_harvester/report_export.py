@@ -15,7 +15,7 @@ from typing import Any, Dict
 
 from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.db import Database
-from scripts.verify_native_generators import verify as verify_native_generators
+from daad_harvester.generator_evidence import verify_native_generators
 
 
 ARTIFACT_CHECKSUM_FIELDS = (
