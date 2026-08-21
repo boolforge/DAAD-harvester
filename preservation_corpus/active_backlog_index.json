@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 155,
+  "unchecked_item_count": 154,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 38,
+    "Active evidence-interface correction": 37,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -299,29 +299,6 @@
       ],
       "required_real_artifact_regression": false,
       "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
-      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
-    },
-    {
-      "id": "todo-0029",
-      "line": 29,
-      "section": "Active evidence-interface correction",
-      "text": "Repair every retained game-card and TUI artifact view affected by the extensionless C64 PRG classification. The presentation must identify the byte as a C64 program medium, state that it is not itself a DDB, link the separate runtime-derived DDB evidence where available, and retain an explicit non-correlation boundary for the launcher byte.",
-      "evidence_inputs": [
-        "report or interface output",
-        "retained original bytes",
-        "runtime or emulator observation"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "runtime and reverse analysis",
-        "terminal interface",
-        "tooling and workflow gates"
-      ],
-      "dependencies": [
-        "none stated; retain unresolved boundaries"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
