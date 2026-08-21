@@ -35,7 +35,11 @@ def tracked_authored_text_paths() -> list[Path]:
     output = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True)
     paths: list[Path] = []
     for raw in output.splitlines():
-        if raw.startswith(EXCLUDED_PREFIXES) or Path(raw).suffix.lower() not in TEXT_SUFFIXES:
+        if (
+            raw == "scripts/check_american_english.py"
+            or raw.startswith(EXCLUDED_PREFIXES)
+            or Path(raw).suffix.lower() not in TEXT_SUFFIXES
+        ):
             continue
         paths.append(ROOT / raw)
     return sorted(paths)
