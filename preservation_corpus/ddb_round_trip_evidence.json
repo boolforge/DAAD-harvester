@@ -8,64 +8,119 @@
       },
       "opaque_ranges": [
         {
-          "byte_end": 2258,
+          "byte_end": 60,
           "byte_start": 34,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_header_extension_pending_grammar"
+        },
+        {
+          "byte_end": 593,
+          "byte_start": 60,
+          "reason": "legacy_vocabulary_payload_pending_grammar"
+        },
+        {
+          "byte_end": 1986,
+          "byte_start": 593,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2114,
+          "byte_start": 1986,
+          "reason": "legacy_system_messages_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2138,
+          "byte_start": 2114,
+          "reason": "legacy_messages_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2230,
+          "byte_start": 2138,
+          "reason": "legacy_object_names_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2244,
+          "byte_start": 2230,
+          "reason": "legacy_location_descriptions_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2250,
+          "byte_start": 2244,
+          "reason": "legacy_connections_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2252,
+          "byte_start": 2250,
+          "reason": "legacy_object_words_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2254,
+          "byte_start": 2252,
+          "reason": "legacy_object_attributes_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2256,
+          "byte_start": 2254,
+          "reason": "legacy_extended_object_attributes_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 2258,
+          "byte_start": 2256,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2298,
           "byte_start": 2297,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2328,
           "byte_start": 2327,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2374,
           "byte_start": 2373,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2408,
           "byte_start": 2407,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2418,
           "byte_start": 2417,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2428,
           "byte_start": 2427,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2434,
           "byte_start": 2433,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2440,
           "byte_start": 2439,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2442,
           "byte_start": 2441,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2570,
           "byte_start": 2569,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2638,
           "byte_start": 2637,
-          "reason": "unimplemented_section_or_alignment"
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
         },
         {
           "byte_end": 2652,

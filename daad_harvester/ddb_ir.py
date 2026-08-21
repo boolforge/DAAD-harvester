@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from hashlib import sha256
-from typing import Any, TypeAlias
+from typing import Any, Callable, TypeAlias
 
 from daad_harvester.daad_parser import DAADBytecodeParser
 from daad_harvester.ddb_grammar import (
@@ -110,6 +110,22 @@ TopLevelDDBNode: TypeAlias = (
     | CondActStreamNode
     | ProcessEntryNode
     | OpaqueNode
+)
+
+
+LEGACY_SECTION_NAMES: tuple[str, ...] = (
+    "token_block",
+    "process_table",
+    "object_names_table",
+    "location_descriptions_table",
+    "messages_table",
+    "system_messages_table",
+    "connections_table",
+    "vocabulary",
+    "object_locations_table",
+    "object_words_table",
+    "object_attributes_table",
+    "extended_object_attributes_table",
 )
 
 
@@ -327,10 +343,13 @@ def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
     known_nodes: list[TopLevelDDBNode],
+    opaque_hint: Callable[[int], str],
+    opaque_boundaries: tuple[int, ...] = (),
 ) -> tuple[TopLevelDDBNode, ...]:
     """Fill every unowned gap with an explicit opaque node and validate ledger order."""
 
     ordered = sorted(known_nodes, key=lambda node: (node.byte_start, node.byte_end))
+    boundaries = tuple(sorted({boundary for boundary in opaque_boundaries if 0 < boundary < len(data)}))
     nodes: list[TopLevelDDBNode] = []
     position = 0
     for node in ordered:
@@ -338,6 +357,18 @@ def _fill_opaque_ranges(
             raise ValueError(
                 f"overlapping DDB structures at {node.byte_start:#x} before {position:#x}"
             )
+        for boundary in boundaries:
+            if position < boundary < node.byte_start:
+                nodes.append(
+                    OpaqueNode(
+                        position,
+                        boundary,
+                        profile,
+                        data[position:boundary],
+                        opaque_hint(position),
+                    )
+                )
+                position = boundary
         if position < node.byte_start:
             nodes.append(
                 OpaqueNode(
@@ -345,11 +376,23 @@ def _fill_opaque_ranges(
                     node.byte_start,
                     profile,
                     data[position:node.byte_start],
-                    "unimplemented_section_or_alignment",
+                    opaque_hint(position),
                 )
             )
         nodes.append(node)
         position = node.byte_end
+    for boundary in boundaries:
+        if position < boundary < len(data):
+            nodes.append(
+                OpaqueNode(
+                    position,
+                    boundary,
+                    profile,
+                    data[position:boundary],
+                    opaque_hint(position),
+                )
+            )
+            position = boundary
     if position < len(data):
         nodes.append(
             OpaqueNode(
@@ -357,10 +400,43 @@ def _fill_opaque_ranges(
                 len(data),
                 profile,
                 data[position:],
-                "unimplemented_section_or_alignment",
+                opaque_hint(position),
             )
         )
     return tuple(nodes)
+
+
+def _legacy_opaque_hint(
+    header: dict[str, Any], payload_offset: int, position: int
+) -> str:
+    """Name an unresolved range by its ADP-mapped legacy pointer owner."""
+
+    section_starts = sorted(
+        (
+            payload_offset + _pointer_to_offset(pointer, header["base_address"]),
+            LEGACY_SECTION_NAMES[index],
+        )
+        for index, pointer in enumerate(header["pointers"])
+        if pointer and index < len(LEGACY_SECTION_NAMES)
+    )
+    if not section_starts or position < section_starts[0][0]:
+        return "legacy_header_extension_pending_grammar"
+    owner = section_starts[0][1]
+    for section_start, section_name in section_starts:
+        if section_start > position:
+            break
+        owner = section_name
+    return f"legacy_{owner}_payload_pending_grammar"
+
+
+def _legacy_section_boundaries(header: dict[str, Any], payload_offset: int) -> tuple[int, ...]:
+    """Return source-backed legacy pointer starts for opaque ownership splitting."""
+
+    return tuple(
+        payload_offset + _pointer_to_offset(pointer, header["base_address"])
+        for pointer in header["pointers"]
+        if pointer
+    )
 
 
 def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
@@ -438,7 +514,21 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
         profile,
         sha256(data).hexdigest(),
         len(data),
-        _fill_opaque_ranges(data, profile, known_nodes),
+        _fill_opaque_ranges(
+            data,
+            profile,
+            known_nodes,
+            (
+                lambda position: _legacy_opaque_hint(header, payload_offset, position)
+                if profile.layout == "legacy"
+                else "unimplemented_drc_section_or_alignment"
+            ),
+            (
+                _legacy_section_boundaries(header, payload_offset)
+                if profile.layout == "legacy"
+                else ()
+            ),
+        ),
     )
     ir.validate_byte_ledger()
     return ir

@@ -45,6 +45,16 @@ def test_legacy_ddb_decompiles_to_a_complete_non_overlapping_byte_ledger() -> No
     assert any(isinstance(node, CondActStreamNode) for node in ir.nodes)
     assert any(isinstance(node, OpaqueNode) for node in ir.nodes)
     assert ir.is_semantically_complete is False
+    assert all(
+        node.structure_hint != "unimplemented_section_or_alignment"
+        for node in ir.nodes
+        if isinstance(node, OpaqueNode)
+    )
+    assert any(
+        node.structure_hint == "legacy_vocabulary_payload_pending_grammar"
+        for node in ir.nodes
+        if isinstance(node, OpaqueNode)
+    )
     assert recompile_ddb(ir, legacy_profile()) == original
 
 
