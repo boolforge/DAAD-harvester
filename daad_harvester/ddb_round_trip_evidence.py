@@ -48,6 +48,21 @@ RETAINED_DDB_ROUND_TRIP_FIXTURES: Final = (
         ),
     ),
     RetainedDDBRoundTripFixture(
+        profile_id="legacy-v2-dos-little-raw-spanish",
+        source_path="preservation_corpus/extracted/depth1_f14c8b04_SPANISH.DDB",
+        expected_size=2326,
+        expected_sha256="a147f2ad2f691930e886a0c1df1d8aa1de6683a20c369fb834244e917dbc8de1",
+        profile=DDBProfile(
+            layout="legacy",
+            major_version=2,
+            machine_id=0,
+            platform="dos",
+            endianness="little",
+            base_address=0,
+            wrapper="raw",
+        ),
+    ),
+    RetainedDDBRoundTripFixture(
         profile_id="legacy-v1-c64-little-0x3880-raw-jabato-ass-part1",
         source_path="preservation_corpus/derived/commodore_loader/jabato_ass_part1_post_mirar.ddb",
         expected_size=24899,
