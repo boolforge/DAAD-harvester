@@ -29,6 +29,7 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
         ("complete artifact checksums", ("scripts/verify_artifact_checksums.py",)),
         ("public artifact manifest", ("scripts/build_public_artifact_manifest.py", "--check")),
         ("native format generators", ("scripts/verify_native_generators.py",)),
+        ("retained DDB native round trips", ("scripts/verify_ddb_round_trips.py", "--check")),
         ("reverse-engineering corpus", ("scripts/verify_reverse_corpus.py",)),
         ("static preservation report", ("scripts/regenerate_preservation_report.py", "--check")),
         ("documentation integrity", ("scripts/check_docs.py",)),
