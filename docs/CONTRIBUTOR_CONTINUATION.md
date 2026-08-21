@@ -59,6 +59,10 @@ If `python3` is unavailable on Windows, replace it with `py -3`. A missing optio
 Run the following before editing code, documentation, corpus state, or generated outputs. These commands do not need a network connection and do not invoke emulators or GUI applications.
 
 ```bash
+# Independent read-only gates run concurrently and report all failures together:
+python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4
+
+# Ordered release gate, including any commands that require sequencing:
 python scripts/run_primary_workflow.py
 # Equivalent expanded plan follows for diagnostics or individual reruns:
 python scripts/verify_regeneration_manifest.py
@@ -71,7 +75,7 @@ python -m pyflakes daad_harvester scripts
 pytest -q
 ```
 
-`python scripts/run_primary_workflow.py --list` prints the exact cross-host command plan without running it. `--quick` runs only the deterministic corpus/report/documentation verification portion. Neither form invokes a network endpoint, GUI application, emulator, external disassembler, or LLM.
+`python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4` is the preferred fast path for independent read-only checks. Its allowlisted gates use isolated subprocesses, bounded concurrency, captured output, deterministic reporting, and aggregate failure status. `python scripts/run_primary_workflow.py --list` prints the exact ordered cross-host command plan without running it. `--quick` runs only the deterministic corpus/report/documentation verification portion. Neither form invokes a network endpoint, GUI application, emulator, external disassembler, or LLM.
 
 `python scripts/verify_artifact_checksums.py --backfill` is the controlled historical repair command. It rereads retained bytes and fills only absent canonical digest fields; it fails rather than overwriting a stored mismatch. Normal verification is read-only and is part of the primary workflow, so a retained artifact with missing or divergent checksum evidence blocks promotion.
 
