@@ -129,6 +129,47 @@ def test_retained_source250_ch0_is_validated_as_legacy_chr_by_exact_duplicate_ev
     assert result.evidence["glyph_geometry"] == "256 glyphs × 8 rows × 8 bits"
 
 
+def test_retained_source250_cpc_fnt_is_validated_amsdos_loader_font_container() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_dcd3ab68_DAAD.FNT").read_bytes()
+
+    result = inspect_native_media("DAAD.FNT", data)
+
+    assert result.parser == "daad-cpc-loader-fnt"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_amsdos_cpc_loader_font_container"
+    assert result.evidence["profile_id"] == "daad-cpc-standard-tape-loader-font"
+    assert result.evidence["load_address"] == 0x9378
+    assert result.evidence["logical_payload_size"] == 768
+    assert result.evidence["real_payload_size"] == 768
+    assert result.evidence["stored_payload_size"] == 768
+    assert result.evidence["role_boundary"] == "container_and_loader_font_identity_only_no_glyph_decoder"
+
+
+def test_cpc_fnt_amsdos_header_checksum_corruption_is_rejected() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_dcd3ab68_DAAD.FNT").read_bytes())
+    data[0x15] ^= 0x01
+
+    result = inspect_native_media("DAAD.FNT", bytes(data))
+
+    assert result.parser == "amsdos-binary"
+    assert result.status == "rejected"
+    assert result.validation == "amsdos_header_checksum_mismatch"
+
+
+def test_all_e5_fnt_remains_an_explicit_unrecognized_profile() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_f0f7416a_DAAD.FNT").read_bytes()
+
+    result = inspect_native_media("DAAD.FNT", data)
+
+    assert result.parser == "daad-fnt"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "unrecognized_fnt_profile"
+    assert result.evidence["profile_boundary"] == "no_generic_fnt_or_sintac_font_decoder"
+
+
 def test_same_size_mdx_mutation_remains_an_explicit_unrecognized_profile() -> None:
     root = Path(__file__).resolve().parents[1]
     data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes())

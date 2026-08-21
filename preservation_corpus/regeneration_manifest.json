@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "8d3364f5ae3a972d3ab3438873641be3de38028e2b802bbd15b57d6f07aedb93"
+          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "8d3364f5ae3a972d3ab3438873641be3de38028e2b802bbd15b57d6f07aedb93"
+          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "8d3364f5ae3a972d3ab3438873641be3de38028e2b802bbd15b57d6f07aedb93"
+          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -283,7 +283,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "c9f1800c70b3782d16428e6c94847a97d3efbd1193bf51684aa3d59911e729a0"
+          "sha256": "9f633f72f90dcc9eac3176d46c7ec4adaf3011319257b9ec2b809346ff9529ed"
         }
       ],
       "external_validators": [
@@ -313,7 +313,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "8d3364f5ae3a972d3ab3438873641be3de38028e2b802bbd15b57d6f07aedb93"
+          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
         }
       ],
       "outputs": [

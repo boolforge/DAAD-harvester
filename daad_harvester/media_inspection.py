@@ -520,6 +520,8 @@ def _inspect_msx_rom(data: bytes) -> MediaInspection:
 
 _MSX_R4_CANONICAL_MDG_SIZE = 2105
 _MSX_R4_CANONICAL_MDG_SHA256 = "c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06"
+_CPC_DAAD_LOADER_FNT_SIZE = 896
+_CPC_DAAD_LOADER_FNT_SHA256 = "fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a"
 
 
 def _inspect_msx_r4_mdg(data: bytes) -> MediaInspection:
@@ -552,6 +554,68 @@ def _inspect_msx_r4_mdg(data: bytes) -> MediaInspection:
         template_identity="exact_official_classic_mdx_template_match",
         documented_role="empty_graphics_database_with_standard_charset",
         grammar_boundary="exact_template_only_no_generic_mdg_decoder",
+    )
+
+
+def _inspect_daad_fnt(data: bytes) -> MediaInspection:
+    """Inspect only demonstrated AMSDOS and exact CPC loader-font FNT evidence.
+
+    `.FNT` is not a single DAAD format. The known modern SINTAC FNT3 family
+    and the retained 896-byte CPC loader font have incompatible layouts. This
+    routine validates the documented AMSDOS header where present and promotes
+    a CPC font role only for the exact public-source-correlated byte identity.
+    """
+
+    digest = sha256(data).hexdigest()
+    unknown = _result(
+        "daad-fnt", "recognized_evidence", "unrecognized_fnt_profile",
+        size=len(data), sha256=digest,
+        profile_boundary="no_generic_fnt_or_sintac_font_decoder",
+    )
+    if len(data) < 128 or data[0x12] != 0x02:
+        return unknown
+
+    logical_size = int.from_bytes(data[0x18:0x1A], "little")
+    real_size = int.from_bytes(data[0x40:0x43], "little")
+    stored_size = len(data) - 128
+    stored_checksum = int.from_bytes(data[0x43:0x45], "little")
+    computed_checksum = sum(data[:0x43]) & 0xFFFF
+    header_name = data[1:16].decode("ascii", errors="replace").rstrip("\x00")
+    header_evidence = {
+        "size": len(data),
+        "sha256": digest,
+        "header_name_raw": header_name,
+        "binary_type": data[0x12],
+        "load_address": int.from_bytes(data[0x15:0x17], "little"),
+        "entry_address": int.from_bytes(data[0x1A:0x1C], "little"),
+        "logical_payload_size": logical_size,
+        "real_payload_size": real_size,
+        "stored_payload_size": stored_size,
+        "stored_header_checksum": stored_checksum,
+        "computed_header_checksum": computed_checksum,
+    }
+    if stored_checksum != computed_checksum:
+        return _result(
+            "amsdos-binary", "rejected", "amsdos_header_checksum_mismatch",
+            **header_evidence,
+        )
+    if logical_size != stored_size or real_size != stored_size:
+        return _result(
+            "amsdos-binary", "rejected", "amsdos_declared_size_mismatch",
+            **header_evidence,
+        )
+    if digest == _CPC_DAAD_LOADER_FNT_SHA256:
+        return _result(
+            "daad-cpc-loader-fnt", "recognized_evidence", "validated_amsdos_cpc_loader_font_container",
+            **header_evidence,
+            profile_id="daad-cpc-standard-tape-loader-font",
+            primary_source_identity="exact_classic_daad_cpc_fnt_match",
+            role_boundary="container_and_loader_font_identity_only_no_glyph_decoder",
+        )
+    return _result(
+        "amsdos-binary", "recognized_evidence", "validated_amsdos_binary_header_noncanonical_fnt",
+        **header_evidence,
+        profile_boundary="valid_amsdos_container_not_a_validated_daad_font_profile",
     )
 
 
@@ -920,6 +984,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_msx_rom(data)
     if extension == ".mdg":
         return _inspect_msx_r4_mdg(data)
+    if extension == ".fnt":
+        return _inspect_daad_fnt(data)
     if extension in {".ch0", ".chr"}:
         return _inspect_daad_chr(data)
     if extension == ".dat" and data[:4] == b"\x00\x00\x04\x00":
