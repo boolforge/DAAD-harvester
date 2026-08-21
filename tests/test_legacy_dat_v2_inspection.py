@@ -2,7 +2,12 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from daad_harvester.media_inspection import inspect_native_media
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def _v2_fixture(*, byte_order: str = "big", member_offset: int = 0) -> bytes:
@@ -39,3 +44,16 @@ def test_legacy_dat_v2_inspector_rejects_bad_table_and_member_bounds() -> None:
     bad = inspect_native_media("bad.dat", _v2_fixture(member_offset=0x4000))
     assert bad.status == "rejected"
     assert bad.validation == "entry_offset_out_of_bounds"
+
+
+def test_retained_populated_legacy_dat_v2_reports_structural_evidence() -> None:
+    artifact = ROOT / "preservation_corpus/extracted/depth1_83f16a8c_PART1.DAT"
+    result = inspect_native_media(artifact.name, artifact.read_bytes())
+
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_v2_header_and_entry_offsets"
+    assert result.evidence["byte_order"] == "big"
+    assert result.evidence["declared_size"] == 283_318
+    assert result.evidence["populated_entries"] == 145
+    assert result.evidence["image_entries"] == 145
+    assert result.evidence["payload_boundary"] == "offsets_only_no_length_or_codec_validation"
