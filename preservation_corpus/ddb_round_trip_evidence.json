@@ -1,5 +1,5 @@
 {
-  "fixture_count": 4,
+  "fixture_count": 5,
   "records": [
     {
       "byte_comparison": {
@@ -849,6 +849,512 @@
       },
       "source_path": "preservation_corpus/extracted/depth2_92aef478_PART1.DDB",
       "source_size": 2872
+    },
+    {
+      "byte_comparison": {
+        "byte_identical": true,
+        "first_difference": null
+      },
+      "opaque_ranges": [
+        {
+          "byte_end": 60,
+          "byte_start": 34,
+          "reason": "legacy_header_extension_pending_grammar"
+        },
+        {
+          "byte_end": 2909,
+          "byte_start": 2630,
+          "reason": "legacy_token_block_payload_pending_grammar"
+        },
+        {
+          "byte_end": 27102,
+          "byte_start": 27101,
+          "reason": "legacy_system_messages_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 34198,
+          "byte_start": 34197,
+          "reason": "legacy_object_names_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 34740,
+          "byte_start": 34739,
+          "reason": "legacy_location_descriptions_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 34964,
+          "byte_start": 34890,
+          "reason": "legacy_object_words_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 35002,
+          "byte_start": 35001,
+          "reason": "legacy_object_attributes_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 35114,
+          "byte_start": 35113,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 35624,
+          "byte_start": 35623,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 36392,
+          "byte_start": 36391,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 36794,
+          "byte_start": 36793,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 36938,
+          "byte_start": 36937,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 36976,
+          "byte_start": 36975,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37018,
+          "byte_start": 37017,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37036,
+          "byte_start": 37035,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37066,
+          "byte_start": 37065,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37082,
+          "byte_start": 37081,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37096,
+          "byte_start": 37095,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37134,
+          "byte_start": 37133,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37140,
+          "byte_start": 37139,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37160,
+          "byte_start": 37159,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37174,
+          "byte_start": 37173,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37200,
+          "byte_start": 37199,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37216,
+          "byte_start": 37215,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37254,
+          "byte_start": 37253,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37288,
+          "byte_start": 37287,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37306,
+          "byte_start": 37305,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37326,
+          "byte_start": 37325,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37336,
+          "byte_start": 37335,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37364,
+          "byte_start": 37363,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37382,
+          "byte_start": 37381,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37486,
+          "byte_start": 37485,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37556,
+          "byte_start": 37555,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37566,
+          "byte_start": 37565,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37576,
+          "byte_start": 37575,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37622,
+          "byte_start": 37621,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37638,
+          "byte_start": 37637,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37648,
+          "byte_start": 37647,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37660,
+          "byte_start": 37659,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37884,
+          "byte_start": 37883,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37914,
+          "byte_start": 37913,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 37988,
+          "byte_start": 37987,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38002,
+          "byte_start": 38001,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38044,
+          "byte_start": 38043,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38060,
+          "byte_start": 38059,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38074,
+          "byte_start": 38073,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38108,
+          "byte_start": 38107,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38122,
+          "byte_start": 38121,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38146,
+          "byte_start": 38145,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38290,
+          "byte_start": 38289,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38322,
+          "byte_start": 38321,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38332,
+          "byte_start": 38331,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38338,
+          "byte_start": 38337,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38348,
+          "byte_start": 38347,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38354,
+          "byte_start": 38353,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38364,
+          "byte_start": 38363,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38370,
+          "byte_start": 38369,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38380,
+          "byte_start": 38379,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38386,
+          "byte_start": 38385,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38422,
+          "byte_start": 38421,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38448,
+          "byte_start": 38447,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38470,
+          "byte_start": 38469,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38480,
+          "byte_start": 38479,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38532,
+          "byte_start": 38531,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38582,
+          "byte_start": 38581,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38606,
+          "byte_start": 38605,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38612,
+          "byte_start": 38611,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 38638,
+          "byte_start": 38637,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 40718,
+          "byte_start": 40717,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 41760,
+          "byte_start": 41759,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 42250,
+          "byte_start": 42249,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 42956,
+          "byte_start": 42955,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43182,
+          "byte_start": 43181,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43254,
+          "byte_start": 43253,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43300,
+          "byte_start": 43299,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43320,
+          "byte_start": 43319,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43330,
+          "byte_start": 43329,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43414,
+          "byte_start": 43413,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43440,
+          "byte_start": 43439,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43476,
+          "byte_start": 43475,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43516,
+          "byte_start": 43515,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43592,
+          "byte_start": 43591,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43630,
+          "byte_start": 43629,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43692,
+          "byte_start": 43691,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43722,
+          "byte_start": 43721,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43748,
+          "byte_start": 43747,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43784,
+          "byte_start": 43783,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43850,
+          "byte_start": 43849,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        },
+        {
+          "byte_end": 43888,
+          "byte_start": 43887,
+          "reason": "legacy_object_locations_table_payload_pending_grammar"
+        }
+      ],
+      "profile": {
+        "base_address": 0,
+        "endianness": "big",
+        "extension_dialect": null,
+        "layout": "legacy",
+        "machine_id": 6,
+        "major_version": 2,
+        "platform": "amiga",
+        "wrapper": "raw"
+      },
+      "profile_id": "legacy-v2-amiga-big-raw-chichen-part2",
+      "recompiled_digests": {
+        "adler32": "c0942914",
+        "blake2b": "a9bb7e597888de54a0ed67d64d9c780ff4737d1147a31a79f87f7cb7f775cbb60eefc4214569812db04e263d6218198791e5d7bf620178f0a2f20c076ea17d82",
+        "blake2s": "1f2e83fae23f99cc80b284dfc9c8865c316353e5a8c488da82df73179c10380b",
+        "crc32": "068069ca",
+        "md5_5000": "35957e0a60ecd324ef78dc9444780130",
+        "md5_full": "806a1c74de83abaec0c0391b323d287a",
+        "md5_tail5000": "01005179191a9b3a9e6c0ec77eb82609",
+        "sha1": "fc784a59b2b890d8310b6f00d102c9b0c1d8fa77",
+        "sha224": "501c7caf607c01d87e49eaf00ccb547dc634e0b0a209e82da161f2f9",
+        "sha256": "efe5be7e82982365699cc78308d382d86262e6f2458b6ea8c09314aa49bcc414",
+        "sha384": "9d35f6a3dc68a50fb07c7b770aef02b81b7a4b423ebe17af7ba78fc13b7d8c91e0ad287fd532120402c051a109da261d",
+        "sha3_256": "40992b70b70a86577b8f8921bc02a58e2b60c058fedee7827b3c6810708f72df",
+        "sha3_512": "04327c15e97cdf9d2f62b76b4710cfd87082a30492368c0be0982a1b2da0f9046d66667cc7177bf4756d4931526aebd296322a8d79b23cb8a0fe5a6289889e90",
+        "sha512": "6be7e551bc7bfe1dae25aab3255adc976d02f737dba9d258c56190f60c61f6f0daad5dc521c67379021e21d444bf520b2c77f58faa4142a7ca83fefebd43192e",
+        "xxh128": "f3fb90f1d405554d2269939662df0dc8",
+        "xxh32": "0f0d2cab",
+        "xxh64": "7a8ccde220205031"
+      },
+      "recompiled_size": 43990,
+      "semantic_status": "structurally_bounded",
+      "source_digests": {
+        "adler32": "c0942914",
+        "blake2b": "a9bb7e597888de54a0ed67d64d9c780ff4737d1147a31a79f87f7cb7f775cbb60eefc4214569812db04e263d6218198791e5d7bf620178f0a2f20c076ea17d82",
+        "blake2s": "1f2e83fae23f99cc80b284dfc9c8865c316353e5a8c488da82df73179c10380b",
+        "crc32": "068069ca",
+        "md5_5000": "35957e0a60ecd324ef78dc9444780130",
+        "md5_full": "806a1c74de83abaec0c0391b323d287a",
+        "md5_tail5000": "01005179191a9b3a9e6c0ec77eb82609",
+        "sha1": "fc784a59b2b890d8310b6f00d102c9b0c1d8fa77",
+        "sha224": "501c7caf607c01d87e49eaf00ccb547dc634e0b0a209e82da161f2f9",
+        "sha256": "efe5be7e82982365699cc78308d382d86262e6f2458b6ea8c09314aa49bcc414",
+        "sha384": "9d35f6a3dc68a50fb07c7b770aef02b81b7a4b423ebe17af7ba78fc13b7d8c91e0ad287fd532120402c051a109da261d",
+        "sha3_256": "40992b70b70a86577b8f8921bc02a58e2b60c058fedee7827b3c6810708f72df",
+        "sha3_512": "04327c15e97cdf9d2f62b76b4710cfd87082a30492368c0be0982a1b2da0f9046d66667cc7177bf4756d4931526aebd296322a8d79b23cb8a0fe5a6289889e90",
+        "sha512": "6be7e551bc7bfe1dae25aab3255adc976d02f737dba9d258c56190f60c61f6f0daad5dc521c67379021e21d444bf520b2c77f58faa4142a7ca83fefebd43192e",
+        "xxh128": "f3fb90f1d405554d2269939662df0dc8",
+        "xxh32": "0f0d2cab",
+        "xxh64": "7a8ccde220205031"
+      },
+      "source_path": "preservation_corpus/extracted/depth1_806a1c74_PART2.DDB",
+      "source_size": 43990
     }
   ],
   "schema_version": 1

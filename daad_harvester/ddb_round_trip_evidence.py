@@ -92,6 +92,21 @@ RETAINED_DDB_ROUND_TRIP_FIXTURES: Final = (
             wrapper="raw",
         ),
     ),
+    RetainedDDBRoundTripFixture(
+        profile_id="legacy-v2-amiga-big-raw-chichen-part2",
+        source_path="preservation_corpus/extracted/depth1_806a1c74_PART2.DDB",
+        expected_size=43990,
+        expected_sha256="efe5be7e82982365699cc78308d382d86262e6f2458b6ea8c09314aa49bcc414",
+        profile=DDBProfile(
+            layout="legacy",
+            major_version=2,
+            machine_id=6,
+            platform="amiga",
+            endianness="big",
+            base_address=0,
+            wrapper="raw",
+        ),
+    ),
 )
 
 
