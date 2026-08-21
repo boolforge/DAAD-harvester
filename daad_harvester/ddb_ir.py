@@ -80,9 +80,11 @@ class OffsetTableNode(DDBNode):
 
 @dataclass(frozen=True, slots=True)
 class TextNode(DDBNode):
-    """Reserved typed node for a source-backed DDB text record grammar."""
+    """A XOR-encoded text record with its decoded terminator and table references."""
 
-    text_encoding: str | None = None
+    table_references: tuple[str, ...]
+    decoded_bytes: bytes
+    decoded_terminator: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -154,6 +156,13 @@ LEGACY_OFFSET_TABLES: tuple[tuple[str, int, str], ...] = (
     ("messages_table", 4, "message_count"),
     ("system_messages_table", 5, "system_message_count"),
     ("connections_table", 6, "location_count"),
+)
+
+LEGACY_TEXT_TABLE_KINDS: tuple[str, ...] = (
+    "object_names_table",
+    "location_descriptions_table",
+    "messages_table",
+    "system_messages_table",
 )
 
 
@@ -432,6 +441,45 @@ def _offset_table_nodes(
     return nodes
 
 
+def _text_nodes(
+    data: bytes,
+    *,
+    offset_tables: list[OffsetTableNode],
+    payload_end: int,
+    profile: DDBProfile,
+) -> list[TextNode]:
+    """Decode ADP's XOR text-record boundary grammar without token expansion."""
+
+    references: dict[int, list[str]] = {}
+    for table in offset_tables:
+        if table.table_kind not in LEGACY_TEXT_TABLE_KINDS:
+            continue
+        for index, offset in enumerate(table.resolved_offsets):
+            references.setdefault(offset, []).append(f"{table.table_kind}[{index}]")
+    terminator = 0x1F if profile.grammar_dialect == "paws" else 0x0A
+    nodes: list[TextNode] = []
+    for start, table_references in sorted(references.items()):
+        end = start
+        while end < payload_end and (data[end] ^ 0xFF) != terminator:
+            end += 1
+        if end >= payload_end:
+            raise ValueError("verified DDB text record lacks an XOR-decoded terminator")
+        byte_end = end + 1
+        decoded_bytes = bytes(byte ^ 0xFF for byte in data[start:end])
+        nodes.append(
+            TextNode(
+                start,
+                byte_end,
+                profile,
+                data[start:byte_end],
+                tuple(table_references),
+                decoded_bytes,
+                terminator,
+            )
+        )
+    return nodes
+
+
 def _fill_opaque_ranges(
     data: bytes,
     profile: DDBProfile,
@@ -601,13 +649,21 @@ def decompile_ddb(data: bytes, profile: DDBProfile) -> DDBIR:
             resolved_process_offsets,
         )
     )
+    offset_tables: list[OffsetTableNode] = []
     if profile.layout == "legacy":
+        offset_tables = _offset_table_nodes(
+            data,
+            payload_offset=payload_offset,
+            payload_size=payload_size,
+            header=header,
+            profile=profile,
+        )
+        known_nodes.extend(offset_tables)
         known_nodes.extend(
-            _offset_table_nodes(
+            _text_nodes(
                 data,
-                payload_offset=payload_offset,
-                payload_size=payload_size,
-                header=header,
+                offset_tables=offset_tables,
+                payload_end=payload_end,
                 profile=profile,
             )
         )

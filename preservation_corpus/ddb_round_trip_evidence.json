@@ -18,24 +18,14 @@
           "reason": "legacy_vocabulary_payload_pending_grammar"
         },
         {
-          "byte_end": 1986,
+          "byte_end": 902,
           "byte_start": 593,
           "reason": "legacy_token_block_payload_pending_grammar"
         },
         {
           "byte_end": 2114,
-          "byte_start": 2112,
+          "byte_start": 2113,
           "reason": "legacy_system_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 2138,
-          "byte_start": 2116,
-          "reason": "legacy_messages_table_payload_pending_grammar"
-        },
-        {
-          "byte_end": 2230,
-          "byte_start": 2140,
-          "reason": "legacy_object_names_table_payload_pending_grammar"
         },
         {
           "byte_end": 2244,
