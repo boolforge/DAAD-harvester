@@ -39,11 +39,50 @@ The native FAT12 parser now accepts this measured MSX-DOS profile without an IBM
 | --- | ---: | --- | --- |
 | `MSXDOS.SYS` | 2,432 bytes | MSX-DOS system-file candidate | Native filesystem membership is verified; system-runtime behavior is not inferred from a filename alone. |
 | `COMMAND.COM` | 7,168 bytes | Command-processor candidate | Preserved opaque program image; no DAAD or interpreter identity claim. |
-| `DAAD.MDG` | 2,105 bytes | Font/graphics package build input | The retained public MSX build script calls this the font-preparation input and replaces its central character-set region before disk staging.[3] Its complete internal grammar remains unpromoted. |
+| `DAAD.MDG` | 2,105 bytes | Exact canonical MSX empty-graphics database/template | Its SHA-256 is byte-identical to the official classic `Interpreters/MSX/DAAD.MDG` sample, whose accompanying `xREADME.TXT` describes it as an empty graphics database with the standard character set.[5] Complete generic MDG grammar remains unpromoted. |
 | `DAAD.Z80` | 8,400 bytes | Exact-hash MSX English DAAD interpreter profile | Its SHA-256 matches `daad-msx-msxedi-official` exactly.[4] The retained public build script proves the generic language-selection convention, but its currently retained `DMSXIEF3.BIN` and `DMSXISF3.BIN` samples have different hashes; they are not substituted for this R4 byte identity.[3] The recorded static analysis still has an unverified raw-base load model. |
-| `YOURGAME.COM` | 559 bytes | Game launcher candidate | Preserved opaque program image; its invocation and load behavior require byte-level or runtime evidence. |
+| `YOURGAME.COM` | 559 bytes | Bounded MSX-DOS raw-COM launcher candidate | Its byte stream carries an MSX-DOS FCB table for `DAAD.MDG`, `PART1.DDB`, `DAAD.Z80`, and optional `LOADPIC.SC2`, plus bounded FCB service-call evidence. It is a close but non-identical, six-byte-shorter relative of the classic `LOADMSX1.COM`; its precise behavioral differences and runtime execution remain open. |
 
 The extraction and report regeneration are repository-native; an emulator remains an independent validation aid only under the project-wide [self-contained regeneration standard](../SELF_CONTAINED_REGENERATION.md).
+
+## Canonical R4 MDG template identity
+
+The retained R4 `DAAD.MDG` is **2,105 bytes** with SHA-256
+`c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06`.
+It is byte-identical to `Interpreters/MSX/DAAD.MDG` in the official classic
+DAAD repository at commit `4a7e745235a12af5b397902dbd9214bc930c7680`.[5]
+The companion `xREADME.TXT` calls that file an “empty graphics database with
+standard charset.” This is independent same-generation evidence for the
+retained R4 byte sequence, rather than an extension-only inference.
+
+The later public DAAD Ready build script remains a different profile. Its
+`skip=2266,count=34` operation requires an input of at least 2,300 bytes,
+whereas the canonical R4/classic template is only 2,105 bytes. Therefore the
+later 218-byte-prefix/central-font/34-byte-suffix reconstruction must not be
+applied to R4. The conflict is now an identified **generation/profile
+divergence**, not an unresolved R4 sample identity. A native validator may
+recognize the exact canonical template by length and full SHA-256 only; it may
+not claim to decode arbitrary `.MDG` files until the complete profile grammar,
+field semantics, character geometry, and variant boundaries are independently
+established.
+
+## Bounded R4 launcher evidence
+
+`YOURGAME.COM` is a 559-byte raw MSX-DOS COM program image. Its terminal
+literal table names `DAAD.MDG`, `PART1.DDB`, `DAAD.Z80`, and `LOADPIC.SC2`.
+Static byte inspection also finds MSX-DOS FCB-style operations at file offsets
+`0x133` (`C=0x0F`, open), `0x13E` (`C=0x1A`, close), and `0x14C` (`C=0x27`,
+random-block service), all addressing the FCB workspace at `0x005C`. These
+findings establish a bounded file-oriented launcher profile; they do not prove
+successful execution, memory mapping, error behavior, or every referenced
+file’s runtime order.
+
+The classic `LOADMSX1.COM` is 565 bytes and contains the same filename table
+with `PART1.DDB`; `LOADMSX2.COM` is also 565 bytes and substitutes
+`PART2.DDB`.[5] Neither loader is byte-identical to R4 `YOURGAME.COM`, so a
+native recognizer must use the R4’s observed structural predicates and record
+the classic files as related comparison evidence rather than silently
+substituting them.
 
 ## References
 
@@ -51,3 +90,4 @@ The extraction and report regeneration are repository-native; an emulator remain
 [2]: [Design of the FAT file system — boot-sector compatibility and MSX-DOS 2 note](https://en.wikipedia.org/wiki/Design_of_the_FAT_file_system)
 [3]: [Retained public MSX build script — DAAD.MDG font preparation and DAAD.Z80 interpreter selection](../../reverse_engineering/public_sources/daad-ready-public-source-material/MSX1.BAT)
 [4]: [Official interpreter profile manifest — MSX English profile](../../reverse_engineering/manifests/official_interpreters.json)
+[5]: [Official classic DAAD MSX package — template and loaders](https://github.com/daad-adventure-writer/daad/tree/4a7e745235a12af5b397902dbd9214bc930c7680/Interpreters/MSX)

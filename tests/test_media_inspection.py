@@ -100,6 +100,61 @@ def test_c64_basic_sys_prg_rejects_nondecimal_target() -> None:
     assert result.validation == "non_decimal_sys_target"
 
 
+def test_retained_r4_msx_mdg_is_exact_canonical_template() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes()
+
+    result = inspect_native_media("DAAD.MDG", data)
+
+    assert result.parser == "daad-msx-mdg"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_r4_canonical_empty_graphics_template"
+    assert result.evidence["profile_id"] == "daad-msx-r4-canonical-empty-graphics-template"
+    assert result.evidence["size"] == 2105
+    assert result.evidence["grammar_boundary"] == "exact_template_only_no_generic_mdg_decoder"
+
+
+def test_same_size_mdx_mutation_remains_an_explicit_unrecognized_profile() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes())
+    data[0x90] ^= 0x01
+
+    result = inspect_native_media("DAAD.MDG", bytes(data))
+
+    assert result.parser == "daad-msx-mdg"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "unrecognized_same_size_mdg_profile"
+
+
+def test_retained_r4_msx_launcher_is_structurally_classified() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_528e7f85_YOURGAME.COM").read_bytes()
+
+    result = inspect_native_media("YOURGAME.COM", data)
+
+    assert result.parser == "daad-msx-r4-launcher-com"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_r4_file_oriented_launcher_structure"
+    assert result.evidence["conventional_com_load_address"] == 0x0100
+    assert result.evidence["referenced_files"] == ("DAAD.MDG", "PART1.DDB", "DAAD.Z80", "LOADPIC.SC2")
+    assert [item["operation"] for item in result.evidence["fcb_calls"]] == [
+        "fcb_open", "fcb_close", "fcb_random_block",
+    ]
+
+
+def test_r4_msx_launcher_rejects_missing_file_table() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_528e7f85_YOURGAME.COM").read_bytes())
+    table_offset = data.index(b"FILES   BINDAAD    MDGPART1   DDBDAAD    Z80LOADPIC SC2")
+    data[table_offset] ^= 0x01
+
+    result = inspect_native_media("YOURGAME.COM", bytes(data))
+
+    assert result.parser == "daad-msx-r4-launcher-com"
+    assert result.status == "rejected"
+    assert result.validation == "missing_r4_launcher_file_table"
+
+
 def test_dms_header_crc_failure_is_rejected_before_unpacking() -> None:
     result = inspect_native_media("broken.dms", b"DMS!" + b"\x00" * 52)
     assert result.status == "recognized_evidence"  # all-zero DMS CRC is valid

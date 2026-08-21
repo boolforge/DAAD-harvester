@@ -10,6 +10,7 @@ or low-level protected track dump).
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from hashlib import sha256
 from pathlib import Path
 from typing import Any, Dict
 
@@ -517,6 +518,94 @@ def _inspect_msx_rom(data: bytes) -> MediaInspection:
     )
 
 
+_MSX_R4_CANONICAL_MDG_SIZE = 2105
+_MSX_R4_CANONICAL_MDG_SHA256 = "c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06"
+
+
+def _inspect_msx_r4_mdg(data: bytes) -> MediaInspection:
+    """Recognize only the independently corroborated canonical R4 MDG template.
+
+    The retained R4 member is byte-identical to the classic official empty
+    graphics database with standard character set. That proves one immutable
+    template identity, not the complete grammar of arbitrary MSX MDG files.
+    Nonmatching members remain explicit unrecognized-profile evidence.
+    """
+
+    digest = sha256(data).hexdigest()
+    if len(data) != _MSX_R4_CANONICAL_MDG_SIZE:
+        return _result(
+            "daad-msx-mdg", "recognized_evidence", "unrecognized_mdg_size_profile",
+            size=len(data), sha256=digest,
+            canonical_size=_MSX_R4_CANONICAL_MDG_SIZE,
+        )
+    if digest != _MSX_R4_CANONICAL_MDG_SHA256:
+        return _result(
+            "daad-msx-mdg", "recognized_evidence", "unrecognized_same_size_mdg_profile",
+            size=len(data), sha256=digest,
+            canonical_sha256=_MSX_R4_CANONICAL_MDG_SHA256,
+        )
+    return _result(
+        "daad-msx-mdg", "recognized_evidence", "validated_r4_canonical_empty_graphics_template",
+        profile_id="daad-msx-r4-canonical-empty-graphics-template",
+        size=len(data),
+        sha256=digest,
+        template_identity="exact_official_classic_mdx_template_match",
+        documented_role="empty_graphics_database_with_standard_charset",
+        grammar_boundary="exact_template_only_no_generic_mdg_decoder",
+    )
+
+
+_MSX_R4_LAUNCHER_PREFIX = b"\xf3\x21\x0f\x01\x11\x00\x81\x01"
+_MSX_R4_LAUNCHER_SIZE = 559
+_MSX_R4_LAUNCHER_FILE_TABLE = b"FILES   BINDAAD    MDGPART1   DDBDAAD    Z80LOADPIC SC2"
+
+
+def _inspect_msx_r4_launcher_com(data: bytes) -> MediaInspection | None:
+    """Recognize the measured R4 raw-COM launcher structure without execution.
+
+    This checks the R4 entry bytes, observed filename table, and three FCB
+    service-call sequences. It identifies a bounded file-oriented launcher
+    profile, not successful execution or a complete MSX-DOS COM grammar.
+    """
+
+    if not data.startswith(_MSX_R4_LAUNCHER_PREFIX):
+        return None
+    if len(data) != _MSX_R4_LAUNCHER_SIZE:
+        return _result(
+            "daad-msx-r4-launcher-com", "rejected", "unexpected_r4_launcher_size",
+            size=len(data), expected_size=_MSX_R4_LAUNCHER_SIZE,
+        )
+    file_table_offset = data.find(_MSX_R4_LAUNCHER_FILE_TABLE)
+    if file_table_offset < 0:
+        return _result(
+            "daad-msx-r4-launcher-com", "rejected", "missing_r4_launcher_file_table",
+            size=len(data),
+        )
+    expected_calls = (
+        (b"\x0e\x0f\x11\x5c\x00\xcd\x05\x00", "fcb_open", 0x0F),
+        (b"\x0e\x1a\xcd\x05\x00", "fcb_close", 0x1A),
+        (b"\x0e\x27\x11\x5c\x00\xcd\x05\x00", "fcb_random_block", 0x27),
+    )
+    calls: list[dict[str, int | str]] = []
+    for pattern, operation, service in expected_calls:
+        offset = data.find(pattern)
+        if offset < 0:
+            return _result(
+                "daad-msx-r4-launcher-com", "rejected", "missing_r4_launcher_fcb_service",
+                operation=operation, service=service,
+            )
+        calls.append({"operation": operation, "service": service, "file_offset": offset, "fcb_address": 0x005C})
+    return _result(
+        "daad-msx-r4-launcher-com", "recognized_evidence", "validated_r4_file_oriented_launcher_structure",
+        size=len(data),
+        conventional_com_load_address=0x0100,
+        file_table_offset=file_table_offset,
+        referenced_files=("DAAD.MDG", "PART1.DDB", "DAAD.Z80", "LOADPIC.SC2"),
+        fcb_calls=calls,
+        execution_boundary="static_structure_only_no_runtime_execution_or_complete_com_grammar",
+    )
+
+
 def _inspect_daad_chr(data: bytes) -> MediaInspection:
     """Validate the known fixed-size legacy character-set container boundary."""
 
@@ -829,6 +918,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_ipf(data)
     if extension == ".rom":
         return _inspect_msx_rom(data)
+    if extension == ".mdg":
+        return _inspect_msx_r4_mdg(data)
     if extension == ".chr":
         return _inspect_daad_chr(data)
     if extension == ".dat" and data[:4] == b"\x00\x00\x04\x00":
@@ -843,6 +934,10 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_mz(data)
     if extension in {".sna", ".z80"}:
         return _inspect_snapshot(extension, data)
+    if extension == ".com":
+        launcher = _inspect_msx_r4_launcher_com(data)
+        if launcher is not None:
+            return launcher
     if extension in {".rom", ".com", ".exe", ".prg"}:
         return _result("opaque-program-image", "recognized_evidence", "preserved_for_fingerprint", extension=extension, size=len(data))
     return _result("none", "unrecognized", "no_native_media_signature", extension=extension, size=len(data))
