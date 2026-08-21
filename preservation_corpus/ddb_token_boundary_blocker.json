@@ -1,0 +1,33 @@
+{
+  "adp_bounded_scan_overlap": null,
+  "candidate_rule": "adp_non_paws_tokens_plus_one_high_bit_termination_zero_sentinel_index_0x80_through_0xff",
+  "correction": "The index-256 overlap is outside ADP's n <= 255 loop and was caused by the rejected probe omitting that bound.",
+  "profile": {
+    "base_address": 0,
+    "endianness": "little",
+    "layout": "legacy",
+    "machine_id": 0,
+    "major_version": 2,
+    "platform": "dos",
+    "wrapper": "raw"
+  },
+  "schema_version": 1,
+  "source_path": "preservation_corpus/extracted/depth1_98397784_BLANK.DDB",
+  "source_sha256": "8f45acdfe4813996cb3895dd66d2d9e6f0685acfc94c1ec35ed3eeb626cdad84",
+  "status": "rejected_probe_defect_closed",
+  "token_block_start": 593,
+  "unbounded_probe_overlap": {
+    "candidate_token_byte_end": 903,
+    "candidate_token_byte_start": 902,
+    "candidate_token_index": 256,
+    "candidate_token_raw_hex": "b6",
+    "text_references": [
+      {
+        "index": 0,
+        "source_offset": 902,
+        "stored_pointer": 902,
+        "table": "system_messages_table"
+      }
+    ]
+  }
+}

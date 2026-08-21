@@ -9,5 +9,6 @@ This directory contains the normative cross-cutting contracts that connect a pro
 | [DDB decompiler and recompiler round-trip contract](DDB_DECOMPILER_ROUND_TRIP.md) | How must exact retained DDB bytes progress through a lossless profile-scoped IR to a justified byte-identical recompile claim? |
 | [Retained DDB profile inventory](DDB_PROFILE_INVENTORY.md) | Which current parser-verified corpus profiles should determine the first native grammar and round-trip closure order? |
 | [Legacy DDB section-map crosswalk](DDB_LEGACY_SECTION_MAP.md) | Which source-backed compact-header pointer fields own each unresolved legacy section range in the byte ledger? |
+| [Retained DDB token/text boundary blocker](DDB_TOKEN_BOUNDARY_BLOCKER.md) | Why is an ADP-derived non-PAWS token scan rejected for one retained DOS V2 profile, and what exact evidence is required to close it? |
 
 > **SELF-CONTAINED REGENERATION: REQUIRED.** These contracts supplement, never replace, the [global regeneration policy](../SELF_CONTAINED_REGENERATION.md). A user interface, documentation page, CI log, or external tool result does not promote evidence by itself; every promoted preservation claim must resolve to the required repository-native regeneration path.
