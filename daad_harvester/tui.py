@@ -36,6 +36,7 @@ class TUIDashboard:
         self.search_filter = ""
         self.in_search_mode = False
         self.paused = False
+        self.detail_view = False  # per-game detail modal, Tab 1 only, opened with Enter
 
     def set_active_phase(self, phase_name: str) -> None:
         self.active_phase = phase_name
@@ -51,6 +52,11 @@ class TUIDashboard:
             elif len(key) == 1 and key.isprintable():
                 self.search_filter += key
                 self.selected_index = 0
+            return
+
+        if self.detail_view:
+            if key in ("\r", "\n", "\x1b"):  # Enter or Escape closes it
+                self.detail_view = False
             return
 
         if key in ("\t", "t", "T"):  # Tab key to switch tabs
@@ -69,6 +75,8 @@ class TUIDashboard:
             self.selected_index = 0
         elif key in ("p", "P"):  # Pause toggle
             self.paused = not self.paused
+        elif key in ("\r", "\n") and self.active_tab == 0:  # Enter opens detail view
+            self.detail_view = True
 
     def _make_header(self) -> Panel:
         grid = Table.grid(expand=True)
@@ -193,6 +201,42 @@ class TUIDashboard:
             title_str += f" | [bold red]SEARCH MODE: {escape(self.search_filter)}_[/bold red]"
         return Panel(table, title=title_str, border_style="gold1")
 
+    def _make_detail_panel(self) -> Panel:
+        """Full forensic detail for the currently selected verified game (Enter to open, Enter/Esc to close)."""
+        daad_arts = self.db.get_daad_artifacts()
+        if self.search_filter:
+            sf = self.search_filter.lower()
+            daad_arts = [
+                a for a in daad_arts
+                if sf in (a.title or "").lower() or sf in (a.original_filename or "").lower() or sf in (a.platform_hint or "").lower() or sf in (a.md5_full or "").lower()
+            ]
+
+        if not daad_arts or self.selected_index >= len(daad_arts):
+            return Panel(Text("No item selected.", style="dim"), title="[bold gold1]Detail View[/bold gold1]", border_style="gold1")
+
+        art = daad_arts[self.selected_index]
+        src = next((s for s in self.db.get_all_sources() if s.id == art.source_id), None)
+        title = art.title or (src.title if src else art.original_filename) or "Untitled"
+
+        table = Table(show_header=False, box=None, expand=True)
+        table.add_column("Field", style="bold yellow", width=18)
+        table.add_column("Value", style="cyan", overflow="fold")
+        table.add_row("Title", Text(title))
+        table.add_row("Platform", Text((art.platform_hint or "unknown").upper()))
+        table.add_row("Engine Version", Text(art.daad_version_guess or "DAAD DDB"))
+        table.add_row("Original Filename", Text(art.original_filename or "N/A"))
+        table.add_row("File Size", f"{art.file_size / 1024:.1f} KB" if art.file_size else "0 KB")
+        table.add_row("Archive Depth", str(art.archive_depth))
+        table.add_row("MD5 (full file)", Text(art.md5_full or "N/A"))
+        table.add_row("MD5 (first 5000B)", Text(art.md5_5000 or "N/A"))
+        table.add_row("SHA256", Text(art.sha256 or "N/A"))
+        table.add_row("Extracted Path", Text(str(art.extracted_path) if art.extracted_path else "N/A"))
+        if src:
+            table.add_row("Source URL", Text(src.url))
+            table.add_row("Source Tier", Text(src.source_tier))
+
+        return Panel(table, title=f"[bold gold1]Detail: {escape(title)}[/bold gold1]", subtitle="[dim](Enter/Esc to close)[/dim]", border_style="gold1")
+
     def _make_sources_table(self) -> Panel:
         sources = self.db.get_all_sources()
         if self.search_filter:
@@ -238,7 +282,7 @@ class TUIDashboard:
         layout["header"].update(self._make_header())
 
         if self.active_tab == 0:
-            layout["body"].update(self._make_daad_games_table())
+            layout["body"].update(self._make_detail_panel() if self.detail_view else self._make_daad_games_table())
         elif self.active_tab == 1:
             layout["body"].update(self._make_sources_table())
         else:
@@ -256,6 +300,7 @@ class TUIDashboard:
         footer_text = (
             r"[bold yellow]\[Tab][/bold yellow] Switch Tab  |  "
             r"[bold yellow]\[Up/Down][/bold yellow] Select/Scroll  |  "
+            r"[bold yellow]\[Enter][/bold yellow] Detail  |  "
             r"[bold yellow]\[/][/bold yellow] Search  |  "
             r"[bold yellow]\[C][/bold yellow] Clear Filter  |  "
             r"[bold yellow]\[P][/bold yellow] Pause"
