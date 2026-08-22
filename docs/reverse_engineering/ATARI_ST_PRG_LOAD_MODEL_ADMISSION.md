@@ -12,6 +12,11 @@ relocation stream. It rejects segment overflow, an out-of-image first offset,
 an out-of-image delta, missing terminator, trailing relocation bytes, altered
 identity, or execution promotion. It reads files only.
 
+Each contract also binds the measured symbol-table size and relocation count.
+The retained profiles have zero symbol-table bytes and bounded counts of 708 or
+717 relocation sites. These are container observations, not an effective TOS
+load address, process entry, symbol recovery, or runtime result.
+
 ```bash
 python3 scripts/verify_atari_st_prg_load_model.py
 ```

@@ -83,7 +83,7 @@ def validate_atari_st_prg_load_model(contract: dict[str, Any], root: Path) -> No
         if not isinstance(expected_hash, str) or not path.is_file() or _sha256(path) != expected_hash:
             raise AtariStPrgLoadModelError(f"{identifier}: retained Atari ST identity differs")
         fields = parse_atari_st_prg(path.read_bytes())
-        for field in ("text_size", "data_size", "bss_size", "load_size", "first_relocation_offset", "relocation_stream_size"):
+        for field in ("text_size", "data_size", "bss_size", "symbol_size", "load_size", "first_relocation_offset", "relocation_stream_size", "relocation_count"):
             if profile.get(field) != fields[field]:
                 raise AtariStPrgLoadModelError(f"{identifier}: {field} differs from retained PRG")
 
