@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "purpose": "CPC AMSDOS binary-header observation for two retained DAAD program containers. Header-relative load and entry facts are verified without establishing CPC runtime state.",
+  "admission_state": "amsdos_header_load_and_entry_verified_memory_unresolved",
+  "execution_eligible": false,
+  "profiles": [
+    {
+      "artifact_id": "daad-cpc-dcpcie-official",
+      "input_path": "reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcie-official/DCPCIE.Z80",
+      "sha256": "7447b56073a6e65242214c505496742346a35de0e81777ed91ea44a2f115ee41",
+      "load_address": 2112,
+      "entry_address": 9239,
+      "logical_payload_size": 7395,
+      "stored_header_checksum": 1464
+    },
+    {
+      "artifact_id": "daad-cpc-dcpcis-official",
+      "input_path": "reverse_engineering/artifacts/original/cpc/daad-cpc-dcpcis-official/DCPCIS.Z80",
+      "sha256": "8d312860b4ce8596b9f6152c1fbc0aa5f3525189daa564dc413bf3173a19659c",
+      "load_address": 2112,
+      "entry_address": 9337,
+      "logical_payload_size": 7493,
+      "stored_header_checksum": 1248
+    }
+  ],
+  "remaining_requirements": [
+    "CPC RAM and banking state",
+    "firmware and peripheral environment",
+    "qualified analyzer configuration using the bounded payload and declared entry",
+    "cross-tool disagreement record",
+    "runtime and behavioral evidence"
+  ],
+  "non_claim": "AMSDOS header validation establishes container-relative load and entry fields only; it does not recover source or establish CPC runtime behavior."
+}
