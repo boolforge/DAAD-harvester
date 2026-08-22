@@ -4,7 +4,7 @@
 
 ## Executive summary
 
-The repository contains **53 production Python files**, **82 Python automation scripts**, and **100 Python test files**. The active work register contains **197 unchecked items** across **12 sections**. The authorized acquisition queue records **0 queue-ready releases**, **79 candidates requiring a direct source**, and **0 blocked candidates**.
+The repository contains **53 production Python files**, **83 Python automation scripts**, and **100 Python test files**. The active work register contains **197 unchecked items** across **12 sections**. The authorized acquisition queue records **0 queue-ready releases**, **79 candidates requiring a direct source**, and **0 blocked candidates**.
 
 The implementation has a strong deterministic foundation: a repository-owned verification scheduler, an append-only corpus policy, checksum verification, native format validators, and a generated report/TUI/web pipeline. The dominant risk is not a detected single-code defect; it is the remaining breadth of evidence closure. The work register explicitly requires profile-scoped parser, bundle, corpus, regeneration, and interface evidence before broad claims can be completed.
 
@@ -13,7 +13,7 @@ The implementation has a strong deterministic foundation: a repository-owned ver
 | Area | Measured value | Audit interpretation |
 | --- | ---: | --- |
 | Production Python modules | 53 | Native preservation implementation surface. |
-| Python automation scripts | 82 | Reproducible project commands; review command-execution references below. |
+| Python automation scripts | 83 | Reproducible project commands; review command-execution references below. |
 | Python test modules | 100 | Unit and regression test surface; filename matching is not coverage measurement. |
 | Static web source files | 3 | React + TypeScript + Vite evidence viewer implementation. |
 | Static web test files | 1 | Browser/build checks remain separate from source-file count. |
@@ -46,9 +46,9 @@ The heaviest active areas are the evidence-interface correction, all-platform re
 | --- | --- | --- | --- |
 | P0 | Backlog closure remains the principal delivery risk. | The active index contains 197 unchecked items, including 80 evidence-interface and 37 all-platform corpus tasks. | Continue with profile-scoped child deliveries, preserving unresolved boundaries. |
 | P0 | Cross-file resource relationships lack a reusable first-class evidence model. | `TODO.md` tasks 38–39 require platform-bundle and DDB companion-reference evidence; a static source search found no existing `bundle_relationship` model. | Implement a bounded PCW co-residency relationship model with positive, negative, and real-artifact regressions; do not claim semantic linkage. |
-| P1 | The root roadmap labels a historical test-count baseline as latest. | The first TODO status baseline declares 534 passing tests. | Refresh it only with a verified current primary-gate output, retaining it as an auditable baseline rather than a mutable assertion. |
+| P1 | The root roadmap labels a historical test-count baseline as latest. | The first TODO status baseline declares 536 passing tests. | Refresh it only with a verified current primary-gate output, retaining it as an auditable baseline rather than a mutable assertion. |
 | P1 | Some project areas are outside a filename-matched test proxy. | 10 production modules lack a same-stem `tests/test_<module>.py` file; this is a review prompt, not proof of missing coverage. | Add targeted regression tests where a concrete behavior lacks direct evidence; do not use name matching as coverage proof. |
-| P1 | Existing command-execution call sites need a declared primary/optional classification. | 17 AST-detected `subprocess`/`os` call sites exist in Python automation. | Classify each during the self-contained regeneration audit; preserve native paths and make optional validators explicitly unavailable rather than implicit prerequisites. |
+| P1 | Existing command-execution call sites need a declared primary/optional classification. | 18 AST-detected `subprocess`/`os` call sites exist in Python automation. | Classify each during the self-contained regeneration audit; preserve native paths and make optional validators explicitly unavailable rather than implicit prerequisites. |
 | P2 | Possible duplicate function bodies require human semantic review before consolidation. | 11 normalized AST body groups were found. Equal bodies can be deliberate adapters or fixtures. | Review only cross-module production groups; deduplicate through tested shared helpers where behavior and evidence contracts truly match. |
 | P2 | Acquisition discovery remains incomplete by design. | The queue has candidates with authorization but no exact public binary URL or release-boundary match. | Retain source-discovery records and add only independently corroborated, checksum-pinned releases. |
 
@@ -72,7 +72,7 @@ Python reuse should remain internal-first: `media_inspection`, `daad_parser`, `d
 | `6c921af48a5f1062` | `scripts/verify_game_corpus.py:sha256`<br>`scripts/verify_runtime_resources.py:sha256` |
 | `72861efaaa72ba18` | `daad_harvester/dms.py:_DeepDecoder.__init__`<br>`daad_harvester/dms.py:_HeavyDecoder.__init__`<br>`daad_harvester/dms.py:_MediumDecoder.__init__`<br>`daad_harvester/dms.py:_QuickDecoder.__init__` |
 | `cd3f369356b5145a` | `scripts/capture_py8dis_capability_boundary.py:_fetch`<br>`scripts/capture_redasm_capability_boundary.py:_fetch`<br>`scripts/capture_skoolkit_analysis_boundary.py:_fetch`<br>`scripts/capture_zxdaad128_load_boundary.py:_fetch` |
-| `fb814a23745e3ef5` | `scripts/render_chr_atlas.py:sha256`<br>`scripts/verify_jabato_c64_ass_scene_variant.py:_sha256`<br>`scripts/verify_jabato_c64_runtime_recovery.py:_sha256` |
+| `fb814a23745e3ef5` | `scripts/render_chr_atlas.py:sha256`<br>`scripts/run_architecture_static_fixture_health.py:digest`<br>`scripts/verify_jabato_c64_ass_scene_variant.py:_sha256`<br>`scripts/verify_jabato_c64_runtime_recovery.py:_sha256` |
 
 ## Required implementation sequence
 

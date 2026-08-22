@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "purpose": "Controlled-fixture health evidence for the independent architecture-static lane. It preserves raw tool output and records da65 normalization separately; it does not authorize retained-byte analysis.",
+  "profiles": [
+    {"id": "z80", "architectures": ["z80"], "binary": "/usr/bin/z80dasm", "binary_sha256": "f6b5bcfbccdda8608679d266f20556753b13bcb2386c610c0934ec3e5ff48e0c", "fixture_filename": "fixture-z80.bin", "fixture_hex": "00c9", "command_prefix": ["-a", "-g", "0"], "raw_listing_sha256": "9dfb9707fdf07f8457983eae0bf7cdee9c0025d289cfa318210fbc6122f4be8a", "repeat_raw_byte_identical": true},
+    {"id": "mos6502-mos8501", "architectures": ["mos6502", "mos8501"], "binary": "/usr/bin/da65", "binary_sha256": "6b24a8fb310b739f60fb56dba5c7c69c84c119005094378bf642640ba4b72ef0", "fixture_filename": "fixture-mos6502.bin", "fixture_hex": "ea60", "command_prefix": [], "raw_listing_sha256": null, "repeat_raw_byte_identical": false, "normalization": {"remove_line_prefixes": ["; Created:", "; Input file:"], "normalized_listing_sha256": "7492468387495b52b20a9ca7015c1445fd9697e4a201d325d83f005e13696001"}},
+    {"id": "m68000", "architectures": ["m68000"], "binary": "/usr/bin/m68k-linux-gnu-objdump", "binary_sha256": "240d1acf1e8f1e3a09498300e8ca4f23076df5f3f7c16af48d534efcc03feded", "fixture_filename": "fixture-m68000.bin", "fixture_hex": "4e714e75", "command_prefix": ["-D", "-b", "binary", "-m", "m68k:68000", "--adjust-vma=0"], "raw_listing_sha256": "cbfc52a5dd6dff445d6e0881ae323a31ccc3972cfcf15304cd2df552a5cef594", "repeat_raw_byte_identical": true},
+    {"id": "i8086", "architectures": ["i8086"], "binary": "/usr/bin/ndisasm", "binary_sha256": "6a85a9d1c8f05c8528895e091ed6b9c5b92b726a66ab0bf263199619663e4dc6", "fixture_filename": "fixture-i8086.bin", "fixture_hex": "90c3", "command_prefix": ["-b", "16", "-o", "0"], "raw_listing_sha256": "fc3911ab8e093fe81c57e480c575c5eeeadc8be54028a0d29ea7e57c24d3dbf4", "repeat_raw_byte_identical": true}
+  ],
+  "non_claim": "Controlled raw-base-zero fixture output is host-tool health evidence only. It is not retained-byte provenance, a validated load model, recovered source, or runtime behavior."
+}
