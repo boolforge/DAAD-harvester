@@ -5,12 +5,12 @@
     {
       "id": "c64_mos6502",
       "population": 2,
-      "verified_fields": ["PRG identity", "PRG load address 0x0801", "BASIC SYS 2063 entry declaration"],
-      "unresolved_fields": ["6510 processor-port state at entry", "I/O and banking state", "qualified analyzer configuration", "cross-tool disagreement record"],
+      "verified_fields": ["PRG identity", "PRG load address 0x0801", "BASIC SYS 2063 entry declaration", "official entry-state capture field and surrogate rejection policy"],
+      "unresolved_fields": ["hash-bound official 6510 processor-port and I/O/banking entry capture", "qualified analyzer configuration", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "65e096b",
-      "next_reproducer": "python3 scripts/verify_c64_prg_load_model.py",
+      "last_validated_commit": "46cf939",
+      "next_reproducer": "python3 scripts/verify_c64_prg_entry_state_admission.py",
       "forbidden_cross_family_evidence": ["Plus/4 7501/TED state", "JABATO runtime capture", "DOS MZ fields"]
     },
     {
@@ -28,10 +28,10 @@
       "id": "z80_by_platform",
       "population": 8,
       "verified_fields": ["immutable profile identities", "ZX PLUS3DOS header and declared-payload bounds", "CPC AMSDOS header load and declared entry", "MSX leading-jump byte observations", "PCW BDOS-call byte observations"],
-      "unresolved_fields": ["ZX load command and bank model", "CPC memory and firmware model", "MSX loader and slot/mapper model", "PCW CP/M load and effective-entry model", "cross-tool disagreement record"],
+      "unresolved_fields": ["ZX load command and bank model", "hash-bound official CPC memory/firmware entry capture", "MSX loader and slot/mapper model", "PCW CP/M load and effective-entry model", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "e1548e0",
+      "last_validated_commit": "38b7134",
       "next_reproducer": "python3 scripts/verify_zx_plus3dos_load_model.py",
       "forbidden_cross_family_evidence": ["MOS 6502 PRG wrappers", "68000 executable headers", "DOS MZ fields"]
     },
@@ -60,11 +60,11 @@
     {
       "id": "dos_i8086",
       "population": 22,
-      "verified_fields": ["MZ identity", "header bounds", "relocation-table bounds", "relative CS:IP", "relative SS:SP", "overlay field"],
+      "verified_fields": ["MZ identity", "header bounds", "hash-bound load-module byte range", "relocation-table bounds", "relative CS:IP", "relative SS:SP", "overlay field"],
       "unresolved_fields": ["DOS PSP policy", "actual load segment", "runtime environment", "qualified analyzer configuration", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "7558627",
+      "last_validated_commit": "9414c0e",
       "next_reproducer": "python3 scripts/verify_dos_mz_load_model.py",
       "forbidden_cross_family_evidence": ["C64 PRG wrappers", "Plus/4 7501/TED state", "68000 executable headers"]
     },
