@@ -6,7 +6,7 @@
 | **Candidate** | [`j-helland/8086-disassembler`](https://github.com/j-helland/8086-disassembler), revision `1979e794d1cbcd92714d0863a2fd17fd89af4fcd` |
 | **Source result** | Public-domain and project authorization are confirmed by the user; no license file or license text was observed in the pinned checkout. |
 | **Build result** | The pinned build fails without standard includes; an isolated three-include repair built successfully and passed 19 upstream NASM round-trip fixtures. |
-| **Admission result** | `blocked_by_license_or_build`; `execution_eligible: false`. |
+| **Admission result** | `health_checked`; `execution_eligible: false`. |
 
 ## Source inspection
 
@@ -29,8 +29,9 @@ An isolated copy then added only `<cstdio>`, `<cstdlib>`, and `<stdexcept>` at t
 top of that translation unit. The repaired copy built the documented executable.
 Its `test.py` runner then passed all 19 upstream NASM assemble/disassemble/
 reassemble round-trip fixtures. This repair is not silently applied to the pinned
-candidate source; it is a separately recorded prerequisite for a future pinned
-build recipe.
+candidate source. The repository-owned `scripts/run_jhelland_fixture_health.py`
+now verifies the pin, copies the checkout to a temporary directory, applies
+exactly the three includes there, builds it, and requires 19 fixture successes.
 
 > This is an upstream source and host-build observation. It does not establish
 > the correctness of documented jump labels or authorize a retained DOS
@@ -38,13 +39,12 @@ build recipe.
 
 ## Retained-byte boundary
 
-Even with project authorization and a controlled repaired-source health result,
-the candidate remains outside retained DAAD execution until the minimal repair is
-made reproducible for a pinned source and an i8086 DOS profile declares
-whether the input is COM, MZ, or another raw segment form; its segment origin and
-entry; and a cross-tool disagreement record against NDISASM, radare2, Ghidra, and
-any future admitted i8086 comparator. Two-pass labels are tool hypotheses, not
-recovered source or behavior.
+Even with project authorization and the repository-owned repaired-source health
+recipe, the candidate remains outside retained DAAD execution until an i8086 DOS
+profile declares whether the input is COM, MZ, or another raw segment form; its
+segment origin and entry; and a cross-tool disagreement record against NDISASM,
+radare2, Ghidra, and any future admitted i8086 comparator. Two-pass labels are
+tool hypotheses, not recovered source or behavior.
 
 ## References
 

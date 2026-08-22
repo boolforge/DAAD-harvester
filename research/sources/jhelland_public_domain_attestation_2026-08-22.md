@@ -19,19 +19,21 @@ without changing the accepted project authorization status.
 
 ## Independent technical blocks
 
-The prior build result remains independent of this claim: the pinned CMake build
-fails on the observed host because `instruction.cpp` lacks declarations used for
-`abs`, `printf`, and `std::out_of_range`. The upstream NASM round-trip suite was
-therefore not reached. A future build repair would still require its own source
-pin, reproducible health fixture, and command record.
+The original pinned CMake build remains independently observed as failing on the
+host because `instruction.cpp` lacks declarations used for `abs`, `printf`, and
+`std::out_of_range`. The repository-owned optional health recipe now verifies the
+source pin, creates a temporary copy, applies only the three documented standard
+headers, and requires 19 upstream NASM fixture successes. It does not modify or
+vendor the upstream source.
 
 Even if licensing becomes externally evidenced, retained i8086 input remains
 blocked on the DOS COM/MZ admission contract: container identity, origin or load
 segment, entry evidence, relocation and PSP facts where applicable, and preserved
 cross-tool disagreement evidence are all separate requirements.
 
-> Project authorization removes the licensing block. It does not repair a source
-> build or turn disassembler output into recovered source or runtime behavior.
+> Project authorization removes the licensing block. The isolated health recipe
+> does not authorize retained-byte analysis or turn disassembler output into
+> recovered source or runtime behavior.
 
 ## References
 

@@ -183,15 +183,15 @@ def test_candidate_matrix_rejects_an_unconfigured_executable_candidate() -> None
         analyzer_adapters.validate_candidate_matrix(matrix)
 
 
-def test_i8086_candidate_records_user_authorized_license_and_build_block_without_becoming_executable() -> None:
+def test_i8086_candidate_records_user_authorized_health_recipe_without_becoming_executable() -> None:
     matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
     candidate = next(candidate for candidate in matrix["candidates"] if candidate["candidate_id"] == "jhelland-8086-disassembler-v1")
 
-    assert candidate["admission_state"] == "blocked_by_license_or_build"
+    assert candidate["admission_state"] == "health_checked"
     assert candidate["execution_eligible"] is False
     assert "confirmed by the user" in candidate["source"]["license_status"]
     assert not any("license" in blocker for blocker in candidate["blockers"])
-    assert any("minimal include repair" in blocker for blocker in candidate["blockers"])
+    assert any("health recipe" in blocker for blocker in candidate["blockers"])
 
 
 def test_dazzlestar_candidate_records_empty_license_and_toolchain_blocks_without_becoming_executable() -> None:
