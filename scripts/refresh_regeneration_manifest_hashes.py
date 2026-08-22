@@ -12,23 +12,17 @@ first, then review the manifest diff before committing.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 from pathlib import Path
+
+from daad_harvester.hashes import sha256_file
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "preservation_corpus" / "regeneration_manifest.json"
 
-
-def sha256(path: Path) -> str:
-    """Return the complete SHA-256 digest of one declared repository file."""
-
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+# Backward-compatible import surface for existing callers; implementation is shared.
+sha256 = sha256_file
 
 
 def refresh(manifest: dict[str, object], identifiers: set[str]) -> dict[str, object]:

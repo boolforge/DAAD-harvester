@@ -3,24 +3,18 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
 import subprocess
 import sys
+
+from daad_harvester.hashes import sha256_file
 
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "preservation_corpus" / "regeneration_manifest.json"
 POLICY = ROOT / "docs" / "SELF_CONTAINED_REGENERATION.md"
 
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for block in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def _relative_file(path_text: str) -> Path:
@@ -35,7 +29,7 @@ def _verify_hashed_paths(entry_id: str, label: str, records: list[dict[str, str]
     for record in records:
         path = _relative_file(record["path"])
         expected = record["sha256"]
-        actual = _sha256(path)
+        actual = sha256_file(path)
         if actual != expected:
             raise AssertionError(
                 f"{entry_id}: {label} hash mismatch for {record['path']}: {actual} != {expected}"
