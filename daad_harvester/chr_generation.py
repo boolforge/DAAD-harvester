@@ -8,6 +8,9 @@ whose unproven field semantics are not promoted.
 
 from __future__ import annotations
 
+import struct
+import zlib
+
 
 CHR_HEADER_SIZE = 128
 CHR_GLYPH_COUNT = 256
@@ -85,3 +88,72 @@ def validate_daad_chr(data: bytes) -> dict[str, object]:
             }
         )
     return evidence
+
+
+def _png_chunk(kind: bytes, payload: bytes) -> bytes:
+    """Return one deterministic PNG chunk for a bounded grayscale image."""
+
+    return (
+        struct.pack(">I", len(payload))
+        + kind
+        + payload
+        + struct.pack(">I", zlib.crc32(kind + payload) & 0xFFFFFFFF)
+    )
+
+
+def render_adp_chr_glyph_atlas(data: bytes, *, scale: int = 1) -> tuple[bytes, dict[str, object]]:
+    """Render the validated ADP-writer glyph payload as a deterministic grayscale PNG atlas.
+
+    The atlas preserves byte-index order only.  It intentionally supplies no character
+    labels or code-page semantics because those relationships have not been evidenced.
+    """
+
+    if not isinstance(scale, int) or isinstance(scale, bool) or scale < 1:
+        raise ValueError("glyph atlas scale must be a positive integer")
+    evidence = validate_daad_chr(data)
+    if evidence.get("header_profile") != "adp_legacy_chr_writer":
+        raise ValueError("glyph atlas requires the validated ADP legacy CHR writer profile")
+
+    glyphs = data[CHR_HEADER_SIZE:]
+    columns = 16
+    rows = CHR_GLYPH_COUNT // columns
+    width = columns * 8 * scale
+    height = rows * ADP_CHR_GLYPH_HEIGHT * scale
+    pixels = bytearray(width * height)
+    for glyph_index in range(CHR_GLYPH_COUNT):
+        glyph_x = (glyph_index % columns) * 8 * scale
+        glyph_y = (glyph_index // columns) * ADP_CHR_GLYPH_HEIGHT * scale
+        glyph_offset = glyph_index * CHR_BYTES_PER_GLYPH
+        for row_index, packed_row in enumerate(glyphs[glyph_offset:glyph_offset + CHR_BYTES_PER_GLYPH]):
+            for bit_index in range(8):
+                value = 0xFF if packed_row & (0x80 >> bit_index) else 0x00
+                pixel_x = glyph_x + bit_index * scale
+                pixel_y = glyph_y + row_index * scale
+                for scale_y in range(scale):
+                    row_start = (pixel_y + scale_y) * width + pixel_x
+                    pixels[row_start:row_start + scale] = bytes((value,)) * scale
+
+    scanlines = b"".join(
+        b"\x00" + bytes(pixels[row * width:(row + 1) * width])
+        for row in range(height)
+    )
+    png = (
+        b"\x89PNG\r\n\x1a\n"
+        + _png_chunk(b"IHDR", struct.pack(">IIBBBBB", width, height, 8, 0, 0, 0, 0))
+        + _png_chunk(b"IDAT", zlib.compress(scanlines, level=9))
+        + _png_chunk(b"IEND", b"")
+    )
+    atlas_evidence: dict[str, object] = {
+        "derivative_format": "png",
+        "decoder_profile": "adp_legacy_chr_writer",
+        "glyph_count": CHR_GLYPH_COUNT,
+        "glyph_geometry": "256 glyphs × 8 rows × 8 bits",
+        "glyph_bit_order": "most_significant_bit_leftmost",
+        "atlas_columns": columns,
+        "atlas_rows": rows,
+        "atlas_scale": scale,
+        "width": width,
+        "height": height,
+        "glyph_index_mapping": "byte_index_only_no_code_page_claim",
+    }
+    return png, atlas_evidence
