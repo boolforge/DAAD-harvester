@@ -54,12 +54,18 @@ def fetch_json(url: str, timeout: int = 20) -> dict[str, Any]:
 
 def matching_direct_files(candidate: dict[str, Any]) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     title = candidate["title"]
-    query = quote(f'title:("{title}") AND mediatype:software', safe="")
-    search_url = f"https://archive.org/advancedsearch.php?q={query}&fl[]=identifier&fl[]=title&rows=20&page=1&output=json"
-    payload = fetch_json(search_url)
+    queries = (f'title:("{title}")', f"title:({title})")
+    documents: dict[str, dict[str, Any]] = {}
+    for query in queries:
+        search_url = f"https://archive.org/advancedsearch.php?q={quote(query, safe='')}&fl[]=identifier&fl[]=title&rows=50&page=1&output=json"
+        payload = fetch_json(search_url)
+        for item in (payload.get("response") or {}).get("docs") or []:
+            identifier = str(item.get("identifier") or "")
+            if identifier:
+                documents.setdefault(identifier, item)
     boundary_matches: list[dict[str, str]] = []
     title_only_matches: list[dict[str, str]] = []
-    for item in (payload.get("response") or {}).get("docs") or []:
+    for item in documents.values():
         identifier = str(item.get("identifier") or "")
         archive_title = str(item.get("title") or "")
         if not identifier or not archive_title_matches(title, archive_title, str(candidate["publisher"])):

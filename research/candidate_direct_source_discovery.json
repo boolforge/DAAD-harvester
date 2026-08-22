@@ -1,8 +1,8 @@
 {
   "authorization_policy": "research/acquisition_policy.json",
   "candidate_queue": "research/authorized_acquisition_queue.json",
-  "generated_at_epoch": 1787362901,
-  "input_candidate_count": 48,
+  "generated_at_epoch": 1787363642,
+  "input_candidate_count": 43,
   "purpose": "Direct Internet Archive source discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
   "records": [
     {
@@ -10,9 +10,100 @@
       "language": "English",
       "matches": [],
       "publisher": "Pension Productions",
-      "status": "no_exact_source_match",
+      "status": "title_only_source_match",
       "title": "After the Dark",
-      "title_only_matches": [],
+      "title_only_matches": [
+        {
+          "archive_md5": "bcad3ce30488eb549a27b3fb780b0b05",
+          "archive_sha1": "ab7eb3be2d89a26be1e2c1d846599729db01f171",
+          "filename": "afterdark00coll_0.cdx.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0.cdx.gz"
+        },
+        {
+          "archive_md5": "efd335d6c363eee3a28f936551c0bcb1",
+          "archive_sha1": "20209e8176327310c59c2db5a704d1eee9a1a1e7",
+          "filename": "afterdark00coll_0.warc.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0.warc.gz"
+        },
+        {
+          "archive_md5": "9ed5cfa84be62d0aae5f429af3208708",
+          "archive_sha1": "2566685c29a8557e69bc4c4b8d1aac02974bf6ad",
+          "filename": "afterdark00coll_0.warc.os.cdx.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0.warc.os.cdx.gz"
+        },
+        {
+          "archive_md5": "d06757f75c95e7ac34ae3d190f7f8565",
+          "archive_sha1": "8dd03a947409b6244e5decc47bf648d2b5daaac8",
+          "filename": "afterdark00coll_0_abbyy.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_abbyy.gz"
+        },
+        {
+          "archive_md5": "8444b592d210fdc383c345994b5e05c4",
+          "archive_sha1": "4039d5360054712d6301b5d0b9f8342ff4e0dc2f",
+          "filename": "afterdark00coll_0_chocr.html.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_chocr.html.gz"
+        },
+        {
+          "archive_md5": "81fe8439735685d16f7ac34482341239",
+          "archive_sha1": "28711cad19b59634df42d81a6a94c6629a4d54fe",
+          "filename": "afterdark00coll_0_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "d777361f992585f2bc917138e5024b33",
+          "archive_sha1": "a4892bac334237fe28b98af51fd5c6d37b7217d2",
+          "filename": "afterdark00coll_0_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "775b4790bdbebad77d307cd2bccca4c6",
+          "archive_sha1": "6b3942276d6101b25d85522161da69962dd6e493",
+          "filename": "afterdark00coll_0_jp2.zip",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_jp2.zip"
+        },
+        {
+          "archive_md5": "d2157658a79f37930bb409780b6d0fcb",
+          "archive_sha1": "035bd7306aada2820873cdb21ed90b93cc157507",
+          "filename": "afterdark00coll_0_orig_jp2.tar",
+          "release_boundary_evidence": "afterdark00coll_0 After the dark Max Allan Collins Ballantine Books  2003  afterdark00coll_0",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/afterdark00coll_0",
+          "source_release_id": "afterdark00coll_0",
+          "source_url": "https://archive.org/download/afterdark00coll_0/afterdark00coll_0_orig_jp2.tar"
+        }
+      ],
       "year": "2019"
     },
     {
@@ -64,36 +155,6 @@
       "title": "Barry Basic and the Quest For The Perfect Port",
       "title_only_matches": [],
       "year": "2020"
-    },
-    {
-      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_exact_source_match",
-      "title": "Behind Closed Doors 2: The Sequel",
-      "title_only_matches": [],
-      "year": "1988"
-    },
-    {
-      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_exact_source_match",
-      "title": "Behind Closed Doors 3: Revenge of the Ants",
-      "title_only_matches": [],
-      "year": "1989"
-    },
-    {
-      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_exact_source_match",
-      "title": "Behind Closed Doors 4: Balrog's Day Out",
-      "title_only_matches": [],
-      "year": "1994"
     },
     {
       "candidate_key": "behind closed doors 5|pension productions|2019|english",
@@ -156,16 +217,6 @@
       "year": "2019"
     },
     {
-      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_exact_source_match",
-      "title": "Bulbo and the Lizard-King",
-      "title_only_matches": [],
-      "year": "1987"
-    },
-    {
       "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
       "language": "English",
       "matches": [],
@@ -200,9 +251,150 @@
       "language": "Spanish",
       "matches": [],
       "publisher": "ESP Soft",
-      "status": "no_exact_source_match",
+      "status": "title_only_source_match",
       "title": "Cero Absoluto",
-      "title_only_matches": [],
+      "title_only_matches": [
+        {
+          "archive_md5": "732fa5853fcdc737b5854d9435c9e48c",
+          "archive_sha1": "c715509ed4e15d71b95870263b225370a3e66122",
+          "filename": "Cero absoluto_chocr.html.gz",
+          "release_boundary_evidence": "cero-absoluto Cero Absoluto     Cero Absoluto cero-absoluto",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/cero-absoluto",
+          "source_release_id": "cero-absoluto",
+          "source_url": "https://archive.org/download/cero-absoluto/Cero%20absoluto_chocr.html.gz"
+        },
+        {
+          "archive_md5": "8e26690dc3b90239d7f20d6d50e46976",
+          "archive_sha1": "aeda3d640723c84f59a21ff074b3b5bd1128bb29",
+          "filename": "Cero absoluto_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "cero-absoluto Cero Absoluto     Cero Absoluto cero-absoluto",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/cero-absoluto",
+          "source_release_id": "cero-absoluto",
+          "source_url": "https://archive.org/download/cero-absoluto/Cero%20absoluto_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "969d56ddb99fb0f4c80051be69709218",
+          "archive_sha1": "39fa5bcc1eba25ba3672ac25b1857446aaadfdd8",
+          "filename": "Cero absoluto_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "cero-absoluto Cero Absoluto     Cero Absoluto cero-absoluto",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/cero-absoluto",
+          "source_release_id": "cero-absoluto",
+          "source_url": "https://archive.org/download/cero-absoluto/Cero%20absoluto_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "ce81eb537624b6aa2eb020a14d4fb241",
+          "archive_sha1": "3b9a36c0373a17b5108bf7c0fd44f7dce4118e08",
+          "filename": "Cero absoluto_jp2.zip",
+          "release_boundary_evidence": "cero-absoluto Cero Absoluto     Cero Absoluto cero-absoluto",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/cero-absoluto",
+          "source_release_id": "cero-absoluto",
+          "source_url": "https://archive.org/download/cero-absoluto/Cero%20absoluto_jp2.zip"
+        },
+        {
+          "archive_md5": "07fd90de5e47d261dc8ec3aed23e0104",
+          "archive_sha1": "0dd5bcd2442f0a75a515b028362aa8f4dd2b4ff4",
+          "filename": "ceroabsoluto0000fols_chocr.html.gz",
+          "release_boundary_evidence": "ceroabsoluto0000fols Cero absoluto Folsom, Allan Barcelona : Byblos  2005 ['836 pages ; 18 cm', 'Spanish translation of \"The day after tomorrow\". In Paris, an American doctor spots the man who murdered his father and he tries to kill him. Thus begins a tale of international intrigue, the villains of which are Nazi survivors of World War II, plotting to take over the world'] ceroabsoluto0000fols",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/ceroabsoluto0000fols",
+          "source_release_id": "ceroabsoluto0000fols",
+          "source_url": "https://archive.org/download/ceroabsoluto0000fols/ceroabsoluto0000fols_chocr.html.gz"
+        },
+        {
+          "archive_md5": "bacb9e4fa87855efe1564ab2fe9ba78e",
+          "archive_sha1": "27bd80e4704f9a43b01ddd2ae1a34e1d4d2f915e",
+          "filename": "ceroabsoluto0000fols_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "ceroabsoluto0000fols Cero absoluto Folsom, Allan Barcelona : Byblos  2005 ['836 pages ; 18 cm', 'Spanish translation of \"The day after tomorrow\". In Paris, an American doctor spots the man who murdered his father and he tries to kill him. Thus begins a tale of international intrigue, the villains of which are Nazi survivors of World War II, plotting to take over the world'] ceroabsoluto0000fols",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/ceroabsoluto0000fols",
+          "source_release_id": "ceroabsoluto0000fols",
+          "source_url": "https://archive.org/download/ceroabsoluto0000fols/ceroabsoluto0000fols_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "369950c843b16dbc77732fc1ba21b777",
+          "archive_sha1": "5fd29a961b4c5009b6c30475488cc9953a49ada0",
+          "filename": "ceroabsoluto0000fols_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "ceroabsoluto0000fols Cero absoluto Folsom, Allan Barcelona : Byblos  2005 ['836 pages ; 18 cm', 'Spanish translation of \"The day after tomorrow\". In Paris, an American doctor spots the man who murdered his father and he tries to kill him. Thus begins a tale of international intrigue, the villains of which are Nazi survivors of World War II, plotting to take over the world'] ceroabsoluto0000fols",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/ceroabsoluto0000fols",
+          "source_release_id": "ceroabsoluto0000fols",
+          "source_url": "https://archive.org/download/ceroabsoluto0000fols/ceroabsoluto0000fols_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "f372b5289bca0e8d9b674c6d7250c54d",
+          "archive_sha1": "28146bfa8f4db297c4c7dea0d5fdc49c39264554",
+          "filename": "ceroabsoluto0000fols_jp2.zip",
+          "release_boundary_evidence": "ceroabsoluto0000fols Cero absoluto Folsom, Allan Barcelona : Byblos  2005 ['836 pages ; 18 cm', 'Spanish translation of \"The day after tomorrow\". In Paris, an American doctor spots the man who murdered his father and he tries to kill him. Thus begins a tale of international intrigue, the villains of which are Nazi survivors of World War II, plotting to take over the world'] ceroabsoluto0000fols",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/ceroabsoluto0000fols",
+          "source_release_id": "ceroabsoluto0000fols",
+          "source_url": "https://archive.org/download/ceroabsoluto0000fols/ceroabsoluto0000fols_jp2.zip"
+        },
+        {
+          "archive_md5": "c0ea72e93faa9b0eaaa239adcd2569ab",
+          "archive_sha1": "483d9455639368e43292a8305d3644d8dd13d3aa",
+          "filename": "ceroabsoluto0000fols_orig_jp2.tar",
+          "release_boundary_evidence": "ceroabsoluto0000fols Cero absoluto Folsom, Allan Barcelona : Byblos  2005 ['836 pages ; 18 cm', 'Spanish translation of \"The day after tomorrow\". In Paris, an American doctor spots the man who murdered his father and he tries to kill him. Thus begins a tale of international intrigue, the villains of which are Nazi survivors of World War II, plotting to take over the world'] ceroabsoluto0000fols",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/ceroabsoluto0000fols",
+          "source_release_id": "ceroabsoluto0000fols",
+          "source_url": "https://archive.org/download/ceroabsoluto0000fols/ceroabsoluto0000fols_orig_jp2.tar"
+        },
+        {
+          "archive_md5": "751cbdbbfc02f096e12d28f43cdd7b83",
+          "archive_sha1": "5f9f632582022a365df5d4925e7639643f468412",
+          "filename": "isbn_9788492429141_chocr.html.gz",
+          "release_boundary_evidence": "isbn_9788492429141 Cero Absoluto Allan Folsom Roca  2008-04-01  isbn_9788492429141",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9788492429141",
+          "source_release_id": "isbn_9788492429141",
+          "source_url": "https://archive.org/download/isbn_9788492429141/isbn_9788492429141_chocr.html.gz"
+        },
+        {
+          "archive_md5": "c7194ce4772971ec20dcd8ca14e56331",
+          "archive_sha1": "0ecb37b848fbb17d7eff4d6c795506c50e88da5a",
+          "filename": "isbn_9788492429141_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "isbn_9788492429141 Cero Absoluto Allan Folsom Roca  2008-04-01  isbn_9788492429141",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9788492429141",
+          "source_release_id": "isbn_9788492429141",
+          "source_url": "https://archive.org/download/isbn_9788492429141/isbn_9788492429141_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "dd9e226e4cf3d5ce7529e246d7d4cc4d",
+          "archive_sha1": "364b18af7f01cc5c8bc1dce3668888b74ad5273b",
+          "filename": "isbn_9788492429141_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "isbn_9788492429141 Cero Absoluto Allan Folsom Roca  2008-04-01  isbn_9788492429141",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9788492429141",
+          "source_release_id": "isbn_9788492429141",
+          "source_url": "https://archive.org/download/isbn_9788492429141/isbn_9788492429141_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "50c9434eb750cfdf1329e3a6e3eb4a75",
+          "archive_sha1": "c84bcfe426e0fd2ffbf8998a94b9a444d2493826",
+          "filename": "isbn_9788492429141_jp2.zip",
+          "release_boundary_evidence": "isbn_9788492429141 Cero Absoluto Allan Folsom Roca  2008-04-01  isbn_9788492429141",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9788492429141",
+          "source_release_id": "isbn_9788492429141",
+          "source_url": "https://archive.org/download/isbn_9788492429141/isbn_9788492429141_jp2.zip"
+        },
+        {
+          "archive_md5": "b14356eb8fb3dad3006a86af4e10e053",
+          "archive_sha1": "41a5360ed57a32dfa38d72f170160d3f2e7c0a77",
+          "filename": "isbn_9788492429141_orig_jp2.tar",
+          "release_boundary_evidence": "isbn_9788492429141 Cero Absoluto Allan Folsom Roca  2008-04-01  isbn_9788492429141",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9788492429141",
+          "source_release_id": "isbn_9788492429141",
+          "source_url": "https://archive.org/download/isbn_9788492429141/isbn_9788492429141_orig_jp2.tar"
+        }
+      ],
       "year": "2016"
     },
     {
@@ -320,9 +512,230 @@
       "language": "English",
       "matches": [],
       "publisher": "8bitAG",
-      "status": "no_exact_source_match",
+      "status": "title_only_source_match",
       "title": "Dream Walker",
-      "title_only_matches": [],
+      "title_only_matches": [
+        {
+          "archive_md5": "3b08d0aba12464df1c78a9009b48322a",
+          "archive_sha1": "b5a8f8351da6bcde4d844094fd1e892e2192f5cc",
+          "filename": "dreamwalker0000andr_chocr.html.gz",
+          "release_boundary_evidence": "dreamwalker0000andr Dream Walker Andrew C., II Turner Lifebridge  July 30, 2006  dreamwalker0000andr",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000andr",
+          "source_release_id": "dreamwalker0000andr",
+          "source_url": "https://archive.org/download/dreamwalker0000andr/dreamwalker0000andr_chocr.html.gz"
+        },
+        {
+          "archive_md5": "334ed5d4386ba59e4d51413a2b8addf9",
+          "archive_sha1": "4ca521b04249a916f5e0afd0907c5535f546a87e",
+          "filename": "dreamwalker0000andr_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "dreamwalker0000andr Dream Walker Andrew C., II Turner Lifebridge  July 30, 2006  dreamwalker0000andr",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000andr",
+          "source_release_id": "dreamwalker0000andr",
+          "source_url": "https://archive.org/download/dreamwalker0000andr/dreamwalker0000andr_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "cda9320a3887d64b56f52a4895e25af5",
+          "archive_sha1": "2887357d126d411d2bb996890fe8b277d4271ae0",
+          "filename": "dreamwalker0000andr_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "dreamwalker0000andr Dream Walker Andrew C., II Turner Lifebridge  July 30, 2006  dreamwalker0000andr",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000andr",
+          "source_release_id": "dreamwalker0000andr",
+          "source_url": "https://archive.org/download/dreamwalker0000andr/dreamwalker0000andr_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "651de85cca3b43b5369745ba342a0502",
+          "archive_sha1": "1d91147f301771dbe69309c69b8c56ca828cdf42",
+          "filename": "dreamwalker0000andr_jp2.zip",
+          "release_boundary_evidence": "dreamwalker0000andr Dream Walker Andrew C., II Turner Lifebridge  July 30, 2006  dreamwalker0000andr",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000andr",
+          "source_release_id": "dreamwalker0000andr",
+          "source_url": "https://archive.org/download/dreamwalker0000andr/dreamwalker0000andr_jp2.zip"
+        },
+        {
+          "archive_md5": "3474fdd2afe35836ba1e44daba054ef8",
+          "archive_sha1": "12c13a9c08f75110d6607f64819111577a9d41ba",
+          "filename": "dreamwalker0000andr_orig_jp2.tar",
+          "release_boundary_evidence": "dreamwalker0000andr Dream Walker Andrew C., II Turner Lifebridge  July 30, 2006  dreamwalker0000andr",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000andr",
+          "source_release_id": "dreamwalker0000andr",
+          "source_url": "https://archive.org/download/dreamwalker0000andr/dreamwalker0000andr_orig_jp2.tar"
+        },
+        {
+          "archive_md5": "6dbc72e6758b8dae2364a4bdf480d5b7",
+          "archive_sha1": "337efc1a6a1e865e76b7b3290e68748dfcb3aa02",
+          "filename": "dreamwalker0000mart_abbyy.gz",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_abbyy.gz"
+        },
+        {
+          "archive_md5": "f92f682c55c6452fc3f475f4fdba6d56",
+          "archive_sha1": "03cf94435480eb816fb2190abe3a709fc8cd2d25",
+          "filename": "dreamwalker0000mart_chocr.html.gz",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_chocr.html.gz"
+        },
+        {
+          "archive_md5": "f666be38f45ec27b46ffd3902635db3d",
+          "archive_sha1": "7f100bf0c98bebc393728844a0a27dd76f94ba94",
+          "filename": "dreamwalker0000mart_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "8d8248a02d61d407619cfc3b2bcedfa0",
+          "archive_sha1": "fc8fb1cfe5c0fb8e08f71f28f1d761a75de7a633",
+          "filename": "dreamwalker0000mart_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "c6399ae9674a147c9dfbe78ba00974b6",
+          "archive_sha1": "e81f31c7294a57256fd21559eded9fc5681af7e8",
+          "filename": "dreamwalker0000mart_jp2.zip",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_jp2.zip"
+        },
+        {
+          "archive_md5": "e6fa80ba5348dfa7318fe27066a1593a",
+          "archive_sha1": "3644bc913b7e97c319b762109330a8fc1f9cf8d1",
+          "filename": "dreamwalker0000mart_orig_jp2.tar",
+          "release_boundary_evidence": "dreamwalker0000mart Dream walker Marten, Jacqueline New York : Pocket Books  1987 440 pages ; 18 cm dreamwalker0000mart",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart",
+          "source_release_id": "dreamwalker0000mart",
+          "source_url": "https://archive.org/download/dreamwalker0000mart/dreamwalker0000mart_orig_jp2.tar"
+        },
+        {
+          "archive_md5": "d8deafe968c5a52c9ea2218d634ba974",
+          "archive_sha1": "03113dc3c12c5c6ccd64b6de798d14fd4dc53a7c",
+          "filename": "dreamwalker0000mart_m1y3_chocr.html.gz",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_chocr.html.gz"
+        },
+        {
+          "archive_md5": "f42dc8ea1ff6e330242932e4e9adb5c1",
+          "archive_sha1": "edca056ee9edb7f226e3a6f8e930b50925bd57fb",
+          "filename": "dreamwalker0000mart_m1y3_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "6e3b90ec1f8f2f22d0b9b12ea515e0de",
+          "archive_sha1": "827d3738395ea035959ec5eed607cdf6f5bfe24d",
+          "filename": "dreamwalker0000mart_m1y3_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "0cbadeb4f66a2e4e464b47b7e55ab5c9",
+          "archive_sha1": "97fe7ce4c502f22c423b3374435da4c0dd784f42",
+          "filename": "dreamwalker0000mart_m1y3_jp2.zip",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_jp2.zip"
+        },
+        {
+          "archive_md5": "fcc6ebccc49fe4783b9e82a7edda395e",
+          "archive_sha1": "9510b9a2b69a807b01d58ca7f68f67b2e6d1f14a",
+          "filename": "dreamwalker0000mart_m1y3_orig_jp2.tar",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_orig_jp2.tar"
+        },
+        {
+          "archive_md5": "fc42f7d5cf0030b199f2d4d90c443f5e",
+          "archive_sha1": "b58020fd39bea73686719e5d30d8ff0668ee7c89",
+          "filename": "dreamwalker0000mart_m1y3_thumb_avif.zip",
+          "release_boundary_evidence": "dreamwalker0000mart_m1y3 Dream walker  Marten, Jacqueline London : Severn House  1988 ['[448] pages ; 23 cm', 'Amaryllis Scott, a young artist, falls in love with a man she is convinced is the reincarnation of Captain Henry Bayard de Croix, who was her lover during the Revolutionary War'] dreamwalker0000mart_m1y3",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/dreamwalker0000mart_m1y3",
+          "source_release_id": "dreamwalker0000mart_m1y3",
+          "source_url": "https://archive.org/download/dreamwalker0000mart_m1y3/dreamwalker0000mart_m1y3_thumb_avif.zip"
+        },
+        {
+          "archive_md5": "ab6b3e1fc44598d9dec76f6977373a68",
+          "archive_sha1": "3b93c3d8f2179059ded0df5653f9853ed8cf2ddd",
+          "filename": "isbn_9781479174638_chocr.html.gz",
+          "release_boundary_evidence": "isbn_9781479174638 Dream Walker Marlene Pierce Gierbolini CreateSpace Independent Publishing Platform  2012-10-02  isbn_9781479174638",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9781479174638",
+          "source_release_id": "isbn_9781479174638",
+          "source_url": "https://archive.org/download/isbn_9781479174638/isbn_9781479174638_chocr.html.gz"
+        },
+        {
+          "archive_md5": "8c15620093925a4a87b7ab379d251cc0",
+          "archive_sha1": "f9a7e5aef7eb7b55634cc3a53ff7be8a20291fcc",
+          "filename": "isbn_9781479174638_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "isbn_9781479174638 Dream Walker Marlene Pierce Gierbolini CreateSpace Independent Publishing Platform  2012-10-02  isbn_9781479174638",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9781479174638",
+          "source_release_id": "isbn_9781479174638",
+          "source_url": "https://archive.org/download/isbn_9781479174638/isbn_9781479174638_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "69d48f4e308b3811b45466b27909f104",
+          "archive_sha1": "f1c005b1e0a86cab6fd4985aaf5b87f165c7fc04",
+          "filename": "isbn_9781479174638_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "isbn_9781479174638 Dream Walker Marlene Pierce Gierbolini CreateSpace Independent Publishing Platform  2012-10-02  isbn_9781479174638",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9781479174638",
+          "source_release_id": "isbn_9781479174638",
+          "source_url": "https://archive.org/download/isbn_9781479174638/isbn_9781479174638_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "a350c2ccfb52ab89f6ba040aaa872e3e",
+          "archive_sha1": "5206179e3913dad57dfc37180fe4eb2e8bad1d1e",
+          "filename": "isbn_9781479174638_jp2.zip",
+          "release_boundary_evidence": "isbn_9781479174638 Dream Walker Marlene Pierce Gierbolini CreateSpace Independent Publishing Platform  2012-10-02  isbn_9781479174638",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9781479174638",
+          "source_release_id": "isbn_9781479174638",
+          "source_url": "https://archive.org/download/isbn_9781479174638/isbn_9781479174638_jp2.zip"
+        },
+        {
+          "archive_md5": "19a14bf04799cca7f7e6ae836f85335c",
+          "archive_sha1": "ee9f8feffdac16c17272269ead37193e79b83ba4",
+          "filename": "isbn_9781479174638_orig_jp2.tar",
+          "release_boundary_evidence": "isbn_9781479174638 Dream Walker Marlene Pierce Gierbolini CreateSpace Independent Publishing Platform  2012-10-02  isbn_9781479174638",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/isbn_9781479174638",
+          "source_release_id": "isbn_9781479174638",
+          "source_url": "https://archive.org/download/isbn_9781479174638/isbn_9781479174638_orig_jp2.tar"
+        }
+      ],
       "year": "2021"
     },
     {
@@ -434,37 +847,67 @@
       "title": "Framed!",
       "title_only_matches": [
         {
-          "archive_md5": "f05d03a76d0d5c6a068d45c5f34993c4",
-          "archive_sha1": "4bcbf04e286032830ea0cfebe485b9f81e4f5aca",
-          "filename": "framed.zip",
-          "release_boundary_evidence": "framed-2004 Framed zooomer1990  2004 2004-02-12 AGS Database page: <a href=\"http://www.adventuregamestudio.co.uk/site/games/game/349/\" rel=\"nofollow\">http://www.adventuregamestudio.co.uk/site/games/game/349/</a> framed-2004",
+          "archive_md5": "562adeb46b1b9ee46023bedcf0a55f38",
+          "archive_sha1": "60004f3afd594197c23b446e508df52db1a965ec",
+          "filename": "framed0000pont_abbyy.gz",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
           "release_boundary_match": false,
-          "source_record_url": "https://archive.org/metadata/framed-2004",
-          "source_release_id": "framed-2004",
-          "source_url": "https://archive.org/download/framed-2004/framed.zip"
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_abbyy.gz"
         },
         {
-          "archive_md5": "ac2e99ac42987e83b71cc97f8f0254de",
-          "archive_sha1": "5b0ea06e15d94bdfeafdde51aa63dbe965b9cf2d",
-          "filename": "framed.zip",
-          "release_boundary_evidence": "framed_202004 Framed     Framed framed_202004",
+          "archive_md5": "f7384badb77295877a668cc1a506a503",
+          "archive_sha1": "5128649aafc6dad83fb7f8535c9c01f74c472f86",
+          "filename": "framed0000pont_chocr.html.gz",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
           "release_boundary_match": false,
-          "source_record_url": "https://archive.org/metadata/framed_202004",
-          "source_release_id": "framed_202004",
-          "source_url": "https://archive.org/download/framed_202004/framed.zip"
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_chocr.html.gz"
+        },
+        {
+          "archive_md5": "aabdbd61c291ff7a5a6d3900880e8c3e",
+          "archive_sha1": "0b00140c778655685bf4648a00dd3c1c554186bd",
+          "filename": "framed0000pont_hocr_pageindex.json.gz",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_hocr_pageindex.json.gz"
+        },
+        {
+          "archive_md5": "1e221f282c48071d2faabd4b0d961e68",
+          "archive_sha1": "0329f2d9f26306faa3d481ae17daaff609c319cb",
+          "filename": "framed0000pont_hocr_searchtext.txt.gz",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_hocr_searchtext.txt.gz"
+        },
+        {
+          "archive_md5": "9bb0eee5dc3b745be77d163aca1580b8",
+          "archive_sha1": "d0f33867c7a326cef37c7f521d98d97a2ae8e068",
+          "filename": "framed0000pont_jp2.zip",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_jp2.zip"
+        },
+        {
+          "archive_md5": "4ca79408af5aa9bd0974479684cd6e9f",
+          "archive_sha1": "3e9b6f372cbaf0432cf9363052335a26b8467fcd",
+          "filename": "framed0000pont_orig_jp2.tar",
+          "release_boundary_evidence": "framed0000pont Framed! Ponti, James New York : Simon & Schuster  2016 ['292 p. ; 22 cm', 'So you re only halfway through your homework and the Director of the FBI keeps texting you for help What do you do? Save your grade? Or save the country? If you re Florian Bates, you figure out a way to do both', '567', '680'] framed0000pont",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed0000pont",
+          "source_release_id": "framed0000pont",
+          "source_url": "https://archive.org/download/framed0000pont/framed0000pont_orig_jp2.tar"
         }
       ],
       "year": "2024"
-    },
-    {
-      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_exact_source_match",
-      "title": "From out of a Dark Night Sky",
-      "title_only_matches": [],
-      "year": "1989"
     },
     {
       "candidate_key": "from out of the snow|pension productions|2019|english",
@@ -509,5 +952,5 @@
   ],
   "release_boundary_source_candidate_count": 0,
   "schema_version": 1,
-  "title_only_source_candidate_count": 1
+  "title_only_source_candidate_count": 4
 }
