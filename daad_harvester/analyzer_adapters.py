@@ -7,6 +7,7 @@ load model, execute a retained binary, or turn tool output into recovered source
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -14,14 +15,17 @@ from typing import Any
 
 
 CATALOG_SCHEMA_VERSION = 1
+GHIDRA_HEALTH_SCHEMA_VERSION = 1
 CONFIGURED = "configured"
 CANDIDATE = "candidate"
 VALID_STATES = frozenset({CONFIGURED, CANDIDATE})
 VALID_ROLES = frozenset({"structured_analysis", "control_flow_analysis", "static_disassembly"})
 VALID_RUNNERS = frozenset({"ghidra_headless_binary", "radare2_static", "architecture_static", "external_candidate"})
 VALID_ADMISSION_STATES = frozenset({"discovery", "health_checked", "blocked_by_load_model"})
+VALID_GHIDRA_HOST_STATUSES = frozenset({"health_checked", "documented_unchecked", "blocked"})
 COMMENTARY_LAYERS = ("bytes", "decoded_instructions", "tool_hypotheses", "evidenced_behavior")
 _ADAPTER_ID = re.compile(r"^[a-z0-9][a-z0-9-]*-v[1-9][0-9]*$")
+_SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
 class AdapterCatalogError(ValueError):
@@ -205,3 +209,100 @@ def load_candidate_matrix(path: Path) -> dict[str, Any]:
         raise AdapterCatalogError("candidate matrix: top level must be a mapping")
     validate_candidate_matrix(matrix)
     return matrix
+
+
+def validate_ghidra_headless_health(health: dict[str, Any], workflow: dict[str, Any]) -> None:
+    """Validate a controlled-fixture Ghidra health record without authorizing analysis."""
+
+    if health.get("schema_version") != GHIDRA_HEALTH_SCHEMA_VERSION:
+        raise AdapterCatalogError("Ghidra health: unsupported schema_version")
+    _require_string(health, "purpose", "Ghidra health")
+    _require_string(health, "non_claim", "Ghidra health")
+    tool = health.get("tool")
+    if not isinstance(tool, dict):
+        raise AdapterCatalogError("Ghidra health: tool must be a mapping")
+    if _require_string(tool, "name", "Ghidra health") != "Ghidra":
+        raise AdapterCatalogError("Ghidra health: tool name must be Ghidra")
+    _require_string(tool, "version", "Ghidra health")
+    _require_string(tool, "release_url", "Ghidra health")
+    if not _SHA256.fullmatch(_require_string(tool, "release_sha256", "Ghidra health")):
+        raise AdapterCatalogError("Ghidra health: release_sha256 must be a lowercase SHA-256")
+
+    export_script = health.get("export_script")
+    if not isinstance(export_script, dict):
+        raise AdapterCatalogError("Ghidra health: export_script must be a mapping")
+    _require_string(export_script, "relative_path", "Ghidra health")
+    if not _SHA256.fullmatch(_require_string(export_script, "sha256", "Ghidra health")):
+        raise AdapterCatalogError("Ghidra health: export_script SHA-256 must be lowercase")
+
+    profiles = health.get("processor_profiles")
+    if not isinstance(profiles, list) or not profiles:
+        raise AdapterCatalogError("Ghidra health: processor_profiles must be a non-empty list")
+    observed_architectures: set[str] = set()
+    for profile in profiles:
+        if not isinstance(profile, dict):
+            raise AdapterCatalogError("Ghidra health: every processor profile must be a mapping")
+        architectures = _require_string_list(profile, "architectures", "Ghidra processor profile")
+        for architecture in architectures:
+            if architecture in observed_architectures:
+                raise AdapterCatalogError(f"Ghidra health: duplicate architecture {architecture!r}")
+            config = workflow.get("architectures", {}).get(architecture)
+            if not isinstance(config, dict):
+                raise AdapterCatalogError(f"Ghidra health: unknown workflow architecture {architecture!r}")
+            if _require_string(profile, "ghidra_language", "Ghidra processor profile") != config.get("ghidra_language"):
+                raise AdapterCatalogError(f"Ghidra health: language does not match toolchain for {architecture}")
+            observed_architectures.add(architecture)
+        fixture_hex = _require_string(profile, "fixture_hex", "Ghidra processor profile")
+        try:
+            fixture = bytes.fromhex(fixture_hex)
+        except ValueError as exc:
+            raise AdapterCatalogError("Ghidra health: fixture_hex must be hexadecimal") from exc
+        if not fixture:
+            raise AdapterCatalogError("Ghidra health: fixture_hex must not be empty")
+        fixture_sha256 = _require_string(profile, "fixture_sha256", "Ghidra processor profile")
+        if hashlib.sha256(fixture).hexdigest() != fixture_sha256:
+            raise AdapterCatalogError("Ghidra health: fixture SHA-256 does not match fixture_hex")
+        exports = profile.get("deterministic_exports")
+        if not isinstance(exports, dict) or set(exports) != {
+            "ghidra-listing.txt", "ghidra-functions.tsv", "ghidra-decompilation.c", "ghidra-metadata.json"
+        }:
+            raise AdapterCatalogError("Ghidra health: deterministic export inventory is incomplete")
+        if any(not isinstance(value, str) or not _SHA256.fullmatch(value) for value in exports.values()):
+            raise AdapterCatalogError("Ghidra health: deterministic export hashes must be lowercase SHA-256 values")
+        if profile.get("repeat_exports_byte_identical") is not True:
+            raise AdapterCatalogError("Ghidra health: fixture record must state repeat export comparison")
+
+    workflow_architectures = set(workflow.get("architectures", {}))
+    if observed_architectures != workflow_architectures:
+        raise AdapterCatalogError("Ghidra health: processor profiles must cover each workflow architecture exactly once")
+
+    hosts = health.get("host_profiles")
+    if not isinstance(hosts, list) or not hosts:
+        raise AdapterCatalogError("Ghidra health: host_profiles must be a non-empty list")
+    host_ids: set[str] = set()
+    for host in hosts:
+        if not isinstance(host, dict):
+            raise AdapterCatalogError("Ghidra health: every host profile must be a mapping")
+        host_id = _require_string(host, "host_id", "Ghidra host profile")
+        if host_id in host_ids:
+            raise AdapterCatalogError(f"Ghidra health: duplicate host_id {host_id!r}")
+        host_ids.add(host_id)
+        if _require_string(host, "status", host_id) not in VALID_GHIDRA_HOST_STATUSES:
+            raise AdapterCatalogError(f"Ghidra health: unknown host status for {host_id}")
+        _require_string(host, "platform", host_id)
+        _require_string(host, "headless_launcher", host_id)
+        _require_string_list(host, "prerequisites", host_id)
+        _require_string(host, "boundary", host_id)
+
+
+def load_ghidra_headless_health(path: Path, workflow: dict[str, Any]) -> dict[str, Any]:
+    """Load the controlled-fixture Ghidra health record and validate its boundaries."""
+
+    try:
+        health = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise AdapterCatalogError(f"Ghidra health: invalid JSON: {exc.msg}") from exc
+    if not isinstance(health, dict):
+        raise AdapterCatalogError("Ghidra health: top level must be a mapping")
+    validate_ghidra_headless_health(health, workflow)
+    return health

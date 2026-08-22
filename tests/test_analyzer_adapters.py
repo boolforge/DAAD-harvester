@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_adapters.json"
 TOOLCHAIN_PATH = ROOT / "reverse_engineering" / "workflows" / "toolchain.json"
 CANDIDATE_MATRIX_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_candidate_matrix.json"
+GHIDRA_HEALTH_PATH = ROOT / "reverse_engineering" / "workflows" / "ghidra_headless_health.json"
 
 
 def _catalog() -> dict:
@@ -144,3 +145,29 @@ def test_candidate_matrix_rejects_an_unconfigured_executable_candidate() -> None
 
     with pytest.raises(analyzer_adapters.AdapterCatalogError, match="must not be execution eligible"):
         analyzer_adapters.validate_candidate_matrix(matrix)
+
+
+def test_ghidra_headless_health_covers_each_configured_architecture_without_authorizing_retained_inputs() -> None:
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+
+    assert health["tool"]["version"] == "12.1.3"
+    assert {architecture for profile in health["processor_profiles"] for architecture in profile["architectures"]} == set(_toolchain()["architectures"])
+    assert all(profile["repeat_exports_byte_identical"] is True for profile in health["processor_profiles"])
+    assert all(host["status"] != "health_checked" for host in health["host_profiles"] if host["platform"].startswith("Windows"))
+    assert "not recovered source" in health["non_claim"]
+
+
+def test_ghidra_headless_health_rejects_a_processor_language_that_drifted_from_the_toolchain() -> None:
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["ghidra_language"] = "wrong:LE:16:default"
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="language does not match toolchain"):
+        analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
+
+
+def test_ghidra_headless_health_rejects_a_fixture_hash_mismatch() -> None:
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["fixture_sha256"] = "0" * 64
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="fixture SHA-256"):
+        analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "purpose": "Controlled-fixture, host-scoped health evidence for the configured Ghidra structured-analysis adapter. This record validates only the stated executable, processor bindings, export script, and fixture exports; it does not authorize retained-byte analysis.",
+  "tool": {
+    "name": "Ghidra",
+    "version": "12.1.3",
+    "release_url": "https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.3_build",
+    "release_sha256": "93a5d11a9ad510622acaaf908c556a7b9b764d338e78a7567f3689bf5081fd54"
+  },
+  "export_script": {
+    "relative_path": "reverse_engineering/tools/ghidra/ExportDAADAnalysis.java",
+    "sha256": "3d7e9911236aefecab1573c6585fe14f1d5a308c48ee29a03ac2299f7daa4ce4"
+  },
+  "processor_profiles": [
+    {
+      "architectures": ["z80"],
+      "ghidra_language": "z80:LE:16:default",
+      "fixture_hex": "00c9",
+      "fixture_sha256": "4690c1ed14ac5dd2e529dc29c12bc4561caf27c025346c7e81b28597aeeaa533",
+      "deterministic_exports": {
+        "ghidra-listing.txt": "2e46684393beef70eea6bb491b7f36acd9ef6d280b8ad37a2c922e25c83dd985",
+        "ghidra-functions.tsv": "dca1f5768b478ab0cda4385f7b49ad399f04e4a50c2b7a85f451697696b7f217",
+        "ghidra-decompilation.c": "65da85c9ec443a8b10fd6fb06c2dc4942ac3e3c83680e4c4aeb5e7ba0c922baf",
+        "ghidra-metadata.json": "b5005124aa8314f57c4509dd66438bdf1b8369b90db1c68ad002b999ea72e9ed"
+      },
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["mos6502", "mos8501"],
+      "ghidra_language": "6502:LE:16:default",
+      "fixture_hex": "ea60",
+      "fixture_sha256": "c45e396ba1d4efd0ae131ef11e13a3eafabc904f8deb603b394344652b68d8b7",
+      "deterministic_exports": {
+        "ghidra-listing.txt": "8355c31dc94efc0b995a5f138eda9a117a655a70051613bcd0744434ca2d2b54",
+        "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
+        "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ghidra-metadata.json": "521531f6f499e414d5f386489b4d9e9656b28452b1bca1cb735aadee0011a464"
+      },
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["m68000"],
+      "ghidra_language": "68000:BE:32:default",
+      "fixture_hex": "4e714e75",
+      "fixture_sha256": "8e87b3a2dd2cf6b970e38bb62f460570a8a9c6f9a6e7afeedee921e99947b58f",
+      "deterministic_exports": {
+        "ghidra-listing.txt": "dce4e386cf78d20a1a39a5d2f49129448e9421e6a637c40641a97faf088d8191",
+        "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
+        "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ghidra-metadata.json": "c036e443cea89f04a9b308d1dd384deccef552a98b2378ec0eac205f3deb3121"
+      },
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["i8086"],
+      "ghidra_language": "x86:LE:16:Real Mode",
+      "fixture_hex": "90c3",
+      "fixture_sha256": "36565ca5d2854ac584ac1356867f5c575d0f489442f8c8b4b8c391b2246ec1e5",
+      "deterministic_exports": {
+        "ghidra-listing.txt": "0b8b85300b16ac3ae794f11c843a747463bf3709865b9707e3eaa5f1707fa988",
+        "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
+        "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "ghidra-metadata.json": "1991c1ba1b30024d0f3d20ceadde45cc88ac304a839fe385ce60b7630c756504"
+      },
+      "repeat_exports_byte_identical": true
+    }
+  ],
+  "host_profiles": [
+    {
+      "host_id": "linux-x86_64-java-21",
+      "status": "health_checked",
+      "platform": "Linux x86_64",
+      "headless_launcher": "support/analyzeHeadless",
+      "prerequisites": ["Ghidra 12.1.3 extracted release", "Java 21 64-bit JDK on PATH", "writable temporary project and output directories"],
+      "boundary": "The observed Linux host used OpenJDK 21.0.11 and the pinned launcher SHA-256 302880328a0024ee24cfe0326d4d9a61c2237116d95f2e0e0df090f747f95e30. This check does not validate another Linux host, a target operating system, or a retained artifact."
+    },
+    {
+      "host_id": "windows-10-or-later-x86_64",
+      "status": "documented_unchecked",
+      "platform": "Windows 10 or later x86 64-bit",
+      "headless_launcher": "support/analyzeHeadless.bat",
+      "prerequisites": ["Ghidra 12.1.3 extracted release", "Java 21 64-bit JDK available through PATH or JAVA_HOME", "writable temporary project and output directories"],
+      "boundary": "The official release documentation lists this platform and batch launcher, but this repository has not executed this controlled fixture on Windows."
+    },
+    {
+      "host_id": "windows-10-or-later-arm64",
+      "status": "documented_unchecked",
+      "platform": "Windows 10 or later ARM64 using x86 emulation",
+      "headless_launcher": "support/analyzeHeadless.bat",
+      "prerequisites": ["Ghidra 12.1.3 extracted release", "Java 21 64-bit JDK available through PATH or JAVA_HOME", "working x86 emulation and writable temporary project and output directories"],
+      "boundary": "The official release documentation describes native-component support through x86 emulation, but this repository has not executed this controlled fixture on Windows ARM64."
+    }
+  ],
+  "non_claim": "The controlled fixtures prove only repeatable Ghidra export files for the recorded raw base-zero invocation on one Linux host. They are not recovered source, a validated binary origin, a target DOS or Windows execution result, or evidence of runtime behavior."
+}
