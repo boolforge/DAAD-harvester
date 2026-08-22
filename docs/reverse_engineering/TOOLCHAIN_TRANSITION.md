@@ -6,7 +6,7 @@
 | **Evidence scope** | Remote revision audit, committed workflow/toolchain contracts, local command availability/version capture, and retained capability-boundary records. |
 | **Snapshot** | 2026-08-22, synchronized `origin/main` revision `fa06f4d85d3df2f7f49008283e20897dfdbfa876`. |
 | **Measured expansion** | 1,339 changed files since pre-transition revision `d7c8d2`; 89,216 insertions and 9,027 deletions. The largest area is retained corpus/provenance evidence, followed by tests, scripts, research, core modules, documentation, skills, interface, and reverse-engineering records. |
-| **Baseline verification** | The repository-owned environment preflight and all 21 allowlisted evidence, publication, and analysis gates passed after synchronization. |
+| **Baseline verification** | The repository-owned environment preflight and all 21 allowlisted evidence, publication, and analysis gates passed after synchronization; every later correction is rechecked by the complete primary workflow. |
 | **Non-claims** | Synchronization, a passing static gate, or a new analyzer binary does not validate an interpreter load model, decompilation, runtime behavior, or format grammar. |
 
 ## Transition principles
@@ -82,6 +82,29 @@ transition classification, not a blanket approval of every future use.
 
 This classification preserves the useful new code while declining to convert a
 passing implementation test into a broader legal, runtime, or semantic claim.
+
+## Transition reconciliation audit
+
+The finite remote-expansion audit is complete when each synchronized capability
+has a documented adoption state, a focused verification path, and an explicit
+residual boundary. It does not turn the broader preservation roadmap into a
+completed claim. The audit produced the following corrections after the initial
+fast-forward and capability classification.
+
+| Reviewed boundary | Final transition classification | Corrected or verified condition | Residual boundary |
+| --- | --- | --- | --- |
+| Static report export | **Adopted with corrections** | Mutable log tails are excluded deterministically, and library-manifest operational `source_path` values are removed before publishing `report_data.json`. Focused export tests and the committed fixed-timestamp report verify both boundaries. | The report remains a read-only evidence summary, not a live database or local filesystem browser. |
+| Terminal evidence dashboard | **Adopted with contract reconciliation** | The UI contract now reflects the implemented game/port matrix and detection-handoff panels, with real Rich-rendering coverage. | Reversible game/port drill-down and complete per-artifact digest access remain explicit interface backlog, not implied parity. |
+| Scheduler and primary workflow | **Adopted with correction** | Publication gates run as check-only subprocesses from the shared repository root; the documentation no longer claims isolated checkouts. Allowlisted concurrent verification remains separate from ordered shared regeneration. | A green scheduler gate does not promote format, runtime, or source claims. |
+| Corpus, manifests, resources, and bundles | **Adopted** | Focused artifact-path, checksum, inventory/review, public-manifest, regeneration-manifest, and profile-scoped bundle tests passed during final audit. | Inventory and co-residency fields remain provenance evidence, not generic format or runtime semantics. |
+| Acquisition and authorization queue | **Adopted as fail-closed discovery support** | Institutional handling context no longer authorizes a direct binary transfer. Queue selection and downstream transfer planning require independently recorded source-specific authorization; the current 79 catalog candidates are deferred rather than queued. | No new direct download occurs until the exact source/release has a recorded public-license, official-free-download, or permission basis. |
+
+The corresponding atomic deliveries are `3705169` (bounded Spectrum SDG
+validation), `610847e` and `f1dff9f` (static-report contract and path privacy),
+`f6a6972` (terminal contract reconciliation), `768ae1b` (scheduler contract),
+and `2303191` (source-specific acquisition authorization). Each is a small
+correction to the synchronized baseline rather than a replacement of the
+remote expansion.
 
 ## Detailed analysis-writing requirements
 
