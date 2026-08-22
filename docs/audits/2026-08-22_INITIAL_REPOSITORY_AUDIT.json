@@ -261,7 +261,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 408,
+      "declared_test_count": 409,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },

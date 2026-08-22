@@ -4,18 +4,20 @@
 | --- | --- |
 | **Scope** | The two 896-byte `DAAD.FNT` descendants materialized from official R4 source 250. |
 | **Question** | Can either retained file be identified as a complete, natively decodable SINTAC or DAAD font profile? |
-| **Status** | **No generic decoder promoted.** The populated member is a validated AMSDOS container and exact official CPC loader-font byte identity, while the all-`E5` member remains an explicit unrecognized profile. Neither member is compatible with the independently documented FNT3 profile. |
+| **Status** | **No generic decoder promoted.** The populated member is a validated AMSDOS container and exact official CPC loader-font byte identity. The all-`E5` member is an exact R4 byte profile with no promoted font, erased-file, or runtime semantics. Neither member is compatible with the independently documented FNT3 profile. |
 
 ## Retained bytes
 
 | Retained path | Size | SHA-256 | Measured structure | Current boundary |
 | --- | ---: | --- | --- | --- |
-| `preservation_corpus/extracted/depth2_f0f7416a_DAAD.FNT` | 896 | `87a077d1d65c2c1a3fc64c03fd2c3f25431d2c6a7fc36ebf23256b3aa9bf4f07` | Every byte is `E5`. | Retained as an all-`E5` byte sequence; no font, erased-file, or CP/M allocation semantics are promoted from its filename or fill value alone. |
+| `preservation_corpus/extracted/depth2_f0f7416a_DAAD.FNT` | 896 | `87a077d1d65c2c1a3fc64c03fd2c3f25431d2c6a7fc36ebf23256b3aa9bf4f07` | Exact `daad-r4-source250-all-e5-byte-profile`: every byte is `E5`. | The profile records only exact byte identity, fill byte, and repeated-byte count. No font, erased-file, CP/M allocation, target, or runtime semantics are promoted from its filename or fill value alone. |
 | `preservation_corpus/extracted/depth2_dcd3ab68_DAAD.FNT` | 896 | `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a` | Valid AMSDOS binary header: type `0x02`, load address `0x9378`, 768-byte logical/real/stored payload, and matching checksum. Exact byte identity with the official classic CPC loader font is recorded in the CPC FNT dossier.[3] | Native recognition is limited to AMSDOS container validation and exact CPC loader-font identity; glyph mapping, proportional-width semantics, and rendering remain unproven. |
 
 The two byte sequences must remain separate artifacts. Equal filename and equal
 length do not establish equivalent content, platform, source package, or
-runtime behavior.
+runtime behavior. The all-`E5` profile additionally requires both its exact
+896-byte length and retained SHA-256; an equal-size mutation remains an
+unrecognized FNT profile.
 
 ## Independent comparison evidence
 

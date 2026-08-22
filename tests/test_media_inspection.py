@@ -158,11 +158,27 @@ def test_cpc_fnt_amsdos_header_checksum_corruption_is_rejected() -> None:
     assert result.validation == "amsdos_header_checksum_mismatch"
 
 
-def test_all_e5_fnt_remains_an_explicit_unrecognized_profile() -> None:
+def test_all_e5_fnt_is_an_exact_r4_byte_profile_without_font_semantics() -> None:
     root = Path(__file__).resolve().parents[1]
     data = (root / "preservation_corpus" / "extracted" / "depth2_f0f7416a_DAAD.FNT").read_bytes()
 
     result = inspect_native_media("DAAD.FNT", data)
+
+    assert result.parser == "daad-fnt"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "identified_r4_source250_all_e5_byte_profile"
+    assert result.evidence["profile_id"] == "daad-r4-source250-all-e5-byte-profile"
+    assert result.evidence["fill_byte"] == 0xE5
+    assert result.evidence["repeated_byte_count"] == 896
+    assert result.evidence["profile_boundary"] == "exact_byte_identity_only_no_font_erasure_or_runtime_semantics"
+
+
+def test_all_e5_fnt_same_size_mutation_remains_unrecognized() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_f0f7416a_DAAD.FNT").read_bytes())
+    data[0] ^= 0x01
+
+    result = inspect_native_media("DAAD.FNT", bytes(data))
 
     assert result.parser == "daad-fnt"
     assert result.status == "recognized_evidence"

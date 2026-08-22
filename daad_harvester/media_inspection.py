@@ -522,6 +522,8 @@ _MSX_R4_CANONICAL_MDG_SIZE = 2105
 _MSX_R4_CANONICAL_MDG_SHA256 = "c588b0e7cbdbd3a591085cd233d471c7a37fed85a88085ced8a560a42a759f06"
 _CPC_DAAD_LOADER_FNT_SIZE = 896
 _CPC_DAAD_LOADER_FNT_SHA256 = "fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a"
+_R4_SOURCE250_ALL_E5_FNT_SIZE = 896
+_R4_SOURCE250_ALL_E5_FNT_SHA256 = "87a077d1d65c2c1a3fc64c03fd2c3f25431d2c6a7fc36ebf23256b3aa9bf4f07"
 
 
 def _inspect_msx_r4_mdg(data: bytes) -> MediaInspection:
@@ -572,6 +574,16 @@ def _inspect_daad_fnt(data: bytes) -> MediaInspection:
         size=len(data), sha256=digest,
         profile_boundary="no_generic_fnt_or_sintac_font_decoder",
     )
+    if len(data) == _R4_SOURCE250_ALL_E5_FNT_SIZE and digest == _R4_SOURCE250_ALL_E5_FNT_SHA256:
+        return _result(
+            "daad-fnt", "recognized_evidence", "identified_r4_source250_all_e5_byte_profile",
+            size=len(data),
+            sha256=digest,
+            profile_id="daad-r4-source250-all-e5-byte-profile",
+            fill_byte=0xE5,
+            repeated_byte_count=len(data),
+            profile_boundary="exact_byte_identity_only_no_font_erasure_or_runtime_semantics",
+        )
     if len(data) < 128 or data[0x12] != 0x02:
         return unknown
 
