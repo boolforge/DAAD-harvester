@@ -47,7 +47,7 @@
       "state": "candidate",
       "role": "static_disassembly",
       "architectures": ["mos6502"],
-      "tool": {"name": "py8dis", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/ZornsLemma/py8dis"},
+      "tool": {"name": "py8dis", "pin": "2a6046356e20e93c4a2d484bc04bd5d74d66254e", "provenance_url": "https://github.com/ZornsLemma/py8dis"},
       "runner": "external_candidate",
       "load_model_compatibility": ["requires_pinned_origin_and_6502_profile"],
       "commentary_boundary": "Candidate output is unavailable until a pinned invocation and explicit 6502 origin model are independently recorded."

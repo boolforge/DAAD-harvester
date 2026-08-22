@@ -408,7 +408,7 @@
       "id": "todo-0043",
       "line": 43,
       "section": "Active evidence-interface correction",
-      "text": "Establish the first reusable analyzer-adapter framework increment for interpreter research. Inventory every current Ghidra, radare2, and family-disassembler invocation; define a native schema for CPU compatibility, revision pin, command template, load/origin model, expected output, failure capture, hash record, and commentary boundary; research further candidates by architecture; then add only one compatible pinned adapter with real-input comparison evidence. Tool output must remain derived evidence, and detailed comments must distinguish bytes, decoded instructions, tool hypotheses, and separately evidenced behavior.",
+      "text": "Establish the first reusable analyzer-adapter framework increment for interpreter research. Inventory every current Ghidra, radare2, and family-disassembler invocation; define a native schema for CPU compatibility, revision pin, command template, load/origin model, expected output, failure capture, hash record, and commentary boundary; research further candidates by architecture; then add only one compatible pinned adapter with real-input comparison evidence. The py8dis MOS 6502 candidate is pinned at `2a6046356e20e93c4a2d484bc04bd5d74d66254e` and passed only its isolated upstream fixture; it remains unconfigured for retained DAAD bytes pending independently evidenced origin and CPU-profile comparison. Tool output must remain derived evidence, and detailed comments must distinguish bytes, decoded instructions, tool hypotheses, and separately evidenced behavior.",
       "evidence_inputs": [
         "independent external comparator",
         "retained original bytes",
@@ -420,7 +420,7 @@
       "dependencies": [
         "profile/platform boundary"
       ],
-      "required_real_artifact_regression": false,
+      "required_real_artifact_regression": true,
       "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },

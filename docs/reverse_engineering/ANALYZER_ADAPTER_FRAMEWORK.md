@@ -52,10 +52,14 @@ an analyzer or delete/rewrite derived output.
 ## Candidate intake
 
 The first cataloged candidates are py8dis for MOS 6502 research, z80dismblr and
-SkoolKit for Z80 research, and REDasm for i8086 research. Their current state,
-architecture boundaries, and non-promotion reasons are recorded in the
-[candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md).
-They are not enabled workflow dependencies.
+SkoolKit for Z80 research, and REDasm for i8086 research. py8dis revision
+`2a6046356e20e93c4a2d484bc04bd5d74d66254e` passed only its own isolated,
+known-good 6502 demonstration fixture; the [health record](../../research/sources/py8dis_installation_2026-08-22.json)
+preserves the command and output hash. It remains unconfigured for retained
+DAAD bytes because their MOS 6502 load origin is not yet independently
+validated. The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
+records the remaining candidates, architecture boundaries, and non-promotion
+reasons. None is an enabled workflow dependency.
 
 ## References
 

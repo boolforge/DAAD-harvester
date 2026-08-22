@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "tool": "py8dis",
+  "source_url": "https://github.com/ZornsLemma/py8dis",
+  "source_revision": "2a6046356e20e93c4a2d484bc04bd5d74d66254e",
+  "captured_at": "2026-08-22",
+  "license_observed": "MIT",
+  "installation_mode": "separate local source checkout; PYTHONPATH points to the pinned py8dis directory",
+  "health_check": {
+    "input": "upstream bundled examples/orig/helloworld.orig copied to a temporary directory",
+    "command": "PYTHONPATH=<pinned-source>/py8dis python3 python/helloworld.py",
+    "cpu": "6502",
+    "binary_load_address": "0x2000",
+    "expected_fixture": "upstream bundled examples/known_good/helloworld_beebasm.asm",
+    "result": "passed",
+    "stdout_sha256": "e5dc3e40db7f159404d467318617ba451e14d0b3d96ac19e805c13f2104665d3",
+    "stderr_bytes": 0,
+    "fixture_comparison": "byte-identical"
+  },
+  "daad_boundary": {
+    "state": "unconfigured_candidate",
+    "retained_daad_bytes_analyzed": false,
+    "reason": "The retained MOS 6502 interpreter records currently use raw_binary_base_0_unverified; py8dis requires an explicit binary load address and CPU profile.",
+    "promotion_requirements": [
+      "independently evidenced C64/Plus-4 load origin and CPU profile",
+      "repository-owned invocation and captured raw/stderr output",
+      "input and output hash records",
+      "comparison against configured da65, Ghidra, and radare2 outputs",
+      "negative regression for incompatible MOS 8501 or unsupported load model"
+    ]
+  },
+  "non_claim": "A successful upstream demonstration fixture validates only the pinned candidate's local health. It does not validate its suitability, origin model, decoded output, decompilation, or behavioral conclusions for retained DAAD interpreter bytes."
+}

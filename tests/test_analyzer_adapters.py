@@ -49,6 +49,17 @@ def test_candidates_are_cataloged_but_never_selected_for_configured_execution() 
     assert all("raw retained bytes" in adapter["commentary_boundary"] or "raw-base-zero" in adapter["commentary_boundary"] for adapter in candidates)
 
 
+def test_pinned_py8dis_candidate_is_limited_to_unconfigured_mos6502_research() -> None:
+    catalog = analyzer_adapters.load_catalog(CATALOG_PATH, _toolchain())
+    py8dis = next(adapter for adapter in catalog["adapters"] if adapter["adapter_id"] == "py8dis-mos6502-candidate-v1")
+
+    assert py8dis["state"] == analyzer_adapters.CANDIDATE
+    assert py8dis["architectures"] == ["mos6502"]
+    assert py8dis["tool"]["pin"] == "2a6046356e20e93c4a2d484bc04bd5d74d66254e"
+    assert py8dis["runner"] == "external_candidate"
+    assert "origin" in py8dis["load_model_compatibility"][0]
+
+
 def test_catalog_rejects_configured_adapter_with_incompatible_load_model() -> None:
     catalog = _catalog()
     catalog["adapters"][0]["load_model_compatibility"] = ["requires_validated_model"]
