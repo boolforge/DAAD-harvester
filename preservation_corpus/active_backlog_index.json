@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 165,
+  "unchecked_item_count": 164,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 48,
+    "Active evidence-interface correction": 47,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -462,28 +462,6 @@
       "required_real_artifact_regression": true,
       "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
-    },
-    {
-      "id": "todo-0046",
-      "line": 46,
-      "section": "Active evidence-interface correction",
-      "text": "Add native evidence-bound commentary scaffolding for retained static-analysis records. Generate deterministic review documents that expose immutable-byte identity, configured tool records, output hashes, load-model non-claims, and separate placeholders for decoded instructions, tool hypotheses, and independently evidenced behavior. Do not synthesize source comments or behavioral interpretations from external analyzer output; every detailed claim must remain an explicit human or native-evidence review task.",
-      "evidence_inputs": [
-        "independent external comparator",
-        "report or interface output",
-        "retained original bytes",
-        "runtime or emulator observation"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "tooling and workflow gates"
-      ],
-      "dependencies": [
-        "none stated; retain unresolved boundaries"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
-      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
       "id": "todo-0053",

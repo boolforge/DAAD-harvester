@@ -25,9 +25,9 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
     assert first["metrics"]["corpus"]["artifacts"] == 1015
     assert first["metrics"]["corpus"]["sources"] == 265
     assert first["metrics"]["regeneration"] == {
-        "entries": 19,
-        "inputs": 42,
-        "outputs": 28,
+        "entries": 20,
+        "inputs": 45,
+        "outputs": 29,
     }
     references = first["audit"]["command_execution_references"]
     assert len(references) == 12

@@ -746,6 +746,49 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "retained-analysis-commentary-review-scaffold",
+      "description": "Regenerates and byte-verifies the evidence-bound commentary review scaffold from retained static-analysis records. The scaffold indexes byte identity, tool records, outputs, hashes, load-model non-claims, and empty review layers; it does not parse analyzer listings, recover source, or establish runtime behavior.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/generate_analysis_commentary_scaffold.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "reverse_engineering/manifests/official_interpreters.json",
+          "sha256": "c4cfdd53c1fc8062023ec566246e40e80faba37e871e9e30e808f24558551a76"
+        },
+        {
+          "path": "reverse_engineering/workflows/analyzer_adapters.json",
+          "sha256": "0847af0da58d412e56306604f7ff1c88f89b5b1ec64dce1f84b3dc4e450b75da"
+        },
+        {
+          "path": "scripts/generate_analysis_commentary_scaffold.py",
+          "sha256": "857577b7720a9e287c69ee76b4052239c9ff2962374ba426c1b12b6449c4aef8"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "reverse_engineering/derived/COMMENTARY_REVIEW_SCAFFOLD.md",
+          "sha256": "a675b61ba5f89b9b34fd1bda412f0a640471c987ba6f704ad804bc6c54401a6e"
+        }
+      ],
+      "external_validators": [
+        {
+          "name": "Retained Ghidra, radare2, and architecture-static records",
+          "role": "The native scaffold indexes their recorded metadata and hashes only; it does not invoke tools or promote their output to source or behavior evidence."
+        }
+      ]
     }
   ]
 }

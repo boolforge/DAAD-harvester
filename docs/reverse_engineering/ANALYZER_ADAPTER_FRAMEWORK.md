@@ -49,6 +49,16 @@ compatibility with pre-framework analysis records. Its `--check` mode remains
 read-only: it validates retained records and output hashes but does not launch
 an analyzer or delete/rewrite derived output.
 
+## Commentary review scaffold
+
+[`generate_analysis_commentary_scaffold.py`](../../scripts/generate_analysis_commentary_scaffold.py)
+creates one deterministic review index from every retained `analysis-run.json`
+record. The generated [commentary scaffold](../../reverse_engineering/derived/COMMENTARY_REVIEW_SCAFFOLD.md)
+copies only immutable input identity, tool records, output hashes, and the
+recorded load-model non-claim. It creates empty, explicitly bounded review
+places for decoded instructions, tool hypotheses, and independently evidenced
+behavior; it never interprets analyzer listings or produces semantic comments.
+
 ## Candidate intake
 
 The first cataloged candidates are py8dis for MOS 6502 research, z80dismblr and
