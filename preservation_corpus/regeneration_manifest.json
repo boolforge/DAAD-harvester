@@ -686,6 +686,36 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "skoolkit-analysis-boundary-discovery",
+      "description": "Regenerates retained SkoolKit README analysis boundaries. It does not run SkoolKit or establish control/data truth, a historical load model, runtime behavior, or Spectrum Next support.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_skoolkit_analysis_boundary.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/skoolkit_README_760eeaa_2026-08-22.md.gz",
+          "sha256": "7d2913edd107b093927dba7c759d8516c9c0ef94a1b25993a354bd926fec56e5"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/skoolkit_analysis_boundary_2026-08-22.json",
+          "sha256": "7edea01669a344b24ce92293bd265285e7db53c4c397fbee9e20b03cad1b4dc5"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }

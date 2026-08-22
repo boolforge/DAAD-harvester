@@ -1,0 +1,23 @@
+{
+  "documented_boundaries": [
+    "Static classification is described as an attempt.",
+    "Improved code/data distinction uses an emulator-produced execution map."
+  ],
+  "documented_inputs": [
+    "SNA snapshot",
+    "SZX snapshot",
+    "Z80 snapshot",
+    "raw memory file"
+  ],
+  "non_claims": [
+    "This record does not install, execute, or validate SkoolKit.",
+    "It does not establish retained-artifact control/data classification, a historical load model, runtime behavior, or Spectrum Next support.",
+    "It does not replace repository-native evidence or preserve an emulator result."
+  ],
+  "purpose": "Discovery-only SkoolKit analysis boundary; not a native result or platform-support claim.",
+  "repository_url": "https://github.com/skoolkid/skoolkit",
+  "revision": "760eeaa012926b4220ea5a370a2bdf99ba098eb0",
+  "schema_version": 1,
+  "source_sha256": "dbf80fdc220ca971e8a40a5ee6726eb5a6dce2b7d9fe9a82c84714e3f0f816a1",
+  "source_url": "https://raw.githubusercontent.com/skoolkid/skoolkit/760eeaa012926b4220ea5a370a2bdf99ba098eb0/README.md"
+}
