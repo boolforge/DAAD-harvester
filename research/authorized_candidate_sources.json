@@ -1,6 +1,6 @@
 {
-  "merge_summary": {
-    "new_registrations": 17,
+  "checksum_promotion_summary": {
+    "new_source_checksums": 17,
     "total_registrations": 47
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
@@ -13,6 +13,10 @@
         "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
         "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
         "year": "2023"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "fa68cb30919c389c61f0cc301a34c1eed029ceebc53701a007f41632e3cba74e"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -33,6 +37,10 @@
         "publisher": "Taskmaster Software (UK)",
         "title": "A Case of Murder 128K",
         "year": "2023"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "0408892a17d405a9787927148826e7a875f33422665e0f064acdd4728a29393f"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -485,6 +493,10 @@
         "title": "El Cetro del Sol",
         "year": "2015"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "7e4032089fa48918dfa4e4f4ce5bf412115dbb8d18b0a01fd3f70e8d691a94bb"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "Spanish",
@@ -504,6 +516,10 @@
         "publisher": "Defecto Digital Studios",
         "title": "ELF, La Aventura - Parte 1",
         "year": "2016"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5de8c852735bcd5a0bc80f8aca56913221a7848bcda925b3ca12d21ca494764f"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -619,6 +635,10 @@
         "title": "Excalibur: Sword of Kings Remake",
         "year": "2019"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "4c37e0390f5a0db4498d8e8070f93371e1484a8c032c94678b2004b0a8e6ecf2"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "English",
@@ -716,6 +736,10 @@
         "title": "Karhum",
         "year": "2019"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "37fd6235ce0f00b39c8fd9bd7880875002f81a1de488008e934ec36001f70a18"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "Spanish",
@@ -735,6 +759,10 @@
         "publisher": "Aventuras AD S.A. (Spain)",
         "title": "La Aventura Espacial",
         "year": "1990"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "1e1a9fef3672a5bf3b52e738a77340a6229d159d3cff8bc9879809f438b35002"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -756,6 +784,10 @@
         "title": "La Aventura Original",
         "year": "1989"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "afdc7c200af1b8dc2075c93ed7af3d41049d00c6fa4ecfd28f637f56da5df701"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "Spanish",
@@ -775,6 +807,10 @@
         "publisher": "Dwalin",
         "title": "Las Aventuras de Rudolphine Rur",
         "year": "2020"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5b6f0a2e3b9d49531ccbc49b39f1691efd1804c7f4cbe145387aa0070d908790"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -796,6 +832,10 @@
         "title": "Last Night in the Office",
         "year": "2020"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "051dc5db6e3739f30fbcddea971f30eb7de63b7bf1bdb309f3e28203ca732d68"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "English",
@@ -815,6 +855,10 @@
         "publisher": "Aventuras AD S.A. (Spain)",
         "title": "Los Templos Sagrados",
         "year": "1991"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "c340aee76f991d573463a2285bc0c3b78d2126f06075dac063abac0b2b111264"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -836,6 +880,10 @@
         "title": "One Last Thing",
         "year": "2020"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ca6313a3fe08bbf8d888dedbd4e390e5dbba446500859a1d9a9e40c935405b78"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "English",
@@ -855,6 +903,10 @@
         "publisher": "luckywebsoft",
         "title": "Pandemia XXI",
         "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "d316da2553ce93ac04bfb09f07f288a5924b1cc334afaeea4b535fb5a7936de5"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -876,6 +928,10 @@
         "title": "The Mystery of Markham Manor",
         "year": "2022"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "2592e77ff1f23c550a92cb16569584bdb6d469c66a098bfd73ddebf6a5419944"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "English",
@@ -895,6 +951,10 @@
         "publisher": "Gareth Pitchford (UK)",
         "title": "The Revenge of Moriarty",
         "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "f2748c1d6dd2324a48341ecafa8163db172a9236c3618d3f9f2f1edae265c278"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
@@ -916,6 +976,10 @@
         "title": "Torreoscura",
         "year": "2020"
       },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "1958a1079bf9bf25648e315d7abed28551dacc2afc35e6a15354942b9b0c91ca"
+      },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {
         "language": "Multi-language: English, Spanish",
@@ -935,6 +999,10 @@
         "publisher": "Alien Software (Spain)",
         "title": "ZHL",
         "year": "2016"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "dbb5da1993f681308f3b4e9a41d2520c685768ed3ea5e07040690b0eccc8766f"
       },
       "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; the source language either matched the catalog value or was retained as observed because the catalog value is Unknown.",
       "source_observed_identity": {

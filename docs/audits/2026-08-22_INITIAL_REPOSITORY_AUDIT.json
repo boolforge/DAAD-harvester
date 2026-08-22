@@ -8,7 +8,7 @@
       },
       {
         "call": "subprocess.run",
-        "line": 123,
+        "line": 124,
         "path": "scripts/acquire_authorized_candidates.py"
       },
       {
@@ -261,7 +261,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 402,
+      "declared_test_count": 404,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
