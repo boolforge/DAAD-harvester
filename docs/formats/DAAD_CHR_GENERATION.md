@@ -4,8 +4,8 @@
 | --- | --- |
 | **Question** | How can Harvester generate and validate the known legacy DAAD `.CHR` outer container without inventing undocumented prefix semantics or claiming that a generated character set reproduces a historical title? |
 | **Evidence scope** | P0 retained ADP source; P1 independent ZXDAAD128 documentation; P2 retained corpus and ADP fixture bytes; P3 native writer/validator and media inspector. |
-| **Status** | Bounded native structural writer and validated ADP-writer header profile implemented. It preserves caller-supplied 128-byte prefix bytes and 2,048-byte glyph bytes exactly; unrecognized prefix fields, per-runtime interpretation, and authentic glyph equivalence remain unpromoted. |
-| **Implementation links** | `daad_harvester.chr_generation`, `daad_harvester.media_inspection._inspect_daad_chr`, `tests/test_chr_generation.py`, `src-common/vid_font.cpp` and `src-tools/tool_chr.cpp` at pinned ADP revision `379a6710de11a2378f3d76c25a4d71bca75073bf`. |
+| **Status** | Bounded native structural writer and validated ADP-writer header profile implemented. A checksum-pinned Torreoscura glyph atlas is now generated from the validated profile; unrecognized prefix fields, character/code-page semantics, per-runtime interpretation, and authentic glyph equivalence beyond its source bytes remain unpromoted. |
+| **Implementation links** | `daad_harvester.chr_generation`, `scripts/render_chr_atlas.py`, `daad_harvester.media_inspection._inspect_daad_chr`, `tests/test_chr_generation.py`, `tests/test_render_chr_atlas.py`, and `src-common/vid_font.cpp` / `src-tools/tool_chr.cpp` at pinned ADP revision `379a6710de11a2378f3d76c25a4d71bca75073bf`. |
 | **Non-claims** | A structurally valid `.CHR` file does not establish complete prefix semantics, an intended glyph design, interpreter acceptance for every historical/runtime variant, source title identity, or executable behavior. |
 
 ## Structural boundary
@@ -43,9 +43,15 @@ The retained corpus contains two 2,176-byte `PART1.CHR`/`PART2.CHR` artifacts. P
 | Corpus `PART1.CHR[128:2176]` vs ADP `part1.chr[128:2176]` | `7e8e9d58ec1c8ce40d2b3a16f593995df26c2faba1927634e2e3e13e4b71e54a` | `c0e0740da59da3a0272b011167e0de61ef9438687806915077ae9f9d594a18fc` | Different bytes; identical fixed-size partition only. |
 | Corpus `PART2.CHR[128:2176]` vs ADP `part2.chr[128:2176]` | `7e8e9d58ec1c8ce40d2b3a16f593995df26c2faba1927634e2e3e13e4b71e54a` | `ac562ffd99bc714467e6854ef8dac615d9dca3e0641d80f96976abd5319ba9a6` | Different bytes; identical fixed-size partition only. |
 
+## Validated glyph-atlas derivative
+
+The retained Torreoscura PCW `PARTE001.CHR` input (`depth2_918656c1_PARTE001.CHR`, SHA-256 `715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba`) now regenerates a checksum-pinned, 16×16 grayscale glyph atlas at `preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.png`. The adjacent JSON manifest records the original and derived SHA-256 values, the exact command, 256×8×8-bit geometry, MSB-leftmost packing, and a byte-index-only mapping. `pcw-torreoscura-validated-chr-atlas` in the regeneration manifest verifies both output hashes through repository-native code.
+
+The renderer accepts only the recognized `adp_legacy_chr_writer` profile and rejects opaque fixed-size containers. It creates no character labels because the mapping from byte index to character/code page has not been independently established. The visual atlas is evidence of decoded bitmap rows, not a claim of text meaning, runtime font selection, or a DDB/bundle relationship.
+
 ## Promotion and next evidence
 
-The current builder is not yet in canonical generator evidence because a blank opaque-prefix fixture cannot provide a meaningful authentic-output comparison. Promotion requires a retained-byte fixture with a documented input tuple, parser/reader validation, all 17 digests, explicit source/corpus comparison record, and only then CI/report/Pages/TUI exposure. Resolving the 128-byte prefix structure and comparing runtime-visible glyph behavior across interpreter families remain required follow-up work.
+The generic CHR builder remains a structural constructor rather than a reconstruction claim for historical game media. The retained PCW atlas is a canonical derived-output evidence path, but accessible web/TUI views, per-glyph navigation, cross-file relationship validation, other CHR/FNT profiles, full prefix semantics, and cross-runtime rendering behavior remain active follow-up work.
 
 ## References
 
