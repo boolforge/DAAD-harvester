@@ -65,6 +65,24 @@ creating untracked local notes.
 | Redasm | Potential supplementary x86 analysis candidate. | The retained processor table lists x86/x86_64 but not Z80. | Evaluate only as an additional 8086-family comparator after a pinned installation and command-level test; not a universal analyzer.[6] |
 | Alternative Z80 disassemblers | Independent byte-to-instruction comparison. | They require explicit revision, invocation semantics, origin, and control/data assumptions. | Add one at a time after a raw-output comparison against z80dasm, radare2, and Ghidra. |
 
+## Initial remote capability audit
+
+The first capability audit ran the focused acquisition, authorization-queue,
+bundle-relationship, artifact-path, hash, resource-inventory, and
+resource-review regressions. All 24 selected tests passed. The result is a
+transition classification, not a blanket approval of every future use.
+
+| Capability | Current classification | Verified boundary | Transition action |
+| --- | --- | --- | --- |
+| Versioned scheduler and primary workflow | **Adopted with correction** | The scheduler is the allowlisted authority for concurrent read-only checks; ordered workflows own shared regeneration. The shared-root wording drift was corrected and classified. | Use the scheduler for eligible verification only. |
+| Artifact paths, hashes, resource inventory, and review manifest | **Adopted** | Focused tests establish deterministic path/identity and inventory behavior for retained state. | Use as provenance inputs; do not infer format semantics from inventory fields. |
+| PCW same-disk bundle relationship model | **Adopted, profile-scoped** | Exact member hashes and native DSK extraction support co-residency only; non-claims reject runtime or cross-platform inference. | Reuse its evidence shape for new profiles only after profile-specific tests. |
+| Acquisition and authorization queue | **Deferred for direct downloading** | The code and queue tests execute, but a repository-stated institutional directive is not independent source-specific authorization. | Retain discovery metadata; do not invoke a new direct-download adapter until independently verifiable authorization or a public-license basis is present. |
+| New analysis tool additions | **Pending** | Existing Ghidra, radare2, and architecture-specific disassemblers are already configured and documented. | Add only one compatible candidate after pinning, isolated command testing, and a disagreement record. |
+
+This classification preserves the useful new code while declining to convert a
+passing implementation test into a broader legal, runtime, or semantic claim.
+
 ## Detailed analysis-writing requirements
 
 Every detailed note about an interpreter must separate four layers. **Bytes**
