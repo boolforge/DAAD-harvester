@@ -13,7 +13,7 @@
     {"path": "scripts/acquire_authorized_candidates.py", "line": 124, "call": "subprocess.run", "class": "acquisition_only_runtime", "boundary": "Pinned noninteractive itch.io adapter; output is retained and independently measured before promotion."},
     {"path": "scripts/agent_workflow.py", "line": 20, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Git delivery orchestration; not preservation evidence generation."},
     {"path": "scripts/capture_tui_demo_gif.py", "line": 42, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Chromium renders a derived demonstration; it is not a primary preservation result."},
-    {"path": "scripts/check_american_english.py", "line": 39, "call": "subprocess.check_output", "class": "declared_host_dependency", "boundary": "Git lists tracked authored text; no preservation claim is generated."},
+    {"path": "scripts/check_american_english.py", "line": 40, "call": "subprocess.check_output", "class": "declared_host_dependency", "boundary": "Git lists tracked authored text; no preservation claim is generated."},
     {"path": "scripts/run_parallel_workflow.py", "line": 70, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Allowlisted local Python verification launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 60, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local preflight launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 74, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local scheduler launcher."},

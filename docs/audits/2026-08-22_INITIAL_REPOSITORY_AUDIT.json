@@ -33,7 +33,7 @@
         "boundary": "Git lists tracked authored text; no preservation claim is generated.",
         "call": "subprocess.check_output",
         "class": "declared_host_dependency",
-        "line": 39,
+        "line": 40,
         "path": "scripts/check_american_english.py"
       },
       {
