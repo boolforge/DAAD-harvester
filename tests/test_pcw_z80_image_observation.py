@@ -19,6 +19,7 @@ def test_pcw_images_have_hash_bound_bdos_call_observations_without_execution_pro
     observed = parse_pcw_z80_image_prefix((ROOT / contract["profiles"][0]["input_path"]).read_bytes())
 
     assert contract["execution_eligible"] is False
+    assert all(profile["launch_capture_observation"] is None for profile in contract["profiles"])
     assert observed["bdos_call_offset"] == 16
     assert observed["bdos_call_target"] == 5
     assert observed["image_size"] == 8692
@@ -30,6 +31,7 @@ def test_pcw_images_have_hash_bound_bdos_call_observations_without_execution_pro
         (lambda contract: contract.__setitem__("execution_eligible", True), "must not enable execution"),
         (lambda contract: contract["profiles"][0].__setitem__("sha256", "0" * 64), "retained PCW image identity differs"),
         (lambda contract: contract["profiles"][1].__setitem__("bdos_call_offset", 0), "bdos_call_offset differs"),
+        (lambda contract: contract["profiles"][0].__setitem__("launch_capture_observation", {"emulator": "default"}), "no official PCW launch capture"),
     ],
 )
 def test_pcw_image_observation_rejects_promotion_or_changed_bytes(mutation, message: str) -> None:

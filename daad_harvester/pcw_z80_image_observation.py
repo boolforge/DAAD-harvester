@@ -14,6 +14,20 @@ class PcwZ80ImageObservationError(ValueError):
 
 BDOS_CALL_OFFSET = 16
 BDOS_CALL_BYTES = b"\xcd\x05\x00"
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = (
+    "official_image_sha256",
+    "loader_or_disk_context_sha256",
+    "cpm_system_image_sha256",
+    "ccp_to_tpa_transition_sha256",
+    "snapshot_sha256",
+    "machine_model",
+    "cpm_version",
+    "z80_registers",
+    "pcw_memory_paging",
+    "zero_page_bank_state",
+    "tpa_range",
+    "bdos_vector_bytes",
+)
 
 
 def _sha256(path: Path) -> str:
@@ -37,6 +51,8 @@ def validate_pcw_z80_image_observation(contract: dict[str, Any], root: Path) -> 
         raise PcwZ80ImageObservationError("admission_state must preserve unresolved PCW load conditions")
     if contract.get("execution_eligible") is not False:
         raise PcwZ80ImageObservationError("PCW image observation must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise PcwZ80ImageObservationError("PCW future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 2:
         raise PcwZ80ImageObservationError("contract must contain exactly two PCW profiles")
@@ -61,6 +77,8 @@ def validate_pcw_z80_image_observation(contract: dict[str, Any], root: Path) -> 
         for field in ("bdos_call_offset", "bdos_call_target", "image_size"):
             if profile.get(field) != observed[field]:
                 raise PcwZ80ImageObservationError(f"{identifier}: {field} differs from retained bytes")
+        if profile.get("launch_capture_observation") is not None:
+            raise PcwZ80ImageObservationError(f"{identifier}: no official PCW launch capture is currently admitted")
 
 
 def load_pcw_z80_image_observation(path: Path, root: Path) -> dict[str, Any]:

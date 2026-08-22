@@ -20,7 +20,16 @@ python3 scripts/verify_pcw_z80_image_observation.py
 The verifier reads retained bytes only; it does not start CP/M, mount a PCW
 disk, launch an emulator, or disassemble either image.
 
+Every profile therefore records `launch_capture_observation: null`. A future
+official capture must bind the exact image and loader/disk context, CP/M system
+image, CCP-to-TPA transition, snapshot, model and CP/M version, register set,
+PCW paging and zero-page bank state, TPA range, and BDOS vector bytes. A generic
+emulator default, an unrelated CP/M capture, or another PCW title cannot fill
+this field.[3] [4]
+
 ## References
 
 [1]: [Amstrad PCW platform dossier](../platforms/AMSTRAD_PCW.md)
 [2]: [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+[3]: [Amstrad XBIOS Internals](https://www.seasip.info/Cpm/xbiosint.html)
+[4]: [Amstrad PCW Hardware Reference](http://www.systemed.net/pcw/hardware.html)
