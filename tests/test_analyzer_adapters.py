@@ -13,6 +13,7 @@ CATALOG_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_adapters.j
 TOOLCHAIN_PATH = ROOT / "reverse_engineering" / "workflows" / "toolchain.json"
 CANDIDATE_MATRIX_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_candidate_matrix.json"
 GHIDRA_HEALTH_PATH = ROOT / "reverse_engineering" / "workflows" / "ghidra_headless_health.json"
+DOS_I8086_ADMISSION_PATH = ROOT / "reverse_engineering" / "workflows" / "dos_i8086_load_model_admission.json"
 
 
 def _catalog() -> dict:
@@ -200,6 +201,23 @@ def test_dazzlestar_candidate_records_empty_license_and_toolchain_blocks_without
     assert candidate["execution_eligible"] is False
     assert "empty" in candidate["source"]["license_status"]
     assert any("zmac" in blocker for blocker in candidate["blockers"])
+
+
+def test_dos_i8086_admission_contract_preserves_fail_closed_com_and_mz_evidence() -> None:
+    contract = analyzer_adapters.load_dos_i8086_load_model_admission(DOS_I8086_ADMISSION_PATH)
+
+    assert contract["states"][-1] == "admissible_for_candidate_comparison"
+    assert "psp_relationship" in contract["com_required_evidence"]
+    assert "relocation_table_bounds" in contract["mz_required_evidence"]
+    assert "raw_base_zero_only" in contract["fail_closed_conditions"]
+
+
+def test_dos_i8086_admission_contract_rejects_missing_required_fail_closed_condition() -> None:
+    contract = analyzer_adapters.load_dos_i8086_load_model_admission(DOS_I8086_ADMISSION_PATH)
+    contract["fail_closed_conditions"].remove("unknown_container")
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="required fail-closed"):
+        analyzer_adapters.validate_dos_i8086_load_model_admission(contract)
 
 
 def test_ghidra_headless_health_covers_each_configured_architecture_without_authorizing_retained_inputs() -> None:

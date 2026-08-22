@@ -16,6 +16,7 @@ from typing import Any
 
 CATALOG_SCHEMA_VERSION = 1
 GHIDRA_HEALTH_SCHEMA_VERSION = 1
+DOS_I8086_ADMISSION_SCHEMA_VERSION = 1
 CONFIGURED = "configured"
 CANDIDATE = "candidate"
 VALID_STATES = frozenset({CONFIGURED, CANDIDATE})
@@ -209,6 +210,35 @@ def load_candidate_matrix(path: Path) -> dict[str, Any]:
         raise AdapterCatalogError("candidate matrix: top level must be a mapping")
     validate_candidate_matrix(matrix)
     return matrix
+
+
+def validate_dos_i8086_load_model_admission(contract: dict[str, Any]) -> None:
+    """Validate the fail-closed evidence contract for future DOS i8086 comparison."""
+
+    if contract.get("schema_version") != DOS_I8086_ADMISSION_SCHEMA_VERSION:
+        raise AdapterCatalogError("DOS i8086 admission: unsupported schema_version")
+    _require_string(contract, "purpose", "DOS i8086 admission")
+    if contract.get("states") != ["unclassified", "blocked", "admissible_for_candidate_comparison"]:
+        raise AdapterCatalogError("DOS i8086 admission: states must preserve the fail-closed lifecycle")
+    for key in ("common_required_evidence", "com_required_evidence", "mz_required_evidence", "fail_closed_conditions"):
+        _require_string_list(contract, key, "DOS i8086 admission")
+    required_failures = {"unknown_container", "relocation_outside_load_module", "raw_base_zero_only"}
+    if not required_failures.issubset(contract["fail_closed_conditions"]):
+        raise AdapterCatalogError("DOS i8086 admission: required fail-closed conditions are missing")
+    _require_string(contract, "analysis_boundary", "DOS i8086 admission")
+
+
+def load_dos_i8086_load_model_admission(path: Path) -> dict[str, Any]:
+    """Load and validate the fail-closed DOS i8086 admission contract."""
+
+    try:
+        contract = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise AdapterCatalogError(f"DOS i8086 admission: invalid JSON: {exc.msg}") from exc
+    if not isinstance(contract, dict):
+        raise AdapterCatalogError("DOS i8086 admission: top level must be a mapping")
+    validate_dos_i8086_load_model_admission(contract)
+    return contract
 
 
 def validate_ghidra_headless_health(health: dict[str, Any], workflow: dict[str, Any]) -> None:
