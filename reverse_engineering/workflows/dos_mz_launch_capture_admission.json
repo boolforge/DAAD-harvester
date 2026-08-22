@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "purpose": "Future official DOS MZ loader-capture schema only; it does not alter candidate-admission evidence or establish a runtime launch.",
+  "execution_eligible": false,
+  "future_launch_capture_required_fields": ["official_mz_sha256", "loader_context_sha256", "dos_kernel_sha256", "command_com_sha256", "exec_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_configuration", "actual_load_segment", "psp_mapping", "memory_allocation_mapping", "environment_block", "command_tail", "fcb_state", "handle_state", "dta_state", "i8086_registers", "stack_state"],
+  "launch_capture_observations": {
+    "daad-dos-inte1-official": null,
+    "daad-dos-inte2-official": null,
+    "daad-dos-inte3-official": null,
+    "daad-dos-intecga1-official": null,
+    "daad-dos-intecga2-official": null,
+    "daad-dos-intecga3-official": null,
+    "daad-dos-inted-official": null,
+    "daad-dos-intedm-official": null,
+    "daad-dos-intem1-official": null,
+    "daad-dos-intem2-official": null,
+    "daad-dos-intem3-official": null,
+    "daad-dos-ints1-official": null,
+    "daad-dos-ints2-official": null,
+    "daad-dos-ints3-official": null,
+    "daad-dos-intscga1-official": null,
+    "daad-dos-intscga2-official": null,
+    "daad-dos-intscga3-official": null,
+    "daad-dos-intsd-official": null,
+    "daad-dos-intsdm-official": null,
+    "daad-dos-intsm1-official": null,
+    "daad-dos-intsm2-official": null,
+    "daad-dos-intsm3-official": null
+  },
+  "non_claim": "Relative MZ header fields and a null-only future schema do not establish PSP contents, an actual load segment, runtime behavior, or qualified analyzer output."
+}

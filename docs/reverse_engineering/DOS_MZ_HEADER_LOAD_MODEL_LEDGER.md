@@ -21,6 +21,14 @@ MZ evidence, PSP and load-segment requirements, and fail-closed conditions,
 including `raw_base_zero_only`. This prevents the independently verified
 container fields from silently relaxing the separate runtime admission gate.
 
+The separate future-capture contract covers exactly these 22 retained MZ
+profiles and retains every observation as `null`. A future official capture
+must bind the exact MZ and loader context, DOS and `COMMAND.COM` identities,
+EXEC/relocation transition, boot medium, snapshot, machine configuration,
+actual load segment, PSP/allocation/environment/command-tail/FCB/handle/DTA
+state, and i8086 registers and stack. A generic DOSBox default, different
+title, arbitrary segment, or raw-base-zero listing cannot substitute.[3]
+
 ```bash
 python3 scripts/verify_dos_mz_load_model.py
 ```
@@ -32,3 +40,4 @@ disassembler, or the retained executables.
 
 1. [DOS i8086 load-model admission contract](../../reverse_engineering/workflows/dos_i8086_load_model_admission.json)
 2. [Architecture-family qualified analysis campaign](ARCHITECTURE_FAMILY_VERIFICATION_CAMPAIGN.md)
+3. [DOS MZ future launch-capture source record](../../research/sources/dos_mz_launch_capture_sources_2026-08-22.md)

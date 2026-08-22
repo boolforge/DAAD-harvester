@@ -14,6 +14,14 @@ class DosMzLoadModelError(ValueError):
     """Raised when a retained DOS MZ profile lacks valid header evidence."""
 
 
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = (
+    "official_mz_sha256", "loader_context_sha256", "dos_kernel_sha256", "command_com_sha256",
+    "exec_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_configuration",
+    "actual_load_segment", "psp_mapping", "memory_allocation_mapping", "environment_block",
+    "command_tail", "fcb_state", "handle_state", "dta_state", "i8086_registers", "stack_state",
+)
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -111,3 +119,17 @@ def collect_dos_mz_load_model(root: Path) -> dict[str, Any]:
         ],
         "non_claim": "MZ header validation establishes container-relative fields only; it does not establish runtime behavior, source recovery, or a complete DOS load model.",
     }
+
+
+def validate_dos_mz_launch_capture_contract(contract: dict[str, Any], root: Path) -> None:
+    """Validate a null-only future DOS MZ launch-capture contract without execution."""
+    ledger = collect_dos_mz_load_model(root)
+    if contract.get("schema_version") != 1 or contract.get("execution_eligible") is not False:
+        raise DosMzLoadModelError("DOS launch-capture contract must remain non-executable")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise DosMzLoadModelError("DOS future launch-capture schema differs from the required fields")
+    observations = contract.get("launch_capture_observations")
+    if not isinstance(observations, dict) or set(observations) != {profile["artifact_id"] for profile in ledger["profiles"]}:
+        raise DosMzLoadModelError("DOS launch-capture contract must cover exactly the retained MZ profiles")
+    if any(value is not None for value in observations.values()):
+        raise DosMzLoadModelError("no official DOS MZ launch capture is currently admitted")
