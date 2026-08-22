@@ -141,40 +141,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 7",
-      "year": "2018"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 8|pension productions|2020|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 8",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -701,7 +667,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 41,
+  "discovery_required_count": 39,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -804,6 +770,54 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors7.tzx.zip",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors 7",
+        "year": "2018"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "e78f2f4bdcd2f74a8c28244d26e3b05515b617c24993516b885dbdf5cabd82fc"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34449/ZX-Spectrum/Behind_Closed_Doors_7_Happiness_is_a_Warm_Pussy",
+      "source_release_id": "34449",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034449/BehindClosedDoors7.tzx.zip",
+      "title": "Behind Closed Doors 7",
+      "year": "2018"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 8|pension productions|2020|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors8-ThePandemic.tap.zip",
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Behind Closed Doors 8",
+        "year": "2020"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "68e6c772ee8a83bea962acd371ce06e68e7fde91fe7a2996d6a0fea3f4881e66"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/35686/ZX-Spectrum/Behind_Closed_Doors_8-The_Pandemic",
+      "source_release_id": "35686",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035686/BehindClosedDoors8-ThePandemic.tap.zip",
+      "title": "Behind Closed Doors 8",
+      "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
       "external_source_terms": null,
       "filename": "BulboAndTheLizard-King(different).tzx.zip",
@@ -902,7 +916,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 8,
+  "queued_count": 10,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

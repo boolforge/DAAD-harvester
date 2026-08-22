@@ -87,6 +87,24 @@ def publisher_matches(expected: str, observed: str | None) -> bool:
     return observed is not None and normalized_publisher(expected) == normalized_publisher(observed)
 
 
+def year_matches(expected: str, observed: str | None) -> bool:
+    """Match the catalog year to an observed Spectrum year or year/month release date."""
+
+    return observed is not None and re.match(rf"^{re.escape(expected)}(?:$|[/.-])", observed.strip()) is not None
+
+
+def title_matches(expected: str, observed: str | None) -> bool:
+    """Accept an exact title or a documented subtitle, never a numeric sequel."""
+
+    if observed is None:
+        return False
+    if normalize(expected) == normalize(observed):
+        return True
+    expected_text = " ".join(expected.split()).casefold()
+    observed_text = " ".join(observed.split()).casefold()
+    return observed_text.startswith(expected_text + " - ") or observed_text.startswith(expected_text + ": ")
+
+
 def direct_game_downloads(soup: BeautifulSoup) -> list[dict[str, str]]:
     """Return download links confined to Spectrum Computing's game-media path."""
 
@@ -94,7 +112,7 @@ def direct_game_downloads(soup: BeautifulSoup) -> list[dict[str, str]]:
     for anchor in soup.find_all("a", href=True):
         url = urljoin(BASE_URL, anchor["href"])
         path = Path(url.split("?", 1)[0])
-        if "/pub/sinclair/games/" not in url or path.suffix.casefold() not in SUPPORTED_SUFFIXES:
+        if not any(prefix in url for prefix in ("/pub/sinclair/games/", "/zxdb/sinclair/entries/")) or path.suffix.casefold() not in SUPPORTED_SUFFIXES:
             continue
         files.append({"source_url": url, "filename": path.name})
     unique = {(entry["source_url"], entry["filename"]): entry for entry in files}
@@ -111,8 +129,8 @@ def inspect_entry(candidate: dict[str, Any], entry_url: str) -> list[dict[str, A
     publisher = value_between(text, "Original Publisher", "Creators")
     language = value_between(text, "Message Language", "Machine Type")
     if not (
-        title and normalize(title) == normalize(str(candidate["title"]))
-        and year == str(candidate["year"])
+        title and title_matches(str(candidate["title"]), title)
+        and year_matches(str(candidate["year"]), year)
         and publisher_matches(str(candidate["publisher"]), publisher)
         and language and normalize(language) == normalize(str(candidate["language"]))
     ):
@@ -195,8 +213,12 @@ def main() -> int:
     parser.add_argument("--policy", type=Path, default=DEFAULT_POLICY)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--candidate-key", action="append", default=[], help="Exact candidate key to inspect; repeat for a bounded batch.")
     args = parser.parse_args()
     queue = json.loads(args.queue.read_text(encoding="utf-8"))
+    if args.candidate_key:
+        selected = set(args.candidate_key)
+        queue = {**queue, "discovery_required": [candidate for candidate in queue.get("discovery_required", []) if candidate["candidate_key"] in selected]}
     policy = json.loads(args.policy.read_text(encoding="utf-8"))
     result = discover(queue, policy, args.workers)
     args.output.parent.mkdir(parents=True, exist_ok=True)

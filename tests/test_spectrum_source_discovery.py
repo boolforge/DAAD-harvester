@@ -58,9 +58,29 @@ def test_entry_inspection_accepts_exact_release_identity(monkeypatch) -> None:
     assert records[0]["external_source_terms"] == "personal_usage_only_no_third_party_offering"
 
 
+def test_year_matches_accepts_release_month_but_rejects_other_year() -> None:
+    assert spectrum.year_matches("2020", "2020/Apr")
+    assert spectrum.year_matches("2020", "2020")
+    assert not spectrum.year_matches("2020", "2019/Dec")
+
+
+def test_title_matches_accepts_documented_subtitle_but_not_numeric_sequel() -> None:
+    assert spectrum.title_matches("Behind Closed Doors 8", "Behind Closed Doors 8 - The Pandemic")
+    assert spectrum.title_matches("Behind Closed Doors 7", "Behind Closed Doors 7: Happiness is a Warm Pussy")
+    assert not spectrum.title_matches("Behind Closed Doors", "Behind Closed Doors 2: The Sequel")
+
+
 def test_entry_inspection_rejects_identity_mismatch(monkeypatch) -> None:
     monkeypatch.setattr(spectrum, "fetch_html", lambda url: entry_html(year="1989"))
     assert spectrum.inspect_entry(candidate(), "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors") == []
+
+
+def test_direct_game_downloads_accepts_current_zxdb_game_path() -> None:
+    soup = spectrum.BeautifulSoup('<a href="/zxdb/sinclair/entries/0035686/BehindClosedDoors8-ThePandemic.tap.zip">TAP</a>', "html.parser")
+    assert spectrum.direct_game_downloads(soup) == [{
+        "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035686/BehindClosedDoors8-ThePandemic.tap.zip",
+        "filename": "BehindClosedDoors8-ThePandemic.tap.zip",
+    }]
 
 
 def test_direct_game_downloads_excludes_non_game_media() -> None:

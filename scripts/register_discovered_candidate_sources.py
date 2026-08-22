@@ -29,11 +29,23 @@ def normalized_publisher(value: str) -> str:
     return normalize(re.sub(r"\([^)]*\)", " ", value))
 
 
+def title_matches(expected: str, observed: str) -> bool:
+    if normalize(expected) == normalize(observed):
+        return True
+    expected_text = " ".join(expected.split()).casefold()
+    observed_text = " ".join(observed.split()).casefold()
+    return observed_text.startswith(expected_text + " - ") or observed_text.startswith(expected_text + ": ")
+
+
+def year_matches(expected: str, observed: str) -> bool:
+    return re.match(rf"^{re.escape(expected)}(?:$|[/.-])", observed.strip()) is not None
+
+
 def same_identity(candidate: dict[str, Any], evidence: dict[str, Any]) -> bool:
     return (
-        normalize(str(evidence.get("title") or "")) == normalize(str(candidate["title"]))
+        title_matches(str(candidate["title"]), str(evidence.get("title") or ""))
         and normalized_publisher(str(evidence.get("publisher") or "")) == normalized_publisher(str(candidate["publisher"]))
-        and str(evidence.get("year") or "").strip() == str(candidate["year"]).strip()
+        and year_matches(str(candidate["year"]), str(evidence.get("year") or ""))
         and normalize(str(evidence.get("language") or "")) == normalize(str(candidate["language"]))
     )
 

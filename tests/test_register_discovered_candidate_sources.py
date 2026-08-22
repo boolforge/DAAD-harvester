@@ -11,6 +11,12 @@ def test_identity_normalizes_case_and_publisher_territory() -> None:
     )
 
 
+def test_identity_accepts_official_subtitle_and_release_month_but_not_numeric_sequel() -> None:
+    candidate = {"title": "Behind Closed Doors 8", "publisher": "Pension Productions", "year": "2020", "language": "English"}
+    assert same_identity(candidate, {"title": "Behind Closed Doors 8 - The Pandemic", "publisher": "Pension Productions (UK)", "year": "2020/Apr", "language": "English"})
+    assert not same_identity({**candidate, "title": "Behind Closed Doors"}, {"title": "Behind Closed Doors 2: The Sequel", "publisher": "Pension Productions (UK)", "year": "2020/Apr", "language": "English"})
+
+
 def test_preferred_match_selects_tzx_before_other_representations() -> None:
     matches = [
         {"filename": "game.z80.zip", "release_boundary_match": True},
