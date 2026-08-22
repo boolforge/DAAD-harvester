@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "purpose": "Plus/4 PRG wrapper and BASIC-line observation only; the encoded SYS target is not admitted as a machine-code entry because it lies outside the retained PRG image.",
+  "admission_state": "prg_wrapper_verified_launcher_target_unresolved",
+  "execution_eligible": false,
+  "profiles": [
+    {
+      "artifact_id": "daad-plus4-ediplus4-official",
+      "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-ediplus4-official/ediplus4.prg",
+      "sha256": "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523"
+    },
+    {
+      "artifact_id": "daad-plus4-sdiplus4-official",
+      "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg",
+      "sha256": "f29050dfe9331634b985a8c5b8cb4ee3b164a4340e355c044284168b8610258c"
+    }
+  ],
+  "remaining_requirements": [
+    "target-specific meaning of the BASIC SYS 2063 transfer",
+    "TED, ROM, RAM, and 7501 banking state",
+    "machine-code entry and bounded interpreter image",
+    "qualified analyzer configuration and cross-tool disagreement record"
+  ],
+  "non_claim": "A valid Plus/4 PRG wrapper and BASIC line do not establish a machine-code entry, interpreter semantics, C64 compatibility, source recovery, or runtime behavior."
+}
