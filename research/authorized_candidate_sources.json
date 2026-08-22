@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
-    "new_source_checksums": 1,
-    "total_registrations": 18
+    "new_source_checksums": 2,
+    "total_registrations": 20
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -284,6 +284,29 @@
       "source_url": "https://ejvg.itch.io/the-dark-dagger"
     },
     {
+      "candidate_key": "die, ragus!|sunteam|2023|english",
+      "external_source_terms": null,
+      "filename": "Die, Ragus! by sunteam.zip",
+      "release_identity": {
+        "publisher": "Sunteam",
+        "title": "Die, Ragus!",
+        "year": "2023"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://sunteam.itch.io/dieragus",
+        "upload_id": 8486189
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ecfa4edc22e757a65fd26fd2041c5c0d66fb66133613383dd63b9ef9f7df2937"
+      },
+      "source_evidence": "Official Sunteam itch.io page identifies Die, Ragus! as a free 2023 ZX Spectrum Next text adventure converted with DAAD Ready and publishes a public download. The pinned itchio-downloader 1.2.0 HTTP adapter retrieved public upload 8486189.",
+      "source_record_url": "https://sunteam.itch.io/dieragus",
+      "source_release_id": "2207139:8486189",
+      "source_url": "https://sunteam.itch.io/dieragus"
+    },
+    {
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
       "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "release_identity": {
@@ -375,6 +398,29 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
       "source_release_id": "6337",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip"
+    },
+    {
+      "candidate_key": "golden seas|sunteam|2022|english",
+      "external_source_terms": null,
+      "filename": "Golden Seas by Sunteam.zip",
+      "release_identity": {
+        "publisher": "Sunteam",
+        "title": "Golden Seas",
+        "year": "2022"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://sunteam.itch.io/golden-seas",
+        "upload_id": 6330996
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "9bdaa046de9e3b14d444d9f81b703cc14e186f6a7f1fac73cb90ba48f275392d"
+      },
+      "source_evidence": "Official Sunteam itch.io page identifies Golden Seas as a free 2022 ZX Spectrum Next text adventure converted with DAAD Ready and publishes a public download. The pinned itchio-downloader 1.2.0 HTTP adapter retrieved public upload 6330996.",
+      "source_record_url": "https://sunteam.itch.io/golden-seas",
+      "source_release_id": "1425616:6330996",
+      "source_url": "https://sunteam.itch.io/golden-seas"
     }
   ],
   "schema_version": 1

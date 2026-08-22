@@ -42,7 +42,10 @@ def test_itch_adapter_promotes_only_the_registered_upload(monkeypatch, tmp_path:
     assert source_id is not None
     entry = {**candidate(), **registration(), "filename": "cero.zip"}
 
+    commands: list[list[str]] = []
+
     def fake_run(command, **kwargs):
+        commands.append(command)
         adapter_dir = Path(command[command.index("--downloadDirectory") + 1])
         (adapter_dir / "game-42.zip").write_bytes(b"DAAD")
         (adapter_dir / "game-99.zip").write_bytes(b"wrong upload")
@@ -53,4 +56,6 @@ def test_itch_adapter_promotes_only_the_registered_upload(monkeypatch, tmp_path:
     source = next(record for record in db.get_all_sources() if record.id == source_id)
     assert source.status == SourceStatus.DOWNLOADED.value
     assert Path(source.local_path).read_bytes() == b"DAAD"
+    assert commands[0][commands[0].index("--retries") + 1] == "2"
+    assert commands[0][commands[0].index("--cookieCacheDir") + 1].endswith("cookies")
     assert (tmp_path / "logs" / f"itchio_{source_id}.log").read_text(encoding="utf-8") == "adapter completed"

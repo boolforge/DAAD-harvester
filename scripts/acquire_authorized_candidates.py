@@ -116,6 +116,7 @@ def acquire_itchio_source(db: Database, source_id: int, entry: dict[str, Any], o
     command = [
         "pnpm", "dlx", f"itchio-downloader@{ITCHIO_DOWNLOADER_VERSION}",
         "--url", entry["source_url"], "--downloadDirectory", str(adapter_dir),
+        "--retries", "2", "--retryDelay", "1000", "--cookieCacheDir", str(adapter_dir / "cookies"),
     ]
     environment = {**os.environ, "CI": "1"}
     try:

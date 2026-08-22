@@ -260,23 +260,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "die, ragus!|sunteam|2023|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Sunteam",
-      "reason": "authorized_source_discovery_required",
-      "title": "Die, Ragus!",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "dragnet case, the|taskmaster software|1989|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -498,23 +481,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "golden seas|sunteam|2022|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Sunteam",
-      "reason": "authorized_source_discovery_required",
-      "title": "Golden Seas",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "great caravan caper|electric storm productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -531,7 +497,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 31,
+  "discovery_required_count": 29,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -900,6 +866,35 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "die, ragus!|sunteam|2023|english",
+      "external_source_terms": null,
+      "filename": "Die, Ragus! by sunteam.zip",
+      "language": "English",
+      "publisher": "Sunteam",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Sunteam",
+        "title": "Die, Ragus!",
+        "year": "2023"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://sunteam.itch.io/dieragus",
+        "upload_id": 8486189
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ecfa4edc22e757a65fd26fd2041c5c0d66fb66133613383dd63b9ef9f7df2937"
+      },
+      "source_record_url": "https://sunteam.itch.io/dieragus",
+      "source_release_id": "2207139:8486189",
+      "source_url": "https://sunteam.itch.io/dieragus",
+      "title": "Die, Ragus!",
+      "year": "2023"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
       "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "language": "Spanish",
@@ -1013,9 +1008,38 @@
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip",
       "title": "From out of a Dark Night Sky",
       "year": "1989"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "golden seas|sunteam|2022|english",
+      "external_source_terms": null,
+      "filename": "Golden Seas by Sunteam.zip",
+      "language": "English",
+      "publisher": "Sunteam",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Sunteam",
+        "title": "Golden Seas",
+        "year": "2022"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://sunteam.itch.io/golden-seas",
+        "upload_id": 6330996
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "9bdaa046de9e3b14d444d9f81b703cc14e186f6a7f1fac73cb90ba48f275392d"
+      },
+      "source_record_url": "https://sunteam.itch.io/golden-seas",
+      "source_release_id": "1425616:6330996",
+      "source_url": "https://sunteam.itch.io/golden-seas",
+      "title": "Golden Seas",
+      "year": "2022"
     }
   ],
-  "queued_count": 18,
+  "queued_count": 20,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
