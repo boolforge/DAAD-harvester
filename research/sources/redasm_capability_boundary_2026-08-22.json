@@ -1,0 +1,40 @@
+{
+  "documented_boundaries": [
+    "The retained README processor table lists x86 / x86_64, MIPS, ARM / Thumb, and ARM64.",
+    "Z80 is not listed in the retained README processor table."
+  ],
+  "documented_processors": [
+    {
+      "architecture": "x86 / x86_64",
+      "description": "16-bit, 32-bit and 64-bit Intel/AMD",
+      "status": "S"
+    },
+    {
+      "architecture": "MIPS",
+      "description": "MIPS32, big and little endian, delay slot aware",
+      "status": "A"
+    },
+    {
+      "architecture": "ARM / Thumb",
+      "description": "ARM32 and Thumb instruction sets",
+      "status": "B"
+    },
+    {
+      "architecture": "ARM64",
+      "description": "AArch64",
+      "status": "A"
+    }
+  ],
+  "non_claims": [
+    "This record does not install, execute, configure, or validate redasm.",
+    "It does not claim that redasm lacks a possible Z80 plugin or configuration outside the retained processor table.",
+    "It does not establish Z80, MSX, Spectrum, or Spectrum Next analysis support, a historical load model, runtime behavior, control/data classification, or an interpreter-analysis result.",
+    "It does not replace repository-native evidence, retained original bytes, or a reproducible disagreement record."
+  ],
+  "purpose": "Discovery-only redasm processor-table boundary; not a native result or platform-support claim.",
+  "repository_url": "https://github.com/redasm-dev/redasm",
+  "revision": "113245ef02090602978e461fcb7031b75da448d6",
+  "schema_version": 1,
+  "source_sha256": "201eb75c74d82c3882392efd9ecac7c769dd05081103a01a176b00127b81067b",
+  "source_url": "https://raw.githubusercontent.com/redasm-dev/redasm/113245ef02090602978e461fcb7031b75da448d6/README.md"
+}

@@ -716,6 +716,36 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "redasm-capability-boundary-discovery",
+      "description": "Regenerates a retained redasm README processor-table capability boundary. It does not run redasm or establish Z80, MSX, Spectrum, or Spectrum Next support, a load model, runtime behavior, control/data classification, or an interpreter-analysis result.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_redasm_capability_boundary.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/redasm_README_113245ef_2026-08-22.md.gz",
+          "sha256": "cba16b77354c08498481048bc3dde6c23c8911261b5bbd789b5bddaf62806e04"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/redasm_capability_boundary_2026-08-22.json",
+          "sha256": "c0b0c46c0e2f3a75d7c28eb766b9c7126ab223875a866d9fb371e4f50932396a"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }

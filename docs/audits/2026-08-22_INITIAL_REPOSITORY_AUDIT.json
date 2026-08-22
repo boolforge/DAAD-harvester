@@ -248,6 +248,10 @@
             "qualified_name": "_fetch"
           },
           {
+            "path": "scripts/capture_redasm_capability_boundary.py",
+            "qualified_name": "_fetch"
+          },
+          {
             "path": "scripts/capture_skoolkit_analysis_boundary.py",
             "qualified_name": "_fetch"
           },
@@ -293,7 +297,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 428,
+      "declared_test_count": 431,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -345,13 +349,13 @@
     },
     "python": {
       "production_files": 39,
-      "script_files": 63,
-      "test_files": 80
+      "script_files": 64,
+      "test_files": 81
     },
     "regeneration": {
-      "entries": 18,
-      "inputs": 41,
-      "outputs": 27
+      "entries": 19,
+      "inputs": 42,
+      "outputs": 28
     },
     "web": {
       "package_lock_present": true,
