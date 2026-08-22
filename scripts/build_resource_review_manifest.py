@@ -19,7 +19,7 @@ def build(db_path: Path = DEFAULT_DB) -> dict[str, object]:
     connection.row_factory = sqlite3.Row
     rows = connection.execute(
         """SELECT id, source_id, original_filename, extracted_path, file_size, sha256,
-                  media_parser, media_status, media_validation
+                  media_parser, media_status, media_validation, container_format, platform_hint
            FROM artifacts ORDER BY id"""
     ).fetchall()
     artifacts: list[dict[str, object]] = []
@@ -45,6 +45,8 @@ def build(db_path: Path = DEFAULT_DB) -> dict[str, object]:
                 "parser": row["media_parser"],
                 "parser_status": status,
                 "parser_validation": row["media_validation"],
+                "container_format": row["container_format"],
+                "platform_hint": row["platform_hint"],
                 "evidence_state": evidence_state,
                 "next_action": next_action,
                 "reproducer": {
@@ -68,6 +70,8 @@ def build(db_path: Path = DEFAULT_DB) -> dict[str, object]:
             "evidence_states": dict(sorted(Counter(str(a["evidence_state"]) for a in artifacts).items())),
             "parser_statuses": dict(sorted(Counter(str(a["parser_status"]) for a in artifacts).items())),
             "parsers": dict(sorted(Counter(str(a["parser"]) for a in artifacts).items())),
+            "container_formats": dict(sorted(Counter(str(a["container_format"]) for a in artifacts).items())),
+            "platform_hints": dict(sorted(Counter(str(a["platform_hint"]) for a in artifacts).items())),
             "observed_extensions": dict(sorted(extensions.items())),
         },
         "artifacts": artifacts,

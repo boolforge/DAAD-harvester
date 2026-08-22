@@ -16,6 +16,8 @@ def test_review_manifest_covers_every_retained_artifact() -> None:
         "review_required": 618,
     }
     assert manifest["summary"]["observed_extensions"]["<extensionless>"] > 0
+    assert "None" in manifest["summary"]["container_formats"]
+    assert "None" in manifest["summary"]["platform_hints"]
     assert {entry["evidence_state"] for entry in artifacts} == {
         "recognized_evidence",
         "explicit_rejection",
