@@ -8,9 +8,10 @@
 | **Non-claims** | MZ validation does not establish the DOS PSP, actual load segment, runtime behavior, source recovery, or qualified analyzer output. |
 
 `verify_dos_mz_load_model.py` verifies the retained file identity, declared size,
-header and load-module bounds, relocation-table bounds and targets, initial
-CS:IP, initial SS:SP, and overlay field for every retained DOS profile. All
-current profiles have a relative entry offset of zero and overlay number zero.
+header and hash-bound load-module byte range, relocation-table bounds and
+targets, initial CS:IP, initial SS:SP, and overlay field for every retained DOS
+profile. All current profiles have a relative entry offset of zero and overlay
+number zero.
 The result is deliberately still non-executable: DOS supplies a PSP and a load
 segment outside the MZ image, and those platform conditions remain separate
 requirements of the committed DOS admission contract.

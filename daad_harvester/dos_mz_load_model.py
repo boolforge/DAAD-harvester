@@ -44,6 +44,8 @@ def parse_mz_header(data: bytes) -> dict[str, int]:
     if relocation_offset < 28 or relocation_end > header_size:
         raise DosMzLoadModelError("MZ relocation table is outside the header")
     load_module_size = declared_size - header_size
+    load_module = data[header_size:declared_size]
+    load_module_sha256 = hashlib.sha256(load_module).hexdigest()
     entry_offset = initial_cs * 16 + initial_ip
     stack_offset = initial_ss * 16 + initial_sp
     if entry_offset >= load_module_size:
@@ -58,6 +60,9 @@ def parse_mz_header(data: bytes) -> dict[str, int]:
         "declared_size": declared_size,
         "header_size": header_size,
         "load_module_size": load_module_size,
+        "load_module_start": header_size,
+        "load_module_end_exclusive": declared_size,
+        "load_module_sha256": load_module_sha256,
         "relocation_count": relocation_count,
         "relocation_offset": relocation_offset,
         "initial_cs": initial_cs,

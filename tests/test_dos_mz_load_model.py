@@ -19,6 +19,9 @@ def test_all_retained_dos_profiles_have_validated_mz_relative_entry_evidence() -
     assert ledger["execution_eligible"] is False
     assert {profile["relative_entry_offset"] for profile in ledger["profiles"]} == {0}
     assert {profile["overlay_number"] for profile in ledger["profiles"]} == {0}
+    assert all(profile["load_module_start"] == profile["header_size"] for profile in ledger["profiles"])
+    assert all(profile["load_module_end_exclusive"] == profile["declared_size"] for profile in ledger["profiles"])
+    assert all(len(profile["load_module_sha256"]) == 64 for profile in ledger["profiles"])
 
 
 def test_mz_header_rejects_truncated_or_invalid_relative_entry() -> None:
