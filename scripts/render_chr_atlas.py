@@ -21,13 +21,11 @@ def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def render(input_path: Path, output_path: Path, metadata_path: Path, *, scale: int = 1) -> dict[str, object]:
-    """Render one validated CHR atlas and write a deterministic evidence manifest."""
+def build_manifest(input_path: Path, output_path: Path, metadata_path: Path, *, scale: int = 1) -> tuple[bytes, bytes, dict[str, object]]:
+    """Return deterministic atlas bytes, manifest bytes, and parsed evidence without writing."""
 
     source = input_path.read_bytes()
     atlas, evidence = render_adp_chr_glyph_atlas(source, scale=scale)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_bytes(atlas)
     manifest: dict[str, object] = {
         "schema_version": 1,
         "source_path": str(input_path),
@@ -40,9 +38,28 @@ def render(input_path: Path, output_path: Path, metadata_path: Path, *, scale: i
         ),
         "evidence": evidence,
     }
+    return atlas, json.dumps(manifest, indent=2, sort_keys=True).encode("utf-8") + b"\n", manifest
+
+
+def render(input_path: Path, output_path: Path, metadata_path: Path, *, scale: int = 1) -> dict[str, object]:
+    """Render one validated CHR atlas and write a deterministic evidence manifest."""
+
+    atlas, manifest_bytes, manifest = build_manifest(input_path, output_path, metadata_path, scale=scale)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_bytes(atlas)
     metadata_path.parent.mkdir(parents=True, exist_ok=True)
-    metadata_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    metadata_path.write_bytes(manifest_bytes)
     return manifest
+
+
+def check(input_path: Path, output_path: Path, metadata_path: Path, *, scale: int = 1) -> None:
+    """Reject a missing or stale atlas/manifest pair without modifying repository state."""
+
+    atlas, manifest_bytes, _ = build_manifest(input_path, output_path, metadata_path, scale=scale)
+    if not output_path.is_file() or output_path.read_bytes() != atlas:
+        raise ValueError(f"atlas output is missing or differs from deterministic regeneration: {output_path}")
+    if not metadata_path.is_file() or metadata_path.read_bytes() != manifest_bytes:
+        raise ValueError(f"atlas manifest is missing or differs from deterministic regeneration: {metadata_path}")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -53,8 +70,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--output", type=Path, required=True, help="Output grayscale PNG atlas")
     parser.add_argument("--metadata", type=Path, required=True, help="Output JSON checksum/provenance manifest")
     parser.add_argument("--scale", type=int, default=1, help="Positive integer glyph-pixel scale")
+    parser.add_argument("--check", action="store_true", help="Verify existing outputs without writing them")
     args = parser.parse_args(argv)
-    render(args.input, args.output, args.metadata, scale=args.scale)
+    if args.check:
+        check(args.input, args.output, args.metadata, scale=args.scale)
+    else:
+        render(args.input, args.output, args.metadata, scale=args.scale)
     return 0
 
 

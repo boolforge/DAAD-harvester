@@ -47,6 +47,15 @@ def test_atlas_command_writes_reproducible_hash_pinned_outputs(tmp_path: Path) -
     assert manifest["derived_sha256"] == MODULE.sha256(first_output)
     assert manifest["evidence"]["glyph_index_mapping"] == "byte_index_only_no_code_page_claim"
     assert "--scale 2" in manifest["regeneration_command"]
+    assert MODULE.check(source, output, metadata, scale=2) is None
+
+    output.write_bytes(b"stale atlas")
+    with pytest.raises(ValueError, match="atlas output"):
+        MODULE.check(source, output, metadata, scale=2)
+    MODULE.render(source, output, metadata, scale=2)
+    metadata.write_bytes(b"stale manifest")
+    with pytest.raises(ValueError, match="atlas manifest"):
+        MODULE.check(source, output, metadata, scale=2)
 
 
 def test_atlas_command_rejects_unvalidated_chr_profile(tmp_path: Path) -> None:
