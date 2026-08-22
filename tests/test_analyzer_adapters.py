@@ -126,6 +126,18 @@ def test_candidate_matrix_preserves_non_executable_architecture_scoped_admission
     }
 
 
+def test_health_checked_m68k_candidate_remains_non_executable_pending_platform_evidence() -> None:
+    matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
+    oxore = next(candidate for candidate in matrix["candidates"] if candidate["candidate_id"] == "oxore-m68k-disasm-v1")
+
+    assert oxore["admission_state"] == "health_checked"
+    assert oxore["architectures"] == ["m68000"]
+    assert oxore["source"]["revision"] == "bb6d83981bbb53de352061b793c8215e45af895a"
+    assert oxore["execution_eligible"] is False
+    assert any("Amiga or Atari ST origin" in blocker for blocker in oxore["blockers"])
+    assert "controlled" in oxore["non_claim"]
+
+
 def test_candidate_matrix_rejects_an_unconfigured_executable_candidate() -> None:
     matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
     matrix["candidates"][0]["execution_eligible"] = True

@@ -54,13 +54,13 @@
     },
     {
       "candidate_id": "oxore-m68k-disasm-v1",
-      "admission_state": "discovery",
+      "admission_state": "health_checked",
       "architectures": ["m68000"],
       "source": {"repository_url": "https://github.com/Oxore/m68k-disasm", "revision": "bb6d83981bbb53de352061b793c8215e45af895a", "license_status": "Unlicense observed in repository metadata"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "trace-informed labeling candidate"],
-      "blockers": ["source build and fixture health", "Amiga or Atari ST origin model", "base-zero limitation review", "retained-byte disagreement record"],
-      "non_claim": "A fixed base-zero implementation does not validate a platform load model or runtime semantics."
+      "blockers": ["upstream round-trip test toolchain: m68k-none-elf-as, m68k-none-elf-ld, and m68k-none-elf-objcopy", "Amiga or Atari ST origin, entry, and load model", "raw-binary base and trace or label assumption mapping", "retained-byte cross-tool disagreement record"],
+      "non_claim": "A controlled base-unspecified NOP/RTS fixture does not validate a platform load model, tool labels, or runtime semantics."
     },
     {
       "candidate_id": "capstone-m68k-mos65xx-x86-v1",
