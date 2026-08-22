@@ -49,11 +49,11 @@
     {
       "id": "atari_st_m68000",
       "population": 4,
-      "verified_fields": ["immutable profile identities", "PRG text/data/BSS segment arithmetic", "bounded PRG relocation streams"],
+      "verified_fields": ["immutable profile identities", "PRG text/data/BSS/symbol segment arithmetic", "bounded PRG relocation streams and counts"],
       "unresolved_fields": ["TOS basepage and allocation", "GEMDOS/AES environment", "effective entry", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "6a93c59",
+      "last_validated_commit": "1402936",
       "next_reproducer": "python3 scripts/verify_atari_st_prg_load_model.py",
       "forbidden_cross_family_evidence": ["Amiga Hunk segments", "DOS MZ fields", "Z80 bank model"]
     },
