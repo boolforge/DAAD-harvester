@@ -19,6 +19,7 @@ def test_retained_zx_plus3dos_headers_validate_without_executable_promotion() ->
     fields = parse_plus3dos_header((ROOT / contract["profiles"][1]["input_path"]).read_bytes())
 
     assert contract["execution_eligible"] is False
+    assert all(profile["launch_capture_observation"] is None for profile in contract["profiles"])
     assert fields["physical_tail_size"] == 946
     assert fields["declared_payload"] == 8142
 
@@ -29,6 +30,7 @@ def test_retained_zx_plus3dos_headers_validate_without_executable_promotion() ->
         (lambda contract: contract.__setitem__("execution_eligible", True), "must not enable execution"),
         (lambda contract: contract["profiles"][0].__setitem__("sha256", "0" * 64), "retained P3F identity differs"),
         (lambda contract: contract["profiles"][1].__setitem__("physical_tail_size", 0), "physical tail fact differs"),
+        (lambda contract: contract["profiles"][0].__setitem__("launch_capture_observation", {"emulator": "default"}), "no official ZX launch capture"),
     ],
 )
 def test_zx_plus3dos_contract_rejects_promotion_or_changed_facts(mutation, message: str) -> None:

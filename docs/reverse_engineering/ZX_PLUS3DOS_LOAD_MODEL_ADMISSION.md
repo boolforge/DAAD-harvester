@@ -21,7 +21,17 @@ python3 scripts/verify_zx_plus3dos_load_model.py
 The verifier reads retained P3F bytes only. It does not mount a disk, run
 +3DOS, launch an emulator, or invoke a disassembler.
 
+Every profile therefore records `launch_capture_observation: null`. A future
+official capture must bind the exact P3F and disk/loader context, +3DOS ROM,
+loader transition, bootstrap sector, snapshot, model, registers, `0x7FFD` and
+`0x1FFD` paging state with `BANKM` and `BANK678`, RAM/ROM mappings, stack, and
++3DOS vector bytes. A generic Z80 default, unrelated Spectrum capture, or
+different PLUS3DOS title cannot fill this field.[3] [4] [5]
+
 ## References
 
 [1]: [ZX Spectrum platform dossier](../platforms/ZX_SPECTRUM.md)
 [2]: [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+[3]: [Sinclair ZX Spectrum +3 Manual](https://zxspectrumvault.github.io/Manuals/Hardware/SpectrumPlus3Manual.html)
+[4]: [Spectrum +3 Manual, Part 27: Guide to +3DOS](https://worldofspectrum.org/ZXSpectrum128+3Manual/chapter8pt27.html)
+[5]: [Spectrum +3 Manual, Part 26: Using Machine Code](https://worldofspectrum.net/ZXSpectrum128+3Manual/chapter8pt26.html)

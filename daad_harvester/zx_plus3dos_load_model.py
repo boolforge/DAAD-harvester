@@ -13,6 +13,12 @@ class ZxPlus3DosLoadModelError(ValueError):
 
 
 HEADER_SIZE = 128
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = (
+    "official_p3f_sha256", "disk_or_loader_context_sha256", "plus3dos_rom_sha256",
+    "loader_transition_sha256", "bootstrap_sector_sha256", "snapshot_sha256",
+    "machine_model", "z80_registers", "port_7ffd", "port_1ffd", "bankm",
+    "bank678", "ram_page_mapping", "rom_selection", "stack_state", "plus3dos_vector_bytes",
+)
 
 
 def _sha256(path: Path) -> str:
@@ -50,6 +56,8 @@ def validate_zx_plus3dos_load_model(contract: dict[str, Any], root: Path) -> Non
         raise ZxPlus3DosLoadModelError("admission_state must retain unresolved payload execution")
     if contract.get("execution_eligible") is not False:
         raise ZxPlus3DosLoadModelError("PLUS3DOS header facts must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise ZxPlus3DosLoadModelError("ZX future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 2:
         raise ZxPlus3DosLoadModelError("contract must contain exactly two ZX profiles")
@@ -75,6 +83,8 @@ def validate_zx_plus3dos_load_model(contract: dict[str, Any], root: Path) -> Non
             raise ZxPlus3DosLoadModelError(f"{identifier}: declared header facts differ")
         if profile.get("physical_tail_size") != fields["physical_tail_size"]:
             raise ZxPlus3DosLoadModelError(f"{identifier}: physical tail fact differs")
+        if profile.get("launch_capture_observation") is not None:
+            raise ZxPlus3DosLoadModelError(f"{identifier}: no official ZX launch capture is currently admitted")
 
 
 def load_zx_plus3dos_load_model(path: Path, root: Path) -> dict[str, Any]:
