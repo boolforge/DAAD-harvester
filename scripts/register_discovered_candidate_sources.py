@@ -41,12 +41,20 @@ def year_matches(expected: str, observed: str) -> bool:
     return re.match(rf"^{re.escape(expected)}(?:$|[/.-])", observed.strip()) is not None
 
 
+def language_matches(candidate_language: object, observed_language: object) -> bool:
+    """Require equality unless the catalog explicitly records its language as unknown."""
+
+    expected = normalize(str(candidate_language or ""))
+    observed = normalize(str(observed_language or ""))
+    return bool(observed) and (expected == "unknown" or expected == observed)
+
+
 def same_identity(candidate: dict[str, Any], evidence: dict[str, Any]) -> bool:
     return (
         title_matches(str(candidate["title"]), str(evidence.get("title") or ""))
         and normalized_publisher(str(evidence.get("publisher") or "")) == normalized_publisher(str(candidate["publisher"]))
         and year_matches(str(candidate["year"]), str(evidence.get("year") or ""))
-        and normalize(str(evidence.get("language") or "")) == normalize(str(candidate["language"]))
+        and language_matches(candidate.get("language"), evidence.get("language"))
     )
 
 
@@ -103,7 +111,11 @@ def build(
                     "publisher": candidate["publisher"],
                     "year": candidate["year"],
                 },
-                "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, year, and language.",
+                "source_evidence": (
+                    "Release identity matched by the Spectrum Computing adapter against title, publisher, and year; "
+                    "the source language either matched the catalog value or was retained as observed because the catalog value is Unknown."
+                ),
+                "source_observed_identity": evidence,
                 "external_source_terms": match.get("external_source_terms"),
             }
         )

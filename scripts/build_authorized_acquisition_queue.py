@@ -75,6 +75,8 @@ def build(
                 record["catalog_identity_variance"] = registration["catalog_identity_variance"]
             if "source_release_identity" in registration:
                 record["source_release_identity"] = registration["source_release_identity"]
+            if "source_observed_identity" in registration:
+                record["source_observed_identity"] = registration["source_observed_identity"]
             if "authorization" in registration:
                 record["authorization"] = registration["authorization"]
             else:

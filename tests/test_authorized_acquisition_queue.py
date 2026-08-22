@@ -88,8 +88,8 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 30
-    assert queue["discovery_required_count"] == 59
+    assert queue["queued_count"] == 47
+    assert queue["discovery_required_count"] == 42
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
@@ -118,8 +118,15 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     assert "aventura original, la|aventuras a.d., dinamic software|1989|spanish" in queued_keys
     assert "elf|defecto digital studios|2016|spanish" in queued_keys
     assert "bulbo and the blue dragon|pension productions|2019|english" in queued_keys
+    assert "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown" in queued_keys
+    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}
     discovery_keys = {item["candidate_key"] for item in queue["discovery_required"]}
     assert "beltalowda|molisoft|2025|unknown" in discovery_keys
-    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" in discovery_keys
+    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" not in discovery_keys
+    observed_language_keys = {
+        "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
+        "a case of murder 128k|taskmaster software (uk)|2023|unknown",
+    }
+    assert all(item.get("source_observed_identity") for item in queue["queued"] if item["candidate_key"] in observed_language_keys)

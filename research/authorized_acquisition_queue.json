@@ -5,25 +5,6 @@
   "discovery_required": [
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
-      "reason": "authorized_source_discovery_required",
-      "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[csscgc] licence to mow|jbizzel|2023|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39242/ZX-Spectrum/Licence_to_Mow",
@@ -116,25 +97,6 @@
       "reason": "authorized_source_discovery_required",
       "title": "[MOD] Erinia (Enhanced version)",
       "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Taskmaster Software (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "A Case of Murder 128K",
-      "year": "2023"
     },
     {
       "authorization_status": "authorized_source_discovery_required",
@@ -442,25 +404,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "el cetro del sol|toni pera|2015|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Toni Pera",
-      "reason": "authorized_source_discovery_required",
-      "title": "El Cetro del Sol",
-      "year": "2015"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "el dia que lo entiendas se acaba el mundo|pedro fernandez lopez (spain)|none|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
@@ -477,25 +420,6 @@
       "reason": "authorized_source_discovery_required",
       "title": "El Dia Que Lo Entiendas Se Acaba El Mundo",
       "year": null
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "elf, la aventura - parte 1|defecto digital studios|2016|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Defecto Digital Studios",
-      "reason": "authorized_source_discovery_required",
-      "title": "ELF, La Aventura - Parte 1",
-      "year": "2016"
     },
     {
       "authorization_status": "authorized_source_discovery_required",
@@ -594,25 +518,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "excalibur: sword of kings remake|adventuron software ltd|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Adventuron Software Ltd",
-      "reason": "authorized_source_discovery_required",
-      "title": "Excalibur: Sword of Kings Remake",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "framed!|kennard douglas|2024|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/43705/ZX-Spectrum/Framed",
@@ -689,63 +594,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "karhum|toni pera|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Toni Pera",
-      "reason": "authorized_source_discovery_required",
-      "title": "Karhum",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "la aventura espacial|aventuras ad s.a. (spain)|1990|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "La Aventura Espacial",
-      "year": "1990"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "La Aventura Original",
-      "year": "1989"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "la celda|adanoliva|none|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42566/ZX-Spectrum/La_Celda",
@@ -784,44 +632,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Dwalin",
-      "reason": "authorized_source_discovery_required",
-      "title": "Las Aventuras de Rudolphine Rur",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "last night in the office|quizlock|2020|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Quizlock",
-      "reason": "authorized_source_discovery_required",
-      "title": "Last Night in the Office",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "los elfos de maroland 2023|dwalin|2023|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
@@ -838,63 +648,6 @@
       "reason": "authorized_source_discovery_required",
       "title": "Los Elfos de Maroland 2023",
       "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "Los Templos Sagrados",
-      "year": "1991"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "one last thing|dee cooke|2020|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Dee Cooke",
-      "reason": "authorized_source_discovery_required",
-      "title": "One Last Thing",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "pandemia xxi|luckywebsoft|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "luckywebsoft",
-      "reason": "authorized_source_discovery_required",
-      "title": "Pandemia XXI",
-      "year": "2019"
     },
     {
       "authorization_status": "authorized_source_discovery_required",
@@ -1047,88 +800,68 @@
       "reason": "authorized_source_discovery_required",
       "title": "The Legacy of Markham Island",
       "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Taskmaster Software (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Mystery of Markham Manor",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the revenge of moriarty|gareth pitchford (uk)|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Gareth Pitchford (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Revenge of Moriarty",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "torreoscura|bieno marti (spain)|2020|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Bieno Marti (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "Torreoscura",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "zhl|alien software (spain)|2016|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Alien Software (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "ZHL",
-      "year": "2016"
     }
   ],
-  "discovery_required_count": 59,
+  "discovery_required_count": 42,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
+      "external_source_terms": null,
+      "filename": "13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip",
+      "language": "Unknown",
+      "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
+        "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+        "year": "2023"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
+        "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+        "year": "2023/Nov/17"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
+      "source_release_id": "42613",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042613/13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip",
+      "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+      "year": "2023"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+      "external_source_terms": null,
+      "filename": "CaseOfMurder128KA(Illustrated).tzx.zip",
+      "language": "Unknown",
+      "publisher": "Taskmaster Software (UK)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Taskmaster Software (UK)",
+        "title": "A Case of Murder 128K",
+        "year": "2023"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Taskmaster Software (UK)",
+        "title": "A Case of Murder 128K",
+        "year": "2023"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+      "source_release_id": "42546",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA(Illustrated).tzx.zip",
+      "title": "A Case of Murder 128K",
+      "year": "2023"
+    },
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
@@ -1739,6 +1472,34 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "el cetro del sol|toni pera|2015|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+      "external_source_terms": null,
+      "filename": "ElCetroDelSol_Part1.tzx.zip",
+      "language": "Unknown",
+      "publisher": "Toni Pera",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Toni Pera",
+        "title": "El Cetro del Sol",
+        "year": "2015"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Toni Pera",
+        "title": "El Cetro del Sol",
+        "year": "2015"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+      "source_release_id": "30241",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030241/ElCetroDelSol_Part1.tzx.zip",
+      "title": "El Cetro del Sol",
+      "year": "2015"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "elf|defecto digital studios|2016|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
@@ -1760,6 +1521,34 @@
       "source_release_id": "30277",
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip",
       "title": "ELF",
+      "year": "2016"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "elf, la aventura - parte 1|defecto digital studios|2016|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+      "external_source_terms": null,
+      "filename": "ELFLaAventura-Parte1.tap.zip",
+      "language": "Unknown",
+      "publisher": "Defecto Digital Studios",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Defecto Digital Studios",
+        "title": "ELF, La Aventura - Parte 1",
+        "year": "2016"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Defecto Digital Studios",
+        "title": "ELF, La Aventura - Parte 1",
+        "year": "2016"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+      "source_release_id": "30277",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip",
+      "title": "ELF, La Aventura - Parte 1",
       "year": "2016"
     },
     {
@@ -1861,6 +1650,34 @@
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/e/EverydayTaleOfASeekerOfGoldAn.tzx.zip",
       "title": "Everyday Tale of a Seeker of Gold, An",
       "year": "1986"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "excalibur: sword of kings remake|adventuron software ltd|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
+      "external_source_terms": null,
+      "filename": "Excalibur-SwordOfKingsRemake.dsk.zip",
+      "language": "Unknown",
+      "publisher": "Adventuron Software Ltd",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Adventuron Software Ltd",
+        "title": "Excalibur: Sword of Kings Remake",
+        "year": "2019"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Adventuron Software Ltd",
+        "title": "Excalibur: Sword of Kings Remake",
+        "year": "2019/Nov/20"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
+      "source_release_id": "37245",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0037245/Excalibur-SwordOfKingsRemake.dsk.zip",
+      "title": "Excalibur: Sword of Kings Remake",
+      "year": "2019"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1970,9 +1787,345 @@
       "source_url": "https://sunteam.itch.io/golden-seas",
       "title": "Golden Seas",
       "year": "2022"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "karhum|toni pera|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+      "external_source_terms": null,
+      "filename": "Karhum(Part1).tap.zip",
+      "language": "Unknown",
+      "publisher": "Toni Pera",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Toni Pera",
+        "title": "Karhum",
+        "year": "2019"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Toni Pera",
+        "title": "Karhum",
+        "year": "2019"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+      "source_release_id": "34683",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034683/Karhum(Part1).tap.zip",
+      "title": "Karhum",
+      "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "la aventura espacial|aventuras ad s.a. (spain)|1990|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+      "external_source_terms": null,
+      "filename": "AventuraEspacialLa(IBSA).tzx.zip",
+      "language": "Unknown",
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "La Aventura Espacial",
+        "year": "1990"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "La Aventura Espacial",
+        "year": "1990"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+      "source_release_id": "5975",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa(IBSA).tzx.zip",
+      "title": "La Aventura Espacial",
+      "year": "1990"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+      "external_source_terms": null,
+      "filename": "AventuraOriginalLa(IBSA).tzx.zip",
+      "language": "Unknown",
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "La Aventura Original",
+        "year": "1989"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "La Aventura Original",
+        "year": "1989"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+      "source_release_id": "5977",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa(IBSA).tzx.zip",
+      "title": "La Aventura Original",
+      "year": "1989"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
+      "external_source_terms": null,
+      "filename": "AventurasDeRudolphineRurLas(Part1).tap.zip",
+      "language": "Unknown",
+      "publisher": "Dwalin",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Dwalin",
+        "title": "Las Aventuras de Rudolphine Rur",
+        "year": "2020"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Dwalin",
+        "title": "Las Aventuras de Rudolphine Rur",
+        "year": "2020/Apr/19"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
+      "source_release_id": "35692",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035692/AventurasDeRudolphineRurLas(Part1).tap.zip",
+      "title": "Las Aventuras de Rudolphine Rur",
+      "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "last night in the office|quizlock|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
+      "external_source_terms": null,
+      "filename": "LastNightInTheOffice.dsk.zip",
+      "language": "Unknown",
+      "publisher": "Quizlock",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Quizlock",
+        "title": "Last Night in the Office",
+        "year": "2020"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Quizlock",
+        "title": "Last Night in the Office",
+        "year": "2020/Jul/01"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
+      "source_release_id": "36141",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036141/LastNightInTheOffice.dsk.zip",
+      "title": "Last Night in the Office",
+      "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
+      "external_source_terms": null,
+      "filename": "TemplosSagradosLos.tzx.zip",
+      "language": "Unknown",
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "Los Templos Sagrados",
+        "year": "1991"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Aventuras AD S.A. (Spain)",
+        "title": "Los Templos Sagrados",
+        "year": "1991"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
+      "source_release_id": "7082",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/t/TemplosSagradosLos.tzx.zip",
+      "title": "Los Templos Sagrados",
+      "year": "1991"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "one last thing|dee cooke|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
+      "external_source_terms": null,
+      "filename": "OneLastThing.dsk.zip",
+      "language": "Unknown",
+      "publisher": "Dee Cooke",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Dee Cooke",
+        "title": "One Last Thing",
+        "year": "2020"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Dee Cooke",
+        "title": "One Last Thing",
+        "year": "2020/Jul/06"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
+      "source_release_id": "36146",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036146/OneLastThing.dsk.zip",
+      "title": "One Last Thing",
+      "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "pandemia xxi|luckywebsoft|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
+      "external_source_terms": null,
+      "filename": "PandemiaXXI.tap.zip",
+      "language": "Unknown",
+      "publisher": "luckywebsoft",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "luckywebsoft",
+        "title": "Pandemia XXI",
+        "year": "2019"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "luckywebsoft",
+        "title": "Pandemia XXI",
+        "year": "2019/Feb"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
+      "source_release_id": "36074",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036074/PandemiaXXI.tap.zip",
+      "title": "Pandemia XXI",
+      "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+      "external_source_terms": null,
+      "filename": "MysteryOfMarkhamManorThe(128K).tzx.zip",
+      "language": "Unknown",
+      "publisher": "Taskmaster Software (UK)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Taskmaster Software (UK)",
+        "title": "The Mystery of Markham Manor",
+        "year": "2022"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Taskmaster Software (UK)",
+        "title": "The Mystery of Markham Manor",
+        "year": "2022/Dec"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+      "source_release_id": "39045",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(128K).tzx.zip",
+      "title": "The Mystery of Markham Manor",
+      "year": "2022"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "the revenge of moriarty|gareth pitchford (uk)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+      "external_source_terms": null,
+      "filename": "RevengeOfMoriarty(DAAD).tzx.zip",
+      "language": "Unknown",
+      "publisher": "Gareth Pitchford (UK)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Gareth Pitchford (UK)",
+        "title": "The Revenge of Moriarty",
+        "year": "2019"
+      },
+      "source_observed_identity": {
+        "language": "English",
+        "publisher": "Gareth Pitchford (UK)",
+        "title": "The Revenge of Moriarty",
+        "year": "2019"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+      "source_release_id": "36250",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(DAAD).tzx.zip",
+      "title": "The Revenge of Moriarty",
+      "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "torreoscura|bieno marti (spain)|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+      "external_source_terms": null,
+      "filename": "Torreoscura(Part1)(EN).tap.zip",
+      "language": "Unknown",
+      "publisher": "Bieno Marti (Spain)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Bieno Marti (Spain)",
+        "title": "Torreoscura",
+        "year": "2020"
+      },
+      "source_observed_identity": {
+        "language": "Multi-language: English, Spanish",
+        "publisher": "Bieno Marti (Spain)",
+        "title": "Torreoscura",
+        "year": "2020/Jun"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+      "source_release_id": "36067",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036067/Torreoscura(Part1)(EN).tap.zip",
+      "title": "Torreoscura",
+      "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "zhl|alien software (spain)|2016|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
+      "external_source_terms": null,
+      "filename": "ZHL_Release3.tap.zip",
+      "language": "Unknown",
+      "publisher": "Alien Software (Spain)",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Alien Software (Spain)",
+        "title": "ZHL",
+        "year": "2016"
+      },
+      "source_observed_identity": {
+        "language": "Spanish",
+        "publisher": "Alien Software (Spain)",
+        "title": "ZHL",
+        "year": "2016"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
+      "source_release_id": "35221",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035221/ZHL_Release3.tap.zip",
+      "title": "ZHL",
+      "year": "2016"
     }
   ],
-  "queued_count": 30,
+  "queued_count": 47,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

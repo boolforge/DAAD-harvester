@@ -11,8 +11,8 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
     assert first["schema_version"] == 1
     assert first["metrics"]["backlog"]["unchecked_items"] == 155
     assert first["metrics"]["acquisition"] == {
-        "queued": 30,
-        "discovery_required": 59,
+        "queued": 47,
+        "discovery_required": 42,
         "blocked": 0,
     }
     assert first["metrics"]["corpus"]["artifacts"] == 784

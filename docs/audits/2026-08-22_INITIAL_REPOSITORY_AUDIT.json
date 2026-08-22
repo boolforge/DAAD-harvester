@@ -261,7 +261,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 398,
+      "declared_test_count": 402,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -276,8 +276,8 @@
   "metrics": {
     "acquisition": {
       "blocked": 0,
-      "discovery_required": 59,
-      "queued": 30
+      "discovery_required": 42,
+      "queued": 47
     },
     "backlog": {
       "section_counts": {
