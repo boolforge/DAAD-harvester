@@ -48,6 +48,13 @@ def test_selection_accepts_only_complete_authorized_entries() -> None:
         selected_entries({"queued": [incomplete]}, None)
 
 
+def test_selection_can_be_limited_to_entries_with_observed_source_identity() -> None:
+    observed = {**entry(), "source_observed_identity": {"language": "Spanish"}}
+
+    assert selected_entries({"queued": [entry(), observed]}, None, observed_source_only=True) == [observed]
+    assert selected_entries({"queued": [entry(), observed]}, 1, observed_source_only=True) == [observed]
+
+
 def test_selection_rejects_non_authorized_queue_entries() -> None:
     blocked = entry()
     blocked["reason"] = "authorized_source_discovery_required"

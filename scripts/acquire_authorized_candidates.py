@@ -82,6 +82,7 @@ def register_sources(db: Database, entries: Iterable[dict[str, Any]]) -> dict[st
             "external_source_terms": entry.get("external_source_terms"),
             "catalog_identity_variance": entry.get("catalog_identity_variance"),
             "source_release_identity": entry.get("source_release_identity"),
+            "source_observed_identity": entry.get("source_observed_identity"),
         }
         source_id = db.add_source(
             entry["source_url"],
@@ -140,10 +141,17 @@ def acquire_itchio_source(db: Database, source_id: int, entry: dict[str, Any], o
     db.update_source_status(source_id, SourceStatus.DOWNLOADED.value, http_status=200, content_type="application/zip", local_path=str(target))
 
 
-def selected_entries(queue: dict[str, Any], max_candidates: int | None) -> list[dict[str, Any]]:
+def selected_entries(
+    queue: dict[str, Any],
+    max_candidates: int | None,
+    *,
+    observed_source_only: bool = False,
+) -> list[dict[str, Any]]:
     """Return the bounded queue slice, rejecting malformed or unauthorized records."""
 
     entries = list(queue.get("queued") or [])
+    if observed_source_only:
+        entries = [entry for entry in entries if isinstance(entry.get("source_observed_identity"), dict)]
     if max_candidates is not None:
         entries = entries[:max_candidates]
     for entry in entries:
@@ -227,10 +235,19 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--max-candidates", type=int, default=None)
     parser.add_argument("--parallel", type=int, default=2)
+    parser.add_argument(
+        "--observed-source-only",
+        action="store_true",
+        help="Acquire only queued entries carrying an observed source identity from discovery.",
+    )
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     queue = json.loads(args.queue.read_text(encoding="utf-8"))
-    entries = selected_entries(queue, args.max_candidates)
+    entries = selected_entries(
+        queue,
+        args.max_candidates,
+        observed_source_only=args.observed_source_only,
+    )
     if args.dry_run:
         print(f"Authorized acquisition dry run: {len(entries)} queued candidates selected.")
         return 0
