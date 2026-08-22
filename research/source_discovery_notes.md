@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## Deception of the Mind's Eye source boundary
+
+Spectrum Computing entry 24882 confirms the catalog title, Electric Storm Productions, English, and the 1992/93 development period, but records the release as **never released - recovered** and identifies its engine as **Professional Adventure Writer**. The public TZX and DSK media contain the recovered part one and an explicitly incomplete part-two demo. These materials do not satisfy a published DAAD release boundary; the later DAAD ports are separate editions. The candidate remains in `discovery_required`, with no acquisition of the recovered PAW media into the DAAD corpus.
+
 ## Elfos de Maroland source boundary
 
 Spectrum Computing entry 6245 confirms the catalog identity **Los Elfos de Maroland**, Kame Soft, Spanish, 1993, with public TAP and Z80 media, but explicitly identifies its engine as **Professional Adventure Writer**. The original author’s 2023 page confirms that the later DAAD release is a port/remake of the 1993 PAWS adventure, with altered text, fixes, and new puzzles. The available 1993 media are therefore not DAAD artifacts, while the 2023 DAAD edition is a different release already represented separately. The Kame Soft 1993 candidate remains in `discovery_required` without false DAAD registration.
