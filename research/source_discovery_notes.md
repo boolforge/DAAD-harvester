@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## Deer Creek source boundary
+
+Spectrum Computing entry 34909 and IFDB independently identify the 2019 English **Deer Creek** as a Gareth Pitchford release produced with Adventuron and converted to a ZX Spectrum version powered by **PAW**. This conflicts with the catalog candidate’s publisher **Primary Resources** and does not establish a DAAD edition. The publicly downloadable Spectrum TAP/TZX and Z80 snapshot are therefore not registered for the DAAD catalog candidate; it remains in `discovery_required` pending a source that closes both the publisher and engine boundaries.
+
 ## Great Caravan Caper source boundary
 
 Spectrum Computing entry 34746 provides downloadable 2019 Spectrum TAP/TZX media for **The Great Caravan Caper**, but names **Gareth Pitchford** as original publisher and creator. The public 8bitAG 2019 review confirms that the standalone Spectrum version was a port associated with Gareth Pitchford’s work. Neither record substantiates the catalog publisher **Electric Storm Productions** for the same edition. This is a publisher-boundary mismatch, not a direct source match; the candidate remains in `discovery_required` until a source establishes the Electric Storm release identity or a documented catalog-identity relationship.
