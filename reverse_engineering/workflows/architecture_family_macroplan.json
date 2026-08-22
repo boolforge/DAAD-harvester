@@ -38,11 +38,11 @@
     {
       "id": "amiga_m68000",
       "population": 4,
-      "verified_fields": ["immutable profile identities", "Hunk header", "one code segment", "bounded HUNK_RELOC32 records"],
+      "verified_fields": ["immutable profile identities", "Hunk header", "one code segment", "bounded HUNK_RELOC32 records", "future official Amiga LoadSeg and process-state capture schema"],
       "unresolved_fields": ["AmigaOS process and memory model", "LoadSeg allocation addresses", "effective entry", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "fe822dc",
+      "last_validated_commit": "acab0cc",
       "next_reproducer": "python3 scripts/verify_amiga_hunk_load_model.py",
       "forbidden_cross_family_evidence": ["Atari ST PRG header fields", "DOS MZ fields", "Z80 bank model"]
     },
