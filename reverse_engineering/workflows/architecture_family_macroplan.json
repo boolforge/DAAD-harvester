@@ -5,11 +5,11 @@
     {
       "id": "c64_mos6502",
       "population": 2,
-      "verified_fields": ["PRG identity", "PRG load address 0x0801", "BASIC SYS 2063 entry declaration", "official entry-state capture field and surrogate rejection policy"],
+      "verified_fields": ["PRG identity", "PRG load address 0x0801", "BASIC SYS 2063 entry declaration", "machine-checked future official entry-state capture schema and surrogate rejection policy"],
       "unresolved_fields": ["hash-bound official 6510 processor-port and I/O/banking entry capture", "qualified analyzer configuration", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "7fba6fc",
+      "last_validated_commit": "c15ec89",
       "next_reproducer": "python3 scripts/verify_c64_prg_entry_state_admission.py",
       "forbidden_cross_family_evidence": ["Plus/4 7501/TED state", "JABATO runtime capture", "DOS MZ fields"]
     },
