@@ -12,6 +12,13 @@ The literal fixtures were Z80 `00 c9`, MOS 6502/8501 `ea 60`, 68000
 from `toolchain.json`: `z80dasm -a -g 0`, `da65`, GNU objdump in binary 68000
 mode with VMA zero, and `ndisasm -b 16 -o 0`.
 
+| Executable | Observed path | SHA-256 |
+| --- | --- | --- |
+| z80dasm | `/usr/bin/z80dasm` | `f6b5bcfbccdda8608679d266f20556753b13bcb2386c610c0934ec3e5ff48e0c` |
+| da65 | `/usr/bin/da65` | `6b24a8fb310b739f60fb56dba5c7c69c84c119005094378bf642640ba4b72ef0` |
+| GNU m68k objdump | `/usr/bin/m68k-linux-gnu-objdump` | `240d1acf1e8f1e3a09498300e8ca4f23076df5f3f7c16af48d534efcc03feded` |
+| ndisasm | `/usr/bin/ndisasm` | `6a85a9d1c8f05c8528895e091ed6b9c5b92b726a66ab0bf263199619663e4dc6` |
+
 | Tool and fixture | Raw-listing observation | Hash-bound result |
 | --- | --- | --- |
 | z80dasm, `00 c9` | Relative-path output was byte-identical across two runs. | `5962336ab58752559b28862a5f5f7169cdb8cf7f7f0f3d233b6bb210be191ca3` |
