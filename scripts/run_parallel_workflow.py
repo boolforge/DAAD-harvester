@@ -41,6 +41,7 @@ GATE_GROUPS: dict[str, tuple[Gate, ...]] = {
         Gate("environment preflight", ("scripts/verify_environment.py",)),
         Gate("resource inventory", ("scripts/verify_resource_inventory.py",)),
         Gate("resource review manifest", ("scripts/build_resource_review_manifest.py", "--check")),
+        Gate("catalog discovery candidates", ("scripts/build_catalog_discovery_candidates.py", "--check")),
         Gate("active backlog index", ("scripts/build_active_backlog_index.py", "--check")),
         Gate("regeneration manifest", ("scripts/verify_regeneration_manifest.py",)),
         Gate("public artifact manifest", ("scripts/build_public_artifact_manifest.py", "--check")),

@@ -18,6 +18,7 @@ EXCLUDED_PREFIXES = (
     "preservation_corpus/",
     "reverse_engineering/public_sources/",
     "reverse_engineering/public_implementations/",
+    "research/sources/",
 )
 TEXT_SUFFIXES = {".md", ".py", ".json", ".yml", ".yaml", ".toml", ".ini", ".txt"}
 NON_ENGLISH_MARKER = re.compile(r"[¿¡áéíóúüñÁÉÍÓÚÜÑ]")
