@@ -413,6 +413,47 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "pcw-torreoscura-validated-chr-atlas",
+      "description": "Renders and byte-verifies a grayscale glyph atlas from the retained Torreoscura PCW ADP-writer CHR profile. The derived atlas preserves byte-index order only and does not assert a character code page or runtime relationship.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/render_chr_atlas.py",
+        "arguments": [
+          "--input",
+          "preservation_corpus/extracted/depth2_918656c1_PARTE001.CHR",
+          "--output",
+          "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.png",
+          "--metadata",
+          "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.json",
+          "--scale",
+          "2"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/extracted/depth2_918656c1_PARTE001.CHR",
+          "sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.png",
+          "sha256": "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1"
+        },
+        {
+          "path": "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.json",
+          "sha256": "5f45140f142b5d0717888697b55673deaebe05caaf47da1a4dd2742abc36e390"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }

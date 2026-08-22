@@ -1,0 +1,21 @@
+{
+  "derived_path": "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.png",
+  "derived_sha256": "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1",
+  "evidence": {
+    "atlas_columns": 16,
+    "atlas_rows": 16,
+    "atlas_scale": 2,
+    "decoder_profile": "adp_legacy_chr_writer",
+    "derivative_format": "png",
+    "glyph_bit_order": "most_significant_bit_leftmost",
+    "glyph_count": 256,
+    "glyph_geometry": "256 glyphs \u00d7 8 rows \u00d7 8 bits",
+    "glyph_index_mapping": "byte_index_only_no_code_page_claim",
+    "height": 256,
+    "width": 256
+  },
+  "regeneration_command": "python scripts/render_chr_atlas.py --input preservation_corpus/extracted/depth2_918656c1_PARTE001.CHR --output preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.png --metadata preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.json --scale 2",
+  "schema_version": 1,
+  "source_path": "preservation_corpus/extracted/depth2_918656c1_PARTE001.CHR",
+  "source_sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba"
+}
