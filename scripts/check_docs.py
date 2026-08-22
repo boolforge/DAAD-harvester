@@ -51,6 +51,36 @@ TRACEABILITY_NAVIGATION_DOCUMENTS = (
     DOCS / "CONTRIBUTOR_CONTINUATION.md",
 )
 ATOMIC_DELIVERY_DOCUMENT = DOCS / "ATOMIC_REMOTE_DELIVERY.md"
+CONTRIBUTOR_CONTINUATION_DOCUMENT = DOCS / "CONTRIBUTOR_CONTINUATION.md"
+CLEAN_CLONE_CONTINUATION_REQUIREMENTS = (
+    (
+        ROOT / "README.md",
+        (
+            "clone-to-contribution continuation guide",
+            "run_primary_workflow.py",
+        ),
+    ),
+    (
+        DOCS / "README.md",
+        (
+            "Clone-to-contribution continuation guide",
+            "CONTRIBUTOR_CONTINUATION.md",
+        ),
+    ),
+    (
+        CONTRIBUTOR_CONTINUATION_DOCUMENT,
+        (
+            "git clone https://github.com/boolforge/DAAD-harvester.git",
+            "python -m pip install -e \".[dev]\"",
+            "python scripts/run_primary_workflow.py",
+            "## 4. Read in this order",
+            "## 6. Change protocol: add or repair one evidence profile",
+            "## 7. Working on a blocker",
+            "`preservation_corpus/state.db`",
+            "git diff --check",
+        ),
+    ),
+)
 ATOMIC_DELIVERY_NAVIGATION_DOCUMENTS = (
     ROOT / "README.md",
     DOCS / "README.md",
@@ -179,6 +209,24 @@ def check_atomic_delivery_navigation(errors: list[str]) -> int:
     return checked
 
 
+def check_clean_clone_continuation(errors: list[str]) -> int:
+    """Ensure a plain clone can discover and follow the mandatory continuation guide."""
+
+    checked = 0
+    for document, markers in CLEAN_CLONE_CONTINUATION_REQUIREMENTS:
+        checked += 1
+        if not document.is_file():
+            errors.append(f"missing clean-clone continuation document: {document.relative_to(ROOT)}")
+            continue
+        text = document.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                errors.append(
+                    f"missing clean-clone continuation marker {marker!r}: {document.relative_to(ROOT)}"
+                )
+    return checked
+
+
 def check_global_issue_lifecycle(errors: list[str]) -> int:
     """Ensure issue observation and verified-resolution updates stay mandatory."""
 
@@ -223,6 +271,7 @@ def main() -> int:
     policy_documents = check_regeneration_policy_links(errors)
     traceability_documents = check_traceability_navigation(errors)
     atomic_delivery_documents = check_atomic_delivery_navigation(errors)
+    clean_clone_documents = check_clean_clone_continuation(errors)
     issue_lifecycle_documents = check_global_issue_lifecycle(errors)
     english_policy_documents = check_american_english_policy(errors)
     if errors:
@@ -235,6 +284,7 @@ def main() -> int:
         f"{policy_documents} required regeneration-policy links, "
         f"{traceability_documents} traceability-navigation links, "
         f"{atomic_delivery_documents} atomic-delivery navigation links, "
+        f"{clean_clone_documents} clean-clone continuation documents, "
         f"{issue_lifecycle_documents} global issue-lifecycle documents, "
         f"{english_policy_documents} American English policy documents."
     )
