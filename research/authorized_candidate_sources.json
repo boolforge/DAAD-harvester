@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 17
+    "total_registrations": 18
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -299,6 +299,35 @@
       "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf"
+    },
+    {
+      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "MAROLAND_ZX_DISK.zip",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Elves of Maroland, The",
+        "year": "2024"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ebf0f294c02f272db41e33ac1d420345a2cd80d8fd3af91a236dfdf5cf3f05f4"
+      },
+      "source_evidence": "The official Dwalin page identifies The Elves of Maroland as the English DAAD port/remake completed between 2022 and 2024 and links the ZX Spectrum disk download. Spectrum Computing entry 42545 independently identifies the author as Jose Daniel Carbonell Cob (Spain), publisher Dwalin, and DAAD use for the closely related Spanish release. The catalog uses the creator in its publisher field and an inverted English article; the documented identity variance preserves these source facts.",
+      "source_record_url": "https://www.rudolphinerur.com/blog/2024/03/09/the-elves-of-maroland/",
+      "source_release_id": "MAROLAND_ZX_DISK",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "The Elves of Maroland",
+        "year": "2024"
+      },
+      "source_url": "https://rudolphinerur.com/elves/MAROLAND_ZX_DISK.zip"
     },
     {
       "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",

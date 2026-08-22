@@ -362,23 +362,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_source_discovery_required",
-      "title": "Elves of Maroland, The",
-      "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "erinia|daniel revenga|2020|spanish",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -548,7 +531,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 32,
+  "discovery_required_count": 31,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -940,6 +923,41 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "MAROLAND_ZX_DISK.zip",
+      "language": "English",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Elves of Maroland, The",
+        "year": "2024"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ebf0f294c02f272db41e33ac1d420345a2cd80d8fd3af91a236dfdf5cf3f05f4"
+      },
+      "source_record_url": "https://www.rudolphinerur.com/blog/2024/03/09/the-elves-of-maroland/",
+      "source_release_id": "MAROLAND_ZX_DISK",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "The Elves of Maroland",
+        "year": "2024"
+      },
+      "source_url": "https://rudolphinerur.com/elves/MAROLAND_ZX_DISK.zip",
+      "title": "Elves of Maroland, The",
+      "year": "2024"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
       "catalog_identity_variance": {
         "kind": "catalog_publisher_is_source_creator",
@@ -997,7 +1015,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 17,
+  "queued_count": 18,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
