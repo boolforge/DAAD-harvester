@@ -89,8 +89,8 @@
       "source": {"repository_url": "https://github.com/j-helland/8086-disassembler", "revision": "1979e794d1cbcd92714d0863a2fd17fd89af4fcd", "license_status": "public domain and project authorization confirmed by the user; no license text was observed in the pinned checkout"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "jump-labeling comparison candidate"],
-      "blockers": ["documented CMake build fails on the current host because instruction.cpp lacks declarations for abs, printf, and std::out_of_range", "upstream NASM round-trip suite is unavailable until the source build succeeds", "DOS COM/MZ segment, origin, and entry model", "retained-byte disagreement record"],
-      "non_claim": "A source-inspected two-pass jump-label design, including an unresolved host build failure, does not authorize an invocation or establish DOS behavior, source recovery, or runtime semantics."
+      "blockers": ["pinned source needs a separately recorded minimal include repair before a reproducible build", "DOS COM/MZ segment, origin, and entry model", "retained-byte disagreement record"],
+      "non_claim": "A controlled patched-source build and upstream fixture round trip do not authorize a retained invocation or establish DOS behavior, source recovery, or runtime semantics."
     }
   ]
 }

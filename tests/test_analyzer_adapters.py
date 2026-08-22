@@ -191,7 +191,7 @@ def test_i8086_candidate_records_user_authorized_license_and_build_block_without
     assert candidate["execution_eligible"] is False
     assert "confirmed by the user" in candidate["source"]["license_status"]
     assert not any("license" in blocker for blocker in candidate["blockers"])
-    assert any("CMake build fails" in blocker for blocker in candidate["blockers"])
+    assert any("minimal include repair" in blocker for blocker in candidate["blockers"])
 
 
 def test_dazzlestar_candidate_records_empty_license_and_toolchain_blocks_without_becoming_executable() -> None:

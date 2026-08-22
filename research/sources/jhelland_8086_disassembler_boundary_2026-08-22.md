@@ -5,7 +5,7 @@
 | **Question** | Can the pinned j-helland i8086 source be admitted to a controlled fixture-health path for the analyzer-adapter framework? |
 | **Candidate** | [`j-helland/8086-disassembler`](https://github.com/j-helland/8086-disassembler), revision `1979e794d1cbcd92714d0863a2fd17fd89af4fcd` |
 | **Source result** | Public-domain and project authorization are confirmed by the user; no license file or license text was observed in the pinned checkout. |
-| **Build result** | The documented CMake release build failed before a binary was produced on the current host. |
+| **Build result** | The pinned build fails without standard includes; an isolated three-include repair built successfully and passed 19 upstream NASM round-trip fixtures. |
 | **Admission result** | `blocked_by_license_or_build`; `execution_eligible: false`. |
 
 ## Source inspection
@@ -25,9 +25,12 @@ an admission block.
 The README's CMake configure-and-build sequence was attempted in a new temporary
 directory. Configuration succeeded. Compilation of `src/instruction.cpp` failed
 before linking with undeclared `abs`, `printf`, and `std::out_of_range` symbols.
-The CMake file declares C++17 and warning flags but does not itself supply the
-required standard-library declarations. The source suite was not run because its
-declared executable was not built.
+An isolated copy then added only `<cstdio>`, `<cstdlib>`, and `<stdexcept>` at the
+top of that translation unit. The repaired copy built the documented executable.
+Its `test.py` runner then passed all 19 upstream NASM assemble/disassemble/
+reassemble round-trip fixtures. This repair is not silently applied to the pinned
+candidate source; it is a separately recorded prerequisite for a future pinned
+build recipe.
 
 > This is an upstream source and host-build observation. It does not establish
 > the correctness of documented jump labels or authorize a retained DOS
@@ -35,8 +38,9 @@ declared executable was not built.
 
 ## Retained-byte boundary
 
-Even with project authorization, the candidate remains outside retained DAAD
-execution until a reproducible build exists and an i8086 DOS profile declares
+Even with project authorization and a controlled repaired-source health result,
+the candidate remains outside retained DAAD execution until the minimal repair is
+made reproducible for a pinned source and an i8086 DOS profile declares
 whether the input is COM, MZ, or another raw segment form; its segment origin and
 entry; and a cross-tool disagreement record against NDISASM, radare2, Ghidra, and
 any future admitted i8086 comparator. Two-pass labels are tool hypotheses, not
