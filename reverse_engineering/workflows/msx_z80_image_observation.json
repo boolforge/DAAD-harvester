@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "purpose": "Immutable original MSX Z80 image identities and leading absolute-jump operands. The jump operands are retained byte observations, not admitted load addresses or machine-code entry conditions.",
+  "admission_state": "image_identity_and_leading_jump_observed_load_unresolved",
+  "execution_eligible": false,
+  "profiles": [
+    {
+      "artifact_id": "daad-msx-msxedi-official",
+      "input_path": "reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80",
+      "sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+      "leading_jump_target": 53050,
+      "image_size": 8400
+    },
+    {
+      "artifact_id": "daad-msx-msxsdi-official",
+      "input_path": "reverse_engineering/artifacts/original/msx/daad-msx-msxsdi-official/MSXSDI.Z80",
+      "sha256": "fcae12bd09bc949e1e6cf75b3d1ef87e66c322efe2de005e771fa3b5dd8ddbf8",
+      "leading_jump_target": 53199,
+      "image_size": 8551
+    }
+  ],
+  "remaining_requirements": [
+    "original MSX loader, disk, cassette, or ROM context",
+    "load address and slot/mapper state",
+    "BIOS and memory conditions at executable entry",
+    "qualified analyzer configuration and cross-tool disagreement record",
+    "runtime and behavioral evidence"
+  ],
+  "non_claim": "A leading JP operand in an immutable MSX image does not establish where the image was loaded, whether offset zero is executed, an effective entry point, source recovery, or runtime behavior."
+}
