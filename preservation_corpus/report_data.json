@@ -59694,6 +59694,69 @@
           "authentic_release": "not_applicable_synthetic_fixture",
           "emulator": "not_applicable_container_fixture"
         }
+      },
+      {
+        "schema_version": 1,
+        "generator_id": "pcw-torreoscura-validated-chr-atlas-v1",
+        "technical_medium": "daad_legacy_chr_glyph_atlas",
+        "status": "derived_profile_validated",
+        "inputs": {
+          "source_artifact": "PARTE001.CHR",
+          "source_sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba",
+          "profile": "adp_legacy_chr_writer",
+          "glyph_index_mapping": "byte_index_only_no_code_page_claim"
+        },
+        "output": {
+          "byte_length": 1545,
+          "sha256": "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1",
+          "checksums": {
+            "md5_full": "9781543c30e6f06cc81f7c1910d0fb88",
+            "md5_5000": "9781543c30e6f06cc81f7c1910d0fb88",
+            "md5_tail5000": "9781543c30e6f06cc81f7c1910d0fb88",
+            "sha1": "9611e8f5370e3218822e9a0c760e00733506bd59",
+            "sha224": "0dca07154d68f5e03ac7bfc62afba809142c7a9d88f828d20880f586",
+            "sha256": "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1",
+            "sha384": "17c80e657a01c04605558b7751354f2a1bac0e7c0b7d7417a8e46474a732660680b94703f8863ca891f07a74122da62e",
+            "sha512": "864f53d4fcc06d785c1ad0bd8cf60a8c79014f1098eaf1e366294cc62bbaaa07a757a33fd939390a5acd15d23b97b4bd759a025302903891e2d3b0f8483db519",
+            "sha3_256": "20530e2b1c0f33eb23f6a6deaf2e29d15c51debf232f4b9b5a4e182caeb4e44d",
+            "sha3_512": "239f9598adadb5a2ee87de9b9f80e9e1c783b717485adb831525ef20a7110ced2b6acc7cdfdf2a92e4eb9b2afdc6b4a841551d6f4217db23929768d2131157b6",
+            "blake2b": "7bc316cb6ff9ac247bd6bd38d2b2e72c703392b6d6a7f9ddd59180ddf33a200fe155ddf7c044192f49037c5fbf6cb910dd41fbc9755ba53800adf472e1072eb8",
+            "blake2s": "a09af583d375736070e5f98262b2a65243e9fd990cc9305ea614de6774dd57eb",
+            "crc32": "874e1dba",
+            "adler32": "f2a3cb58",
+            "xxh32": "00c6ba50",
+            "xxh64": "e73075f54fe54fa7",
+            "xxh128": "4efb7573680263ddd9032a6713210aab"
+          },
+          "metadata_sha256": "5f45140f142b5d0717888697b55673deaebe05caaf47da1a4dd2742abc36e390"
+        },
+        "native_validation": {
+          "parser": "daad_harvester.chr_generation.render_adp_chr_glyph_atlas",
+          "status": "derived_profile_validated",
+          "validation": "validated_adp_legacy_chr_glyph_atlas",
+          "evidence": {
+            "derivative_format": "png",
+            "decoder_profile": "adp_legacy_chr_writer",
+            "glyph_count": 256,
+            "glyph_geometry": "256 glyphs × 8 rows × 8 bits",
+            "glyph_bit_order": "most_significant_bit_leftmost",
+            "atlas_columns": 16,
+            "atlas_rows": 16,
+            "atlas_scale": 2,
+            "width": 256,
+            "height": 256,
+            "glyph_index_mapping": "byte_index_only_no_code_page_claim",
+            "stored_output_matches_regeneration": true,
+            "stored_manifest_declares_source_sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba",
+            "stored_manifest_declares_derived_sha256": "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1"
+          }
+        },
+        "comparison_boundary": {
+          "authentic_release": "derived_from_retained_original_chr_bytes_not_a_reconstructed_historical_source",
+          "character_mapping": "byte_index_only_no_code_page_claim",
+          "runtime_bundle": "not_established",
+          "web_tui_preview": "publication_pending"
+        }
       }
     ],
     "boundary": "Generator evidence proves only the listed deterministic output and native structural validation. Filesystem population, authentic-release equivalence, and target execution remain explicit per-generator comparison fields."

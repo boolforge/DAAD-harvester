@@ -48,7 +48,7 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert report["detections"]["sha256"] == sha256(b"#define DAAD_TEST 1\n").hexdigest()
     assert report["generator_evidence"]["available"] is True
     generators = report["generator_evidence"]["generators"]
-    assert len(generators) == 3
+    assert len(generators) == 4
     native_generator = generators[0]
     assert native_generator["generator_id"] == "extended-dsk-blank-cpc-system-v1"
     assert native_generator["status"] == "generated_structurally_valid"
@@ -69,6 +69,13 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert native_tzx_generator["native_validation"]["evidence"]["extracted_members"] == [
         {"name": "DAAD GAME.bas", "byte_length": 7}
     ]
+    chr_atlas = generators[3]
+    assert chr_atlas["generator_id"] == "pcw-torreoscura-validated-chr-atlas-v1"
+    assert chr_atlas["status"] == "derived_profile_validated"
+    assert chr_atlas["output"]["sha256"] == "70e01c501e7630e81ea5c7e1073d8831ce2a99e07c9babf4ec9328eacaf7a9c1"
+    assert chr_atlas["native_validation"]["validation"] == "validated_adp_legacy_chr_glyph_atlas"
+    assert chr_atlas["native_validation"]["evidence"]["stored_output_matches_regeneration"] is True
+    assert chr_atlas["comparison_boundary"]["character_mapping"] == "byte_index_only_no_code_page_claim"
     assert "extracted_path" not in report["catalog"]["artifacts"][0]
     matrix = next(item for item in report["game_port_matrix"] if item["game_id"] == known_game.game_id)
     assert matrix["source_platforms"] == ["c64"]
