@@ -88,8 +88,8 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 22
-    assert queue["discovery_required_count"] == 27
+    assert queue["queued_count"] == 23
+    assert queue["discovery_required_count"] == 26
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
@@ -110,5 +110,6 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     assert "golden seas|sunteam|2022|english" in queued_keys
     assert "fuddo and slam|zenobi software|1988|english" in queued_keys
     assert "balrog and the cat, the|zenobi software|1988|english" in queued_keys
+    assert "everyday tale of a seeker of gold, an|zenobi software|1986|english" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}

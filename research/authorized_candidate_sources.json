@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
-    "new_source_checksums": 2,
-    "total_registrations": 22
+    "new_source_checksums": 1,
+    "total_registrations": 23
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -398,6 +398,24 @@
         "year": "2021"
       },
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(EN).dsk.zip"
+    },
+    {
+      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
+      "filename": "EverydayTaleOfASeekerOfGoldAn.tzx.zip",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Everyday Tale of a Seeker of Gold, An",
+        "year": "1986"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "6501d319bef6583da37a8e62bf88f2fbf3fcbb352ef2a3417cd7a82d57f12a3e"
+      },
+      "source_evidence": "Spectrum Computing entry 6271 identifies An Everyday Tale of a Seeker of Gold, Zenobi Software, 1986, English, and a downloadable TZX. The catalog's inverted article spelling Everyday Tale of a Seeker of Gold, An is explicitly documented as the same title variant.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6271/ZX-Spectrum/An_Everyday_Tale_of_a_Seeker_of_Gold",
+      "source_release_id": "6271",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/e/EverydayTaleOfASeekerOfGoldAn.tzx.zip"
     },
     {
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",

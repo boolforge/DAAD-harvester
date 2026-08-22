@@ -396,23 +396,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Everyday Tale of a Seeker of Gold, An",
-      "year": "1986"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "framed!|kennard douglas|2024|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -463,7 +446,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 27,
+  "discovery_required_count": 26,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -978,6 +961,30 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
+      "filename": "EverydayTaleOfASeekerOfGoldAn.tzx.zip",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Everyday Tale of a Seeker of Gold, An",
+        "year": "1986"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "6501d319bef6583da37a8e62bf88f2fbf3fcbb352ef2a3417cd7a82d57f12a3e"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6271/ZX-Spectrum/An_Everyday_Tale_of_a_Seeker_of_Gold",
+      "source_release_id": "6271",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/e/EverydayTaleOfASeekerOfGoldAn.tzx.zip",
+      "title": "Everyday Tale of a Seeker of Gold, An",
+      "year": "1986"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
       "external_source_terms": null,
       "filename": "FromOutOfADarkNightSky(different).tzx.zip",
@@ -1053,7 +1060,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 22,
+  "queued_count": 23,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
