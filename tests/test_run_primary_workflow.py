@@ -48,10 +48,11 @@ def test_primary_workflow_defaults_to_parallel_scheduler(monkeypatch) -> None:
     monkeypatch.setattr(run_primary_workflow.subprocess, "run", fake_run)
     run_primary_workflow.run_workflow(include_tests=False)
 
-    assert len(calls) == 1
-    assert calls[0][1].endswith("scripts/run_parallel_workflow.py")
-    assert "--workers" in calls[0]
-    assert "4" in calls[0]
+    assert len(calls) == 2
+    assert calls[0][1].endswith("scripts/verify_environment.py")
+    assert calls[1][1].endswith("scripts/run_parallel_workflow.py")
+    assert "--workers" in calls[1]
+    assert "4" in calls[1]
 
 
 def test_primary_workflow_ordered_mode_keeps_declared_gate_plan(monkeypatch) -> None:
@@ -64,5 +65,6 @@ def test_primary_workflow_ordered_mode_keeps_declared_gate_plan(monkeypatch) -> 
     monkeypatch.setattr(run_primary_workflow.subprocess, "run", fake_run)
     run_primary_workflow.run_workflow(include_tests=False, ordered=True)
 
-    assert len(calls) == len(run_primary_workflow.workflow_commands(include_tests=False))
-    assert calls[0][1].endswith("scripts/build_active_backlog_index.py")
+    assert len(calls) == len(run_primary_workflow.workflow_commands(include_tests=False)) + 1
+    assert calls[0][1].endswith("scripts/verify_environment.py")
+    assert calls[1][1].endswith("scripts/build_active_backlog_index.py")

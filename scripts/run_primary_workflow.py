@@ -50,6 +50,10 @@ def workflow_commands(*, include_tests: bool) -> list[tuple[str, tuple[str, ...]
 def run_workflow(*, include_tests: bool, ordered: bool = False) -> None:
     """Execute independent gates concurrently unless strict ordering is requested."""
 
+    preflight_command = [sys.executable, str(ROOT / "scripts" / "verify_environment.py")]
+    print(f"==> environment preflight: {' '.join(preflight_command)}", flush=True)
+    subprocess.run(preflight_command, cwd=ROOT, check=True)
+
     if not ordered:
         parallel_command = [
             sys.executable,
