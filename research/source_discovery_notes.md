@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## Colour Beyond Time source boundary
+
+Spectrum Computing entry 37444 identifies **Colour Beyond Time**, English, DAAD, ZX Spectrum, and a 2022/May/06 release, but names **Lost** as publisher and **Jamie Bradbury** as creator. The official itch.io page at <https://jbizzel.itch.io/cbt> is free and its 2022 development log confirms early release iterations, but identifies its author as **J Bizzel** and currently offers later multi-part/revised media. This does not establish the catalog publisher **Jamie Bradbury** as the official itch.io author nor identify a byte-exact May 2022 edition. The candidate remains in `discovery_required`; no latest itch.io file is substituted for the catalog release.
+
 ## Deer Creek source boundary
 
 Spectrum Computing entry 34909 and IFDB independently identify the 2019 English **Deer Creek** as a Gareth Pitchford release produced with Adventuron and converted to a ZX Spectrum version powered by **PAW**. This conflicts with the catalog candidate’s publisher **Primary Resources** and does not establish a DAAD edition. The publicly downloadable Spectrum TAP/TZX and Z80 snapshot are therefore not registered for the DAAD catalog candidate; it remains in `discovery_required` pending a source that closes both the publisher and engine boundaries.
