@@ -43,24 +43,7 @@ def validate_c64_entry_state_admission(contract: dict[str, Any]) -> None:
             raise C64EntryStateAdmissionError("contract must retain the measured BASIC SYS 2063 declaration")
         observation = profile.get("entry_state_observation")
         if observation is not None:
-            if not isinstance(observation, dict) or set(observation) != REQUIRED_CAPTURE_FIELDS:
-                raise C64EntryStateAdmissionError("entry observation must contain exactly the hash-bound required fields")
-            if observation["official_prg_sha256"] != profile["prg_sha256"]:
-                raise C64EntryStateAdmissionError("entry observation must bind the matching official PRG hash")
-            if observation["entry_pc"] != 2063:
-                raise C64EntryStateAdmissionError("entry observation must bind the measured SYS entry")
-            for name in ("capture_sha256",):
-                if not isinstance(observation[name], str) or len(observation[name]) != 64:
-                    raise C64EntryStateAdmissionError("entry observation requires capture SHA-256")
-            for name in ("emulator_name", "emulator_version", "machine_model"):
-                if not isinstance(observation[name], str) or not observation[name]:
-                    raise C64EntryStateAdmissionError("entry observation requires emulator identity")
-            for name in ("processor_port_ddr", "processor_port_data", "entry_pc"):
-                if not isinstance(observation[name], int) or not 0 <= observation[name] <= 0xFFFF:
-                    raise C64EntryStateAdmissionError("entry observation has invalid numeric state")
-            for name in ("basic_rom_visible", "kernal_rom_visible", "io_visible", "ram_under_rom_visible"):
-                if not isinstance(observation[name], bool):
-                    raise C64EntryStateAdmissionError("entry observation requires explicit memory-visibility booleans")
+            raise C64EntryStateAdmissionError(f"{profile['artifact_id']}: no official C64 entry-state capture is currently admitted")
     if contract.get("admission_state") != "official_entry_state_not_observed":
         raise C64EntryStateAdmissionError("official C64 entry state remains not observed until a matching capture is retained")
 

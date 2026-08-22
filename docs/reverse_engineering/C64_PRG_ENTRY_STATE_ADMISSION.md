@@ -14,6 +14,9 @@ The existing JABATO observation is also rejected because it identifies a
 different retained program and capture chain. A future admissible capture must
 bind the matching official PRG hash, capture hash, emulator identity, model,
 processor-port direction/data, memory-visibility facts, and `PC=2063`.
+Every current profile records a null entry-state observation. A generic default,
+an incomplete record, or a synthetically complete observation cannot substitute
+for a retained hash-bound official launch capture.
 
 ```bash
 python3 scripts/verify_c64_prg_entry_state_admission.py
