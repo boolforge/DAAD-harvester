@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "Non-executable candidate admission matrix for redundant static-analysis research. A record inventories a tool and its blockers; it does not authorize a retained-byte invocation.",
+  "candidates": [
+    {
+      "candidate_id": "py8dis-mos6502-v1",
+      "admission_state": "health_checked",
+      "architectures": ["mos6502"],
+      "source": {"repository_url": "https://github.com/ZornsLemma/py8dis", "revision": "2a6046356e20e93c4a2d484bc04bd5d74d66254e", "license_status": "MIT observed in repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "trace-informed labeling candidate"],
+      "blockers": ["independently evidenced C64 load origin", "MOS 6502 versus 8501 profile", "retained-byte comparison record"],
+      "non_claim": "Upstream fixture health does not establish a retained DAAD load model or output correctness."
+    },
+    {
+      "candidate_id": "z80dismblr-z80-v1",
+      "admission_state": "health_checked",
+      "architectures": ["z80"],
+      "source": {"repository_url": "https://github.com/maziac/z80dismblr", "revision": "2ff52822f0d706f9f39762e079f300f45cfd451d", "license_status": "MIT observed in repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["control_flow_analysis", "trace-informed labeling candidate"],
+      "blockers": ["independently evidenced origin and entry or trace", "portable pinned TypeScript build", "retained-byte disagreement record"],
+      "non_claim": "Upstream source tests do not justify CFG or label claims for retained interpreters."
+    },
+    {
+      "candidate_id": "redasm-i8086-v1",
+      "admission_state": "discovery",
+      "architectures": ["i8086"],
+      "source": {"repository_url": "https://github.com/redasm-dev/redasm", "revision": "113245ef02090602978e461fcb7031b75da448d6", "license_status": "GPL-3.0 observed in repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["structured_analysis", "DOS executable loader candidate"],
+      "blockers": ["stable standalone batch command or repository-owned harness", "DOS COM/MZ segment and load model", "isolated health record"],
+      "non_claim": "GUI/core source inspection does not establish a batch analysis path or retained DOS result."
+    },
+    {
+      "candidate_id": "dazzlestar-z80-v1",
+      "admission_state": "discovery",
+      "architectures": ["z80"],
+      "source": {"repository_url": "https://github.com/durgadas311/dazzlestar", "revision": "8841d4fa48bfeabd52b090b8e785637b767dafa3", "license_status": "no license detected in inspected repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly"],
+      "blockers": ["license review", "source and command inspection", "fixture health", "independently evidenced retained-byte origin"],
+      "non_claim": "Repository discovery does not establish usable licensing, invocation, or Z80 output correctness."
+    },
+    {
+      "candidate_id": "lybrown-dis-mos6502-v1",
+      "admission_state": "discovery",
+      "architectures": ["mos6502"],
+      "source": {"repository_url": "https://github.com/lybrown/dis", "revision": "b4954cc90f210a64a3c63e87101a9a8786cd0247", "license_status": "MIT observed in repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "control_flow_analysis"],
+      "blockers": ["source and command inspection", "fixture health", "C64 6502 versus Plus-4 8501 profile", "independently evidenced retained-byte origin"],
+      "non_claim": "Address-oriented README options do not supply a DAAD load or CPU profile."
+    },
+    {
+      "candidate_id": "oxore-m68k-disasm-v1",
+      "admission_state": "discovery",
+      "architectures": ["m68000"],
+      "source": {"repository_url": "https://github.com/Oxore/m68k-disasm", "revision": "bb6d83981bbb53de352061b793c8215e45af895a", "license_status": "Unlicense observed in repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "trace-informed labeling candidate"],
+      "blockers": ["source build and fixture health", "Amiga or Atari ST origin model", "base-zero limitation review", "retained-byte disagreement record"],
+      "non_claim": "A fixed base-zero implementation does not validate a platform load model or runtime semantics."
+    },
+    {
+      "candidate_id": "capstone-m68k-mos65xx-x86-v1",
+      "admission_state": "discovery",
+      "architectures": ["m68000", "mos6502", "i8086"],
+      "source": {"repository_url": "https://github.com/capstone-engine/capstone", "revision": "3a8d30a66726fd31990fa584f62fd30dcd9f9b50", "license_status": "no license identifier detected in inspected repository metadata; source review required"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "multi-architecture adapter candidate"],
+      "blockers": ["license source review", "stable local API or CLI harness", "exact CPU mode mapping", "fixture health and retained-byte origin model"],
+      "non_claim": "A published architecture list does not prove an invocation or appropriate mode for retained DAAD binaries."
+    },
+    {
+      "candidate_id": "jhelland-8086-disassembler-v1",
+      "admission_state": "discovery",
+      "architectures": ["i8086"],
+      "source": {"repository_url": "https://github.com/j-helland/8086-disassembler", "revision": "1979e794d1cbcd92714d0863a2fd17fd89af4fcd", "license_status": "no license detected in inspected repository metadata"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "jump-labeling comparison candidate"],
+      "blockers": ["license review", "source build and test health", "DOS COM/MZ versus raw segment model", "retained-byte disagreement record"],
+      "non_claim": "Two-pass jump labels are tool hypotheses until a retained DOS load model is independently evidenced."
+    }
+  ]
+}

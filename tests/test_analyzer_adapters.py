@@ -11,6 +11,7 @@ from daad_harvester import analyzer_adapters
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_adapters.json"
 TOOLCHAIN_PATH = ROOT / "reverse_engineering" / "workflows" / "toolchain.json"
+CANDIDATE_MATRIX_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_candidate_matrix.json"
 
 
 def _catalog() -> dict:
@@ -108,3 +109,26 @@ def test_commentary_template_preserves_all_evidence_layers() -> None:
     assert tuple(template) == analyzer_adapters.COMMENTARY_LAYERS
     assert "Tool-derived" in template["tool_hypotheses"]
     assert "separately" in template["evidenced_behavior"]
+
+
+def test_candidate_matrix_preserves_non_executable_architecture_scoped_admission() -> None:
+    matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
+
+    assert {candidate["candidate_id"] for candidate in matrix["candidates"]} >= {
+        "py8dis-mos6502-v1",
+        "z80dismblr-z80-v1",
+        "oxore-m68k-disasm-v1",
+        "redasm-i8086-v1",
+    }
+    assert all(candidate["execution_eligible"] is False for candidate in matrix["candidates"])
+    assert {architecture for candidate in matrix["candidates"] for architecture in candidate["architectures"]} >= {
+        "z80", "mos6502", "m68000", "i8086"
+    }
+
+
+def test_candidate_matrix_rejects_an_unconfigured_executable_candidate() -> None:
+    matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
+    matrix["candidates"][0]["execution_eligible"] = True
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="must not be execution eligible"):
+        analyzer_adapters.validate_candidate_matrix(matrix)

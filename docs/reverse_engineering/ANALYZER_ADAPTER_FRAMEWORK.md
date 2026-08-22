@@ -78,6 +78,17 @@ The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22
 records the remaining candidates, architecture boundaries, and non-promotion
 reasons. None is an enabled workflow dependency.
 
+## Multi-architecture admission matrix
+
+The repository-owned [candidate matrix](../../reverse_engineering/workflows/analyzer_candidate_matrix.json)
+tracks candidates across Z80, MOS 6502, 68000, and i8086. Its validator rejects
+an unconfigured candidate marked execution eligible and requires an exact source
+revision, architecture scope, comparison role, blockers, and non-claim. The
+[matrix scout](../../research/sources/analyzer_candidate_matrix_scout_2026-08-22.md)
+preserves the metadata and README-derived observations behind those records.
+Candidate admission remains per tool, per CPU variant, per binary load model,
+and per retained input; a candidate cannot become a universal backend.
+
 ## References
 
 1. [Cross-tool verification protocol](CROSS_TOOL_VERIFICATION.md)

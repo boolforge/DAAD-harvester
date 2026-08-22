@@ -19,6 +19,7 @@ CANDIDATE = "candidate"
 VALID_STATES = frozenset({CONFIGURED, CANDIDATE})
 VALID_ROLES = frozenset({"structured_analysis", "control_flow_analysis", "static_disassembly"})
 VALID_RUNNERS = frozenset({"ghidra_headless_binary", "radare2_static", "architecture_static", "external_candidate"})
+VALID_ADMISSION_STATES = frozenset({"discovery", "health_checked", "blocked_by_load_model"})
 COMMENTARY_LAYERS = ("bytes", "decoded_instructions", "tool_hypotheses", "evidenced_behavior")
 _ADAPTER_ID = re.compile(r"^[a-z0-9][a-z0-9-]*-v[1-9][0-9]*$")
 
@@ -156,3 +157,51 @@ def commentary_template(adapter: dict[str, Any]) -> dict[str, str]:
         "tool_hypotheses": f"Tool-derived control-flow or pseudocode hypotheses from {identifier}",
         "evidenced_behavior": "Behavior supported separately by native parsing, load-model evidence, or runtime observation",
     }
+
+
+def validate_candidate_matrix(matrix: dict[str, Any]) -> None:
+    """Validate that unconfigured research candidates cannot silently execute."""
+
+    if matrix.get("schema_version") != 1:
+        raise AdapterCatalogError("candidate matrix: unsupported schema_version")
+    _require_string(matrix, "purpose", "candidate matrix")
+    candidates = matrix.get("candidates")
+    if not isinstance(candidates, list) or not candidates:
+        raise AdapterCatalogError("candidate matrix: candidates must be a non-empty list")
+    identifiers: set[str] = set()
+    for candidate in candidates:
+        if not isinstance(candidate, dict):
+            raise AdapterCatalogError("candidate matrix: every candidate must be a mapping")
+        identifier = _require_string(candidate, "candidate_id", "candidate")
+        if not _ADAPTER_ID.fullmatch(identifier) or identifier in identifiers:
+            raise AdapterCatalogError(f"candidate matrix: invalid or duplicate candidate_id {identifier!r}")
+        identifiers.add(identifier)
+        if _require_string(candidate, "admission_state", identifier) not in VALID_ADMISSION_STATES:
+            raise AdapterCatalogError(f"{identifier}: unknown admission_state")
+        _require_string_list(candidate, "architectures", identifier)
+        source = candidate.get("source")
+        if not isinstance(source, dict):
+            raise AdapterCatalogError(f"{identifier}: source must be a mapping")
+        _require_string(source, "repository_url", identifier)
+        pin = _require_string(source, "revision", identifier)
+        if len(pin) != 40 or any(character not in "0123456789abcdef" for character in pin):
+            raise AdapterCatalogError(f"{identifier}: source revision must be a lowercase Git SHA-1")
+        _require_string(source, "license_status", identifier)
+        if candidate.get("execution_eligible") is not False:
+            raise AdapterCatalogError(f"{identifier}: unconfigured candidate must not be execution eligible")
+        _require_string_list(candidate, "comparison_roles", identifier)
+        _require_string_list(candidate, "blockers", identifier)
+        _require_string(candidate, "non_claim", identifier)
+
+
+def load_candidate_matrix(path: Path) -> dict[str, Any]:
+    """Load and validate the non-executable research candidate matrix."""
+
+    try:
+        matrix = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise AdapterCatalogError(f"candidate matrix: invalid JSON: {exc.msg}") from exc
+    if not isinstance(matrix, dict):
+        raise AdapterCatalogError("candidate matrix: top level must be a mapping")
+    validate_candidate_matrix(matrix)
+    return matrix
