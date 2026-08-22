@@ -9,7 +9,7 @@
       "unresolved_fields": ["hash-bound official 6510 processor-port and I/O/banking entry capture", "qualified analyzer configuration", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "46cf939",
+      "last_validated_commit": "7fba6fc",
       "next_reproducer": "python3 scripts/verify_c64_prg_entry_state_admission.py",
       "forbidden_cross_family_evidence": ["Plus/4 7501/TED state", "JABATO runtime capture", "DOS MZ fields"]
     },
