@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "contract": "AGENT_WORKFLOW.md",
+  "scheduler": "scripts/run_parallel_workflow.py",
+  "backlog_index": "preservation_corpus/active_backlog_index.json",
+  "backlog_source": "TODO.md",
+  "primary_launcher": "scripts/run_primary_workflow.py",
+  "default_parallel_groups": ["evidence", "publication", "analysis"],
+  "default_workers": 4,
+  "default_gate_timeout_seconds": 300,
+  "delivery": {
+    "remote": "origin",
+    "branch_policy": "current_checked_out_branch",
+    "push_required_after_verified_commit": true,
+    "force_push_allowed": false,
+    "unstaged_or_untracked_files_block_commit": true
+  },
+  "secret_policy": "Credentials never belong in repository files, arguments, URLs, logs, commits, or evidence.",
+  "handoff_states": ["clean_and_synchronized", "bounded_in_progress_with_next_command"]
+}
