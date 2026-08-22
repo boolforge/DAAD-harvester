@@ -19,7 +19,7 @@
     {"path": "scripts/run_primary_workflow.py", "line": 74, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local scheduler launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 78, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local pytest launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 84, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Ordered local Python launcher."},
-    {"path": "scripts/run_reverse_analysis.py", "line": 34, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Retained static-analysis output is derived and explicitly non-primary."},
+    {"path": "scripts/run_reverse_analysis.py", "line": 37, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Retained static-analysis output is derived and explicitly non-primary."},
     {"path": "scripts/verify_regeneration_manifest.py", "line": 51, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Verifier permits only repository-local Python regeneration commands."}
   ]
 }

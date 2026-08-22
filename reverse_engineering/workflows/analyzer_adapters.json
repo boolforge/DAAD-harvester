@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "purpose": "Architecture-scoped analyzer-adapter catalog for redundant DAAD interpreter static analysis with explicit load-model and commentary boundaries.",
+  "commentary_layers": ["bytes", "decoded_instructions", "tool_hypotheses", "evidenced_behavior"],
+  "adapters": [
+    {
+      "adapter_id": "radare2-static-v1",
+      "state": "configured",
+      "role": "control_flow_analysis",
+      "architectures": ["z80", "mos6502", "mos8501", "m68000", "i8086"],
+      "tool": {"name": "radare2", "workflow_key": "radare2", "pin": "5.5.0", "provenance_url": "https://github.com/radareorg/radare2"},
+      "runner": "radare2_static",
+      "record_tool": "radare2",
+      "execution_order": 10,
+      "output": {"filename": "radare2-analysis.txt", "capture": "combined_stdout_stderr"},
+      "load_model_compatibility": ["raw_binary_base_0_unverified"],
+      "commentary_boundary": "Control-flow and instruction output are tool hypotheses at the recorded raw base; they are not recovered source or runtime semantics."
+    },
+    {
+      "adapter_id": "architecture-static-v1",
+      "state": "configured",
+      "role": "static_disassembly",
+      "architectures": ["z80", "mos6502", "mos8501", "m68000", "i8086"],
+      "tool": {"name": "family-specific static disassembler", "workflow_key": "z80dasm", "pin": "toolchain-selected per architecture", "provenance_url": "reverse_engineering/workflows/toolchain.json"},
+      "runner": "architecture_static",
+      "record_tool": "architecture_static",
+      "execution_order": 20,
+      "output": {"filename": "independent-static-disassembly.txt", "capture": "combined_stdout_stderr"},
+      "load_model_compatibility": ["raw_binary_base_0_unverified"],
+      "commentary_boundary": "Byte-to-instruction output is an independent static decoding at the recorded raw base, not a function map or behavior claim."
+    },
+    {
+      "adapter_id": "ghidra-headless-binary-v1",
+      "state": "configured",
+      "role": "structured_analysis",
+      "architectures": ["z80", "mos6502", "mos8501", "m68000", "i8086"],
+      "tool": {"name": "Ghidra", "workflow_key": "ghidra", "pin": "12.1.3", "provenance_url": "https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.3_build"},
+      "runner": "ghidra_headless_binary",
+      "record_tool": "ghidra",
+      "execution_order": 30,
+      "output": {"filename": "ghidra-headless.log", "capture": "combined_stdout_stderr"},
+      "load_model_compatibility": ["raw_binary_base_0_unverified"],
+      "commentary_boundary": "Ghidra listing, function boundaries, and pseudocode are structured tool hypotheses at the recorded raw base, not recovered source or behavior."
+    },
+    {
+      "adapter_id": "py8dis-mos6502-candidate-v1",
+      "state": "candidate",
+      "role": "static_disassembly",
+      "architectures": ["mos6502"],
+      "tool": {"name": "py8dis", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/ZornsLemma/py8dis"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_pinned_origin_and_6502_profile"],
+      "commentary_boundary": "Candidate output is unavailable until a pinned invocation and explicit 6502 origin model are independently recorded."
+    },
+    {
+      "adapter_id": "z80dismblr-candidate-v1",
+      "state": "candidate",
+      "role": "control_flow_analysis",
+      "architectures": ["z80"],
+      "tool": {"name": "z80dismblr", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/maziac/z80dismblr"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_pinned_origin_and_start_or_trace_evidence"],
+      "commentary_boundary": "Candidate control-flow output requires explicit start, trace, snapshot, or label assumptions and cannot be inferred for raw retained bytes."
+    },
+    {
+      "adapter_id": "redasm-i8086-candidate-v1",
+      "state": "candidate",
+      "role": "structured_analysis",
+      "architectures": ["i8086"],
+      "tool": {"name": "REDasm", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/redasm-dev/redasm"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_pinned_headless_cli_and_dos_load_model"],
+      "commentary_boundary": "Candidate analysis is not configured until a reproducible headless path and DOS executable/load semantics are established."
+    },
+    {
+      "adapter_id": "skoolkit-z80-candidate-v1",
+      "state": "candidate",
+      "role": "structured_analysis",
+      "architectures": ["z80"],
+      "tool": {"name": "SkoolKit", "pin": "760eeaa012926b4220ea5a370a2bdf99ba098eb0", "provenance_url": "https://github.com/skoolkid/skoolkit"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_spectrum_memory_or_execution_map"],
+      "commentary_boundary": "Snapshot and execution-map assumptions must be independently justified; this candidate does not replace raw-base-zero comparators."
+    }
+  ]
+}
