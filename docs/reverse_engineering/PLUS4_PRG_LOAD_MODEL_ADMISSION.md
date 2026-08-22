@@ -28,8 +28,17 @@ emulator, or apply C64 processor-port rules. The Plus/4 memory map includes its
 own 7501 processor port and banking facilities, which remain a separate
 platform-specific gate.[1]
 
+Every profile therefore retains `launch_capture_observation: null`. A future
+official capture must bind the exact PRG and loader context, BASIC and KERNAL
+ROM identities, loader transition, bootstrap medium, snapshot, machine model,
+7501 registers and port state, TED paging/configuration/interrupt state,
+upper-memory selection, RAM mapping, and stack. A C64 default, generic 6502
+state, or another Plus/4 title cannot substitute for this profile-specific
+evidence.[1] [4]
+
 ## References
 
 [1]: https://www.floodgap.com/retrobits/ckb/secret/264memory.txt "Annotated Commodore 264/Plus/4 memory map"
 [2]: https://plus4world.powweb.com/forum/37848 "Plus/4 World discussion of PRG load-address wrapper semantics"
 [3]: [Commodore Plus/4 platform dossier](../platforms/COMMODORE_PLUS4.md)
+[4]: ../../research/sources/plus4_launch_capture_sources_2026-08-22.md "Plus/4 future launch-capture source record"

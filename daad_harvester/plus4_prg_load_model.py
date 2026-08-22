@@ -15,6 +15,12 @@ class Plus4PrgLoadModelError(ValueError):
 EXPECTED_LOAD_ADDRESS = 0x4001
 EXPECTED_SYS_TARGET = 2063
 EXPECTED_BASIC_LINE_END = 16
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = (
+    "official_prg_sha256", "loader_context_sha256", "basic_rom_sha256", "kernal_rom_sha256",
+    "loader_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_model",
+    "mos7501_registers", "processor_port_ddr", "processor_port_data", "ted_paging_state",
+    "ted_configuration_state", "ted_interrupt_state", "upper_memory_selection", "ram_mapping", "stack_state",
+)
 
 
 def _sha256(path: Path) -> str:
@@ -56,6 +62,8 @@ def validate_plus4_prg_load_model(contract: dict[str, Any], root: Path) -> None:
         raise Plus4PrgLoadModelError("admission_state must preserve the unresolved launcher target")
     if contract.get("execution_eligible") is not False:
         raise Plus4PrgLoadModelError("Plus/4 wrapper evidence must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise Plus4PrgLoadModelError("Plus/4 future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 2:
         raise Plus4PrgLoadModelError("contract must contain two Plus/4 profiles")
@@ -82,6 +90,8 @@ def validate_plus4_prg_load_model(contract: dict[str, Any], root: Path) -> None:
                 raise Plus4PrgLoadModelError(f"{identifier}: {name} differs from retained PRG wrapper")
         if parsed["sys_target_within_loaded_image"]:
             raise Plus4PrgLoadModelError(f"{identifier}: expected unresolved SYS target must remain outside the PRG image")
+        if profile.get("launch_capture_observation") is not None:
+            raise Plus4PrgLoadModelError(f"{identifier}: no official Plus/4 launch capture is currently admitted")
 
 
 def load_plus4_prg_load_model(path: Path, root: Path) -> dict[str, Any]:

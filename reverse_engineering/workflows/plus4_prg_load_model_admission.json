@@ -3,6 +3,7 @@
   "purpose": "Plus/4 PRG wrapper and BASIC-line observation only; the encoded SYS target is not admitted as a machine-code entry because it lies outside the retained PRG image.",
   "admission_state": "prg_wrapper_verified_launcher_target_unresolved",
   "execution_eligible": false,
+  "future_launch_capture_required_fields": ["official_prg_sha256", "loader_context_sha256", "basic_rom_sha256", "kernal_rom_sha256", "loader_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_model", "mos7501_registers", "processor_port_ddr", "processor_port_data", "ted_paging_state", "ted_configuration_state", "ted_interrupt_state", "upper_memory_selection", "ram_mapping", "stack_state"],
   "profiles": [
     {
       "artifact_id": "daad-plus4-ediplus4-official",
@@ -14,7 +15,8 @@
       "basic_program_end_offset": 16,
       "image_start": 16385,
       "image_end_exclusive": 28485,
-      "sys_target_within_loaded_image": false
+      "sys_target_within_loaded_image": false,
+      "launch_capture_observation": null
     },
     {
       "artifact_id": "daad-plus4-sdiplus4-official",
@@ -26,7 +28,8 @@
       "basic_program_end_offset": 16,
       "image_start": 16385,
       "image_end_exclusive": 28750,
-      "sys_target_within_loaded_image": false
+      "sys_target_within_loaded_image": false,
+      "launch_capture_observation": null
     }
   ],
   "remaining_requirements": [

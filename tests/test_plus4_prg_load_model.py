@@ -19,6 +19,7 @@ def test_plus4_prg_wrappers_validate_but_do_not_supply_machine_code_entry() -> N
     parsed = parse_plus4_prg_wrapper((ROOT / contract["profiles"][0]["input_path"]).read_bytes())
 
     assert contract["execution_eligible"] is False
+    assert all(profile["launch_capture_observation"] is None for profile in contract["profiles"])
     for profile in contract["profiles"]:
         observed = parse_plus4_prg_wrapper((ROOT / profile["input_path"]).read_bytes())
         assert {name: profile[name] for name in observed} == observed
@@ -34,6 +35,7 @@ def test_plus4_prg_wrappers_validate_but_do_not_supply_machine_code_entry() -> N
         (lambda contract: contract["profiles"][0].__setitem__("sha256", "0" * 64), "retained PRG identity differs"),
         (lambda contract: contract["profiles"][0].__setitem__("image_end_exclusive", 0), "image_end_exclusive differs"),
         (lambda contract: contract.__setitem__("admission_state", "entry_verified"), "must preserve the unresolved launcher target"),
+        (lambda contract: contract["profiles"][0].__setitem__("launch_capture_observation", {"machine_model": "C64"}), "no official Plus/4 launch capture"),
     ],
 )
 def test_plus4_prg_contract_rejects_promotion_or_altered_identity(mutation, message: str) -> None:
