@@ -17,6 +17,14 @@ The retained profiles have zero symbol-table bytes and bounded counts of 708 or
 717 relocation sites. These are container observations, not an effective TOS
 load address, process entry, symbol recovery, or runtime result.
 
+Every profile therefore retains `launch_capture_observation: null`. A future
+official capture must bind the exact PRG and loader context, TOS/GEMDOS
+identities, Pexec/relocation transition, bootstrap medium, snapshot, machine
+configuration, basepage and TPA mappings, segment allocations, process,
+environment, handle, register, stack, and GEM/AES state. An Amiga segment list,
+generic 68000 state, different title, or static relocation listing cannot
+substitute for a profile-specific Atari ST launch observation.[3]
+
 ```bash
 python3 scripts/verify_atari_st_prg_load_model.py
 ```
@@ -25,3 +33,4 @@ python3 scripts/verify_atari_st_prg_load_model.py
 
 [1]: [Atari ST platform dossier](../platforms/ATARI_ST.md)
 [2]: [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+[3]: [Atari ST future launch-capture source record](../../research/sources/atari_st_launch_capture_sources_2026-08-22.md)

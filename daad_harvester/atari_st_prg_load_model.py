@@ -15,6 +15,7 @@ class AtariStPrgLoadModelError(ValueError):
 
 HEADER_SIZE = 28
 PRG_MAGIC = 0x601A
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = ("official_prg_sha256", "loader_context_sha256", "tos_rom_sha256", "gemdos_identity", "pexec_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_configuration", "basepage_mapping", "tpa_mapping", "segment_allocation_addresses", "process_context", "environment_context", "handle_state", "m68000_registers", "stack_state", "gem_aes_context")
 
 
 def _sha256(path: Path) -> str:
@@ -67,6 +68,8 @@ def validate_atari_st_prg_load_model(contract: dict[str, Any], root: Path) -> No
         raise AtariStPrgLoadModelError("invalid PRG admission state")
     if contract.get("execution_eligible") is not False:
         raise AtariStPrgLoadModelError("PRG container facts must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise AtariStPrgLoadModelError("Atari ST future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 4:
         raise AtariStPrgLoadModelError("contract must contain exactly four Atari ST profiles")
@@ -86,6 +89,8 @@ def validate_atari_st_prg_load_model(contract: dict[str, Any], root: Path) -> No
         for field in ("text_size", "data_size", "bss_size", "symbol_size", "load_size", "first_relocation_offset", "relocation_stream_size", "relocation_count"):
             if profile.get(field) != fields[field]:
                 raise AtariStPrgLoadModelError(f"{identifier}: {field} differs from retained PRG")
+        if profile.get("launch_capture_observation") is not None:
+            raise AtariStPrgLoadModelError(f"{identifier}: no official Atari ST launch capture is currently admitted")
 
 
 def load_atari_st_prg_load_model(path: Path, root: Path) -> dict[str, Any]:
