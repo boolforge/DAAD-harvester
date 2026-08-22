@@ -1,0 +1,28 @@
+# DOS MZ Header and Relative-Entry Ledger
+
+| Header field | Value |
+| --- | --- |
+| **Question** | Which i8086 load and entry fields can be verified for all retained DOS interpreter profiles from their MZ containers? |
+| **Evidence scope** | Immutable retained EXE identities and bounded MZ header/relocation-table parsing. |
+| **Status** | All 22 retained DOS profiles validate as MZ containers with relative entry fields. |
+| **Non-claims** | MZ validation does not establish the DOS PSP, actual load segment, runtime behavior, source recovery, or qualified analyzer output. |
+
+`verify_dos_mz_load_model.py` verifies the retained file identity, declared size,
+header and load-module bounds, relocation-table bounds and targets, initial
+CS:IP, initial SS:SP, and overlay field for every retained DOS profile. All
+current profiles have a relative entry offset of zero and overlay number zero.
+The result is deliberately still non-executable: DOS supplies a PSP and a load
+segment outside the MZ image, and those platform conditions remain separate
+requirements of the committed DOS admission contract.
+
+```bash
+python3 scripts/verify_dos_mz_load_model.py
+```
+
+The verifier reads bytes only; it does not invoke DOS, an emulator, a
+disassembler, or the retained executables.
+
+## References
+
+1. [DOS i8086 load-model admission contract](../../reverse_engineering/workflows/dos_i8086_load_model_admission.json)
+2. [Architecture-family qualified analysis campaign](ARCHITECTURE_FAMILY_VERIFICATION_CAMPAIGN.md)

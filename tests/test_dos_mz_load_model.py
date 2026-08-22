@@ -1,0 +1,32 @@
+"""Regression coverage for retained DOS MZ header and relative-entry evidence."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from daad_harvester.dos_mz_load_model import DosMzLoadModelError, collect_dos_mz_load_model, parse_mz_header
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_all_retained_dos_profiles_have_validated_mz_relative_entry_evidence() -> None:
+    ledger = collect_dos_mz_load_model(ROOT)
+
+    assert ledger["profile_count"] == 22
+    assert ledger["execution_eligible"] is False
+    assert {profile["relative_entry_offset"] for profile in ledger["profiles"]} == {0}
+    assert {profile["overlay_number"] for profile in ledger["profiles"]} == {0}
+
+
+def test_mz_header_rejects_truncated_or_invalid_relative_entry() -> None:
+    data = bytearray((ROOT / "reverse_engineering/artifacts/original/dos/daad-dos-inte1-official/INTE1.EXE").read_bytes())
+
+    with pytest.raises(DosMzLoadModelError, match="missing or truncated MZ signature"):
+        parse_mz_header(bytes(data[:10]))
+
+    data[20:22] = (0xFFFF).to_bytes(2, "little")
+    with pytest.raises(DosMzLoadModelError, match="relative CS:IP is outside"):
+        parse_mz_header(bytes(data))
