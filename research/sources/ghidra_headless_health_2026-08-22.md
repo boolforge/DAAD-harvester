@@ -10,12 +10,13 @@
 ## Observed command boundary
 
 The health check used Ghidra's documented headless launcher with a new temporary
-project directory for each run, `BinaryLoader`, base address `0x0`, a recorded
-processor language, a 30-second analysis timeout, and the repository's pinned
-`ExportDAADAnalysis.java` post-script. It wrote output and launcher logs only
-under a temporary directory outside the repository. The launcher, script, fixture
-bytes, and deterministic export hashes are all captured in the machine-readable
-record.
+project directory for each run, a recorded processor language, and the
+repository's pinned `ExportDAADAnalysis.java` post-script. It wrote output and
+launcher logs only under a temporary directory outside the repository. Each
+fixture used a stable `fixture-*.bin` filename because the exporter’s metadata
+records the imported program name. The launcher, script, fixture bytes, two-run
+comparison, and deterministic export hashes are all captured in the
+machine-readable record.
 
 The fixtures were intentionally minimal: Z80 `00 c9`, MOS 6502/8501 `ea 60`,
 68000 `4e 71 4e 75`, and i8086 real mode `90 c3`. No retained DAAD artifact,

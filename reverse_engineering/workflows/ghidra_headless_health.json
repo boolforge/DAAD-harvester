@@ -15,53 +15,61 @@
     {
       "architectures": ["z80"],
       "ghidra_language": "z80:LE:16:default",
+      "fixture_filename": "fixture-z80.bin",
       "fixture_hex": "00c9",
       "fixture_sha256": "4690c1ed14ac5dd2e529dc29c12bc4561caf27c025346c7e81b28597aeeaa533",
       "deterministic_exports": {
         "ghidra-listing.txt": "2e46684393beef70eea6bb491b7f36acd9ef6d280b8ad37a2c922e25c83dd985",
         "ghidra-functions.tsv": "dca1f5768b478ab0cda4385f7b49ad399f04e4a50c2b7a85f451697696b7f217",
         "ghidra-decompilation.c": "65da85c9ec443a8b10fd6fb06c2dc4942ac3e3c83680e4c4aeb5e7ba0c922baf",
-        "ghidra-metadata.json": "b5005124aa8314f57c4509dd66438bdf1b8369b90db1c68ad002b999ea72e9ed"
+        "ghidra-metadata.json": "966a6ca14facefd7a108dc6c94ce3e44d14e425768008465b7c7454cc87b9e82"
       },
+      "repeat_run_count": 2,
       "repeat_exports_byte_identical": true
     },
     {
       "architectures": ["mos6502", "mos8501"],
       "ghidra_language": "6502:LE:16:default",
+      "fixture_filename": "fixture-mos6502.bin",
       "fixture_hex": "ea60",
       "fixture_sha256": "c45e396ba1d4efd0ae131ef11e13a3eafabc904f8deb603b394344652b68d8b7",
       "deterministic_exports": {
         "ghidra-listing.txt": "8355c31dc94efc0b995a5f138eda9a117a655a70051613bcd0744434ca2d2b54",
         "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
         "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "ghidra-metadata.json": "521531f6f499e414d5f386489b4d9e9656b28452b1bca1cb735aadee0011a464"
+        "ghidra-metadata.json": "ad2f89998a28baa1055b8fbb66cd3f3bd56adcc128f28bcdbf45c44acfbfe8cb"
       },
+      "repeat_run_count": 2,
       "repeat_exports_byte_identical": true
     },
     {
       "architectures": ["m68000"],
       "ghidra_language": "68000:BE:32:default",
+      "fixture_filename": "fixture-m68000.bin",
       "fixture_hex": "4e714e75",
       "fixture_sha256": "8e87b3a2dd2cf6b970e38bb62f460570a8a9c6f9a6e7afeedee921e99947b58f",
       "deterministic_exports": {
         "ghidra-listing.txt": "dce4e386cf78d20a1a39a5d2f49129448e9421e6a637c40641a97faf088d8191",
         "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
         "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "ghidra-metadata.json": "c036e443cea89f04a9b308d1dd384deccef552a98b2378ec0eac205f3deb3121"
+        "ghidra-metadata.json": "44ab947fc190655669ab580327ddc75c292f2a626e3baa4c6a8efc1531e21f94"
       },
+      "repeat_run_count": 2,
       "repeat_exports_byte_identical": true
     },
     {
       "architectures": ["i8086"],
       "ghidra_language": "x86:LE:16:Real Mode",
+      "fixture_filename": "fixture-i8086.bin",
       "fixture_hex": "90c3",
       "fixture_sha256": "36565ca5d2854ac584ac1356867f5c575d0f489442f8c8b4b8c391b2246ec1e5",
       "deterministic_exports": {
         "ghidra-listing.txt": "0b8b85300b16ac3ae794f11c843a747463bf3709865b9707e3eaa5f1707fa988",
         "ghidra-functions.tsv": "05249c234c32e967211074e14cc4f11c3ef443c5177d1570a715abe3867ee941",
         "ghidra-decompilation.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "ghidra-metadata.json": "1991c1ba1b30024d0f3d20ceadde45cc88ac304a839fe385ce60b7630c756504"
+        "ghidra-metadata.json": "3aab43f03a4bee7f9b6b38d0c569d881c020f9de974da9efec9b4a5d5ccad301"
       },
+      "repeat_run_count": 2,
       "repeat_exports_byte_identical": true
     }
   ],

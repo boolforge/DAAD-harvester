@@ -245,3 +245,16 @@ def test_ghidra_headless_health_rejects_a_fixture_hash_mismatch() -> None:
 
     with pytest.raises(analyzer_adapters.AdapterCatalogError, match="fixture SHA-256"):
         analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
+
+
+def test_ghidra_headless_health_rejects_uncontrolled_fixture_name_or_repeat_count() -> None:
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["fixture_filename"] = "../retained.bin"
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="controlled relative fixture name"):
+        analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
+
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["repeat_run_count"] = 1
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="exactly two repeated runs"):
+        analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())

@@ -36,6 +36,7 @@ DOS_I8086_ADMISSION_CONTRACT = {
     "analysis_boundary": "An admissible comparison may emit attributed tool decoding only. It does not recover source or establish behavior without separate evidence.",
 }
 _ADAPTER_ID = re.compile(r"^[a-z0-9][a-z0-9-]*-v[1-9][0-9]*$")
+_FIXTURE_FILENAME = re.compile(r"^fixture-[a-z0-9]+\.bin$")
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -284,6 +285,9 @@ def validate_ghidra_headless_health(health: dict[str, Any], workflow: dict[str, 
             if _require_string(profile, "ghidra_language", "Ghidra processor profile") != config.get("ghidra_language"):
                 raise AdapterCatalogError(f"Ghidra health: language does not match toolchain for {architecture}")
             observed_architectures.add(architecture)
+        fixture_filename = _require_string(profile, "fixture_filename", "Ghidra processor profile")
+        if not _FIXTURE_FILENAME.fullmatch(fixture_filename):
+            raise AdapterCatalogError("Ghidra health: fixture_filename must be a controlled relative fixture name")
         fixture_hex = _require_string(profile, "fixture_hex", "Ghidra processor profile")
         try:
             fixture = bytes.fromhex(fixture_hex)
@@ -301,6 +305,8 @@ def validate_ghidra_headless_health(health: dict[str, Any], workflow: dict[str, 
             raise AdapterCatalogError("Ghidra health: deterministic export inventory is incomplete")
         if any(not isinstance(value, str) or not _SHA256.fullmatch(value) for value in exports.values()):
             raise AdapterCatalogError("Ghidra health: deterministic export hashes must be lowercase SHA-256 values")
+        if profile.get("repeat_run_count") != 2:
+            raise AdapterCatalogError("Ghidra health: fixture record must bind exactly two repeated runs")
         if profile.get("repeat_exports_byte_identical") is not True:
             raise AdapterCatalogError("Ghidra health: fixture record must state repeat export comparison")
 
