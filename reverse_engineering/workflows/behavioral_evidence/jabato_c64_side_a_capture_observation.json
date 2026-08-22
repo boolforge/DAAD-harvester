@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "record_id": "jabato-c64-side-a-credits-runtime-capture-v1",
+  "evidence_kind": "runtime_capture_observation",
+  "eligible_for_equivalence": false,
+  "claim_boundary": "This record verifies retained C64 capture identity and a recovered RAM range only; it is not a complete behavioral trace, equivalence result, recovered source, or engine authorization.",
+  "release": {
+    "platform": "c64",
+    "media": {
+      "path": "preservation_corpus/extracted/depth1_8dfc7ab2_Jabato (1989)(Aventuras AD)(Side A).tap",
+      "sha256": "99e873fd309be0325e37668f9385937d22337c1a4c1d2b9094ac2ef575082ad1"
+    }
+  },
+  "emulator": {
+    "name": "VICE",
+    "version": "3.7.1",
+    "frontend": "x64sc",
+    "limit_cycles": 2600000000,
+    "command_log": {
+      "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.emulator.log",
+      "sha256": "7017a72a1df23a55dcf7e805ae4638e53d24850595ad3060893ac820331a5f57"
+    }
+  },
+  "input": {
+    "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.input.log",
+    "sha256": "e85e8b28ad038fe7403b213b39d7d5c8316fdc4da96c06a922721e55a293b6d3"
+  },
+  "checkpoint": {
+    "kind": "captured_monitor_state",
+    "cycle": 396422219,
+    "monitor_log": {
+      "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.monitor.log",
+      "sha256": "3d44ba035d7d8efa79fb6b831b97cfabe8bf2fae4980e627b99c5d0f5215e1a8"
+    }
+  },
+  "capture": {
+    "snapshot": {
+      "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.vsf",
+      "sha256": "fb4b3809b962123fe618ee9e119fc532dd5b791e710d317e1ecbb163b96a6c13"
+    },
+    "ram": {
+      "path": "preservation_corpus/derived/commodore_loader/vice/jabato_side_a_tap_credits.ram",
+      "sha256": "e2ebd0b931dcab49ea71e2221add54d19d2edaa23ee5fd7fb0dc33f569a7eee6"
+    }
+  },
+  "observable": {
+    "kind": "native_ddb_recovery",
+    "ram_offset": 14464,
+    "size": 24899,
+    "recovered_ddb": {
+      "path": "preservation_corpus/derived/commodore_loader/jabato_side_a_tap_second_space_part1.ddb",
+      "sha256": "7ffbee6ca3e614011b30261a74022d199ee3345843a0525e92dc9cb5b7bdb5e6"
+    }
+  }
+}
