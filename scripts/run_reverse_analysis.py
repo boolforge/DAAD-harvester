@@ -44,6 +44,74 @@ def output_hashes(directory: Path) -> list[dict[str, Any]]:
     ]
 
 
+def verify(artifact: dict[str, Any], workflow: dict[str, Any]) -> list[str]:
+    """Return deterministic retained-analysis verification errors without writing files."""
+
+    artifact_id = artifact["artifact_id"]
+    architecture = artifact["architecture"]
+    config = workflow["architectures"][architecture]
+    target = DERIVED_ROOT / architecture / artifact_id
+    record_path = target / "analysis-run.json"
+    if not record_path.is_file():
+        return [f"{artifact_id}: missing analysis record"]
+    try:
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{artifact_id}: invalid analysis record JSON: {exc.msg}"]
+
+    expected = {
+        "schema_version": 1,
+        "artifact_id": artifact_id,
+        "derived_from_sha256": artifact["sha256"],
+        "architecture": architecture,
+        "input_path": artifact["storage"]["path"],
+        "load_model": config["load_model"],
+        "analysis_state": "generated_unverified_load_model",
+        "non_claim": "Outputs are tool-derived static analysis of original bytes at the stated raw load model; they are not recovered source code or verified runtime semantics.",
+    }
+    errors = [f"{artifact_id}: record {key!r} differs from current manifest/workflow" for key, value in expected.items() if record.get(key) != value]
+
+    outputs = record.get("outputs")
+    if not isinstance(outputs, list) or not outputs:
+        return [*errors, f"{artifact_id}: missing output hash inventory"]
+    output_paths: set[str] = set()
+    for output in outputs:
+        if not isinstance(output, dict) or not isinstance(output.get("path"), str):
+            errors.append(f"{artifact_id}: malformed output inventory entry")
+            continue
+        output_path = ROOT / output["path"]
+        try:
+            output_path.relative_to(target)
+        except ValueError:
+            errors.append(f"{artifact_id}: output lies outside its derived directory: {output['path']}")
+            continue
+        output_paths.add(output["path"])
+        if not output_path.is_file():
+            errors.append(f"{artifact_id}: missing derived output: {output['path']}")
+            continue
+        if output.get("size") != output_path.stat().st_size:
+            errors.append(f"{artifact_id}: derived output size mismatch: {output['path']}")
+        if output.get("sha256") != sha256(output_path):
+            errors.append(f"{artifact_id}: derived output SHA-256 mismatch: {output['path']}")
+
+    records = record.get("tool_records")
+    if not isinstance(records, list) or len(records) < 2:
+        errors.append(f"{artifact_id}: missing redundant tool records")
+    else:
+        for tool_record in records:
+            if not isinstance(tool_record, dict):
+                errors.append(f"{artifact_id}: malformed tool record")
+                continue
+            output = tool_record.get("output")
+            if not isinstance(output, str) or output not in output_paths:
+                errors.append(f"{artifact_id}: tool record references an unlisted output")
+                continue
+            output_path = ROOT / output
+            if output_path.is_file() and tool_record.get("sha256") != sha256(output_path):
+                errors.append(f"{artifact_id}: tool-record SHA-256 mismatch: {output}")
+    return errors
+
+
 def analyze(artifact: dict[str, Any], workflow: dict[str, Any], include_ghidra: bool) -> dict[str, Any]:
     artifact_id = artifact["artifact_id"]
     source = ROOT / artifact["storage"]["path"]
@@ -99,6 +167,7 @@ def main() -> int:
     parser.add_argument("--artifact-id", action="append", help="Analyze only this exact manifest artifact ID; may be repeated.")
     parser.add_argument("--limit", type=int, default=0, help="Maximum selected artifacts; zero means all selected.")
     parser.add_argument("--skip-ghidra", action="store_true", help="Generate independent static tool outputs only.")
+    parser.add_argument("--check", action="store_true", help="Verify retained analysis records and hashes without executing tools or writing files.")
     args = parser.parse_args()
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     workflow = json.loads(WORKFLOW_PATH.read_text(encoding="utf-8"))
@@ -111,6 +180,13 @@ def main() -> int:
         artifacts = artifacts[:args.limit]
     if not artifacts:
         raise SystemExit("No artifacts selected")
+    if args.check:
+        errors = [error for artifact in artifacts for error in verify(artifact, workflow)]
+        if errors:
+            print("\n".join(errors))
+            return 1
+        print(f"Verified {len(artifacts)} retained reverse-analysis record(s) without writing outputs")
+        return 0
     failures = 0
     for artifact in artifacts:
         result = analyze(artifact, workflow, not args.skip_ghidra)

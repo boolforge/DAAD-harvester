@@ -41,6 +41,19 @@ All current pilots intentionally use `raw_binary_base_0_unverified`. That suppor
 
 The runner produced a retained comparison-output directory for **all 42 retained exact-profile inputs**. Every input generated seven retained files: radare2 analysis, architecture-specific static disassembly, Ghidra headless log, Ghidra listing, function metadata, decompiler pseudocode, and an output-hash manifest. This yielded **294 retained derived outputs**. All three tool invocations returned zero for every profile, and every generated output matched its recorded SHA-256 value. These artifacts remain valuable cross-tool evidence, but are not yet classified as repository-native primary regeneration paths; the global manifest audit must add a native verifier before promoting any conclusion that depends on them.
 
+Before any ordered reanalysis, verify the existing retained records without
+launching an analyzer or replacing a directory:
+
+```bash
+python3 scripts/run_reverse_analysis.py --check
+```
+
+The read-only mode checks every selected manifest identity, declared raw-load
+model, output inventory path/size/SHA-256, and tool-record output hash. It
+rejects missing, corrupt, misdirected, or configuration-drifted analysis
+records. Generation remains an explicit ordered operation because it removes
+and recreates a selected derived-output directory.
+
 | Architecture | Exact profiles analyzed | Retained output directory |
 | --- | --- | --- |
 | Z80 | 8: ZX, CPC, MSX, and PCW profiles | [`derived/z80`](../../reverse_engineering/derived/z80/) |
