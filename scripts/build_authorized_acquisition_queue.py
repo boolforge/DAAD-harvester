@@ -61,8 +61,14 @@ def build(
             record["source_record_url"] = registration["source_record_url"]
             record["source_release_id"] = registration.get("source_release_id")
             record["release_identity"] = registration["release_identity"]
+            if "filename" in registration:
+                record["filename"] = registration["filename"]
+            if "source_adapter" in registration:
+                record["source_adapter"] = registration["source_adapter"]
             if "source_checksum" in registration:
                 record["source_checksum"] = registration["source_checksum"]
+            if "external_source_terms" in registration:
+                record["external_source_terms"] = registration["external_source_terms"]
             if "authorization" in registration:
                 record["authorization"] = registration["authorization"]
             else:

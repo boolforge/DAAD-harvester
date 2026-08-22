@@ -243,23 +243,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "cero absoluto|esp soft|2016|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "ESP Soft",
-      "reason": "authorized_source_discovery_required",
-      "title": "Cero Absoluto",
-      "year": "2016"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -718,7 +701,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 42,
+  "discovery_required_count": 41,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -726,6 +709,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors(CustomisedVersion).tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -748,6 +733,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors2-TheSequel(different).tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -770,6 +757,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -792,6 +781,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors4-BalrogsDayOut.tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -814,6 +805,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "external_source_terms": null,
+      "filename": "BulboAndTheLizard-King(different).tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -835,7 +828,37 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "external_source_terms": "non_commercial_no_sale_without_consent",
+      "filename": "cero_absoluto.zip",
+      "language": "Spanish",
+      "publisher": "ESP Soft",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "ESP Soft",
+        "title": "Cero Absoluto",
+        "year": "2016"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
+        "upload_id": 6205261
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "2e058c4b4fa897c41fe91651b709218e2ca47eb34edc80981be5c790d50bfe3f"
+      },
+      "source_record_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
+      "source_release_id": "1629912:6205261",
+      "source_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
+      "title": "Cero Absoluto",
+      "year": "2016"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
+      "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "language": "Spanish",
       "publisher": "Aventuras A.D.",
       "reason": "authorized_by_institutional_directive",
@@ -858,6 +881,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "external_source_terms": null,
+      "filename": "FromOutOfADarkNightSky(different).tzx.zip",
       "language": "English",
       "publisher": "Zenobi Software",
       "reason": "authorized_by_institutional_directive",
@@ -877,7 +902,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 7,
+  "queued_count": 8,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

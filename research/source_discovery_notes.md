@@ -18,3 +18,21 @@ This is **source-discovery evidence only**. It must remain outside `authorized_c
 
 [2]: https://www.solutionarchive.com/game/id%2C10686/Erinia.html
 [3]: https://dareint.itch.io/erinia-2025-english
+
+## CASA catalog access pattern
+
+The CASA DAAD catalog at <https://solutionarchive.com/list/system%2C34/> was visually reviewed on 2026-08-22. It exposes a public game-title search form and individual game-title links for the 95 DAAD catalog records. The browser view confirmed that the list has title, publisher, and year link elements for each row, but a direct command-line request returned a short non-catalog response. Any automated CASA adapter must therefore validate its search response and record a clear unavailable or access-limited result rather than treating a short HTTP response as an empty catalog.
+
+[4]: https://solutionarchive.com/list/system%2C34/
+
+## Cero Absoluto: official free-download source candidate
+
+On 2026-08-22, the official ESP Soft page <https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc> was reviewed. It identifies **Cero Absoluto**, ESP Soft, Spanish, and Amstrad CPC; declares that the game was created with DAAD; labels the offering as free; and exposes two game-file download controls, `cero_absoluto.zip` and `cero_absoluto_tape.zip`. The published source terms forbid commercial physical or digital sales without express consent, so future source provenance must retain that non-commercial condition.
+
+The page is a valid release-identity and access evidence candidate. A deterministic adapter still must extract the actual binary URL from the public page, fetch it, measure its checksum, and validate the retained bytes before promoting the candidate to the acquisition queue.
+
+[5]: https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc
+
+The public `cero_absoluto.zip` control was activated on 2026-08-22 without login or purchase. Chromium’s download history recorded a completed file named `cero_absoluto.zip`. This confirms binary delivery by the public page; the deterministic source adapter must still resolve or retain the final URL and measure the downloaded bytes before queue promotion.
+
+The public itch.io API response for upload `6205261` returns a short-lived `/download/...` URL, but a direct HTTP GET to that URL returns an HTML download-completion page rather than game bytes. The page contains a JavaScript `game_download` control and an alternate-download-mode hint. Therefore the current adapter must not treat the JSON `url` field as a direct binary URL; it requires one further verified step that resolves the actual file delivery endpoint while retaining the temporary cookie session.

@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""Acquire, verify, and unpack release-verified catalog candidates.
-
-Only entries in the versioned authorized acquisition queue can be processed. The
-runner uses the ordinary source database, downloader, and recursive unpacker in
-a caller-selected output directory; it never promotes an unverified discovery
-match or silently changes the committed preservation corpus.
-"""
+"""Acquire only release-verified entries from the authorized candidate queue."""
 
 from __future__ import annotations
 
@@ -14,7 +8,10 @@ import asyncio
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
 from typing import Any, Iterable
 
 from daad_harvester.config import settings
@@ -26,6 +23,7 @@ from daad_harvester.unpack import Unpacker
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_QUEUE = ROOT / "research" / "authorized_acquisition_queue.json"
 DEFAULT_OUTPUT_DIR = ROOT / "output" / "authorized-acquisition"
+ITCHIO_DOWNLOADER_VERSION = "1.2.0"
 
 PLATFORM_BY_SUFFIX = {
     ".adf": "amiga", ".adz": "amiga", ".dms": "amiga",
@@ -37,14 +35,14 @@ PLATFORM_BY_SUFFIX = {
 
 
 def platform_for_source(entry: dict[str, Any]) -> str | None:
-    """Infer a canonical platform only from the direct binary filename."""
+    """Infer a canonical platform only from the registered binary filename."""
 
     filename = str(entry.get("filename") or Path(entry["source_url"]).name)
     return PLATFORM_BY_SUFFIX.get(Path(filename).suffix.casefold())
 
 
 def verify_checksum(path: Path, claim: dict[str, Any] | None) -> dict[str, Any]:
-    """Measure and compare a declared source checksum without accepting a missing claim."""
+    """Measure and compare a declared source checksum without accepting a mismatch."""
 
     if not claim:
         return {
@@ -65,8 +63,12 @@ def verify_checksum(path: Path, claim: dict[str, Any] | None) -> dict[str, Any]:
     }
 
 
+def is_itchio_adapter(entry: dict[str, Any]) -> bool:
+    return (entry.get("source_adapter") or {}).get("name") == "itchio_downloader_free_v1"
+
+
 def register_sources(db: Database, entries: Iterable[dict[str, Any]]) -> dict[str, int]:
-    """Add queue entries to the canonical source ledger and return source IDs by URL."""
+    """Add queue entries to the canonical source ledger by candidate identity."""
 
     ids: dict[str, int] = {}
     for entry in entries:
@@ -75,6 +77,9 @@ def register_sources(db: Database, entries: Iterable[dict[str, Any]]) -> dict[st
             "candidate_key": entry["candidate_key"],
             "release_identity": entry["release_identity"],
             "source_checksum": entry.get("source_checksum"),
+            "canonical_source_url": entry["source_url"],
+            "source_adapter": entry.get("source_adapter"),
+            "external_source_terms": entry.get("external_source_terms"),
         }
         source_id = db.add_source(
             entry["source_url"],
@@ -85,16 +90,51 @@ def register_sources(db: Database, entries: Iterable[dict[str, Any]]) -> dict[st
             publisher=entry["publisher"],
             language=entry["language"],
             acquisition_priority=100,
-            source_name="Internet Archive",
+            source_name="itch.io" if is_itchio_adapter(entry) else "Internet Archive",
             source_role="game_media",
             source_record_url=entry["source_record_url"],
             source_release_id=entry.get("source_release_id"),
             provenance_json=json.dumps(provenance, sort_keys=True),
         )
         if source_id is None:
-            raise RuntimeError(f"Could not register authorized source: {entry['source_url']}")
-        ids[entry["source_url"]] = source_id
+            raise RuntimeError(f"Could not register authorized source: {entry['candidate_key']}")
+        ids[entry["candidate_key"]] = source_id
     return ids
+
+
+def acquire_itchio_source(db: Database, source_id: int, entry: dict[str, Any], output_dir: Path) -> None:
+    """Download a free itch.io upload through the pinned, noninteractive adapter."""
+
+    adapter = entry["source_adapter"]
+    upload_id = adapter["upload_id"]
+    adapter_dir = output_dir / "adapter_downloads" / str(source_id)
+    adapter_dir.mkdir(parents=True, exist_ok=True)
+    log_path = output_dir / "logs" / f"itchio_{source_id}.log"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    command = [
+        "pnpm", "dlx", f"itchio-downloader@{ITCHIO_DOWNLOADER_VERSION}",
+        "--url", entry["source_url"], "--downloadDirectory", str(adapter_dir),
+    ]
+    environment = {**os.environ, "CI": "1"}
+    try:
+        completed = subprocess.run(
+            command, cwd=ROOT, env=environment, text=True,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=240, check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        log_path.write_text(f"adapter execution failure: {type(error).__name__}: {error}\n", encoding="utf-8")
+        db.update_source_status(source_id, SourceStatus.ERROR.value)
+        return
+    log_path.write_text(completed.stdout, encoding="utf-8")
+    expected_name = f"game-{upload_id}"
+    payloads = sorted(path for path in adapter_dir.iterdir() if path.is_file() and path.stem == expected_name)
+    if completed.returncode != 0 or len(payloads) != 1:
+        db.update_source_status(source_id, SourceStatus.ERROR.value)
+        return
+    target = output_dir / "downloads" / f"{source_id}_{entry['filename']}"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(payloads[0], target)
+    db.update_source_status(source_id, SourceStatus.DOWNLOADED.value, http_status=200, content_type="application/zip", local_path=str(target))
 
 
 def selected_entries(queue: dict[str, Any], max_candidates: int | None) -> list[dict[str, Any]]:
@@ -122,14 +162,25 @@ async def acquire(entries: list[dict[str, Any]], output_dir: Path, parallel: int
     settings.logs_dir.mkdir(parents=True, exist_ok=True)
     db = Database(settings.db_path)
     source_ids = register_sources(db, entries)
-    await Fetcher(db, download_dir=output_dir / "downloads").fetch_pending_sources(
-        parallel=max(1, parallel), source_ids=source_ids.values()
-    )
+    direct_source_ids = [source_ids[entry["candidate_key"]] for entry in entries if not is_itchio_adapter(entry)]
+    if direct_source_ids:
+        await Fetcher(db, download_dir=output_dir / "downloads").fetch_pending_sources(
+            parallel=max(1, parallel), source_ids=direct_source_ids
+        )
+    adapter_entries = [entry for entry in entries if is_itchio_adapter(entry)]
+    if adapter_entries:
+        semaphore = asyncio.Semaphore(max(1, parallel))
+
+        async def bounded_adapter_acquisition(entry: dict[str, Any]) -> None:
+            async with semaphore:
+                await asyncio.to_thread(acquire_itchio_source, db, source_ids[entry["candidate_key"]], entry, output_dir)
+
+        await asyncio.gather(*(bounded_adapter_acquisition(entry) for entry in adapter_entries))
     sources = {source.id: source for source in db.get_all_sources()}
     results: list[dict[str, Any]] = []
     unpacker = Unpacker(db, extract_dir=output_dir / "extracted")
     for entry in entries:
-        source_id = source_ids[entry["source_url"]]
+        source_id = source_ids[entry["candidate_key"]]
         source = sources[source_id]
         result: dict[str, Any] = {
             "candidate_key": entry["candidate_key"],

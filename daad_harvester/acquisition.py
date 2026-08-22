@@ -15,6 +15,8 @@ from urllib.parse import urlparse
 INSTITUTIONAL_AUTHORIZATION_STATE = "institutional_authorized"
 INSTITUTIONAL_AUTHORIZATION_DIRECTIVE = "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md"
 
+SUPPORTED_SOURCE_ADAPTERS = frozenset({"itchio_downloader_free_v1"})
+
 ALLOWED_AUTHORIZATION_KINDS = frozenset(
     {
         "public_domain",
@@ -76,6 +78,12 @@ def validate_registration(
     source_url = registration.get("source_url")
     if not isinstance(source_url, str) or urlparse(source_url).scheme not in {"https", "http"}:
         return AuthorizationDecision(False, "missing_or_invalid_source_url")
+    source_adapter = registration.get("source_adapter")
+    if source_adapter is not None:
+        if not isinstance(source_adapter, Mapping) or source_adapter.get("name") not in SUPPORTED_SOURCE_ADAPTERS:
+            return AuthorizationDecision(False, "unsupported_source_adapter")
+        if source_adapter.get("page_url") != source_url or not isinstance(source_adapter.get("upload_id"), int):
+            return AuthorizationDecision(False, "invalid_source_adapter_registration")
     if global_decision.allowed:
         release_identity = registration.get("release_identity")
         if not isinstance(release_identity, Mapping):

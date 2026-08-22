@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 7
+    "total_registrations": 8
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -94,6 +94,29 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
       "source_release_id": "6053",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different).tzx.zip"
+    },
+    {
+      "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "external_source_terms": "non_commercial_no_sale_without_consent",
+      "filename": "cero_absoluto.zip",
+      "release_identity": {
+        "publisher": "ESP Soft",
+        "title": "Cero Absoluto",
+        "year": "2016"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
+        "upload_id": 6205261
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "2e058c4b4fa897c41fe91651b709218e2ca47eb34edc80981be5c790d50bfe3f"
+      },
+      "source_evidence": "Official ESP Soft itch.io page identifies Cero Absoluto as a free Spanish Amstrad CPC DAAD game and exposes cero_absoluto.zip through public upload 6205261; acquisition uses the pinned itchio-downloader 1.2.0 HTTP adapter because itch.io returns an intermediate HTML page before file delivery.",
+      "source_record_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
+      "source_release_id": "1629912:6205261",
+      "source_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc"
     },
     {
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
