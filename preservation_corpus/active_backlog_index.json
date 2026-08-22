@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 162,
+  "unchecked_item_count": 161,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 45,
+    "Active evidence-interface correction": 44,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -403,32 +403,6 @@
       "required_real_artifact_regression": true,
       "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
-    },
-    {
-      "id": "todo-0041",
-      "line": 41,
-      "section": "Active evidence-interface correction",
-      "text": "Reconcile and close the synchronized remote-expansion transition register only after every finite audit item above is independently classified and verified. Update the transition dossier, implementation-status matrix, TODO completion record, and active-backlog index with exact commands, commits, residual deferrals, and non-claims. This closure applies only to the remote-expansion transition; it must not represent the broader DAAD preservation, format, corpus, interpreter, decompilation, web, or TUI roadmap as complete.",
-      "evidence_inputs": [
-        "independent external comparator",
-        "native parser or validator",
-        "report or interface output",
-        "runtime or emulator observation"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "runtime and reverse analysis",
-        "terminal interface",
-        "tooling and workflow gates",
-        "web report and publication"
-      ],
-      "dependencies": [
-        "explicit sequencing or prerequisite evidence",
-        "profile/platform boundary"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "report/TUI/web regeneration and accessibility checks",
-      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
       "id": "todo-0048",
