@@ -1,6 +1,12 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 from scripts.audit_repository_state import _markdown_report, _todo_baseline_status, collect_audit
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_repository_audit_collects_committed_inventory_deterministically() -> None:
@@ -9,7 +15,8 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
 
     assert first == second
     assert first["schema_version"] == 1
-    assert first["metrics"]["backlog"]["unchecked_items"] == 155
+    expected_backlog = json.loads((ROOT / "preservation_corpus" / "active_backlog_index.json").read_text(encoding="utf-8"))
+    assert first["metrics"]["backlog"]["unchecked_items"] == expected_backlog["unchecked_item_count"]
     assert first["metrics"]["acquisition"] == {
         "queued": 37,
         "discovery_required": 42,

@@ -30,8 +30,8 @@ The exact command, processor mode, version, and output hashes are retained in [`
 | Architecture | Structured analyzer/decompiler | Independent control-flow analyzer | Independent static disassembler | Required future behavioral model |
 | --- | --- | --- | --- | --- |
 | Z80 | Ghidra 12.1.3, `z80:LE:16:default` | radare2 5.5.0, `z80` / 8-bit | z80dasm 1.1.6 | ZX/CPC/MSX/PCW memory map, paging, vectors. |
-| MOS 6502 | Ghidra 12.1.3, `6502:LE:16:default` | radare2 5.5.0, `6502` / 8-bit | da65 2.19 | C64 memory/I/O and load-header model. |
-| MOS 8501 | Ghidra 12.1.3, `6502:LE:16:default` | radare2 5.5.0, `6502` / 8-bit | da65 2.19 | Plus/4 TED and banking model. |
+| MOS 6502 | Ghidra 12.1.3, `6502:LE:16:default` | radare2 5.5.0, `6502` / 8-bit | da65 V2.18, package `cc65` 2.19-1 | C64 memory/I/O and load-header model. |
+| MOS 8501 | Ghidra 12.1.3, `6502:LE:16:default` | radare2 5.5.0, `6502` / 8-bit | da65 V2.18, package `cc65` 2.19-1 | Plus/4 TED and banking model. |
 | Motorola 68000 | Ghidra 12.1.3, `68000:BE:32:default` | radare2 5.5.0, `m68k` / 32-bit | GNU m68k objdump 2.42 | Atari ST/Amiga executable, relocation, and OS model. |
 | 8086 | Ghidra 12.1.3, `x86:LE:16:Real Mode` | radare2 5.5.0, `x86` / 16-bit | NDISASM 2.16.01 | DOS COM/MZ segment and relocation model. |
 

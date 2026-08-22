@@ -265,7 +265,7 @@ def _markdown_report(data: dict[str, Any]) -> str:
             "",
             "| Priority | Finding | Evidence | Required next action |",
             "| --- | --- | --- | --- |",
-            "| P0 | Backlog closure remains the principal delivery risk. | The active index contains 155 unchecked items, including 38 evidence-interface and 37 all-platform corpus tasks. | Continue with profile-scoped child deliveries, preserving unresolved boundaries. |",
+            f"| P0 | Backlog closure remains the principal delivery risk. | The active index contains {metrics['backlog']['unchecked_items']} unchecked items, including {metrics['backlog']['section_counts'].get('Active evidence-interface correction', 0)} evidence-interface and {metrics['backlog']['section_counts'].get('8. All-platform retained game corpus and regression suite', 0)} all-platform corpus tasks. | Continue with profile-scoped child deliveries, preserving unresolved boundaries. |",
             "| P0 | Cross-file resource relationships lack a reusable first-class evidence model. | `TODO.md` tasks 38–39 require platform-bundle and DDB companion-reference evidence; a static source search found no existing `bundle_relationship` model. | Implement a bounded PCW co-residency relationship model with positive, negative, and real-artifact regressions; do not claim semantic linkage. |",
             "| P1 | The root roadmap labels a historical test-count baseline as latest. | The first TODO status baseline declares "
             + str(audit["todo_baseline"]["declared_test_count"])

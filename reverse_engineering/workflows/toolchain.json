@@ -9,7 +9,11 @@
     },
     "radare2": {"version": "5.5.0", "command": "r2"},
     "z80dasm": {"version": "1.1.6", "command": "z80dasm"},
-    "da65": {"version": "2.19", "command": "da65"},
+    "da65": {
+      "executable_version": "2.18",
+      "package_version": "2.19-1",
+      "command": "da65"
+    },
     "m68k_objdump": {"version": "2.42", "command": "m68k-linux-gnu-objdump"},
     "ndisasm": {"version": "2.16.01", "command": "ndisasm"},
     "hatari": {"version": "2.4.1", "command": "hatari"},
