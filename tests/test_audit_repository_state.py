@@ -11,16 +11,16 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
     assert first["schema_version"] == 1
     assert first["metrics"]["backlog"]["unchecked_items"] == 155
     assert first["metrics"]["acquisition"] == {
-        "queued": 47,
+        "queued": 37,
         "discovery_required": 42,
         "blocked": 0,
     }
-    assert first["metrics"]["corpus"]["artifacts"] == 784
-    assert first["metrics"]["corpus"]["sources"] == 254
+    assert first["metrics"]["corpus"]["artifacts"] == 1015
+    assert first["metrics"]["corpus"]["sources"] == 265
     assert first["metrics"]["regeneration"] == {
-        "entries": 11,
-        "inputs": 31,
-        "outputs": 20,
+        "entries": 12,
+        "inputs": 33,
+        "outputs": 21,
     }
 
 

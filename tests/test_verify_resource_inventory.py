@@ -6,7 +6,7 @@ from scripts.verify_resource_inventory import verify
 
 def test_retained_inventory_is_complete() -> None:
     total, missing = verify(Path(__file__).parents[1] / "preservation_corpus" / "state.db")
-    assert total == 784
+    assert total == 1015
     assert missing == {}
 
 
@@ -19,5 +19,5 @@ def test_inventory_rejects_invalid_hash(tmp_path: Path) -> None:
     connection.commit()
     connection.close()
     total, missing = verify(database)
-    assert total == 784
+    assert total == 1015
     assert missing["sha256_hex"] == 1

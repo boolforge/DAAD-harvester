@@ -88,7 +88,7 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 47
+    assert queue["queued_count"] == 37
     assert queue["discovery_required_count"] == 42
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}

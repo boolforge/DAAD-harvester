@@ -1,5 +1,5 @@
 {
-  "candidate_count": 89,
+  "candidate_count": 79,
   "candidates": [
     {
       "acquisition_status": "not_attempted",
@@ -605,20 +605,6 @@
       "license_status": "unverified",
       "platform": "ZX-Spectrum",
       "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Toni Pera",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
-      "title": "El Cetro del Sol",
-      "year": "2015"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
       "publisher": "Pedro Fernandez Lopez (Spain)",
       "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
       "source_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
@@ -636,20 +622,6 @@
       "source_snapshot": "research/sources/solutionarchive_daad_2026-08-22.md",
       "source_url": "https://solutionarchive.com/list/system%2C34/",
       "title": "ELF",
-      "year": "2016"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Defecto Digital Studios",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
-      "title": "ELF, La Aventura - Parte 1",
       "year": "2016"
     },
     {
@@ -755,20 +727,6 @@
       "source_url": "https://solutionarchive.com/list/system%2C34/",
       "title": "Everyday Tale of a Seeker of Gold, An",
       "year": "1986"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Adventuron Software Ltd",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
-      "title": "Excalibur: Sword of Kings Remake",
-      "year": "2019"
     },
     {
       "acquisition_status": "not_attempted",
@@ -884,34 +842,6 @@
       "license_status": "unverified",
       "platform": "ZX-Spectrum",
       "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Toni Pera",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
-      "title": "Karhum",
-      "year": "2019"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Aventuras AD S.A. (Spain)",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
-      "title": "La Aventura Espacial",
-      "year": "1990"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
       "publisher": "Aventuras AD S.A. (Spain)",
       "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
       "source_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
@@ -968,20 +898,6 @@
       "license_status": "unverified",
       "platform": "ZX-Spectrum",
       "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Quizlock",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
-      "title": "Last Night in the Office",
-      "year": "2020"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
       "publisher": "Dwalin",
       "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
       "source_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
@@ -1015,20 +931,6 @@
       "source_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
       "title": "One Last Thing",
       "year": "2020"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "luckywebsoft",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
-      "title": "Pandemia XXI",
-      "year": "2019"
     },
     {
       "acquisition_status": "not_attempted",
@@ -1155,48 +1057,6 @@
       "source_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
       "title": "The Mystery of Markham Manor",
       "year": "2022"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Gareth Pitchford (UK)",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
-      "title": "The Revenge of Moriarty",
-      "year": "2019"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Bieno Marti (Spain)",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
-      "title": "Torreoscura",
-      "year": "2020"
-    },
-    {
-      "acquisition_status": "not_attempted",
-      "byte_hash": null,
-      "evidence_grade": "catalog_only",
-      "language": "Unknown",
-      "license_status": "unverified",
-      "platform": "ZX-Spectrum",
-      "promotion_status": "blocked_pending_primary_or_authorized_source",
-      "publisher": "Alien Software (Spain)",
-      "source_snapshot": "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json",
-      "source_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
-      "title": "ZHL",
-      "year": "2016"
     }
   ],
   "catalog": "preservation_corpus/daad_catalog.json",

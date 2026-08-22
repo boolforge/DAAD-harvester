@@ -261,7 +261,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 404,
+      "declared_test_count": 408,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -277,7 +277,7 @@
     "acquisition": {
       "blocked": 0,
       "discovery_required": 42,
-      "queued": 47
+      "queued": 37
     },
     "backlog": {
       "section_counts": {
@@ -307,18 +307,18 @@
       "unchecked_items": 155
     },
     "corpus": {
-      "artifacts": 784,
-      "sources": 254
+      "artifacts": 1015,
+      "sources": 265
     },
     "python": {
       "production_files": 37,
-      "script_files": 54,
-      "test_files": 69
+      "script_files": 56,
+      "test_files": 71
     },
     "regeneration": {
-      "entries": 11,
-      "inputs": 31,
-      "outputs": 20
+      "entries": 12,
+      "inputs": 33,
+      "outputs": 21
     },
     "web": {
       "package_lock_present": true,

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2" xmlns:loext="urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0">
+ <manifest:file-entry manifest:full-path="/" manifest:version="1.2" manifest:media-type="application/vnd.oasis.opendocument.text"/>
+ <manifest:file-entry manifest:full-path="Thumbnails/thumbnail.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="layout-cache" manifest:media-type="application/binary"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000000000001FA000000F74B57D4DE85564350.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000000000001870000007C2B7A6DBD8B10CFA5.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/1000020100000382000002C6D08D631D42EF45B0.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000201000003BF000002D05804B3343679E6E5.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000201000002840000021B6F3745D2F8C4EF2C.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000000000002F40000014AB95945723C5378E9.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000000000003E2000002C776538F696A258FAE.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000000000002430000008277781CF30C757813.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/10000201000002FE0000021E975AC4BDE8C94DED.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Pictures/1000020100000187000000D02A396A82EE65A7B2.png" manifest:media-type="image/png"/>
+ <manifest:file-entry manifest:full-path="Configurations2/" manifest:media-type="application/vnd.sun.xml.ui.configuration"/>
+ <manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="meta.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="manifest.rdf" manifest:media-type="application/rdf+xml"/>
+ <manifest:file-entry manifest:full-path="settings.xml" manifest:media-type="text/xml"/>
+ <manifest:file-entry manifest:full-path="styles.xml" manifest:media-type="text/xml"/>
+</manifest:manifest>

@@ -128,21 +128,21 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
-          "sha256": "c5fe6f9316074a40c5c5dc905622dfdd30eeccb9f4821854c8eb076ae4094f23"
+          "sha256": "6bd18818cc77a1f711fe52be77617a4f5d935da5e58df8998e585ff5c969a284"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
-          "sha256": "c5fe6f9316074a40c5c5dc905622dfdd30eeccb9f4821854c8eb076ae4094f23"
+          "sha256": "6bd18818cc77a1f711fe52be77617a4f5d935da5e58df8998e585ff5c969a284"
         }
       ],
       "external_validators": []
@@ -265,25 +265,25 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
-          "sha256": "a4332c7b9c7335dd73becfd5fb83e34d11a7c5b4d2385558dd6abf0106bce723"
+          "sha256": "66824e9176855ff47664c2d7a719cd4c15c1fe027cc2db4ed746f4a886ba4003"
         },
         {
           "path": "preservation_corpus/library/manifest.json",
-          "sha256": "8d7949892650df553df7d9089c37ef5b82a52df099e8701909630d9b654dcf5f"
+          "sha256": "f76871c9ec67a52b8d40514eb9bcd8579b620a0eed4f00ee40b0813848fbee01"
         },
         {
           "path": "preservation_corpus/daad_catalog.json",
-          "sha256": "516a1fe9926b964a80295f49681c1012dd095d7d691fbdde7f064b3c97c3d09f"
+          "sha256": "a3c900fc224bb489d4291792dbb14463c4c509974dd9b8757315503763119881"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "cd9dfcbe1b8813e39ef0a1ed6ae3940b5c6ce4cad41c3c6edf0e58fd56b32e1a"
+          "sha256": "5e0ca20527728b7a71f94c654d795d5b0b87de35eb7171bd48171ff4a9927ecd"
         }
       ],
       "external_validators": [
@@ -313,13 +313,13 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/public_artifacts_manifest.json",
-          "sha256": "18deadede9633d74a84a8a53b47a26d6d0a372ceecb1bcc794633efd0a2441b2"
+          "sha256": "9b3787ef7257af29cb96f5db2ad3d1668d6a3c34a755349bc7b13616e75c1450"
         }
       ],
       "external_validators": [
@@ -482,13 +482,48 @@
         },
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/derived/pcw_bundle/torreoscura_same_disk_relationships.json",
           "sha256": "ec20f4d2bea8238faabd70f17f7ad12e861f694f6662416b5fe37ce40ff1f026"
+        }
+      ],
+      "external_validators": []
+    },
+    {
+      "id": "spectrum-observed-authorized-acquisition-integration",
+      "description": "Regenerates and byte-verifies the retained integration summary for checksum-pinned Spectrum Computing releases from the committed authorization queue and corpus state. It does not fetch media or promote release completeness beyond the recorded roots, extraction, and structural scan.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "declared project Python dependencies",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/verify_spectrum_observed_acquisition_integration.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/authorized_candidate_sources.json",
+          "sha256": "daa89148af5bc209664a54fcd11570190074e9a458c4b8a64b5516a5a5a1a73e"
+        },
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "bf25436ec46e36b3a1994cd9edb603e1dfaef718ab377f2bff189573fb4dfa69"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/spectrum_observed_acquisition_integration.json",
+          "sha256": "2804a68dd3cea44237a4863ee80412d203139f50abd28eb1c40a79de5700849c"
         }
       ],
       "external_validators": []

@@ -1,2 +1,3 @@
 # Preserve extracted evidence bytes without Git text normalization.
 preservation_corpus/extracted/** -text
+preservation_corpus/library/** -text -diff

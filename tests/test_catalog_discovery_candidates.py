@@ -12,7 +12,7 @@ def test_public_snapshot_is_parsed_and_kept_catalog_only() -> None:
     )
     assert result["schema_version"] == 2
     assert result["source_record_count"] == 92
-    assert result["candidate_count"] == 89
+    assert result["candidate_count"] == 79
     assert all(item["evidence_grade"] == "catalog_only" for item in result["candidates"])
     assert all(item["byte_hash"] is None for item in result["candidates"])
     assert all(item["promotion_status"] == "blocked_pending_primary_or_authorized_source" for item in result["candidates"])
@@ -21,7 +21,7 @@ def test_public_snapshot_is_parsed_and_kept_catalog_only() -> None:
         for item in result["candidates"]
         if item["source_snapshot"] == "research/sources/spectrumcomputing_daad_relationships_2026-08-22.json"
     ]
-    assert len(spectrum_candidates) == 40
+    assert len(spectrum_candidates) == 30
     assert all(item["language"] == "Unknown" for item in spectrum_candidates)
     assert {item["platform"] for item in spectrum_candidates} == {"ZX-Spectrum", "ZX-Spectrum_Next"}
 

@@ -4,7 +4,7 @@
 
 ## Executive summary
 
-The repository contains **37 production Python files**, **54 Python automation scripts**, and **69 Python test files**. The active work register contains **155 unchecked items** across **12 sections**. The authorized acquisition queue records **47 queue-ready releases**, **42 candidates requiring a direct source**, and **0 blocked candidates**.
+The repository contains **37 production Python files**, **56 Python automation scripts**, and **71 Python test files**. The active work register contains **155 unchecked items** across **12 sections**. The authorized acquisition queue records **37 queue-ready releases**, **42 candidates requiring a direct source**, and **0 blocked candidates**.
 
 The implementation has a strong deterministic foundation: a repository-owned verification scheduler, an append-only corpus policy, checksum verification, native format validators, and a generated report/TUI/web pipeline. The dominant risk is not a detected single-code defect; it is the remaining breadth of evidence closure. The work register explicitly requires profile-scoped parser, bundle, corpus, regeneration, and interface evidence before broad claims can be completed.
 
@@ -13,13 +13,13 @@ The implementation has a strong deterministic foundation: a repository-owned ver
 | Area | Measured value | Audit interpretation |
 | --- | ---: | --- |
 | Production Python modules | 37 | Native preservation implementation surface. |
-| Python automation scripts | 54 | Reproducible project commands; review command-execution references below. |
-| Python test modules | 69 | Unit and regression test surface; filename matching is not coverage measurement. |
+| Python automation scripts | 56 | Reproducible project commands; review command-execution references below. |
+| Python test modules | 71 | Unit and regression test surface; filename matching is not coverage measurement. |
 | Static web source files | 3 | React + TypeScript + Vite evidence viewer implementation. |
 | Static web test files | 1 | Browser/build checks remain separate from source-file count. |
-| Retained artifacts | 784 | Manifested original and derived evidence inventory. |
-| Registered sources | 254 | Provenance inventory, not a completeness claim. |
-| Native regeneration entries | 11 | Hash-pinned primary regeneration records. |
+| Retained artifacts | 1015 | Manifested original and derived evidence inventory. |
+| Registered sources | 265 | Provenance inventory, not a completeness claim. |
+| Native regeneration entries | 12 | Hash-pinned primary regeneration records. |
 
 ## Backlog risk map
 
@@ -46,7 +46,7 @@ The heaviest active areas are the evidence-interface correction, all-platform re
 | --- | --- | --- | --- |
 | P0 | Backlog closure remains the principal delivery risk. | The active index contains 155 unchecked items, including 38 evidence-interface and 37 all-platform corpus tasks. | Continue with profile-scoped child deliveries, preserving unresolved boundaries. |
 | P0 | Cross-file resource relationships lack a reusable first-class evidence model. | `TODO.md` tasks 38–39 require platform-bundle and DDB companion-reference evidence; a static source search found no existing `bundle_relationship` model. | Implement a bounded PCW co-residency relationship model with positive, negative, and real-artifact regressions; do not claim semantic linkage. |
-| P1 | The root roadmap labels a historical test-count baseline as latest. | The first TODO status baseline declares 404 passing tests. | Refresh it only with a verified current primary-gate output, retaining it as an auditable baseline rather than a mutable assertion. |
+| P1 | The root roadmap labels a historical test-count baseline as latest. | The first TODO status baseline declares 408 passing tests. | Refresh it only with a verified current primary-gate output, retaining it as an auditable baseline rather than a mutable assertion. |
 | P1 | Some project areas are outside a filename-matched test proxy. | 10 production modules lack a same-stem `tests/test_<module>.py` file; this is a review prompt, not proof of missing coverage. | Add targeted regression tests where a concrete behavior lacks direct evidence; do not use name matching as coverage proof. |
 | P1 | Existing command-execution call sites need a declared primary/optional classification. | 12 AST-detected `subprocess`/`os` call sites exist in Python automation. | Classify each during the self-contained regeneration audit; preserve native paths and make optional validators explicitly unavailable rather than implicit prerequisites. |
 | P2 | Possible duplicate function bodies require human semantic review before consolidation. | 11 normalized AST body groups were found. Equal bodies can be deliberate adapters or fixtures. | Review only cross-module production groups; deduplicate through tested shared helpers where behavior and evidence contracts truly match. |

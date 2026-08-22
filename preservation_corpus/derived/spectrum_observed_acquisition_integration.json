@@ -1,0 +1,144 @@
+{
+  "boundary": "A retained root, native extraction, and structural DDB scan are recorded here. A source identity or artifact count does not establish release completeness, runtime equivalence, or unsupported media semantics.",
+  "input_count": 17,
+  "purpose": "Deterministic retained-corpus summary for checksum-pinned authorized acquisition integration.",
+  "records": [
+    {
+      "artifact_count": 10,
+      "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
+      "root_artifact_id": 1372,
+      "root_sha256": "fa68cb30919c389c61f0cc301a34c1eed029ceebc53701a007f41632e3cba74e",
+      "source_id": 255,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 8,
+      "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
+      "root_artifact_id": 1382,
+      "root_sha256": "0408892a17d405a9787927148826e7a875f33422665e0f064acdd4728a29393f",
+      "source_id": 93,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 6,
+      "candidate_key": "el cetro del sol|toni pera|2015|unknown",
+      "root_artifact_id": 1390,
+      "root_sha256": "7e4032089fa48918dfa4e4f4ce5bf412115dbb8d18b0a01fd3f70e8d691a94bb",
+      "source_id": 256,
+      "verified_ddb_count": 3
+    },
+    {
+      "artifact_count": 6,
+      "candidate_key": "elf, la aventura - parte 1|defecto digital studios|2016|unknown",
+      "root_artifact_id": 1396,
+      "root_sha256": "5de8c852735bcd5a0bc80f8aca56913221a7848bcda925b3ca12d21ca494764f",
+      "source_id": 257,
+      "verified_ddb_count": 2
+    },
+    {
+      "artifact_count": 49,
+      "candidate_key": "excalibur: sword of kings remake|adventuron software ltd|2019|unknown",
+      "root_artifact_id": 1402,
+      "root_sha256": "4c37e0390f5a0db4498d8e8070f93371e1484a8c032c94678b2004b0a8e6ecf2",
+      "source_id": 258,
+      "verified_ddb_count": 2
+    },
+    {
+      "artifact_count": 7,
+      "candidate_key": "karhum|toni pera|2019|unknown",
+      "root_artifact_id": 1451,
+      "root_sha256": "37fd6235ce0f00b39c8fd9bd7880875002f81a1de488008e934ec36001f70a18",
+      "source_id": 259,
+      "verified_ddb_count": 2
+    },
+    {
+      "artifact_count": 11,
+      "candidate_key": "la aventura espacial|aventuras ad s.a. (spain)|1990|unknown",
+      "root_artifact_id": 1458,
+      "root_sha256": "1e1a9fef3672a5bf3b52e738a77340a6229d159d3cff8bc9879809f438b35002",
+      "source_id": 173,
+      "verified_ddb_count": 6
+    },
+    {
+      "artifact_count": 8,
+      "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
+      "root_artifact_id": 1469,
+      "root_sha256": "afdc7c200af1b8dc2075c93ed7af3d41049d00c6fa4ecfd28f637f56da5df701",
+      "source_id": 178,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 7,
+      "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
+      "root_artifact_id": 1477,
+      "root_sha256": "5b6f0a2e3b9d49531ccbc49b39f1691efd1804c7f4cbe145387aa0070d908790",
+      "source_id": 184,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 27,
+      "candidate_key": "last night in the office|quizlock|2020|unknown",
+      "root_artifact_id": 1484,
+      "root_sha256": "051dc5db6e3739f30fbcddea971f30eb7de63b7bf1bdb309f3e28203ca732d68",
+      "source_id": 260,
+      "verified_ddb_count": 2
+    },
+    {
+      "artifact_count": 13,
+      "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
+      "root_artifact_id": 1511,
+      "root_sha256": "c340aee76f991d573463a2285bc0c3b78d2126f06075dac063abac0b2b111264",
+      "source_id": 180,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 44,
+      "candidate_key": "one last thing|dee cooke|2020|unknown",
+      "root_artifact_id": 1524,
+      "root_sha256": "ca6313a3fe08bbf8d888dedbd4e390e5dbba446500859a1d9a9e40c935405b78",
+      "source_id": 261,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 7,
+      "candidate_key": "pandemia xxi|luckywebsoft|2019|unknown",
+      "root_artifact_id": 1568,
+      "root_sha256": "d316da2553ce93ac04bfb09f07f288a5924b1cc334afaeea4b535fb5a7936de5",
+      "source_id": 262,
+      "verified_ddb_count": 2
+    },
+    {
+      "artifact_count": 10,
+      "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
+      "root_artifact_id": 1575,
+      "root_sha256": "2592e77ff1f23c550a92cb16569584bdb6d469c66a098bfd73ddebf6a5419944",
+      "source_id": 263,
+      "verified_ddb_count": 0
+    },
+    {
+      "artifact_count": 5,
+      "candidate_key": "the revenge of moriarty|gareth pitchford (uk)|2019|unknown",
+      "root_artifact_id": 1585,
+      "root_sha256": "f2748c1d6dd2324a48341ecafa8163db172a9236c3618d3f9f2f1edae265c278",
+      "source_id": 101,
+      "verified_ddb_count": 3
+    },
+    {
+      "artifact_count": 6,
+      "candidate_key": "torreoscura|bieno marti (spain)|2020|unknown",
+      "root_artifact_id": 1590,
+      "root_sha256": "1958a1079bf9bf25648e315d7abed28551dacc2afc35e6a15354942b9b0c91ca",
+      "source_id": 264,
+      "verified_ddb_count": 3
+    },
+    {
+      "artifact_count": 7,
+      "candidate_key": "zhl|alien software (spain)|2016|unknown",
+      "root_artifact_id": 1596,
+      "root_sha256": "dbb5da1993f681308f3b4e9a41d2520c685768ed3ea5e07040690b0eccc8766f",
+      "source_id": 265,
+      "verified_ddb_count": 2
+    }
+  ],
+  "schema_version": 1
+}
