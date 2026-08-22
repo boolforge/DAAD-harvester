@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 27
+    "total_registrations": 28
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -40,6 +40,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
       "source_release_id": "5975",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip"
+    },
+    {
+      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "external_source_terms": null,
+      "filename": "AventuraOriginalLa.tzx.zip",
+      "release_identity": {
+        "publisher": "Aventuras A.D., Dinamic Software",
+        "title": "Aventura Original, La",
+        "year": "1989"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "879eb6a225bfee80f239fcda57ef702ffaf8b98e293890d358d67b48ef9062f6"
+      },
+      "source_evidence": "Spectrum Computing entry 5977 identifies La Aventura Original as a Spanish 1989 ZX Spectrum release by Aventuras AD S.A., authored with DAAD, and exposes the canonical full TZX download. The catalog publisher combines Aventuras A.D. and Dinamic Software while the source identifies the original publisher; the source distinction is retained as evidence and no creator-publisher equivalence is claimed.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original/",
+      "source_release_id": "5977",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip"
     },
     {
       "candidate_key": "balrog and the cat, the|zenobi software|1988|english",

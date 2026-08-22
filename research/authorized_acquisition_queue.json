@@ -22,23 +22,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Aventuras A.D., Dinamic Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Aventura Original, La",
-      "year": "1989"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -378,7 +361,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 22,
+  "discovery_required_count": 21,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -429,6 +412,30 @@
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip",
       "title": "Aventura Espacial, La",
       "year": "1990"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "external_source_terms": null,
+      "filename": "AventuraOriginalLa.tzx.zip",
+      "language": "Spanish",
+      "publisher": "Aventuras A.D., Dinamic Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras A.D., Dinamic Software",
+        "title": "Aventura Original, La",
+        "year": "1989"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "879eb6a225bfee80f239fcda57ef702ffaf8b98e293890d358d67b48ef9062f6"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original/",
+      "source_release_id": "5977",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip",
+      "title": "Aventura Original, La",
+      "year": "1989"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1093,7 +1100,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 27,
+  "queued_count": 28,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
