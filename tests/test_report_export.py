@@ -117,3 +117,12 @@ def test_static_report_ignores_mutable_live_log_tails(tmp_path: Path) -> None:
     assert second == first
     assert report["logs"]["general"][0].startswith("Mutable operational logs are intentionally excluded")
     assert report["logs"]["games"][0].startswith("Per-game live log tails are not exported")
+
+
+def test_static_report_contract_documents_mutable_log_exclusion() -> None:
+    root = Path(__file__).parents[1]
+    contract = (root / "docs" / "schemas" / "STATIC_REPORT_CONTRACT.md").read_text(encoding="utf-8")
+
+    assert "Fixed deterministic exclusion disclosures for mutable general and game logs." in contract
+    assert "mutable operational and per-game log tails are excluded" in contract
+    assert "Last 120 lines per named log candidate." not in contract

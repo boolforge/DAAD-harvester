@@ -21,7 +21,7 @@
 | `game_port_matrix` | array | Per-known-title matrix that keeps catalog, source, and retained measured-artifact platform layers distinct and lists source-associated retained artifacts with checksums. |
 | `detections` | object | Detection-table availability, relative download path, count, and bounded preview. |
 | `library` | object | Manifest-derived classified-library summary and relative links. |
-| `logs` | object | Bounded tails of general/game logs. |
+| `logs` | object | Fixed deterministic exclusion disclosures for mutable general and game logs. |
 
 ## Privacy and semantic policy
 
@@ -35,7 +35,7 @@ Before export, every catalog artifact has `extracted_path` removed. Library link
 | `game_port_matrix[].artifacts[]` | Artifact/source IDs, filename, size, `source_platform`, artifact-specific `platform_hint`, separately measured DDB platform, lineage role, archive depth, technical medium/container and member fields, parser/status/validation fields, DDB/interpreter fields, evidence state, and a labelled complete checksum map. | The consumer labels each provenance layer separately. The map contains every digest persisted by the native checksum suite: MD5 full/head/tail, SHA-1/224/256/384/512, SHA3-256/512, BLAKE2b/s, CRC-32, Adler-32, and XXH32/64/128. An absent required digest is an integrity failure for retained bytes, not an inferred unknown. |
 | `detections` | `available`, `download_path`, `entry_count`, `preview` (maximum 12,000 text characters), SHA-256, generator, input-catalog name, and explicit boundary. | Exposes a download link only when an export exists and labels the header as generated detection metadata rather than engine proof. |
 | `library` | Manifest or unavailable sentinel with summary/artifacts. | Links only to relative deployment assets. |
-| `logs` | Last 120 lines per named log candidate. | Displays retained lines; never invents events. |
+| `logs` | Fixed disclosures that mutable operational and per-game log tails are excluded from the committed static report. | Explains that reproducible execution evidence comes from committed records, source/artifact/checksum evidence, or a local pipeline run; it never publishes mutable log lines. |
 | `catalog` | Evidence catalog with local paths removed. | Supplies artifacts/detections with their recorded confidence/status. |
 
 ## Consumer rules
