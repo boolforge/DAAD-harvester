@@ -8,6 +8,7 @@
       "artifact_id": "daad-msx-msxedi-official",
       "input_path": "reverse_engineering/artifacts/original/msx/daad-msx-msxedi-official/MSXEDI.Z80",
       "sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
+      "leading_jump_offset": 0,
       "leading_jump_target": 53050,
       "image_size": 8400
     },
@@ -15,6 +16,7 @@
       "artifact_id": "daad-msx-msxsdi-official",
       "input_path": "reverse_engineering/artifacts/original/msx/daad-msx-msxsdi-official/MSXSDI.Z80",
       "sha256": "fcae12bd09bc949e1e6cf75b3d1ef87e66c322efe2de005e771fa3b5dd8ddbf8",
+      "leading_jump_offset": 0,
       "leading_jump_target": 53199,
       "image_size": 8551
     }

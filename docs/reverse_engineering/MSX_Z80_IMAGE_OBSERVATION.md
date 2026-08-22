@@ -3,12 +3,13 @@
 | Header field | Value |
 | --- | --- |
 | **Question** | What can be proven directly from the two retained original MSX Z80 program-image files before their loader and memory model are known? |
-| **Evidence scope** | Immutable original-image hashes, file sizes, first opcode, and little-endian operand of the leading absolute `JP` instruction. |
+| **Evidence scope** | Immutable original-image hashes, file sizes, and the absolute `JP` instruction encoded at file offset zero. |
 | **Status** | Both images begin with `JP`; their operands are recorded but do not establish loading or executable entry. |
 | **Non-claims** | The observation does not establish an MSX load address, slot/mapper state, BIOS environment, effective entry point, source recovery, or runtime behavior. |
 
 `MSXEDI.Z80` and `MSXSDI.Z80` begin with the Z80 opcode `0xC3`, carrying the
-absolute operands `0xCF3A` and `0xCFCF`. These bytes are exact observations.
+absolute operands `0xCF3A` and `0xCFCF`. The contract also binds the instruction's
+**file offset** as zero. These bytes are exact observations.
 Without the original loader or disk/cassette/ROM context, however, the
 repository cannot establish where either image was placed in MSX address space
 or that control began at file offset zero. The MSX platform dossier separately

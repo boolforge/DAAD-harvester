@@ -19,6 +19,7 @@ def test_msx_images_have_immutable_leading_jump_observations_without_entry_promo
     observed = parse_msx_z80_image_prefix((ROOT / contract["profiles"][0]["input_path"]).read_bytes())
 
     assert contract["execution_eligible"] is False
+    assert observed["leading_jump_offset"] == 0
     assert observed["leading_jump_target"] == 0xCF3A
     assert observed["image_size"] == 8400
 
@@ -29,6 +30,7 @@ def test_msx_images_have_immutable_leading_jump_observations_without_entry_promo
         (lambda contract: contract.__setitem__("execution_eligible", True), "must not enable execution"),
         (lambda contract: contract["profiles"][0].__setitem__("sha256", "0" * 64), "retained MSX image identity differs"),
         (lambda contract: contract["profiles"][1].__setitem__("leading_jump_target", 0), "leading_jump_target differs"),
+        (lambda contract: contract["profiles"][0].__setitem__("leading_jump_offset", 1), "leading_jump_offset differs"),
     ],
 )
 def test_msx_image_observation_rejects_promotion_or_changed_bytes(mutation, message: str) -> None:

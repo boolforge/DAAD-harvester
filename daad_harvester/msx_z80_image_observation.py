@@ -22,7 +22,7 @@ def parse_msx_z80_image_prefix(data: bytes) -> dict[str, int]:
         raise MsxZ80ImageObservationError("truncated MSX Z80 image")
     if data[0] != 0xC3:
         raise MsxZ80ImageObservationError("MSX image does not begin with absolute JP opcode")
-    return {"leading_jump_target": int.from_bytes(data[1:3], "little"), "image_size": len(data)}
+    return {"leading_jump_offset": 0, "leading_jump_target": int.from_bytes(data[1:3], "little"), "image_size": len(data)}
 
 
 def validate_msx_z80_image_observation(contract: dict[str, Any], root: Path) -> None:
@@ -54,7 +54,7 @@ def validate_msx_z80_image_observation(contract: dict[str, Any], root: Path) -> 
         if not path.is_file() or _sha256(path) != expected_hash:
             raise MsxZ80ImageObservationError(f"{identifier}: retained MSX image identity differs")
         observed = parse_msx_z80_image_prefix(path.read_bytes())
-        for field in ("leading_jump_target", "image_size"):
+        for field in ("leading_jump_offset", "leading_jump_target", "image_size"):
             if profile.get(field) != observed[field]:
                 raise MsxZ80ImageObservationError(f"{identifier}: {field} differs from retained bytes")
 
