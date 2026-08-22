@@ -325,10 +325,15 @@ def validate_ghidra_headless_health(health: dict[str, Any], workflow: dict[str, 
         if host_id in host_ids:
             raise AdapterCatalogError(f"Ghidra health: duplicate host_id {host_id!r}")
         host_ids.add(host_id)
-        if _require_string(host, "status", host_id) not in VALID_GHIDRA_HOST_STATUSES:
+        status = _require_string(host, "status", host_id)
+        if status not in VALID_GHIDRA_HOST_STATUSES:
             raise AdapterCatalogError(f"Ghidra health: unknown host status for {host_id}")
         _require_string(host, "platform", host_id)
         _require_string(host, "headless_launcher", host_id)
+        if status == "health_checked":
+            launcher_sha256 = host.get("headless_launcher_sha256")
+            if not isinstance(launcher_sha256, str) or not _SHA256.fullmatch(launcher_sha256):
+                raise AdapterCatalogError(f"Ghidra health: health-checked host requires launcher SHA-256 for {host_id}")
         _require_string_list(host, "prerequisites", host_id)
         _require_string(host, "boundary", host_id)
 

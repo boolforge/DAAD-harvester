@@ -18,6 +18,18 @@ records the imported program name. The launcher, script, fixture bytes, two-run
 comparison, and deterministic export hashes are all captured in the
 machine-readable record.
 
+The repository-owned reproducer is optional because it requires the pinned
+Ghidra extraction and Java prerequisite on the local host:
+
+```bash
+python3 scripts/run_ghidra_headless_fixture_health.py \
+  --ghidra-root /path/to/ghidra_12.1.3_PUBLIC
+```
+
+It verifies the hash-bound Linux launcher and exporter before creating any
+temporary fixture. It accepts no retained DAAD input argument and compares all
+four committed exports across two runs for each processor profile.
+
 The fixtures were intentionally minimal: Z80 `00 c9`, MOS 6502/8501 `ea 60`,
 68000 `4e 71 4e 75`, and i8086 real mode `90 c3`. No retained DAAD artifact,
 extracted interpreter, game image, or acquired source was opened. The local

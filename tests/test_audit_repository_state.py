@@ -30,7 +30,7 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
         "outputs": 29,
     }
     references = first["audit"]["command_execution_references"]
-    assert len(references) == 15
+    assert len(references) == 16
     assert {reference["class"] for reference in references} == {
         "acquisition_only_runtime",
         "declared_host_dependency",

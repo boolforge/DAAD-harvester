@@ -37,10 +37,38 @@
         "path": "scripts/check_american_english.py"
       },
       {
+        "boundary": "Pinned Ghidra runs only committed literal fixtures twice in temporary directories; the runner has no retained-DAAD input path or analysis mode.",
+        "call": "subprocess.run",
+        "class": "external_independent_validator",
+        "line": 115,
+        "path": "scripts/run_ghidra_headless_fixture_health.py"
+      },
+      {
+        "boundary": "Temporary repaired pinned j-helland source builds and runs only its upstream NASM fixtures; no retained DAAD path is accepted or analyzed.",
+        "call": "subprocess.run",
+        "class": "external_independent_validator",
+        "line": 20,
+        "path": "scripts/run_jhelland_fixture_health.py"
+      },
+      {
+        "boundary": "Pinned lybrown/dis runs only on a literal controlled MOS 6502 fixture; output is corroborative and not primary preservation evidence.",
+        "call": "subprocess.run",
+        "class": "external_independent_validator",
+        "line": 39,
+        "path": "scripts/run_lybrown_dis_fixture_health.py"
+      },
+      {
+        "boundary": "Second pinned lybrown/dis controlled-fixture run checks byte-identical output; it does not authorize retained-byte analysis.",
+        "call": "subprocess.run",
+        "class": "external_independent_validator",
+        "line": 40,
+        "path": "scripts/run_lybrown_dis_fixture_health.py"
+      },
+      {
         "boundary": "Allowlisted local Python verification launcher.",
         "call": "subprocess.run",
         "class": "repository_native_orchestration",
-        "line": 70,
+        "line": 71,
         "path": "scripts/run_parallel_workflow.py"
       },
       {
@@ -75,7 +103,7 @@
         "boundary": "Retained static-analysis output is derived and explicitly non-primary.",
         "call": "subprocess.run",
         "class": "external_independent_validator",
-        "line": 34,
+        "line": 37,
         "path": "scripts/run_reverse_analysis.py"
       },
       {
@@ -177,6 +205,46 @@
         "body_sha256": "5a7d44ed68cc55737e7b4c5aca2f349f3e1edf68a19eea5da81afd3bae30914e",
         "functions": [
           {
+            "path": "daad_harvester/amiga_hunk_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/atari_st_prg_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/behavioral_evidence.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/c64_prg_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/cpc_amsdos_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/dos_mz_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/msx_z80_image_observation.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/pcw_z80_image_observation.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/plus4_prg_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "daad_harvester/zx_plus3dos_load_model.py",
+            "qualified_name": "_sha256"
+          },
+          {
             "path": "scripts/build_reverse_inventory.py",
             "qualified_name": "sha256"
           },
@@ -187,6 +255,14 @@
           {
             "path": "scripts/record_cpc_fnt_loader_literals.py",
             "qualified_name": "digest"
+          },
+          {
+            "path": "scripts/run_ghidra_headless_fixture_health.py",
+            "qualified_name": "sha256_file"
+          },
+          {
+            "path": "scripts/run_lybrown_dis_fixture_health.py",
+            "qualified_name": "sha256_file"
           },
           {
             "path": "scripts/run_reverse_analysis.py",
@@ -297,7 +373,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 431,
+      "declared_test_count": 532,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -313,8 +389,8 @@
   "metrics": {
     "acquisition": {
       "blocked": 0,
-      "discovery_required": 42,
-      "queued": 37
+      "discovery_required": 79,
+      "queued": 0
     },
     "backlog": {
       "section_counts": {
@@ -327,35 +403,35 @@
         "7. Authorization-gated reverse-engineering corpus": 10,
         "8. All-platform retained game corpus and regression suite": 37,
         "9. DAAD game decompiler research and differential implementation": 8,
-        "Active evidence-interface correction": 38,
+        "Active evidence-interface correction": 81,
         "Deferred external-source queue (not part of the active task plan)": 13,
         "Self-contained regeneration requirement": 22
       },
       "sections": 12,
       "subsystem_counts": {
-        "corpus and provenance": 113,
-        "media and resource inspection": 52,
-        "preservation workflow": 5,
-        "runtime and reverse analysis": 89,
-        "terminal interface": 21,
-        "tooling and workflow gates": 93,
-        "web report and publication": 46
+        "corpus and provenance": 132,
+        "media and resource inspection": 53,
+        "preservation workflow": 7,
+        "runtime and reverse analysis": 107,
+        "terminal interface": 23,
+        "tooling and workflow gates": 127,
+        "web report and publication": 50
       },
-      "unchecked_items": 155
+      "unchecked_items": 198
     },
     "corpus": {
       "artifacts": 1015,
       "sources": 265
     },
     "python": {
-      "production_files": 39,
-      "script_files": 64,
-      "test_files": 81
+      "production_files": 53,
+      "script_files": 81,
+      "test_files": 100
     },
     "regeneration": {
-      "entries": 19,
-      "inputs": 42,
-      "outputs": 28
+      "entries": 20,
+      "inputs": 45,
+      "outputs": 29
     },
     "web": {
       "package_lock_present": true,

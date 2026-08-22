@@ -79,6 +79,7 @@
       "status": "health_checked",
       "platform": "Linux x86_64",
       "headless_launcher": "support/analyzeHeadless",
+      "headless_launcher_sha256": "302880328a0024ee24cfe0326d4d9a61c2237116d95f2e0e0df090f747f95e30",
       "prerequisites": ["Ghidra 12.1.3 extracted release", "Java 21 64-bit JDK on PATH", "writable temporary project and output directories"],
       "boundary": "The observed Linux host used OpenJDK 21.0.11 and the pinned launcher SHA-256 302880328a0024ee24cfe0326d4d9a61c2237116d95f2e0e0df090f747f95e30. This check does not validate another Linux host, a target operating system, or a retained artifact."
     },

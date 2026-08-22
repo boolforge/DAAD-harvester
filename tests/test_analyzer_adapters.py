@@ -227,6 +227,7 @@ def test_ghidra_headless_health_covers_each_configured_architecture_without_auth
     assert health["tool"]["version"] == "12.1.3"
     assert {architecture for profile in health["processor_profiles"] for architecture in profile["architectures"]} == set(_toolchain()["architectures"])
     assert all(profile["repeat_exports_byte_identical"] is True for profile in health["processor_profiles"])
+    assert health["host_profiles"][0]["headless_launcher_sha256"] == "302880328a0024ee24cfe0326d4d9a61c2237116d95f2e0e0df090f747f95e30"
     assert all(host["status"] != "health_checked" for host in health["host_profiles"] if host["platform"].startswith("Windows"))
     assert "not recovered source" in health["non_claim"]
 
@@ -257,4 +258,12 @@ def test_ghidra_headless_health_rejects_uncontrolled_fixture_name_or_repeat_coun
     health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
     health["processor_profiles"][0]["repeat_run_count"] = 1
     with pytest.raises(analyzer_adapters.AdapterCatalogError, match="exactly two repeated runs"):
+        analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
+
+
+def test_ghidra_headless_health_rejects_missing_checked_host_launcher_digest() -> None:
+    health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
+    del health["host_profiles"][0]["headless_launcher_sha256"]
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="requires launcher SHA-256"):
         analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
