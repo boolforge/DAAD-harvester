@@ -557,6 +557,44 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "official-cpc-tapmast-fnt-loader-literals",
+      "description": "Regenerates exact retained-byte evidence that the official CPC DLPART1 and DLPART2 loader templates contain the observed DAAD.FNT literal at a fixed byte offset. It does not decode tokenized BASIC or establish a load call, runtime success, glyph grammar, rendering, or cross-package equivalence.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/record_cpc_fnt_loader_literals.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/extracted/depth1_dcd3ab68_DAAD.FNT",
+          "sha256": "fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a"
+        },
+        {
+          "path": "preservation_corpus/extracted/depth1_469e2636_DLPART1.BAS",
+          "sha256": "2291b9fbaaf3d7b764650f65fd317336f7e8e95541e30b311ccd9d6103e44df6"
+        },
+        {
+          "path": "preservation_corpus/extracted/depth1_19c8e032_DLPART2.BAS",
+          "sha256": "cd410d16d479ec4263c9b1ab08955b9f03b1ff32aba30c79342e181927f1bd09"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/cpc_fnt/official_tapmast_loader_literals.json",
+          "sha256": "f973ffd8836e44a79d7164f9498147466a84fb1ac5a55764f3665e833aacbc02"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }

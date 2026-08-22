@@ -28,27 +28,27 @@
       },
       {
         "call": "subprocess.run",
-        "line": 63,
+        "line": 70,
         "path": "scripts/run_parallel_workflow.py"
       },
       {
         "call": "subprocess.run",
-        "line": 55,
+        "line": 60,
         "path": "scripts/run_primary_workflow.py"
       },
       {
         "call": "subprocess.run",
-        "line": 69,
+        "line": 74,
         "path": "scripts/run_primary_workflow.py"
       },
       {
         "call": "subprocess.run",
-        "line": 73,
+        "line": 78,
         "path": "scripts/run_primary_workflow.py"
       },
       {
         "call": "subprocess.run",
-        "line": 79,
+        "line": 84,
         "path": "scripts/run_primary_workflow.py"
       },
       {
@@ -58,7 +58,7 @@
       },
       {
         "call": "subprocess.run",
-        "line": 57,
+        "line": 51,
         "path": "scripts/verify_regeneration_manifest.py"
       }
     ],
@@ -103,19 +103,6 @@
           {
             "path": "daad_harvester/report.py",
             "qualified_name": "ReportGenerator.__init__"
-          }
-        ]
-      },
-      {
-        "body_sha256": "33e261a20023e91e85ec47c37fc98ad027e8534d17a25d5762b8d0db92564968",
-        "functions": [
-          {
-            "path": "scripts/refresh_regeneration_manifest_hashes.py",
-            "qualified_name": "sha256"
-          },
-          {
-            "path": "scripts/verify_regeneration_manifest.py",
-            "qualified_name": "_sha256"
           }
         ]
       },
@@ -172,6 +159,10 @@
           {
             "path": "scripts/record_adp_verification.py",
             "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/record_cpc_fnt_loader_literals.py",
+            "qualified_name": "digest"
           },
           {
             "path": "scripts/run_reverse_analysis.py",
@@ -261,7 +252,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 411,
+      "declared_test_count": 420,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -311,14 +302,14 @@
       "sources": 265
     },
     "python": {
-      "production_files": 37,
-      "script_files": 57,
-      "test_files": 72
+      "production_files": 39,
+      "script_files": 59,
+      "test_files": 76
     },
     "regeneration": {
-      "entries": 13,
-      "inputs": 34,
-      "outputs": 22
+      "entries": 14,
+      "inputs": 37,
+      "outputs": 23
     },
     "web": {
       "package_lock_present": true,

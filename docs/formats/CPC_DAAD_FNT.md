@@ -11,7 +11,7 @@
 
 The official DAAD changelog identifies `DAAD.FNT` as the standard CPC font used by the CPC tape loader.[1] At the recorded public revision, both `Deprecated/TAPMAST/DAAD.FNT` and `Interpreters/CPC/DAAD.FNT` are 896 bytes and have SHA-256 `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a`. The retained `depth1_dcd3ab68_DAAD.FNT` artifact has the same size and digest, establishing exact byte identity with both official copies.
 
-The official CPC release readme independently describes `DAAD.FNT` as the standard CPC font “used by the loader only.” The 994-byte tokenized BASIC `Deprecated/TAPMAST/DLPART1.BAS` contains the literal filename `DAAD.FNT`, which establishes its packaging linkage without requiring an unsupported reconstruction of BASIC-token semantics. The retained byte stream now validates as a documented AMSDOS binary container: type `0x02`, load address `0x9378`, logical and real payload lengths of 768 bytes, a 768-byte stored payload after the 128-byte header, and a matching little-endian header checksum. These fields follow the retained public DRC AMSDOS-header writer contract.[2]
+The official CPC release readme independently describes `DAAD.FNT` as the standard CPC font “used by the loader only.” The retained 994-byte tokenized BASIC templates `Deprecated/TAPMAST/DLPART1.BAS` and `Deprecated/TAPMAST/DLPART2.BAS` each contain the exact delimited literal `"!DAAD.FNT",` at byte offset 195. The native derived record fixes the exact loader and font identities that support this source-package linkage.[3] It does not reconstruct BASIC tokens or prove a load call. The retained byte stream validates as a documented AMSDOS binary container: type `0x02`, load address `0x9378`, logical and real payload lengths of 768 bytes, a 768-byte stored payload after the 128-byte header, and a matching little-endian header checksum. These fields follow the retained public DRC AMSDOS-header writer contract.[2]
 
 | Record | Size | SHA-256 | Evidence result |
 | --- | ---: | --- | --- |
@@ -28,3 +28,4 @@ The matching 896-byte artifact is identified as the official CPC tape-loader fon
 
 [1]: https://github.com/daad-adventure-writer/daad/blob/master/CHANGELOG.md “Official DAAD changelog: `DAAD.FNT` CPC tape-loader entry”
 [2]: [Retained DRC AMSDOS header writer](../../reverse_engineering/public_sources/daad-ready-public-source-material/TOOLS/DRC/amsdosheader.php)
+[3]: [Retained exact CPC DLPART `DAAD.FNT` literal record](../../preservation_corpus/derived/cpc_fnt/official_tapmast_loader_literals.json)

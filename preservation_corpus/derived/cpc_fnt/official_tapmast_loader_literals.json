@@ -1,0 +1,38 @@
+{
+  "documentation_evidence": "research/sources/daad_official_fnt_cpc_evidence.json",
+  "fnt": {
+    "native_profile": "daad-cpc-standard-tape-loader-font",
+    "path": "preservation_corpus/extracted/depth1_dcd3ab68_DAAD.FNT",
+    "sha256": "fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a"
+  },
+  "loaders": [
+    {
+      "filename": "DLPART1.BAS",
+      "literal": "DAAD.FNT",
+      "literal_offsets": [
+        195
+      ],
+      "path": "preservation_corpus/extracted/depth1_469e2636_DLPART1.BAS",
+      "sha256": "2291b9fbaaf3d7b764650f65fd317336f7e8e95541e30b311ccd9d6103e44df6"
+    },
+    {
+      "filename": "DLPART2.BAS",
+      "literal": "DAAD.FNT",
+      "literal_offsets": [
+        195
+      ],
+      "path": "preservation_corpus/extracted/depth1_19c8e032_DLPART2.BAS",
+      "sha256": "cd410d16d479ec4263c9b1ab08955b9f03b1ff32aba30c79342e181927f1bd09"
+    }
+  ],
+  "non_claims": [
+    "A filename literal does not prove a tokenized BASIC load call or runtime load success.",
+    "This record does not establish glyph grammar, rendering, character mapping, or proportional-width semantics.",
+    "This exact source-package profile does not generalize to similarly named loaders or FNT files."
+  ],
+  "profile": "official_cpc_tapmast_daad_fnt_literal_v1",
+  "purpose": "Exact retained-byte literal evidence connecting official CPC DLPART loader templates with the byte-identified DAAD.FNT resource.",
+  "relationship_state": "observed_exact_filename_literal",
+  "schema_version": 1,
+  "source_id": 250
+}
