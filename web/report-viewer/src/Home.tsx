@@ -33,6 +33,7 @@ type Artifact = {
   is_daad_payload: boolean; measured_platform?: string | null; legacy_platform_hint?: string | null;
   archive_depth?: number; container_format?: string | null; container_member?: string | null;
   media_parser?: string | null; media_status?: string | null; media_validation?: string | null;
+  bundle_relationship_json?: string | null;
   ddb_format?: string | null; interpreter_identity?: string | null; fingerprint_confidence?: string | null;
   sha1?: string | null; md5_full?: string | null; md5_5000?: string | null; md5_tail5000?: string | null;
   sha224?: string | null; sha384?: string | null; sha512?: string | null; sha3_256?: string | null;
@@ -158,6 +159,27 @@ function resourceBoundary(artifact: Artifact) {
   if (filenameExtension(artifact.original_filename) === ".pic") return "Retained picture candidate; filename and size alone do not establish an image decoder or preview.";
   if (artifact.is_daad_payload) return "Measured DDB record. Decompilation publication is separate from DDB recognition and is not implied by this listing.";
   return artifact.media_parser ? "Native structural evidence is recorded; no decoded-media or analysis derivative is published for this record." : "Retained byte without a promoted resource decoder or analysis derivative.";
+}
+function bundleRelationshipSummary(artifact: Artifact) {
+  if (!artifact.bundle_relationship_json) return null;
+  try {
+    const record: unknown = JSON.parse(artifact.bundle_relationship_json);
+    if (!record || typeof record !== "object") return null;
+    const value = record as {
+      relationship_state?: unknown;
+      disk?: { filename?: unknown };
+      companions?: Array<{ filename?: unknown; role?: unknown }>;
+      non_claims?: unknown;
+    };
+    if (value.relationship_state !== "validated_same_disk_stem_companions" || !value.disk || !Array.isArray(value.companions)) return null;
+    const disk = typeof value.disk.filename === "string" ? value.disk.filename : "recorded disk";
+    const companions = value.companions
+      .map((item) => typeof item.filename === "string" ? item.filename : null)
+      .filter((item): item is string => item !== null);
+    return { disk, companions, nonClaims: Array.isArray(value.non_claims) ? value.non_claims.filter((item): item is string => typeof item === "string") : [] };
+  } catch {
+    return null;
+  }
 }
 function checksumMap(artifact: Artifact): Checksums {
   return Object.fromEntries(Object.keys(CHECKSUM_LABELS).map((field) => [field, artifact[field as keyof Artifact] as string | null | undefined]));
@@ -300,7 +322,8 @@ export default function Home() {
   const ArtifactDetail = ({ artifact, parent }: { artifact: Artifact; parent: Section }) => {
     const source = data.catalog.sources.find((item) => item.id === artifact.source_id);
     const publicArtifact = publicArtifactById.get(artifact.id);
-    return <section className="entity-detail"><DetailHeader eyebrow="RETAINED ARTIFACT / FULL INTEGRITY RECORD" title={artifact.original_filename} parent={parent} /><div className="detail-grid"><article className="detail-card"><Status verified={artifact.is_daad_payload} /><ArtifactEvidenceFields artifact={artifact} source={source} /><section className="resource-boundary"><span>Resource and analysis boundary</span><strong>{resourceKind(artifact)}</strong><p>{resourceBoundary(artifact)}</p><a className="related-link" href={routeHash({ section: "resources", entity: "artifact", id: String(artifact.id) })}><FolderArchive size={14} /> Open resource evidence <ChevronRight size={14} /></a></section>{publicArtifact ? <a className="download-button artifact-download" href={`${BASE_URL}${publicArtifact.public_path}`} download><Download size={16} /> Download retained byte</a> : <p className="download-boundary">This export has no manifest-approved public path for the selected artifact.</p>}{source && <a className="related-link" href={routeHash({ section: "sources", entity: "source", id: String(source.id) })}><RadioTower size={14} /> Open source evidence <ChevronRight size={14} /></a>}</article><article className="detail-card checksum-card"><h2>All recorded checksums</h2><p>Every digest identifies this exact retained byte sequence. The downloadable byte is staged from the checked manifest; its declared SHA-256 is <code>{publicArtifact?.checksums.sha256 || artifact.sha256}</code>.</p><ChecksumRows checksums={checksumMap(artifact)} artifactId={artifact.id} section={parent} /></article></div></section>;
+    const relationship = bundleRelationshipSummary(artifact);
+    return <section className="entity-detail"><DetailHeader eyebrow="RETAINED ARTIFACT / FULL INTEGRITY RECORD" title={artifact.original_filename} parent={parent} /><div className="detail-grid"><article className="detail-card"><Status verified={artifact.is_daad_payload} /><ArtifactEvidenceFields artifact={artifact} source={source} /><section className="resource-boundary"><span>Resource and analysis boundary</span><strong>{resourceKind(artifact)}</strong><p>{resourceBoundary(artifact)}</p><a className="related-link" href={routeHash({ section: "resources", entity: "artifact", id: String(artifact.id) })}><FolderArchive size={14} /> Open resource evidence <ChevronRight size={14} /></a></section>{relationship && <section className="resource-boundary"><span>Measured package relationship</span><strong>Same-disk PCW companion evidence</strong><p><code>{relationship.disk}</code> contains this DDB and the exact retained companion bytes {relationship.companions.map((name) => <code key={name}>{name}</code>)}. This is measured co-residency only: it does not establish a DDB-internal reference, runtime load order, requiredness, or semantic equivalence.</p>{relationship.nonClaims.length > 0 && <small>{relationship.nonClaims[0]}</small>}</section>}{publicArtifact ? <a className="download-button artifact-download" href={`${BASE_URL}${publicArtifact.public_path}`} download><Download size={16} /> Download retained byte</a> : <p className="download-boundary">This export has no manifest-approved public path for the selected artifact.</p>}{source && <a className="related-link" href={routeHash({ section: "sources", entity: "source", id: String(source.id) })}><RadioTower size={14} /> Open source evidence <ChevronRight size={14} /></a>}</article><article className="detail-card checksum-card"><h2>All recorded checksums</h2><p>Every digest identifies this exact retained byte sequence. The downloadable byte is staged from the checked manifest; its declared SHA-256 is <code>{publicArtifact?.checksums.sha256 || artifact.sha256}</code>.</p><ChecksumRows checksums={checksumMap(artifact)} artifactId={artifact.id} section={parent} /></article></div></section>;
   };
   const FormatLegend = () => <section className="format-legend" aria-labelledby="format-legend-title"><div><p className="eyebrow">FORMAT AND LINEAGE LEGEND</p><h3 id="format-legend-title">Read every retained byte in context.</h3><p>Containers hold recorded media; extracted members come from them; derived recoveries are separately retained validation outputs. A source platform is provenance, while a measured DDB target comes only from structural analysis.</p></div><dl><div><dt>D64 / DSK</dt><dd>Disk-image containers; directory members remain separate bytes.</dd></div><div><dt>TAP / TZX / CDT</dt><dd>Tape-image containers; blocks or packet recoveries are child evidence.</dd></div><div><dt>ZIP</dt><dd>Archive container; it is not a platform measurement.</dd></div><div><dt>PIC / other member</dt><dd>Filename alone does not establish content semantics; the parser result states the available evidence.</dd></div><div><dt>DDB</dt><dd>Only a structurally validated game database has a measured DDB target.</dd></div></dl></section>;
   const GameArtifactList = ({ artifacts, section }: { artifacts: MatrixArtifact[]; section: Section }) => <div className="game-artifacts complete-artifact-list" aria-label="Complete source-associated retained artifact list">{artifacts.map((artifact) => <article className="game-artifact" key={artifact.artifact_id}><div><a href={routeHash({ section, entity: "artifact", id: String(artifact.artifact_id) })}><strong>{artifact.original_filename}</strong><span>{ROLE_LABELS[artifact.lineage_role]} · {mediumLabel(artifact)} · {bytes(artifact.file_size)}</span></a><small className="artifact-evidence-summary">{evidencePlatformLabel(artifact)} · {artifact.media_parser ? `${artifact.media_parser}: ${artifact.media_status || "recorded"}` : "No native structural signature recognized"} · {interpreterLabel(artifact.interpreter_identity)}</small></div><div className="hash-control"><code title={artifact.sha256}>{artifact.sha256}</code><a href={routeHash({ section, entity: "artifact", id: String(artifact.artifact_id), checksum: "sha256" })}>All checksums</a></div></article>)}</div>;
