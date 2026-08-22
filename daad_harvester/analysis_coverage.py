@@ -74,6 +74,8 @@ def _load_record(path: Path) -> dict[str, Any]:
         raise AnalysisCoverageError(f"{path}: outputs must be a non-empty list")
     if not isinstance(payload["tool_records"], list) or not payload["tool_records"]:
         raise AnalysisCoverageError(f"{path}: tool_records must be a non-empty list")
+    if payload["load_model"] != "raw_binary_base_0_unverified":
+        raise AnalysisCoverageError(f"{path}: legacy retained analysis must retain raw_binary_base_0_unverified")
     return payload
 
 

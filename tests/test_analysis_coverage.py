@@ -39,6 +39,18 @@ def test_analysis_coverage_rejects_missing_load_model(tmp_path: Path) -> None:
         collect_analysis_coverage(tmp_path)
 
 
+def test_analysis_coverage_rejects_relabeling_legacy_raw_output(tmp_path: Path) -> None:
+    source = ROOT / "reverse_engineering/derived/z80/daad-zx-ds48ie-official/analysis-run.json"
+    target = tmp_path / "reverse_engineering/derived/z80/daad-zx-ds48ie-official"
+    target.mkdir(parents=True)
+    payload = __import__("json").loads(source.read_text(encoding="utf-8"))
+    payload["load_model"] = "hypothetical_qualified_loader"
+    (target / "analysis-run.json").write_text(__import__("json").dumps(payload), encoding="utf-8")
+
+    with pytest.raises(AnalysisCoverageError, match="legacy retained analysis must retain raw_binary_base_0_unverified"):
+        collect_analysis_coverage(tmp_path)
+
+
 def test_analysis_coverage_rejects_duplicate_profile_identity(tmp_path: Path) -> None:
     source = ROOT / "reverse_engineering/derived/z80/daad-zx-ds48ie-official/analysis-run.json"
     payload = __import__("json").loads(source.read_text(encoding="utf-8"))

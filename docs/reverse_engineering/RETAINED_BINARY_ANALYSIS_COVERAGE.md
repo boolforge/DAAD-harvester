@@ -15,8 +15,8 @@ python3 scripts/inspect_retained_binary_analysis_coverage.py
 
 The command reads existing records without launching an analyzer or writing
 derived output. It fails when an analysis record has no explicit architecture or
-load model, has no named analyzer lane or output hash, or duplicates another
-artifact identity.
+load model, relabels a legacy raw-base-zero record as another load model, has no
+named analyzer lane or output hash, or duplicates another artifact identity.
 
 ## Current inventory boundary
 
@@ -29,6 +29,12 @@ existing analyzer output and therefore have
 reports a contract-backed `container_evidence_progress` state and reference;
 this records exactly which verified wrapper, header, segment, relocation, or
 image fact exists without promoting the raw output.
+
+The ledger intentionally accepts no alternative load-model label for these
+legacy records. A future qualified run must use a separately bounded output
+directory and admission contract that records its platform-specific load and
+entry model, deterministic command and output hashes, and cross-tool
+disagreement state.
 
 This provides a deterministic inventory of prior work, not a declaration that
 the binary families are understood. An architecture profile can leave the refusal
