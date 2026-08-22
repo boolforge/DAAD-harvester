@@ -3,6 +3,7 @@
   "purpose": "Immutable original MSX Z80 image identities and leading absolute-jump operands. The jump operands are retained byte observations, not admitted load addresses or machine-code entry conditions.",
   "admission_state": "image_identity_and_leading_jump_observed_load_unresolved",
   "execution_eligible": false,
+  "future_launch_capture_required_fields": ["official_image_sha256", "loader_or_disk_context_sha256", "msxdos_system_sha256", "command_com_sha256", "disk_interface_rom_sha256", "launch_transition_sha256", "snapshot_sha256", "machine_model", "z80_registers", "primary_slot_register_a8", "expanded_slot_state", "memory_mapper_state", "page_mapping", "tpa_range", "bios_bdos_vector_bytes"],
   "profiles": [
     {
       "artifact_id": "daad-msx-msxedi-official",
@@ -10,7 +11,8 @@
       "sha256": "1df91cff49dc2dcb42f2e4321644b6e088a0ac63159444bb937a9bff5848a4ca",
       "leading_jump_offset": 0,
       "leading_jump_target": 53050,
-      "image_size": 8400
+      "image_size": 8400,
+      "launch_capture_observation": null
     },
     {
       "artifact_id": "daad-msx-msxsdi-official",
@@ -18,7 +20,8 @@
       "sha256": "fcae12bd09bc949e1e6cf75b3d1ef87e66c322efe2de005e771fa3b5dd8ddbf8",
       "leading_jump_offset": 0,
       "leading_jump_target": 53199,
-      "image_size": 8551
+      "image_size": 8551,
+      "launch_capture_observation": null
     }
   ],
   "remaining_requirements": [

@@ -12,6 +12,15 @@ class MsxZ80ImageObservationError(ValueError):
     """Raised when an MSX image observation or identity does not match retained bytes."""
 
 
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = (
+    "official_image_sha256", "loader_or_disk_context_sha256", "msxdos_system_sha256",
+    "command_com_sha256", "disk_interface_rom_sha256", "launch_transition_sha256",
+    "snapshot_sha256", "machine_model", "z80_registers", "primary_slot_register_a8",
+    "expanded_slot_state", "memory_mapper_state", "page_mapping", "tpa_range",
+    "bios_bdos_vector_bytes",
+)
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -33,6 +42,8 @@ def validate_msx_z80_image_observation(contract: dict[str, Any], root: Path) -> 
         raise MsxZ80ImageObservationError("admission_state must preserve unresolved load conditions")
     if contract.get("execution_eligible") is not False:
         raise MsxZ80ImageObservationError("MSX image observation must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise MsxZ80ImageObservationError("MSX future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 2:
         raise MsxZ80ImageObservationError("contract must contain exactly two MSX profiles")
@@ -57,6 +68,8 @@ def validate_msx_z80_image_observation(contract: dict[str, Any], root: Path) -> 
         for field in ("leading_jump_offset", "leading_jump_target", "image_size"):
             if profile.get(field) != observed[field]:
                 raise MsxZ80ImageObservationError(f"{identifier}: {field} differs from retained bytes")
+        if profile.get("launch_capture_observation") is not None:
+            raise MsxZ80ImageObservationError(f"{identifier}: no official MSX launch capture is currently admitted")
 
 
 def load_msx_z80_image_observation(path: Path, root: Path) -> dict[str, Any]:

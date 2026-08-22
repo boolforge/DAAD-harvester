@@ -22,7 +22,17 @@ python3 scripts/verify_msx_z80_image_observation.py
 The verifier reads retained bytes only; it does not invoke MSX BIOS routines,
 mount media, start an emulator, or disassemble either image.
 
+Every profile therefore records `launch_capture_observation: null`. A future
+official capture must bind the exact image and loader/disk context, MSX-DOS and
+COMMAND.COM images, disk-interface ROM, launch trace, snapshot, model,
+registers, primary and expanded slot state, mapper/page mapping, TPA range, and
+BIOS/BDOS vector bytes. A generic Z80 default or unrelated MSX launch cannot
+fill this field.[3] [4] [5]
+
 ## References
 
 [1]: [MSX platform dossier](../platforms/MSX.md)
 [2]: [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+[3]: [MSX2 Technical Handbook: System Overview](https://konamiman.github.io/MSX2-Technical-Handbook/md/Chapter1.html)
+[4]: [MSX2 Technical Handbook: MSX-DOS](https://konamiman.github.io/MSX2-Technical-Handbook/md/Chapter3.html)
+[5]: [MSX2 Technical Handbook: Slots and Cartridges](https://konamiman.github.io/MSX2-Technical-Handbook/md/Chapter5b.html)
