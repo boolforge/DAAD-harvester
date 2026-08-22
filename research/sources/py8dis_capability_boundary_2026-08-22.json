@@ -1,0 +1,19 @@
+{
+  "documented_cpu_support": [
+    "6502",
+    "65C02",
+    "8080"
+  ],
+  "non_claims": [
+    "This record does not install, execute, configure, or validate py8dis.",
+    "It does not establish Z80 instruction support, a Spectrum Next load model, or a DAAD interpreter result.",
+    "It does not replace the repository-native primary evidence path or any independent comparator run."
+  ],
+  "purpose": "Discovery-only py8dis capability boundary; not a Z80 comparator result or platform-support claim.",
+  "repository_url": "https://github.com/ZornsLemma/py8dis",
+  "revision": "2a6046356e20e93c4a2d484bc04bd5d74d66254e",
+  "schema_version": 1,
+  "source_sha256": "ad4a9c19b2461c377b136c54d8dbb1dfee1b726b4d378d7b59bf0a94a339da18",
+  "source_url": "https://raw.githubusercontent.com/ZornsLemma/py8dis/2a6046356e20e93c4a2d484bc04bd5d74d66254e/README.md",
+  "z80_capability": "not included in the retained README's explicit current CPU-support statement"
+}

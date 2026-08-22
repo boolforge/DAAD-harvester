@@ -626,6 +626,36 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "py8dis-capability-boundary-discovery",
+      "description": "Regenerates a retained py8dis README capability boundary. It does not run py8dis or establish Z80 support, Spectrum Next support, a load model, or an interpreter-analysis result.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_py8dis_capability_boundary.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/py8dis_README_2a604635_2026-08-22.md.gz",
+          "sha256": "79d502b6c1d50c6edf6486a7fc8830e1aaadbe259ae56754f26949e688e4edc6"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/py8dis_capability_boundary_2026-08-22.json",
+          "sha256": "6d5048388665469a02a997719ce9c38e8215bfb4c9bd345586a5600acacba4f4"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }
