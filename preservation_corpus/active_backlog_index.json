@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 198,
+  "unchecked_item_count": 197,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 81,
+    "Active evidence-interface correction": 80,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -915,28 +915,6 @@
       "required_real_artifact_regression": true,
       "regeneration_report_impact": "corpus, provenance, and regression data may require regeneration",
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
-    },
-    {
-      "id": "todo-0070",
-      "line": 70,
-      "section": "Active evidence-interface correction",
-      "text": "Audit the configured Ghidra 12.1.3 headless adapter as a reproducible, evidence-bounded structured-analysis lane. Verify every DAAD-relevant processor-language binding, Java and headless-launch dependency probe, temporary-project isolation, output and failure capture, and Linux host-health path using only a controlled fixture. Record the separate Windows host status and exact blocking prerequisites; do not infer Windows portability, retained-artifact origins, function boundaries, pseudocode, recovered source, or runtime behavior from a successful host check.",
-      "evidence_inputs": [
-        "independent external comparator",
-        "retained original bytes",
-        "runtime or emulator observation"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "runtime and reverse analysis",
-        "tooling and workflow gates"
-      ],
-      "dependencies": [
-        "none stated; retain unresolved boundaries"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
-      "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
       "id": "todo-0071",
