@@ -656,6 +656,36 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "zxdaad128-load-boundary-discovery",
+      "description": "Regenerates retained ZXDAAD128 README load assumptions. It does not run ZXDAAD128 or establish a historical load model, runtime behavior, Spectrum Next support, or compatibility claim.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_zxdaad128_load_boundary.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/zxdaad128_README_fe714e0_2026-08-22.md.gz",
+          "sha256": "7e79aa09e897ecfaa8767519cf4f9b36ec62e3788255aa1e2c96c00cbc2a4f39"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/zxdaad128_load_boundary_2026-08-22.json",
+          "sha256": "24568727862261358e622a4a9ef4d07091d6c90fc87a60126909acf80c883fb3"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }

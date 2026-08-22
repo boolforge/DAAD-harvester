@@ -1,0 +1,19 @@
+{
+  "documented_load_assumptions": {
+    "ad0_bank": 0,
+    "ad0_entry_address": "0x6002",
+    "ad0_load_address": "0x6000",
+    "other_bank_load_address": "0xC000"
+  },
+  "non_claims": [
+    "This record does not install, execute, configure, or validate ZXDAAD128.",
+    "It does not establish a load model, paging state, or runtime behavior for any retained historical artifact.",
+    "It does not establish Spectrum Next support or compatibility with ZXDAAD128."
+  ],
+  "purpose": "Discovery-only ZXDAAD128 documented load boundary; not a retained-artifact validation or platform-support claim.",
+  "repository_url": "https://github.com/cronomantic/ZXDAAD128",
+  "revision": "fe714e0784cd4d152116c0d9b80aaba3b0afa76a",
+  "schema_version": 1,
+  "source_sha256": "5a5230cf71691ff1fb3205ec61c3b940d439a50562230214639aff9f2483127c",
+  "source_url": "https://raw.githubusercontent.com/cronomantic/ZXDAAD128/fe714e0784cd4d152116c0d9b80aaba3b0afa76a/README.md"
+}

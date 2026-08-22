@@ -241,6 +241,19 @@
         ]
       },
       {
+        "body_sha256": "cd3f369356b5145adb657d36c7ad03cbc9a324279bb138705265999afcb7ba60",
+        "functions": [
+          {
+            "path": "scripts/capture_py8dis_capability_boundary.py",
+            "qualified_name": "_fetch"
+          },
+          {
+            "path": "scripts/capture_zxdaad128_load_boundary.py",
+            "qualified_name": "_fetch"
+          }
+        ]
+      },
+      {
         "body_sha256": "fb814a23745e3ef5c8408d10bb051e87ea45b5c99288ba68b27924d61174a949",
         "functions": [
           {
@@ -276,7 +289,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 424,
+      "declared_test_count": 426,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -328,13 +341,13 @@
     },
     "python": {
       "production_files": 39,
-      "script_files": 61,
-      "test_files": 78
+      "script_files": 62,
+      "test_files": 79
     },
     "regeneration": {
-      "entries": 16,
-      "inputs": 39,
-      "outputs": 25
+      "entries": 17,
+      "inputs": 40,
+      "outputs": 26
     },
     "web": {
       "package_lock_present": true,
