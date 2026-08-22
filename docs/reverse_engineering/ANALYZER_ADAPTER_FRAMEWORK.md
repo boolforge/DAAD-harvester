@@ -89,6 +89,13 @@ validated. z80dismblr revision
 `2ff52822f0d706f9f39762e079f300f45cfd451d` passed only its upstream source
 suite under a documented TypeScript library workaround; its [health record](../../research/sources/z80dismblr_installation_2026-08-22.json)
 records the standard build incompatibility and its unconfigured Z80 boundary.
+SkoolKit revision `760eeaa012926b4220ea5a370a2bdf99ba098eb0` is a
+health-checked but unconfigured Z80 commentary-format candidate. Its
+[health record](../../research/sources/skoolkit_fixture_health_2026-08-22.md)
+binds a raw two-byte fixture, explicit origin/start/end arguments, and its
+deterministic skool listing. A Spectrum snapshot, raw memory file, control file,
+or emulator-derived execution map is still a platform-specific evidence input;
+SkoolKit annotations are not recovered source or runtime claims.
 REDasm revision `113245ef02090602978e461fcb7031b75da448d6` remains i8086-only
 candidate evidence: its GUI repository and multi-repository workspace do not
 provide a stable batch invocation, as recorded in its separate [workspace/core boundary](../../research/sources/redasm_workspace_headless_boundary_2026-08-22.json).

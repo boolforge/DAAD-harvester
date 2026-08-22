@@ -23,6 +23,16 @@
       "non_claim": "Upstream source tests do not justify CFG or label claims for retained interpreters."
     },
     {
+      "candidate_id": "skoolkit-z80-v1",
+      "admission_state": "health_checked",
+      "architectures": ["z80"],
+      "source": {"repository_url": "https://github.com/skoolkid/skoolkit", "revision": "760eeaa012926b4220ea5a370a2bdf99ba098eb0", "license_status": "GPL-3.0 observed in pinned COPYING"},
+      "execution_eligible": false,
+      "comparison_roles": ["static_disassembly", "commentary-format comparison candidate"],
+      "blockers": ["platform-specific Spectrum or raw-memory map", "independently evidenced Z80 origin and entry or trace", "optional C simulator source tests do not pass on the observed Python 3.12 host", "retained-byte cross-tool disagreement record"],
+      "non_claim": "A controlled raw Z80 NOP/RET skool listing with an explicit origin and start does not validate a retained DAAD memory map, source recovery, or runtime behavior."
+    },
+    {
       "candidate_id": "redasm-i8086-v1",
       "admission_state": "discovery",
       "architectures": ["i8086"],

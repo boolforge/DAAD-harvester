@@ -139,6 +139,7 @@ def test_candidate_matrix_preserves_non_executable_architecture_scoped_admission
     assert {candidate["candidate_id"] for candidate in matrix["candidates"]} >= {
         "py8dis-mos6502-v1",
         "z80dismblr-z80-v1",
+        "skoolkit-z80-v1",
         "oxore-m68k-disasm-v1",
         "capstone-m68k-x86-v1",
         "lybrown-dis-mos6502-v1",
@@ -160,6 +161,17 @@ def test_health_checked_m68k_candidate_remains_non_executable_pending_platform_e
     assert oxore["execution_eligible"] is False
     assert any("Amiga or Atari ST origin" in blocker for blocker in oxore["blockers"])
     assert "controlled" in oxore["non_claim"]
+
+
+def test_health_checked_skoolkit_candidate_remains_non_executable_pending_z80_memory_evidence() -> None:
+    matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
+    skoolkit = next(candidate for candidate in matrix["candidates"] if candidate["candidate_id"] == "skoolkit-z80-v1")
+
+    assert skoolkit["admission_state"] == "health_checked"
+    assert skoolkit["architectures"] == ["z80"]
+    assert skoolkit["execution_eligible"] is False
+    assert "GPL-3.0" in skoolkit["source"]["license_status"]
+    assert any("memory map" in blocker for blocker in skoolkit["blockers"])
 
 
 def test_candidate_matrix_rejects_an_unconfigured_executable_candidate() -> None:
