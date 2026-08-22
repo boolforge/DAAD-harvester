@@ -11,7 +11,8 @@
       "load_address": 2112,
       "entry_address": 9239,
       "logical_payload_size": 7395,
-      "stored_header_checksum": 1464
+      "stored_header_checksum": 1464,
+      "entry_environment_observation": null
     },
     {
       "artifact_id": "daad-cpc-dcpcis-official",
@@ -20,11 +21,12 @@
       "load_address": 2112,
       "entry_address": 9337,
       "logical_payload_size": 7493,
-      "stored_header_checksum": 1248
+      "stored_header_checksum": 1248,
+      "entry_environment_observation": null
     }
   ],
   "remaining_requirements": [
-    "CPC RAM and banking state",
+    "hash-bound official CPC entry-environment capture: RAM, banking, firmware, and peripheral state",
     "firmware and peripheral environment",
     "qualified analyzer configuration using the bounded payload and declared entry",
     "cross-tool disagreement record",

@@ -82,6 +82,8 @@ def validate_cpc_amsdos_load_model(contract: dict[str, Any], root: Path) -> None
         for name in ("load_address", "entry_address", "logical_payload_size", "stored_header_checksum"):
             if profile.get(name) != fields[name]:
                 raise CpcAmsdosLoadModelError(f"{identifier}: {name} differs from retained header")
+        if profile.get("entry_environment_observation") is not None:
+            raise CpcAmsdosLoadModelError(f"{identifier}: no official CPC entry-environment capture is currently admitted")
 
 
 def load_cpc_amsdos_load_model(path: Path, root: Path) -> dict[str, Any]:

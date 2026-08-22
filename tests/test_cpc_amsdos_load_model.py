@@ -19,6 +19,7 @@ def test_retained_cpc_amsdos_headers_provide_bounded_load_and_entry_facts() -> N
     fields = parse_amsdos_binary_header((ROOT / contract["profiles"][0]["input_path"]).read_bytes())
 
     assert contract["execution_eligible"] is False
+    assert all(profile["entry_environment_observation"] is None for profile in contract["profiles"])
     assert fields["load_address"] == 0x0840
     assert fields["entry_address"] == 0x2417
     assert fields["stored_payload_size"] == 7395
@@ -37,4 +38,12 @@ def test_cpc_amsdos_contract_rejects_promotion_or_changed_header_facts(mutation,
     mutation(contract)
 
     with pytest.raises(CpcAmsdosLoadModelError, match=message):
+        validate_cpc_amsdos_load_model(contract, ROOT)
+
+
+def test_cpc_amsdos_contract_rejects_unbound_entry_environment_observation() -> None:
+    contract = deepcopy(load_cpc_amsdos_load_model(CONTRACT, ROOT))
+    contract["profiles"][0]["entry_environment_observation"] = {"emulator": "default"}
+
+    with pytest.raises(CpcAmsdosLoadModelError, match="no official CPC entry-environment capture"):
         validate_cpc_amsdos_load_model(contract, ROOT)

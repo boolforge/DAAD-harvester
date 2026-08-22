@@ -13,7 +13,8 @@ Both declare loading at `0x0840`; their declared entry addresses are `0x2417`
 and `0x2479`, respectively, and both fall within the associated loaded payload
 range. These are CPC-specific header facts. They do not authorize execution or
 qualified static analysis until CPC memory and environment conditions are
-evidenced.
+evidenced. Each retained profile records a null entry-environment observation;
+a generic emulator default or an unrelated CPC capture cannot fill this field.
 
 ```bash
 python3 scripts/verify_cpc_amsdos_load_model.py
