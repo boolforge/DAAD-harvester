@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Run independent repository verification gates concurrently.
 
-Only commands declared in ``GATE_GROUPS`` may run. Each gate is a subprocess
-with an isolated working directory and captured output. The scheduler never
-parallelizes commands that are known to regenerate shared files; those remain
-owned by the ordered primary workflow.
+Only commands declared in ``GATE_GROUPS`` may run. Each gate runs in a separate
+subprocess with captured output but shares the repository root as its working
+directory. The scheduler therefore permits only read-only verification gates;
+commands that regenerate shared files remain owned by the ordered primary
+workflow.
 """
 
 from __future__ import annotations
