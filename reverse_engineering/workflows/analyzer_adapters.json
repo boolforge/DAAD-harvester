@@ -81,6 +81,16 @@
       "runner": "external_candidate",
       "load_model_compatibility": ["requires_spectrum_memory_or_execution_map"],
       "commentary_boundary": "Snapshot and execution-map assumptions must be independently justified; this candidate does not replace raw-base-zero comparators."
+    },
+    {
+      "adapter_id": "capstone-m68k-x86-candidate-v1",
+      "state": "candidate",
+      "role": "static_disassembly",
+      "architectures": ["m68000", "i8086"],
+      "tool": {"name": "Capstone", "pin": "3a8d30a66726fd31990fa584f62fd30dcd9f9b50", "provenance_url": "https://github.com/capstone-engine/capstone"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_pinned_m68k_or_i8086_origin_entry_and_load_model"],
+      "commentary_boundary": "Controlled Capstone decoding is unavailable for retained bytes until platform-specific CPU, origin, base, entry, and cross-tool evidence are separately recorded."
     }
   ]
 }

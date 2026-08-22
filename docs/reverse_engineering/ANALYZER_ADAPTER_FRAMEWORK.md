@@ -92,6 +92,12 @@ records the standard build incompatibility and its unconfigured Z80 boundary.
 REDasm revision `113245ef02090602978e461fcb7031b75da448d6` remains i8086-only
 candidate evidence: its GUI repository and multi-repository workspace do not
 provide a stable batch invocation, as recorded in its separate [workspace/core boundary](../../research/sources/redasm_workspace_headless_boundary_2026-08-22.json).
+Capstone revision `3a8d30a66726fd31990fa584f62fd30dcd9f9b50` is a
+health-checked but unconfigured 68000/i8086 static-decoding candidate. Its
+[health record](../../research/sources/capstone_fixture_health_2026-08-22.md)
+preserves a pinned-source Python-binding build, controlled fixture results, and
+the exact absence of a MOS 6502/MOS 8501 architecture constant. The repository
+will not substitute a different CPU family merely to widen a tool’s scope.
 The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
 records the remaining candidates, architecture boundaries, and non-promotion
 reasons. None is an enabled workflow dependency.

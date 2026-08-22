@@ -84,6 +84,17 @@ def test_pinned_redasm_candidate_is_limited_to_unconfigured_i8086_research() -> 
     assert "headless_cli" in redasm["load_model_compatibility"][0]
 
 
+def test_pinned_capstone_candidate_is_limited_to_unconfigured_m68000_and_i8086_research() -> None:
+    catalog = analyzer_adapters.load_catalog(CATALOG_PATH, _toolchain())
+    capstone = next(adapter for adapter in catalog["adapters"] if adapter["adapter_id"] == "capstone-m68k-x86-candidate-v1")
+
+    assert capstone["state"] == analyzer_adapters.CANDIDATE
+    assert capstone["architectures"] == ["m68000", "i8086"]
+    assert capstone["tool"]["pin"] == "3a8d30a66726fd31990fa584f62fd30dcd9f9b50"
+    assert capstone["runner"] == "external_candidate"
+    assert "origin_entry" in capstone["load_model_compatibility"][0]
+
+
 def test_catalog_rejects_configured_adapter_with_incompatible_load_model() -> None:
     catalog = _catalog()
     catalog["adapters"][0]["load_model_compatibility"] = ["requires_validated_model"]
@@ -119,6 +130,7 @@ def test_candidate_matrix_preserves_non_executable_architecture_scoped_admission
         "py8dis-mos6502-v1",
         "z80dismblr-z80-v1",
         "oxore-m68k-disasm-v1",
+        "capstone-m68k-x86-v1",
         "redasm-i8086-v1",
     }
     assert all(candidate["execution_eligible"] is False for candidate in matrix["candidates"])

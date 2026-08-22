@@ -63,14 +63,14 @@
       "non_claim": "A controlled base-unspecified NOP/RTS fixture does not validate a platform load model, tool labels, or runtime semantics."
     },
     {
-      "candidate_id": "capstone-m68k-mos65xx-x86-v1",
-      "admission_state": "discovery",
-      "architectures": ["m68000", "mos6502", "i8086"],
-      "source": {"repository_url": "https://github.com/capstone-engine/capstone", "revision": "3a8d30a66726fd31990fa584f62fd30dcd9f9b50", "license_status": "no license identifier detected in inspected repository metadata; source review required"},
+      "candidate_id": "capstone-m68k-x86-v1",
+      "admission_state": "health_checked",
+      "architectures": ["m68000", "i8086"],
+      "source": {"repository_url": "https://github.com/capstone-engine/capstone", "revision": "3a8d30a66726fd31990fa584f62fd30dcd9f9b50", "license_status": "BSD 3-Clause observed in pinned LICENSES/LICENSE.TXT"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "multi-architecture adapter candidate"],
-      "blockers": ["license source review", "stable local API or CLI harness", "exact CPU mode mapping", "fixture health and retained-byte origin model"],
-      "non_claim": "A published architecture list does not prove an invocation or appropriate mode for retained DAAD binaries."
+      "blockers": ["MOS 6502 and MOS 8501 are unavailable in the pinned binding and must not be substituted", "Amiga or Atari ST origin, entry, and load model", "DOS COM/MZ segment, origin, and entry model", "retained-byte cross-tool disagreement records"],
+      "non_claim": "Controlled 68000 and i8086 fixture decoding at raw address zero does not validate a retained DAAD CPU profile, platform load model, source recovery, or runtime behavior."
     },
     {
       "candidate_id": "jhelland-8086-disassembler-v1",
