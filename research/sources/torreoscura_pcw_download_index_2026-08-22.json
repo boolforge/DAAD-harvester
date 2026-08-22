@@ -1,0 +1,12 @@
+{
+  "non_claims": [
+    "The archive has not been acquired or checksum measured by this record.",
+    "The page does not establish release metadata, byte equivalence, loader behavior, or PARTE000.PIC grammar."
+  ],
+  "pcw_archive_url": "https://zonafi.es/torreoscura/to_pcw.zip",
+  "pcw_link_text": "Versi\u00f3n Amstrad PCW",
+  "purpose": "Public author-site discovery evidence for Torreoscura's PCW download link; not media identity or acquisition evidence.",
+  "schema_version": 1,
+  "source_sha256": "c086e8b76eebf0d1a464d1b60aee995ffef2782ed65ea1954f76e5b0440e2cd4",
+  "source_url": "https://zonafi.es/torreoscura/descargas.html"
+}

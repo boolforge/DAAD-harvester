@@ -1,6 +1,6 @@
 # DAAD Harvester — Preservation Work Register
 
-> **Status baseline:** The latest local deterministic release gate reports **420 passing tests**, **265 sources**, **1,015 retained artifacts**, fourteen hash-pinned native-regeneration entries with 37 inputs and 23 outputs, complete 17-field artifact checksums, a verified public-artifact manifest, and a passing documentation-integrity check. The Pages deployment pipeline stages only manifest-approved retained bytes, verifies copied-byte SHA-256 values, and performs a post-deployment smoke check. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
+> **Status baseline:** The latest local deterministic release gate reports **422 passing tests**, **265 sources**, **1,015 retained artifacts**, fifteen hash-pinned native-regeneration entries with 38 inputs and 24 outputs, complete 17-field artifact checksums, a verified public-artifact manifest, and a passing documentation-integrity check. The Pages deployment pipeline stages only manifest-approved retained bytes, verifies copied-byte SHA-256 values, and performs a post-deployment smoke check. This document is the authoritative forward roadmap; it replaces earlier audit notes that described superseded implementations and obsolete test counts.
 
 ## Preservation standard
 

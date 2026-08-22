@@ -276,7 +276,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 420,
+      "declared_test_count": 422,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -328,13 +328,13 @@
     },
     "python": {
       "production_files": 39,
-      "script_files": 59,
-      "test_files": 76
+      "script_files": 60,
+      "test_files": 77
     },
     "regeneration": {
-      "entries": 14,
-      "inputs": 37,
-      "outputs": 23
+      "entries": 15,
+      "inputs": 38,
+      "outputs": 24
     },
     "web": {
       "package_lock_present": true,

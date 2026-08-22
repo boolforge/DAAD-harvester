@@ -595,6 +595,37 @@
         }
       ],
       "external_validators": []
+    },
+    {
+      "id": "torreoscura-pcw-public-download-discovery",
+      "description": "Regenerates the retained public author-site discovery record for Torreoscura's PCW archive link. It does not acquire media or establish release identity, byte equivalence, loader behavior, or PARTE000.PIC grammar.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10",
+        "beautifulsoup4",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_torreoscura_pcw_source.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/torreoscura_pcw_download_index_2026-08-22.html.gz",
+          "sha256": "eb6cfd7da68efa331f976eaffbb27c3f423f58b63caf19f5cb981c726a74bb28"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/torreoscura_pcw_download_index_2026-08-22.json",
+          "sha256": "3303860cebe21d33c8eaab54a409a9692a6cb24793b916c2d390b8b63b2a2ec7"
+        }
+      ],
+      "external_validators": []
     }
   ]
 }
