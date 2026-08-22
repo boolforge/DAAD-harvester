@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import json
 from pathlib import Path
 import sqlite3
@@ -53,11 +54,22 @@ def build(db_path: Path = DEFAULT_DB) -> dict[str, object]:
             }
         )
     connection.close()
+    extensions = Counter()
+    for artifact in artifacts:
+        filename = str(artifact["original_filename"])
+        suffix = Path(filename).suffix.casefold() or "<extensionless>"
+        extensions[suffix] += 1
     return {
         "schema_version": 1,
         "purpose": "Deterministic review state for every retained resource; unknown and rejected records remain visible.",
         "source": "preservation_corpus/state.db",
         "artifact_count": len(artifacts),
+        "summary": {
+            "evidence_states": dict(sorted(Counter(str(a["evidence_state"]) for a in artifacts).items())),
+            "parser_statuses": dict(sorted(Counter(str(a["parser_status"]) for a in artifacts).items())),
+            "parsers": dict(sorted(Counter(str(a["parser"]) for a in artifacts).items())),
+            "observed_extensions": dict(sorted(extensions.items())),
+        },
         "artifacts": artifacts,
     }
 
