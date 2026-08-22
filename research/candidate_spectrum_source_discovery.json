@@ -1,424 +1,348 @@
 {
-  "generated_at_epoch": 1787363942,
-  "input_candidate_count": 43,
+  "generated_at_epoch": 1787378470,
+  "input_candidate_count": 40,
   "purpose": "Spectrum Computing direct ZX game-media discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
   "records": [
     {
-      "candidate_key": "after the dark|pension productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "After the Dark",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "alien research centre 2|pension productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Alien Research Centre 2",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Aventuras A.D.",
-      "status": "no_release_boundary_source_match",
-      "title": "Aventura Espacial, La",
-      "year": "1990"
-    },
-    {
-      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Aventuras A.D., Dinamic Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Aventura Original, La",
-      "year": "1989"
-    },
-    {
-      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Balrog and the Cat, The",
-      "year": "1988"
-    },
-    {
-      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Dee Cooke",
-      "status": "no_release_boundary_source_match",
-      "title": "Barry Basic and the Quest For The Perfect Port",
-      "year": "2020"
-    },
-    {
-      "candidate_key": "behind closed doors 5|pension productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Behind Closed Doors 5",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "behind closed doors 6|pension productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Behind Closed Doors 6",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Behind Closed Doors 7",
-      "year": "2018"
-    },
-    {
-      "candidate_key": "behind closed doors 8|pension productions|2020|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Behind Closed Doors 8",
-      "year": "2020"
-    },
-    {
-      "candidate_key": "behind closed doors|zenobi software|1988|english",
-      "language": "English",
+      "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
+      "language": "Unknown",
       "matches": [
         {
           "external_source_terms": null,
-          "filename": "BehindClosedDoors(CustomisedVersion).tzx.zip",
+          "filename": "13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip",
           "release_boundary_evidence": {
-            "language": "English",
-            "publisher": "Zenobi Software (UK)",
-            "title": "Behind Closed Doors",
-            "year": "1988"
+            "language": "Spanish",
+            "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
+            "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+            "year": "2023/Nov/17"
           },
           "release_boundary_match": true,
-          "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
-          "source_release_id": "5998",
-          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(CustomisedVersion).tzx.zip"
-        },
-        {
-          "external_source_terms": null,
-          "filename": "BehindClosedDoors(different).tzx.zip",
-          "release_boundary_evidence": {
-            "language": "English",
-            "publisher": "Zenobi Software (UK)",
-            "title": "Behind Closed Doors",
-            "year": "1988"
-          },
-          "release_boundary_match": true,
-          "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
-          "source_release_id": "5998",
-          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(different).tzx.zip"
-        },
-        {
-          "external_source_terms": null,
-          "filename": "BehindClosedDoors.mgt.zip",
-          "release_boundary_evidence": {
-            "language": "English",
-            "publisher": "Zenobi Software (UK)",
-            "title": "Behind Closed Doors",
-            "year": "1988"
-          },
-          "release_boundary_match": true,
-          "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
-          "source_release_id": "5998",
-          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors.mgt.zip"
-        },
-        {
-          "external_source_terms": null,
-          "filename": "BehindClosedDoors.tzx.zip",
-          "release_boundary_evidence": {
-            "language": "English",
-            "publisher": "Zenobi Software (UK)",
-            "title": "Behind Closed Doors",
-            "year": "1988"
-          },
-          "release_boundary_match": true,
-          "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
-          "source_release_id": "5998",
-          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors.tzx.zip"
-        },
-        {
-          "external_source_terms": null,
-          "filename": "BehindClosedDoors.z80.zip",
-          "release_boundary_evidence": {
-            "language": "English",
-            "publisher": "Zenobi Software (UK)",
-            "title": "Behind Closed Doors",
-            "year": "1988"
-          },
-          "release_boundary_match": true,
-          "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
-          "source_release_id": "5998",
-          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors.z80.zip"
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
+          "source_release_id": "42613",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042613/13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip"
         }
       ],
-      "publisher": "Zenobi Software",
+      "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
       "status": "release_boundary_source_discovered",
-      "title": "Behind Closed Doors",
-      "year": "1988"
+      "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+      "year": "2023"
     },
     {
-      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
-      "language": "English",
+      "candidate_key": "[csscgc] licence to mow|jbizzel|2023|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Pension Productions",
+      "publisher": "Jbizzel",
       "status": "no_release_boundary_source_match",
-      "title": "Bulbo and the Blue Dragon",
-      "year": "2019"
+      "title": "[CSSCGC] Licence to Mow",
+      "year": "2023"
     },
     {
-      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
-      "language": "English",
+      "candidate_key": "[csscgc] mad gods|jbizzel|2023|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Zenobi Software",
+      "publisher": "Jbizzel",
       "status": "no_release_boundary_source_match",
-      "title": "Bulbo's Intrepid Adventure",
-      "year": "2018"
+      "title": "[CSSCGC] Mad Gods",
+      "year": "2023"
     },
     {
-      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
-      "language": "Spanish",
+      "candidate_key": "[csscgc] the da vinci code 2: trouble from the past|uglifruit|2022|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Pablo Mart\u00ednez Merino",
+      "publisher": "uglifruit",
       "status": "no_release_boundary_source_match",
-      "title": "Casa al otro lado de la tormenta, la",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "case of murder, a|taskmaster software|2022|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Taskmaster Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Case of Murder, A",
+      "title": "[CSSCGC] The Da Vinci Code 2: Trouble From The Past",
       "year": "2022"
     },
     {
-      "candidate_key": "cero absoluto|esp soft|2016|spanish",
-      "language": "Spanish",
+      "candidate_key": "[csscgc] top gun 2: maverick dangerous!|uglifruit|2022|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "ESP Soft",
+      "publisher": "uglifruit",
       "status": "no_release_boundary_source_match",
-      "title": "Cero Absoluto",
-      "year": "2016"
+      "title": "[CSSCGC] Top Gun 2: Maverick Dangerous!",
+      "year": "2022"
     },
     {
-      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
-      "language": "Spanish",
+      "candidate_key": "[mod] erinia (enhanced version)|dare|2024|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Toni Pera",
+      "publisher": "DaRe",
       "status": "no_release_boundary_source_match",
-      "title": "Cetro del Sol, El",
-      "year": "2006"
+      "title": "[MOD] Erinia (Enhanced version)",
+      "year": "2024"
     },
     {
-      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Jose Daniel Carbonell",
-      "status": "no_release_boundary_source_match",
-      "title": "Chico de los recados, El",
-      "year": "2021"
+      "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "CaseOfMurder128KA(Illustrated).dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "A Case of Murder 128K",
+            "year": "2023"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+          "source_release_id": "42546",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA(Illustrated).dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "CaseOfMurder128KA(Illustrated).tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "A Case of Murder 128K",
+            "year": "2023"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+          "source_release_id": "42546",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA(Illustrated).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "CaseOfMurder128KA(Illustrated).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "A Case of Murder 128K",
+            "year": "2023"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+          "source_release_id": "42546",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA(Illustrated).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "CaseOfMurder128KA.tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "A Case of Murder 128K",
+            "year": "2023"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+          "source_release_id": "42546",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "CaseOfMurder128KA.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "A Case of Murder 128K",
+            "year": "2023"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+          "source_release_id": "42546",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA.tzx.zip"
+        }
+      ],
+      "publisher": "Taskmaster Software (UK)",
+      "status": "release_boundary_source_discovered",
+      "title": "A Case of Murder 128K",
+      "year": "2023"
     },
     {
-      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
-      "language": "English",
+      "candidate_key": "beltalowda|molisoft|2025|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "Beltalowda.rzx.zip",
+          "release_boundary_evidence": {
+            "language": "Multi-language: English, Spanish",
+            "publisher": "Molisoft",
+            "title": "Beltalowda",
+            "year": "2025/Sep/19"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/44573/ZX-Spectrum/Beltalowda",
+          "source_release_id": "44573",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0044573/Beltalowda.rzx.zip"
+        }
+      ],
+      "publisher": "Molisoft",
+      "status": "release_boundary_source_discovered",
+      "title": "Beltalowda",
+      "year": "2025"
+    },
+    {
+      "candidate_key": "colour beyond time|lost|2022|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Jamie Bradbury",
+      "publisher": "Lost",
       "status": "no_release_boundary_source_match",
       "title": "Colour Beyond Time",
       "year": "2022"
     },
     {
-      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
-      "language": "English",
+      "candidate_key": "cozumel|aventuras ad s.a. (spain)|1990|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Puddle Software",
+      "publisher": "Aventuras AD S.A. (Spain)",
       "status": "no_release_boundary_source_match",
-      "title": "Curse of Rabenstein, The",
-      "year": "2019"
+      "title": "Cozumel",
+      "year": "1990"
     },
     {
-      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
-      "language": "Spanish",
+      "candidate_key": "eight feet under|pond software ltd|2018|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Puddle Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Curse of Rabenstein, The",
-      "year": "2023"
-    },
-    {
-      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "status": "no_release_boundary_source_match",
-      "title": "Daga Oscura, La",
-      "year": "2024"
-    },
-    {
-      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "status": "no_release_boundary_source_match",
-      "title": "Dark Dagger, The",
-      "year": "2024"
-    },
-    {
-      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Electric Storm Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Deception of the Mind's Eye",
-      "year": "1993"
-    },
-    {
-      "candidate_key": "deer creek|primary resources|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Primary Resources",
-      "status": "no_release_boundary_source_match",
-      "title": "Deer Creek",
-      "year": "2019"
-    },
-    {
-      "candidate_key": "die, ragus!|sunteam|2023|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Sunteam",
-      "status": "no_release_boundary_source_match",
-      "title": "Die, Ragus!",
-      "year": "2023"
-    },
-    {
-      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Taskmaster Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Dragnet Case, The",
-      "year": "1989"
-    },
-    {
-      "candidate_key": "dream walker|8bitag|2021|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "8bitAG",
-      "status": "no_release_boundary_source_match",
-      "title": "Dream Walker",
-      "year": "2021"
-    },
-    {
-      "candidate_key": "eight feet under|pond soft|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pond Soft",
+      "publisher": "Pond Software Ltd",
       "status": "no_release_boundary_source_match",
       "title": "Eight Feet Under",
-      "year": "2019"
+      "year": "2018"
     },
     {
-      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
-      "language": "Spanish",
+      "candidate_key": "el cetro del sol|toni pera|2015|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "ElCetroDelSol_Part1.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "El Cetro del Sol",
+            "year": "2015"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+          "source_release_id": "30241",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030241/ElCetroDelSol_Part1.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "ElCetroDelSol_Part1.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "El Cetro del Sol",
+            "year": "2015"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+          "source_release_id": "30241",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030241/ElCetroDelSol_Part1.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "ElCetroDelSol_Part2.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "El Cetro del Sol",
+            "year": "2015"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+          "source_release_id": "30241",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030241/ElCetroDelSol_Part2.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "ElCetroDelSol_Part2.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "El Cetro del Sol",
+            "year": "2015"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+          "source_release_id": "30241",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030241/ElCetroDelSol_Part2.tzx.zip"
+        }
+      ],
+      "publisher": "Toni Pera",
+      "status": "release_boundary_source_discovered",
+      "title": "El Cetro del Sol",
+      "year": "2015"
+    },
+    {
+      "candidate_key": "el dia que lo entiendas se acaba el mundo|pedro fernandez lopez (spain)|none|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Kame Soft",
+      "publisher": "Pedro Fernandez Lopez (Spain)",
       "status": "no_release_boundary_source_match",
-      "title": "Elfos de Maroland, Los",
-      "year": "1993"
+      "title": "El Dia Que Lo Entiendas Se Acaba El Mundo",
+      "year": null
     },
     {
-      "candidate_key": "elf|defecto digital studios|2016|spanish",
-      "language": "Spanish",
-      "matches": [],
+      "candidate_key": "elf, la aventura - parte 1|defecto digital studios|2016|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "ELFLaAventura-Parte1.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Defecto Digital Studios",
+            "title": "ELF, La Aventura - Parte 1",
+            "year": "2016"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+          "source_release_id": "30277",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "ELFLaAventura-Parte1.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Defecto Digital Studios",
+            "title": "ELF, La Aventura - Parte 1",
+            "year": "2016"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+          "source_release_id": "30277",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip"
+        }
+      ],
       "publisher": "Defecto Digital Studios",
-      "status": "no_release_boundary_source_match",
-      "title": "ELF",
+      "status": "release_boundary_source_discovered",
+      "title": "ELF, La Aventura - Parte 1",
       "year": "2016"
     },
     {
-      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Jose Daniel Carbonell",
-      "status": "no_release_boundary_source_match",
-      "title": "Elves of Maroland, The",
-      "year": "2024"
-    },
-    {
-      "candidate_key": "erinia|daniel revenga|2020|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Daniel Revenga",
-      "status": "no_release_boundary_source_match",
-      "title": "Erinia",
-      "year": "2020"
-    },
-    {
-      "candidate_key": "erinia|daniel revenga|2025|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Daniel Revenga",
-      "status": "no_release_boundary_source_match",
-      "title": "Erinia",
-      "year": "2025"
-    },
-    {
-      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Jose Daniel Carbonell",
-      "status": "no_release_boundary_source_match",
-      "title": "Errand Boy, The",
-      "year": "2021"
-    },
-    {
-      "candidate_key": "escape to murky woods|pension productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Pension Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Escape to Murky Woods",
+      "candidate_key": "excalibur: sword of kings remake|adventuron software ltd|2019|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "Excalibur-SwordOfKingsRemake.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Adventuron Software Ltd",
+            "title": "Excalibur: Sword of Kings Remake",
+            "year": "2019/Nov/20"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
+          "source_release_id": "37245",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0037245/Excalibur-SwordOfKingsRemake.dsk.zip"
+        }
+      ],
+      "publisher": "Adventuron Software Ltd",
+      "status": "release_boundary_source_discovered",
+      "title": "Excalibur: Sword of Kings Remake",
       "year": "2019"
     },
     {
-      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
-      "language": "Spanish",
-      "matches": [],
-      "publisher": "Daniel Revenga",
-      "status": "no_release_boundary_source_match",
-      "title": "Estrella de la Ma\u00f1ana, La",
-      "year": "2017"
-    },
-    {
-      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Everyday Tale of a Seeker of Gold, An",
-      "year": "1986"
-    },
-    {
-      "candidate_key": "framed!|kennard douglas|2024|english",
-      "language": "English",
+      "candidate_key": "framed!|kennard douglas|2024|unknown",
+      "language": "Unknown",
       "matches": [],
       "publisher": "Kennard Douglas",
       "status": "no_release_boundary_source_match",
@@ -426,43 +350,783 @@
       "year": "2024"
     },
     {
-      "candidate_key": "from out of the snow|pension productions|2019|english",
-      "language": "English",
+      "candidate_key": "imprisoned|stonechat productions (uk)|2023|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Pension Productions",
+      "publisher": "Stonechat Productions (UK)",
       "status": "no_release_boundary_source_match",
-      "title": "From Out of the Snow",
+      "title": "Imprisoned",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "karhum|toni pera|2019|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "Karhum(Part1).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "Karhum",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+          "source_release_id": "34683",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034683/Karhum(Part1).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Karhum(Part2).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "Karhum",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+          "source_release_id": "34683",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034683/Karhum(Part2).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Karhum(Part3).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "Karhum",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+          "source_release_id": "34683",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034683/Karhum(Part3).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Karhum(Part4).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Toni Pera",
+            "title": "Karhum",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+          "source_release_id": "34683",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034683/Karhum(Part4).tap.zip"
+        }
+      ],
+      "publisher": "Toni Pera",
+      "status": "release_boundary_source_discovered",
+      "title": "Karhum",
       "year": "2019"
     },
     {
-      "candidate_key": "fuddo and slam|zenobi software|1988|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Zenobi Software",
-      "status": "no_release_boundary_source_match",
-      "title": "Fuddo and Slam",
-      "year": "1988"
+      "candidate_key": "la aventura espacial|aventuras ad s.a. (spain)|1990|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "AventuraEspacialLa(IBSA).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Espacial",
+            "year": "1990"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+          "source_release_id": "5975",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa(IBSA).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraEspacialLa.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Espacial",
+            "year": "1990"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+          "source_release_id": "5975",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraEspacialLa.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Espacial",
+            "year": "1990"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+          "source_release_id": "5975",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraEspacialLaPart1.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Espacial",
+            "year": "1990"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+          "source_release_id": "5975",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLaPart1.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraEspacialLaPart2.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Espacial",
+            "year": "1990"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+          "source_release_id": "5975",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLaPart2.tap.zip"
+        }
+      ],
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "status": "release_boundary_source_discovered",
+      "title": "La Aventura Espacial",
+      "year": "1990"
     },
     {
-      "candidate_key": "golden seas|sunteam|2022|english",
-      "language": "English",
+      "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "AventuraOriginalLa(IBSA).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Original",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+          "source_release_id": "5977",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa(IBSA).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraOriginalLa.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Original",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+          "source_release_id": "5977",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraOriginalLa.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Original",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+          "source_release_id": "5977",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraOriginalLaPart1-LaBusqueda.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Original",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+          "source_release_id": "5977",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLaPart1-LaBusqueda.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventuraOriginalLaPart2-ElEncuentro.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "La Aventura Original",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+          "source_release_id": "5977",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLaPart2-ElEncuentro.tap.zip"
+        }
+      ],
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "status": "release_boundary_source_discovered",
+      "title": "La Aventura Original",
+      "year": "1989"
+    },
+    {
+      "candidate_key": "la celda|adanoliva|none|unknown",
+      "language": "Unknown",
       "matches": [],
-      "publisher": "Sunteam",
+      "publisher": "Adanoliva",
       "status": "no_release_boundary_source_match",
-      "title": "Golden Seas",
+      "title": "La Celda",
+      "year": null
+    },
+    {
+      "candidate_key": "la estrella de la ma\u00f1ana 2023|dare|2023|unknown",
+      "error": "UnicodeEncodeError: 'ascii' codec can't encode character '\\xf1' in position 49: ordinal not in range(128)",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "DaRe",
+      "status": "discovery_error",
+      "title": "La Estrella de la Ma\u00f1ana 2023",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "AventurasDeRudolphineRurLas(Part1).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Dwalin",
+            "title": "Las Aventuras de Rudolphine Rur",
+            "year": "2020/Apr/19"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
+          "source_release_id": "35692",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035692/AventurasDeRudolphineRurLas(Part1).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "AventurasDeRudolphineRurLas(Part2).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Dwalin",
+            "title": "Las Aventuras de Rudolphine Rur",
+            "year": "2020/Apr/19"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
+          "source_release_id": "35692",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035692/AventurasDeRudolphineRurLas(Part2).tap.zip"
+        }
+      ],
+      "publisher": "Dwalin",
+      "status": "release_boundary_source_discovered",
+      "title": "Las Aventuras de Rudolphine Rur",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "last night in the office|quizlock|2020|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "LastNightInTheOffice.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Quizlock",
+            "title": "Last Night in the Office",
+            "year": "2020/Jul/01"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
+          "source_release_id": "36141",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036141/LastNightInTheOffice.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "LastNightInTheOffice.rzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Quizlock",
+            "title": "Last Night in the Office",
+            "year": "2020/Jul/01"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
+          "source_release_id": "36141",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036141/LastNightInTheOffice.rzx.zip"
+        }
+      ],
+      "publisher": "Quizlock",
+      "status": "release_boundary_source_discovered",
+      "title": "Last Night in the Office",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "los elfos de maroland 2023|dwalin|2023|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Dwalin",
+      "status": "no_release_boundary_source_match",
+      "title": "Los Elfos de Maroland 2023",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "TemplosSagradosLos.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "Los Templos Sagrados",
+            "year": "1991"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
+          "source_release_id": "7082",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/t/TemplosSagradosLos.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "TemplosSagradosLos.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Aventuras AD S.A. (Spain)",
+            "title": "Los Templos Sagrados",
+            "year": "1991"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
+          "source_release_id": "7082",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/t/TemplosSagradosLos.tzx.zip"
+        }
+      ],
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "status": "release_boundary_source_discovered",
+      "title": "Los Templos Sagrados",
+      "year": "1991"
+    },
+    {
+      "candidate_key": "one last thing|dee cooke|2020|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "OneLastThing.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Dee Cooke",
+            "title": "One Last Thing",
+            "year": "2020/Jul/06"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
+          "source_release_id": "36146",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036146/OneLastThing.dsk.zip"
+        }
+      ],
+      "publisher": "Dee Cooke",
+      "status": "release_boundary_source_discovered",
+      "title": "One Last Thing",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "pandemia xxi|luckywebsoft|2019|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "PandemiaXXI.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "luckywebsoft",
+            "title": "Pandemia XXI",
+            "year": "2019/Feb"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
+          "source_release_id": "36074",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036074/PandemiaXXI.tap.zip"
+        }
+      ],
+      "publisher": "luckywebsoft",
+      "status": "release_boundary_source_discovered",
+      "title": "Pandemia XXI",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "proyecto vampiro|pedro fernandez lopez (spain)|2019|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Pedro Fernandez Lopez (Spain)",
+      "status": "no_release_boundary_source_match",
+      "title": "Proyecto Vampiro",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "terror by night|a novel approach|2023|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "A Novel Approach",
+      "status": "no_release_boundary_source_match",
+      "title": "Terror by Night",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "CurseOfRabensteinThe.rzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Puddle Software",
+            "title": "The Curse of Rabenstein",
+            "year": "2020/Mar"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/35321/ZX-Spectrum/The_Curse_of_Rabenstein",
+          "source_release_id": "35321",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035321/CurseOfRabensteinThe.rzx.zip"
+        }
+      ],
+      "publisher": "Puddle Software",
+      "status": "release_boundary_source_discovered",
+      "title": "The Curse of Rabenstein",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Puddle Software",
+      "status": "unsupported_catalog_platform_path",
+      "title": "The Curse of Rabenstein",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "the dragnet case re-release|taskmaster software (uk)|2023|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Taskmaster Software (UK)",
+      "status": "no_release_boundary_source_match",
+      "title": "The Dragnet Case Re-Release",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "the errand boy|dwalin|2021|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Dwalin",
+      "status": "no_release_boundary_source_match",
+      "title": "The Errand Boy",
+      "year": "2021"
+    },
+    {
+      "candidate_key": "the house on the other side of the storm|pablo mart\u00ednez merino (spain)|2019|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Pablo Mart\u00ednez Merino (Spain)",
+      "status": "no_release_boundary_source_match",
+      "title": "The House on the Other Side of the Storm",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "the legacy of markham island|stonechat productions (uk)|2022|unknown",
+      "language": "Unknown",
+      "matches": [],
+      "publisher": "Stonechat Productions (UK)",
+      "status": "no_release_boundary_source_match",
+      "title": "The Legacy of Markham Island",
       "year": "2022"
     },
     {
-      "candidate_key": "great caravan caper|electric storm productions|2019|english",
-      "language": "English",
-      "matches": [],
-      "publisher": "Electric Storm Productions",
-      "status": "no_release_boundary_source_match",
-      "title": "Great Caravan Caper",
+      "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "MysteryOfMarkhamManorThe(128K).dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "The Mystery of Markham Manor",
+            "year": "2022/Dec"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+          "source_release_id": "39045",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(128K).dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "MysteryOfMarkhamManorThe(128K).tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "The Mystery of Markham Manor",
+            "year": "2022/Dec"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+          "source_release_id": "39045",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(128K).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "MysteryOfMarkhamManorThe(128K).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "The Mystery of Markham Manor",
+            "year": "2022/Dec"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+          "source_release_id": "39045",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(128K).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "MysteryOfMarkhamManorThe(48K).tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "The Mystery of Markham Manor",
+            "year": "2022/Dec"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+          "source_release_id": "39045",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(48K).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "MysteryOfMarkhamManorThe(48K).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Taskmaster Software (UK)",
+            "title": "The Mystery of Markham Manor",
+            "year": "2022/Dec"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+          "source_release_id": "39045",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(48K).tzx.zip"
+        }
+      ],
+      "publisher": "Taskmaster Software (UK)",
+      "status": "release_boundary_source_discovered",
+      "title": "The Mystery of Markham Manor",
+      "year": "2022"
+    },
+    {
+      "candidate_key": "the revenge of moriarty|gareth pitchford (uk)|2019|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriarty(DAAD).dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(DAAD).dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriarty(DAAD).tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(DAAD).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriarty(DAAD).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(DAAD).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriarty(PAWS_Prototype).tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(PAWS_Prototype).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriarty(PAWS_Prototype).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriarty(PAWS_Prototype).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "RevengeOfMoriartyThe.rzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Gareth Pitchford (UK)",
+            "title": "The Revenge of Moriarty",
+            "year": "2019"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+          "source_release_id": "36250",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036250/RevengeOfMoriartyThe.rzx.zip"
+        }
+      ],
+      "publisher": "Gareth Pitchford (UK)",
+      "status": "release_boundary_source_discovered",
+      "title": "The Revenge of Moriarty",
       "year": "2019"
+    },
+    {
+      "candidate_key": "torreoscura|bieno marti (spain)|2020|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "Torreoscura(Part1)(EN).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Multi-language: English, Spanish",
+            "publisher": "Bieno Marti (Spain)",
+            "title": "Torreoscura",
+            "year": "2020/Jun"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+          "source_release_id": "36067",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036067/Torreoscura(Part1)(EN).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Torreoscura(Part1).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Multi-language: English, Spanish",
+            "publisher": "Bieno Marti (Spain)",
+            "title": "Torreoscura",
+            "year": "2020/Jun"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+          "source_release_id": "36067",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036067/Torreoscura(Part1).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Torreoscura(Part2)(EN).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Multi-language: English, Spanish",
+            "publisher": "Bieno Marti (Spain)",
+            "title": "Torreoscura",
+            "year": "2020/Jun"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+          "source_release_id": "36067",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036067/Torreoscura(Part2)(EN).tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "Torreoscura(Part2).tap.zip",
+          "release_boundary_evidence": {
+            "language": "Multi-language: English, Spanish",
+            "publisher": "Bieno Marti (Spain)",
+            "title": "Torreoscura",
+            "year": "2020/Jun"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+          "source_release_id": "36067",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036067/Torreoscura(Part2).tap.zip"
+        }
+      ],
+      "publisher": "Bieno Marti (Spain)",
+      "status": "release_boundary_source_discovered",
+      "title": "Torreoscura",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "zhl|alien software (spain)|2016|unknown",
+      "language": "Unknown",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "ZHL_Release3.tap.zip",
+          "release_boundary_evidence": {
+            "language": "Spanish",
+            "publisher": "Alien Software (Spain)",
+            "title": "ZHL",
+            "year": "2016"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
+          "source_release_id": "35221",
+          "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035221/ZHL_Release3.tap.zip"
+        }
+      ],
+      "publisher": "Alien Software (Spain)",
+      "status": "release_boundary_source_discovered",
+      "title": "ZHL",
+      "year": "2016"
     }
   ],
-  "release_boundary_source_candidate_count": 1,
+  "release_boundary_source_candidate_count": 19,
   "schema_version": 1,
   "source_homepage": "https://spectrumcomputing.co.uk"
 }

@@ -89,3 +89,60 @@ def test_direct_game_downloads_excludes_non_game_media() -> None:
         "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors.tzx.zip",
         "filename": "BehindClosedDoors.tzx.zip",
     }]
+
+
+def test_linked_spectrum_entry_is_used_without_a_title_search(monkeypatch) -> None:
+    linked_candidate = {
+        **candidate(),
+        "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
+        "catalog_platform": "ZX-Spectrum",
+    }
+    searched: list[str] = []
+    monkeypatch.setattr(spectrum, "fetch_html", lambda url: entry_html())
+    monkeypatch.setattr(spectrum, "search_entry_urls", lambda title: searched.append(title) or [])
+
+    result = spectrum.discover_candidate(linked_candidate)
+
+    assert result["status"] == "release_boundary_source_discovered"
+    assert len(result["matches"]) == 1
+    assert searched == []
+
+
+def test_unknown_language_is_not_inferred_but_can_retain_observed_source_evidence(monkeypatch) -> None:
+    unknown_language_candidate = {**candidate(), "language": "Unknown"}
+    monkeypatch.setattr(spectrum, "fetch_html", lambda url: entry_html())
+
+    records = spectrum.inspect_entry(
+        unknown_language_candidate,
+        "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
+    )
+
+    assert records[0]["release_boundary_evidence"]["language"] == "English"
+
+
+def test_spectrum_next_catalog_path_is_explicitly_outside_zx_adapter_scope() -> None:
+    next_candidate = {**candidate(), "catalog_platform": "ZX-Spectrum_Next"}
+
+    result = spectrum.discover_candidate(next_candidate)
+
+    assert result["status"] == "unsupported_catalog_platform_path"
+    assert result["matches"] == []
+
+
+def test_discovery_snapshot_accepts_a_fixed_capture_epoch(monkeypatch) -> None:
+    monkeypatch.setattr(
+        spectrum,
+        "discover_candidate",
+        lambda item: {**item, "status": "no_release_boundary_source_match", "matches": []},
+    )
+    queue = {"discovery_required": [candidate()]}
+    policy = {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish",
+    }
+
+    result = spectrum.discover(queue, policy, workers=1, generated_at_epoch=1_787_378_470)
+
+    assert result["generated_at_epoch"] == 1_787_378_470
+    assert result["input_candidate_count"] == 1

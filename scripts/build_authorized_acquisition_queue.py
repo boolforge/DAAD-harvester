@@ -47,6 +47,8 @@ def build(
             "publisher": candidate["publisher"],
             "year": candidate["year"],
             "language": candidate["language"],
+            "catalog_source_url": candidate["source_url"],
+            "catalog_platform": candidate.get("platform"),
             "authorization_status": (
                 "authorized" if decision.allowed
                 else "authorized_source_discovery_required"

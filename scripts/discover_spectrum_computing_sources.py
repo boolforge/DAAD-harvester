@@ -130,9 +130,13 @@ def inspect_entry(candidate: dict[str, Any], entry_url: str) -> list[dict[str, A
     language = value_between(text, "Message Language", "Machine Type")
     if not (
         title and title_matches(str(candidate["title"]), title)
-        and year_matches(str(candidate["year"]), year)
+        and (str(candidate["year"]).casefold() == "unknown" or year_matches(str(candidate["year"]), year))
         and publisher_matches(str(candidate["publisher"]), publisher)
-        and language and normalize(language) == normalize(str(candidate["language"]))
+        and language
+        and (
+            str(candidate["language"]).casefold() == "unknown"
+            or normalize(language) == normalize(str(candidate["language"]))
+        )
     ):
         return []
     entry_match = re.search(r"/entry/(\d+)/", entry_url)
@@ -158,7 +162,25 @@ def inspect_entry(candidate: dict[str, Any], entry_url: str) -> list[dict[str, A
 
 def discover_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
     matches: list[dict[str, Any]] = []
-    for entry_url in search_entry_urls(str(candidate["title"])):
+    platform = candidate.get("catalog_platform")
+    if platform not in {None, "ZX-Spectrum"}:
+        return {
+            "candidate_key": candidate["candidate_key"],
+            "title": candidate["title"],
+            "publisher": candidate["publisher"],
+            "year": candidate["year"],
+            "language": candidate["language"],
+            "status": "unsupported_catalog_platform_path",
+            "matches": [],
+        }
+    catalog_source_url = candidate.get("catalog_source_url")
+    if isinstance(catalog_source_url, str) and re.fullmatch(
+        r"https://spectrumcomputing\.co\.uk/entry/\d+/ZX-Spectrum/.+", catalog_source_url
+    ):
+        entry_urls = [catalog_source_url]
+    else:
+        entry_urls = search_entry_urls(str(candidate["title"]))
+    for entry_url in entry_urls:
         matches.extend(inspect_entry(candidate, entry_url))
     matches.sort(key=lambda record: (record["source_record_url"], record["filename"]))
     return {
@@ -172,7 +194,12 @@ def discover_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def discover(queue: dict[str, Any], policy: dict[str, Any], workers: int) -> dict[str, Any]:
+def discover(
+    queue: dict[str, Any],
+    policy: dict[str, Any],
+    workers: int,
+    generated_at_epoch: int | None = None,
+) -> dict[str, Any]:
     decision = global_authorization_decision(policy)
     if not decision.allowed:
         raise ValueError(f"Global authorization policy rejected: {decision.reason}")
@@ -200,7 +227,7 @@ def discover(queue: dict[str, Any], policy: dict[str, Any], workers: int) -> dic
         "schema_version": 1,
         "purpose": "Spectrum Computing direct ZX game-media discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
         "source_homepage": BASE_URL,
-        "generated_at_epoch": int(time.time()),
+        "generated_at_epoch": int(time.time()) if generated_at_epoch is None else generated_at_epoch,
         "input_candidate_count": len(candidates),
         "release_boundary_source_candidate_count": sum(bool(record["matches"]) for record in records),
         "records": records,
@@ -213,14 +240,37 @@ def main() -> int:
     parser.add_argument("--policy", type=Path, default=DEFAULT_POLICY)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--generated-at-epoch",
+        type=int,
+        help="Fixed capture epoch for a deterministic retained discovery snapshot.",
+    )
     parser.add_argument("--candidate-key", action="append", default=[], help="Exact candidate key to inspect; repeat for a bounded batch.")
+    parser.add_argument(
+        "--catalog-source-prefix",
+        help="Inspect only candidates whose retained catalog URL begins with this public prefix.",
+    )
     args = parser.parse_args()
     queue = json.loads(args.queue.read_text(encoding="utf-8"))
     if args.candidate_key:
         selected = set(args.candidate_key)
-        queue = {**queue, "discovery_required": [candidate for candidate in queue.get("discovery_required", []) if candidate["candidate_key"] in selected]}
+        queue = {
+            **queue,
+            "discovery_required": [
+                candidate for candidate in queue.get("discovery_required", [])
+                if candidate["candidate_key"] in selected
+            ],
+        }
+    if args.catalog_source_prefix:
+        queue = {
+            **queue,
+            "discovery_required": [
+                candidate for candidate in queue.get("discovery_required", [])
+                if str(candidate.get("catalog_source_url", "")).startswith(args.catalog_source_prefix)
+            ],
+        }
     policy = json.loads(args.policy.read_text(encoding="utf-8"))
-    result = discover(queue, policy, args.workers)
+    result = discover(queue, policy, args.workers, args.generated_at_epoch)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(

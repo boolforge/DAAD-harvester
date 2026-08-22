@@ -6,6 +6,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -23,6 +25,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[csscgc] licence to mow|jbizzel|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39242/ZX-Spectrum/Licence_to_Mow",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -40,6 +44,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[csscgc] mad gods|jbizzel|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39180/ZX-Spectrum/Mad_Gods",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -57,6 +63,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[csscgc] the da vinci code 2: trouble from the past|uglifruit|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38128/ZX-Spectrum/The_Da_Vinci_Code_2_Trouble_From_The_Past",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -74,6 +82,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[csscgc] top gun 2: maverick dangerous!|uglifruit|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38180/ZX-Spectrum/Top_Gun_2_Maverick_Dangerous",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -91,6 +101,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "[mod] erinia (enhanced version)|dare|2024|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44145/ZX-Spectrum/Erinia_Enhanced_version",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -108,6 +120,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -125,6 +139,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "after the dark|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -142,6 +158,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "beltalowda|molisoft|2025|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44573/ZX-Spectrum/Beltalowda",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -159,6 +177,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -176,6 +196,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "case of murder, a|taskmaster software|2022|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -193,6 +215,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -210,6 +234,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "colour beyond time|jamie bradbury|2022|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -227,6 +253,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "colour beyond time|lost|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37444/ZX-Spectrum/Colour_Beyond_Time",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -244,6 +272,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "cozumel|aventuras ad s.a. (spain)|1990|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/6183/ZX-Spectrum/Cozumel",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -261,6 +291,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -278,6 +310,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -295,6 +329,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -312,6 +348,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "deer creek|primary resources|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -329,6 +367,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "dragnet case, the|taskmaster software|1989|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -346,6 +386,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "dream walker|8bitag|2021|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -363,6 +405,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "eight feet under|pond soft|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -380,6 +424,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "eight feet under|pond software ltd|2018|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34668/ZX-Spectrum/Eight_Feet_Under",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -397,6 +443,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "el cetro del sol|toni pera|2015|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -414,6 +462,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "el dia que lo entiendas se acaba el mundo|pedro fernandez lopez (spain)|none|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -431,6 +481,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "elf, la aventura - parte 1|defecto digital studios|2016|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -448,6 +500,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -465,6 +519,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "erinia|daniel revenga|2020|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -482,6 +538,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "erinia|daniel revenga|2025|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -499,6 +557,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "escape to murky woods|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -516,6 +576,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -533,6 +595,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "excalibur: sword of kings remake|adventuron software ltd|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -550,6 +614,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "framed!|kennard douglas|2024|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/43705/ZX-Spectrum/Framed",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -567,6 +633,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "from out of the snow|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -584,6 +652,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "great caravan caper|electric storm productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -601,6 +671,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "imprisoned|stonechat productions (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42653/ZX-Spectrum/Imprisoned",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -618,6 +690,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "karhum|toni pera|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -635,6 +709,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "la aventura espacial|aventuras ad s.a. (spain)|1990|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -652,6 +728,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -669,6 +747,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "la celda|adanoliva|none|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42566/ZX-Spectrum/La_Celda",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -686,6 +766,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "la estrella de la ma\u00f1ana 2023|dare|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42201/ZX-Spectrum/La_Estrella_de_la_Ma\u00f1ana_2023",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -703,6 +785,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -720,6 +804,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "last night in the office|quizlock|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -737,6 +823,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "los elfos de maroland 2023|dwalin|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -754,6 +842,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -771,6 +861,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "one last thing|dee cooke|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -788,6 +880,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "pandemia xxi|luckywebsoft|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -805,6 +899,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "proyecto vampiro|pedro fernandez lopez (spain)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36422/ZX-Spectrum/Proyecto_Vampiro",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -822,6 +918,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "terror by night|a novel approach|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42612/ZX-Spectrum/Terror_by_Night",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -839,6 +937,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35321/ZX-Spectrum/The_Curse_of_Rabenstein",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -856,6 +956,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "catalog_platform": "ZX-Spectrum_Next",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36071/ZX-Spectrum_Next/The_Curse_of_Rabenstein",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -873,6 +975,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the dragnet case re-release|taskmaster software (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42538/ZX-Spectrum/The_Dragnet_Case_Re-Release",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -890,6 +994,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the errand boy|dwalin|2021|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -907,6 +1013,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the house on the other side of the storm|pablo mart\u00ednez merino (spain)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -924,6 +1032,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the legacy of markham island|stonechat productions (uk)|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39032/ZX-Spectrum/The_Legacy_of_Markham_Island",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -941,6 +1051,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -958,6 +1070,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "the revenge of moriarty|gareth pitchford (uk)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -975,6 +1089,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "torreoscura|bieno marti (spain)|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -992,6 +1108,8 @@
     {
       "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "zhl|alien software (spain)|2016|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
         "decision_date": "2026-08-22",
@@ -1015,6 +1133,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "AlienResearchCentre2.tap.zip",
       "language": "English",
@@ -1039,6 +1159,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "AventuraEspacialLa.tzx.zip",
       "language": "Spanish",
@@ -1063,6 +1185,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "AventuraOriginalLa.tzx.zip",
       "language": "Spanish",
@@ -1087,6 +1211,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
       "language": "English",
@@ -1111,6 +1237,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BarryBasic1-SpectrumPlus3Edition.zip",
       "language": "English",
@@ -1140,6 +1268,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors(CustomisedVersion).tzx.zip",
       "language": "English",
@@ -1164,6 +1294,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors2-TheSequel(different).tzx.zip",
       "language": "English",
@@ -1188,6 +1320,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
       "language": "English",
@@ -1212,6 +1346,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors4-BalrogsDayOut.tzx.zip",
       "language": "English",
@@ -1236,6 +1372,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors5.tzx.zip",
       "language": "English",
@@ -1260,6 +1398,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors6.tzx.zip",
       "language": "English",
@@ -1284,6 +1424,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 7|zenobi software|2018|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors7.tzx.zip",
       "language": "English",
@@ -1308,6 +1450,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "behind closed doors 8|pension productions|2020|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BehindClosedDoors8-ThePandemic.tap.zip",
       "language": "English",
@@ -1332,6 +1476,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
       "filename": "BulboAndTheDragon.tap.zip",
       "language": "English",
@@ -1356,6 +1502,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "BulboAndTheLizard-King(different).tzx.zip",
       "language": "English",
@@ -1380,6 +1528,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "LaCasaAlOtroLadoDeLaTormenta(ES).tap.zip",
       "language": "Spanish",
@@ -1404,6 +1554,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "non_commercial_no_sale_without_consent",
       "filename": "cero_absoluto.zip",
       "language": "Spanish",
@@ -1438,6 +1590,8 @@
         "source_creator": "Jose Daniel Carbonell Cob (Spain)",
         "source_publisher": "Dwalin"
       },
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "ErrandBoyThe(ES).dsk.zip",
       "language": "Spanish",
@@ -1468,6 +1622,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "LaDagaOscuraV10.zip",
       "language": "Spanish",
@@ -1497,6 +1653,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "TheDarkDaggerV2.zip",
       "language": "English",
@@ -1526,6 +1684,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "die, ragus!|sunteam|2023|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "Die, Ragus! by sunteam.zip",
       "language": "English",
@@ -1555,6 +1715,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "language": "Spanish",
       "publisher": "Aventuras A.D.",
@@ -1578,6 +1740,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "ELFLaAventura-Parte1.tap.zip",
       "language": "Spanish",
@@ -1607,6 +1771,8 @@
         "source_creator": "Jose Daniel Carbonell Cob (Spain)",
         "source_publisher": "Dwalin"
       },
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "MAROLAND_ZX_DISK.zip",
       "language": "English",
@@ -1642,6 +1808,8 @@
         "source_creator": "Jose Daniel Carbonell Cob (Spain)",
         "source_publisher": "Dwalin"
       },
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "ErrandBoyThe(EN).dsk.zip",
       "language": "English",
@@ -1672,6 +1840,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
       "filename": "EverydayTaleOfASeekerOfGoldAn.tzx.zip",
       "language": "English",
@@ -1696,6 +1866,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "framed!|kennard douglas|2024|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "framedv1.0.TAP",
       "language": "English",
@@ -1720,6 +1892,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "FromOutOfADarkNightSky(different).tzx.zip",
       "language": "English",
@@ -1744,6 +1918,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "Fuddo__Slam_1988_Zenobi_Software.z80",
       "language": "English",
@@ -1768,6 +1944,8 @@
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
       "candidate_key": "golden seas|sunteam|2022|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
       "filename": "Golden Seas by Sunteam.zip",
       "language": "English",
