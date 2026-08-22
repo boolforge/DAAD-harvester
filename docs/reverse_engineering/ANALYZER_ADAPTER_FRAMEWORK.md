@@ -96,6 +96,11 @@ binds a raw two-byte fixture, explicit origin/start/end arguments, and its
 deterministic skool listing. A Spectrum snapshot, raw memory file, control file,
 or emulator-derived execution map is still a platform-specific evidence input;
 SkoolKit annotations are not recovered source or runtime claims.
+The DazzleStar source revision `8841d4fa48bfeabd52b090b8e785637b767dafa3`
+has an explicit [license and build boundary](../../research/sources/dazzlestar_license_build_boundary_2026-08-22.md):
+the bundled license file is empty, no source-license notice was observed, and
+its disassembler build references an undeclared `zmac` toolchain rather than a
+native host CLI. It remains outside the executable candidate catalog.
 REDasm revision `113245ef02090602978e461fcb7031b75da448d6` remains i8086-only
 candidate evidence: its GUI repository and multi-repository workspace do not
 provide a stable batch invocation, as recorded in its separate [workspace/core boundary](../../research/sources/redasm_workspace_headless_boundary_2026-08-22.json).

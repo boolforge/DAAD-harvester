@@ -192,6 +192,16 @@ def test_i8086_candidate_records_license_and_build_blocks_without_becoming_execu
     assert any("CMake build fails" in blocker for blocker in candidate["blockers"])
 
 
+def test_dazzlestar_candidate_records_empty_license_and_toolchain_blocks_without_becoming_executable() -> None:
+    matrix = analyzer_adapters.load_candidate_matrix(CANDIDATE_MATRIX_PATH)
+    candidate = next(candidate for candidate in matrix["candidates"] if candidate["candidate_id"] == "dazzlestar-z80-v1")
+
+    assert candidate["admission_state"] == "blocked_by_license_or_build"
+    assert candidate["execution_eligible"] is False
+    assert "empty" in candidate["source"]["license_status"]
+    assert any("zmac" in blocker for blocker in candidate["blockers"])
+
+
 def test_ghidra_headless_health_covers_each_configured_architecture_without_authorizing_retained_inputs() -> None:
     health = analyzer_adapters.load_ghidra_headless_health(GHIDRA_HEALTH_PATH, _toolchain())
 
