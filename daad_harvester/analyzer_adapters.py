@@ -25,6 +25,16 @@ VALID_RUNNERS = frozenset({"ghidra_headless_binary", "radare2_static", "architec
 VALID_ADMISSION_STATES = frozenset({"discovery", "health_checked", "blocked_by_load_model", "blocked_by_license_or_build"})
 VALID_GHIDRA_HOST_STATUSES = frozenset({"health_checked", "documented_unchecked", "blocked"})
 COMMENTARY_LAYERS = ("bytes", "decoded_instructions", "tool_hypotheses", "evidenced_behavior")
+DOS_I8086_ADMISSION_CONTRACT = {
+    "schema_version": 1,
+    "purpose": "Fail-closed evidence contract for a future retained DOS i8086 COM or MZ static-analysis invocation.",
+    "states": ["unclassified", "blocked", "admissible_for_candidate_comparison"],
+    "common_required_evidence": ["artifact_hashes", "container_identification", "cpu_profile", "origin_or_load_segment", "entry_evidence", "cross_tool_disagreement_record"],
+    "com_required_evidence": ["psp_relationship", "image_origin", "wrapper_or_delivery_container"],
+    "mz_required_evidence": ["header_raw_bytes", "page_size_consistency", "header_paragraphs", "load_module_hash", "relocation_table_bounds", "initial_cs_ip", "initial_ss_sp", "allocation_fields", "psp_policy", "overlay_status"],
+    "fail_closed_conditions": ["unknown_container", "invalid_or_truncated_mz_header", "relocation_outside_load_module", "unresolved_overlay", "extended_mz_derived_format", "missing_com_psp_or_origin", "missing_entry_or_load_segment", "raw_base_zero_only"],
+    "analysis_boundary": "An admissible comparison may emit attributed tool decoding only. It does not recover source or establish behavior without separate evidence.",
+}
 _ADAPTER_ID = re.compile(r"^[a-z0-9][a-z0-9-]*-v[1-9][0-9]*$")
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -215,17 +225,9 @@ def load_candidate_matrix(path: Path) -> dict[str, Any]:
 def validate_dos_i8086_load_model_admission(contract: dict[str, Any]) -> None:
     """Validate the fail-closed evidence contract for future DOS i8086 comparison."""
 
-    if contract.get("schema_version") != DOS_I8086_ADMISSION_SCHEMA_VERSION:
-        raise AdapterCatalogError("DOS i8086 admission: unsupported schema_version")
-    _require_string(contract, "purpose", "DOS i8086 admission")
-    if contract.get("states") != ["unclassified", "blocked", "admissible_for_candidate_comparison"]:
-        raise AdapterCatalogError("DOS i8086 admission: states must preserve the fail-closed lifecycle")
-    for key in ("common_required_evidence", "com_required_evidence", "mz_required_evidence", "fail_closed_conditions"):
-        _require_string_list(contract, key, "DOS i8086 admission")
-    required_failures = {"unknown_container", "relocation_outside_load_module", "raw_base_zero_only"}
-    if not required_failures.issubset(contract["fail_closed_conditions"]):
-        raise AdapterCatalogError("DOS i8086 admission: required fail-closed conditions are missing")
-    _require_string(contract, "analysis_boundary", "DOS i8086 admission")
+    for field, expected in DOS_I8086_ADMISSION_CONTRACT.items():
+        if contract.get(field) != expected:
+            raise AdapterCatalogError(f"DOS i8086 admission: contract field differs: {field}")
 
 
 def load_dos_i8086_load_model_admission(path: Path) -> dict[str, Any]:

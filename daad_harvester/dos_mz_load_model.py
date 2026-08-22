@@ -7,21 +7,11 @@ import json
 from pathlib import Path
 from typing import Any
 
+from daad_harvester.analyzer_adapters import AdapterCatalogError, load_dos_i8086_load_model_admission
+
 
 class DosMzLoadModelError(ValueError):
     """Raised when a retained DOS MZ profile lacks valid header evidence."""
-
-
-EXPECTED_CANDIDATE_ADMISSION = {
-    "schema_version": 1,
-    "purpose": "Fail-closed evidence contract for a future retained DOS i8086 COM or MZ static-analysis invocation.",
-    "states": ["unclassified", "blocked", "admissible_for_candidate_comparison"],
-    "common_required_evidence": ["artifact_hashes", "container_identification", "cpu_profile", "origin_or_load_segment", "entry_evidence", "cross_tool_disagreement_record"],
-    "com_required_evidence": ["psp_relationship", "image_origin", "wrapper_or_delivery_container"],
-    "mz_required_evidence": ["header_raw_bytes", "page_size_consistency", "header_paragraphs", "load_module_hash", "relocation_table_bounds", "initial_cs_ip", "initial_ss_sp", "allocation_fields", "psp_policy", "overlay_status"],
-    "fail_closed_conditions": ["unknown_container", "invalid_or_truncated_mz_header", "relocation_outside_load_module", "unresolved_overlay", "extended_mz_derived_format", "missing_com_psp_or_origin", "missing_entry_or_load_segment", "raw_base_zero_only"],
-    "analysis_boundary": "An admissible comparison may emit attributed tool decoding only. It does not recover source or establish behavior without separate evidence.",
-}
 
 
 def _sha256(path: Path) -> str:
@@ -30,13 +20,6 @@ def _sha256(path: Path) -> str:
 
 def _word(data: bytes, offset: int) -> int:
     return int.from_bytes(data[offset:offset + 2], "little")
-
-
-def validate_dos_i8086_candidate_admission(contract: dict[str, Any]) -> None:
-    """Require the committed DOS candidate-admission boundary without promotion."""
-    for field, expected in EXPECTED_CANDIDATE_ADMISSION.items():
-        if contract.get(field) != expected:
-            raise DosMzLoadModelError(f"DOS candidate-admission contract differs: {field}")
 
 
 def parse_mz_header(data: bytes) -> dict[str, int]:
@@ -97,10 +80,10 @@ def parse_mz_header(data: bytes) -> dict[str, int]:
 def collect_dos_mz_load_model(root: Path) -> dict[str, Any]:
     """Collect validated MZ-only load facts for every retained i8086 profile."""
     admission_path = root / "reverse_engineering/workflows/dos_i8086_load_model_admission.json"
-    candidate_admission = json.loads(admission_path.read_text(encoding="utf-8"))
-    if not isinstance(candidate_admission, dict):
-        raise DosMzLoadModelError("DOS candidate-admission contract must be an object")
-    validate_dos_i8086_candidate_admission(candidate_admission)
+    try:
+        load_dos_i8086_load_model_admission(admission_path)
+    except AdapterCatalogError as exc:
+        raise DosMzLoadModelError(f"DOS candidate-admission contract is invalid: {exc}") from exc
     profiles: list[dict[str, Any]] = []
     for record_path in sorted((root / "reverse_engineering/derived/i8086").glob("*/analysis-run.json")):
         record = json.loads(record_path.read_text(encoding="utf-8"))

@@ -217,7 +217,7 @@ def test_dos_i8086_admission_contract_rejects_missing_required_fail_closed_condi
     contract = analyzer_adapters.load_dos_i8086_load_model_admission(DOS_I8086_ADMISSION_PATH)
     contract["fail_closed_conditions"].remove("unknown_container")
 
-    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="required fail-closed"):
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="contract field differs: fail_closed_conditions"):
         analyzer_adapters.validate_dos_i8086_load_model_admission(contract)
 
 
