@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 26
+    "total_registrations": 27
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -22,6 +22,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34908/ZX-Spectrum/Alien_Research_Centre_2",
       "source_release_id": "34908",
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip"
+    },
+    {
+      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "external_source_terms": null,
+      "filename": "AventuraEspacialLa.tzx.zip",
+      "release_identity": {
+        "publisher": "Aventuras A.D.",
+        "title": "Aventura Espacial, La",
+        "year": "1990"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "c3a85b027f283a3664d75cbb4823e832c41f35990e96ca948a3fe3bfc7e5eaae"
+      },
+      "source_evidence": "Spectrum Computing entry 5975 identifies La Aventura Espacial as a Spanish 1990 ZX Spectrum release by Aventuras AD S.A., authored with DAAD, and exposes the canonical full TZX download.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+      "source_release_id": "5975",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip"
     },
     {
       "candidate_key": "balrog and the cat, the|zenobi software|1988|english",

@@ -22,23 +22,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Aventuras A.D.",
-      "reason": "authorized_source_discovery_required",
-      "title": "Aventura Espacial, La",
-      "year": "1990"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -395,7 +378,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 23,
+  "discovery_required_count": 22,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -422,6 +405,30 @@
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip",
       "title": "Alien Research Centre 2",
       "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "external_source_terms": null,
+      "filename": "AventuraEspacialLa.tzx.zip",
+      "language": "Spanish",
+      "publisher": "Aventuras A.D.",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras A.D.",
+        "title": "Aventura Espacial, La",
+        "year": "1990"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "c3a85b027f283a3664d75cbb4823e832c41f35990e96ca948a3fe3bfc7e5eaae"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+      "source_release_id": "5975",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip",
+      "title": "Aventura Espacial, La",
+      "year": "1990"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1086,7 +1093,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 26,
+  "queued_count": 27,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
