@@ -23,6 +23,31 @@ def entry_html(*, publisher: str = "Zenobi Software (UK)", year: str = "1988") -
     """
 
 
+def test_fetch_html_retries_transient_archive_error(monkeypatch) -> None:
+    calls = {"count": 0}
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self) -> bytes:
+            return b"<html>ok</html>"
+
+    def fake_urlopen(request, timeout):
+        calls["count"] += 1
+        if calls["count"] == 1:
+            raise TimeoutError("temporary")
+        return Response()
+
+    monkeypatch.setattr(spectrum, "urlopen", fake_urlopen)
+    monkeypatch.setattr(spectrum.time, "sleep", lambda seconds: None)
+    assert spectrum.fetch_html("https://example.test") == "<html>ok</html>"
+    assert calls["count"] == 2
+
+
 def test_entry_inspection_accepts_exact_release_identity(monkeypatch) -> None:
     monkeypatch.setattr(spectrum, "fetch_html", lambda url: entry_html())
     records = spectrum.inspect_entry(candidate(), "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors")

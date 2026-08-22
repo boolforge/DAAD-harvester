@@ -40,9 +40,19 @@ BASE_URL = "https://spectrumcomputing.co.uk"
 
 
 def fetch_html(url: str, timeout: int = 20) -> str:
+    """Fetch a public record with bounded retries for transient archive delays."""
+
     request = Request(url, headers={"User-Agent": "DAAD-Harvester/1.0 evidence discovery"})
-    with urlopen(request, timeout=timeout) as response:  # nosec B310: bounded public archive URL
-        return response.read().decode("utf-8", errors="replace")
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            with urlopen(request, timeout=timeout) as response:  # nosec B310: bounded public archive URL
+                return response.read().decode("utf-8", errors="replace")
+        except (OSError, TimeoutError) as error:
+            last_error = error
+            if attempt < 2:
+                time.sleep(1 + attempt)
+    raise RuntimeError(f"Spectrum Computing request failed after retries: {url}") from last_error
 
 
 def search_entry_urls(title: str) -> list[str]:

@@ -107,23 +107,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors|zenobi software|1988|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors",
-      "year": "1988"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "behind closed doors 5|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -735,10 +718,32 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 43,
+  "discovery_required_count": 42,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "7d4ed8e5b2e79a5a185bb29933d639b45fb191940bd69acb510ba0f12a7c8ade"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
+      "source_release_id": "5998",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(CustomisedVersion).tzx.zip",
+      "title": "Behind Closed Doors",
+      "year": "1988"
+    },
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
@@ -872,7 +877,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 6,
+  "queued_count": 7,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

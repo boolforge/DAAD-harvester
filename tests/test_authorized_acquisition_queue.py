@@ -73,11 +73,12 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 6
-    assert queue["discovery_required_count"] == 43
+    assert queue["queued_count"] == 7
+    assert queue["discovery_required_count"] == 42
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
+    assert "behind closed doors|zenobi software|1988|english" in queued_keys
     assert "behind closed doors 2: the sequel|zenobi software|1988|english" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}

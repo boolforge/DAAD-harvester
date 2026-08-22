@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
-    "new_source_checksums": 5,
-    "total_registrations": 6
+    "new_source_checksums": 1,
+    "total_registrations": 7
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -58,6 +58,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
       "source_release_id": "6001",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip"
+    },
+    {
+      "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors(CustomisedVersion).tzx.zip",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "7d4ed8e5b2e79a5a185bb29933d639b45fb191940bd69acb510ba0f12a7c8ade"
+      },
+      "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, year, and language.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
+      "source_release_id": "5998",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(CustomisedVersion).tzx.zip"
     },
     {
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
