@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 16
+    "total_registrations": 17
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -207,6 +207,35 @@
       "source_record_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
       "source_release_id": "1629912:6205261",
       "source_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc"
+    },
+    {
+      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "ErrandBoyThe(ES).dsk.zip",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Chico de los recados, El",
+        "year": "2021"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "699841670c7a4968fc5f316015d6d1b7ae450dec3e81e69b58a0617cdd86247e"
+      },
+      "source_evidence": "Spectrum Computing entry 38332 identifies The Errand Boy / El chico de los recados as a 2021 DAAD release by publisher Dwalin and creator Jose Daniel Carbonell Cob (Spain), with language-specific DSK downloads. The catalog uses the creator in its publisher field and an inverted Spanish article; the documented identity variance preserves both source facts.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "source_release_id": "38332",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "El chico de los recados",
+        "year": "2021"
+      },
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(ES).dsk.zip"
     },
     {
       "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",

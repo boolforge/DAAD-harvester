@@ -175,23 +175,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_source_discovery_required",
-      "title": "Chico de los recados, El",
-      "year": "2021"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "colour beyond time|jamie bradbury|2022|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -565,7 +548,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 33,
+  "discovery_required_count": 32,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -841,6 +824,41 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "ErrandBoyThe(ES).dsk.zip",
+      "language": "Spanish",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Chico de los recados, El",
+        "year": "2021"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "699841670c7a4968fc5f316015d6d1b7ae450dec3e81e69b58a0617cdd86247e"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "source_release_id": "38332",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "El chico de los recados",
+        "year": "2021"
+      },
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(ES).dsk.zip",
+      "title": "Chico de los recados, El",
+      "year": "2021"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
       "external_source_terms": null,
       "filename": "LaDagaOscuraV10.zip",
@@ -979,7 +997,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 16,
+  "queued_count": 17,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
