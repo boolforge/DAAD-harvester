@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## After the Dark source boundary
+
+Spectrum Computing entry 44225 supplies public 2019 Pension Productions media and matches the candidate’s publisher, year, and language, but the release title is explicitly **From Out of a Dark Night Sky - After the Dark**. The record does not establish that the catalog’s shorter **After the Dark** title denotes this compound release rather than a distinct work; it also has no promoted DAAD engine field. The media remain unregistered and the candidate stays in `discovery_required` pending an identity and DAAD-profile match.
+
 ## Escape to Murky Woods source boundary
 
 Spectrum Computing entry 34874 identifies the 2019 English Pension Productions release as **Escape from Murky Woods**, matching the catalog title’s documented `to`/`from` variant and publisher boundary, but explicitly records **Professional Adventure Writer** as its engine. Its public TAP/DSK/MGT media cannot be registered as DAAD evidence. The candidate remains in `discovery_required` until a separate DAAD edition is established.
