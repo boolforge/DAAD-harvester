@@ -1,0 +1,38 @@
+# Retained Binary Static-Analysis Coverage Ledger
+
+| Header field | Value |
+| --- | --- |
+| **Question** | Which retained DAAD-related binary profiles have hash-recorded static-analysis outputs, and which admission boundaries remain unresolved? |
+| **Evidence scope** | Existing `analysis-run.json` records and their immutable input/output hash declarations. |
+| **Status** | 42 retained profiles are inventoried across five architecture families. |
+| **Non-claims** | The ledger does not establish correct disassembly, a runtime load model, recovered source, or behavior; it does not admit another retained-byte invocation. |
+
+## Deterministic inspection
+
+```bash
+python3 scripts/inspect_retained_binary_analysis_coverage.py
+```
+
+The command reads existing records without launching an analyzer or writing
+derived output. It fails when an analysis record has no explicit architecture or
+load model, has no named analyzer lane or output hash, or duplicates another
+artifact identity.
+
+## Current inventory boundary
+
+The coverage ledger reports 42 records: 22 i8086, 8 Motorola 68000, 2 MOS 6502,
+2 MOS 8501, and 8 Z80 profiles. Each currently records three configured static
+analysis lanes. All use `raw_binary_base_0_unverified`; every profile therefore
+has `retained_execution_state: refused_pending_load_model` and
+`cross_tool_disagreement_state: not_recorded`.
+
+This provides a deterministic inventory of prior work, not a declaration that
+the binary families are understood. An architecture profile can leave the refusal
+state only through its independent platform/load/entry contract and a preserved
+cross-tool disagreement record.
+
+## References
+
+1. [Architecture-specific analysis workflows](ARCHITECTURE_WORKFLOWS.md)
+2. [ScummVM DAAD engine readiness gate](../requirements/SCUMMVM_DAAD_ENGINE_READINESS.md)
+3. [Reverse-analysis read-only verifier](../../scripts/run_reverse_analysis.py)
