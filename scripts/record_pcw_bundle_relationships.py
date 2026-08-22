@@ -19,6 +19,7 @@ import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from daad_harvester.artifact_paths import resolve_retained_artifact_path
 from daad_harvester.bundle_relationships import DiskMember, validate_pcw_same_disk_companions
 from daad_harvester.db import Database
 from daad_harvester.models import ArtifactRecord
@@ -72,9 +73,7 @@ def build_relationships(db: Database, source_id: int = TORREOSCURA_SOURCE_ID) ->
         raise ValueError("Torreoscura source does not retain both expected PCW disk artifacts")
 
     for disk in disks:
-        disk_path = Path(disk.extracted_path)
-        if not disk_path.is_file():
-            raise ValueError(f"retained disk bytes are unavailable: {disk_path}")
+        disk_path = resolve_retained_artifact_path(disk.extracted_path, ROOT)
         members = _extract_members(db, disk_path)
         if not members:
             raise ValueError(f"native DSK extraction did not recover PCW members: {disk.original_filename}")
