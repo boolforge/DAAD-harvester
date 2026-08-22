@@ -9,3 +9,12 @@ The page also explicitly says that John Wilson permits downloads for **personal 
 The same page provides stable entry URLs for the Zenobi series candidates, including `5999` for *Behind Closed Doors 2: The Sequel*, `6000` for *Behind Closed Doors 3: Revenge of the Ants*, and `6001` for *Behind Closed Doors 4: Balrog's Day Out*. A reusable adapter must fetch every entry page, require exact candidate title, publisher, release year, language, and an actual downloadable supported-media link before registration.
 
 [1]: https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors
+
+## Erinia (2025) English: source found, direct acquisition unavailable
+
+On 2026-08-22, CASA’s English Erinia record at <https://www.solutionarchive.com/game/id%2C10686/Erinia.html> linked to the official distribution page <https://dareint.itch.io/erinia-2025-english>. The official page identifies the English 2025 release by Dareint and lists Amiga, Atari ST, C64, MSX, ZX Spectrum, and CPC media files. However, it requires a purchase of at least USD 2 before the files are accessible. No public direct binary URL was exposed to the unauthenticated page reader.
+
+This is **source-discovery evidence only**. It must remain outside `authorized_candidate_sources.json` and outside the byte-acquisition queue unless a public direct URL is later published or the user explicitly authorizes and completes a purchase through an appropriate account flow. The institutional handling directive does not convert a commercial checkout page into a free or directly retrievable binary source.
+
+[2]: https://www.solutionarchive.com/game/id%2C10686/Erinia.html
+[3]: https://dareint.itch.io/erinia-2025-english
