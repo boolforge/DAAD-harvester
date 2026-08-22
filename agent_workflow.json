@@ -5,6 +5,8 @@
   "backlog_index": "preservation_corpus/active_backlog_index.json",
   "backlog_source": "TODO.md",
   "primary_launcher": "scripts/run_primary_workflow.py",
+  "environment_preflight": "scripts/verify_environment.py",
+  "required_tools": ["python>=3.10", "git", "sqlite3>=3.35", "7z|7zz|unzip"],
   "default_parallel_groups": ["evidence", "publication", "analysis"],
   "default_workers": 4,
   "default_gate_timeout_seconds": 300,

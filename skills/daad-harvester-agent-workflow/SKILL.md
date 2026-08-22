@@ -9,16 +9,17 @@ Use this skill **for every repository operation**. Treat Git as the durable hand
 
 ## Bootstrap
 
-1. Run `git status --short --branch` and `git remote -v` without printing credentials.
-2. Read `TODO.md`, `AGENT_WORKFLOW.md`, `agent_workflow.json`, and `preservation_corpus/active_backlog_index.json`.
-3. Refresh and verify the task index:
+1. Run `python scripts/verify_environment.py` before any project operation. It must confirm Python >=3.10, Git, sqlite3 >=3.35, and an archive extractor.
+2. Run `git status --short --branch` and `git remote -v` without printing credentials.
+3. Read `TODO.md`, `AGENT_WORKFLOW.md`, `agent_workflow.json`, and `preservation_corpus/active_backlog_index.json`.
+4. Refresh and verify the task index:
 
    ```bash
    python scripts/build_active_backlog_index.py
    python scripts/build_active_backlog_index.py --check
    ```
 
-4. Select one bounded concern. Never delete unrelated TODO items or mark a broad requirement complete because one child check passes.
+5. Select one bounded concern. Never delete unrelated TODO items or mark a broad requirement complete because one child check passes.
 
 ## Mandatory scheduler
 

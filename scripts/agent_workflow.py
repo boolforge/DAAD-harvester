@@ -64,6 +64,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         if args.action == "verify":
+            preflight = run([sys.executable, str(ROOT / "scripts" / "verify_environment.py")])
+            if preflight.returncode:
+                return preflight.returncode
             command = [
                 sys.executable,
                 str(ROOT / "scripts" / "run_parallel_workflow.py"),

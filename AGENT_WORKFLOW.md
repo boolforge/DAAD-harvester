@@ -7,25 +7,28 @@ Any agent working on DAAD Harvester MUST begin from the committed repository sta
 ## Required continuation sequence
 
 ```bash
-# 1. Confirm the checkout and remote without exposing credentials.
+# 1. Verify portable prerequisites before any project operation.
+python scripts/verify_environment.py
+
+# 2. Confirm the checkout and remote without exposing credentials.
 git status --short --branch
 git remote -v
 
-# 2. Refresh the machine-readable unchecked-task index.
+# 3. Refresh the machine-readable unchecked-task index.
 python scripts/build_active_backlog_index.py
 python scripts/build_active_backlog_index.py --check
 
-# 3. Run independent read-only gates concurrently.
+# 4. Run independent read-only gates concurrently.
 python scripts/run_parallel_workflow.py --groups evidence publication analysis --workers 4 --timeout 300
 
-# 4. Read TODO.md and select one bounded concern. Never delete or rewrite
+# 5. Read TODO.md and select one bounded concern. Never delete or rewrite
 #    unrelated unchecked items.
 
-# 5. Run focused tests, then the complete suite.
+# 6. Run focused tests, then the complete suite.
 python -m pytest -q tests/<focused_test>.py
 python -m pytest -q
 
-# 6. Deliver only the reviewed concern through the portable wrapper.
+# 7. Deliver only the reviewed concern through the portable wrapper.
 python scripts/agent_workflow.py commit --message "type(scope): evidence-backed change"
 ```
 
