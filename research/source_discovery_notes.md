@@ -45,3 +45,9 @@ The pinned `itchio-downloader` 1.2.0 adapter retrieved both public uploads throu
 
 [6]: https://ejvg.itch.io/the-dark-dagger
 [7]: https://ejvg.itch.io/la-daga-oscura
+
+## DaReInt official profile: commercial-source boundary
+
+On 2026-08-22, the official profile <https://dareint.itch.io/> was reviewed for the remaining Daniel Revenga candidates. It identifies **Erinia (2025) [English]** at a positive minimum price, **Erinia (2020, 2023, 2024) [Spanish]** at a positive minimum price, and **La Estrella de la Mañana (2017)** at a positive minimum price. These pages establish authoritative publication references but do not expose no-cost binary access. The candidates remain in `discovery_required`; no paid checkout, authentication bypass, or inferred binary URL is permitted.
+
+[8]: https://dareint.itch.io/

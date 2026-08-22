@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
-    "new_source_checksums": 2,
-    "total_registrations": 15
+    "new_source_checksums": 1,
+    "total_registrations": 16
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -270,6 +270,35 @@
       "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf"
+    },
+    {
+      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "ErrandBoyThe(EN).dsk.zip",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Errand Boy, The",
+        "year": "2021"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "1e6e2ff695cdc40b1dbe59c35c12a8b524761a4cad9c82942acc11141be9f980"
+      },
+      "source_evidence": "Spectrum Computing entry 38332 identifies The Errand Boy / El chico de los recados as a 2021 DAAD release by publisher Dwalin and creator Jose Daniel Carbonell Cob (Spain), with distinct English and Spanish DSK downloads. The catalog uses the creator in its publisher field and an inverted English article; the documented identity variance preserves both source facts.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "source_release_id": "38332",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "The Errand Boy",
+        "year": "2021"
+      },
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(EN).dsk.zip"
     },
     {
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",

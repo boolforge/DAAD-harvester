@@ -69,6 +69,10 @@ def build(
                 record["source_checksum"] = registration["source_checksum"]
             if "external_source_terms" in registration:
                 record["external_source_terms"] = registration["external_source_terms"]
+            if "catalog_identity_variance" in registration:
+                record["catalog_identity_variance"] = registration["catalog_identity_variance"]
+            if "source_release_identity" in registration:
+                record["source_release_identity"] = registration["source_release_identity"]
             if "authorization" in registration:
                 record["authorization"] = registration["authorization"]
             else:

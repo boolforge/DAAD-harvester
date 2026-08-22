@@ -47,6 +47,37 @@ def candidate_key(candidate: Mapping[str, Any]) -> str:
     )
 
 
+def _normalize_identity(value: object) -> str:
+    return " ".join("".join(character for character in str(value).casefold() if character.isalnum() or character.isspace()).split())
+
+
+def _article_normalized_title(value: object) -> str:
+    words = _normalize_identity(value).split()
+    if words and words[-1] in {"a", "an", "the", "el", "la", "los", "las"}:
+        words = [words[-1], *words[:-1]]
+    return " ".join(words)
+
+
+def _valid_catalog_creator_variance(candidate: Mapping[str, Any], registration: Mapping[str, Any]) -> bool:
+    """Validate a documented catalog-as-creator versus source-as-publisher boundary."""
+
+    variance = registration.get("catalog_identity_variance")
+    source_identity = registration.get("source_release_identity")
+    if not isinstance(variance, Mapping) or not isinstance(source_identity, Mapping):
+        return False
+    if variance.get("kind") != "catalog_publisher_is_source_creator":
+        return False
+    if any(not isinstance(source_identity.get(field), str) or not source_identity.get(field).strip() for field in ("title", "publisher", "creator", "year")):
+        return False
+    if variance.get("source_creator") != source_identity.get("creator") or variance.get("source_publisher") != source_identity.get("publisher"):
+        return False
+    return (
+        _article_normalized_title(candidate.get("title")) == _article_normalized_title(source_identity.get("title"))
+        and str(candidate.get("year", "")).strip() == str(source_identity.get("year", "")).strip()
+        and _normalize_identity(source_identity.get("creator")).startswith(_normalize_identity(candidate.get("publisher")))
+    )
+
+
 def global_authorization_decision(policy: Mapping[str, Any] | None) -> AuthorizationDecision:
     """Validate the repository's versioned institutional authorization directive."""
 
@@ -90,6 +121,8 @@ def validate_registration(
             return AuthorizationDecision(False, "missing_release_identity_evidence")
         if any(str(release_identity.get(field, "")).strip() != str(candidate.get(field, "")).strip() for field in ("title", "publisher", "year")):
             return AuthorizationDecision(False, "release_identity_mismatch")
+        if registration.get("source_release_identity") is not None and not _valid_catalog_creator_variance(candidate, registration):
+            return AuthorizationDecision(False, "invalid_catalog_creator_variance")
         source_record_url = registration.get("source_record_url")
         if not isinstance(source_record_url, str) or urlparse(source_record_url).scheme not in {"https", "http"}:
             return AuthorizationDecision(False, "missing_or_invalid_source_record_url")

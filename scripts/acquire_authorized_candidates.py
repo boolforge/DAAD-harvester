@@ -80,6 +80,8 @@ def register_sources(db: Database, entries: Iterable[dict[str, Any]]) -> dict[st
             "canonical_source_url": entry["source_url"],
             "source_adapter": entry.get("source_adapter"),
             "external_source_terms": entry.get("external_source_terms"),
+            "catalog_identity_variance": entry.get("catalog_identity_variance"),
+            "source_release_identity": entry.get("source_release_identity"),
         }
         source_id = db.add_source(
             entry["source_url"],

@@ -430,23 +430,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_source_discovery_required",
-      "title": "Errand Boy, The",
-      "year": "2021"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "escape to murky woods|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -582,7 +565,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 34,
+  "discovery_required_count": 33,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -939,6 +922,41 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
+      "catalog_identity_variance": {
+        "kind": "catalog_publisher_is_source_creator",
+        "source_creator": "Jose Daniel Carbonell Cob (Spain)",
+        "source_publisher": "Dwalin"
+      },
+      "external_source_terms": null,
+      "filename": "ErrandBoyThe(EN).dsk.zip",
+      "language": "English",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Jose Daniel Carbonell",
+        "title": "Errand Boy, The",
+        "year": "2021"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "1e6e2ff695cdc40b1dbe59c35c12a8b524761a4cad9c82942acc11141be9f980"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "source_release_id": "38332",
+      "source_release_identity": {
+        "creator": "Jose Daniel Carbonell Cob (Spain)",
+        "publisher": "Dwalin",
+        "title": "The Errand Boy",
+        "year": "2021"
+      },
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(EN).dsk.zip",
+      "title": "Errand Boy, The",
+      "year": "2021"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
       "external_source_terms": null,
       "filename": "FromOutOfADarkNightSky(different).tzx.zip",
@@ -961,7 +979,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 15,
+  "queued_count": 16,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

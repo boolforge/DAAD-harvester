@@ -45,6 +45,21 @@ def test_institutional_authorization_requires_direct_source_identity() -> None:
     assert decision.reason == "authorized_by_institutional_directive"
 
 
+def test_institutional_authorization_accepts_documented_creator_publisher_variance() -> None:
+    catalog_candidate = {"title": "Errand Boy, The", "publisher": "Jose Daniel Carbonell", "year": "2021", "language": "English"}
+    registration = {
+        "candidate_key": candidate_key(catalog_candidate),
+        "source_url": "https://example.test/ErrandBoyThe(EN).dsk.zip",
+        "source_record_url": "https://example.test/entry/38332",
+        "release_identity": {"title": "Errand Boy, The", "publisher": "Jose Daniel Carbonell", "year": "2021"},
+        "catalog_identity_variance": {"kind": "catalog_publisher_is_source_creator", "source_creator": "Jose Daniel Carbonell Cob (Spain)", "source_publisher": "Dwalin"},
+        "source_release_identity": {"title": "The Errand Boy", "publisher": "Dwalin", "creator": "Jose Daniel Carbonell Cob (Spain)", "year": "2021"},
+    }
+    assert validate_registration(catalog_candidate, registration, global_policy()).allowed
+    registration.pop("catalog_identity_variance")
+    assert validate_registration(catalog_candidate, registration, global_policy()).reason == "invalid_catalog_creator_variance"
+
+
 def test_institutional_authorization_rejects_mismatched_publication_identity() -> None:
     registration = {
         "candidate_key": candidate_key(candidate()),
@@ -73,8 +88,8 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 15
-    assert queue["discovery_required_count"] == 34
+    assert queue["queued_count"] == 16
+    assert queue["discovery_required_count"] == 33
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
@@ -88,5 +103,6 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     assert "behind closed doors 6|pension productions|2019|english" in queued_keys
     assert "daga oscura, la|eduardo josé villalobos galindo|2024|spanish" in queued_keys
     assert "dark dagger, the|eduardo josé villalobos galindo|2024|english" in queued_keys
+    assert "errand boy, the|jose daniel carbonell|2021|english" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}
