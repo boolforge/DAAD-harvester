@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## Great Caravan Caper source boundary
+
+Spectrum Computing entry 34746 provides downloadable 2019 Spectrum TAP/TZX media for **The Great Caravan Caper**, but names **Gareth Pitchford** as original publisher and creator. The public 8bitAG 2019 review confirms that the standalone Spectrum version was a port associated with Gareth Pitchford’s work. Neither record substantiates the catalog publisher **Electric Storm Productions** for the same edition. This is a publisher-boundary mismatch, not a direct source match; the candidate remains in `discovery_required` until a source establishes the Electric Storm release identity or a documented catalog-identity relationship.
+
 ## Dream Walker source boundary
 
 Spectrum Computing entry 36880 confirms **Dream Walker**, English, ZX Spectrum 48K, a 2021/Oct/31 release, and PAW authorship, but identifies **Gareth Pitchford (UK)** rather than the catalog publisher **8bitAG**. More importantly, the entry explicitly marks each listed 2021 TAP member as **distribution denied**, so no public binary URL is available through that source. The official 8bitAG page is protected by an access-verification interstitial in the non-interactive reader. This is identity-supporting evidence only; the candidate remains in `discovery_required` until a public direct source is available and the 8bitAG/Gareth identity relationship is documented.
