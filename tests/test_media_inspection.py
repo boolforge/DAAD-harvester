@@ -143,7 +143,10 @@ def test_retained_source250_cpc_fnt_is_validated_amsdos_loader_font_container() 
     assert result.evidence["logical_payload_size"] == 768
     assert result.evidence["real_payload_size"] == 768
     assert result.evidence["stored_payload_size"] == 768
-    assert result.evidence["role_boundary"] == "container_and_loader_font_identity_only_no_glyph_decoder"
+    assert result.evidence["documented_cpc_package_role"] == "standard_cpc_font_used_by_cpc_tape_loader"
+    assert result.evidence["official_documentation_evidence"] == "research/sources/daad_official_fnt_cpc_evidence.json"
+    assert result.evidence["official_documentation_source_sha256"] == "00c66bf981129cf945065393cd81c9e59f6cd1b8664cad7d34d0e275b91cfddd"
+    assert result.evidence["role_boundary"] == "container_exact_byte_identity_and_documented_cpc_package_role_only_no_glyph_or_runtime_decoder"
 
 
 def test_cpc_fnt_amsdos_header_checksum_corruption_is_rejected() -> None:

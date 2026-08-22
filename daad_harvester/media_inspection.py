@@ -622,7 +622,10 @@ def _inspect_daad_fnt(data: bytes) -> MediaInspection:
             **header_evidence,
             profile_id="daad-cpc-standard-tape-loader-font",
             primary_source_identity="exact_classic_daad_cpc_fnt_match",
-            role_boundary="container_and_loader_font_identity_only_no_glyph_decoder",
+            documented_cpc_package_role="standard_cpc_font_used_by_cpc_tape_loader",
+            official_documentation_evidence="research/sources/daad_official_fnt_cpc_evidence.json",
+            official_documentation_source_sha256="00c66bf981129cf945065393cd81c9e59f6cd1b8664cad7d34d0e275b91cfddd",
+            role_boundary="container_exact_byte_identity_and_documented_cpc_package_role_only_no_glyph_or_runtime_decoder",
         )
     return _result(
         "amsdos-binary", "recognized_evidence", "validated_amsdos_binary_header_noncanonical_fnt",

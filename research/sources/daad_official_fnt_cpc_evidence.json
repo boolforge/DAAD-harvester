@@ -1,0 +1,17 @@
+{
+  "boundary": "This source statement identifies a documented CPC package role only. It does not establish the 896-byte R4 members' glyph grammar, character mapping, byte packing, rendering, runtime load success, erased-file meaning, or equivalence with SINTAC FNT3/FNT4.",
+  "purpose": "Pinned official DAAD changelog evidence for the documented CPC DAAD.FNT tape-loader role.",
+  "schema_version": 1,
+  "source_claim": {
+    "cpc_loader_context": [
+      "DLPART1.BAS: CPC tape loader template for DAAD adventures with loading screen, loads PART1",
+      "DLPART2.BAS: CPC tape loader template for DAAD adventures with loading screen, loads PART2"
+    ],
+    "documented_path": "DAAD\\TAPMAST\\DAAD.FNT",
+    "exact_statement": "DAAD.FNT: the DAAD standard CPC font (this file is used by the CPC tape loader)",
+    "release_section": "DAAD R3"
+  },
+  "source_revision": "4a7e745235a12af5b397902dbd9214bc930c7680",
+  "source_sha256": "00c66bf981129cf945065393cd81c9e59f6cd1b8664cad7d34d0e275b91cfddd",
+  "source_url": "https://raw.githubusercontent.com/daad-adventure-writer/daad/4a7e745235a12af5b397902dbd9214bc930c7680/CHANGELOG.md"
+}

@@ -21,4 +21,4 @@ def test_registered_primary_regeneration_paths_are_self_contained() -> None:
     )
 
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "Self-contained regeneration verified: 12 native entries, 33 inputs, 21 outputs." in result.stdout
+    assert "Self-contained regeneration verified: 13 native entries, 34 inputs, 22 outputs." in result.stdout

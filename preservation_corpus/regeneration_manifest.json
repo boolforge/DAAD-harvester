@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -283,7 +283,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "d362e6849156c6495125881d76d303c8fe48ac3ed36fdfbc60e8b8af8588fcd5"
+          "sha256": "37b68b4a709b15c54b605f343dba8aa8bcdac973974ef9007755a1c7c41d941d"
         }
       ],
       "external_validators": [
@@ -313,7 +313,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         }
       ],
       "outputs": [
@@ -482,7 +482,7 @@
         },
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         }
       ],
       "outputs": [
@@ -517,13 +517,43 @@
         },
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "257925a82f704e15439c121b458526b1763172beb271d1319f3dc67912830e2d"
+          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
         }
       ],
       "outputs": [
         {
           "path": "preservation_corpus/derived/spectrum_observed_acquisition_integration.json",
           "sha256": "2804a68dd3cea44237a4863ee80412d203139f50abd28eb1c40a79de5700849c"
+        }
+      ],
+      "external_validators": []
+    },
+    {
+      "id": "official-daad-cpc-fnt-documentation",
+      "description": "Regenerates and byte-verifies the retained pinned official DAAD changelog evidence that documents DAAD.FNT as the standard CPC font used by the CPC tape loader. It does not establish glyph grammar, rendering, runtime load success, erased-file meaning, or equivalence with SINTAC FNT3/FNT4.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/capture_official_daad_fnt_cpc_evidence.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "research/sources/daad_official_changelog_4a7e745235a12af5b397902dbd9214bc930c7680.md.gz",
+          "sha256": "761c8149cb4449e0ebddf980224fa9d472113a1349da7653e8152813729869b2"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "research/sources/daad_official_fnt_cpc_evidence.json",
+          "sha256": "15c7e007ef0ab769bac91afc378eed49a4d33e8907b796f253e2a826bf916dfa"
         }
       ],
       "external_validators": []

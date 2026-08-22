@@ -11,7 +11,7 @@
 | Retained path | Size | SHA-256 | Measured structure | Current boundary |
 | --- | ---: | --- | --- | --- |
 | `preservation_corpus/extracted/depth2_f0f7416a_DAAD.FNT` | 896 | `87a077d1d65c2c1a3fc64c03fd2c3f25431d2c6a7fc36ebf23256b3aa9bf4f07` | Exact `daad-r4-source250-all-e5-byte-profile`: every byte is `E5`. | The profile records only exact byte identity, fill byte, and repeated-byte count. No font, erased-file, CP/M allocation, target, or runtime semantics are promoted from its filename or fill value alone. |
-| `preservation_corpus/extracted/depth2_dcd3ab68_DAAD.FNT` | 896 | `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a` | Valid AMSDOS binary header: type `0x02`, load address `0x9378`, 768-byte logical/real/stored payload, and matching checksum. Exact byte identity with the official classic CPC loader font is recorded in the CPC FNT dossier.[3] | Native recognition is limited to AMSDOS container validation and exact CPC loader-font identity; glyph mapping, proportional-width semantics, and rendering remain unproven. |
+| `preservation_corpus/extracted/depth2_dcd3ab68_DAAD.FNT` | 896 | `fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a` | Valid AMSDOS binary header: type `0x02`, load address `0x9378`, 768-byte logical/real/stored payload, and matching checksum. Exact byte identity with the official classic CPC loader font is recorded in the CPC FNT dossier.[3] A pinned official changelog states that `DAAD.FNT` is the standard CPC font used by the CPC tape loader.[4] | Native recognition is limited to AMSDOS container validation, exact CPC loader-font identity, and the documented CPC package role. Glyph mapping, proportional-width semantics, rendering, and runtime load success remain unproven. |
 
 The two byte sequences must remain separate artifacts. Equal filename and equal
 length do not establish equivalent content, platform, source package, or
@@ -56,3 +56,4 @@ future font atlas is prohibited until those properties are natively verified.
 [1]: [Pinned ADP font tool and runtime font-loading source](https://github.com/jlcebrian/ADP/)
 [2]: [PCDAAD README and published FNT3 sample](https://github.com/Utodev/PCDAAD)
 [3]: [CPC FNT dossier and retained DRC AMSDOS header writer](../../../docs/formats/CPC_DAAD_FNT.md)
+[4]: [Pinned official DAAD changelog CPC FNT evidence](../../../research/sources/daad_official_fnt_cpc_evidence.json)
