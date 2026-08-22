@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 23
+    "total_registrations": 24
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -416,6 +416,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6271/ZX-Spectrum/An_Everyday_Tale_of_a_Seeker_of_Gold",
       "source_release_id": "6271",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/e/EverydayTaleOfASeekerOfGoldAn.tzx.zip"
+    },
+    {
+      "candidate_key": "framed!|kennard douglas|2024|english",
+      "external_source_terms": null,
+      "filename": "framedv1.0.TAP",
+      "release_identity": {
+        "publisher": "Kennard Douglas",
+        "title": "Framed!",
+        "year": "2024"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "67a757ae7d7f2328a34ff1d1807cd28bacdc0e515791e6f11e55f00063004eb3"
+      },
+      "source_evidence": "ZXInfo/ZXDB entry 0043705 identifies Framed!, 2024, Kennard Douglas as both original publisher and author, English, and ZX-Spectrum 128K. The public mycomputerworld.co.uk TAP independently presents a 2024 FRAMED! DAAD Ready release credited on screen to Ken Douglas; the stable ZXDB record closes the Kennard/Ken attribution boundary.",
+      "source_record_url": "https://zxinfo.dk/details/0043705",
+      "source_release_id": "0043705",
+      "source_url": "https://mycomputerworld.co.uk/framedv1.0.TAP"
     },
     {
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
