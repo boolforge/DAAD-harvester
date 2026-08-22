@@ -88,8 +88,8 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 29
-    assert queue["discovery_required_count"] == 20
+    assert queue["queued_count"] == 30
+    assert queue["discovery_required_count"] == 19
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
@@ -117,5 +117,6 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     assert "aventura espacial, la|aventuras a.d.|1990|spanish" in queued_keys
     assert "aventura original, la|aventuras a.d., dinamic software|1989|spanish" in queued_keys
     assert "elf|defecto digital studios|2016|spanish" in queued_keys
+    assert "bulbo and the blue dragon|pension productions|2019|english" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}

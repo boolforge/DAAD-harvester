@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 29
+    "total_registrations": 30
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -243,6 +243,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
       "source_release_id": "5998",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(CustomisedVersion).tzx.zip"
+    },
+    {
+      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
+      "filename": "BulboAndTheDragon.tap.zip",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Bulbo and the Blue Dragon",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "15b7c444b64075651b6f332c7b1e76186469162f06a5e5994598550f1e87129f"
+      },
+      "source_evidence": "CASA record 8138 identifies Bulbo and the Blue Dragon, Pension Productions, 2019, English, with DAAD and PAW system context, and links to Spectrum Computing entry 34876. That entry identifies the same 2019 Pension Productions ZX Spectrum release as Bulbo and the Dragon, by John Wilson, and exposes the public TAP. The Blue-title versus short-title variant is explicitly retained as the cross-catalog identity boundary.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34876/ZX-Spectrum/Bulbo_and_the_Dragon",
+      "source_release_id": "34876",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034876/BulboAndTheDragon.tap.zip"
     },
     {
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",

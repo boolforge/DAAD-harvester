@@ -22,23 +22,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Bulbo and the Blue Dragon",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -344,7 +327,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 20,
+  "discovery_required_count": 19,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -664,6 +647,30 @@
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035686/BehindClosedDoors8-ThePandemic.tap.zip",
       "title": "Behind Closed Doors 8",
       "year": "2020"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
+      "filename": "BulboAndTheDragon.tap.zip",
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Bulbo and the Blue Dragon",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "15b7c444b64075651b6f332c7b1e76186469162f06a5e5994598550f1e87129f"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34876/ZX-Spectrum/Bulbo_and_the_Dragon",
+      "source_release_id": "34876",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034876/BulboAndTheDragon.tap.zip",
+      "title": "Bulbo and the Blue Dragon",
+      "year": "2019"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1107,7 +1114,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 29,
+  "queued_count": 30,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }
