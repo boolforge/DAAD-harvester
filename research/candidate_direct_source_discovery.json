@@ -1,8 +1,8 @@
 {
   "authorization_policy": "research/acquisition_policy.json",
   "candidate_queue": "research/authorized_acquisition_queue.json",
-  "generated_at_epoch": 1787362329,
-  "input_candidate_count": 49,
+  "generated_at_epoch": 1787362901,
+  "input_candidate_count": 48,
   "purpose": "Direct Internet Archive source discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
   "records": [
     {
@@ -157,11 +157,10 @@
     },
     {
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
-      "error": "URLError: <urlopen error _ssl.c:983: The handshake operation timed out>",
       "language": "English",
       "matches": [],
       "publisher": "Zenobi Software",
-      "status": "discovery_error",
+      "status": "no_exact_source_match",
       "title": "Bulbo and the Lizard-King",
       "title_only_matches": [],
       "year": "1987"
@@ -305,27 +304,6 @@
       "title": "Die, Ragus!",
       "title_only_matches": [],
       "year": "2023"
-    },
-    {
-      "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
-      "language": "Spanish",
-      "matches": [
-        {
-          "archive_md5": "a2adae70d98a30aa6407d0bd26ef330b",
-          "archive_sha1": "5c63fe158ff73fcdb9752e84b247b3e78521d744",
-          "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
-          "release_boundary_evidence": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES Diosa de Cozumel, La  Aventuras AD   1990  Diosa de Cozumel, La (1990)(Aventuras AD)(ES) Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
-          "release_boundary_match": true,
-          "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
-          "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
-          "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf"
-        }
-      ],
-      "publisher": "Aventuras A.D.",
-      "status": "release_boundary_source_discovered",
-      "title": "Diosa de Cozumel, La",
-      "title_only_matches": [],
-      "year": "1990"
     },
     {
       "candidate_key": "dragnet case, the|taskmaster software|1989|english",
@@ -529,7 +507,7 @@
       "year": "2019"
     }
   ],
-  "release_boundary_source_candidate_count": 1,
+  "release_boundary_source_candidate_count": 0,
   "schema_version": 1,
   "title_only_source_candidate_count": 1
 }

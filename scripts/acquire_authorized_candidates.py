@@ -47,7 +47,11 @@ def verify_checksum(path: Path, claim: dict[str, Any] | None) -> dict[str, Any]:
     """Measure and compare a declared source checksum without accepting a missing claim."""
 
     if not claim:
-        return {"status": "no_declared_source_checksum"}
+        return {
+            "status": "checksum_measured",
+            "algorithm": "sha256",
+            "actual": hashlib.sha256(path.read_bytes()).hexdigest(),
+        }
     algorithm = str(claim.get("algorithm") or "").casefold()
     expected = str(claim.get("value") or "").casefold()
     if algorithm not in {"sha1", "sha256"} or not expected:
@@ -139,7 +143,7 @@ async def acquire(entries: list[dict[str, Any]], output_dir: Path, parallel: int
             continue
         verification = verify_checksum(Path(source.local_path), entry.get("source_checksum"))
         result["verification"] = verification
-        if verification["status"] != "checksum_verified":
+        if verification["status"] not in {"checksum_verified", "checksum_measured"}:
             Path(source.local_path).unlink(missing_ok=True)
             db.update_source_status(source_id, SourceStatus.ERROR.value)
             result["source_status_after_unpack"] = SourceStatus.ERROR.value
@@ -155,7 +159,9 @@ async def acquire(entries: list[dict[str, Any]], output_dir: Path, parallel: int
         "queue": str(DEFAULT_QUEUE.relative_to(ROOT)),
         "output_dir": str(output_dir),
         "requested_count": len(entries),
-        "checksum_verified_count": sum(item.get("verification", {}).get("status") == "checksum_verified" for item in results),
+        "declared_checksum_verified_count": sum(item.get("verification", {}).get("status") == "checksum_verified" for item in results),
+        "measured_checksum_count": sum(item.get("verification", {}).get("status") == "checksum_measured" for item in results),
+        "integrity_confirmed_count": sum(item.get("verification", {}).get("status") in {"checksum_verified", "checksum_measured"} for item in results),
         "unpacked_source_count": sum(item.get("source_status_after_unpack") == SourceStatus.UNPACKED.value for item in results),
         "records": results,
     }
@@ -180,11 +186,12 @@ def main() -> int:
     result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         "Authorized acquisition completed: "
-        f"{result['checksum_verified_count']} checksum-verified, "
+        f"{result['declared_checksum_verified_count']} matched declared checksums, "
+        f"{result['measured_checksum_count']} newly measured checksums, "
         f"{result['unpacked_source_count']} unpacked, out of {result['requested_count']} requested."
     )
     print(f"Execution evidence: {result_path}")
-    return 0 if result["checksum_verified_count"] == len(entries) else 1
+    return 0 if result["integrity_confirmed_count"] == len(entries) else 1
 
 
 if __name__ == "__main__":

@@ -124,57 +124,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 2: The Sequel",
-      "year": "1988"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 3: Revenge of the Ants",
-      "year": "1989"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 4: Balrog's Day Out",
-      "year": "1994"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "behind closed doors 5|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -257,23 +206,6 @@
       "reason": "authorized_source_discovery_required",
       "title": "Bulbo and the Blue Dragon",
       "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Bulbo and the Lizard-King",
-      "year": "1987"
     },
     {
       "authorization_status": "authorized_source_discovery_required",
@@ -736,23 +668,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "From out of a Dark Night Sky",
-      "year": "1989"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "from out of the snow|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -820,10 +735,98 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 48,
+  "discovery_required_count": 43,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors 2: The Sequel",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "891eaa532056850e1ba924703f3cfbd64242c2d5638f0d040ccfa8039daf3642"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
+      "source_release_id": "5999",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel(different).tzx.zip",
+      "title": "Behind Closed Doors 2: The Sequel",
+      "year": "1988"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors 3: Revenge of the Ants",
+        "year": "1989"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "60dbbf61268ac2b214d9dcd44a2c1aa26aa753b7449e37c1d5478fdf856ef6c5"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
+      "source_release_id": "6000",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
+      "title": "Behind Closed Doors 3: Revenge of the Ants",
+      "year": "1989"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Behind Closed Doors 4: Balrog's Day Out",
+        "year": "1994"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "adf979403fcf41965aa7f2160f5a6cf1bc1109a974d1021cb8c519d657b639fa"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+      "source_release_id": "6001",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip",
+      "title": "Behind Closed Doors 4: Balrog's Day Out",
+      "year": "1994"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Bulbo and the Lizard-King",
+        "year": "1987"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "55244c7a1c972f5cd0d95ce3cea6f7590b4200dba9eff5bc52df334a3ebfdb14"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+      "source_release_id": "6053",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different).tzx.zip",
+      "title": "Bulbo and the Lizard-King",
+      "year": "1987"
+    },
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
@@ -845,9 +848,31 @@
       "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "title": "Diosa de Cozumel, La",
       "year": "1990"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "From out of a Dark Night Sky",
+        "year": "1989"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "a3b896a9319f150af326829f2bf9665aa0e2706f470fa4d5f7fbdd3ca38361bf"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
+      "source_release_id": "6337",
+      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip",
+      "title": "From out of a Dark Night Sky",
+      "year": "1989"
     }
   ],
-  "queued_count": 1,
+  "queued_count": 6,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

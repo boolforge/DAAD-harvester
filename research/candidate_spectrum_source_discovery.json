@@ -1,0 +1,772 @@
+{
+  "generated_at_epoch": 1787363233,
+  "input_candidate_count": 48,
+  "purpose": "Spectrum Computing direct ZX game-media discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
+  "records": [
+    {
+      "candidate_key": "after the dark|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "After the Dark",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Alien Research Centre 2",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Aventuras A.D.",
+      "status": "no_release_boundary_source_match",
+      "title": "Aventura Espacial, La",
+      "year": "1990"
+    },
+    {
+      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Aventuras A.D., Dinamic Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Aventura Original, La",
+      "year": "1989"
+    },
+    {
+      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Balrog and the Cat, The",
+      "year": "1988"
+    },
+    {
+      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Dee Cooke",
+      "status": "no_release_boundary_source_match",
+      "title": "Barry Basic and the Quest For The Perfect Port",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "language": "English",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors2-TheSequel(different).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 2: The Sequel",
+            "year": "1988"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
+          "source_release_id": "5999",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel(different).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors2-TheSequel.mgt.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 2: The Sequel",
+            "year": "1988"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
+          "source_release_id": "5999",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel.mgt.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors2-TheSequel.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 2: The Sequel",
+            "year": "1988"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
+          "source_release_id": "5999",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors2-TheSequel.z80.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 2: The Sequel",
+            "year": "1988"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
+          "source_release_id": "5999",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel.z80.zip"
+        }
+      ],
+      "publisher": "Zenobi Software",
+      "status": "release_boundary_source_discovered",
+      "title": "Behind Closed Doors 2: The Sequel",
+      "year": "1988"
+    },
+    {
+      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "language": "English",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 3: Revenge of the Ants",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
+          "source_release_id": "6000",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors3-RevengeOfTheAnts.mgt.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 3: Revenge of the Ants",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
+          "source_release_id": "6000",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts.mgt.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors3-RevengeOfTheAnts.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 3: Revenge of the Ants",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
+          "source_release_id": "6000",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors3-RevengeOfTheAnts.z80.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 3: Revenge of the Ants",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
+          "source_release_id": "6000",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts.z80.zip"
+        }
+      ],
+      "publisher": "Zenobi Software",
+      "status": "release_boundary_source_discovered",
+      "title": "Behind Closed Doors 3: Revenge of the Ants",
+      "year": "1989"
+    },
+    {
+      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "language": "English",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors4-BalrogsDayOut.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 4: Balrog's Day Out",
+            "year": "1994"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+          "source_release_id": "6001",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors4-BalrogsDayOut.mgt.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 4: Balrog's Day Out",
+            "year": "1994"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+          "source_release_id": "6001",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.mgt.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors4-BalrogsDayOut.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 4: Balrog's Day Out",
+            "year": "1994"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+          "source_release_id": "6001",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors4-BalrogsDayOut.z80.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 4: Balrog's Day Out",
+            "year": "1994"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+          "source_release_id": "6001",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.z80.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BehindClosedDoors4-BalrogsDayOut_2.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Behind Closed Doors 4: Balrog's Day Out",
+            "year": "1994"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
+          "source_release_id": "6001",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut_2.dsk.zip"
+        }
+      ],
+      "publisher": "Zenobi Software",
+      "status": "release_boundary_source_discovered",
+      "title": "Behind Closed Doors 4: Balrog's Day Out",
+      "year": "1994"
+    },
+    {
+      "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Behind Closed Doors 5",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Behind Closed Doors 6",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Behind Closed Doors 7",
+      "year": "2018"
+    },
+    {
+      "candidate_key": "behind closed doors 8|pension productions|2020|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Behind Closed Doors 8",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "error": "TimeoutError: The read operation timed out",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "discovery_error",
+      "title": "Behind Closed Doors",
+      "year": "1988"
+    },
+    {
+      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Bulbo and the Blue Dragon",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "language": "English",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King(different).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King(different)_2.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different)_2.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King.dsk.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King.dsk.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King.mgt.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King.mgt.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King.tap.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King.tap.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "BulboAndTheLizard-King.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "Bulbo and the Lizard-King",
+            "year": "1987"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
+          "source_release_id": "6053",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King.tzx.zip"
+        }
+      ],
+      "publisher": "Zenobi Software",
+      "status": "release_boundary_source_discovered",
+      "title": "Bulbo and the Lizard-King",
+      "year": "1987"
+    },
+    {
+      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Bulbo's Intrepid Adventure",
+      "year": "2018"
+    },
+    {
+      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Pablo Mart\u00ednez Merino",
+      "status": "no_release_boundary_source_match",
+      "title": "Casa al otro lado de la tormenta, la",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "case of murder, a|taskmaster software|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Taskmaster Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Case of Murder, A",
+      "year": "2022"
+    },
+    {
+      "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "ESP Soft",
+      "status": "no_release_boundary_source_match",
+      "title": "Cero Absoluto",
+      "year": "2016"
+    },
+    {
+      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Toni Pera",
+      "status": "no_release_boundary_source_match",
+      "title": "Cetro del Sol, El",
+      "year": "2006"
+    },
+    {
+      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_release_boundary_source_match",
+      "title": "Chico de los recados, El",
+      "year": "2021"
+    },
+    {
+      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jamie Bradbury",
+      "status": "no_release_boundary_source_match",
+      "title": "Colour Beyond Time",
+      "year": "2022"
+    },
+    {
+      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Puddle Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Curse of Rabenstein, The",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Puddle Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Curse of Rabenstein, The",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "status": "no_release_boundary_source_match",
+      "title": "Daga Oscura, La",
+      "year": "2024"
+    },
+    {
+      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "status": "no_release_boundary_source_match",
+      "title": "Dark Dagger, The",
+      "year": "2024"
+    },
+    {
+      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Electric Storm Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Deception of the Mind's Eye",
+      "year": "1993"
+    },
+    {
+      "candidate_key": "deer creek|primary resources|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Primary Resources",
+      "status": "no_release_boundary_source_match",
+      "title": "Deer Creek",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "die, ragus!|sunteam|2023|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Sunteam",
+      "status": "no_release_boundary_source_match",
+      "title": "Die, Ragus!",
+      "year": "2023"
+    },
+    {
+      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Taskmaster Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Dragnet Case, The",
+      "year": "1989"
+    },
+    {
+      "candidate_key": "dream walker|8bitag|2021|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "8bitAG",
+      "status": "no_release_boundary_source_match",
+      "title": "Dream Walker",
+      "year": "2021"
+    },
+    {
+      "candidate_key": "eight feet under|pond soft|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pond Soft",
+      "status": "no_release_boundary_source_match",
+      "title": "Eight Feet Under",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Kame Soft",
+      "status": "no_release_boundary_source_match",
+      "title": "Elfos de Maroland, Los",
+      "year": "1993"
+    },
+    {
+      "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "error": "TimeoutError: The read operation timed out",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Defecto Digital Studios",
+      "status": "discovery_error",
+      "title": "ELF",
+      "year": "2016"
+    },
+    {
+      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_release_boundary_source_match",
+      "title": "Elves of Maroland, The",
+      "year": "2024"
+    },
+    {
+      "candidate_key": "erinia|daniel revenga|2020|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_release_boundary_source_match",
+      "title": "Erinia",
+      "year": "2020"
+    },
+    {
+      "candidate_key": "erinia|daniel revenga|2025|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_release_boundary_source_match",
+      "title": "Erinia",
+      "year": "2025"
+    },
+    {
+      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_release_boundary_source_match",
+      "title": "Errand Boy, The",
+      "year": "2021"
+    },
+    {
+      "candidate_key": "escape to murky woods|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "Escape to Murky Woods",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_release_boundary_source_match",
+      "title": "Estrella de la Ma\u00f1ana, La",
+      "year": "2017"
+    },
+    {
+      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Everyday Tale of a Seeker of Gold, An",
+      "year": "1986"
+    },
+    {
+      "candidate_key": "framed!|kennard douglas|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Kennard Douglas",
+      "status": "no_release_boundary_source_match",
+      "title": "Framed!",
+      "year": "2024"
+    },
+    {
+      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "language": "English",
+      "matches": [
+        {
+          "external_source_terms": null,
+          "filename": "FromOutOfADarkNightSky(different).tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "From Out of a Dark Night Sky",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
+          "source_release_id": "6337",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "FromOutOfADarkNightSky.mgt.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "From Out of a Dark Night Sky",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
+          "source_release_id": "6337",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky.mgt.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "FromOutOfADarkNightSky.tzx.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "From Out of a Dark Night Sky",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
+          "source_release_id": "6337",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky.tzx.zip"
+        },
+        {
+          "external_source_terms": null,
+          "filename": "FromOutOfADarkNightSky.z80.zip",
+          "release_boundary_evidence": {
+            "language": "English",
+            "publisher": "Zenobi Software (UK)",
+            "title": "From Out of a Dark Night Sky",
+            "year": "1989"
+          },
+          "release_boundary_match": true,
+          "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
+          "source_release_id": "6337",
+          "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky.z80.zip"
+        }
+      ],
+      "publisher": "Zenobi Software",
+      "status": "release_boundary_source_discovered",
+      "title": "From out of a Dark Night Sky",
+      "year": "1989"
+    },
+    {
+      "candidate_key": "from out of the snow|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_release_boundary_source_match",
+      "title": "From Out of the Snow",
+      "year": "2019"
+    },
+    {
+      "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_release_boundary_source_match",
+      "title": "Fuddo and Slam",
+      "year": "1988"
+    },
+    {
+      "candidate_key": "golden seas|sunteam|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Sunteam",
+      "status": "no_release_boundary_source_match",
+      "title": "Golden Seas",
+      "year": "2022"
+    },
+    {
+      "candidate_key": "great caravan caper|electric storm productions|2019|english",
+      "error": "TimeoutError: The read operation timed out",
+      "language": "English",
+      "matches": [],
+      "publisher": "Electric Storm Productions",
+      "status": "discovery_error",
+      "title": "Great Caravan Caper",
+      "year": "2019"
+    }
+  ],
+  "release_boundary_source_candidate_count": 5,
+  "schema_version": 1,
+  "source_homepage": "https://spectrumcomputing.co.uk"
+}

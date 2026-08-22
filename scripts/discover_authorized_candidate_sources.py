@@ -33,6 +33,19 @@ def normalize(value: str) -> str:
     return " ".join("".join(char for char in value.casefold() if char.isalnum() or char.isspace()).split())
 
 
+def archive_title_matches(candidate_title: str, archive_title: str, publisher: str) -> bool:
+    """Match a title exactly, allowing only a trailing publisher decoration."""
+
+    expected = normalize(candidate_title)
+    observed = normalize(archive_title)
+    publisher_normalized = normalize(publisher)
+    if observed == expected:
+        return True
+    if publisher_normalized and observed == f"{expected} {publisher_normalized}":
+        return True
+    return False
+
+
 def fetch_json(url: str, timeout: int = 20) -> dict[str, Any]:
     request = Request(url, headers={"User-Agent": "DAAD-Harvester/1.0 evidence discovery"})
     with urlopen(request, timeout=timeout) as response:  # nosec B310: bounded public API URL
@@ -49,7 +62,7 @@ def matching_direct_files(candidate: dict[str, Any]) -> tuple[list[dict[str, str
     for item in (payload.get("response") or {}).get("docs") or []:
         identifier = str(item.get("identifier") or "")
         archive_title = str(item.get("title") or "")
-        if not identifier or normalize(archive_title) != normalize(title):
+        if not identifier or not archive_title_matches(title, archive_title, str(candidate["publisher"])):
             continue
         metadata_url = f"https://archive.org/metadata/{quote(identifier, safe='')}"
         metadata = fetch_json(metadata_url)

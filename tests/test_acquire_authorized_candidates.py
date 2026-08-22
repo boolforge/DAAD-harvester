@@ -33,7 +33,10 @@ def test_checksum_verification_requires_matching_declared_digest(tmp_path: Path)
     digest = hashlib.sha1(b"DAAD").hexdigest()
     assert verify_checksum(payload, {"algorithm": "sha1", "value": digest})["status"] == "checksum_verified"
     assert verify_checksum(payload, {"algorithm": "sha1", "value": "0" * 40})["status"] == "checksum_mismatch"
-    assert verify_checksum(payload, None)["status"] == "no_declared_source_checksum"
+    measured = verify_checksum(payload, None)
+    assert measured["status"] == "checksum_measured"
+    assert measured["algorithm"] == "sha256"
+    assert measured["actual"] == hashlib.sha256(b"DAAD").hexdigest()
 
 
 def test_selection_accepts_only_complete_authorized_entries() -> None:

@@ -1,6 +1,11 @@
 from scripts import discover_authorized_candidate_sources as discovery
 
 
+def test_archive_title_match_allows_only_trailing_publisher_decoration() -> None:
+    assert discovery.archive_title_matches("Behind Closed Doors", "Behind Closed Doors : Zenobi Software", "Zenobi Software")
+    assert not discovery.archive_title_matches("Behind Closed Doors", "Behind Closed Doors 2 : Zenobi Software", "Zenobi Software")
+
+
 def candidate() -> dict[str, str]:
     return {
         "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
