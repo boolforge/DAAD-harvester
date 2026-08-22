@@ -15,6 +15,11 @@ import subprocess
 import sys
 from typing import Sequence
 
+try:  # Supports both `python scripts/...` and `from scripts import ...`.
+    from scripts.workflow_environment import repository_python_environment
+except ModuleNotFoundError:  # Direct script execution places `scripts/` on sys.path.
+    from workflow_environment import repository_python_environment
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -52,7 +57,7 @@ def run_workflow(*, include_tests: bool, ordered: bool = False) -> None:
 
     preflight_command = [sys.executable, str(ROOT / "scripts" / "verify_environment.py")]
     print(f"==> environment preflight: {' '.join(preflight_command)}", flush=True)
-    subprocess.run(preflight_command, cwd=ROOT, check=True)
+    subprocess.run(preflight_command, cwd=ROOT, env=repository_python_environment(ROOT), check=True)
 
     if not ordered:
         parallel_command = [
@@ -66,17 +71,17 @@ def run_workflow(*, include_tests: bool, ordered: bool = False) -> None:
             "4",
         ]
         print(f"==> parallel deterministic gates: {' '.join(parallel_command)}", flush=True)
-        subprocess.run(parallel_command, cwd=ROOT, check=True)
+        subprocess.run(parallel_command, cwd=ROOT, env=repository_python_environment(ROOT), check=True)
         if include_tests:
             test_command = [sys.executable, "-m", "pytest", "-q"]
             print(f"==> regression suite: {' '.join(test_command)}", flush=True)
-            subprocess.run(test_command, cwd=ROOT, check=True)
+            subprocess.run(test_command, cwd=ROOT, env=repository_python_environment(ROOT), check=True)
         return
 
     for label, arguments in workflow_commands(include_tests=include_tests):
         command = [sys.executable, *arguments]
         print(f"==> {label}: {' '.join(command)}", flush=True)
-        subprocess.run(command, cwd=ROOT, check=True)
+        subprocess.run(command, cwd=ROOT, env=repository_python_environment(ROOT), check=True)
 
 
 def main(argv: Sequence[str] | None = None) -> int:

@@ -18,7 +18,14 @@ import subprocess
 import sys
 from typing import Sequence
 
+try:  # Supports both `python scripts/...` and `from scripts import ...`.
+    from scripts.workflow_environment import repository_python_environment
+except ModuleNotFoundError:  # Direct script execution places `scripts/` on sys.path.
+    from workflow_environment import repository_python_environment
+
+
 ROOT = Path(__file__).resolve().parents[1]
+
 
 
 @dataclass(frozen=True)
@@ -63,6 +70,7 @@ def _run_gate(gate: Gate, timeout: float) -> tuple[str, int, str]:
         result = subprocess.run(
             [sys.executable, *gate.arguments],
             cwd=ROOT,
+            env=repository_python_environment(ROOT),
             capture_output=True,
             text=True,
             check=False,
