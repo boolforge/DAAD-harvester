@@ -98,6 +98,12 @@ health-checked but unconfigured 68000/i8086 static-decoding candidate. Its
 preserves a pinned-source Python-binding build, controlled fixture results, and
 the exact absence of a MOS 6502/MOS 8501 architecture constant. The repository
 will not substitute a different CPU family merely to widen a tool’s scope.
+lybrown/dis revision `b4954cc90f210a64a3c63e87101a9a8786cd0247` is a
+health-checked but unconfigured MOS 6502 control-flow candidate. Its
+[health record](../../research/sources/lybrown_dis_fixture_health_2026-08-22.md)
+binds the tracked Perl script, explicit raw origin and entry, and the controlled
+fixture listing. Its candidate record refuses MOS 8501 substitution; static
+tracing, labels, and code/data classification remain tool hypotheses.
 The pinned j-helland i8086 candidate has an explicit
 [source and build block record](../../research/sources/jhelland_8086_disassembler_boundary_2026-08-22.md):
 no source license was observed, and its documented CMake build failed before

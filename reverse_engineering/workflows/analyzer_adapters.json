@@ -91,6 +91,16 @@
       "runner": "external_candidate",
       "load_model_compatibility": ["requires_pinned_m68k_or_i8086_origin_entry_and_load_model"],
       "commentary_boundary": "Controlled Capstone decoding is unavailable for retained bytes until platform-specific CPU, origin, base, entry, and cross-tool evidence are separately recorded."
+    },
+    {
+      "adapter_id": "lybrown-dis-mos6502-candidate-v1",
+      "state": "candidate",
+      "role": "control_flow_analysis",
+      "architectures": ["mos6502"],
+      "tool": {"name": "lybrown/dis", "pin": "b4954cc90f210a64a3c63e87101a9a8786cd0247", "provenance_url": "https://github.com/lybrown/dis"},
+      "runner": "external_candidate",
+      "load_model_compatibility": ["requires_pinned_mos6502_origin_entry_and_raw_or_prg_model"],
+      "commentary_boundary": "The candidate's static tracing and code/data split are tool hypotheses; it is MOS 6502-only and must not be substituted for MOS 8501 retained bytes."
     }
   ]
 }

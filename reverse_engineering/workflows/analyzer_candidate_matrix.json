@@ -44,13 +44,13 @@
     },
     {
       "candidate_id": "lybrown-dis-mos6502-v1",
-      "admission_state": "discovery",
+      "admission_state": "health_checked",
       "architectures": ["mos6502"],
-      "source": {"repository_url": "https://github.com/lybrown/dis", "revision": "b4954cc90f210a64a3c63e87101a9a8786cd0247", "license_status": "MIT observed in repository metadata"},
+      "source": {"repository_url": "https://github.com/lybrown/dis", "revision": "b4954cc90f210a64a3c63e87101a9a8786cd0247", "license_status": "MIT observed in pinned LICENSE.md"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "control_flow_analysis"],
-      "blockers": ["source and command inspection", "fixture health", "C64 6502 versus Plus-4 8501 profile", "independently evidenced retained-byte origin"],
-      "non_claim": "Address-oriented README options do not supply a DAAD load or CPU profile."
+      "blockers": ["MOS 8501 is outside the candidate's recorded CPU scope and must not be substituted", "independently evidenced C64 6502 origin, base, and entry", "independently evidenced Plus/4 8501 profile and a different suitable comparator", "retained-byte cross-tool disagreement record"],
+      "non_claim": "Controlled raw MOS 6502 fixture tracing with an explicit origin and entry does not validate a DAAD platform, retained-byte load model, recovered source, or runtime behavior."
     },
     {
       "candidate_id": "oxore-m68k-disasm-v1",

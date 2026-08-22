@@ -770,7 +770,7 @@
         },
         {
           "path": "reverse_engineering/workflows/analyzer_adapters.json",
-          "sha256": "a9f78235b8f3c002ea75aae224159eb8c2d0135821c727fb2e0c7d3ed7535369"
+          "sha256": "bb6bfe1342852f4c8ff277e18d2a6751e64c2e0726d930140625103834f75177"
         },
         {
           "path": "scripts/generate_analysis_commentary_scaffold.py",

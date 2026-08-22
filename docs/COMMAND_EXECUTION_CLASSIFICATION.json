@@ -14,6 +14,8 @@
     {"path": "scripts/agent_workflow.py", "line": 20, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Git delivery orchestration; not preservation evidence generation."},
     {"path": "scripts/capture_tui_demo_gif.py", "line": 42, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Chromium renders a derived demonstration; it is not a primary preservation result."},
     {"path": "scripts/check_american_english.py", "line": 40, "call": "subprocess.check_output", "class": "declared_host_dependency", "boundary": "Git lists tracked authored text; no preservation claim is generated."},
+    {"path": "scripts/run_lybrown_dis_fixture_health.py", "line": 39, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Pinned lybrown/dis runs only on a literal controlled MOS 6502 fixture; output is corroborative and not primary preservation evidence."},
+    {"path": "scripts/run_lybrown_dis_fixture_health.py", "line": 40, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Second pinned lybrown/dis controlled-fixture run checks byte-identical output; it does not authorize retained-byte analysis."},
     {"path": "scripts/run_parallel_workflow.py", "line": 71, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Allowlisted local Python verification launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 60, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local preflight launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 74, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local scheduler launcher."},
