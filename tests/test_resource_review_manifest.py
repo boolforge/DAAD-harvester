@@ -12,8 +12,8 @@ def test_review_manifest_covers_every_retained_artifact() -> None:
     assert len(artifacts) == 1015
     assert manifest["summary"]["evidence_states"] == {
         "explicit_rejection": 20,
-        "recognized_evidence": 146,
-        "review_required": 849,
+        "recognized_evidence": 155,
+        "review_required": 840,
     }
     assert manifest["summary"]["observed_extensions"]["<extensionless>"] > 0
     assert "None" in manifest["summary"]["container_formats"]

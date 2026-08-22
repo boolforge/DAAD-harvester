@@ -524,6 +524,9 @@ _CPC_DAAD_LOADER_FNT_SIZE = 896
 _CPC_DAAD_LOADER_FNT_SHA256 = "fb10eff788f33453e39027e80ee14e022302a31d21d34cfc457ef974f378c15a"
 _R4_SOURCE250_ALL_E5_FNT_SIZE = 896
 _R4_SOURCE250_ALL_E5_FNT_SHA256 = "87a077d1d65c2c1a3fc64c03fd2c3f25431d2c6a7fc36ebf23256b3aa9bf4f07"
+_PLUS3DOS_HEADER_SIZE = 128
+_SPECTRUM_SDG_TERMINAL_HEADER_SIZE = 19
+_SPECTRUM_SDG_TERMINAL_ADDRESS = 0xFFED
 
 
 def _inspect_msx_r4_mdg(data: bytes) -> MediaInspection:
@@ -631,6 +634,124 @@ def _inspect_daad_fnt(data: bytes) -> MediaInspection:
         "amsdos-binary", "recognized_evidence", "validated_amsdos_binary_header_noncanonical_fnt",
         **header_evidence,
         profile_boundary="valid_amsdos_container_not_a_validated_daad_font_profile",
+    )
+
+
+def _inspect_spectrum_sdg(data: bytes) -> MediaInspection:
+    """Validate only the documented Plus3DOS-wrapped Spectrum SDG profile.
+
+    A Spectrum SDG's 19-byte terminal header is mapped to 0xFFED through
+    0xFFFF. This records the proven outer wrapper and terminal pointer layout;
+    it does not decode picture commands or equate raw/erased same-extension
+    members with a valid graphics database.
+    """
+
+    digest = sha256(data).hexdigest()
+    unknown = _result(
+        "daad-spectrum-sdg", "recognized_evidence", "unrecognized_sdg_profile",
+        size=len(data), sha256=digest,
+        profile_boundary="no_generic_sdg_graphics_decoder",
+    )
+    if len(data) < _PLUS3DOS_HEADER_SIZE or not data.startswith(b"PLUS3DOS\x1a"):
+        return unknown
+    stored_checksum = data[127]
+    computed_checksum = sum(data[:127]) & 0xFF
+    if stored_checksum != computed_checksum:
+        return _result(
+            "plus3dos", "rejected", "plus3dos_header_checksum_mismatch",
+            size=len(data), sha256=digest,
+            stored_header_checksum=stored_checksum,
+            computed_header_checksum=computed_checksum,
+        )
+    declared_total = int.from_bytes(data[11:15], "little")
+    declared_payload = int.from_bytes(data[16:18], "little")
+    load_address = int.from_bytes(data[18:20], "little")
+    if declared_total < _PLUS3DOS_HEADER_SIZE or declared_total > len(data):
+        return _result(
+            "plus3dos", "rejected", "plus3dos_declared_length_mismatch",
+            size=len(data), sha256=digest,
+            declared_total=declared_total,
+            declared_payload=declared_payload,
+        )
+    if declared_payload != declared_total - _PLUS3DOS_HEADER_SIZE:
+        return _result(
+            "plus3dos", "rejected", "plus3dos_declared_payload_mismatch",
+            size=len(data), sha256=digest,
+            declared_total=declared_total,
+            declared_payload=declared_payload,
+        )
+    physical_tail_size = len(data) - declared_total
+    if physical_tail_size >= 128:
+        return _result(
+            "plus3dos", "rejected", "plus3dos_unbounded_physical_tail",
+            size=len(data), sha256=digest,
+            declared_total=declared_total,
+            physical_tail_size=physical_tail_size,
+        )
+    if declared_payload < _SPECTRUM_SDG_TERMINAL_HEADER_SIZE:
+        return _result(
+            "plus3dos", "rejected", "truncated_spectrum_sdg_terminal_header",
+            size=len(data), sha256=digest,
+            declared_payload=declared_payload,
+        )
+
+    payload = data[_PLUS3DOS_HEADER_SIZE:declared_total]
+    terminal_offset = declared_payload - _SPECTRUM_SDG_TERMINAL_HEADER_SIZE
+    terminal = payload[terminal_offset:]
+    if terminal[14:16] != b"\xff\xff" or terminal[17:19] != b"\x00\x00":
+        return _result(
+            "daad-spectrum-sdg", "rejected", "spectrum_sdg_terminal_sentinel_mismatch",
+            size=len(data), sha256=digest,
+            declared_payload=declared_payload,
+            terminal_offset=terminal_offset,
+            terminal_sentinels=terminal[14:19].hex(),
+        )
+
+    load_base = _SPECTRUM_SDG_TERMINAL_ADDRESS - terminal_offset
+    spare = int.from_bytes(terminal[0:2], "little")
+    data_start = int.from_bytes(terminal[2:4], "little")
+    picture_table = int.from_bytes(terminal[4:6], "little")
+    window_table = int.from_bytes(terminal[6:8], "little")
+    extra_data = int.from_bytes(terminal[8:10], "little")
+    charset = int.from_bytes(terminal[10:12], "little")
+    palette = int.from_bytes(terminal[12:14], "little")
+    picture_count = terminal[16]
+    terminal_values = {
+        "spare_word": spare,
+        "data_start_address": data_start,
+        "picture_table_address": picture_table,
+        "window_table_address": window_table,
+        "extra_data_address": extra_data,
+        "charset_address": charset,
+        "palette_address": palette,
+    }
+    pointer_values = {
+        name: value for name, value in terminal_values.items()
+        if name != "spare_word"
+    }
+    for name, pointer in pointer_values.items():
+        if pointer and not (load_base <= pointer < 0x10000):
+            return _result(
+                "daad-spectrum-sdg", "rejected", "spectrum_sdg_pointer_out_of_load_range",
+                size=len(data), sha256=digest, load_base=load_base,
+                pointer_name=name, pointer_value=pointer,
+            )
+    if data_start and data_start != load_base:
+        return _result(
+            "daad-spectrum-sdg", "rejected", "spectrum_sdg_data_start_mismatch",
+            size=len(data), sha256=digest, load_base=load_base,
+            data_start_address=data_start,
+        )
+    return _result(
+        "daad-spectrum-sdg", "recognized_evidence", "validated_plus3dos_spectrum_sdg_terminal_header",
+        size=len(data), sha256=digest,
+        wrapper="plus3dos", load_address=load_address,
+        declared_payload=declared_payload, load_base=load_base,
+        physical_tail_size=physical_tail_size,
+        terminal_header_offset=terminal_offset,
+        picture_count=picture_count,
+        **terminal_values,
+        profile_boundary="terminal_header_and_pointer_layout_only_no_picture_command_decoder",
     )
 
 
@@ -1001,6 +1122,8 @@ def inspect_native_media(filename: str, data: bytes) -> MediaInspection:
         return _inspect_msx_r4_mdg(data)
     if extension == ".fnt":
         return _inspect_daad_fnt(data)
+    if extension == ".sdg":
+        return _inspect_spectrum_sdg(data)
     if extension in {".ch0", ".chr"}:
         return _inspect_daad_chr(data)
     if extension == ".dat" and data[:4] == b"\x00\x00\x04\x00":

@@ -7893,14 +7893,14 @@
     {
       "artifact_id": 884,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_ccf09917_PART1.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "PART1.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "unrecognized_sdg_profile",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -7909,21 +7909,21 @@
       "sha256": "ac2932e802391049c9f7b22f3cf7168b7ffb8de41d822aec343bb8d6704d05e3",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
       "artifact_id": 885,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_5f89f336_PART2.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "PART2.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "unrecognized_sdg_profile",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -7932,8 +7932,8 @@
       "sha256": "7d05aa458c52ae9cc6de2f9466cda2ba4575993950c1d123e5a6ab05c5a3b219",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -8215,14 +8215,14 @@
     {
       "artifact_id": 898,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_7c219097_BLANK.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "BLANK.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "unrecognized_sdg_profile",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -8231,8 +8231,8 @@
       "sha256": "c47b836b328387fad08b1fb310f827a0a7701a651fd8855b1d8d93d8b4732087",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -16794,14 +16794,14 @@
     {
       "artifact_id": 1318,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_PART1.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "PART1.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -16810,21 +16810,21 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
       "artifact_id": 1319,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_PART2.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "PART2.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -16833,8 +16833,8 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -17070,14 +17070,14 @@
     {
       "artifact_id": 1330,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_BLANK.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "BLANK.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -17086,8 +17086,8 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 250,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -18772,14 +18772,14 @@
     {
       "artifact_id": 1404,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_PART1.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "PART1.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -18788,8 +18788,8 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 258,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -20658,14 +20658,14 @@
     {
       "artifact_id": 1486,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_DAAD.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "DAAD.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -20674,8 +20674,8 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 260,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -21578,14 +21578,14 @@
     {
       "artifact_id": 1526,
       "container_format": null,
-      "evidence_state": "review_required",
+      "evidence_state": "recognized_evidence",
       "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_513e71dd_DAAD.SDG",
       "file_size": 2304,
-      "next_action": "Inspect the bounded parser outcome, record a profile-specific support loop, and do not infer semantics from the filename.",
+      "next_action": "Preserve profile-scoped parser evidence and verify cross-file relationships before promotion.",
       "original_filename": "DAAD.SDG",
-      "parser": "none",
-      "parser_status": "unrecognized",
-      "parser_validation": "no_native_media_signature",
+      "parser": "daad-spectrum-sdg",
+      "parser_status": "recognized_evidence",
+      "parser_validation": "validated_plus3dos_spectrum_sdg_terminal_header",
       "platform_hint": null,
       "reproducer": {
         "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",
@@ -21594,8 +21594,8 @@
       "sha256": "be4105682098fcf4317e39622601faa232d5b751cc194cf2367fb99fb83b2dd7",
       "source_id": 261,
       "support_loop": {
-        "required": true,
-        "state": "active"
+        "required": false,
+        "state": "closed_with_boundary"
       }
     },
     {
@@ -23369,8 +23369,8 @@
     },
     "evidence_states": {
       "explicit_rejection": 20,
-      "recognized_evidence": 146,
-      "review_required": 849
+      "recognized_evidence": 155,
+      "review_required": 840
     },
     "observed_extensions": {
       ".#n#": 1,
@@ -23441,10 +23441,10 @@
     },
     "parser_statuses": {
       "extracted": 130,
-      "recognized_evidence": 146,
+      "recognized_evidence": 155,
       "rejected": 20,
       "runtime_recovered": 4,
-      "unrecognized": 715
+      "unrecognized": 706
     },
     "parsers": {
       "amiga-adf": 4,
@@ -23459,10 +23459,11 @@
       "daad-msx-mdg": 1,
       "daad-msx-r4-launcher-com": 3,
       "daad-pcw-dat-v1": 2,
+      "daad-spectrum-sdg": 9,
       "dos-mz": 40,
       "fat12-fat16": 2,
       "msx-cas": 2,
-      "none": 734,
+      "none": 725,
       "opaque-program-image": 59,
       "snapshot-z80": 14,
       "tzx-cdt": 22,

@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -283,7 +283,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "37b68b4a709b15c54b605f343dba8aa8bcdac973974ef9007755a1c7c41d941d"
+          "sha256": "76aec79b739f5a27065f33e7f4a71141b023c22b1f4a3c7c74fa5a472f0e01c0"
         }
       ],
       "external_validators": [
@@ -313,7 +313,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         }
       ],
       "outputs": [
@@ -482,7 +482,7 @@
         },
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         }
       ],
       "outputs": [
@@ -517,7 +517,7 @@
         },
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "58a19ecef6881c1d8b17de004289addd1c8419970509fb22349bb7c52ff01bab"
+          "sha256": "26c0f4b6279770706c93a56ae8855712d48a9ce53d682934cd5adf0fa1d72d2e"
         }
       ],
       "outputs": [

@@ -189,6 +189,63 @@ def test_all_e5_fnt_same_size_mutation_remains_unrecognized() -> None:
     assert result.evidence["profile_boundary"] == "no_generic_fnt_or_sintac_font_decoder"
 
 
+def test_retained_source250_plus3dos_sdg_validates_spectrum_terminal_header() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_513e71dd_PART1.SDG").read_bytes()
+
+    result = inspect_native_media("PART1.SDG", data)
+
+    assert result.parser == "daad-spectrum-sdg"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "validated_plus3dos_spectrum_sdg_terminal_header"
+    assert result.evidence["wrapper"] == "plus3dos"
+    assert result.evidence["load_address"] == 0xF7D7
+    assert result.evidence["declared_payload"] == 2089
+    assert result.evidence["physical_tail_size"] == 87
+    assert result.evidence["load_base"] == 0xF7D7
+    assert result.evidence["terminal_header_offset"] == 2070
+    assert result.evidence["picture_count"] == 1
+    assert result.evidence["data_start_address"] == 0xF7D7
+    assert result.evidence["charset_address"] == 0xF7E4
+    assert result.evidence["profile_boundary"] == "terminal_header_and_pointer_layout_only_no_picture_command_decoder"
+
+
+def test_spectrum_sdg_terminal_sentinel_corruption_is_rejected() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_513e71dd_PART1.SDG").read_bytes())
+    data[128 + 2089 - 19 + 14] ^= 0x01
+
+    result = inspect_native_media("PART1.SDG", bytes(data))
+
+    assert result.parser == "daad-spectrum-sdg"
+    assert result.status == "rejected"
+    assert result.validation == "spectrum_sdg_terminal_sentinel_mismatch"
+
+
+def test_spectrum_sdg_physical_tail_of_one_record_is_rejected() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_513e71dd_PART1.SDG").read_bytes()
+
+    result = inspect_native_media("PART1.SDG", data + (b"\x00" * 41))
+
+    assert result.parser == "plus3dos"
+    assert result.status == "rejected"
+    assert result.validation == "plus3dos_unbounded_physical_tail"
+    assert result.evidence["physical_tail_size"] == 128
+
+
+def test_all_e5_sdg_remains_an_explicit_unrecognized_profile() -> None:
+    root = Path(__file__).resolve().parents[1]
+    data = (root / "preservation_corpus" / "extracted" / "depth2_5f89f336_PART2.SDG").read_bytes()
+
+    result = inspect_native_media("PART2.SDG", data)
+
+    assert result.parser == "daad-spectrum-sdg"
+    assert result.status == "recognized_evidence"
+    assert result.validation == "unrecognized_sdg_profile"
+    assert result.evidence["profile_boundary"] == "no_generic_sdg_graphics_decoder"
+
+
 def test_same_size_mdx_mutation_remains_an_explicit_unrecognized_profile() -> None:
     root = Path(__file__).resolve().parents[1]
     data = bytearray((root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes())
