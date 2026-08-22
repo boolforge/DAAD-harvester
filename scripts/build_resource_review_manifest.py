@@ -48,6 +48,10 @@ def build(db_path: Path = DEFAULT_DB) -> dict[str, object]:
                 "container_format": row["container_format"],
                 "platform_hint": row["platform_hint"],
                 "evidence_state": evidence_state,
+                "support_loop": {
+                    "required": evidence_state == "review_required",
+                    "state": "active" if evidence_state == "review_required" else "closed_with_boundary",
+                },
                 "next_action": next_action,
                 "reproducer": {
                     "command": "python scripts/verify_resource_inventory.py --db preservation_corpus/state.db",

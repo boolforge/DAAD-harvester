@@ -24,6 +24,10 @@ def test_review_manifest_covers_every_retained_artifact() -> None:
         "review_required",
     }
     assert all(entry["next_action"] and entry["reproducer"]["command"] for entry in artifacts)
+    assert all(
+        entry["support_loop"]["required"] == (entry["evidence_state"] == "review_required")
+        for entry in artifacts
+    )
 
 
 def test_committed_review_manifest_is_deterministic() -> None:
