@@ -30,6 +30,8 @@ def test_repository_audit_marks_filename_test_matching_as_a_review_prompt() -> N
 
     assert "not proof of missing coverage" in report
     assert "does not establish universal catalog completeness" in report
+    assert "Recent bounded deliveries established PCW same-disk companion co-residency" in report
+    assert "The next atomic delivery should implement the PCW child" not in report
     assert data["audit"]["limitations"] == [
         "Static analysis does not establish format, release, or runtime semantics.",
         "Filename-level test matching is a review prompt, not test coverage measurement.",

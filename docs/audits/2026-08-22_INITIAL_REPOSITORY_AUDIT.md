@@ -76,7 +76,7 @@ Python reuse should remain internal-first: `media_inspection`, `daad_parser`, `d
 
 ## Required implementation sequence
 
-The next atomic delivery should implement the PCW child of the platform-bundle requirement: retain only measured same-disk membership between each validated DDB and similarly stemmed CHR/DAT members, persist the relationship state, and reject absent or cross-disk companions. That delivery advances tasks 38–39 without marking either broad task complete. The following bounded delivery should record the two R4 `DAAD.FNT` byte profiles as separate evidence records and retain the unresolved SINTAC boundary.
+Recent bounded deliveries established PCW same-disk companion co-residency and the exact R4 all-`E5` FNT byte profile. Neither closes the broader platform-bundle or FNT-grammar requirements. Select the next atomic delivery from the active index as one profile-scoped child: either obtain independent loader/writer evidence before extending FNT semantics, or add a separately evidenced resource-relationship model for one other retained platform. Do not promote a generic FNT/SINTAC decoder, runtime behavior, or cross-platform bundle equivalence from either completed child.
 
 Every change must run the repository-owned parallel scheduler, focused tests, the full test suite, documentation and language gates where applicable, and the atomic commit wrapper. Acquisition discovery can run independently only through the versioned Python adapters and must retain unsuccessful exact-match results as boundaries rather than guessed registrations.
 
