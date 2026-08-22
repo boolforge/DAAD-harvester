@@ -243,40 +243,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "reason": "authorized_source_discovery_required",
-      "title": "Daga Oscura, La",
-      "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "reason": "authorized_source_discovery_required",
-      "title": "Dark Dagger, The",
-      "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -616,7 +582,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 36,
+  "discovery_required_count": 34,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -892,6 +858,64 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
+      "external_source_terms": null,
+      "filename": "LaDagaOscuraV10.zip",
+      "language": "Spanish",
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+        "title": "Daga Oscura, La",
+        "year": "2024"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://ejvg.itch.io/la-daga-oscura",
+        "upload_id": 13581099
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "b82ba612be06ebf49052386ef84332abc20338f78e07f162c02cc1f7d982e027"
+      },
+      "source_record_url": "https://ejvg.itch.io/la-daga-oscura",
+      "source_release_id": "2549987:13581099",
+      "source_url": "https://ejvg.itch.io/la-daga-oscura",
+      "title": "Daga Oscura, La",
+      "year": "2024"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
+      "external_source_terms": null,
+      "filename": "TheDarkDaggerV2.zip",
+      "language": "English",
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+        "title": "Dark Dagger, The",
+        "year": "2024"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://ejvg.itch.io/the-dark-dagger",
+        "upload_id": 13580661
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "cd5762b072818973e882f1e44ee9cac0e2ae2f9f2817e2c41282d85bc05fed8d"
+      },
+      "source_record_url": "https://ejvg.itch.io/the-dark-dagger",
+      "source_release_id": "2947333:13580661",
+      "source_url": "https://ejvg.itch.io/the-dark-dagger",
+      "title": "Dark Dagger, The",
+      "year": "2024"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
       "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "language": "Spanish",
@@ -937,7 +961,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 13,
+  "queued_count": 15,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

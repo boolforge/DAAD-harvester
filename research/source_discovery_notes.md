@@ -36,3 +36,12 @@ The page is a valid release-identity and access evidence candidate. A determinis
 The public `cero_absoluto.zip` control was activated on 2026-08-22 without login or purchase. Chromium’s download history recorded a completed file named `cero_absoluto.zip`. This confirms binary delivery by the public page; the deterministic source adapter must still resolve or retain the final URL and measure the downloaded bytes before queue promotion.
 
 The public itch.io API response for upload `6205261` returns a short-lived `/download/...` URL, but a direct HTTP GET to that URL returns an HTML download-completion page rather than game bytes. The page contains a JavaScript `game_download` control and an alternate-download-mode hint. Therefore the current adapter must not treat the JSON `url` field as a direct binary URL; it requires one further verified step that resolves the actual file delivery endpoint while retaining the temporary cookie session.
+
+## EJVG price-free itch.io releases: official source candidates
+
+On 2026-08-22, the official EJVG pages <https://ejvg.itch.io/the-dark-dagger> and <https://ejvg.itch.io/la-daga-oscura> were reviewed. The English page identifies **The Dark Dagger**, credits Eduardo José Villalobos Galindo, describes ZX Spectrum 128K tape media and DAAD use, and announces a December 2024 release. The Spanish page identifies **La Daga Oscura**, the same creator, ZX Spectrum 128K tape media and DAAD use, and its September 2024 release. Both pages use a name-your-own-price download with no positive minimum price.
+
+The pinned `itchio-downloader` 1.2.0 adapter retrieved both public uploads through direct HTTP without payment: upload `13580661` for the English page and upload `13581099` for the Spanish page. The original catalog titles invert the initial article (`Dark Dagger, The` and `Daga Oscura, La`), while the official pages use `The Dark Dagger` and `La Daga Oscura`; the source record must preserve that title-variant boundary rather than silently normalizing it.
+
+[6]: https://ejvg.itch.io/the-dark-dagger
+[7]: https://ejvg.itch.io/la-daga-oscura

@@ -73,8 +73,8 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 13
-    assert queue["discovery_required_count"] == 36
+    assert queue["queued_count"] == 15
+    assert queue["discovery_required_count"] == 34
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
     assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
@@ -86,5 +86,7 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     assert "alien research centre 2|pension productions|2019|english" in queued_keys
     assert "behind closed doors 5|pension productions|2019|english" in queued_keys
     assert "behind closed doors 6|pension productions|2019|english" in queued_keys
+    assert "daga oscura, la|eduardo josé villalobos galindo|2024|spanish" in queued_keys
+    assert "dark dagger, the|eduardo josé villalobos galindo|2024|english" in queued_keys
     assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
     assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}

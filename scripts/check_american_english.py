@@ -27,6 +27,8 @@ AUTHENTIC_PROPER_NOUNS = (
     "Chichén Itzá",
     "La Estrella de la Mañana",
     "Doña Elisa de Avalón",
+    "Eduardo José Villalobos Galindo",
+    "eduardo josé villalobos galindo",
 )
 
 
