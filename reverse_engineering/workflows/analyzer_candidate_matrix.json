@@ -74,13 +74,13 @@
     },
     {
       "candidate_id": "jhelland-8086-disassembler-v1",
-      "admission_state": "discovery",
+      "admission_state": "blocked_by_license_or_build",
       "architectures": ["i8086"],
-      "source": {"repository_url": "https://github.com/j-helland/8086-disassembler", "revision": "1979e794d1cbcd92714d0863a2fd17fd89af4fcd", "license_status": "no license detected in inspected repository metadata"},
+      "source": {"repository_url": "https://github.com/j-helland/8086-disassembler", "revision": "1979e794d1cbcd92714d0863a2fd17fd89af4fcd", "license_status": "no license file or license text observed in pinned checkout"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "jump-labeling comparison candidate"],
-      "blockers": ["license review", "source build and test health", "DOS COM/MZ versus raw segment model", "retained-byte disagreement record"],
-      "non_claim": "Two-pass jump labels are tool hypotheses until a retained DOS load model is independently evidenced."
+      "blockers": ["no observed source license", "documented CMake build fails on the current host because instruction.cpp lacks declarations for abs, printf, and std::out_of_range", "upstream NASM round-trip suite is unavailable until the source build succeeds", "DOS COM/MZ segment, origin, and entry model", "retained-byte disagreement record"],
+      "non_claim": "A source-inspected two-pass jump-label design, including an unresolved host build failure, does not authorize an invocation or establish DOS behavior, source recovery, or runtime semantics."
     }
   ]
 }

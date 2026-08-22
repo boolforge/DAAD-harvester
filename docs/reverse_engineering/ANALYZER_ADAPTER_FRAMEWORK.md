@@ -98,6 +98,12 @@ health-checked but unconfigured 68000/i8086 static-decoding candidate. Its
 preserves a pinned-source Python-binding build, controlled fixture results, and
 the exact absence of a MOS 6502/MOS 8501 architecture constant. The repository
 will not substitute a different CPU family merely to widen a tool’s scope.
+The pinned j-helland i8086 candidate has an explicit
+[source and build block record](../../research/sources/jhelland_8086_disassembler_boundary_2026-08-22.md):
+no source license was observed, and its documented CMake build failed before
+tests because required standard-library declarations were absent. It is not
+added to the executable candidate catalog and cannot become a fallback merely
+because its README describes two-pass jump labels.
 The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
 records the remaining candidates, architecture boundaries, and non-promotion
 reasons. None is an enabled workflow dependency.
