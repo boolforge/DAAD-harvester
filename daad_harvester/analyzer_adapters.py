@@ -16,6 +16,7 @@ from typing import Any
 
 CATALOG_SCHEMA_VERSION = 1
 GHIDRA_HEALTH_SCHEMA_VERSION = 1
+RADARE2_HEALTH_SCHEMA_VERSION = 1
 DOS_I8086_ADMISSION_SCHEMA_VERSION = 1
 CONFIGURED = "configured"
 CANDIDATE = "candidate"
@@ -348,4 +349,75 @@ def load_ghidra_headless_health(path: Path, workflow: dict[str, Any]) -> dict[st
     if not isinstance(health, dict):
         raise AdapterCatalogError("Ghidra health: top level must be a mapping")
     validate_ghidra_headless_health(health, workflow)
+    return health
+
+
+def validate_radare2_fixture_health(health: dict[str, Any], workflow: dict[str, Any]) -> None:
+    """Validate controlled radare2 fixture evidence without admitting retained inputs."""
+    if health.get("schema_version") != RADARE2_HEALTH_SCHEMA_VERSION:
+        raise AdapterCatalogError("radare2 health: unsupported schema_version")
+    _require_string(health, "purpose", "radare2 health")
+    _require_string(health, "non_claim", "radare2 health")
+    tool = health.get("tool")
+    if not isinstance(tool, dict):
+        raise AdapterCatalogError("radare2 health: tool must be a mapping")
+    if _require_string(tool, "name", "radare2 health") != "radare2":
+        raise AdapterCatalogError("radare2 health: tool name must be radare2")
+    _require_string(tool, "version", "radare2 health")
+    if not _SHA256.fullmatch(_require_string(tool, "binary_sha256", "radare2 health")):
+        raise AdapterCatalogError("radare2 health: binary_sha256 must be a lowercase SHA-256")
+    _require_string(tool, "provenance_url", "radare2 health")
+    host = health.get("host")
+    if not isinstance(host, dict):
+        raise AdapterCatalogError("radare2 health: host must be a mapping")
+    if _require_string(host, "status", "radare2 host") != "health_checked":
+        raise AdapterCatalogError("radare2 health: host status must remain health_checked")
+    _require_string(host, "platform", "radare2 host")
+    _require_string(host, "observed_binary_path", "radare2 host")
+    profiles = health.get("processor_profiles")
+    if not isinstance(profiles, list) or not profiles:
+        raise AdapterCatalogError("radare2 health: processor_profiles must be a non-empty list")
+    expected_profiles = {
+        frozenset({"z80"}): ("z80", 16),
+        frozenset({"mos6502", "mos8501"}): ("6502", 16),
+        frozenset({"m68000"}): ("m68k", 32),
+        frozenset({"i8086"}): ("x86", 16),
+    }
+    observed_architectures: set[str] = set()
+    for profile in profiles:
+        if not isinstance(profile, dict):
+            raise AdapterCatalogError("radare2 health: every processor profile must be a mapping")
+        architectures = _require_string_list(profile, "architectures", "radare2 processor profile")
+        profile_key = frozenset(architectures)
+        if profile_key not in expected_profiles or any(architecture in observed_architectures for architecture in architectures):
+            raise AdapterCatalogError("radare2 health: architecture profile differs from the controlled contract")
+        expected_arch, expected_bits = expected_profiles[profile_key]
+        if profile.get("radare_arch") != expected_arch or profile.get("bits") != expected_bits:
+            raise AdapterCatalogError("radare2 health: architecture profile differs from the controlled contract")
+        observed_architectures.update(architectures)
+        if not _FIXTURE_FILENAME.fullmatch(_require_string(profile, "fixture_filename", "radare2 processor profile")):
+            raise AdapterCatalogError("radare2 health: fixture_filename must be a controlled relative fixture name")
+        try:
+            fixture = bytes.fromhex(_require_string(profile, "fixture_hex", "radare2 processor profile"))
+        except ValueError as exc:
+            raise AdapterCatalogError("radare2 health: fixture_hex must be hexadecimal") from exc
+        if not fixture or hashlib.sha256(fixture).hexdigest() != _require_string(profile, "fixture_sha256", "radare2 processor profile"):
+            raise AdapterCatalogError("radare2 health: fixture SHA-256 does not match fixture_hex")
+        if not _SHA256.fullmatch(_require_string(profile, "listing_sha256", "radare2 processor profile")):
+            raise AdapterCatalogError("radare2 health: listing_sha256 must be a lowercase SHA-256")
+        if profile.get("repeat_run_count") != 2 or profile.get("repeat_exports_byte_identical") is not True:
+            raise AdapterCatalogError("radare2 health: fixture record must bind two identical repeated runs")
+    if observed_architectures != set(workflow.get("architectures", {})):
+        raise AdapterCatalogError("radare2 health: processor profiles must cover each workflow architecture exactly once")
+
+
+def load_radare2_fixture_health(path: Path, workflow: dict[str, Any]) -> dict[str, Any]:
+    """Load controlled radare2 health evidence without executing the tool."""
+    try:
+        health = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise AdapterCatalogError(f"radare2 health: invalid JSON: {exc.msg}") from exc
+    if not isinstance(health, dict):
+        raise AdapterCatalogError("radare2 health: top level must be a mapping")
+    validate_radare2_fixture_health(health, workflow)
     return health

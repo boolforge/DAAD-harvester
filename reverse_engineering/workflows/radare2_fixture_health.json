@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "purpose": "Controlled-fixture, host-scoped health evidence for the configured radare2 control-flow adapter. This record validates only the stated executable, processor bindings, and listing exports; it does not authorize retained-byte analysis.",
+  "tool": {
+    "name": "radare2",
+    "version": "5.5.0",
+    "binary_sha256": "98d4090bc2feb256556030dc80ca991ade3df0de40dfcba8fbd6b5ba4f63a734",
+    "provenance_url": "https://github.com/radareorg/radare2"
+  },
+  "host": {
+    "platform": "Linux x86_64",
+    "observed_binary_path": "/usr/bin/r2",
+    "status": "health_checked"
+  },
+  "processor_profiles": [
+    {
+      "architectures": ["z80"],
+      "radare_arch": "z80",
+      "bits": 16,
+      "fixture_filename": "fixture-z80.bin",
+      "fixture_hex": "00c9",
+      "fixture_sha256": "4690c1ed14ac5dd2e529dc29c12bc4561caf27c025346c7e81b28597aeeaa533",
+      "listing_sha256": "4e37639f265fe2b83776b238d6295739934db3ed3484d411e960dde29061e7e1",
+      "repeat_run_count": 2,
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["mos6502", "mos8501"],
+      "radare_arch": "6502",
+      "bits": 16,
+      "fixture_filename": "fixture-mos6502.bin",
+      "fixture_hex": "ea60",
+      "fixture_sha256": "c45e396ba1d4efd0ae131ef11e13a3eafabc904f8deb603b394344652b68d8b7",
+      "listing_sha256": "c38136c4581bc52593e0419d999f8d5a6960dec703f760c6dab82652cd4c1146",
+      "repeat_run_count": 2,
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["m68000"],
+      "radare_arch": "m68k",
+      "bits": 32,
+      "fixture_filename": "fixture-m68000.bin",
+      "fixture_hex": "4e714e75",
+      "fixture_sha256": "8e87b3a2dd2cf6b970e38bb62f460570a8a9c6f9a6e7afeedee921e99947b58f",
+      "listing_sha256": "24589bc447a34f0128af2d5751916b6665de6f63d597601aedd9e603bf66dee3",
+      "repeat_run_count": 2,
+      "repeat_exports_byte_identical": true
+    },
+    {
+      "architectures": ["i8086"],
+      "radare_arch": "x86",
+      "bits": 16,
+      "fixture_filename": "fixture-i8086.bin",
+      "fixture_hex": "90c3",
+      "fixture_sha256": "36565ca5d2854ac584ac1356867f5c575d0f489442f8c8b4b8c391b2246ec1e5",
+      "listing_sha256": "60b414d56eaebfec4030059644fe4243a6dbe7bf9f03d01af56b5ab34a1b2a33",
+      "repeat_run_count": 2,
+      "repeat_exports_byte_identical": true
+    }
+  ],
+  "non_claim": "The controlled fixtures prove only repeated radare2 listing exports for the recorded raw base-zero invocation on one Linux host. They are not recovered source, a valid retained-binary origin or load model, a function map, or runtime behavior."
+}

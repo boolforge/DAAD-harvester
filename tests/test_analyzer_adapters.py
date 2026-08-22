@@ -13,6 +13,7 @@ CATALOG_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_adapters.j
 TOOLCHAIN_PATH = ROOT / "reverse_engineering" / "workflows" / "toolchain.json"
 CANDIDATE_MATRIX_PATH = ROOT / "reverse_engineering" / "workflows" / "analyzer_candidate_matrix.json"
 GHIDRA_HEALTH_PATH = ROOT / "reverse_engineering" / "workflows" / "ghidra_headless_health.json"
+RADARE2_HEALTH_PATH = ROOT / "reverse_engineering" / "workflows" / "radare2_fixture_health.json"
 DOS_I8086_ADMISSION_PATH = ROOT / "reverse_engineering" / "workflows" / "dos_i8086_load_model_admission.json"
 
 
@@ -267,3 +268,25 @@ def test_ghidra_headless_health_rejects_missing_checked_host_launcher_digest() -
 
     with pytest.raises(analyzer_adapters.AdapterCatalogError, match="requires launcher SHA-256"):
         analyzer_adapters.validate_ghidra_headless_health(health, _toolchain())
+
+
+def test_radare2_fixture_health_covers_configured_architectures_without_authorizing_retained_inputs() -> None:
+    health = analyzer_adapters.load_radare2_fixture_health(RADARE2_HEALTH_PATH, _toolchain())
+
+    assert health["tool"]["version"] == "5.5.0"
+    assert {architecture for profile in health["processor_profiles"] for architecture in profile["architectures"]} == set(_toolchain()["architectures"])
+    assert all(profile["repeat_exports_byte_identical"] is True for profile in health["processor_profiles"])
+    assert "not recovered source" in health["non_claim"]
+
+
+def test_radare2_fixture_health_rejects_changed_architecture_profile_or_listing_hash() -> None:
+    health = analyzer_adapters.load_radare2_fixture_health(RADARE2_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["bits"] = 32
+
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="architecture profile differs"):
+        analyzer_adapters.validate_radare2_fixture_health(health, _toolchain())
+
+    health = analyzer_adapters.load_radare2_fixture_health(RADARE2_HEALTH_PATH, _toolchain())
+    health["processor_profiles"][0]["listing_sha256"] = "0" * 63
+    with pytest.raises(analyzer_adapters.AdapterCatalogError, match="listing_sha256"):
+        analyzer_adapters.validate_radare2_fixture_health(health, _toolchain())

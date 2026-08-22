@@ -100,6 +100,13 @@
         "path": "scripts/run_primary_workflow.py"
       },
       {
+        "boundary": "Hash-bound radare2 runs only committed literal fixtures twice in temporary directories; the runner has no retained-DAAD input path or analysis mode.",
+        "call": "subprocess.run",
+        "class": "external_independent_validator",
+        "line": 44,
+        "path": "scripts/run_radare2_fixture_health.py"
+      },
+      {
         "boundary": "Retained static-analysis output is derived and explicitly non-primary.",
         "call": "subprocess.run",
         "class": "external_independent_validator",
@@ -265,6 +272,10 @@
             "qualified_name": "sha256_file"
           },
           {
+            "path": "scripts/run_radare2_fixture_health.py",
+            "qualified_name": "sha256_file"
+          },
+          {
             "path": "scripts/run_reverse_analysis.py",
             "qualified_name": "sha256"
           },
@@ -373,7 +384,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 532,
+      "declared_test_count": 534,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -403,21 +414,21 @@
         "7. Authorization-gated reverse-engineering corpus": 10,
         "8. All-platform retained game corpus and regression suite": 37,
         "9. DAAD game decompiler research and differential implementation": 8,
-        "Active evidence-interface correction": 81,
+        "Active evidence-interface correction": 80,
         "Deferred external-source queue (not part of the active task plan)": 13,
         "Self-contained regeneration requirement": 22
       },
       "sections": 12,
       "subsystem_counts": {
-        "corpus and provenance": 132,
+        "corpus and provenance": 131,
         "media and resource inspection": 53,
         "preservation workflow": 7,
-        "runtime and reverse analysis": 107,
+        "runtime and reverse analysis": 106,
         "terminal interface": 23,
-        "tooling and workflow gates": 127,
+        "tooling and workflow gates": 126,
         "web report and publication": 50
       },
-      "unchecked_items": 198
+      "unchecked_items": 197
     },
     "corpus": {
       "artifacts": 1015,
@@ -425,7 +436,7 @@
     },
     "python": {
       "production_files": 53,
-      "script_files": 81,
+      "script_files": 82,
       "test_files": 100
     },
     "regeneration": {
