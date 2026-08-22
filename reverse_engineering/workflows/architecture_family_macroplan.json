@@ -16,11 +16,11 @@
     {
       "id": "plus4_mos8501",
       "population": 2,
-      "verified_fields": ["PRG identity", "contract-bound PRG load address 0x4001", "contract-bound BASIC-line wrapper structure", "contract-bound loaded-image range and out-of-image SYS target"],
+      "verified_fields": ["PRG identity", "contract-bound PRG load address 0x4001", "contract-bound BASIC-line wrapper structure", "contract-bound loaded-image range and out-of-image SYS target", "future official Plus/4 launcher and banking capture schema"],
       "unresolved_fields": ["target-specific meaning of SYS 2063", "7501 banking", "TED/ROM/RAM state", "machine-code entry", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "b779999",
+      "last_validated_commit": "cf0e447",
       "next_reproducer": "python3 scripts/verify_plus4_prg_load_model.py",
       "forbidden_cross_family_evidence": ["C64 SYS entry semantics", "C64 processor-port state", "DOS MZ fields"]
     },
