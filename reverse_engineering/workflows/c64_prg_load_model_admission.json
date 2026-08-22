@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "purpose": "Measured PRG wrapper and BASIC SYS entry admission for the two retained official C64 interpreter profiles; not a banking, I/O, semantic, or runtime contract.",
+  "admission_state": "load_and_basic_entry_verified_banking_unresolved",
+  "execution_eligible": false,
+  "banking_io_state": "unresolved: the PRG wrapper and BASIC SYS entry do not establish active C64 banking or I/O state",
+  "profiles": [
+    {
+      "artifact_id": "daad-c64-edi64-official",
+      "input_path": "reverse_engineering/artifacts/original/c64/daad-c64-edi64-official/edi64.prg",
+      "sha256": "c462192db2a552f079aa7d521f3ae23a3d5c066120b42108a905085e923932c5",
+      "entry_address": 2063
+    },
+    {
+      "artifact_id": "daad-c64-sdi64-official",
+      "input_path": "reverse_engineering/artifacts/original/c64/daad-c64-sdi64-official/sdi64.prg",
+      "sha256": "767aa97d411ea025d20e25282ae0ac90360b4fb99af01392c38d2721aa7033ec",
+      "entry_address": 2063
+    }
+  ],
+  "remaining_requirements": [
+    "C64 banking and I/O state at the machine-code entry",
+    "qualified reanalysis without the two-byte PRG wrapper at load address 0x0801",
+    "cross-tool disagreement record under the qualified configuration",
+    "platform-specific runtime and behavioral evidence"
+  ],
+  "non_claim": "A validated C64 PRG load address and BASIC SYS entry do not establish interpreter behavior, function boundaries, source recovery, or runtime equivalence."
+}

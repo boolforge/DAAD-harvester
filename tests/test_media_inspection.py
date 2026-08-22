@@ -100,6 +100,25 @@ def test_c64_basic_sys_prg_rejects_nondecimal_target() -> None:
     assert result.validation == "non_decimal_sys_target"
 
 
+def test_official_c64_interpreter_prgs_have_measured_basic_load_and_sys_entry() -> None:
+    root = Path(__file__).resolve().parents[1]
+    profiles = {
+        "edi64.prg": "daad-c64-edi64-official",
+        "sdi64.prg": "daad-c64-sdi64-official",
+    }
+
+    for filename, profile in profiles.items():
+        data = (root / "reverse_engineering" / "artifacts" / "original" / "c64" / profile / filename).read_bytes()
+        result = inspect_native_media(filename, data)
+
+        assert result.status == "recognized_evidence"
+        assert result.validation == "validated_c64_basic_sys_launcher"
+        assert result.evidence["load_address"] == 0x0801
+        assert result.evidence["sys_target"] == 2063
+        assert result.evidence["machine_code_offset"] == 16
+        assert result.evidence["trailing_rem_marker"] is True
+
+
 def test_retained_r4_msx_mdg_is_exact_canonical_template() -> None:
     root = Path(__file__).resolve().parents[1]
     data = (root / "preservation_corpus" / "extracted" / "depth2_d13cd278_DAAD.MDG").read_bytes()

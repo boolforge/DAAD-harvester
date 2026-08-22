@@ -143,17 +143,22 @@ def _inspect_c64_basic_sys_prg(data: bytes) -> MediaInspection:
     line_number = int.from_bytes(data[4:6], "little")
     if data[6] != 0x9E:
         return _result("c64-basic-sys-prg", "rejected", "missing_basic_sys_token", token=data[6])
-    terminator = data.find(b"\x00", 7, min(len(data), 14))
-    if terminator < 8:
+    line_terminator = data.find(b"\x00", 7, min(len(data), 14))
+    if line_terminator < 8:
         return _result("c64-basic-sys-prg", "rejected", "missing_or_empty_sys_target")
-    target_bytes = data[7:terminator]
+    sys_terminator = line_terminator
+    trailing_rem_marker = False
+    if data[7:line_terminator].endswith(b":\x8f"):
+        sys_terminator = line_terminator - 2
+        trailing_rem_marker = True
+    target_bytes = data[7:sys_terminator]
     if not target_bytes.isdigit():
         return _result("c64-basic-sys-prg", "rejected", "non_decimal_sys_target")
     sys_target = int(target_bytes)
-    terminal_link = terminator + 3
-    if terminal_link > len(data) or data[terminator + 1:terminal_link] != b"\x00\x00":
+    terminal_link = line_terminator + 3
+    if terminal_link > len(data) or data[line_terminator + 1:terminal_link] != b"\x00\x00":
         return _result("c64-basic-sys-prg", "rejected", "missing_terminal_basic_link")
-    if next_line != load_address + (terminator - 2 + 1):
+    if next_line != load_address + (line_terminator - 2 + 1):
         return _result(
             "c64-basic-sys-prg", "rejected", "inconsistent_basic_next_line_pointer",
             load_address=load_address, next_line=next_line,
@@ -167,6 +172,7 @@ def _inspect_c64_basic_sys_prg(data: bytes) -> MediaInspection:
         sys_target=sys_target,
         basic_program_end_offset=terminal_link,
         machine_code_offset=terminal_link,
+        trailing_rem_marker=trailing_rem_marker,
     )
 
 
