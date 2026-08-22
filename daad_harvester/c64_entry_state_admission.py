@@ -11,7 +11,7 @@ class C64EntryStateAdmissionError(ValueError):
     """Raised when official C64 entry state is promoted without measured evidence."""
 
 
-REQUIRED_CAPTURE_FIELDS = {
+REQUIRED_CAPTURE_FIELDS = (
     "official_prg_sha256",
     "capture_sha256",
     "emulator_name",
@@ -24,7 +24,7 @@ REQUIRED_CAPTURE_FIELDS = {
     "io_visible",
     "ram_under_rom_visible",
     "entry_pc",
-}
+)
 
 
 def validate_c64_entry_state_admission(contract: dict[str, Any]) -> None:
@@ -33,6 +33,8 @@ def validate_c64_entry_state_admission(contract: dict[str, Any]) -> None:
         raise C64EntryStateAdmissionError("schema_version must be 1")
     if contract.get("execution_eligible") is not False:
         raise C64EntryStateAdmissionError("C64 entry-state admission must not enable execution")
+    if contract.get("required_capture_fields") != list(REQUIRED_CAPTURE_FIELDS):
+        raise C64EntryStateAdmissionError("contract must preserve the C64 future-capture field schema")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or {item.get("artifact_id") for item in profiles if isinstance(item, dict)} != {"daad-c64-edi64-official", "daad-c64-sdi64-official"}:
         raise C64EntryStateAdmissionError("contract must bind both official C64 PRG profiles")

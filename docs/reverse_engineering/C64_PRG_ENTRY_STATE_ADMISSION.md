@@ -18,6 +18,10 @@ Every current profile records a null entry-state observation. A generic default,
 an incomplete record, or a synthetically complete observation cannot substitute
 for a retained hash-bound official launch capture.
 
+The contract also machine-checks the ordered future-capture field schema. It
+records requirements for any later evidence acquisition and remains separate
+from an observed official launch state.
+
 ```bash
 python3 scripts/verify_c64_prg_entry_state_admission.py
 ```
