@@ -195,6 +195,16 @@ def test_render_game_port_and_detection_handoff_with_real_lineage(tmp_path):
     assert "Detection metadata only" in text
 
 
+def test_ui_evidence_contract_records_implemented_tui_panels() -> None:
+    root = Path(__file__).parents[1]
+    contract = (root / "docs" / "requirements" / "UI_EVIDENCE_CONTRACT.md").read_text(encoding="utf-8")
+
+    assert "Dedicated game/port tab separates catalog, source, and measured-artifact platforms" in contract
+    assert "Dedicated detection panel shows header availability, bounded preview, SHA-256" in contract
+    assert "No dedicated game/port tab." not in contract
+    assert "Metrics names catalog entries but lacks header detail." not in contract
+
+
 def test_render_native_generator_tab_exposes_complete_checksum_and_boundary(tmp_path):
     dash = TUIDashboard(Database(tmp_path / "test.db"))
 

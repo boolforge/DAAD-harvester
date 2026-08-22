@@ -431,7 +431,7 @@
       "id": "todo-0038",
       "line": 38,
       "section": "Active evidence-interface correction",
-      "text": "Complete the terminal-dashboard capability audit for the synchronized expansion. Reconcile its recorded summary, platform, game, artifact, checksum, provenance, unavailable-state, and keyboard-navigation presentation against the same evidence boundaries as the static report. Add a focused regression for any confirmed mismatch and preserve every unimplemented interface requirement as deferred rather than implied.",
+      "text": "Complete the terminal-dashboard capability audit for the synchronized expansion. Reconcile its recorded summary, platform, game, artifact, checksum, provenance, unavailable-state, and keyboard-navigation presentation against the same evidence boundaries as the static report. The first confirmed contract drift understated the implemented game/port and detection panels; their current baseline and regression coverage now match the terminal implementation, while entity drill-down and complete artifact checksum access remain explicit deferred work. Add a focused regression for any remaining confirmed mismatch and preserve every unimplemented interface requirement as deferred rather than implied.",
       "evidence_inputs": [
         "real-artifact regression",
         "report or interface output",
