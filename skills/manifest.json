@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "purpose": "Portable skill scaffold for any agent or service operating DAAD Harvester.",
+  "usage_policy": "Load and follow the relevant skills for every repository operation; never replace them with private agent instructions.",
+  "required_order": [
+    "daad-harvester-agent-workflow",
+    "daad-harvester-todo-continuation",
+    "daad-harvester-evidence-boundaries",
+    "daad-harvester-parallel-gates",
+    "daad-harvester-atomic-delivery"
+  ],
+  "skills": [
+    {
+      "name": "daad-harvester-agent-workflow",
+      "path": "skills/daad-harvester-agent-workflow/SKILL.md",
+      "always": true
+    },
+    {
+      "name": "daad-harvester-todo-continuation",
+      "path": "skills/daad-harvester-todo-continuation/SKILL.md",
+      "always": true
+    },
+    {
+      "name": "daad-harvester-evidence-boundaries",
+      "path": "skills/daad-harvester-evidence-boundaries/SKILL.md",
+      "always": true
+    },
+    {
+      "name": "daad-harvester-parallel-gates",
+      "path": "skills/daad-harvester-parallel-gates/SKILL.md",
+      "always": true
+    },
+    {
+      "name": "daad-harvester-atomic-delivery",
+      "path": "skills/daad-harvester-atomic-delivery/SKILL.md",
+      "always": true
+    }
+  ],
+  "secret_policy": "Never store, print, transmit, or commit credentials through the skill scaffold."
+}

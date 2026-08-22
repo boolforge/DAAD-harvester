@@ -5,6 +5,11 @@ from types import SimpleNamespace
 import pytest
 
 from scripts import agent_workflow
+from scripts.validate_skill_scaffold import validate
+
+
+def test_skill_scaffold_is_complete_and_mandatory() -> None:
+    assert validate() == []
 
 
 def test_machine_readable_contract_points_to_versioned_workflow() -> None:

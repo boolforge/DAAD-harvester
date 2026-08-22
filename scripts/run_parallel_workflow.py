@@ -37,6 +37,7 @@ GATE_GROUPS: dict[str, tuple[Gate, ...]] = {
     ),
     "publication": (
         Gate("pyflakes", ("-m", "pyflakes", "daad_harvester", "scripts")),
+        Gate("skill scaffold", ("scripts/validate_skill_scaffold.py",)),
         Gate("active backlog index", ("scripts/build_active_backlog_index.py", "--check")),
         Gate("regeneration manifest", ("scripts/verify_regeneration_manifest.py",)),
         Gate("public artifact manifest", ("scripts/build_public_artifact_manifest.py", "--check")),
