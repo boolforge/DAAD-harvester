@@ -2,7 +2,7 @@
   "schema_version": 1,
   "purpose": "Deterministic index of unchecked TODO work; this index never promotes child evidence to broad-task completion.",
   "todo_source": "TODO.md",
-  "unchecked_item_count": 180,
+  "unchecked_item_count": 179,
   "section_counts": {
     "1. Complete format and archive coverage": 6,
     "10. Universal decompile–recompile round-trip verification": 6,
@@ -13,7 +13,7 @@
     "7. Authorization-gated reverse-engineering corpus": 10,
     "8. All-platform retained game corpus and regression suite": 37,
     "9. DAAD game decompiler research and differential implementation": 8,
-    "Active evidence-interface correction": 63,
+    "Active evidence-interface correction": 62,
     "Deferred external-source queue (not part of the active task plan)": 13,
     "Self-contained regeneration requirement": 22
   },
@@ -754,26 +754,6 @@
       "line": 61,
       "section": "Active evidence-interface correction",
       "text": "Evaluate the reproducible availability of Oxore/m68k-disasm's upstream round-trip dependencies (`m68k-none-elf-as`, `m68k-none-elf-ld`, and `m68k-none-elf-objcopy`). Pin and document a noninteractive toolchain source or exact block, run only upstream fixtures if available, and preserve Amiga/Atari origin, entry, load-model, and retained-byte disagreement requirements.",
-      "evidence_inputs": [
-        "independent external comparator",
-        "retained original bytes"
-      ],
-      "affected_subsystems": [
-        "corpus and provenance",
-        "tooling and workflow gates"
-      ],
-      "dependencies": [
-        "none stated; retain unresolved boundaries"
-      ],
-      "required_real_artifact_regression": true,
-      "regeneration_report_impact": "deterministic workflow, manifest, or CI regeneration",
-      "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
-    },
-    {
-      "id": "todo-0062",
-      "line": 62,
-      "section": "Active evidence-interface correction",
-      "text": "Turn the verified minimal j-helland/8086-disassembler include repair into a repository-owned optional health recipe. Bind the exact source revision, isolated copy, three-header repair, CMake build, NASM fixture suite, and deterministic aggregate result without vendoring upstream source or enabling retained DOS input.",
       "evidence_inputs": [
         "independent external comparator",
         "retained original bytes"

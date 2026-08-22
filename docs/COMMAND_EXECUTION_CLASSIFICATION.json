@@ -21,6 +21,7 @@
     {"path": "scripts/run_primary_workflow.py", "line": 74, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local scheduler launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 78, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local pytest launcher."},
     {"path": "scripts/run_primary_workflow.py", "line": 84, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Ordered local Python launcher."},
+    {"path": "scripts/run_jhelland_fixture_health.py", "line": 20, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Temporary repaired pinned j-helland source builds and runs only its upstream NASM fixtures; no retained DAAD path is accepted or analyzed."},
     {"path": "scripts/run_reverse_analysis.py", "line": 37, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Retained static-analysis output is derived and explicitly non-primary."},
     {"path": "scripts/verify_regeneration_manifest.py", "line": 51, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Verifier permits only repository-local Python regeneration commands."}
   ]
