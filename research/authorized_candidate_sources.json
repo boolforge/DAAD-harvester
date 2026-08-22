@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
+  "registrations": [
+    {
+      "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
+      "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
+      "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+      "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+      "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
+      "release_identity": {
+        "title": "Diosa de Cozumel, La",
+        "publisher": "Aventuras A.D.",
+        "year": "1990"
+      },
+      "source_checksum": {
+        "algorithm": "sha1",
+        "value": "5c63fe158ff73fcdb9752e84b247b3e78521d744"
+      },
+      "source_evidence": "Internet Archive metadata identifies the binary as Diosa de Cozumel, La (1990)(Aventuras AD)(ES)."
+    }
+  ]
+}

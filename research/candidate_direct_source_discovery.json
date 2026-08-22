@@ -1,0 +1,535 @@
+{
+  "authorization_policy": "research/acquisition_policy.json",
+  "candidate_queue": "research/authorized_acquisition_queue.json",
+  "generated_at_epoch": 1787362329,
+  "input_candidate_count": 49,
+  "purpose": "Direct Internet Archive source discovery for institutionally authorized catalog candidates; no bytes are downloaded in this phase.",
+  "records": [
+    {
+      "candidate_key": "after the dark|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "After the Dark",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Alien Research Centre 2",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Aventuras A.D.",
+      "status": "no_exact_source_match",
+      "title": "Aventura Espacial, La",
+      "title_only_matches": [],
+      "year": "1990"
+    },
+    {
+      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Aventuras A.D., Dinamic Software",
+      "status": "no_exact_source_match",
+      "title": "Aventura Original, La",
+      "title_only_matches": [],
+      "year": "1989"
+    },
+    {
+      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Balrog and the Cat, The",
+      "title_only_matches": [],
+      "year": "1988"
+    },
+    {
+      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Dee Cooke",
+      "status": "no_exact_source_match",
+      "title": "Barry Basic and the Quest For The Perfect Port",
+      "title_only_matches": [],
+      "year": "2020"
+    },
+    {
+      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 2: The Sequel",
+      "title_only_matches": [],
+      "year": "1988"
+    },
+    {
+      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 3: Revenge of the Ants",
+      "title_only_matches": [],
+      "year": "1989"
+    },
+    {
+      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 4: Balrog's Day Out",
+      "title_only_matches": [],
+      "year": "1994"
+    },
+    {
+      "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 5",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 6",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 7",
+      "title_only_matches": [],
+      "year": "2018"
+    },
+    {
+      "candidate_key": "behind closed doors 8|pension productions|2020|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors 8",
+      "title_only_matches": [],
+      "year": "2020"
+    },
+    {
+      "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Behind Closed Doors",
+      "title_only_matches": [],
+      "year": "1988"
+    },
+    {
+      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Bulbo and the Blue Dragon",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "error": "URLError: <urlopen error _ssl.c:983: The handshake operation timed out>",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "discovery_error",
+      "title": "Bulbo and the Lizard-King",
+      "title_only_matches": [],
+      "year": "1987"
+    },
+    {
+      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Bulbo's Intrepid Adventure",
+      "title_only_matches": [],
+      "year": "2018"
+    },
+    {
+      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Pablo Mart\u00ednez Merino",
+      "status": "no_exact_source_match",
+      "title": "Casa al otro lado de la tormenta, la",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "case of murder, a|taskmaster software|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Taskmaster Software",
+      "status": "no_exact_source_match",
+      "title": "Case of Murder, A",
+      "title_only_matches": [],
+      "year": "2022"
+    },
+    {
+      "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "ESP Soft",
+      "status": "no_exact_source_match",
+      "title": "Cero Absoluto",
+      "title_only_matches": [],
+      "year": "2016"
+    },
+    {
+      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Toni Pera",
+      "status": "no_exact_source_match",
+      "title": "Cetro del Sol, El",
+      "title_only_matches": [],
+      "year": "2006"
+    },
+    {
+      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_exact_source_match",
+      "title": "Chico de los recados, El",
+      "title_only_matches": [],
+      "year": "2021"
+    },
+    {
+      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jamie Bradbury",
+      "status": "no_exact_source_match",
+      "title": "Colour Beyond Time",
+      "title_only_matches": [],
+      "year": "2022"
+    },
+    {
+      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Puddle Software",
+      "status": "no_exact_source_match",
+      "title": "Curse of Rabenstein, The",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Puddle Software",
+      "status": "no_exact_source_match",
+      "title": "Curse of Rabenstein, The",
+      "title_only_matches": [],
+      "year": "2023"
+    },
+    {
+      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "status": "no_exact_source_match",
+      "title": "Daga Oscura, La",
+      "title_only_matches": [],
+      "year": "2024"
+    },
+    {
+      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "status": "no_exact_source_match",
+      "title": "Dark Dagger, The",
+      "title_only_matches": [],
+      "year": "2024"
+    },
+    {
+      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Electric Storm Productions",
+      "status": "no_exact_source_match",
+      "title": "Deception of the Mind's Eye",
+      "title_only_matches": [],
+      "year": "1993"
+    },
+    {
+      "candidate_key": "deer creek|primary resources|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Primary Resources",
+      "status": "no_exact_source_match",
+      "title": "Deer Creek",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "die, ragus!|sunteam|2023|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Sunteam",
+      "status": "no_exact_source_match",
+      "title": "Die, Ragus!",
+      "title_only_matches": [],
+      "year": "2023"
+    },
+    {
+      "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
+      "language": "Spanish",
+      "matches": [
+        {
+          "archive_md5": "a2adae70d98a30aa6407d0bd26ef330b",
+          "archive_sha1": "5c63fe158ff73fcdb9752e84b247b3e78521d744",
+          "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
+          "release_boundary_evidence": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES Diosa de Cozumel, La  Aventuras AD   1990  Diosa de Cozumel, La (1990)(Aventuras AD)(ES) Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+          "release_boundary_match": true,
+          "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+          "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+          "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf"
+        }
+      ],
+      "publisher": "Aventuras A.D.",
+      "status": "release_boundary_source_discovered",
+      "title": "Diosa de Cozumel, La",
+      "title_only_matches": [],
+      "year": "1990"
+    },
+    {
+      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Taskmaster Software",
+      "status": "no_exact_source_match",
+      "title": "Dragnet Case, The",
+      "title_only_matches": [],
+      "year": "1989"
+    },
+    {
+      "candidate_key": "dream walker|8bitag|2021|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "8bitAG",
+      "status": "no_exact_source_match",
+      "title": "Dream Walker",
+      "title_only_matches": [],
+      "year": "2021"
+    },
+    {
+      "candidate_key": "eight feet under|pond soft|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pond Soft",
+      "status": "no_exact_source_match",
+      "title": "Eight Feet Under",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Kame Soft",
+      "status": "no_exact_source_match",
+      "title": "Elfos de Maroland, Los",
+      "title_only_matches": [],
+      "year": "1993"
+    },
+    {
+      "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Defecto Digital Studios",
+      "status": "no_exact_source_match",
+      "title": "ELF",
+      "title_only_matches": [],
+      "year": "2016"
+    },
+    {
+      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_exact_source_match",
+      "title": "Elves of Maroland, The",
+      "title_only_matches": [],
+      "year": "2024"
+    },
+    {
+      "candidate_key": "erinia|daniel revenga|2020|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_exact_source_match",
+      "title": "Erinia",
+      "title_only_matches": [],
+      "year": "2020"
+    },
+    {
+      "candidate_key": "erinia|daniel revenga|2025|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_exact_source_match",
+      "title": "Erinia",
+      "title_only_matches": [],
+      "year": "2025"
+    },
+    {
+      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Jose Daniel Carbonell",
+      "status": "no_exact_source_match",
+      "title": "Errand Boy, The",
+      "title_only_matches": [],
+      "year": "2021"
+    },
+    {
+      "candidate_key": "escape to murky woods|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "Escape to Murky Woods",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
+      "language": "Spanish",
+      "matches": [],
+      "publisher": "Daniel Revenga",
+      "status": "no_exact_source_match",
+      "title": "Estrella de la Ma\u00f1ana, La",
+      "title_only_matches": [],
+      "year": "2017"
+    },
+    {
+      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Everyday Tale of a Seeker of Gold, An",
+      "title_only_matches": [],
+      "year": "1986"
+    },
+    {
+      "candidate_key": "framed!|kennard douglas|2024|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Kennard Douglas",
+      "status": "title_only_source_match",
+      "title": "Framed!",
+      "title_only_matches": [
+        {
+          "archive_md5": "f05d03a76d0d5c6a068d45c5f34993c4",
+          "archive_sha1": "4bcbf04e286032830ea0cfebe485b9f81e4f5aca",
+          "filename": "framed.zip",
+          "release_boundary_evidence": "framed-2004 Framed zooomer1990  2004 2004-02-12 AGS Database page: <a href=\"http://www.adventuregamestudio.co.uk/site/games/game/349/\" rel=\"nofollow\">http://www.adventuregamestudio.co.uk/site/games/game/349/</a> framed-2004",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed-2004",
+          "source_release_id": "framed-2004",
+          "source_url": "https://archive.org/download/framed-2004/framed.zip"
+        },
+        {
+          "archive_md5": "ac2e99ac42987e83b71cc97f8f0254de",
+          "archive_sha1": "5b0ea06e15d94bdfeafdde51aa63dbe965b9cf2d",
+          "filename": "framed.zip",
+          "release_boundary_evidence": "framed_202004 Framed     Framed framed_202004",
+          "release_boundary_match": false,
+          "source_record_url": "https://archive.org/metadata/framed_202004",
+          "source_release_id": "framed_202004",
+          "source_url": "https://archive.org/download/framed_202004/framed.zip"
+        }
+      ],
+      "year": "2024"
+    },
+    {
+      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "From out of a Dark Night Sky",
+      "title_only_matches": [],
+      "year": "1989"
+    },
+    {
+      "candidate_key": "from out of the snow|pension productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Pension Productions",
+      "status": "no_exact_source_match",
+      "title": "From Out of the Snow",
+      "title_only_matches": [],
+      "year": "2019"
+    },
+    {
+      "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Zenobi Software",
+      "status": "no_exact_source_match",
+      "title": "Fuddo and Slam",
+      "title_only_matches": [],
+      "year": "1988"
+    },
+    {
+      "candidate_key": "golden seas|sunteam|2022|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Sunteam",
+      "status": "no_exact_source_match",
+      "title": "Golden Seas",
+      "title_only_matches": [],
+      "year": "2022"
+    },
+    {
+      "candidate_key": "great caravan caper|electric storm productions|2019|english",
+      "language": "English",
+      "matches": [],
+      "publisher": "Electric Storm Productions",
+      "status": "no_exact_source_match",
+      "title": "Great Caravan Caper",
+      "title_only_matches": [],
+      "year": "2019"
+    }
+  ],
+  "release_boundary_source_candidate_count": 1,
+  "schema_version": 1,
+  "title_only_source_candidate_count": 1
+}

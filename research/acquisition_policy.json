@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "authorization_state": "institutional_authorized",
+  "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+  "scope": "acquire_retain_execute_analyze_publish",
+  "decision_date": "2026-08-22",
+  "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context."
+}

@@ -1,0 +1,852 @@
+{
+  "blocked": [],
+  "blocked_count": 0,
+  "candidate_manifest": "research/catalog_discovery_candidates.json",
+  "discovery_required": [
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "after the dark|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "After the Dark",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Alien Research Centre 2",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Aventuras A.D.",
+      "reason": "authorized_source_discovery_required",
+      "title": "Aventura Espacial, La",
+      "year": "1990"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Aventuras A.D., Dinamic Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Aventura Original, La",
+      "year": "1989"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Balrog and the Cat, The",
+      "year": "1988"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Dee Cooke",
+      "reason": "authorized_source_discovery_required",
+      "title": "Barry Basic and the Quest For The Perfect Port",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors|zenobi software|1988|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors",
+      "year": "1988"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 2: The Sequel",
+      "year": "1988"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 3: Revenge of the Ants",
+      "year": "1989"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 4: Balrog's Day Out",
+      "year": "1994"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 5",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 6",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 7|zenobi software|2018|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 7",
+      "year": "2018"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "behind closed doors 8|pension productions|2020|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Behind Closed Doors 8",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Bulbo and the Blue Dragon",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Bulbo and the Lizard-King",
+      "year": "1987"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Bulbo's Intrepid Adventure",
+      "year": "2018"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Pablo Mart\u00ednez Merino",
+      "reason": "authorized_source_discovery_required",
+      "title": "Casa al otro lado de la tormenta, la",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "case of murder, a|taskmaster software|2022|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Taskmaster Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Case of Murder, A",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "cero absoluto|esp soft|2016|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "ESP Soft",
+      "reason": "authorized_source_discovery_required",
+      "title": "Cero Absoluto",
+      "year": "2016"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Toni Pera",
+      "reason": "authorized_source_discovery_required",
+      "title": "Cetro del Sol, El",
+      "year": "2006"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_source_discovery_required",
+      "title": "Chico de los recados, El",
+      "year": "2021"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Jamie Bradbury",
+      "reason": "authorized_source_discovery_required",
+      "title": "Colour Beyond Time",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Puddle Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Curse of Rabenstein, The",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Puddle Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Curse of Rabenstein, The",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "reason": "authorized_source_discovery_required",
+      "title": "Daga Oscura, La",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
+      "reason": "authorized_source_discovery_required",
+      "title": "Dark Dagger, The",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Electric Storm Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Deception of the Mind's Eye",
+      "year": "1993"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "deer creek|primary resources|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Primary Resources",
+      "reason": "authorized_source_discovery_required",
+      "title": "Deer Creek",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "die, ragus!|sunteam|2023|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Sunteam",
+      "reason": "authorized_source_discovery_required",
+      "title": "Die, Ragus!",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Taskmaster Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Dragnet Case, The",
+      "year": "1989"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "dream walker|8bitag|2021|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "8bitAG",
+      "reason": "authorized_source_discovery_required",
+      "title": "Dream Walker",
+      "year": "2021"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "eight feet under|pond soft|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pond Soft",
+      "reason": "authorized_source_discovery_required",
+      "title": "Eight Feet Under",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Defecto Digital Studios",
+      "reason": "authorized_source_discovery_required",
+      "title": "ELF",
+      "year": "2016"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Kame Soft",
+      "reason": "authorized_source_discovery_required",
+      "title": "Elfos de Maroland, Los",
+      "year": "1993"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_source_discovery_required",
+      "title": "Elves of Maroland, The",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "erinia|daniel revenga|2020|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Daniel Revenga",
+      "reason": "authorized_source_discovery_required",
+      "title": "Erinia",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "erinia|daniel revenga|2025|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Daniel Revenga",
+      "reason": "authorized_source_discovery_required",
+      "title": "Erinia",
+      "year": "2025"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Jose Daniel Carbonell",
+      "reason": "authorized_source_discovery_required",
+      "title": "Errand Boy, The",
+      "year": "2021"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "escape to murky woods|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Escape to Murky Woods",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Daniel Revenga",
+      "reason": "authorized_source_discovery_required",
+      "title": "Estrella de la Ma\u00f1ana, La",
+      "year": "2017"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Everyday Tale of a Seeker of Gold, An",
+      "year": "1986"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "framed!|kennard douglas|2024|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Kennard Douglas",
+      "reason": "authorized_source_discovery_required",
+      "title": "Framed!",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "From out of a Dark Night Sky",
+      "year": "1989"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "from out of the snow|pension productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "From Out of the Snow",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_source_discovery_required",
+      "title": "Fuddo and Slam",
+      "year": "1988"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "golden seas|sunteam|2022|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Sunteam",
+      "reason": "authorized_source_discovery_required",
+      "title": "Golden Seas",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "authorized_source_discovery_required",
+      "candidate_key": "great caravan caper|electric storm productions|2019|english",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "decision_date": "2026-08-22",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
+        "schema_version": 1,
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Electric Storm Productions",
+      "reason": "authorized_source_discovery_required",
+      "title": "Great Caravan Caper",
+      "year": "2019"
+    }
+  ],
+  "discovery_required_count": 48,
+  "policy_manifest": "research/acquisition_policy.json",
+  "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
+  "queued": [
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
+      "language": "Spanish",
+      "publisher": "Aventuras A.D.",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Aventuras A.D.",
+        "title": "Diosa de Cozumel, La",
+        "year": "1990"
+      },
+      "source_checksum": {
+        "algorithm": "sha1",
+        "value": "5c63fe158ff73fcdb9752e84b247b3e78521d744"
+      },
+      "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
+      "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
+      "title": "Diosa de Cozumel, La",
+      "year": "1990"
+    }
+  ],
+  "queued_count": 1,
+  "registration_manifest": "research/authorized_candidate_sources.json",
+  "schema_version": 1
+}
