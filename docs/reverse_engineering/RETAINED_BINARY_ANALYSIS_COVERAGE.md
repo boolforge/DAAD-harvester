@@ -22,9 +22,13 @@ artifact identity.
 
 The coverage ledger reports 42 records: 22 i8086, 8 Motorola 68000, 2 MOS 6502,
 2 MOS 8501, and 8 Z80 profiles. Each currently records three configured static
-analysis lanes. All use `raw_binary_base_0_unverified`; every profile therefore
-has `retained_execution_state: refused_pending_load_model` and
-`cross_tool_disagreement_state: not_recorded`.
+analysis lanes. All retain `raw_binary_base_0_unverified` as provenance of the
+existing analyzer output and therefore have
+`retained_execution_state: refused_pending_full_load_model` plus
+`cross_tool_disagreement_state: not_recorded`. Separately, every profile now
+reports a contract-backed `container_evidence_progress` state and reference;
+this records exactly which verified wrapper, header, segment, relocation, or
+image fact exists without promoting the raw output.
 
 This provides a deterministic inventory of prior work, not a declaration that
 the binary families are understood. An architecture profile can leave the refusal

@@ -21,8 +21,10 @@ def test_retained_binary_analysis_coverage_is_deterministic_and_refuses_executio
     assert first["profile_count"] == 42
     assert first["architecture_counts"] == {"i8086": 22, "m68000": 8, "mos6502": 2, "mos8501": 2, "z80": 8}
     assert {profile["cross_tool_disagreement_state"] for profile in first["profiles"]} == {"not_recorded"}
-    assert {profile["retained_execution_state"] for profile in first["profiles"]} == {"refused_pending_load_model"}
+    assert {profile["retained_execution_state"] for profile in first["profiles"]} == {"refused_pending_full_load_model"}
     assert all(len(profile["configured_analyzer_lanes"]) == 3 for profile in first["profiles"])
+    assert all(profile["container_evidence_reference"].startswith("docs/reverse_engineering/") for profile in first["profiles"])
+    assert {profile["container_evidence_progress"] for profile in first["profiles"] if profile["architecture"] == "i8086"} == {"mz_header_load_module_and_relative_entry_verified_psp_runtime_unresolved"}
 
 
 def test_analysis_coverage_rejects_missing_load_model(tmp_path: Path) -> None:

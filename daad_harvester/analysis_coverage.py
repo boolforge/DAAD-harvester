@@ -29,6 +29,32 @@ REQUIRED_ANALYSIS_KEYS = {
 }
 
 
+def _current_contract_progress(artifact_id: str, architecture: str) -> tuple[str, str]:
+    """Return independent current container-evidence progress for a retained profile."""
+    if architecture == "i8086":
+        return (
+            "mz_header_load_module_and_relative_entry_verified_psp_runtime_unresolved",
+            "docs/reverse_engineering/DOS_MZ_HEADER_LOAD_MODEL_LEDGER.md",
+        )
+    if artifact_id.startswith("daad-c64-"):
+        return ("prg_wrapper_verified_official_entry_state_not_observed", "docs/reverse_engineering/C64_PRG_ENTRY_STATE_ADMISSION.md")
+    if artifact_id.startswith("daad-plus4-"):
+        return ("prg_wrapper_verified_launcher_target_unresolved", "docs/reverse_engineering/PLUS4_PRG_LOAD_MODEL_ADMISSION.md")
+    if artifact_id.startswith("daad-zx-"):
+        return ("plus3dos_header_and_payload_bounds_verified_execution_unresolved", "docs/reverse_engineering/ZX_PLUS3DOS_LOAD_MODEL_ADMISSION.md")
+    if artifact_id.startswith("daad-cpc-"):
+        return ("amsdos_header_load_and_entry_verified_memory_unresolved", "docs/reverse_engineering/CPC_AMSDOS_LOAD_MODEL_ADMISSION.md")
+    if artifact_id.startswith("daad-msx-"):
+        return ("image_identity_and_leading_jump_observed_load_unresolved", "docs/reverse_engineering/MSX_Z80_IMAGE_OBSERVATION.md")
+    if artifact_id.startswith("daad-pcw-"):
+        return ("image_identity_and_bdos_call_observed_load_unresolved", "docs/reverse_engineering/PCW_Z80_IMAGE_OBSERVATION.md")
+    if artifact_id.startswith("daad-amiga-"):
+        return ("hunk_container_and_relocations_verified_runtime_unresolved", "docs/reverse_engineering/AMIGA_HUNK_LOAD_MODEL_ADMISSION.md")
+    if artifact_id.startswith("daad-atarist-"):
+        return ("prg_segments_and_relocations_verified_runtime_unresolved", "docs/reverse_engineering/ATARI_ST_PRG_LOAD_MODEL_ADMISSION.md")
+    raise AnalysisCoverageError(f"{artifact_id}: no independent container-evidence progress contract")
+
+
 def _load_record(path: Path) -> dict[str, Any]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
@@ -70,6 +96,7 @@ def collect_analysis_coverage(root: Path) -> dict[str, Any]:
         if not outputs:
             raise AnalysisCoverageError(f"{path}: outputs lack path/hash identity")
         raw_load = record["load_model"] == "raw_binary_base_0_unverified"
+        progress_state, progress_reference = _current_contract_progress(artifact_id, record["architecture"])
         entries.append(
             {
                 "artifact_id": artifact_id,
@@ -77,10 +104,12 @@ def collect_analysis_coverage(root: Path) -> dict[str, Any]:
                 "input_sha256": record["derived_from_sha256"],
                 "analysis_state": record["analysis_state"],
                 "load_model": record["load_model"],
+                "container_evidence_progress": progress_state,
+                "container_evidence_reference": progress_reference,
                 "configured_analyzer_lanes": tools,
                 "output_hashes": [{"path": output_path, "sha256": output_hash} for output_path, output_hash in outputs],
                 "cross_tool_disagreement_state": "not_recorded",
-                "retained_execution_state": "refused_pending_load_model" if raw_load else "not_admitted",
+                "retained_execution_state": "refused_pending_full_load_model" if raw_load else "not_admitted",
                 "non_claim": record["non_claim"],
             }
         )
