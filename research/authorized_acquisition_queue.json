@@ -56,23 +56,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Balrog and the Cat, The",
-      "year": "1988"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -464,23 +447,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "fuddo and slam|zenobi software|1988|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Fuddo and Slam",
-      "year": "1988"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "great caravan caper|electric storm productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -497,7 +463,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 29,
+  "discovery_required_count": 27,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -524,6 +490,30 @@
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip",
       "title": "Alien Research Centre 2",
       "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Balrog and the Cat, The",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ea54ac03dc4e822875090e1273f08bcbd2cedbc6e2b141416d13f3e93a5a6fea"
+      },
+      "source_record_url": "https://archive.org/metadata/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
+      "source_release_id": "zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
+      "source_url": "https://archive.org/download/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software/Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
+      "title": "Balrog and the Cat, The",
+      "year": "1988"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1012,6 +1002,30 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "Fuddo__Slam_1988_Zenobi_Software.z80",
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Fuddo and Slam",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "67298b77ab3fab0bbf66740a7a1f43081cb0404fb85907fa036f78cc2608c778"
+      },
+      "source_record_url": "https://archive.org/metadata/zx_Fuddo_Slam_1988_Zenobi_Software",
+      "source_release_id": "zx_Fuddo_Slam_1988_Zenobi_Software",
+      "source_url": "https://archive.org/download/zx_Fuddo_Slam_1988_Zenobi_Software/Fuddo__Slam_1988_Zenobi_Software.z80",
+      "title": "Fuddo and Slam",
+      "year": "1988"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "golden seas|sunteam|2022|english",
       "external_source_terms": null,
       "filename": "Golden Seas by Sunteam.zip",
@@ -1039,7 +1053,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 20,
+  "queued_count": 22,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

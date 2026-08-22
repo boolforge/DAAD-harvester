@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 2,
-    "total_registrations": 20
+    "total_registrations": 22
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -22,6 +22,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34908/ZX-Spectrum/Alien_Research_Centre_2",
       "source_release_id": "34908",
       "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip"
+    },
+    {
+      "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Balrog and the Cat, The",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "ea54ac03dc4e822875090e1273f08bcbd2cedbc6e2b141416d13f3e93a5a6fea"
+      },
+      "source_evidence": "Internet Archive item zx_Balrog_and_the_Cat_The_1988_Zenobi_Software identifies Balrog and the Cat, The, creator Zenobi Software, and date 1988. Its retained playable artifact is a Z80 snapshot.",
+      "source_record_url": "https://archive.org/metadata/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
+      "source_release_id": "zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
+      "source_url": "https://archive.org/download/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software/Balrog_and_the_Cat_The_1988_Zenobi_Software.z80"
     },
     {
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
@@ -398,6 +416,24 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
       "source_release_id": "6337",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip"
+    },
+    {
+      "candidate_key": "fuddo and slam|zenobi software|1988|english",
+      "external_source_terms": null,
+      "filename": "Fuddo__Slam_1988_Zenobi_Software.z80",
+      "release_identity": {
+        "publisher": "Zenobi Software",
+        "title": "Fuddo and Slam",
+        "year": "1988"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "67298b77ab3fab0bbf66740a7a1f43081cb0404fb85907fa036f78cc2608c778"
+      },
+      "source_evidence": "Internet Archive item zx_Fuddo_Slam_1988_Zenobi_Software identifies Fuddo & Slam, creator Zenobi Software, and date 1988. Its retained playable artifact is a Z80 snapshot. The catalog spelling Fuddo and Slam differs only by the documented ampersand-versus-word title punctuation.",
+      "source_record_url": "https://archive.org/metadata/zx_Fuddo_Slam_1988_Zenobi_Software",
+      "source_release_id": "zx_Fuddo_Slam_1988_Zenobi_Software",
+      "source_url": "https://archive.org/download/zx_Fuddo_Slam_1988_Zenobi_Software/Fuddo__Slam_1988_Zenobi_Software.z80"
     },
     {
       "candidate_key": "golden seas|sunteam|2022|english",

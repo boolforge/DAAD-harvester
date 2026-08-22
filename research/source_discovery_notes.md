@@ -51,3 +51,26 @@ The pinned `itchio-downloader` 1.2.0 adapter retrieved both public uploads throu
 On 2026-08-22, the official profile <https://dareint.itch.io/> was reviewed for the remaining Daniel Revenga candidates. It identifies **Erinia (2025) [English]** at a positive minimum price, **Erinia (2020, 2023, 2024) [Spanish]** at a positive minimum price, and **La Estrella de la Mañana (2017)** at a positive minimum price. These pages establish authoritative publication references but do not expose no-cost binary access. The candidates remain in `discovery_required`; no paid checkout, authentication bypass, or inferred binary URL is permitted.
 
 [8]: https://dareint.itch.io/
+
+## Source review: Sunteam, Taskmaster, Puddle, and FRAMED
+
+On 2026-08-22, official Sunteam pages confirmed that **Golden Seas (ZX Spectrum Next)** is a free 2022 DAAD Ready release and **Die, Ragus! (ZX Spectrum Next)** is a free 2023 DAAD Ready release. The pinned `itchio-downloader` 1.2.0 adapter retrieved public uploads `6330996` and `8486189`, respectively. The source pages are <https://sunteam.itch.io/golden-seas> and <https://sunteam.itch.io/dieragus>.
+
+The official Taskmaster page <https://taskmastersoftware.itch.io/a-case-of-murder> is a free name-your-own-price source and supplies `MurderFinal.tzx` and `MurderRelease.tap`, but its public re-release is dated 2023 whereas the catalog candidate records 2022. It must remain in `discovery_required` until the edition-year boundary is reconciled rather than being silently promoted.
+
+The official Rabenstein page <https://8bitgames.itch.io/rabenstein> confirms its name-your-own-price distribution and multi-platform English/Spanish editions but identifies the release as 2020–2022, not the catalog candidate years 2019 and 2023. These candidates likewise remain in `discovery_required` pending a source-specific edition match.
+
+A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was probed on 2026-08-22 and returned 116,336 bytes of valid Spectrum TAP data with SHA-256 `67a757ae7d7f2328a34ff1d1807cd28bacdc0e515791e6f11e55f00063004eb3`. Search results and the public review <https://www.youtube.com/watch?v=pMlPWT30-2A> associate **FRAMED 128K**, Kennard Douglas, and 2024 with that download. It requires a corroborating stable publication record before registration.
+
+[9]: https://sunteam.itch.io/golden-seas
+[10]: https://sunteam.itch.io/dieragus
+[11]: https://taskmastersoftware.itch.io/a-case-of-murder
+[12]: https://8bitgames.itch.io/rabenstein
+[13]: https://mycomputerworld.co.uk/framedv1.0.TAP
+[14]: https://www.youtube.com/watch?v=pMlPWT30-2A
+
+The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**, nor name the platform on screen. The candidate remains in `discovery_required` pending a source that explicitly closes that attribution boundary.
+
+## Zenobi archive media boundary
+
+On 2026-08-22, Internet Archive metadata established that `zx_Fuddo_Slam_1988_Zenobi_Software` and `zx_Balrog_and_the_Cat_The_1988_Zenobi_Software` both identify title, Zenobi Software, and 1988. Their retained playable files are Z80 emulator snapshots, not original TAP/TZX media: `Fuddo__Slam_1988_Zenobi_Software.z80` (38,617 bytes) and `Balrog_and_the_Cat_The_1988_Zenobi_Software.z80` (39,513 bytes). The latter matches the catalog’s title exactly; the former differs only by `&` versus `and` and remains unregistered until that title-variant boundary is explicitly modeled. Source metadata URLs: <https://archive.org/metadata/zx_Fuddo_Slam_1988_Zenobi_Software> and <https://archive.org/metadata/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software>.
