@@ -4,7 +4,7 @@
 
 ## Operational baseline
 
-The repository currently contains 45 Python modules in `daad_harvester/`, 72 operational scripts, and 91 focused test modules. The retained corpus contains 1,015 artifact records from 265 sources. The `resource_review_manifest.json` records each artifact's parser status, evidence state, support-loop state, next action, and reproducer. The public catalog-discovery snapshot currently contains 79 candidates from 92 source records; they remain catalog-only.
+The repository currently contains 46 Python modules in `daad_harvester/`, 73 operational scripts, and 92 focused test modules. The retained corpus contains 1,015 artifact records from 265 sources. The `resource_review_manifest.json` records each artifact's parser status, evidence state, support-loop state, next action, and reproducer. The public catalog-discovery snapshot currently contains 79 candidates from 92 source records; they remain catalog-only.
 
 | Area | Implemented and regression-covered | Explicit boundary |
 | --- | --- | --- |

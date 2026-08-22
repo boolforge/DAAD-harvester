@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "purpose": "Autonomous evidence-first sequence for independent DAAD architecture-family verification workstreams. This ledger is planning and status evidence, not a runtime or source-recovery claim.",
+  "workstreams": [
+    {
+      "id": "c64_mos6502",
+      "population": 2,
+      "verified_fields": ["PRG identity", "PRG load address 0x0801", "BASIC SYS 2063 entry declaration"],
+      "unresolved_fields": ["6510 processor-port state at entry", "I/O and banking state", "qualified analyzer configuration", "cross-tool disagreement record"],
+      "analysis_state": "container_or_partial_load_verified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "65e096b",
+      "next_reproducer": "python3 scripts/verify_c64_prg_load_model.py",
+      "forbidden_cross_family_evidence": ["Plus/4 7501/TED state", "JABATO runtime capture", "DOS MZ fields"]
+    },
+    {
+      "id": "plus4_mos8501",
+      "population": 2,
+      "verified_fields": ["PRG identity", "PRG load address 0x4001", "BASIC-line wrapper structure"],
+      "unresolved_fields": ["target-specific meaning of SYS 2063", "7501 banking", "TED/ROM/RAM state", "machine-code entry", "cross-tool disagreement record"],
+      "analysis_state": "container_or_partial_load_verified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "65b5df1",
+      "next_reproducer": "python3 scripts/verify_plus4_prg_load_model.py",
+      "forbidden_cross_family_evidence": ["C64 SYS entry semantics", "C64 processor-port state", "DOS MZ fields"]
+    },
+    {
+      "id": "z80_by_platform",
+      "population": 8,
+      "verified_fields": ["immutable profile identities", "architecture classification", "existing raw-base output hashes"],
+      "unresolved_fields": ["ZX load and bank model", "CPC container and entry model", "MSX loader and memory model", "PCW loader and memory model", "cross-tool disagreement record"],
+      "analysis_state": "raw_base_unverified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "ec0bd19",
+      "next_reproducer": "python3 scripts/inspect_retained_binary_analysis_coverage.py",
+      "forbidden_cross_family_evidence": ["MOS 6502 PRG wrappers", "68000 executable headers", "DOS MZ fields"]
+    },
+    {
+      "id": "amiga_m68000",
+      "population": 4,
+      "verified_fields": ["immutable profile identities", "architecture classification", "existing raw-base output hashes"],
+      "unresolved_fields": ["Hunk segmentation", "relocation", "Amiga OS and memory model", "entry", "cross-tool disagreement record"],
+      "analysis_state": "raw_base_unverified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "ec0bd19",
+      "next_reproducer": "python3 scripts/inspect_retained_binary_analysis_coverage.py",
+      "forbidden_cross_family_evidence": ["Atari ST PRG header fields", "DOS MZ fields", "Z80 bank model"]
+    },
+    {
+      "id": "atari_st_m68000",
+      "population": 4,
+      "verified_fields": ["immutable profile identities", "architecture classification", "existing raw-base output hashes"],
+      "unresolved_fields": ["PRG segments", "relocation", "TOS memory model", "entry", "cross-tool disagreement record"],
+      "analysis_state": "raw_base_unverified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "ec0bd19",
+      "next_reproducer": "python3 scripts/inspect_retained_binary_analysis_coverage.py",
+      "forbidden_cross_family_evidence": ["Amiga Hunk segments", "DOS MZ fields", "Z80 bank model"]
+    },
+    {
+      "id": "dos_i8086",
+      "population": 22,
+      "verified_fields": ["MZ identity", "header bounds", "relocation-table bounds", "relative CS:IP", "relative SS:SP", "overlay field"],
+      "unresolved_fields": ["DOS PSP policy", "actual load segment", "runtime environment", "qualified analyzer configuration", "cross-tool disagreement record"],
+      "analysis_state": "container_or_partial_load_verified",
+      "disagreement_state": "not_recorded",
+      "last_validated_commit": "7558627",
+      "next_reproducer": "python3 scripts/verify_dos_mz_load_model.py",
+      "forbidden_cross_family_evidence": ["C64 PRG wrappers", "Plus/4 7501/TED state", "68000 executable headers"]
+    },
+    {
+      "id": "behavioral_evidence",
+      "population": 1,
+      "verified_fields": ["JABATO C64 capture identity", "capture hashes", "bounded checkpoint metadata"],
+      "unresolved_fields": ["equivalence eligibility", "original-runtime differential suite", "multi-platform behavioral coverage"],
+      "analysis_state": "behavioral_evidence_only",
+      "disagreement_state": "not_applicable_before_qualified_analysis",
+      "last_validated_commit": "242eb37",
+      "next_reproducer": "python3 -m pytest -q tests/test_behavioral_evidence.py",
+      "forbidden_cross_family_evidence": ["official C64 PRG banking state", "Plus/4 runtime state", "DOS runtime state"]
+    },
+    {
+      "id": "scummvm_readiness",
+      "population": 0,
+      "verified_fields": ["readiness gate", "upstream integration research snapshot", "pre-implementation checklist"],
+      "unresolved_fields": ["supported corpus definition", "platform runtime models", "differential suite", "detector fixtures", "save/load evidence"],
+      "analysis_state": "not_ready_for_implementation",
+      "disagreement_state": "not_applicable_before_qualified_analysis",
+      "last_validated_commit": "3814f47",
+      "next_reproducer": "python3 scripts/check_docs.py",
+      "forbidden_cross_family_evidence": ["single-profile completion claim", "static output as runtime behavior", "unverified corpus identity"]
+    }
+  ]
+}
