@@ -118,6 +118,7 @@ class ArtifactRecord:
     media_status: Optional[str] = None
     media_validation: Optional[str] = None
     media_evidence_json: Optional[str] = None
+    bundle_relationship_json: Optional[str] = None
 
 
 @dataclass

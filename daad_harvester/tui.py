@@ -212,13 +212,22 @@ class TUIDashboard:
         )
         for label, value in fields:
             table.add_row(label, Text(str(value)))
-        evidence = artifact.fingerprint_evidence_json or artifact.media_evidence_json
-        if evidence:
+        evidence_records = (
+            ("Bundle relationship", artifact.bundle_relationship_json),
+            ("Fingerprint evidence", artifact.fingerprint_evidence_json),
+            ("Media evidence", artifact.media_evidence_json),
+        )
+        for evidence_label, evidence in evidence_records:
+            if not evidence:
+                continue
             try:
                 summary = json.dumps(json.loads(evidence), sort_keys=True, indent=2)
             except (TypeError, ValueError):
                 summary = evidence
-            table.add_row("Evidence", Text(summary[:1200] + ("…" if len(summary) > 1200 else "")))
+            table.add_row(
+                evidence_label,
+                Text(summary[:1200] + ("…" if len(summary) > 1200 else "")),
+            )
         return Panel(
             table,
             title=f"[bold {accent}]ARTIFACT INSPECTOR — {theme_name}[/bold {accent}]",

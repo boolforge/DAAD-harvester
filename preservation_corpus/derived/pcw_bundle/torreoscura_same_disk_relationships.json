@@ -1,0 +1,96 @@
+{
+  "purpose": "PCW same-disk DDB companion relationship evidence; no runtime or semantic relation is inferred.",
+  "relationship_count": 2,
+  "relationships": [
+    {
+      "companions": [
+        {
+          "artifact_id": 1309,
+          "filename": "PARTE001.CHR",
+          "native_parser": "daad-legacy-chr",
+          "native_validation": "validated_legacy_chr_container",
+          "relationship_state": "measured_same_disk_membership",
+          "role": "character_resource",
+          "sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba"
+        },
+        {
+          "artifact_id": 1310,
+          "filename": "PARTE001.DAT",
+          "native_parser": "daad-pcw-dat-v1",
+          "native_validation": "validated_pcw_v1_resource_directory",
+          "relationship_state": "measured_same_disk_membership",
+          "role": "resource_table",
+          "sha256": "ad537e0e8ec5b544005d9aab49f2878a6615444867eff8afbcade4e55bc05c97"
+        }
+      ],
+      "ddb": {
+        "artifact_id": 1311,
+        "ddb_format": "daad-v2-legacy",
+        "filename": "PARTE001.DDB",
+        "measured_platform": "pcw",
+        "sha256": "f5b1e9bc69727a50d29a25c73835aa1a8f41c29f02a661457e1de2c49e6f2228"
+      },
+      "disk": {
+        "artifact_id": 1307,
+        "filename": "TO.DSK",
+        "membership_method": "native_cpc_dsk_cpm_extraction",
+        "sha256": "b4e9e38015c45c87c9e491143d4947761fc49b25c47ee87922b7f393bd993d94"
+      },
+      "non_claims": [
+        "Same-disk membership and filename stem matching do not establish a DDB-internal reference.",
+        "This record does not establish runtime load order, requiredness, or semantic equivalence.",
+        "This PCW profile does not generalize to same-named members on another disk or platform."
+      ],
+      "profile": "pcw_cpm_cpc_system_same_disk_stem_companion_v1",
+      "relationship_state": "validated_same_disk_stem_companions",
+      "schema_version": 1,
+      "source_id": 253
+    },
+    {
+      "companions": [
+        {
+          "artifact_id": 1314,
+          "filename": "PARTE002.CHR",
+          "native_parser": "daad-legacy-chr",
+          "native_validation": "validated_legacy_chr_container",
+          "relationship_state": "measured_same_disk_membership",
+          "role": "character_resource",
+          "sha256": "715c0a6e717e9475d80cf5a6c2afbb7bff76dcdc235435bc51cebe02cbc6c6ba"
+        },
+        {
+          "artifact_id": 1315,
+          "filename": "PARTE002.DAT",
+          "native_parser": "daad-pcw-dat-v1",
+          "native_validation": "validated_pcw_v1_resource_directory",
+          "relationship_state": "measured_same_disk_membership",
+          "role": "resource_table",
+          "sha256": "3ff7a3b6dfc11be8ac68750694785de1afac91a7884d1c4d12636b357a71a4b1"
+        }
+      ],
+      "ddb": {
+        "artifact_id": 1316,
+        "ddb_format": "daad-v2-legacy",
+        "filename": "PARTE002.DDB",
+        "measured_platform": "pcw",
+        "sha256": "2774307fb942b86430b60a0fbe5e497973da1dfee1c7bdb7a8e910476ea5037c"
+      },
+      "disk": {
+        "artifact_id": 1313,
+        "filename": "TO2.DSK",
+        "membership_method": "native_cpc_dsk_cpm_extraction",
+        "sha256": "e21cfe9856364286ea51ea65ac9aad71f71374fe212f0c9b9cb51c482ce1381e"
+      },
+      "non_claims": [
+        "Same-disk membership and filename stem matching do not establish a DDB-internal reference.",
+        "This record does not establish runtime load order, requiredness, or semantic equivalence.",
+        "This PCW profile does not generalize to same-named members on another disk or platform."
+      ],
+      "profile": "pcw_cpm_cpc_system_same_disk_stem_companion_v1",
+      "relationship_state": "validated_same_disk_stem_companions",
+      "schema_version": 1,
+      "source_id": 253
+    }
+  ],
+  "schema_version": 1,
+  "source_id": 253
+}

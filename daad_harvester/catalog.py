@@ -99,6 +99,7 @@ class EvidenceCatalogExporter:
             "media_status": artifact.media_status,
             "media_validation": artifact.media_validation,
             "media_evidence_json": artifact.media_evidence_json,
+            "bundle_relationship_json": artifact.bundle_relationship_json,
             "is_daad_payload": artifact.is_daad_payload,
             "legacy_version_guess": artifact.daad_version_guess,
             "legacy_platform_hint": artifact.platform_hint,

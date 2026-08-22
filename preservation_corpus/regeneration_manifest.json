@@ -128,7 +128,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
+          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -138,7 +138,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
+          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
         },
         {
           "path": "preservation_corpus/COVERAGE_LEDGER.md",
@@ -265,7 +265,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
+          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
         },
         {
           "path": "preservation_corpus/detection_tables.h",
@@ -283,7 +283,7 @@
       "outputs": [
         {
           "path": "preservation_corpus/report_data.json",
-          "sha256": "db0a6420b98c135a7aed909fd63f731a3130424d3c6b75ba23d835f54d842ee7"
+          "sha256": "cd9dfcbe1b8813e39ef0a1ed6ae3940b5c6ce4cad41c3c6edf0e58fd56b32e1a"
         }
       ],
       "external_validators": [
@@ -313,7 +313,7 @@
       "inputs": [
         {
           "path": "preservation_corpus/state.db",
-          "sha256": "5750aaaa27b7bb21a214a4cc9ed031c310fe1e487686c5d0c3c3f6aff227aea0"
+          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
         }
       ],
       "outputs": [
@@ -451,6 +451,44 @@
         {
           "path": "preservation_corpus/derived/pcw_chr/torreoscura_parte001_chr_atlas.json",
           "sha256": "5f45140f142b5d0717888697b55673deaebe05caaf47da1a4dd2742abc36e390"
+        }
+      ],
+      "external_validators": []
+    },
+    {
+      "id": "pcw-torreoscura-same-disk-ddb-companions",
+      "description": "Re-extracts the two retained Torreoscura PCW disks through the native CPC/CP/M path and verifies only same-disk, exact-byte membership between each validated PCW DDB and its same-stem CHR and DAT companions. It does not assert DDB-internal references, runtime load behavior, requiredness, semantic equivalence, or an inter-platform relation.",
+      "primary_class": "repository-native",
+      "requires_network": false,
+      "declared_dependencies": [
+        "Python >= 3.10 standard library",
+        "repository source tree"
+      ],
+      "command": {
+        "runner": "python",
+        "script": "scripts/record_pcw_bundle_relationships.py",
+        "arguments": [
+          "--check"
+        ]
+      },
+      "inputs": [
+        {
+          "path": "preservation_corpus/extracted/depth1_65a49c5a_TO.DSK",
+          "sha256": "b4e9e38015c45c87c9e491143d4947761fc49b25c47ee87922b7f393bd993d94"
+        },
+        {
+          "path": "preservation_corpus/extracted/depth1_d3410775_TO2.DSK",
+          "sha256": "e21cfe9856364286ea51ea65ac9aad71f71374fe212f0c9b9cb51c482ce1381e"
+        },
+        {
+          "path": "preservation_corpus/state.db",
+          "sha256": "885d1035104534dd97e525d720a07d6e1687c676224bc1993614de9becd6521d"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "preservation_corpus/derived/pcw_bundle/torreoscura_same_disk_relationships.json",
+          "sha256": "ec20f4d2bea8238faabd70f17f7ad12e861f694f6662416b5fe37ce40ff1f026"
         }
       ],
       "external_validators": []
