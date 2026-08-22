@@ -447,7 +447,7 @@
       "id": "todo-0045",
       "line": 45,
       "section": "Active evidence-interface correction",
-      "text": "Evaluate REDasm as an i8086-family candidate under the analyzer-adapter framework. Pin a source revision, distinguish its GUI/core/headless claims, and run only a reproducible isolated health check if a noninteractive entry point is available. Do not configure it against retained DOS bytes until a separately evidenced COM/MZ and segment/load model permits a retained cross-tool comparison against Ghidra, radare2, and NDISASM.",
+      "text": "Evaluate REDasm as an i8086-family candidate under the analyzer-adapter framework. Revision `113245ef02090602978e461fcb7031b75da448d6`, workspace revision `7ee60fe5c6d5fe9a6ab98f057de3e09a225ba4b6`, and core revision `b9d6b3d7eff405d0e28af4ae653c374e5e22274e` were source-inspected. The documented repository is GUI-oriented and the workspace does not expose a stable batch command, so no isolated health command is available yet. Do not configure it against retained DOS bytes until a separately evidenced reproducible headless command plus COM/MZ and segment/load model permits a retained cross-tool comparison against Ghidra, radare2, and NDISASM.",
       "evidence_inputs": [
         "independent external comparator",
         "retained original bytes"

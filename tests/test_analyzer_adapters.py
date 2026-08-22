@@ -71,6 +71,17 @@ def test_pinned_z80dismblr_candidate_is_limited_to_unconfigured_z80_research() -
     assert "start_or_trace" in z80dismblr["load_model_compatibility"][0]
 
 
+def test_pinned_redasm_candidate_is_limited_to_unconfigured_i8086_research() -> None:
+    catalog = analyzer_adapters.load_catalog(CATALOG_PATH, _toolchain())
+    redasm = next(adapter for adapter in catalog["adapters"] if adapter["adapter_id"] == "redasm-i8086-candidate-v1")
+
+    assert redasm["state"] == analyzer_adapters.CANDIDATE
+    assert redasm["architectures"] == ["i8086"]
+    assert redasm["tool"]["pin"] == "113245ef02090602978e461fcb7031b75da448d6"
+    assert redasm["runner"] == "external_candidate"
+    assert "headless_cli" in redasm["load_model_compatibility"][0]
+
+
 def test_catalog_rejects_configured_adapter_with_incompatible_load_model() -> None:
     catalog = _catalog()
     catalog["adapters"][0]["load_model_compatibility"] = ["requires_validated_model"]

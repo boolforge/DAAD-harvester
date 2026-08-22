@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "purpose": "Source-inspected REDasm workspace/core batch-interface boundary; not a native result or configured analyzer.",
+  "captured_at": "2026-08-22",
+  "workspace": {
+    "repository_url": "https://github.com/redasm-dev/workspace",
+    "revision": "7ee60fe5c6d5fe9a6ab98f057de3e09a225ba4b6",
+    "documented_requirements": [
+      "CMake 3.20",
+      "C17 core and C++17 GUI",
+      "Qt6 for the documented Linux GUI build",
+      "multi-repository setup through Setup.cmake"
+    ]
+  },
+  "core": {
+    "repository_url": "https://github.com/redasm-dev/core",
+    "revision": "b9d6b3d7eff405d0e28af4ae653c374e5e22274e",
+    "documented_role": "Engine core library used for embedding and plugin loading."
+  },
+  "observed_boundary": "The REDasm README identifies the primary repository as GUI-oriented and points to the core library for headless embedding. The inspected workspace build documentation does not specify a stable standalone command-line batch analyzer invocation.",
+  "candidate_state": "unconfigured_i8086_candidate",
+  "retained_daad_bytes_analyzed": false,
+  "promotion_requirements": [
+    "a pinned reproducible noninteractive command or repository-owned embedding harness",
+    "independently evidenced DOS COM/MZ and segment/load model",
+    "captured stdout, stderr, input, and output hashes",
+    "comparison against configured Ghidra, radare2, and NDISASM records",
+    "negative regression for absent command or unsupported load semantics"
+  ],
+  "non_claim": "Source inspection of GUI, workspace, and core repositories does not prove a batch command, CPU configuration, disassembly, decompilation, load model, or behavioral conclusion for retained DAAD interpreter bytes."
+}

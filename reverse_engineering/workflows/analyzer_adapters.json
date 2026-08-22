@@ -67,7 +67,7 @@
       "state": "candidate",
       "role": "structured_analysis",
       "architectures": ["i8086"],
-      "tool": {"name": "REDasm", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/redasm-dev/redasm"},
+      "tool": {"name": "REDasm", "pin": "113245ef02090602978e461fcb7031b75da448d6", "provenance_url": "https://github.com/redasm-dev/redasm"},
       "runner": "external_candidate",
       "load_model_compatibility": ["requires_pinned_headless_cli_and_dos_load_model"],
       "commentary_boundary": "Candidate analysis is not configured until a reproducible headless path and DOS executable/load semantics are established."

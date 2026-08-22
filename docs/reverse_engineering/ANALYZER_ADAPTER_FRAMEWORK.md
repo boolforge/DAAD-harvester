@@ -61,6 +61,9 @@ validated. z80dismblr revision
 `2ff52822f0d706f9f39762e079f300f45cfd451d` passed only its upstream source
 suite under a documented TypeScript library workaround; its [health record](../../research/sources/z80dismblr_installation_2026-08-22.json)
 records the standard build incompatibility and its unconfigured Z80 boundary.
+REDasm revision `113245ef02090602978e461fcb7031b75da448d6` remains i8086-only
+candidate evidence: its GUI repository and multi-repository workspace do not
+provide a stable batch invocation, as recorded in its separate [workspace/core boundary](../../research/sources/redasm_workspace_headless_boundary_2026-08-22.json).
 The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
 records the remaining candidates, architecture boundaries, and non-promotion
 reasons. None is an enabled workflow dependency.
