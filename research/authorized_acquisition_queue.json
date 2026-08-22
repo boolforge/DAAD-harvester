@@ -56,23 +56,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Dee Cooke",
-      "reason": "authorized_source_discovery_required",
-      "title": "Barry Basic and the Quest For The Perfect Port",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -429,7 +412,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 25,
+  "discovery_required_count": 24,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -480,6 +463,35 @@
       "source_url": "https://archive.org/download/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software/Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
       "title": "Balrog and the Cat, The",
       "year": "1988"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "external_source_terms": null,
+      "filename": "BarryBasic1-SpectrumPlus3Edition.zip",
+      "language": "English",
+      "publisher": "Dee Cooke",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Dee Cooke",
+        "title": "Barry Basic and the Quest For The Perfect Port",
+        "year": "2020"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port",
+        "upload_id": 2436980
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "c3e858f7f16b9033373b672c154e48197007596ff775d33451ec12126fa043f1"
+      },
+      "source_record_url": "https://zxinfo.dk/details/0028365",
+      "source_release_id": "662699:2436980",
+      "source_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port",
+      "title": "Barry Basic and the Quest For The Perfect Port",
+      "year": "2020"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1067,7 +1079,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 24,
+  "queued_count": 25,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

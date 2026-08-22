@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 24
+    "total_registrations": 25
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -40,6 +40,29 @@
       "source_record_url": "https://archive.org/metadata/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
       "source_release_id": "zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
       "source_url": "https://archive.org/download/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software/Balrog_and_the_Cat_The_1988_Zenobi_Software.z80"
+    },
+    {
+      "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
+      "external_source_terms": null,
+      "filename": "BarryBasic1-SpectrumPlus3Edition.zip",
+      "release_identity": {
+        "publisher": "Dee Cooke",
+        "title": "Barry Basic and the Quest For The Perfect Port",
+        "year": "2020"
+      },
+      "source_adapter": {
+        "name": "itchio_downloader_free_v1",
+        "page_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port",
+        "upload_id": 2436980
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "c3e858f7f16b9033373b672c154e48197007596ff775d33451ec12126fa043f1"
+      },
+      "source_evidence": "The official Dee Cooke itch.io page identifies Barry Basic and the Quest for the Perfect Port as a free release by Dee Cooke for the Adventuron Next Adventure Jam 2020 and exposes its Spectrum +3 Edition as public upload 2436980. ZXInfo/ZXDB independently identifies the English 2020 Spectrum-family release; the source record preserves its Spectrum Next listing while the deterministic adapter acquires the distinct public +3 edition.",
+      "source_record_url": "https://zxinfo.dk/details/0028365",
+      "source_release_id": "662699:2436980",
+      "source_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port"
     },
     {
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
