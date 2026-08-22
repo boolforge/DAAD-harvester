@@ -226,23 +226,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "elf|defecto digital studios|2016|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Defecto Digital Studios",
-      "reason": "authorized_source_discovery_required",
-      "title": "ELF",
-      "year": "2016"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -361,7 +344,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 21,
+  "discovery_required_count": 20,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -907,6 +890,30 @@
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
+      "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "external_source_terms": null,
+      "filename": "ELFLaAventura-Parte1.tap.zip",
+      "language": "Spanish",
+      "publisher": "Defecto Digital Studios",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Defecto Digital Studios",
+        "title": "ELF",
+        "year": "2016"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5de8c852735bcd5a0bc80f8aca56913221a7848bcda925b3ca12d21ca494764f"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+      "source_release_id": "30277",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip",
+      "title": "ELF",
+      "year": "2016"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
       "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
       "catalog_identity_variance": {
         "kind": "catalog_publisher_is_source_creator",
@@ -1100,7 +1107,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 28,
+  "queued_count": 29,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

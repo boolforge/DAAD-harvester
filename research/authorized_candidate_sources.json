@@ -1,7 +1,7 @@
 {
   "checksum_promotion_summary": {
     "new_source_checksums": 1,
-    "total_registrations": 28
+    "total_registrations": 29
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
@@ -417,6 +417,24 @@
       "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf"
+    },
+    {
+      "candidate_key": "elf|defecto digital studios|2016|spanish",
+      "external_source_terms": null,
+      "filename": "ELFLaAventura-Parte1.tap.zip",
+      "release_identity": {
+        "publisher": "Defecto Digital Studios",
+        "title": "ELF",
+        "year": "2016"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5de8c852735bcd5a0bc80f8aca56913221a7848bcda925b3ca12d21ca494764f"
+      },
+      "source_evidence": "Spectrum Computing entry 30277 identifies ELF, La Aventura - Parte 1 as a Spanish 2016 ZX Spectrum release by Defecto Digital Studios, authored with DAAD, freeware, and with a public TAP download. The official DD Studios itch.io page independently identifies the game as free and exposes its Spectrum media.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+      "source_release_id": "30277",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip"
     },
     {
       "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
