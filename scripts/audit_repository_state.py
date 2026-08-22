@@ -29,6 +29,7 @@ from typing import Any, Iterable
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_JSON = ROOT / "docs" / "audits" / "2026-08-22_INITIAL_REPOSITORY_AUDIT.json"
 DEFAULT_MARKDOWN = ROOT / "docs" / "audits" / "2026-08-22_INITIAL_REPOSITORY_AUDIT.md"
+COMMAND_CLASSIFICATION = ROOT / "docs" / "COMMAND_EXECUTION_CLASSIFICATION.json"
 SOURCE_DIRECTORIES = (ROOT / "daad_harvester", ROOT / "scripts")
 TEST_DIRECTORY = ROOT / "tests"
 
@@ -155,6 +156,26 @@ def _subprocess_references(paths: list[Path]) -> list[dict[str, Any]]:
                         }
                     )
     return sorted(findings, key=lambda item: (item["path"], item["line"], item["call"]))
+
+
+def _classified_command_references(paths: list[Path]) -> list[dict[str, Any]]:
+    """Attach a declared reproducibility boundary to every detected execution site."""
+
+    registry = _read_json(COMMAND_CLASSIFICATION)
+    if registry.get("schema_version") != 1 or not isinstance(registry.get("entries"), list):
+        raise ValueError("unsupported command-execution classification registry")
+    detected = _subprocess_references(paths)
+    key = lambda entry: (entry["path"], entry["line"], entry["call"])
+    declared = {(item["path"], item["line"], item["call"]): item for item in registry["entries"]}
+    if set(map(key, detected)) != set(declared):
+        raise ValueError("command-execution classification does not exactly cover detected sites")
+    classes = registry.get("classes")
+    if not isinstance(classes, dict):
+        raise ValueError("command-execution classification lacks classes")
+    return [
+        {**entry, "class": declared[key(entry)]["class"], "boundary": declared[key(entry)]["boundary"]}
+        for entry in detected
+    ]
 
 
 def _named_test_gaps(source_paths: list[Path], test_paths: list[Path]) -> list[str]:
@@ -317,6 +338,7 @@ def collect_audit(root: Path = ROOT) -> dict[str, Any]:
         "schema_version": 1,
         "purpose": "Deterministic static repository audit; findings require profile-specific follow-up evidence.",
         "inputs": {
+            "command_execution_classification": "docs/COMMAND_EXECUTION_CLASSIFICATION.json",
             "backlog": "preservation_corpus/active_backlog_index.json",
             "queue": "research/authorized_acquisition_queue.json",
             "public_artifact_manifest": "preservation_corpus/public_artifacts_manifest.json",
@@ -355,7 +377,7 @@ def collect_audit(root: Path = ROOT) -> dict[str, Any]:
         "audit": {
             "todo_baseline": _todo_baseline_status(todo_text),
             "duplicate_function_groups": _duplicate_function_groups(all_audited_paths),
-            "command_execution_references": _subprocess_references(all_audited_paths),
+            "command_execution_references": _classified_command_references(all_audited_paths),
             "named_test_gaps": _named_test_gaps(production_paths, test_paths),
             "limitations": [
                 "Static analysis does not establish format, release, or runtime semantics.",

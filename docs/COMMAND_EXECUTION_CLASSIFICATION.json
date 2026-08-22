@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "purpose": "Classifies AST-detected command-execution sites for reproducibility review; it does not promote a command to preservation evidence.",
+  "policy": "docs/SELF_CONTAINED_REGENERATION.md",
+  "classes": {
+    "repository_native_orchestration": "Repository-local Python or Git workflow orchestration; not an external preservation validator.",
+    "declared_host_dependency": "A documented host dependency used by repository verification or extraction; availability must be explicit.",
+    "external_independent_validator": "An external analyzer or renderer whose output is corroborative or derived, never a primary promoted result.",
+    "acquisition_only_runtime": "A bounded external acquisition adapter that produces retained inputs, not a regeneration prerequisite."
+  },
+  "entries": [
+    {"path": "daad_harvester/unpack.py", "line": 236, "call": "subprocess.run", "class": "declared_host_dependency", "boundary": "CLI archive fallback; native parsers and explicit failure states remain required."},
+    {"path": "scripts/acquire_authorized_candidates.py", "line": 124, "call": "subprocess.run", "class": "acquisition_only_runtime", "boundary": "Pinned noninteractive itch.io adapter; output is retained and independently measured before promotion."},
+    {"path": "scripts/agent_workflow.py", "line": 20, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Git delivery orchestration; not preservation evidence generation."},
+    {"path": "scripts/capture_tui_demo_gif.py", "line": 42, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Chromium renders a derived demonstration; it is not a primary preservation result."},
+    {"path": "scripts/check_american_english.py", "line": 39, "call": "subprocess.check_output", "class": "declared_host_dependency", "boundary": "Git lists tracked authored text; no preservation claim is generated."},
+    {"path": "scripts/run_parallel_workflow.py", "line": 70, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Allowlisted local Python verification launcher."},
+    {"path": "scripts/run_primary_workflow.py", "line": 60, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local preflight launcher."},
+    {"path": "scripts/run_primary_workflow.py", "line": 74, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local scheduler launcher."},
+    {"path": "scripts/run_primary_workflow.py", "line": 78, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Local pytest launcher."},
+    {"path": "scripts/run_primary_workflow.py", "line": 84, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Ordered local Python launcher."},
+    {"path": "scripts/run_reverse_analysis.py", "line": 34, "call": "subprocess.run", "class": "external_independent_validator", "boundary": "Retained static-analysis output is derived and explicitly non-primary."},
+    {"path": "scripts/verify_regeneration_manifest.py", "line": 51, "call": "subprocess.run", "class": "repository_native_orchestration", "boundary": "Verifier permits only repository-local Python regeneration commands."}
+  ]
+}

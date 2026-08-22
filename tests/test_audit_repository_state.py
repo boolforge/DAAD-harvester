@@ -22,6 +22,15 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
         "inputs": 37,
         "outputs": 23,
     }
+    references = first["audit"]["command_execution_references"]
+    assert len(references) == 12
+    assert {reference["class"] for reference in references} == {
+        "acquisition_only_runtime",
+        "declared_host_dependency",
+        "external_independent_validator",
+        "repository_native_orchestration",
+    }
+    assert all(reference["boundary"] for reference in references)
 
 
 def test_repository_audit_marks_filename_test_matching_as_a_review_prompt() -> None:
