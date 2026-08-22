@@ -18,8 +18,8 @@ def test_repository_audit_collects_committed_inventory_deterministically() -> No
     expected_backlog = json.loads((ROOT / "preservation_corpus" / "active_backlog_index.json").read_text(encoding="utf-8"))
     assert first["metrics"]["backlog"]["unchecked_items"] == expected_backlog["unchecked_item_count"]
     assert first["metrics"]["acquisition"] == {
-        "queued": 37,
-        "discovery_required": 42,
+        "queued": 0,
+        "discovery_required": 79,
         "blocked": 0,
     }
     assert first["metrics"]["corpus"]["artifacts"] == 1015

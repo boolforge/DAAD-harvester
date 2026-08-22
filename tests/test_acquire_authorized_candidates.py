@@ -13,7 +13,7 @@ def entry() -> dict:
         "publisher": "Aventuras A.D.",
         "year": "1990",
         "language": "Spanish",
-        "reason": "authorized_by_institutional_directive",
+        "reason": "authorized",
         "source_url": "https://archive.example.test/diosa.adf",
         "source_record_url": "https://archive.example.test/metadata/diosa",
         "source_release_id": "diosa-1990",
@@ -57,6 +57,6 @@ def test_selection_can_be_limited_to_entries_with_observed_source_identity() -> 
 
 def test_selection_rejects_non_authorized_queue_entries() -> None:
     blocked = entry()
-    blocked["reason"] = "authorized_source_discovery_required"
+    blocked["reason"] = "authorized_by_institutional_directive"
     with pytest.raises(ValueError, match="not authorized"):
         selected_entries({"queued": [blocked]}, None)

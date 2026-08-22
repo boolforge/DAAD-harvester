@@ -26,7 +26,7 @@ def test_institutional_policy_authorizes_handling_but_requires_direct_source() -
     assert global_authorization_decision(global_policy()).allowed is True
     decision = validate_registration(candidate(), None, global_policy())
     assert decision.allowed is False
-    assert decision.reason == "authorized_source_discovery_required"
+    assert decision.reason == "source_specific_authorization_required"
 
 
 def test_institutional_authorization_requires_direct_source_identity() -> None:
@@ -41,8 +41,8 @@ def test_institutional_authorization_requires_direct_source_identity() -> None:
         },
     }
     decision = validate_registration(candidate(), registration, global_policy())
-    assert decision.allowed is True
-    assert decision.reason == "authorized_by_institutional_directive"
+    assert decision.allowed is False
+    assert decision.reason == "source_specific_authorization_required"
 
 
 def test_institutional_authorization_accepts_documented_creator_publisher_variance() -> None:
@@ -55,7 +55,7 @@ def test_institutional_authorization_accepts_documented_creator_publisher_varian
         "catalog_identity_variance": {"kind": "catalog_publisher_is_source_creator", "source_creator": "Jose Daniel Carbonell Cob (Spain)", "source_publisher": "Dwalin"},
         "source_release_identity": {"title": "The Errand Boy", "publisher": "Dwalin", "creator": "Jose Daniel Carbonell Cob (Spain)", "year": "2021"},
     }
-    assert validate_registration(catalog_candidate, registration, global_policy()).allowed
+    assert validate_registration(catalog_candidate, registration, global_policy()).reason == "source_specific_authorization_required"
     registration.pop("catalog_identity_variance")
     assert validate_registration(catalog_candidate, registration, global_policy()).reason == "invalid_catalog_creator_variance"
 
@@ -88,45 +88,23 @@ def test_committed_queue_marks_unregistered_catalog_candidates_for_source_discov
     queue = build()
     committed = json.loads((root / "research" / "authorized_acquisition_queue.json").read_text(encoding="utf-8"))
     assert committed == queue
-    assert queue["queued_count"] == 37
-    assert queue["discovery_required_count"] == 42
+    assert queue["queued_count"] == 0
+    assert queue["discovery_required_count"] == 79
     assert queue["blocked_count"] == 0
     queued_keys = {item["candidate_key"] for item in queue["queued"]}
-    assert "diosa de cozumel, la|aventuras a.d.|1990|spanish" in queued_keys
-    assert "behind closed doors|zenobi software|1988|english" in queued_keys
-    assert "behind closed doors 2: the sequel|zenobi software|1988|english" in queued_keys
-    assert "cero absoluto|esp soft|2016|spanish" in queued_keys
-    assert "behind closed doors 7|zenobi software|2018|english" in queued_keys
-    assert "behind closed doors 8|pension productions|2020|english" in queued_keys
-    assert "alien research centre 2|pension productions|2019|english" in queued_keys
-    assert "behind closed doors 5|pension productions|2019|english" in queued_keys
-    assert "behind closed doors 6|pension productions|2019|english" in queued_keys
-    assert "daga oscura, la|eduardo josé villalobos galindo|2024|spanish" in queued_keys
-    assert "dark dagger, the|eduardo josé villalobos galindo|2024|english" in queued_keys
-    assert "errand boy, the|jose daniel carbonell|2021|english" in queued_keys
-    assert "chico de los recados, el|jose daniel carbonell|2021|spanish" in queued_keys
-    assert "elves of maroland, the|jose daniel carbonell|2024|english" in queued_keys
-    assert "die, ragus!|sunteam|2023|english" in queued_keys
-    assert "golden seas|sunteam|2022|english" in queued_keys
-    assert "fuddo and slam|zenobi software|1988|english" in queued_keys
-    assert "balrog and the cat, the|zenobi software|1988|english" in queued_keys
-    assert "everyday tale of a seeker of gold, an|zenobi software|1986|english" in queued_keys
-    assert "framed!|kennard douglas|2024|english" in queued_keys
-    assert "barry basic and the quest for the perfect port|dee cooke|2020|english" in queued_keys
-    assert "casa al otro lado de la tormenta, la|pablo martínez merino|2019|spanish" in queued_keys
-    assert "aventura espacial, la|aventuras a.d.|1990|spanish" in queued_keys
-    assert "aventura original, la|aventuras a.d., dinamic software|1989|spanish" in queued_keys
-    assert "elf|defecto digital studios|2016|spanish" in queued_keys
-    assert "bulbo and the blue dragon|pension productions|2019|english" in queued_keys
-    assert "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown" in queued_keys
-    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" in queued_keys
-    assert {item["reason"] for item in queue["queued"]} == {"authorized_by_institutional_directive"}
-    assert {item["reason"] for item in queue["discovery_required"]} == {"authorized_source_discovery_required"}
+    assert not queued_keys
+    assert {item["reason"] for item in queue["queued"]} == set()
+    assert {item["reason"] for item in queue["discovery_required"]} == {"source_specific_authorization_required"}
     discovery_keys = {item["candidate_key"] for item in queue["discovery_required"]}
+    assert "behind closed doors|zenobi software|1988|english" in discovery_keys
+    assert "cero absoluto|esp soft|2016|spanish" in discovery_keys
+    assert "errand boy, the|jose daniel carbonell|2021|english" in discovery_keys
+    assert "aventura original, la|aventuras a.d., dinamic software|1989|spanish" in discovery_keys
     assert "beltalowda|molisoft|2025|unknown" in discovery_keys
-    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" not in discovery_keys
+    assert "a case of murder 128k|taskmaster software (uk)|2023|unknown" in discovery_keys
+    assert sum(item["reason"] == "source_specific_authorization_required" for item in queue["discovery_required"]) == 79
     observed_language_keys = {
         "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
         "a case of murder 128k|taskmaster software (uk)|2023|unknown",
     }
-    assert all(item.get("source_observed_identity") for item in queue["queued"] if item["candidate_key"] in observed_language_keys)
+    assert all(item.get("source_observed_identity") for item in queue["discovery_required"] if item["candidate_key"] in observed_language_keys)

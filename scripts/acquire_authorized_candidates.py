@@ -155,7 +155,7 @@ def selected_entries(
     if max_candidates is not None:
         entries = entries[:max_candidates]
     for entry in entries:
-        if entry.get("reason") not in {"authorized", "authorized_by_institutional_directive"}:
+        if entry.get("reason") != "authorized":
             raise ValueError(f"Queue entry is not authorized: {entry.get('candidate_key')}")
         for field in ("candidate_key", "source_url", "source_record_url", "release_identity"):
             if not entry.get(field):

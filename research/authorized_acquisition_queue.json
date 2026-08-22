@@ -4,827 +4,23 @@
   "candidate_manifest": "research/catalog_discovery_candidates.json",
   "discovery_required": [
     {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "[csscgc] licence to mow|jbizzel|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39242/ZX-Spectrum/Licence_to_Mow",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Jbizzel",
-      "reason": "authorized_source_discovery_required",
-      "title": "[CSSCGC] Licence to Mow",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "[csscgc] mad gods|jbizzel|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39180/ZX-Spectrum/Mad_Gods",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Jbizzel",
-      "reason": "authorized_source_discovery_required",
-      "title": "[CSSCGC] Mad Gods",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "[csscgc] the da vinci code 2: trouble from the past|uglifruit|2022|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38128/ZX-Spectrum/The_Da_Vinci_Code_2_Trouble_From_The_Past",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "uglifruit",
-      "reason": "authorized_source_discovery_required",
-      "title": "[CSSCGC] The Da Vinci Code 2: Trouble From The Past",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "[csscgc] top gun 2: maverick dangerous!|uglifruit|2022|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38180/ZX-Spectrum/Top_Gun_2_Maverick_Dangerous",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "uglifruit",
-      "reason": "authorized_source_discovery_required",
-      "title": "[CSSCGC] Top Gun 2: Maverick Dangerous!",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "[mod] erinia (enhanced version)|dare|2024|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44145/ZX-Spectrum/Erinia_Enhanced_version",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "DaRe",
-      "reason": "authorized_source_discovery_required",
-      "title": "[MOD] Erinia (Enhanced version)",
-      "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "after the dark|pension productions|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "After the Dark",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "beltalowda|molisoft|2025|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44573/ZX-Spectrum/Beltalowda",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Molisoft",
-      "reason": "authorized_source_discovery_required",
-      "title": "Beltalowda",
-      "year": "2025"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Zenobi Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Bulbo's Intrepid Adventure",
-      "year": "2018"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "case of murder, a|taskmaster software|2022|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Taskmaster Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Case of Murder, A",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Toni Pera",
-      "reason": "authorized_source_discovery_required",
-      "title": "Cetro del Sol, El",
-      "year": "2006"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Jamie Bradbury",
-      "reason": "authorized_source_discovery_required",
-      "title": "Colour Beyond Time",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "colour beyond time|lost|2022|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37444/ZX-Spectrum/Colour_Beyond_Time",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Lost",
-      "reason": "authorized_source_discovery_required",
-      "title": "Colour Beyond Time",
-      "year": "2022"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "cozumel|aventuras ad s.a. (spain)|1990|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/6183/ZX-Spectrum/Cozumel",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "Cozumel",
-      "year": "1990"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Puddle Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Curse of Rabenstein, The",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Puddle Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Curse of Rabenstein, The",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Electric Storm Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Deception of the Mind's Eye",
-      "year": "1993"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "deer creek|primary resources|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Primary Resources",
-      "reason": "authorized_source_discovery_required",
-      "title": "Deer Creek",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Taskmaster Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "Dragnet Case, The",
-      "year": "1989"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "dream walker|8bitag|2021|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "8bitAG",
-      "reason": "authorized_source_discovery_required",
-      "title": "Dream Walker",
-      "year": "2021"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "eight feet under|pond soft|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pond Soft",
-      "reason": "authorized_source_discovery_required",
-      "title": "Eight Feet Under",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "eight feet under|pond software ltd|2018|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34668/ZX-Spectrum/Eight_Feet_Under",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Pond Software Ltd",
-      "reason": "authorized_source_discovery_required",
-      "title": "Eight Feet Under",
-      "year": "2018"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "el dia que lo entiendas se acaba el mundo|pedro fernandez lopez (spain)|none|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Pedro Fernandez Lopez (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "El Dia Que Lo Entiendas Se Acaba El Mundo",
-      "year": null
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Kame Soft",
-      "reason": "authorized_source_discovery_required",
-      "title": "Elfos de Maroland, Los",
-      "year": "1993"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "erinia|daniel revenga|2020|spanish",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Daniel Revenga",
-      "reason": "authorized_source_discovery_required",
-      "title": "Erinia",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "erinia|daniel revenga|2025|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Daniel Revenga",
-      "reason": "authorized_source_discovery_required",
-      "title": "Erinia",
-      "year": "2025"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "escape to murky woods|pension productions|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Escape to Murky Woods",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Daniel Revenga",
-      "reason": "authorized_source_discovery_required",
-      "title": "Estrella de la Ma\u00f1ana, La",
-      "year": "2017"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "framed!|kennard douglas|2024|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/43705/ZX-Spectrum/Framed",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Kennard Douglas",
-      "reason": "authorized_source_discovery_required",
-      "title": "Framed!",
-      "year": "2024"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "from out of the snow|pension productions|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "From Out of the Snow",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "great caravan caper|electric storm productions|2019|english",
-      "catalog_platform": null,
-      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Electric Storm Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Great Caravan Caper",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "imprisoned|stonechat productions (uk)|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42653/ZX-Spectrum/Imprisoned",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Stonechat Productions (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "Imprisoned",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "la celda|adanoliva|none|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42566/ZX-Spectrum/La_Celda",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Adanoliva",
-      "reason": "authorized_source_discovery_required",
-      "title": "La Celda",
-      "year": null
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "la estrella de la ma\u00f1ana 2023|dare|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42201/ZX-Spectrum/La_Estrella_de_la_Ma\u00f1ana_2023",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "DaRe",
-      "reason": "authorized_source_discovery_required",
-      "title": "La Estrella de la Ma\u00f1ana 2023",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "los elfos de maroland 2023|dwalin|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Dwalin",
-      "reason": "authorized_source_discovery_required",
-      "title": "Los Elfos de Maroland 2023",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "proyecto vampiro|pedro fernandez lopez (spain)|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36422/ZX-Spectrum/Proyecto_Vampiro",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Pedro Fernandez Lopez (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "Proyecto Vampiro",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "terror by night|a novel approach|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42612/ZX-Spectrum/Terror_by_Night",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "A Novel Approach",
-      "reason": "authorized_source_discovery_required",
-      "title": "Terror by Night",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35321/ZX-Spectrum/The_Curse_of_Rabenstein",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Puddle Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Curse of Rabenstein",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
-      "catalog_platform": "ZX-Spectrum_Next",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36071/ZX-Spectrum_Next/The_Curse_of_Rabenstein",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Puddle Software",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Curse of Rabenstein",
-      "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the dragnet case re-release|taskmaster software (uk)|2023|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42538/ZX-Spectrum/The_Dragnet_Case_Re-Release",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Taskmaster Software (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Dragnet Case Re-Release",
-      "year": "2023"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the errand boy|dwalin|2021|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Dwalin",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Errand Boy",
-      "year": "2021"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the house on the other side of the storm|pablo mart\u00ednez merino (spain)|2019|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Pablo Mart\u00ednez Merino (Spain)",
-      "reason": "authorized_source_discovery_required",
-      "title": "The House on the Other Side of the Storm",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "the legacy of markham island|stonechat productions (uk)|2022|unknown",
-      "catalog_platform": "ZX-Spectrum",
-      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39032/ZX-Spectrum/The_Legacy_of_Markham_Island",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Unknown",
-      "publisher": "Stonechat Productions (UK)",
-      "reason": "authorized_source_discovery_required",
-      "title": "The Legacy of Markham Island",
-      "year": "2022"
-    }
-  ],
-  "discovery_required_count": 42,
-  "policy_manifest": "research/acquisition_policy.json",
-  "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
-  "queued": [
-    {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "13 rue del percebe: el nacimiento de la leyenda|manuel mart\u00ednez pe\u00f1a|2023|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
       "external_source_terms": null,
-      "filename": "13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Manuel Mart\u00ednez Pe\u00f1a",
         "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
         "year": "2023"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "fa68cb30919c389c61f0cc301a34c1eed029ceebc53701a007f41632e3cba74e"
       },
       "source_observed_identity": {
         "language": "Spanish",
@@ -834,29 +30,107 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
       "source_release_id": "42613",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042613/13RueDelPercebe-ElNacimientoDeLaLeyenda.tap.zip",
       "title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
       "year": "2023"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "[csscgc] licence to mow|jbizzel|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39242/ZX-Spectrum/Licence_to_Mow",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Jbizzel",
+      "reason": "source_specific_authorization_required",
+      "title": "[CSSCGC] Licence to Mow",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "[csscgc] mad gods|jbizzel|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39180/ZX-Spectrum/Mad_Gods",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Jbizzel",
+      "reason": "source_specific_authorization_required",
+      "title": "[CSSCGC] Mad Gods",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "[csscgc] the da vinci code 2: trouble from the past|uglifruit|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38128/ZX-Spectrum/The_Da_Vinci_Code_2_Trouble_From_The_Past",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "uglifruit",
+      "reason": "source_specific_authorization_required",
+      "title": "[CSSCGC] The Da Vinci Code 2: Trouble From The Past",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "[csscgc] top gun 2: maverick dangerous!|uglifruit|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38180/ZX-Spectrum/Top_Gun_2_Maverick_Dangerous",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "uglifruit",
+      "reason": "source_specific_authorization_required",
+      "title": "[CSSCGC] Top Gun 2: Maverick Dangerous!",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "[mod] erinia (enhanced version)|dare|2024|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44145/ZX-Spectrum/Erinia_Enhanced_version",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "DaRe",
+      "reason": "source_specific_authorization_required",
+      "title": "[MOD] Erinia (Enhanced version)",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "a case of murder 128k|taskmaster software (uk)|2023|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
       "external_source_terms": null,
-      "filename": "CaseOfMurder128KA(Illustrated).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Taskmaster Software (UK)",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Taskmaster Software (UK)",
         "title": "A Case of Murder 128K",
         "year": "2023"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "0408892a17d405a9787927148826e7a875f33422665e0f064acdd4728a29393f"
       },
       "source_observed_identity": {
         "language": "English",
@@ -866,465 +140,499 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
       "source_release_id": "42546",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0042546/CaseOfMurder128KA(Illustrated).tzx.zip",
       "title": "A Case of Murder 128K",
       "year": "2023"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "after the dark|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "source_specific_authorization_required",
+      "title": "After the Dark",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "alien research centre 2|pension productions|2019|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "AlienResearchCentre2.tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Pension Productions",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pension Productions",
         "title": "Alien Research Centre 2",
         "year": "2019"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "25cabd06c9e5ffd6d8e615db2a9cfeb0a3c625fdc3e5c84607766d5aedd7066d"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34908/ZX-Spectrum/Alien_Research_Centre_2",
       "source_release_id": "34908",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip",
       "title": "Alien Research Centre 2",
       "year": "2019"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "AventuraEspacialLa.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Aventuras A.D.",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Aventuras A.D.",
         "title": "Aventura Espacial, La",
         "year": "1990"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "c3a85b027f283a3664d75cbb4823e832c41f35990e96ca948a3fe3bfc7e5eaae"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
       "source_release_id": "5975",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraEspacialLa.tzx.zip",
       "title": "Aventura Espacial, La",
       "year": "1990"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "aventura original, la|aventuras a.d., dinamic software|1989|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "AventuraOriginalLa.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Aventuras A.D., Dinamic Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Aventuras A.D., Dinamic Software",
         "title": "Aventura Original, La",
         "year": "1989"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "879eb6a225bfee80f239fcda57ef702ffaf8b98e293890d358d67b48ef9062f6"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original/",
       "source_release_id": "5977",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa.tzx.zip",
       "title": "Aventura Original, La",
       "year": "1989"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "balrog and the cat, the|zenobi software|1988|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Balrog and the Cat, The",
         "year": "1988"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "ea54ac03dc4e822875090e1273f08bcbd2cedbc6e2b141416d13f3e93a5a6fea"
-      },
       "source_record_url": "https://archive.org/metadata/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
       "source_release_id": "zx_Balrog_and_the_Cat_The_1988_Zenobi_Software",
-      "source_url": "https://archive.org/download/zx_Balrog_and_the_Cat_The_1988_Zenobi_Software/Balrog_and_the_Cat_The_1988_Zenobi_Software.z80",
       "title": "Balrog and the Cat, The",
       "year": "1988"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "barry basic and the quest for the perfect port|dee cooke|2020|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BarryBasic1-SpectrumPlus3Edition.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Dee Cooke",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Dee Cooke",
         "title": "Barry Basic and the Quest For The Perfect Port",
         "year": "2020"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port",
-        "upload_id": 2436980
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "c3e858f7f16b9033373b672c154e48197007596ff775d33451ec12126fa043f1"
-      },
       "source_record_url": "https://zxinfo.dk/details/0028365",
       "source_release_id": "662699:2436980",
-      "source_url": "https://dee-cooke.itch.io/barry-basic-and-the-quest-for-the-perfect-port",
       "title": "Barry Basic and the Quest For The Perfect Port",
       "year": "2020"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors|zenobi software|1988|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors(CustomisedVersion).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Behind Closed Doors",
         "year": "1988"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "7d4ed8e5b2e79a5a185bb29933d639b45fb191940bd69acb510ba0f12a7c8ade"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5998/ZX-Spectrum/Behind_Closed_Doors",
       "source_release_id": "5998",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors(CustomisedVersion).tzx.zip",
       "title": "Behind Closed Doors",
       "year": "1988"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors2-TheSequel(different).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Behind Closed Doors 2: The Sequel",
         "year": "1988"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "891eaa532056850e1ba924703f3cfbd64242c2d5638f0d040ccfa8039daf3642"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5999/ZX-Spectrum/Behind_Closed_Doors_2_The_Sequel",
       "source_release_id": "5999",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors2-TheSequel(different).tzx.zip",
       "title": "Behind Closed Doors 2: The Sequel",
       "year": "1988"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 3: revenge of the ants|zenobi software|1989|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Behind Closed Doors 3: Revenge of the Ants",
         "year": "1989"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "60dbbf61268ac2b214d9dcd44a2c1aa26aa753b7449e37c1d5478fdf856ef6c5"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6000/ZX-Spectrum/Behind_Closed_Doors_3_Revenge_of_the_Ants",
       "source_release_id": "6000",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors3-RevengeOfTheAnts(different).tzx.zip",
       "title": "Behind Closed Doors 3: Revenge of the Ants",
       "year": "1989"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 4: balrog's day out|zenobi software|1994|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors4-BalrogsDayOut.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Behind Closed Doors 4: Balrog's Day Out",
         "year": "1994"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "adf979403fcf41965aa7f2160f5a6cf1bc1109a974d1021cb8c519d657b639fa"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
       "source_release_id": "6001",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip",
       "title": "Behind Closed Doors 4: Balrog's Day Out",
       "year": "1994"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 5|pension productions|2019|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors5.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Pension Productions",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pension Productions",
         "title": "Behind Closed Doors 5",
         "year": "2019"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "b73b578e9017e25360de0ee71eb55cc5d0ab3508fdfe8889e65c49118ad580fe"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34688/ZX-Spectrum/Behind_Closed_Doors_5",
       "source_release_id": "34688",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034688/BehindClosedDoors5.tzx.zip",
       "title": "Behind Closed Doors 5",
       "year": "2019"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 6|pension productions|2019|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors6.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Pension Productions",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pension Productions",
         "title": "Behind Closed Doors 6",
         "year": "2019"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "5d4dc5f2a544cb9be8553846a94584159b72c9ac05be82996baefed0f589384e"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34689/ZX-Spectrum/Behind_Closed_Doors_6",
       "source_release_id": "34689",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034689/BehindClosedDoors6.tzx.zip",
       "title": "Behind Closed Doors 6",
       "year": "2019"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 7|zenobi software|2018|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors7.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Behind Closed Doors 7",
         "year": "2018"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "e78f2f4bdcd2f74a8c28244d26e3b05515b617c24993516b885dbdf5cabd82fc"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34449/ZX-Spectrum/Behind_Closed_Doors_7_Happiness_is_a_Warm_Pussy",
       "source_release_id": "34449",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034449/BehindClosedDoors7.tzx.zip",
       "title": "Behind Closed Doors 7",
       "year": "2018"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "behind closed doors 8|pension productions|2020|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BehindClosedDoors8-ThePandemic.tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Pension Productions",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pension Productions",
         "title": "Behind Closed Doors 8",
         "year": "2020"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "68e6c772ee8a83bea962acd371ce06e68e7fde91fe7a2996d6a0fea3f4881e66"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/35686/ZX-Spectrum/Behind_Closed_Doors_8-The_Pandemic",
       "source_release_id": "35686",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035686/BehindClosedDoors8-ThePandemic.tap.zip",
       "title": "Behind Closed Doors 8",
       "year": "2020"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "beltalowda|molisoft|2025|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/44573/ZX-Spectrum/Beltalowda",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Molisoft",
+      "reason": "source_specific_authorization_required",
+      "title": "Beltalowda",
+      "year": "2025"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "bulbo and the blue dragon|pension productions|2019|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
-      "filename": "BulboAndTheDragon.tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Pension Productions",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pension Productions",
         "title": "Bulbo and the Blue Dragon",
         "year": "2019"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "15b7c444b64075651b6f332c7b1e76186469162f06a5e5994598550f1e87129f"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34876/ZX-Spectrum/Bulbo_and_the_Dragon",
       "source_release_id": "34876",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034876/BulboAndTheDragon.tap.zip",
       "title": "Bulbo and the Blue Dragon",
       "year": "2019"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "bulbo and the lizard-king|zenobi software|1987|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "BulboAndTheLizard-King(different).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Bulbo and the Lizard-King",
         "year": "1987"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "55244c7a1c972f5cd0d95ce3cea6f7590b4200dba9eff5bc52df334a3ebfdb14"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6053/ZX-Spectrum/Bulbo_and_the_Lizard-King",
       "source_release_id": "6053",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different).tzx.zip",
       "title": "Bulbo and the Lizard-King",
       "year": "1987"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "bulbo's intrepid adventure|zenobi software|2018|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Zenobi Software",
+      "reason": "source_specific_authorization_required",
+      "title": "Bulbo's Intrepid Adventure",
+      "year": "2018"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "LaCasaAlOtroLadoDeLaTormenta(ES).tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Pablo Mart\u00ednez Merino",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Pablo Mart\u00ednez Merino",
         "title": "Casa al otro lado de la tormenta, la",
         "year": "2019"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "8abdcc091b8859b94e6b0e5571273e60b21fc4b9823920dd0c0f584792b60ad9"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
       "source_release_id": "34819",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034819/LaCasaAlOtroLadoDeLaTormenta(ES).tap.zip",
       "title": "Casa al otro lado de la tormenta, la",
       "year": "2019"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "case of murder, a|taskmaster software|2022|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Taskmaster Software",
+      "reason": "source_specific_authorization_required",
+      "title": "Case of Murder, A",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "cero absoluto|esp soft|2016|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "non_commercial_no_sale_without_consent",
-      "filename": "cero_absoluto.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "ESP Soft",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "ESP Soft",
         "title": "Cero Absoluto",
         "year": "2016"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
-        "upload_id": 6205261
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "2e058c4b4fa897c41fe91651b709218e2ca47eb34edc80981be5c790d50bfe3f"
-      },
       "source_record_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
       "source_release_id": "1629912:6205261",
-      "source_url": "https://amstrad-esp.itch.io/cero-absoluto-amstrad-cpc",
       "title": "Cero Absoluto",
       "year": "2016"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "cetro del sol, el|toni pera|2006|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Toni Pera",
+      "reason": "source_specific_authorization_required",
+      "title": "Cetro del Sol, El",
+      "year": "2006"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "chico de los recados, el|jose daniel carbonell|2021|spanish",
       "catalog_identity_variance": {
         "kind": "catalog_publisher_is_source_creator",
@@ -1334,18 +642,18 @@
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "ErrandBoyThe(ES).dsk.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Jose Daniel Carbonell",
         "title": "Chico de los recados, El",
         "year": "2021"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "699841670c7a4968fc5f316015d6d1b7ae450dec3e81e69b58a0617cdd86247e"
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
       "source_release_id": "38332",
@@ -1355,157 +663,338 @@
         "title": "El chico de los recados",
         "year": "2021"
       },
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(ES).dsk.zip",
       "title": "Chico de los recados, El",
       "year": "2021"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "colour beyond time|jamie bradbury|2022|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Jamie Bradbury",
+      "reason": "source_specific_authorization_required",
+      "title": "Colour Beyond Time",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "colour beyond time|lost|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/37444/ZX-Spectrum/Colour_Beyond_Time",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Lost",
+      "reason": "source_specific_authorization_required",
+      "title": "Colour Beyond Time",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "cozumel|aventuras ad s.a. (spain)|1990|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/6183/ZX-Spectrum/Cozumel",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Aventuras AD S.A. (Spain)",
+      "reason": "source_specific_authorization_required",
+      "title": "Cozumel",
+      "year": "1990"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "curse of rabenstein, the|puddle software|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Puddle Software",
+      "reason": "source_specific_authorization_required",
+      "title": "Curse of Rabenstein, The",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "curse of rabenstein, the|puddle software|2023|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Puddle Software",
+      "reason": "source_specific_authorization_required",
+      "title": "Curse of Rabenstein, The",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "daga oscura, la|eduardo jos\u00e9 villalobos galindo|2024|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "LaDagaOscuraV10.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
         "title": "Daga Oscura, La",
         "year": "2024"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://ejvg.itch.io/la-daga-oscura",
-        "upload_id": 13581099
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "b82ba612be06ebf49052386ef84332abc20338f78e07f162c02cc1f7d982e027"
-      },
       "source_record_url": "https://ejvg.itch.io/la-daga-oscura",
       "source_release_id": "2549987:13581099",
-      "source_url": "https://ejvg.itch.io/la-daga-oscura",
       "title": "Daga Oscura, La",
       "year": "2024"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "dark dagger, the|eduardo jos\u00e9 villalobos galindo|2024|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "TheDarkDaggerV2.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Eduardo Jos\u00e9 Villalobos Galindo",
         "title": "Dark Dagger, The",
         "year": "2024"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://ejvg.itch.io/the-dark-dagger",
-        "upload_id": 13580661
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "cd5762b072818973e882f1e44ee9cac0e2ae2f9f2817e2c41282d85bc05fed8d"
-      },
       "source_record_url": "https://ejvg.itch.io/the-dark-dagger",
       "source_release_id": "2947333:13580661",
-      "source_url": "https://ejvg.itch.io/the-dark-dagger",
       "title": "Dark Dagger, The",
       "year": "2024"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "deception of the mind's eye|electric storm productions|1993|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Electric Storm Productions",
+      "reason": "source_specific_authorization_required",
+      "title": "Deception of the Mind's Eye",
+      "year": "1993"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "deer creek|primary resources|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Primary Resources",
+      "reason": "source_specific_authorization_required",
+      "title": "Deer Creek",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "die, ragus!|sunteam|2023|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "Die, Ragus! by sunteam.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Sunteam",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Sunteam",
         "title": "Die, Ragus!",
         "year": "2023"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://sunteam.itch.io/dieragus",
-        "upload_id": 8486189
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "ecfa4edc22e757a65fd26fd2041c5c0d66fb66133613383dd63b9ef9f7df2937"
-      },
       "source_record_url": "https://sunteam.itch.io/dieragus",
       "source_release_id": "2207139:8486189",
-      "source_url": "https://sunteam.itch.io/dieragus",
       "title": "Die, Ragus!",
       "year": "2023"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "diosa de cozumel, la|aventuras a.d.|1990|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
-      "filename": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Aventuras A.D.",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Aventuras A.D.",
         "title": "Diosa de Cozumel, La",
         "year": "1990"
       },
-      "source_checksum": {
-        "algorithm": "sha1",
-        "value": "5c63fe158ff73fcdb9752e84b247b3e78521d744"
-      },
       "source_record_url": "https://archive.org/metadata/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
       "source_release_id": "Diosa_de_Cozumel_La_1990_Aventuras_AD_ES",
-      "source_url": "https://archive.org/download/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES/Diosa_de_Cozumel_La_1990_Aventuras_AD_ES.adf",
       "title": "Diosa de Cozumel, La",
       "year": "1990"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "dragnet case, the|taskmaster software|1989|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Taskmaster Software",
+      "reason": "source_specific_authorization_required",
+      "title": "Dragnet Case, The",
+      "year": "1989"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "dream walker|8bitag|2021|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "8bitAG",
+      "reason": "source_specific_authorization_required",
+      "title": "Dream Walker",
+      "year": "2021"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "eight feet under|pond soft|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pond Soft",
+      "reason": "source_specific_authorization_required",
+      "title": "Eight Feet Under",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "eight feet under|pond software ltd|2018|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34668/ZX-Spectrum/Eight_Feet_Under",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Pond Software Ltd",
+      "reason": "source_specific_authorization_required",
+      "title": "Eight Feet Under",
+      "year": "2018"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "el dia que lo entiendas se acaba el mundo|pedro fernandez lopez (spain)|none|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Pedro Fernandez Lopez (Spain)",
+      "reason": "source_specific_authorization_required",
+      "title": "El Dia Que Lo Entiendas Se Acaba El Mundo",
+      "year": null
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "elf|defecto digital studios|2016|spanish",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "ELFLaAventura-Parte1.tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Spanish",
       "publisher": "Defecto Digital Studios",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Defecto Digital Studios",
         "title": "ELF",
         "year": "2016"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "5de8c852735bcd5a0bc80f8aca56913221a7848bcda925b3ca12d21ca494764f"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
       "source_release_id": "30277",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0030277/ELFLaAventura-Parte1.tap.zip",
       "title": "ELF",
       "year": "2016"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "elfos de maroland, los|kame soft|1993|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Kame Soft",
+      "reason": "source_specific_authorization_required",
+      "title": "Elfos de Maroland, Los",
+      "year": "1993"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "elves of maroland, the|jose daniel carbonell|2024|english",
       "catalog_identity_variance": {
         "kind": "catalog_publisher_is_source_creator",
@@ -1515,18 +1004,18 @@
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "MAROLAND_ZX_DISK.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Jose Daniel Carbonell",
         "title": "Elves of Maroland, The",
         "year": "2024"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "ebf0f294c02f272db41e33ac1d420345a2cd80d8fd3af91a236dfdf5cf3f05f4"
       },
       "source_record_url": "https://www.rudolphinerur.com/blog/2024/03/09/the-elves-of-maroland/",
       "source_release_id": "MAROLAND_ZX_DISK",
@@ -1536,13 +1025,43 @@
         "title": "The Elves of Maroland",
         "year": "2024"
       },
-      "source_url": "https://rudolphinerur.com/elves/MAROLAND_ZX_DISK.zip",
       "title": "Elves of Maroland, The",
       "year": "2024"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "erinia|daniel revenga|2020|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Daniel Revenga",
+      "reason": "source_specific_authorization_required",
+      "title": "Erinia",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "erinia|daniel revenga|2025|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Daniel Revenga",
+      "reason": "source_specific_authorization_required",
+      "title": "Erinia",
+      "year": "2025"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "errand boy, the|jose daniel carbonell|2021|english",
       "catalog_identity_variance": {
         "kind": "catalog_publisher_is_source_creator",
@@ -1552,18 +1071,18 @@
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "ErrandBoyThe(EN).dsk.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Jose Daniel Carbonell",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Jose Daniel Carbonell",
         "title": "Errand Boy, The",
         "year": "2021"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "1e6e2ff695cdc40b1dbe59c35c12a8b524761a4cad9c82942acc11141be9f980"
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
       "source_release_id": "38332",
@@ -1573,164 +1092,243 @@
         "title": "The Errand Boy",
         "year": "2021"
       },
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0038332/ErrandBoyThe(EN).dsk.zip",
       "title": "Errand Boy, The",
       "year": "2021"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "escape to murky woods|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "source_specific_authorization_required",
+      "title": "Escape to Murky Woods",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "estrella de la ma\u00f1ana, la|daniel revenga|2017|spanish",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Spanish",
+      "publisher": "Daniel Revenga",
+      "reason": "source_specific_authorization_required",
+      "title": "Estrella de la Ma\u00f1ana, La",
+      "year": "2017"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "everyday tale of a seeker of gold, an|zenobi software|1986|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": "Spectrum Computing states that John Wilson permits personal-use downloads only and prohibits third-party redistribution or commercial inclusion; this condition is retained as source provenance and is not redistribution authority.",
-      "filename": "EverydayTaleOfASeekerOfGoldAn.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Everyday Tale of a Seeker of Gold, An",
         "year": "1986"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "6501d319bef6583da37a8e62bf88f2fbf3fcbb352ef2a3417cd7a82d57f12a3e"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6271/ZX-Spectrum/An_Everyday_Tale_of_a_Seeker_of_Gold",
       "source_release_id": "6271",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/e/EverydayTaleOfASeekerOfGoldAn.tzx.zip",
       "title": "Everyday Tale of a Seeker of Gold, An",
       "year": "1986"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "framed!|kennard douglas|2024|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "framedv1.0.TAP",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Kennard Douglas",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Kennard Douglas",
         "title": "Framed!",
         "year": "2024"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "67a757ae7d7f2328a34ff1d1807cd28bacdc0e515791e6f11e55f00063004eb3"
-      },
       "source_record_url": "https://zxinfo.dk/details/0043705",
       "source_release_id": "0043705",
-      "source_url": "https://mycomputerworld.co.uk/framedv1.0.TAP",
       "title": "Framed!",
       "year": "2024"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "framed!|kennard douglas|2024|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/43705/ZX-Spectrum/Framed",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Kennard Douglas",
+      "reason": "source_specific_authorization_required",
+      "title": "Framed!",
+      "year": "2024"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "from out of a dark night sky|zenobi software|1989|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "FromOutOfADarkNightSky(different).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "From out of a Dark Night Sky",
         "year": "1989"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "a3b896a9319f150af326829f2bf9665aa0e2706f470fa4d5f7fbdd3ca38361bf"
-      },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6337/ZX-Spectrum/From_Out_of_a_Dark_Night_Sky",
       "source_release_id": "6337",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/f/FromOutOfADarkNightSky(different).tzx.zip",
       "title": "From out of a Dark Night Sky",
       "year": "1989"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "from out of the snow|pension productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "source_specific_authorization_required",
+      "title": "From Out of the Snow",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "fuddo and slam|zenobi software|1988|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "Fuddo__Slam_1988_Zenobi_Software.z80",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Zenobi Software",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Zenobi Software",
         "title": "Fuddo and Slam",
         "year": "1988"
       },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "67298b77ab3fab0bbf66740a7a1f43081cb0404fb85907fa036f78cc2608c778"
-      },
       "source_record_url": "https://archive.org/metadata/zx_Fuddo_Slam_1988_Zenobi_Software",
       "source_release_id": "zx_Fuddo_Slam_1988_Zenobi_Software",
-      "source_url": "https://archive.org/download/zx_Fuddo_Slam_1988_Zenobi_Software/Fuddo__Slam_1988_Zenobi_Software.z80",
       "title": "Fuddo and Slam",
       "year": "1988"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "golden seas|sunteam|2022|english",
       "catalog_platform": null,
       "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
       "external_source_terms": null,
-      "filename": "Golden Seas by Sunteam.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "English",
       "publisher": "Sunteam",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Sunteam",
         "title": "Golden Seas",
         "year": "2022"
       },
-      "source_adapter": {
-        "name": "itchio_downloader_free_v1",
-        "page_url": "https://sunteam.itch.io/golden-seas",
-        "upload_id": 6330996
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "9bdaa046de9e3b14d444d9f81b703cc14e186f6a7f1fac73cb90ba48f275392d"
-      },
       "source_record_url": "https://sunteam.itch.io/golden-seas",
       "source_release_id": "1425616:6330996",
-      "source_url": "https://sunteam.itch.io/golden-seas",
       "title": "Golden Seas",
       "year": "2022"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "great caravan caper|electric storm productions|2019|english",
+      "catalog_platform": null,
+      "catalog_source_url": "https://solutionarchive.com/list/system%2C34/",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "English",
+      "publisher": "Electric Storm Productions",
+      "reason": "source_specific_authorization_required",
+      "title": "Great Caravan Caper",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "imprisoned|stonechat productions (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42653/ZX-Spectrum/Imprisoned",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Stonechat Productions (UK)",
+      "reason": "source_specific_authorization_required",
+      "title": "Imprisoned",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "la aventura original|aventuras ad s.a. (spain)|1989|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
       "external_source_terms": null,
-      "filename": "AventuraOriginalLa(IBSA).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Aventuras AD S.A. (Spain)",
         "title": "La Aventura Original",
         "year": "1989"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "afdc7c200af1b8dc2075c93ed7af3d41049d00c6fa4ecfd28f637f56da5df701"
       },
       "source_observed_identity": {
         "language": "Spanish",
@@ -1740,29 +1338,59 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
       "source_release_id": "5977",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/a/AventuraOriginalLa(IBSA).tzx.zip",
       "title": "La Aventura Original",
       "year": "1989"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "la celda|adanoliva|none|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42566/ZX-Spectrum/La_Celda",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Adanoliva",
+      "reason": "source_specific_authorization_required",
+      "title": "La Celda",
+      "year": null
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "la estrella de la ma\u00f1ana 2023|dare|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42201/ZX-Spectrum/La_Estrella_de_la_Ma\u00f1ana_2023",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "DaRe",
+      "reason": "source_specific_authorization_required",
+      "title": "La Estrella de la Ma\u00f1ana 2023",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "las aventuras de rudolphine rur|dwalin|2020|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
       "external_source_terms": null,
-      "filename": "AventurasDeRudolphineRurLas(Part1).tap.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Dwalin",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Dwalin",
         "title": "Las Aventuras de Rudolphine Rur",
         "year": "2020"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "5b6f0a2e3b9d49531ccbc49b39f1691efd1804c7f4cbe145387aa0070d908790"
       },
       "source_observed_identity": {
         "language": "Spanish",
@@ -1772,29 +1400,43 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
       "source_release_id": "35692",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0035692/AventurasDeRudolphineRurLas(Part1).tap.zip",
       "title": "Las Aventuras de Rudolphine Rur",
       "year": "2020"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "los elfos de maroland 2023|dwalin|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Dwalin",
+      "reason": "source_specific_authorization_required",
+      "title": "Los Elfos de Maroland 2023",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "los templos sagrados|aventuras ad s.a. (spain)|1991|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
       "external_source_terms": null,
-      "filename": "TemplosSagradosLos.tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Aventuras AD S.A. (Spain)",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Aventuras AD S.A. (Spain)",
         "title": "Los Templos Sagrados",
         "year": "1991"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "c340aee76f991d573463a2285bc0c3b78d2126f06075dac063abac0b2b111264"
       },
       "source_observed_identity": {
         "language": "Spanish",
@@ -1804,29 +1446,27 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
       "source_release_id": "7082",
-      "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/t/TemplosSagradosLos.tzx.zip",
       "title": "Los Templos Sagrados",
       "year": "1991"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "one last thing|dee cooke|2020|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
       "external_source_terms": null,
-      "filename": "OneLastThing.dsk.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Dee Cooke",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Dee Cooke",
         "title": "One Last Thing",
         "year": "2020"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "ca6313a3fe08bbf8d888dedbd4e390e5dbba446500859a1d9a9e40c935405b78"
       },
       "source_observed_identity": {
         "language": "English",
@@ -1836,29 +1476,155 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
       "source_release_id": "36146",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0036146/OneLastThing.dsk.zip",
       "title": "One Last Thing",
       "year": "2020"
     },
     {
-      "authorization_basis": "institutional_authorization_directive",
-      "authorization_status": "authorized",
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "proyecto vampiro|pedro fernandez lopez (spain)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36422/ZX-Spectrum/Proyecto_Vampiro",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Pedro Fernandez Lopez (Spain)",
+      "reason": "source_specific_authorization_required",
+      "title": "Proyecto Vampiro",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "terror by night|a novel approach|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42612/ZX-Spectrum/Terror_by_Night",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "A Novel Approach",
+      "reason": "source_specific_authorization_required",
+      "title": "Terror by Night",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/35321/ZX-Spectrum/The_Curse_of_Rabenstein",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Puddle Software",
+      "reason": "source_specific_authorization_required",
+      "title": "The Curse of Rabenstein",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the curse of rabenstein|puddle software|2020|unknown",
+      "catalog_platform": "ZX-Spectrum_Next",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/36071/ZX-Spectrum_Next/The_Curse_of_Rabenstein",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Puddle Software",
+      "reason": "source_specific_authorization_required",
+      "title": "The Curse of Rabenstein",
+      "year": "2020"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the dragnet case re-release|taskmaster software (uk)|2023|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/42538/ZX-Spectrum/The_Dragnet_Case_Re-Release",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Taskmaster Software (UK)",
+      "reason": "source_specific_authorization_required",
+      "title": "The Dragnet Case Re-Release",
+      "year": "2023"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the errand boy|dwalin|2021|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Dwalin",
+      "reason": "source_specific_authorization_required",
+      "title": "The Errand Boy",
+      "year": "2021"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the house on the other side of the storm|pablo mart\u00ednez merino (spain)|2019|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Pablo Mart\u00ednez Merino (Spain)",
+      "reason": "source_specific_authorization_required",
+      "title": "The House on the Other Side of the Storm",
+      "year": "2019"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
+      "candidate_key": "the legacy of markham island|stonechat productions (uk)|2022|unknown",
+      "catalog_platform": "ZX-Spectrum",
+      "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39032/ZX-Spectrum/The_Legacy_of_Markham_Island",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
+      "language": "Unknown",
+      "publisher": "Stonechat Productions (UK)",
+      "reason": "source_specific_authorization_required",
+      "title": "The Legacy of Markham Island",
+      "year": "2022"
+    },
+    {
+      "authorization_status": "source_specific_authorization_required",
       "candidate_key": "the mystery of markham manor|taskmaster software (uk)|2022|unknown",
       "catalog_platform": "ZX-Spectrum",
       "catalog_source_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
       "external_source_terms": null,
-      "filename": "MysteryOfMarkhamManorThe(128K).tzx.zip",
+      "institutional_authorization": {
+        "authorization_state": "institutional_authorized",
+        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
+        "scope": "acquire_retain_execute_analyze_publish"
+      },
       "language": "Unknown",
       "publisher": "Taskmaster Software (UK)",
-      "reason": "authorized_by_institutional_directive",
+      "reason": "source_specific_authorization_required",
       "release_identity": {
         "publisher": "Taskmaster Software (UK)",
         "title": "The Mystery of Markham Manor",
         "year": "2022"
-      },
-      "source_checksum": {
-        "algorithm": "sha256",
-        "value": "2592e77ff1f23c550a92cb16569584bdb6d469c66a098bfd73ddebf6a5419944"
       },
       "source_observed_identity": {
         "language": "English",
@@ -1868,12 +1634,15 @@
       },
       "source_record_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
       "source_release_id": "39045",
-      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0039045/MysteryOfMarkhamManorThe(128K).tzx.zip",
       "title": "The Mystery of Markham Manor",
       "year": "2022"
     }
   ],
-  "queued_count": 37,
+  "discovery_required_count": 79,
+  "policy_manifest": "research/acquisition_policy.json",
+  "purpose": "Institutional handling directives do not authorize direct acquisition; every queued binary requires independently recorded source-specific authorization.",
+  "queued": [],
+  "queued_count": 0,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

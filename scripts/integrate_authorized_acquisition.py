@@ -55,7 +55,7 @@ def queue_by_key(queue: dict[str, Any]) -> dict[str, dict[str, Any]]:
         key = entry.get("candidate_key")
         if not isinstance(key, str) or key in entries:
             raise ValueError("authorized queue has missing or duplicate candidate keys")
-        if entry.get("reason") not in {"authorized", "authorized_by_institutional_directive"}:
+        if entry.get("reason") != "authorized":
             raise ValueError(f"queue entry is not authorized: {key}")
         entries[key] = entry
     return entries

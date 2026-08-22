@@ -102,7 +102,7 @@ def validate_registration(
     global_decision = global_authorization_decision(global_policy)
     if not registration:
         if global_decision.allowed:
-            return AuthorizationDecision(False, "authorized_source_discovery_required", global_decision.registration)
+            return AuthorizationDecision(False, "source_specific_authorization_required", global_decision.registration)
         return AuthorizationDecision(False, "no_authorized_source_registration")
     if registration.get("candidate_key") != candidate_key(candidate):
         return AuthorizationDecision(False, "candidate_key_mismatch")
@@ -126,9 +126,10 @@ def validate_registration(
         source_record_url = registration.get("source_record_url")
         if not isinstance(source_record_url, str) or urlparse(source_record_url).scheme not in {"https", "http"}:
             return AuthorizationDecision(False, "missing_or_invalid_source_record_url")
-        return AuthorizationDecision(True, "authorized_by_institutional_directive", dict(registration))
     authorization = registration.get("authorization")
     if not isinstance(authorization, Mapping):
+        if global_decision.allowed:
+            return AuthorizationDecision(False, "source_specific_authorization_required", dict(registration))
         return AuthorizationDecision(False, "missing_authorization_record")
     kind = authorization.get("kind")
     evidence_url = authorization.get("evidence_url")

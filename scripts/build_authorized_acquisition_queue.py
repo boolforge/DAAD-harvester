@@ -53,6 +53,8 @@ def build(
                 "authorized" if decision.allowed
                 else "authorized_source_discovery_required"
                 if decision.reason == "authorized_source_discovery_required"
+                else "source_specific_authorization_required"
+                if decision.reason == "source_specific_authorization_required"
                 else "blocked"
             ),
             "reason": decision.reason,
@@ -79,17 +81,30 @@ def build(
                 record["source_observed_identity"] = registration["source_observed_identity"]
             if "authorization" in registration:
                 record["authorization"] = registration["authorization"]
-            else:
-                record["authorization_basis"] = "institutional_authorization_directive"
             queued.append(record)
         elif decision.reason == "authorized_source_discovery_required":
             record["institutional_authorization"] = decision.registration
+            discovery_required.append(record)
+        elif decision.reason == "source_specific_authorization_required":
+            registration = decision.registration or {}
+            record["institutional_authorization"] = global_policy_summary(policy)
+            for field in (
+                "source_record_url",
+                "source_release_id",
+                "release_identity",
+                "external_source_terms",
+                "catalog_identity_variance",
+                "source_release_identity",
+                "source_observed_identity",
+            ):
+                if field in registration:
+                    record[field] = registration[field]
             discovery_required.append(record)
         else:
             blocked.append(record)
     return {
         "schema_version": 1,
-        "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
+        "purpose": "Institutional handling directives do not authorize direct acquisition; every queued binary requires independently recorded source-specific authorization.",
         "candidate_manifest": str(candidates_path.relative_to(ROOT)),
         "registration_manifest": str(registrations_path.relative_to(ROOT)),
         "policy_manifest": str(policy_path.relative_to(ROOT)),
@@ -99,6 +114,16 @@ def build(
         "queued": queued,
         "discovery_required": discovery_required,
         "blocked": blocked,
+    }
+
+
+def global_policy_summary(policy: dict) -> dict:
+    """Retain institutional context without treating it as direct-download authorization."""
+
+    return {
+        key: policy.get(key)
+        for key in ("authorization_state", "directive", "scope")
+        if key in policy
     }
 
 

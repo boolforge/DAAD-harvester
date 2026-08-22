@@ -26,6 +26,11 @@ def registration() -> dict:
         "source_record_url": "https://example.itch.io/cero",
         "release_identity": {"title": "Cero Absoluto", "publisher": "ESP Soft", "year": "2016"},
         "source_adapter": {"name": "itchio_downloader_free_v1", "page_url": "https://example.itch.io/cero", "upload_id": 42},
+        "authorization": {
+            "kind": "official_free_download",
+            "evidence_url": "https://example.itch.io/cero",
+            "scope": "download",
+        },
     }
 
 

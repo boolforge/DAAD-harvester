@@ -19,7 +19,7 @@ def queue_entry(digest: str) -> dict:
         "source_url": "https://example.test/example.tap.zip",
         "source_record_url": "https://example.test/entry/1",
         "release_identity": {"title": "Example", "publisher": "Publisher", "year": "2024"},
-        "reason": "authorized_by_institutional_directive",
+        "reason": "authorized",
         "source_checksum": {"algorithm": "sha256", "value": digest},
     }
 
@@ -66,3 +66,11 @@ def test_verified_transfer_plan_rejects_nonmatching_or_not_unpacked_result(tmp_p
             {"records": [result(digest, unpacked="downloaded")]},
             staging,
         )
+
+
+def test_verified_transfer_plan_rejects_institutional_only_reason(tmp_path: Path) -> None:
+    entry = queue_entry(hashlib.sha256(b"expected").hexdigest())
+    entry["reason"] = "authorized_by_institutional_directive"
+
+    with pytest.raises(ValueError, match="not authorized"):
+        verified_transfer_plan({"queued": [entry]}, {"records": []}, tmp_path)
