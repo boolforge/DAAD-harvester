@@ -73,6 +73,10 @@ A publicly served binary at <https://mycomputerworld.co.uk/framedv1.0.TAP> was p
 
 The 2024 public review <https://www.youtube.com/watch?v=pMlPWT30-2A> was analyzed on 2026-08-22. Its opening screen directly shows **“Welcome to FRAMED! Part 1.”**, **“By Ken Douglas”**, **“Version 1.0”**, **“Created with DAAD Ready! and DAAD Creator Editor”**, and **“(C) 2024 www.mycomputerworld.co.uk.”** This corroborates the served TAP as a 2024 DAAD-related FRAMED release but, by itself, does not establish that **Ken Douglas** is the catalog’s **Kennard Douglas**. The subsequent ZXInfo/ZXDB record cited above explicitly attributes the 2024 English ZX Spectrum 128K release to Kennard Douglas, closing the boundary without relying on the video alone.
 
+## From Out of the Snow source boundary
+
+Spectrum Computing entry 34903 provides public 2019 media for **From Out Of The Snow**, but identifies the original publisher as **Zenobi Software** and its engine as **Professional Adventure Writer**. This conflicts with the catalog candidate’s publisher **Pension Productions** and does not evidence a DAAD edition. The TAP/DSK/MGT files are therefore not registered for the DAAD candidate; it remains in `discovery_required` pending a source that closes both boundaries.
+
 ## Cetro del Sol source boundary
 
 The official Zona Fi page identifies **El Cetro del Sol** as Toni Pera’s DAAD adventure, and IF-Archive provides the public Spectrum archive `cetro_del_sol.zip`; however, the index timestamps that archive **15 October 2015**. Aminet and contemporary reporting identify later Amiga/16-bit releases around 2015/2020. None of the available source records establishes a 2006 release corresponding to the catalog candidate. The public 2015 Spectrum artifact is therefore not registered as the 2006 edition; the candidate remains in `discovery_required` pending evidence that reconciles the release year.
