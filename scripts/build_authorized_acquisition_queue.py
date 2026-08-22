@@ -59,6 +59,7 @@ def build(
             registration = decision.registration or {}
             record["source_url"] = registration["source_url"]
             record["source_record_url"] = registration["source_record_url"]
+            record["source_release_id"] = registration.get("source_release_id")
             record["release_identity"] = registration["release_identity"]
             if "source_checksum" in registration:
                 record["source_checksum"] = registration["source_checksum"]

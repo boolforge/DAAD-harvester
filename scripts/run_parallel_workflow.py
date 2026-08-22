@@ -43,6 +43,7 @@ GATE_GROUPS: dict[str, tuple[Gate, ...]] = {
         Gate("resource review manifest", ("scripts/build_resource_review_manifest.py", "--check")),
         Gate("catalog discovery candidates", ("scripts/build_catalog_discovery_candidates.py", "--check")),
         Gate("authorized acquisition queue", ("scripts/build_authorized_acquisition_queue.py", "--check")),
+        Gate("authorized acquisition dry run", ("scripts/acquire_authorized_candidates.py", "--dry-run")),
         Gate("active backlog index", ("scripts/build_active_backlog_index.py", "--check")),
         Gate("regeneration manifest", ("scripts/verify_regeneration_manifest.py",)),
         Gate("public artifact manifest", ("scripts/build_public_artifact_manifest.py", "--check")),
