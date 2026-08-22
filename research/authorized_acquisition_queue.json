@@ -90,23 +90,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "Spanish",
-      "publisher": "Pablo Mart\u00ednez Merino",
-      "reason": "authorized_source_discovery_required",
-      "title": "Casa al otro lado de la tormenta, la",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "case of murder, a|taskmaster software|2022|english",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -412,7 +395,7 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 24,
+  "discovery_required_count": 23,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
@@ -708,6 +691,30 @@
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BulboAndTheLizard-King(different).tzx.zip",
       "title": "Bulbo and the Lizard-King",
       "year": "1987"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "casa al otro lado de la tormenta, la|pablo mart\u00ednez merino|2019|spanish",
+      "external_source_terms": null,
+      "filename": "LaCasaAlOtroLadoDeLaTormenta(ES).tap.zip",
+      "language": "Spanish",
+      "publisher": "Pablo Mart\u00ednez Merino",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pablo Mart\u00ednez Merino",
+        "title": "Casa al otro lado de la tormenta, la",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "8abdcc091b8859b94e6b0e5571273e60b21fc4b9823920dd0c0f584792b60ad9"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
+      "source_release_id": "34819",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034819/LaCasaAlOtroLadoDeLaTormenta(ES).tap.zip",
+      "title": "Casa al otro lado de la tormenta, la",
+      "year": "2019"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -1079,7 +1086,7 @@
       "year": "2022"
     }
   ],
-  "queued_count": 25,
+  "queued_count": 26,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

@@ -29,6 +29,7 @@ AUTHENTIC_PROPER_NOUNS = (
     "Doña Elisa de Avalón",
     "Eduardo José Villalobos Galindo",
     "eduardo josé villalobos galindo",
+    "casa al otro lado de la tormenta, la|pablo martínez merino|2019|spanish",
 )
 
 
