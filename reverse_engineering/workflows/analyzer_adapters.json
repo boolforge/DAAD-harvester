@@ -57,7 +57,7 @@
       "state": "candidate",
       "role": "control_flow_analysis",
       "architectures": ["z80"],
-      "tool": {"name": "z80dismblr", "pin": "candidate metadata captured 2026-08-22", "provenance_url": "https://github.com/maziac/z80dismblr"},
+      "tool": {"name": "z80dismblr", "pin": "2ff52822f0d706f9f39762e079f300f45cfd451d", "provenance_url": "https://github.com/maziac/z80dismblr"},
       "runner": "external_candidate",
       "load_model_compatibility": ["requires_pinned_origin_and_start_or_trace_evidence"],
       "commentary_boundary": "Candidate control-flow output requires explicit start, trace, snapshot, or label assumptions and cannot be inferred for raw retained bytes."

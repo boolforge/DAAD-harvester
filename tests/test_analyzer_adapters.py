@@ -60,6 +60,17 @@ def test_pinned_py8dis_candidate_is_limited_to_unconfigured_mos6502_research() -
     assert "origin" in py8dis["load_model_compatibility"][0]
 
 
+def test_pinned_z80dismblr_candidate_is_limited_to_unconfigured_z80_research() -> None:
+    catalog = analyzer_adapters.load_catalog(CATALOG_PATH, _toolchain())
+    z80dismblr = next(adapter for adapter in catalog["adapters"] if adapter["adapter_id"] == "z80dismblr-candidate-v1")
+
+    assert z80dismblr["state"] == analyzer_adapters.CANDIDATE
+    assert z80dismblr["architectures"] == ["z80"]
+    assert z80dismblr["tool"]["pin"] == "2ff52822f0d706f9f39762e079f300f45cfd451d"
+    assert z80dismblr["runner"] == "external_candidate"
+    assert "start_or_trace" in z80dismblr["load_model_compatibility"][0]
+
+
 def test_catalog_rejects_configured_adapter_with_incompatible_load_model() -> None:
     catalog = _catalog()
     catalog["adapters"][0]["load_model_compatibility"] = ["requires_validated_model"]

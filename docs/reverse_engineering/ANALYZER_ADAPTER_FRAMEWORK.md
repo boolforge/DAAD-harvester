@@ -57,7 +57,11 @@ SkoolKit for Z80 research, and REDasm for i8086 research. py8dis revision
 known-good 6502 demonstration fixture; the [health record](../../research/sources/py8dis_installation_2026-08-22.json)
 preserves the command and output hash. It remains unconfigured for retained
 DAAD bytes because their MOS 6502 load origin is not yet independently
-validated. The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
+validated. z80dismblr revision
+`2ff52822f0d706f9f39762e079f300f45cfd451d` passed only its upstream source
+suite under a documented TypeScript library workaround; its [health record](../../research/sources/z80dismblr_installation_2026-08-22.json)
+records the standard build incompatibility and its unconfigured Z80 boundary.
+The [candidate scout](../../research/sources/analyzer_candidate_scout_2026-08-22.md)
 records the remaining candidates, architecture boundaries, and non-promotion
 reasons. None is an enabled workflow dependency.
 

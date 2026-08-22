@@ -428,7 +428,7 @@
       "id": "todo-0044",
       "line": 44,
       "section": "Active evidence-interface correction",
-      "text": "Evaluate z80dismblr as the next architecture-scoped candidate under the analyzer-adapter framework. Pin its source revision, inspect its documented raw-binary versus snapshot/start/trace assumptions, and run only an isolated upstream health fixture if available. Do not configure it against retained Spectrum, CPC, MSX, or PCW bytes until a separately evidenced origin and entry/trace model permits a retained cross-tool comparison against Ghidra, radare2, and z80dasm.",
+      "text": "Evaluate z80dismblr as the next architecture-scoped candidate under the analyzer-adapter framework. Revision `2ff52822f0d706f9f39762e079f300f45cfd451d` is pinned and its source suite passed 64 tests only with a documented TypeScript library workaround; the standard build command is not portable on the current host. Its raw-binary versus snapshot/start/trace assumptions are recorded. Do not configure it against retained Spectrum, CPC, MSX, or PCW bytes until a separately evidenced origin and entry/trace model permits a retained cross-tool comparison against Ghidra, radare2, and z80dasm.",
       "evidence_inputs": [
         "independent external comparator",
         "retained original bytes"

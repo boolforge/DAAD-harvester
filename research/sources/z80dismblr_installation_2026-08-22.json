@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "tool": "z80dismblr",
+  "source_url": "https://github.com/maziac/z80dismblr",
+  "source_revision": "2ff52822f0d706f9f39762e079f300f45cfd451d",
+  "captured_at": "2026-08-22",
+  "license_observed": "MIT",
+  "installation_mode": "separate local TypeScript source checkout; dependencies installed with pnpm lifecycle scripts disabled",
+  "health_check": {
+    "input": "upstream source unit and integration fixtures only; no retained DAAD bytes",
+    "initial_command": "pnpm run compile",
+    "initial_result": "failed",
+    "initial_failure": "Host TypeScript declaration conflict for AbortSignal between @types/node 16.11.4 and the resolved TypeScript DOM library.",
+    "workaround_command": "pnpm exec tsc -p ./src --skipLibCheck && pnpm test",
+    "workaround_result": "passed",
+    "tests_passed": 64,
+    "compiled_entry": "out/z80dismblr.js",
+    "compiled_entry_sha256": "c12bc645eed3176a03897deee109fd714dd63435d6ae1636d271692e36b05d8f"
+  },
+  "daad_boundary": {
+    "state": "unconfigured_candidate",
+    "retained_daad_bytes_analyzed": false,
+    "reason": "The tool's documented CFG behavior needs an explicit start address, snapshot, trace, or labels. Retained Z80 interpreter records currently have raw_binary_base_0_unverified and no independently evidenced entry or trace model.",
+    "promotion_requirements": [
+      "independently evidenced platform-specific load origin and entry or trace model",
+      "reproducible pinned build with dependencies locked or a documented host-compatible build path",
+      "repository-owned invocation and captured raw/stderr output",
+      "input and output hash records",
+      "comparison against configured z80dasm, Ghidra, and radare2 outputs",
+      "negative regression for missing start, trace, snapshot, or load-model evidence"
+    ]
+  },
+  "non_claim": "The source suite validates only the pinned candidate's isolated implementation health under the documented workaround. It does not validate its invocation, labels, control-flow output, load model, decompilation, or behavioral conclusions for retained DAAD bytes."
+}
