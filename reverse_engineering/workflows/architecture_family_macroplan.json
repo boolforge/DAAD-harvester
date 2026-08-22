@@ -60,11 +60,11 @@
     {
       "id": "dos_i8086",
       "population": 22,
-      "verified_fields": ["MZ identity", "header bounds", "hash-bound load-module byte range", "relocation-table bounds", "relative CS:IP", "relative SS:SP", "overlay field", "machine-checked candidate-admission refusal contract"],
+      "verified_fields": ["MZ identity", "header bounds", "hash-bound load-module byte range", "relocation-table bounds", "relative CS:IP", "relative SS:SP", "overlay field", "machine-checked candidate-admission refusal contract", "future official DOS MZ loader-capture schema"],
       "unresolved_fields": ["DOS PSP policy", "actual load segment", "runtime environment", "qualified analyzer configuration", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "56c3214",
+      "last_validated_commit": "288608a",
       "next_reproducer": "python3 scripts/verify_dos_mz_load_model.py",
       "forbidden_cross_family_evidence": ["C64 PRG wrappers", "Plus/4 7501/TED state", "68000 executable headers"]
     },
