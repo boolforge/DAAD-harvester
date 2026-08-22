@@ -13,6 +13,12 @@ target lies outside the image loaded at `0x4001`. The repository therefore
 records the target bytes but rejects it as entry evidence until Plus/4-specific
 loader and memory evidence explains the transfer.
 
+Each profile contract binds its measured load address, BASIC line number,
+encoded SYS target, BASIC-program terminator offset, loaded-image range, and
+the false containment result. Those fields establish only retained wrapper byte
+structure: the out-of-image `SYS 2063` value remains neither a machine-code
+entry nor evidence of TED, ROM, RAM, or 7501 state.
+
 ```bash
 python3 scripts/verify_plus4_prg_load_model.py
 ```

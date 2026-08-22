@@ -77,6 +77,9 @@ def validate_plus4_prg_load_model(contract: dict[str, Any], root: Path) -> None:
         if not path.is_file() or _sha256(path) != expected_hash:
             raise Plus4PrgLoadModelError(f"{identifier}: retained PRG identity differs")
         parsed = parse_plus4_prg_wrapper(path.read_bytes())
+        for name, value in parsed.items():
+            if profile.get(name) != value:
+                raise Plus4PrgLoadModelError(f"{identifier}: {name} differs from retained PRG wrapper")
         if parsed["sys_target_within_loaded_image"]:
             raise Plus4PrgLoadModelError(f"{identifier}: expected unresolved SYS target must remain outside the PRG image")
 

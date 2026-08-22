@@ -7,12 +7,26 @@
     {
       "artifact_id": "daad-plus4-ediplus4-official",
       "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-ediplus4-official/ediplus4.prg",
-      "sha256": "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523"
+      "sha256": "9df2d6b35d5e138c80e3a38674afd565fe9564f27205d79d24d654d407949523",
+      "load_address": 16385,
+      "basic_line_number": 1,
+      "sys_target": 2063,
+      "basic_program_end_offset": 16,
+      "image_start": 16385,
+      "image_end_exclusive": 28485,
+      "sys_target_within_loaded_image": false
     },
     {
       "artifact_id": "daad-plus4-sdiplus4-official",
       "input_path": "reverse_engineering/artifacts/original/plus4/daad-plus4-sdiplus4-official/sdiplus4.prg",
-      "sha256": "f29050dfe9331634b985a8c5b8cb4ee3b164a4340e355c044284168b8610258c"
+      "sha256": "f29050dfe9331634b985a8c5b8cb4ee3b164a4340e355c044284168b8610258c",
+      "load_address": 16385,
+      "basic_line_number": 1,
+      "sys_target": 2063,
+      "basic_program_end_offset": 16,
+      "image_start": 16385,
+      "image_end_exclusive": 28750,
+      "sys_target_within_loaded_image": false
     }
   ],
   "remaining_requirements": [
