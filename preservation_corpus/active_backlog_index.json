@@ -3598,8 +3598,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0330",
-      "line": 330,
+      "id": "todo-0331",
+      "line": 331,
       "section": "11. Future ScummVM DAAD engine",
       "text": "After corpus coverage, native-media support, DDB decompiler/compiler round-trip evidence, and interpreter/runtime profiles are mature, conduct a separate ScummVM feasibility and architecture study for a universal DAAD engine.",
       "evidence_inputs": [
@@ -3620,8 +3620,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0331",
-      "line": 331,
+      "id": "todo-0332",
+      "line": 332,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Research and retain the current ScummVM engine-development documentation, coding standards, comment conventions, build/test requirements, review expectations, merged-engine histories, and comparable parser/VM engine patterns before writing ScummVM-facing code.",
       "evidence_inputs": [
@@ -3640,8 +3640,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0332",
-      "line": 332,
+      "id": "todo-0333",
+      "line": 333,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Map the DAAD preservation intermediate representation, platform load models, interpreter behavior evidence, graphics/audio companions, and detector metadata to ScummVM subsystems without importing uncertain reverse-engineering claims as runtime behavior.",
       "evidence_inputs": [
@@ -3660,8 +3660,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0333",
-      "line": 333,
+      "id": "todo-0334",
+      "line": 334,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Build the eventual engine through upstream-quality tests, detector fixtures, save/load validation, cross-platform execution evidence, reviewable commits, and feedback-driven alignment with current ScummVM project practices.",
       "evidence_inputs": [
@@ -3678,8 +3678,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0337",
-      "line": 337,
+      "id": "todo-0338",
+      "line": 338,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Preserve execution order: do not begin native ScummVM engine source implementation until exhaustive all-platform acquisition, format/loader support, game-embedded interpreter analysis, full decompiler/compiler coverage with round-trip evidence, original-runtime differential evidence, and the corpus-completeness audit have passed their explicit gates.",
       "evidence_inputs": [
@@ -3701,8 +3701,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0338",
-      "line": 338,
+      "id": "todo-0339",
+      "line": 339,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Implement the universal DAAD engine directly as a native ScummVM engine, using ScummVM subsystems, coding conventions, detector model, build system, test infrastructure, and review standards from its first production source file; no standalone engine may substitute for this deliverable.",
       "evidence_inputs": [
@@ -3721,8 +3721,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0339",
-      "line": 339,
+      "id": "todo-0340",
+      "line": 340,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Define a platform-neutral behavioral evidence format that records deterministic input scripts, frame/cycle boundaries, DDB/runtime state, flags, locations, object state, messages, graphics, audio events, disk/tape/loader transitions, save states, screenshots, and checksums for every retained executable game path.",
       "evidence_inputs": [
@@ -3741,8 +3741,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0340",
-      "line": 340,
+      "id": "todo-0341",
+      "line": 341,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Run the universal DAAD engine and each corresponding original target runtime under controlled emulators with the same scripted inputs. Compare observable behavior and captured state at every defined checkpoint across all historical and modern DAAD versions, derivatives, platforms, target/load models, and game-specific forks.",
       "evidence_inputs": [
@@ -3761,8 +3761,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0341",
-      "line": 341,
+      "id": "todo-0342",
+      "line": 342,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Treat every behavioral discrepancy—including a single byte, state transition, parser result, timing-sensitive load, graphic cell, text encoding difference, audio event, or save/load divergence—as a retained reproducible defect record. Diagnose, correct, retest, and repeat until equivalence is demonstrated or the exact condition is represented by an active support loop.",
       "evidence_inputs": [
@@ -3781,8 +3781,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0342",
-      "line": 342,
+      "id": "todo-0343",
+      "line": 343,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Execute massive iterative differential testing over the full authorized corpus, including repeated decompile/recompile checks, interpreter comparisons, emulator snapshots, controlled interaction paths, malformed-but-retained structures, and cross-tool disagreement cases. Preserve all scripts, captures, hashes, expected results, and failure deltas.",
       "evidence_inputs": [
@@ -3802,8 +3802,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0343",
-      "line": 343,
+      "id": "todo-0344",
+      "line": 344,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Require a final independent audit of source, tests, corpus manifests, provenance, reverse-engineering claims, security boundaries, build reproducibility, behavioral-equivalence records, and unresolved loops before declaring the universal engine ready for ScummVM-facing work.",
       "evidence_inputs": [
@@ -3823,8 +3823,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0344",
-      "line": 344,
+      "id": "todo-0345",
+      "line": 345,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Only after the final audit passes, create and maintain a ScummVM fork; integrate the DAAD engine through its current coding, architecture, detector, build, test, documentation, review, and contribution practices. Run the complete equivalence suite again in the fork and iterate on every discrepancy before proposing any upstream-quality integration milestone.",
       "evidence_inputs": [

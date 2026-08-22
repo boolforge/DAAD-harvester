@@ -327,6 +327,7 @@ DAAD Harvester must never label a source, container, interpreter, game database,
 
 ### 11. Future ScummVM DAAD engine
 
+- [x] Establish a repository-owned ScummVM DAAD-engine readiness gate and implementation methodology. `docs/requirements/SCUMMVM_DAAD_ENGINE_READINESS.md` records the current not-ready decision, measurable prerequisite domains, ScummVM integration mapping, refreshable upstream-research protocol, and explicit pre-implementation checklist. It does not mark the broader feasibility, corpus, runtime, or implementation tasks complete.
 - [ ] After corpus coverage, native-media support, DDB decompiler/compiler round-trip evidence, and interpreter/runtime profiles are mature, conduct a separate ScummVM feasibility and architecture study for a universal DAAD engine.
 - [ ] Research and retain the current ScummVM engine-development documentation, coding standards, comment conventions, build/test requirements, review expectations, merged-engine histories, and comparable parser/VM engine patterns before writing ScummVM-facing code.
 - [ ] Map the DAAD preservation intermediate representation, platform load models, interpreter behavior evidence, graphics/audio companions, and detector metadata to ScummVM subsystems without importing uncertain reverse-engineering claims as runtime behavior.
