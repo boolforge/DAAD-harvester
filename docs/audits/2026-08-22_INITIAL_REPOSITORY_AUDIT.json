@@ -1,0 +1,319 @@
+{
+  "audit": {
+    "command_execution_references": [
+      {
+        "call": "subprocess.run",
+        "line": 236,
+        "path": "daad_harvester/unpack.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 123,
+        "path": "scripts/acquire_authorized_candidates.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 20,
+        "path": "scripts/agent_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 42,
+        "path": "scripts/capture_tui_demo_gif.py"
+      },
+      {
+        "call": "subprocess.check_output",
+        "line": 39,
+        "path": "scripts/check_american_english.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 63,
+        "path": "scripts/run_parallel_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 55,
+        "path": "scripts/run_primary_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 69,
+        "path": "scripts/run_primary_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 73,
+        "path": "scripts/run_primary_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 79,
+        "path": "scripts/run_primary_workflow.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 34,
+        "path": "scripts/run_reverse_analysis.py"
+      },
+      {
+        "call": "subprocess.run",
+        "line": 57,
+        "path": "scripts/verify_regeneration_manifest.py"
+      }
+    ],
+    "duplicate_function_groups": [
+      {
+        "body_sha256": "0c3fce4eaa845c14b7f8b0773b14dc9bf382044103af32cc56a30d07cb65730f",
+        "functions": [
+          {
+            "path": "scripts/audit_repository_state.py",
+            "qualified_name": "_read_json"
+          },
+          {
+            "path": "scripts/record_acquisition_checksums.py",
+            "qualified_name": "load_json"
+          },
+          {
+            "path": "scripts/register_discovered_candidate_sources.py",
+            "qualified_name": "load_json"
+          }
+        ]
+      },
+      {
+        "body_sha256": "10fe3d24891b67d843ae0c3e850740be3329b275f1105faaa11b6e2e6838559e",
+        "functions": [
+          {
+            "path": "scripts/inspect_adf_structure.py",
+            "qualified_name": "main"
+          },
+          {
+            "path": "scripts/inspect_cpc_dsk.py",
+            "qualified_name": "main"
+          }
+        ]
+      },
+      {
+        "body_sha256": "124d48f30ad18678df850e4b888b105e166fef07c9b11d4987f6f09f4d0d643e",
+        "functions": [
+          {
+            "path": "daad_harvester/catalog.py",
+            "qualified_name": "EvidenceCatalogExporter.__init__"
+          },
+          {
+            "path": "daad_harvester/report.py",
+            "qualified_name": "ReportGenerator.__init__"
+          }
+        ]
+      },
+      {
+        "body_sha256": "3c2433ea896aa4220e4f4a941c2a7bbd174e6649066f471c6ba9ed95f2d6e21e",
+        "functions": [
+          {
+            "path": "scripts/build_public_artifact_manifest.py",
+            "qualified_name": "repository_path"
+          },
+          {
+            "path": "scripts/verify_artifact_checksums.py",
+            "qualified_name": "repository_path"
+          }
+        ]
+      },
+      {
+        "body_sha256": "4dba14d2e82461861c97b4f1c15a403c99072b9298b02b8ba5cf480231301876",
+        "functions": [
+          {
+            "path": "scripts/discover_authorized_candidate_sources.py",
+            "qualified_name": "normalize"
+          },
+          {
+            "path": "scripts/discover_spectrum_computing_sources.py",
+            "qualified_name": "normalize"
+          },
+          {
+            "path": "scripts/register_discovered_candidate_sources.py",
+            "qualified_name": "normalize"
+          }
+        ]
+      },
+      {
+        "body_sha256": "4f414d57b22140ba9de1be14edbd680476447c91c5909d6f90ccfed104ef11c8",
+        "functions": [
+          {
+            "path": "scripts/discover_spectrum_computing_sources.py",
+            "qualified_name": "normalized_publisher"
+          },
+          {
+            "path": "scripts/register_discovered_candidate_sources.py",
+            "qualified_name": "normalized_publisher"
+          }
+        ]
+      },
+      {
+        "body_sha256": "5a7d44ed68cc55737e7b4c5aca2f349f3e1edf68a19eea5da81afd3bae30914e",
+        "functions": [
+          {
+            "path": "scripts/build_reverse_inventory.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/record_adp_verification.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/run_reverse_analysis.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/vendor_adp_implementation.py",
+            "qualified_name": "digest"
+          },
+          {
+            "path": "scripts/vendor_public_reverse_sources.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/verify_reverse_corpus.py",
+            "qualified_name": "sha256"
+          }
+        ]
+      },
+      {
+        "body_sha256": "6c921af48a5f1062149d1f3098581c1f5056bc0d87c0912f46664a956db3d3e9",
+        "functions": [
+          {
+            "path": "scripts/verify_game_corpus.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/verify_runtime_resources.py",
+            "qualified_name": "sha256"
+          }
+        ]
+      },
+      {
+        "body_sha256": "72861efaaa72ba184303efc56460c8e53bfe60fbd4e60e0082ef24bb420de21d",
+        "functions": [
+          {
+            "path": "daad_harvester/dms.py",
+            "qualified_name": "_DeepDecoder.__init__"
+          },
+          {
+            "path": "daad_harvester/dms.py",
+            "qualified_name": "_HeavyDecoder.__init__"
+          },
+          {
+            "path": "daad_harvester/dms.py",
+            "qualified_name": "_MediumDecoder.__init__"
+          },
+          {
+            "path": "daad_harvester/dms.py",
+            "qualified_name": "_QuickDecoder.__init__"
+          }
+        ]
+      },
+      {
+        "body_sha256": "fb814a23745e3ef5c8408d10bb051e87ea45b5c99288ba68b27924d61174a949",
+        "functions": [
+          {
+            "path": "scripts/render_chr_atlas.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/verify_jabato_c64_ass_scene_variant.py",
+            "qualified_name": "_sha256"
+          },
+          {
+            "path": "scripts/verify_jabato_c64_runtime_recovery.py",
+            "qualified_name": "_sha256"
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      "Static analysis does not establish format, release, or runtime semantics.",
+      "Filename-level test matching is a review prompt, not test coverage measurement.",
+      "Identical AST bodies require semantic review before deduplication."
+    ],
+    "named_test_gaps": [
+      "daad_harvester/acquisition.py",
+      "daad_harvester/cli.py",
+      "daad_harvester/daad_logger.py",
+      "daad_harvester/exceptions.py",
+      "daad_harvester/generator_evidence.py",
+      "daad_harvester/interpreter_profiles.py",
+      "daad_harvester/known_games.py",
+      "daad_harvester/models.py",
+      "daad_harvester/report.py",
+      "daad_harvester/seeds.py"
+    ],
+    "todo_baseline": {
+      "declared_test_count": 319,
+      "status": "historical_baseline_requires_release-gate_refresh"
+    }
+  },
+  "inputs": {
+    "backlog": "preservation_corpus/active_backlog_index.json",
+    "public_artifact_manifest": "preservation_corpus/public_artifacts_manifest.json",
+    "queue": "research/authorized_acquisition_queue.json",
+    "regeneration_manifest": "preservation_corpus/regeneration_manifest.json",
+    "report_data": "preservation_corpus/report_data.json",
+    "todo": "TODO.md"
+  },
+  "metrics": {
+    "acquisition": {
+      "blocked": 0,
+      "discovery_required": 19,
+      "queued": 30
+    },
+    "backlog": {
+      "section_counts": {
+        "1. Complete format and archive coverage": 6,
+        "10. Universal decompile\u2013recompile round-trip verification": 6,
+        "11. Future ScummVM DAAD engine": 4,
+        "12. Final emulator-equivalence and ScummVM integration gate": 8,
+        "2. Versions, interpreters, and derivatives": 1,
+        "3. Sources and metadata": 2,
+        "7. Authorization-gated reverse-engineering corpus": 10,
+        "8. All-platform retained game corpus and regression suite": 37,
+        "9. DAAD game decompiler research and differential implementation": 8,
+        "Active evidence-interface correction": 38,
+        "Deferred external-source queue (not part of the active task plan)": 13,
+        "Self-contained regeneration requirement": 22
+      },
+      "sections": 12,
+      "subsystem_counts": {
+        "corpus and provenance": 113,
+        "media and resource inspection": 52,
+        "preservation workflow": 5,
+        "runtime and reverse analysis": 89,
+        "terminal interface": 21,
+        "tooling and workflow gates": 93,
+        "web report and publication": 46
+      },
+      "unchecked_items": 155
+    },
+    "corpus": {
+      "artifacts": 784,
+      "sources": 254
+    },
+    "python": {
+      "production_files": 36,
+      "script_files": 51,
+      "test_files": 65
+    },
+    "regeneration": {
+      "entries": 10,
+      "inputs": 28,
+      "outputs": 19
+    },
+    "web": {
+      "package_lock_present": true,
+      "source_files": 3,
+      "technology": "React + TypeScript + Vite",
+      "test_files": 1
+    }
+  },
+  "purpose": "Deterministic static repository audit; findings require profile-specific follow-up evidence.",
+  "schema_version": 1
+}
