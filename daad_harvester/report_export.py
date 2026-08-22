@@ -159,6 +159,25 @@ class StaticReportExporter:
             )
         return matrix
 
+    @staticmethod
+    def _browser_safe_library(library: Any) -> Dict[str, Any]:
+        """Remove workstation source paths from manifest records before export."""
+
+        if not isinstance(library, dict):
+            return {"schema_version": 1, "summary": {}, "artifacts": [], "unavailable": True}
+        browser_safe = dict(library)
+        artifacts = library.get("artifacts", [])
+        if isinstance(artifacts, list):
+            browser_safe["artifacts"] = [
+                {
+                    key: value for key, value in artifact.items()
+                    if key != "source_path"
+                }
+                if isinstance(artifact, dict) else artifact
+                for artifact in artifacts
+            ]
+        return browser_safe
+
     def build(self) -> Dict[str, Any]:
         catalog = EvidenceCatalogExporter(self.db, self.output_dir).build()
         # Extraction paths are operational/private machine locations, not web
@@ -167,10 +186,10 @@ class StaticReportExporter:
             artifact.pop("extracted_path", None)
         detection_path = self.output_dir / "detection_tables.h"
         detection_text = detection_path.read_text(encoding="utf-8", errors="replace") if detection_path.is_file() else ""
-        library = self._read_json(
+        library = self._browser_safe_library(self._read_json(
             self.output_dir / "library" / "manifest.json",
             {"schema_version": 1, "summary": {}, "artifacts": [], "unavailable": True},
-        )
+        ))
         catalog_entries = self._read_json(self.output_dir / "daad_catalog.json", [])
         generator_entries = verify_native_generators()
         return {

@@ -38,6 +38,17 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     )
     db.add_artifact(artifact)
     (output_dir / "detection_tables.h").write_text("#define DAAD_TEST 1\n", encoding="utf-8")
+    library_dir = output_dir / "library"
+    library_dir.mkdir()
+    (library_dir / "manifest.json").write_text(json.dumps({
+        "schema_version": 1,
+        "summary": {"artifact_count": 1},
+        "artifacts": [{
+            "artifact_id": 1,
+            "source_path": "/private/workstation/extracted/adventure.ddb",
+            "library_path": "library/C64/test/adventure.ddb",
+        }],
+    }), encoding="utf-8")
 
     path = StaticReportExporter(db, output_dir).write()
     report = json.loads(path.read_text(encoding="utf-8"))
@@ -77,6 +88,8 @@ def test_static_report_export_uses_real_evidence_and_omits_local_paths(tmp_path:
     assert chr_atlas["native_validation"]["evidence"]["stored_output_matches_regeneration"] is True
     assert chr_atlas["comparison_boundary"]["character_mapping"] == "byte_index_only_no_code_page_claim"
     assert "extracted_path" not in report["catalog"]["artifacts"][0]
+    assert report["library"]["artifacts"][0]["library_path"] == "library/C64/test/adventure.ddb"
+    assert "source_path" not in report["library"]["artifacts"][0]
     matrix = next(item for item in report["game_port_matrix"] if item["game_id"] == known_game.game_id)
     assert matrix["source_platforms"] == ["c64"]
     assert matrix["measured_artifact_platforms"] == ["c64"]
