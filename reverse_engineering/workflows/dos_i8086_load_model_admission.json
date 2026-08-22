@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "purpose": "Fail-closed evidence contract for a future retained DOS i8086 COM or MZ static-analysis invocation.",
+  "states": ["unclassified", "blocked", "admissible_for_candidate_comparison"],
+  "common_required_evidence": ["artifact_hashes", "container_identification", "cpu_profile", "origin_or_load_segment", "entry_evidence", "cross_tool_disagreement_record"],
+  "com_required_evidence": ["psp_relationship", "image_origin", "wrapper_or_delivery_container"],
+  "mz_required_evidence": ["header_raw_bytes", "page_size_consistency", "header_paragraphs", "load_module_hash", "relocation_table_bounds", "initial_cs_ip", "initial_ss_sp", "allocation_fields", "psp_policy", "overlay_status"],
+  "fail_closed_conditions": ["unknown_container", "invalid_or_truncated_mz_header", "relocation_outside_load_module", "unresolved_overlay", "extended_mz_derived_format", "missing_com_psp_or_origin", "missing_entry_or_load_segment", "raw_base_zero_only"],
+  "analysis_boundary": "An admissible comparison may emit attributed tool decoding only. It does not recover source or establish behavior without separate evidence."
+}
