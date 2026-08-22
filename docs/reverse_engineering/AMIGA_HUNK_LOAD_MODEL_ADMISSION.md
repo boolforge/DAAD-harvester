@@ -23,7 +23,16 @@ The verifier reads and structurally validates the container only. It does not
 run AmigaOS, allocate Hunk segments, resolve libraries, invoke a disassembler,
 or execute any retained byte.
 
+Every profile therefore retains `launch_capture_observation: null`. A future
+official capture must bind the exact Hunk and loader context, Kickstart and
+AmigaDOS identities, LoadSeg/relocation transition, bootstrap medium, snapshot,
+machine configuration, segment-list allocation mapping, process and CLI state,
+68000 registers, stack, and library/device state. An Atari ST basepage, generic
+68000 configuration, different Amiga title, or static relocation listing cannot
+substitute for a profile-specific AmigaOS launch observation.[3]
+
 ## References
 
 [1]: [Amiga Hunk source record](../../research/sources/amiga_hunk_format_sources_2026-08-22.md)
 [2]: [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+[3]: [Amiga future launch-capture source record](../../research/sources/amiga_launch_capture_sources_2026-08-22.md)

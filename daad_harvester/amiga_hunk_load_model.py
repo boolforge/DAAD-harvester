@@ -17,6 +17,7 @@ HUNK_HEADER = 0x3F3
 HUNK_CODE = 0x3E9
 HUNK_RELOC32 = 0x3EC
 HUNK_END = 0x3F2
+FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS = ("official_hunk_sha256", "loader_context_sha256", "kickstart_rom_sha256", "amigados_identity", "loadseg_transition_sha256", "bootstrap_medium_sha256", "snapshot_sha256", "machine_configuration", "segment_list_mapping", "segment_allocation_addresses", "process_context", "cli_context", "m68000_registers", "stack_state", "library_device_state")
 
 
 def _sha256(path: Path) -> str:
@@ -87,6 +88,8 @@ def validate_amiga_hunk_load_model(contract: dict[str, Any], root: Path) -> None
         raise AmigaHunkLoadModelError("admission_state must retain unresolved Amiga runtime")
     if contract.get("execution_eligible") is not False:
         raise AmigaHunkLoadModelError("Hunk container facts must not enable execution")
+    if contract.get("future_launch_capture_required_fields") != list(FUTURE_LAUNCH_CAPTURE_REQUIRED_FIELDS):
+        raise AmigaHunkLoadModelError("Amiga future launch-capture schema differs from the required fields")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 4:
         raise AmigaHunkLoadModelError("contract must contain exactly four Amiga profiles")
@@ -111,6 +114,8 @@ def validate_amiga_hunk_load_model(contract: dict[str, Any], root: Path) -> None
         for field in ("code_longwords", "code_size", "relocation_count"):
             if profile.get(field) != fields[field]:
                 raise AmigaHunkLoadModelError(f"{identifier}: {field} differs from retained Hunk records")
+        if profile.get("launch_capture_observation") is not None:
+            raise AmigaHunkLoadModelError(f"{identifier}: no official Amiga launch capture is currently admitted")
 
 
 def load_amiga_hunk_load_model(path: Path, root: Path) -> dict[str, Any]:
