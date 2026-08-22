@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "purpose": "Immutable original PCW Z80 image identities and measured leading CP/M BDOS-call byte sequence. The byte sequence is not admitted as proof of a transient-program load address, entry, or operational CP/M environment.",
+  "admission_state": "image_identity_and_bdos_call_observed_load_unresolved",
+  "execution_eligible": false,
+  "profiles": [
+    {
+      "artifact_id": "daad-pcw-pcwedi-official",
+      "input_path": "reverse_engineering/artifacts/original/pcw/daad-pcw-pcwedi-official/PCWEDI.BIN",
+      "sha256": "358eb0d236db0a2b43fdc66f843eb8e2eed097f77db24e195c14bae5fbb309a2",
+      "bdos_call_offset": 16,
+      "bdos_call_target": 5,
+      "image_size": 8692
+    },
+    {
+      "artifact_id": "daad-pcw-pcwsdi-official",
+      "input_path": "reverse_engineering/artifacts/original/pcw/daad-pcw-pcwsdi-official/PCWSDI.BIN",
+      "sha256": "e52e2a8cc9e720805c7c6c7f8fe9fd706933c73696e695d7c1132063d4e52a7d",
+      "bdos_call_offset": 16,
+      "bdos_call_target": 5,
+      "image_size": 8919
+    }
+  ],
+  "remaining_requirements": [
+    "original PCW CP/M loader or disk context",
+    "transient-program load address and effective entry",
+    "PCW memory, bank, and firmware state",
+    "qualified analyzer configuration and cross-tool disagreement record",
+    "runtime and behavioral evidence"
+  ],
+  "non_claim": "A CP/M BDOS call byte sequence in a retained PCW image does not establish how the program was loaded, whether the sequence executes, CP/M version or environment, source recovery, or runtime behavior."
+}
