@@ -27,11 +27,11 @@
     {
       "id": "z80_by_platform",
       "population": 8,
-      "verified_fields": ["immutable profile identities", "ZX PLUS3DOS header and declared-payload bounds", "CPC AMSDOS header load and declared entry", "CPC future official-launch capture schema", "MSX leading-JP byte and file-offset observations", "PCW BDOS-call byte observations"],
+      "verified_fields": ["immutable profile identities", "ZX PLUS3DOS header and declared-payload bounds", "CPC AMSDOS header load and declared entry", "CPC future official-launch capture schema", "MSX leading-JP byte and file-offset observations", "PCW BDOS-call bytes and future official CP/M launch-capture schema"],
       "unresolved_fields": ["ZX load command and bank model", "hash-bound official CPC memory/firmware entry capture", "MSX loader and slot/mapper model", "PCW CP/M load and effective-entry model", "cross-tool disagreement record"],
       "analysis_state": "container_or_partial_load_verified",
       "disagreement_state": "not_recorded",
-      "last_validated_commit": "0d1d726",
+      "last_validated_commit": "b7fead2",
       "next_reproducer": "python3 scripts/verify_zx_plus3dos_load_model.py",
       "forbidden_cross_family_evidence": ["MOS 6502 PRG wrappers", "68000 executable headers", "DOS MZ fields"]
     },
