@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "purpose": "Host-local optional SkoolKit comparison-tool installation record; not a preservation result or mandatory regeneration dependency.",
+  "tool": "SkoolKit",
+  "version": "10.2b1",
+  "source_repository": "https://github.com/skoolkid/skoolkit",
+  "source_revision": "760eeaa012926b4220ea5a370a2bdf99ba098eb0",
+  "installation_method": "sudo pip3 install --no-build-isolation /tmp/skoolkit",
+  "health_checks": [
+    {
+      "command": ["sna2skool.py", "--version"],
+      "stdout": "SkoolKit 10.2b1",
+      "returncode": 0
+    },
+    {
+      "command": ["sna2skool.py", "--help"],
+      "returncode": 0,
+      "observed_raw_binary_origin_rule": "default origin is 65536 minus input length"
+    }
+  ],
+  "non_claims": [
+    "The installation does not validate any retained DAAD artifact, load model, control/data classification, or runtime behavior.",
+    "SkoolKit is not included in the mandatory clean-clone regeneration or parallel verification scheduler.",
+    "No existing reverse-analysis output was regenerated, replaced, or compared during installation."
+  ]
+}

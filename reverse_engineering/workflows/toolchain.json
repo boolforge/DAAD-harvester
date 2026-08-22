@@ -9,6 +9,13 @@
     },
     "radare2": {"version": "5.5.0", "command": "r2"},
     "z80dasm": {"version": "1.1.6", "command": "z80dasm"},
+    "skoolkit": {
+      "version": "10.2b1",
+      "command": "sna2skool.py",
+      "source_revision": "760eeaa012926b4220ea5a370a2bdf99ba098eb0",
+      "source_url": "https://github.com/skoolkid/skoolkit",
+      "role": "optional_spectrum_z80_comparison_candidate"
+    },
     "da65": {
       "executable_version": "2.18",
       "package_version": "2.19-1",
