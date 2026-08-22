@@ -16,6 +16,11 @@ The result is deliberately still non-executable: DOS supplies a PSP and a load
 segment outside the MZ image, and those platform conditions remain separate
 requirements of the committed DOS admission contract.
 
+The MZ ledger now machine-checks that contract’s candidate states, required
+MZ evidence, PSP and load-segment requirements, and fail-closed conditions,
+including `raw_base_zero_only`. This prevents the independently verified
+container fields from silently relaxing the separate runtime admission gate.
+
 ```bash
 python3 scripts/verify_dos_mz_load_model.py
 ```
