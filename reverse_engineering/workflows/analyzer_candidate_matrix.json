@@ -69,7 +69,7 @@
       "source": {"repository_url": "https://github.com/Oxore/m68k-disasm", "revision": "bb6d83981bbb53de352061b793c8215e45af895a", "license_status": "Unlicense observed in repository metadata"},
       "execution_eligible": false,
       "comparison_roles": ["static_disassembly", "trace-informed labeling candidate"],
-      "blockers": ["upstream round-trip test toolchain: m68k-none-elf-as, m68k-none-elf-ld, and m68k-none-elf-objcopy", "Amiga or Atari ST origin, entry, and load model", "raw-binary base and trace or label assumption mapping", "retained-byte cross-tool disagreement record"],
+      "blockers": ["upstream round-trip test toolchain: m68k-none-elf-as, m68k-none-elf-ld, and m68k-none-elf-objcopy; the pinned documented m68k-elf source route produces a different prefix", "Amiga or Atari ST origin, entry, and load model", "raw-binary base and trace or label assumption mapping", "retained-byte cross-tool disagreement record"],
       "non_claim": "A controlled base-unspecified NOP/RTS fixture does not validate a platform load model, tool labels, or runtime semantics."
     },
     {
