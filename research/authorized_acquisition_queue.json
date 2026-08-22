@@ -22,23 +22,6 @@
     },
     {
       "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "alien research centre 2|pension productions|2019|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Alien Research Centre 2",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
       "candidate_key": "aventura espacial, la|aventuras a.d.|1990|spanish",
       "institutional_authorization": {
         "authorization_state": "institutional_authorized",
@@ -104,40 +87,6 @@
       "reason": "authorized_source_discovery_required",
       "title": "Barry Basic and the Quest For The Perfect Port",
       "year": "2020"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 5|pension productions|2019|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 5",
-      "year": "2019"
-    },
-    {
-      "authorization_status": "authorized_source_discovery_required",
-      "candidate_key": "behind closed doors 6|pension productions|2019|english",
-      "institutional_authorization": {
-        "authorization_state": "institutional_authorized",
-        "decision_date": "2026-08-22",
-        "directive": "docs/reverse_engineering/AUTHORIZATION_AND_HANDLING.md",
-        "provenance_requirement": "Each acquisition still records canonical source URL, retrieval timestamp, SHA-256, platform or architecture, artifact class, and any source-specific rights context.",
-        "schema_version": 1,
-        "scope": "acquire_retain_execute_analyze_publish"
-      },
-      "language": "English",
-      "publisher": "Pension Productions",
-      "reason": "authorized_source_discovery_required",
-      "title": "Behind Closed Doors 6",
-      "year": "2019"
     },
     {
       "authorization_status": "authorized_source_discovery_required",
@@ -667,10 +616,34 @@
       "year": "2019"
     }
   ],
-  "discovery_required_count": 39,
+  "discovery_required_count": 36,
   "policy_manifest": "research/acquisition_policy.json",
   "purpose": "The institutional directive authorizes candidate handling; a direct binary URL remains required before acquisition.",
   "queued": [
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "AlienResearchCentre2.tap.zip",
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Alien Research Centre 2",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "25cabd06c9e5ffd6d8e615db2a9cfeb0a3c625fdc3e5c84607766d5aedd7066d"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34908/ZX-Spectrum/Alien_Research_Centre_2",
+      "source_release_id": "34908",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip",
+      "title": "Alien Research Centre 2",
+      "year": "2019"
+    },
     {
       "authorization_basis": "institutional_authorization_directive",
       "authorization_status": "authorized",
@@ -766,6 +739,54 @@
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip",
       "title": "Behind Closed Doors 4: Balrog's Day Out",
       "year": "1994"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors5.tzx.zip",
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Behind Closed Doors 5",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "b73b578e9017e25360de0ee71eb55cc5d0ab3508fdfe8889e65c49118ad580fe"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34688/ZX-Spectrum/Behind_Closed_Doors_5",
+      "source_release_id": "34688",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034688/BehindClosedDoors5.tzx.zip",
+      "title": "Behind Closed Doors 5",
+      "year": "2019"
+    },
+    {
+      "authorization_basis": "institutional_authorization_directive",
+      "authorization_status": "authorized",
+      "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors6.tzx.zip",
+      "language": "English",
+      "publisher": "Pension Productions",
+      "reason": "authorized_by_institutional_directive",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Behind Closed Doors 6",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5d4dc5f2a544cb9be8553846a94584159b72c9ac05be82996baefed0f589384e"
+      },
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34689/ZX-Spectrum/Behind_Closed_Doors_6",
+      "source_release_id": "34689",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034689/BehindClosedDoors6.tzx.zip",
+      "title": "Behind Closed Doors 6",
+      "year": "2019"
     },
     {
       "authorization_basis": "institutional_authorization_directive",
@@ -916,7 +937,7 @@
       "year": "1989"
     }
   ],
-  "queued_count": 10,
+  "queued_count": 13,
   "registration_manifest": "research/authorized_candidate_sources.json",
   "schema_version": 1
 }

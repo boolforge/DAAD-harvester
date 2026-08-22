@@ -1,10 +1,28 @@
 {
   "checksum_promotion_summary": {
-    "new_source_checksums": 2,
-    "total_registrations": 10
+    "new_source_checksums": 3,
+    "total_registrations": 13
   },
   "purpose": "Register direct binary sources with release-identity evidence before acquisition under the institutional authorization directive.",
   "registrations": [
+    {
+      "candidate_key": "alien research centre 2|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "AlienResearchCentre2.tap.zip",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Alien Research Centre 2",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "25cabd06c9e5ffd6d8e615db2a9cfeb0a3c625fdc3e5c84607766d5aedd7066d"
+      },
+      "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, year, and language.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34908/ZX-Spectrum/Alien_Research_Centre_2",
+      "source_release_id": "34908",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034908/AlienResearchCentre2.tap.zip"
+    },
     {
       "candidate_key": "behind closed doors 2: the sequel|zenobi software|1988|english",
       "external_source_terms": null,
@@ -58,6 +76,42 @@
       "source_record_url": "https://spectrumcomputing.co.uk/entry/6001/ZX-Spectrum/Behind_Closed_Doors_4_Balrogs_Day_Out",
       "source_release_id": "6001",
       "source_url": "https://spectrumcomputing.co.uk/pub/sinclair/games/b/BehindClosedDoors4-BalrogsDayOut.tzx.zip"
+    },
+    {
+      "candidate_key": "behind closed doors 5|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors5.tzx.zip",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Behind Closed Doors 5",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "b73b578e9017e25360de0ee71eb55cc5d0ab3508fdfe8889e65c49118ad580fe"
+      },
+      "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, year, and language.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34688/ZX-Spectrum/Behind_Closed_Doors_5",
+      "source_release_id": "34688",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034688/BehindClosedDoors5.tzx.zip"
+    },
+    {
+      "candidate_key": "behind closed doors 6|pension productions|2019|english",
+      "external_source_terms": null,
+      "filename": "BehindClosedDoors6.tzx.zip",
+      "release_identity": {
+        "publisher": "Pension Productions",
+        "title": "Behind Closed Doors 6",
+        "year": "2019"
+      },
+      "source_checksum": {
+        "algorithm": "sha256",
+        "value": "5d4dc5f2a544cb9be8553846a94584159b72c9ac05be82996baefed0f589384e"
+      },
+      "source_evidence": "Release identity matched by the Spectrum Computing adapter against title, publisher, year, and language.",
+      "source_record_url": "https://spectrumcomputing.co.uk/entry/34689/ZX-Spectrum/Behind_Closed_Doors_6",
+      "source_release_id": "34689",
+      "source_url": "https://spectrumcomputing.co.uk/zxdb/sinclair/entries/0034689/BehindClosedDoors6.tzx.zip"
     },
     {
       "candidate_key": "behind closed doors 7|zenobi software|2018|english",
