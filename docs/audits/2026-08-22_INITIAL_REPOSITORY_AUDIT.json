@@ -107,6 +107,19 @@
         ]
       },
       {
+        "body_sha256": "33e261a20023e91e85ec47c37fc98ad027e8534d17a25d5762b8d0db92564968",
+        "functions": [
+          {
+            "path": "scripts/refresh_regeneration_manifest_hashes.py",
+            "qualified_name": "sha256"
+          },
+          {
+            "path": "scripts/verify_regeneration_manifest.py",
+            "qualified_name": "_sha256"
+          }
+        ]
+      },
+      {
         "body_sha256": "3c2433ea896aa4220e4f4a941c2a7bbd174e6649066f471c6ba9ed95f2d6e21e",
         "functions": [
           {
@@ -248,7 +261,7 @@
       "daad_harvester/seeds.py"
     ],
     "todo_baseline": {
-      "declared_test_count": 319,
+      "declared_test_count": 398,
       "status": "historical_baseline_requires_release-gate_refresh"
     }
   },
@@ -263,7 +276,7 @@
   "metrics": {
     "acquisition": {
       "blocked": 0,
-      "discovery_required": 19,
+      "discovery_required": 59,
       "queued": 30
     },
     "backlog": {
@@ -298,14 +311,14 @@
       "sources": 254
     },
     "python": {
-      "production_files": 36,
-      "script_files": 51,
-      "test_files": 65
+      "production_files": 37,
+      "script_files": 54,
+      "test_files": 69
     },
     "regeneration": {
-      "entries": 10,
-      "inputs": 28,
-      "outputs": 19
+      "entries": 11,
+      "inputs": 31,
+      "outputs": 20
     },
     "web": {
       "package_lock_present": true,
