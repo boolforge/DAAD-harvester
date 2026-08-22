@@ -1,1 +1,2 @@
-preservation_corpus/extracted/** -text -whitespace
+# Preserve extracted evidence bytes without Git text normalization.
+preservation_corpus/extracted/** -text

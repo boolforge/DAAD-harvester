@@ -1,0 +1,431 @@
+{
+  "policy": "A row records only the displayed catalog relationship, entry URL, publisher, platform path, and year when present. It neither authorizes download nor establishes language, DAAD format support, release equivalence, or binary identity.",
+  "purpose": "Public Spectrum Computing DAAD relationship catalog captured as discovery evidence only.",
+  "record_count": 42,
+  "records": [
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42613/ZX-Spectrum/13_Rue_del_Percebe_El_Nacimiento_de_la_Leyenda",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42613",
+      "displayed_publisher": "Manuel Mart\u00ednez Pe\u00f1a",
+      "displayed_title": "13 Rue del Percebe: El Nacimiento de la Leyenda",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/5975/ZX-Spectrum/La_Aventura_Espacial",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "5975",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "La Aventura Espacial",
+      "displayed_year": 1990,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/5977/ZX-Spectrum/La_Aventura_Original",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "5977",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "La Aventura Original",
+      "displayed_year": 1989,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/35692/ZX-Spectrum/Las_Aventuras_de_Rudolphine_Rur",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "35692",
+      "displayed_publisher": "Dwalin",
+      "displayed_title": "Las Aventuras de Rudolphine Rur",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/44573/ZX-Spectrum/Beltalowda",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "44573",
+      "displayed_publisher": "Molisoft",
+      "displayed_title": "Beltalowda",
+      "displayed_year": 2025,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42546/ZX-Spectrum/A_Case_of_Murder_128K",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42546",
+      "displayed_publisher": "Taskmaster Software (UK)",
+      "displayed_title": "A Case of Murder 128K",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42566/ZX-Spectrum/La_Celda",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42566",
+      "displayed_publisher": "Adanoliva",
+      "displayed_title": "La Celda",
+      "displayed_year": null,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/30241/ZX-Spectrum/El_Cetro_del_Sol",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "30241",
+      "displayed_publisher": "Toni Pera",
+      "displayed_title": "El Cetro del Sol",
+      "displayed_year": 2015,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/6078/ZX-Spectrum/Chichen_Itza",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "6078",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "Chichen Itza",
+      "displayed_year": 1992,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/37444/ZX-Spectrum/Colour_Beyond_Time",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "37444",
+      "displayed_publisher": "Lost",
+      "displayed_title": "Colour Beyond Time",
+      "displayed_year": 2022,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/6183/ZX-Spectrum/Cozumel",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "6183",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "Cozumel",
+      "displayed_year": 1990,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/35321/ZX-Spectrum/The_Curse_of_Rabenstein",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "35321",
+      "displayed_publisher": "Puddle Software",
+      "displayed_title": "The Curse of Rabenstein",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36071/ZX-Spectrum_Next/The_Curse_of_Rabenstein",
+      "catalog_platform_path": "ZX-Spectrum_Next",
+      "catalog_release_id": "36071",
+      "displayed_publisher": "Puddle Software",
+      "displayed_title": "The Curse of Rabenstein",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/38128/ZX-Spectrum/The_Da_Vinci_Code_2_Trouble_From_The_Past",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "38128",
+      "displayed_publisher": "uglifruit",
+      "displayed_title": "[CSSCGC] The Da Vinci Code 2: Trouble From The Past",
+      "displayed_year": 2022,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36421/ZX-Spectrum/El_Dia_Que_Lo_Entiendas_Se_Acaba_El_Mundo",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36421",
+      "displayed_publisher": "Pedro Fernandez Lopez (Spain)",
+      "displayed_title": "El Dia Que Lo Entiendas Se Acaba El Mundo",
+      "displayed_year": null,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42538/ZX-Spectrum/The_Dragnet_Case_Re-Release",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42538",
+      "displayed_publisher": "Taskmaster Software (UK)",
+      "displayed_title": "The Dragnet Case Re-Release",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/34668/ZX-Spectrum/Eight_Feet_Under",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "34668",
+      "displayed_publisher": "Pond Software Ltd",
+      "displayed_title": "Eight Feet Under",
+      "displayed_year": 2018,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/30277/ZX-Spectrum/ELF_La_Aventura-Parte_1",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "30277",
+      "displayed_publisher": "Defecto Digital Studios",
+      "displayed_title": "ELF, La Aventura - Parte 1",
+      "displayed_year": 2016,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42545/ZX-Spectrum/Los_Elfos_de_Maroland_2023",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42545",
+      "displayed_publisher": "Dwalin",
+      "displayed_title": "Los Elfos de Maroland 2023",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/44145/ZX-Spectrum/Erinia_Enhanced_version",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "44145",
+      "displayed_publisher": "DaRe",
+      "displayed_title": "[MOD] Erinia (Enhanced version)",
+      "displayed_year": 2024,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/38332/ZX-Spectrum/The_Errand_Boy",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "38332",
+      "displayed_publisher": "Dwalin",
+      "displayed_title": "The Errand Boy",
+      "displayed_year": 2021,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42201/ZX-Spectrum/La_Estrella_de_la_Ma\u00f1ana_2023",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42201",
+      "displayed_publisher": "DaRe",
+      "displayed_title": "La Estrella de la Ma\u00f1ana 2023",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/37245/ZX-Spectrum/Excalibur_Sword_of_Kings_Remake",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "37245",
+      "displayed_publisher": "Adventuron Software Ltd",
+      "displayed_title": "Excalibur: Sword of Kings Remake",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/43705/ZX-Spectrum/Framed",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "43705",
+      "displayed_publisher": "Kennard Douglas",
+      "displayed_title": "Framed!",
+      "displayed_year": 2024,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/34819/ZX-Spectrum/The_House_on_the_Other_Side_of_the_Storm",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "34819",
+      "displayed_publisher": "Pablo Mart\u00ednez Merino (Spain)",
+      "displayed_title": "The House on the Other Side of the Storm",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42653/ZX-Spectrum/Imprisoned",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42653",
+      "displayed_publisher": "Stonechat Productions (UK)",
+      "displayed_title": "Imprisoned",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/6493/ZX-Spectrum/Jabato",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "6493",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "Jabato",
+      "displayed_year": 1989,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/34683/ZX-Spectrum/Karhum",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "34683",
+      "displayed_publisher": "Toni Pera",
+      "displayed_title": "Karhum",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36141/ZX-Spectrum/Last_Night_in_the_Office",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36141",
+      "displayed_publisher": "Quizlock",
+      "displayed_title": "Last Night in the Office",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/39032/ZX-Spectrum/The_Legacy_of_Markham_Island",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "39032",
+      "displayed_publisher": "Stonechat Productions (UK)",
+      "displayed_title": "The Legacy of Markham Island",
+      "displayed_year": 2022,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/39242/ZX-Spectrum/Licence_to_Mow",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "39242",
+      "displayed_publisher": "Jbizzel",
+      "displayed_title": "[CSSCGC] Licence to Mow",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/39180/ZX-Spectrum/Mad_Gods",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "39180",
+      "displayed_publisher": "Jbizzel",
+      "displayed_title": "[CSSCGC] Mad Gods",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/39045/ZX-Spectrum/The_Mystery_of_Markham_Manor",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "39045",
+      "displayed_publisher": "Taskmaster Software (UK)",
+      "displayed_title": "The Mystery of Markham Manor",
+      "displayed_year": 2022,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36146/ZX-Spectrum/One_Last_Thing",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36146",
+      "displayed_publisher": "Dee Cooke",
+      "displayed_title": "One Last Thing",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36074/ZX-Spectrum/Pandemia_XXI",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36074",
+      "displayed_publisher": "luckywebsoft",
+      "displayed_title": "Pandemia XXI",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36422/ZX-Spectrum/Proyecto_Vampiro",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36422",
+      "displayed_publisher": "Pedro Fernandez Lopez (Spain)",
+      "displayed_title": "Proyecto Vampiro",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36250/ZX-Spectrum/The_Revenge_of_Moriarty",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36250",
+      "displayed_publisher": "Gareth Pitchford (UK)",
+      "displayed_title": "The Revenge of Moriarty",
+      "displayed_year": 2019,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/7082/ZX-Spectrum/Los_Templos_Sagrados",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "7082",
+      "displayed_publisher": "Aventuras AD S.A. (Spain)",
+      "displayed_title": "Los Templos Sagrados",
+      "displayed_year": 1991,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/42612/ZX-Spectrum/Terror_by_Night",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "42612",
+      "displayed_publisher": "A Novel Approach",
+      "displayed_title": "Terror by Night",
+      "displayed_year": 2023,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/38180/ZX-Spectrum/Top_Gun_2_Maverick_Dangerous",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "38180",
+      "displayed_publisher": "uglifruit",
+      "displayed_title": "[CSSCGC] Top Gun 2: Maverick Dangerous!",
+      "displayed_year": 2022,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/36067/ZX-Spectrum/Torreoscura",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "36067",
+      "displayed_publisher": "Bieno Marti (Spain)",
+      "displayed_title": "Torreoscura",
+      "displayed_year": 2020,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    },
+    {
+      "catalog_entry_url": "https://spectrumcomputing.co.uk/entry/35221/ZX-Spectrum/ZHL",
+      "catalog_platform_path": "ZX-Spectrum",
+      "catalog_release_id": "35221",
+      "displayed_publisher": "Alien Software (Spain)",
+      "displayed_title": "ZHL",
+      "displayed_year": 2016,
+      "language": null,
+      "relationship_state": "catalog_relationship_only"
+    }
+  ],
+  "relationship_label": "Programs authored (or executed) with this title",
+  "schema_version": 1,
+  "source_sha256": "236bf2232b4fcd6817fb95c147b6e33f36db0b8d5699e88aa049ae061e8ac7d8",
+  "source_url": "https://spectrumcomputing.co.uk/entry/30013/ZX-Spectrum/DAAD"
+}
