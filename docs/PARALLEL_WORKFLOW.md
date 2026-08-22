@@ -9,7 +9,7 @@ The repository provides `scripts/run_parallel_workflow.py` as the standard paral
 | Group | Purpose | Examples | Shared-write policy |
 | --- | --- | --- | --- |
 | `evidence` | Validate retained corpus, resources, checksums, reverse-engineering records, and native generators. | Corpus integrity, runtime resources, artifact checksums, reverse corpus, native generators. | Read-only verification only. |
-| `publication` | Validate generated public outputs, manifests, documentation, language policy, and lint. | Backlog index, regeneration manifest, public artifact manifest, static report, documentation, pyflakes. | Each command runs in an isolated CI checkout; local commands are check-only. |
+| `publication` | Validate generated public outputs, manifests, documentation, language policy, and lint. | Backlog index, regeneration manifest, public artifact manifest, static report, documentation, pyflakes. | Each command runs in its own subprocess from the shared repository root and must be check-only in both local and CI workflows. |
 | `analysis` | Validate DDB round trips and bounded negative evidence. | Native round trips and token-boundary blocker. | Read-only verification only. |
 
 The complete parallel invocation is:

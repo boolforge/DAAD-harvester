@@ -454,7 +454,7 @@
       "id": "todo-0039",
       "line": 39,
       "section": "Active evidence-interface correction",
-      "text": "Complete the scheduler and workflow enforcement audit for the synchronized expansion. Reconcile allowlists, declared group ownership, subprocess/root behavior, timeout/failure reporting, ordered-regeneration exclusions, command-classification records, and portable entry points against code and regressions. Correct any confirmed enforcement or contract defect through one bounded atomic increment.",
+      "text": "Complete the scheduler and workflow enforcement audit for the synchronized expansion. Reconcile allowlists, declared group ownership, subprocess/root behavior, timeout/failure reporting, ordered-regeneration exclusions, command-classification records, and portable entry points against code and regressions. A remaining publication-group documentation row incorrectly claimed isolated CI checkouts despite the shared-root scheduler contract; it now states the actual per-subprocess, shared-root, check-only boundary and has a regression. Correct any remaining confirmed enforcement or contract defect through one bounded atomic increment.",
       "evidence_inputs": [
         "real-artifact regression",
         "report or interface output",

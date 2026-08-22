@@ -1,4 +1,5 @@
 import subprocess
+from pathlib import Path
 
 import pytest
 
@@ -34,3 +35,12 @@ def test_timeout_is_reported_as_gate_failure(monkeypatch, capsys) -> None:
     monkeypatch.setattr(run_parallel_workflow.subprocess, "run", timed_out)
     assert run_parallel(groups=["publication"], workers=1, timeout=0.01) == 1
     assert "timed out after 0.01s" in capsys.readouterr().out
+
+
+def test_parallel_workflow_contract_records_shared_root_check_only_boundary() -> None:
+    root = Path(__file__).parents[1]
+    contract = (root / "docs" / "PARALLEL_WORKFLOW.md").read_text(encoding="utf-8")
+
+    assert "subprocess from the shared repository root" in contract
+    assert "check-only in both local and CI workflows" in contract
+    assert "Each command runs in an isolated CI checkout" not in contract
