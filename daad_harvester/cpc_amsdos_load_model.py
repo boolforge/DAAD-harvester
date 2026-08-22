@@ -13,6 +13,25 @@ class CpcAmsdosLoadModelError(ValueError):
 
 
 HEADER_SIZE = 128
+FUTURE_CAPTURE_REQUIRED_FIELDS = [
+    "official_program_sha256",
+    "snapshot_sha256",
+    "snapshot_format",
+    "emulator_name",
+    "emulator_version",
+    "machine_model",
+    "loader_transition_sha256",
+    "entry_pc",
+    "z80_registers_sha256",
+    "gate_array_configuration",
+    "gate_array_ram_configuration",
+    "upper_rom_number",
+    "firmware_rom_sha256",
+    "pio_state_sha256",
+    "psg_state_sha256",
+    "memory_dump_sha256",
+    "memory_dump_size",
+]
 
 
 def _sha256(path: Path) -> str:
@@ -58,6 +77,8 @@ def validate_cpc_amsdos_load_model(contract: dict[str, Any], root: Path) -> None
         raise CpcAmsdosLoadModelError("admission_state must retain unresolved CPC memory state")
     if contract.get("execution_eligible") is not False:
         raise CpcAmsdosLoadModelError("AMSDOS header facts must not enable execution")
+    if contract.get("future_capture_required_fields") != FUTURE_CAPTURE_REQUIRED_FIELDS:
+        raise CpcAmsdosLoadModelError("contract must preserve the CPC future-capture field schema")
     profiles = contract.get("profiles")
     if not isinstance(profiles, list) or len(profiles) != 2:
         raise CpcAmsdosLoadModelError("contract must contain exactly two CPC profiles")

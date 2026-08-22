@@ -6,8 +6,11 @@
 | [CPC Rulez: ROMs, RAM, and Restart Instructions](https://cpcrulez.fr/codingBOOK_soft968-CPC464-664-6128_firmware_002.htm) | Bank-switched RAM changes visibility and ROM overlays remain relevant to address interpretation. |
 | [ChibiAkumas: Amstrad CPC Memory Map](https://www.chibiakumas.com/z80/AmstradCPC.php?noui=1) | CPC ROM overlays affect the `0x0000`–`0x3fff` and `0xc000`–`0xffff` regions; a binary header alone does not identify active overlays. |
 | [CPCWiki: AMSDOS Header](https://cpctech.cpcwiki.de/docs/allhead.html) | AMSDOS header fields are loader metadata and not a complete runtime-state record. |
+| [CPCEMU documentation: Snapshot Files](https://cpc-emu.org/docu_e.html) | A CPCEMU snapshot uses a header plus memory dump and records Z80 state, Gate Array configuration and RAM configuration, upper-ROM number, PIO and PSG state, and dump size. This defines reproducible field categories, not an official DAAD launch capture. |
 
 The retained CPC headers establish their load and declared entry fields. These
 sources show that a qualified entry configuration additionally needs explicit
-RAM/ROM/bank and firmware context. They do not provide an official launch
-capture for the retained DCPCIE/DCPCIS profiles.
+RAM/ROM/bank and firmware context. CPCEMU snapshot documentation also shows
+which machine-state categories a reproducible capture can preserve. Neither
+the documentation nor the retained inputs provides an official launch capture
+for the retained DCPCIE/DCPCIS profiles.

@@ -3,6 +3,25 @@
   "purpose": "CPC AMSDOS binary-header observation for two retained DAAD program containers. Header-relative load and entry facts are verified without establishing CPC runtime state.",
   "admission_state": "amsdos_header_load_and_entry_verified_memory_unresolved",
   "execution_eligible": false,
+  "future_capture_required_fields": [
+    "official_program_sha256",
+    "snapshot_sha256",
+    "snapshot_format",
+    "emulator_name",
+    "emulator_version",
+    "machine_model",
+    "loader_transition_sha256",
+    "entry_pc",
+    "z80_registers_sha256",
+    "gate_array_configuration",
+    "gate_array_ram_configuration",
+    "upper_rom_number",
+    "firmware_rom_sha256",
+    "pio_state_sha256",
+    "psg_state_sha256",
+    "memory_dump_sha256",
+    "memory_dump_size"
+  ],
   "profiles": [
     {
       "artifact_id": "daad-cpc-dcpcie-official",
@@ -26,8 +45,7 @@
     }
   ],
   "remaining_requirements": [
-    "hash-bound official CPC entry-environment capture: RAM, banking, firmware, and peripheral state",
-    "firmware and peripheral environment",
+    "hash-bound official CPC entry-environment capture using every declared future capture field",
     "qualified analyzer configuration using the bounded payload and declared entry",
     "cross-tool disagreement record",
     "runtime and behavioral evidence"

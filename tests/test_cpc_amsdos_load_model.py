@@ -20,6 +20,9 @@ def test_retained_cpc_amsdos_headers_provide_bounded_load_and_entry_facts() -> N
 
     assert contract["execution_eligible"] is False
     assert all(profile["entry_environment_observation"] is None for profile in contract["profiles"])
+    assert contract["future_capture_required_fields"] == [
+        "official_program_sha256", "snapshot_sha256", "snapshot_format", "emulator_name", "emulator_version", "machine_model", "loader_transition_sha256", "entry_pc", "z80_registers_sha256", "gate_array_configuration", "gate_array_ram_configuration", "upper_rom_number", "firmware_rom_sha256", "pio_state_sha256", "psg_state_sha256", "memory_dump_sha256", "memory_dump_size"
+    ]
     assert fields["load_address"] == 0x0840
     assert fields["entry_address"] == 0x2417
     assert fields["stored_payload_size"] == 7395
@@ -31,6 +34,7 @@ def test_retained_cpc_amsdos_headers_provide_bounded_load_and_entry_facts() -> N
         (lambda contract: contract.__setitem__("execution_eligible", True), "must not enable execution"),
         (lambda contract: contract["profiles"][0].__setitem__("sha256", "0" * 64), "retained CPC identity differs"),
         (lambda contract: contract["profiles"][1].__setitem__("entry_address", 0), "entry_address differs"),
+        (lambda contract: contract["future_capture_required_fields"].pop(), "future-capture field schema"),
     ],
 )
 def test_cpc_amsdos_contract_rejects_promotion_or_changed_header_facts(mutation, message: str) -> None:

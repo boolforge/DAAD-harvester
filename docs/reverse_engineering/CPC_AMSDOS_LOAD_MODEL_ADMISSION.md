@@ -16,6 +16,15 @@ qualified static analysis until CPC memory and environment conditions are
 evidenced. Each retained profile records a null entry-environment observation;
 a generic emulator default or an unrelated CPC capture cannot fill this field.
 
+The future-capture schema requires a hash-bound official program, snapshot,
+and loader transition; emulator identity and machine model; the entry PC and
+Z80-register digest; Gate Array configuration and RAM configuration; upper-ROM
+selection and firmware-ROM digest; PIO and PSG state digests; and the memory
+dump digest and size. CPCEMU documents that its snapshot header stores Z80,
+Gate Array, RAM-configuration, upper-ROM, PIO, PSG, and memory-dump fields.[3]
+The schema records what a future official capture must preserve; it does not
+state that a capture of either retained DAAD program exists.
+
 ```bash
 python3 scripts/verify_cpc_amsdos_load_model.py
 ```
@@ -27,3 +36,4 @@ or invoke any disassembler.
 
 1. [Amstrad CPC platform dossier](../platforms/AMSTRAD_CPC.md)
 2. [Architecture-family macroplan](AUTONOMOUS_ARCHITECTURE_FAMILY_MACROPLAN.md)
+3. [CPC entry-environment source record](../../research/sources/cpc_entry_environment_sources_2026-08-22.md)
