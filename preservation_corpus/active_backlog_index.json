@@ -1432,8 +1432,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0090",
-      "line": 90,
+      "id": "todo-0091",
+      "line": 91,
       "section": "Self-contained regeneration requirement",
       "text": "Define and test the clean-clone installation contract for Linux, macOS, Windows, and Termux: minimum system packages, supported Python versions, virtual-environment setup, declared dependency installation, optional external-validator separation, offline verification command, and actionable failure diagnostics. The primary preservation path must not rely on undeclared host executables or a preconfigured developer environment.",
       "evidence_inputs": [
@@ -1450,8 +1450,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0091",
-      "line": 91,
+      "id": "todo-0092",
+      "line": 92,
       "section": "Self-contained regeneration requirement",
       "text": "Implement and test one deterministic cross-host primary automation entry point for Linux, macOS, Windows, and Termux. It must orchestrate offline corpus/resource/manifest verification, native parsing and fingerprinting, deterministic synthesis/library/report regeneration, byte/hash comparison, and actionable nonzero failure output without a GUI, emulator, LLM, network endpoint, or undeclared host executable. Platform-specific emulation remains an explicitly non-primary acquisition or corroboration step.",
       "evidence_inputs": [
@@ -1474,8 +1474,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0092",
-      "line": 92,
+      "id": "todo-0093",
+      "line": 93,
       "section": "Self-contained regeneration requirement",
       "text": "Implement and test cross-host, noninteractive adapters for every non-primary external validator and acquisition workflow where the tool is available. Each adapter must declare capability and installation status, use a fixed configuration and execution bound, capture logs/outputs/hashes, compare against the native evidence path, and emit an actionable explicit `unavailable` diagnostic on unsupported hosts without blocking the deterministic primary workflow. No optional workflow may require GUI interaction, hidden manual steps, or an LLM.",
       "evidence_inputs": [
@@ -1493,8 +1493,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0093",
-      "line": 93,
+      "id": "todo-0094",
+      "line": 94,
       "section": "Self-contained regeneration requirement",
       "text": "Build an auditable CI toolchain matrix that executes every used or planned external emulator, disassembler, decompiler, compiler, converter, and comparator in headless/batch mode against retained real artifacts. Each lane must provision pinned tool/firmware versions, retain configuration and bounded logs/outputs, compare its result with the native path, publish a host-capability status, and make incompatibility explicit rather than silently skipping the tool. The native primary gate remains independently reproducible, while the extended matrix is automated on every compatible runner.",
       "evidence_inputs": [
@@ -1515,8 +1515,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0094",
-      "line": 94,
+      "id": "todo-0095",
+      "line": 95,
       "section": "Self-contained regeneration requirement",
       "text": "Enforce local/CI primary-gate parity. CI and a clean local clone must invoke the same repository launcher and report the same verifier set, committed input identities, manifest/resource/corpus counts, static-report hash, documentation result, and test result. The parity record must declare supported interpreter/OS versions and explicit harmless environment differences; any unexplained output, count, hash, or command divergence is a reproducibility defect with a retained failure log, corrective change, and regression.",
       "evidence_inputs": [
@@ -1541,8 +1541,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0105",
-      "line": 105,
+      "id": "todo-0106",
+      "line": 106,
       "section": "Self-contained regeneration requirement",
       "text": "Maintain a repository-wide requirements, evidence, and improvement traceability system. It must map every project objective and implementation claim—targets, formats, profiles, interpreters, derivatives, corpus acquisition, reverse engineering, decompiler/recompiler, external-tool automation, CI, report/TUI behavior, ScummVM handoff, blockers, and recovery—to its authoritative documentation, retained inputs, deterministic command, generated outputs, tests, manifest record, public representation, owner boundary, and non-claim. The documentation map and CI link gate must expose omissions rather than allowing a requirement, evidence record, or improvement decision to become orphaned.",
       "evidence_inputs": [
@@ -1567,8 +1567,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0106",
-      "line": 106,
+      "id": "todo-0107",
+      "line": 107,
       "section": "Self-contained regeneration requirement",
       "text": "Make documentation continuity a permanent change-gate rule. Every future code, corpus, schema, toolchain, CI, report, TUI, decompiler, or ScummVM-handoff contribution must add or update its plain-language objective, scope/non-claim, evidence inputs, data contract, responsible source modules, positive/rejection tests, deterministic regeneration command, expected outputs/hashes, manifest/report impact, user-visible behavior, blocker/recovery state, and continuation instruction. The documentation checker and review checklist must reject a contribution that leaves future humans or agents unable to understand, verify, improve, or safely extend it from a clean clone.",
       "evidence_inputs": [
@@ -1591,8 +1591,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0107",
-      "line": 107,
+      "id": "todo-0108",
+      "line": 108,
       "section": "Self-contained regeneration requirement",
       "text": "Enforce human-and-agent continuation parity. A clean clone must expose one documented reading order, machine-readable work/evidence state, deterministic command plan, structured pass/fail diagnostics, and bounded change protocol that lead both a human and an agent from project orientation to the same independently checkable action. No step may depend on interpreting a private conversation, remembering an unavailable prompt, inferring an undocumented convention, or accessing a personal workstation.",
       "evidence_inputs": [
@@ -1609,8 +1609,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0113",
-      "line": 113,
+      "id": "todo-0114",
+      "line": 114,
       "section": "Self-contained regeneration requirement",
       "text": "Complete a documentation-coverage audit for every relevant preservation concern: source and authorization provenance, retained media, profile/format contracts, parser/loader behavior, interpreter and DDB evidence, reverse-engineering outputs, decompiler/recompiler rules, deterministic commands, generated outputs, tests, manifests, active blockers, failure/recovery paths, contributor decisions, and final integration criteria. The documentation index must provide a direct, maintained path to each concern and CI must reject missing required navigation links.",
       "evidence_inputs": [
@@ -1633,8 +1633,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0143",
-      "line": 143,
+      "id": "todo-0144",
+      "line": 144,
       "section": "1. Complete format and archive coverage",
       "text": "Replace any “limited,” heuristic, or filename-dependent path with documented native parsing or a deliberately rejected unsupported state. Do not silently fall back to blind copying.",
       "evidence_inputs": [
@@ -1651,8 +1651,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0144",
-      "line": 144,
+      "id": "todo-0145",
+      "line": 145,
       "section": "1. Complete format and archive coverage",
       "text": "Cover the complete required family of DAAD-relevant containers and media: TAP/TZX/CDT; +3DOS; CPC standard/extended DSK; C64/Plus4 D64, T64, PRG, P00; MSX/PCW/DOS FAT12/FAT16 DSK; MSX CAS and ROM; Atari ST ST, MSA, STX/IPF evidence; Amiga ADF, ADZ, DMS, LHA/LZH; DOS COM/EXE; and nested ZIP/7z/RAR/LHA/ARJ/cab/gzip/tar where legally and technically applicable.",
       "evidence_inputs": [
@@ -1669,8 +1669,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0145",
-      "line": 145,
+      "id": "todo-0146",
+      "line": 146,
       "section": "1. Complete format and archive coverage",
       "text": "Add strict bounds, checksum/geometry validation, corruption cases, recursive provenance, decompression limits, and negative controls for every parser.",
       "evidence_inputs": [
@@ -1688,8 +1688,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0146",
-      "line": 146,
+      "id": "todo-0147",
+      "line": 147,
       "section": "1. Complete format and archive coverage",
       "text": "Add public real-artifact audit fixtures or reproducible acquisition manifests where redistribution is not permitted.",
       "evidence_inputs": [
@@ -1708,8 +1708,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0147",
-      "line": 147,
+      "id": "todo-0148",
+      "line": 148,
       "section": "1. Complete format and archive coverage",
       "text": "Implement native Commodore raw-TAP V0/V1/V2 pulse-stream decoding with exact declared-length validation, overflow semantics, conventional ROM-loader block recovery, byte-level provenance, corruption fixtures, and an explicit evidence path for custom-loader streams that cannot use conventional framing.",
       "evidence_inputs": [
@@ -1727,8 +1727,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0148",
-      "line": 148,
+      "id": "todo-0149",
+      "line": 149,
       "section": "1. Complete format and archive coverage",
       "text": "Reconstruct the C64 KERNAL software-servo reader used by the retained *Jabato* Side A later stream from the preserved `read.s` implementation: model `cmp0` adaptation, synchronization, duplicate-pass/error handling, pointer setup, and checksums; reproduce every byte of the verified `$3880`–`$99C2` Part 1 DDB from original pulses; and add block-level runtime/ADP identity regressions before claiming complete physical recovery.",
       "evidence_inputs": [
@@ -1747,8 +1747,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0156",
-      "line": 156,
+      "id": "todo-0157",
+      "line": 157,
       "section": "2. Versions, interpreters, and derivatives",
       "text": "Investigate historical multi-part commercial layouts using real retained artifacts; keep unresolved layouts as explicit archaeology targets, never guessed DDBs.",
       "evidence_inputs": [
@@ -1766,8 +1766,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0162",
-      "line": 162,
+      "id": "todo-0163",
+      "line": 163,
       "section": "3. Sources and metadata",
       "text": "Re-validate every adapter live and use the outcome to repair selectors, rate limits, direct-media admission, catalog-only handling, and provenance fields.",
       "evidence_inputs": [
@@ -1785,8 +1785,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0163",
-      "line": 163,
+      "id": "todo-0164",
+      "line": 164,
       "section": "3. Sources and metadata",
       "text": "Expand the evidence catalog conservatively with source URLs for title/platform/release facts and keep binary-version facts distinct.",
       "evidence_inputs": [
@@ -1803,8 +1803,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0189",
-      "line": 189,
+      "id": "todo-0190",
+      "line": 190,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Replace restrictive handling statuses with the institutional-authority directive: all acquired original bytes, extracted members, third-party materials, tool outputs, decompilations, and execution records are retained, analyzed, run where safe, and published; provenance fields remain evidentiary rather than blocking.",
       "evidence_inputs": [
@@ -1823,8 +1823,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0190",
-      "line": 190,
+      "id": "todo-0191",
+      "line": 191,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Complete every retained-corpus objective end-to-end—acquisition, execution, extraction, analysis, comparison, documentation, publication, regression, and audit—while preserving original/derived distinctions and reproducibility records.",
       "evidence_inputs": [
@@ -1844,8 +1844,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0193",
-      "line": 193,
+      "id": "todo-0194",
+      "line": 194,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Record the user-documented European/international preservation-agreement reference as a scope-level provenance record linked from every retained interpreter and game-corpus manifest, without exposing sensitive correspondence.",
       "evidence_inputs": [
@@ -1864,8 +1864,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0194",
-      "line": 194,
+      "id": "todo-0195",
+      "line": 195,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Apply the user-confirmed universal authorization scope to all retained corpus classes, while preserving individual source URL, acquisition, hash, platform, lineage, and analysis-tool records for every committed item.",
       "evidence_inputs": [
@@ -1883,8 +1883,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0198",
-      "line": 198,
+      "id": "todo-0199",
+      "line": 199,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Cross-check each derived interpretation with independent tools, known DDB/runtime behavior, checksums, entry-point mappings, and reproducible test fixtures before documentation claims are promoted.",
       "evidence_inputs": [
@@ -1903,8 +1903,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0199",
-      "line": 199,
+      "id": "todo-0200",
+      "line": 200,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Discover public third-party disassemblies/decompilations by platform and version; retain their provenance and verify input-byte hashes, architecture/load assumptions, and claimed ranges against locally generated analysis before use.",
       "evidence_inputs": [
@@ -1923,8 +1923,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0200",
-      "line": 200,
+      "id": "todo-0201",
+      "line": 201,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Retain the confirmed relevant `jlcebrian/ADP` public implementation at a pinned revision; record its license, stated platform/version scope, source/binary composition, and independent comparison outcome before incorporating its claims.",
       "evidence_inputs": [
@@ -1942,8 +1942,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0201",
-      "line": 201,
+      "id": "todo-0202",
+      "line": 202,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Commit every accepted third-party comparison artifact, raw local disassembly, decompiler output, symbol/control-flow export, tool configuration, command log, and output hash in the self-contained reverse-engineering corpus.",
       "evidence_inputs": [
@@ -1962,8 +1962,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0202",
-      "line": 202,
+      "id": "todo-0203",
+      "line": 203,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Retain comparative inputs in immutable `third_party/` paths and generated local outputs in separate tool/version-qualified paths; no documentation-only reference may substitute for an accepted artifact.",
       "evidence_inputs": [
@@ -1981,8 +1981,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0203",
-      "line": 203,
+      "id": "todo-0204",
+      "line": 204,
       "section": "7. Authorization-gated reverse-engineering corpus",
       "text": "Add focused reverse-engineering dossiers, schema/provenance contracts, audit records, and CI-safe integrity checks without redistributing restricted original binaries or proprietary-source equivalents.",
       "evidence_inputs": [
@@ -2000,8 +2000,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0207",
-      "line": 207,
+      "id": "todo-0208",
+      "line": 208,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Apply the global completion rule to every parser, media format, loader, runtime variant, DDB structure, companion asset, and decompiler construct: an unsupported observation must enter a retained-sample research, implementation, differential-check, and regression loop until verified support exists; no terminal unsupported omission is permitted.",
       "evidence_inputs": [
@@ -2024,8 +2024,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0208",
-      "line": 208,
+      "id": "todo-0209",
+      "line": 209,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Enforce the global conflict and issue lifecycle across the entire project: every conflict, discrepancy, failed hypothesis, corrupted or ambiguous input, failed gate, implementation defect, external-source disagreement, and rejected candidate rule must receive an in-repository reproducible record when observed; its record must name evidence, byte ranges or reproducers where applicable, affected profile/artifact, next experiment, and status. When fixed, update the same record with the cause, implementation and commit references, regression evidence, regenerated outputs, and verification command; no issue may disappear merely because a later commit happens to pass.",
       "evidence_inputs": [
@@ -2046,8 +2046,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0212",
-      "line": 212,
+      "id": "todo-0213",
+      "line": 213,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Enforce blocker closure: every temporary blocker record must culminate in a verified implementation, real-artifact regression, refreshed corpus output, and evidence-backed support claim. A measured but unresolved state is an investigation checkpoint only and may never be accepted as the final result for any platform, format, loader, interpreter, DDB structure, derivative, or game variant.",
       "evidence_inputs": [
@@ -2069,8 +2069,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0213",
-      "line": 213,
+      "id": "todo-0214",
+      "line": 214,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "For every blocker, perform deep external research before selecting a solution: inspect primary documentation and source where available, multiple independent preservation archives/catalogs, public implementations and tools, platform-specific technical references, and comparable artifact variants. Retain source URLs, downloaded/hashed research materials where permitted, conclusions, counter-evidence, and byte-level validation against the authorized corpus; then implement, test, and iterate until verified closure.",
       "evidence_inputs": [
@@ -2090,8 +2090,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0214",
-      "line": 214,
+      "id": "todo-0215",
+      "line": 215,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "When an authorized source endpoint is captcha-protected, rate-limited, or otherwise non-automatable, retain the exact access outcome and continue acquisition through independent accessible archives, mirrors, catalog-linked variants, and primary releases. The blocked endpoint must remain a provenance record, never a reason to halt comparison or closure work.",
       "evidence_inputs": [
@@ -2108,8 +2108,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0215",
-      "line": 215,
+      "id": "todo-0216",
+      "line": 216,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Treat release-scene, crack, dump, trainer, and archival tags as provenance metadata rather than game semantics. Acquire and compare alternate/original variants whenever possible, identify byte-level loader/intro/interpreter modifications, and validate all conclusions against retained artifacts before modeling runtime behavior.",
       "evidence_inputs": [
@@ -2129,8 +2129,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0216",
-      "line": 216,
+      "id": "todo-0217",
+      "line": 217,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Make every cracked, scene-modified, trained, fixed, translated, compilation, and archival release fully functional: preserve and execute its exact loader/intro path, recover its game data and embedded runtime behavior, distinguish modifications from the underlying game, and add real-artifact regressions plus emulator evidence until that variant reaches verified support.",
       "evidence_inputs": [
@@ -2151,8 +2151,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0217",
-      "line": 217,
+      "id": "todo-0218",
+      "line": 218,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Apply this closure rule universally to every DAAD system, software and hardware platform, game, release, compiler/runtime version, historical or modern derivative, interpreter, media/container form, compression/protection scheme, loader, encoding, companion resource, and game-specific fork. No category, artifact, or variation is exempt from complete verified treatment.",
       "evidence_inputs": [
@@ -2175,8 +2175,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0218",
-      "line": 218,
+      "id": "todo-0219",
+      "line": 219,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Build the complete native DDB decoder grammar for every observed DAAD ecosystem profile. The grammar must cover modern DRC V2/V3, historical V1/V2, PAWS, documented compiler/runtime extensions, wrappers, target byte order/base-address conventions, CondAct opcode/operand/indirection rules, text/token tables, process serialization, alignment, deduplication, external vectors, and every retained divergent layout. Every grammar rule requires a profile tuple, source/specification/runtime evidence, retained bytes, corruption regression, and explicit decoder acceptance/rejection behavior; an extension or opaque byte range remains an active closure blocker until decoded.",
       "evidence_inputs": [
@@ -2200,8 +2200,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0219",
-      "line": 219,
+      "id": "todo-0220",
+      "line": 220,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Continue legacy V2 DOS `BLANK.DDB` section closure after its header, process pointers, offset tables, and XOR text records: establish source-backed grammars and real-artifact regressions for vocabulary records, token-block boundaries/expansion, object location/word/attribute tables, connection records, header extension/external data, and all remaining exact opaque ranges; then expand the same closure process to retained V1 C64, V2 ZX, and V2 Amiga profiles without generalizing an unverified rule.",
       "evidence_inputs": [
@@ -2223,8 +2223,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0232",
-      "line": 232,
+      "id": "todo-0233",
+      "line": 233,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Build the matching complete native DDB encoder from the lossless profile-scoped intermediate representation. It must reproduce all preserved representation choices—not only equivalent game semantics—including original byte ordering, header/pointer forms, wrapper checksums, padding/alignment, stream sharing, indirection lowering, and target/subtarget exceptions. No external compiler, emulator, current time, locale, filesystem metadata, unordered traversal, or LLM may be a primary dependency.",
       "evidence_inputs": [
@@ -2243,8 +2243,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0233",
-      "line": 233,
+      "id": "todo-0234",
+      "line": 234,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Close DDB support profile by profile with retained-artifact decompile → recompile → byte-for-byte comparison. For every mismatch, retain first/last differing bytes, contiguous ranges, owning IR nodes, source/profile evidence, and a minimal reproducer; research and implement the missing grammar until equality is achieved. Publish verified profile records with all 17 digests and comparison evidence in the primary workflow, CI, static report, Pages viewer, TUI, manifests, and documentation. Structural parsing, opaque pass-through, an external compiler result, or runtime observation may not be represented as round-trip completion.",
       "evidence_inputs": [
@@ -2270,8 +2270,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0234",
-      "line": 234,
+      "id": "todo-0235",
+      "line": 235,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Maintain linked, platform-specific format-profile dossiers for every recognized and newly observed geometry, filesystem, disk/tape/container variant, boot convention, loader, executable/load model, encoding, and companion package. Each dossier must identify retained samples and hashes; primary and independent references; exact acceptance contract; corruption/rejection contract; profile applicability boundaries; unresolved but active variants; real-artifact regressions; deterministic regeneration command; and cross-links to the capability matrix, evidence model, coverage ledger, and report. A profile proven on one platform must never be silently generalized to another.",
       "evidence_inputs": [
@@ -2294,8 +2294,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0235",
-      "line": 235,
+      "id": "todo-0236",
+      "line": 236,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Maintain an equal-priority execution and evidence matrix for ZX Spectrum, Amstrad CPC, C64, Plus/4, MSX, Amstrad PCW, Atari ST, Amiga, and IBM PC/DOS, including all known software/runtime derivatives; no platform-specific investigation may be mistaken for a platform priority or permit another platform to fall outside active coverage tracking.",
       "evidence_inputs": [
@@ -2314,8 +2314,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0236",
-      "line": 236,
+      "id": "todo-0237",
+      "line": 237,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Apply the institutional preservation authorization globally to supporting runtime resources required for reproducibility—including firmware, system ROMs, emulator dependencies, compilers, and reference media—while retaining each resource’s origin URL, acquisition timestamp, authorization context, version, SHA-256, and role in the evidence chain.",
       "evidence_inputs": [
@@ -2337,8 +2337,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0237",
-      "line": 237,
+      "id": "todo-0238",
+      "line": 238,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Persist the universal institutional authorization directive verbatim in the project policy, corpus manifests, acquisition/reverse-engineering records, and CI-verifiable documentation: all required artifacts and tools may be acquired, retained, executed, analyzed, disassembled, decompiled, recompiled, compared, and published for the project’s scientific preservation mission, without category- or platform-specific exceptions.",
       "evidence_inputs": [
@@ -2358,8 +2358,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0238",
-      "line": 238,
+      "id": "todo-0239",
+      "line": 239,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Build deterministic emulator-backed reconstruction workflows for every target whose loaders or protected media cannot be resolved statically; retain command scripts, bounded snapshots or RAM ranges, runtime configuration, execution limits, and byte-level comparisons as corpus evidence.",
       "evidence_inputs": [
@@ -2380,8 +2380,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0239",
-      "line": 239,
+      "id": "todo-0240",
+      "line": 240,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Treat missing supporting firmware or a runtime dependency as a named acquisition/provenance task, not a terminal blocker: find, retain, hash, validate, and regression-test the resource under the same institutional authorization and global completion rule.",
       "evidence_inputs": [
@@ -2403,8 +2403,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0240",
-      "line": 240,
+      "id": "todo-0241",
+      "line": 241,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Close the retained C64 *Jabato vs. Imperio: Libertad* tape loop: reconcile both original raw pulse streams, their controlled title/credits/loading paths, and active runtime representations; reproduce the recovered Side A Part 1 and Side B Part 2 ranges from pulses alone, compare both originals against the ASS D64 variant, implement the resulting parser/loader support, and add real-artifact regressions before promotion.",
       "evidence_inputs": [
@@ -2427,8 +2427,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0241",
-      "line": 241,
+      "id": "todo-0242",
+      "line": 242,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Complete official DAAD R4 source 250’s MSX `MSX.DSK` lifecycle. The native retained-sample parser and regression establish an MSX-DOS FAT12 2DD profile (`EB FE 90`, 512-byte sectors, two sectors per cluster, two FATs, 112 root entries, 1,440 sectors, `0xF9`, three sectors per FAT, nine sectors/track, two heads) and recover five hash-pinned members: `MSXDOS.SYS`, `COMMAND.COM`, `DAAD.MDG`, `DAAD.Z80`, and `YOURGAME.COM`; a malformed geometry regression also exists. The append-only re-unpack now materializes their corpus rows, complete checksums, lineage, report records, and public-manifest entries without deleting earlier source-250 descendants. The remaining work is to classify each member’s target/runtime behavior without filename-only claims, complete MDG and launcher grammars, validate cross-file references, and register the final MSX bundle graph in the self-contained regeneration lifecycle.",
       "evidence_inputs": [
@@ -2453,8 +2453,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0242",
-      "line": 242,
+      "id": "todo-0243",
+      "line": 243,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Decode the official R4 MSX `DAAD.MDG` companion-resource grammar natively. The R4 2,105-byte member is now independently exact-hash matched to the official classic `Interpreters/MSX/DAAD.MDG` template, whose `xREADME.TXT` calls it an empty graphics database with a standard character set. This establishes a canonical-template identity, not its complete internal grammar. Determine container fields, glyph geometry/code-page, graphics or font payload boundaries, compression, and loader references by comparing independent retained samples and source code. Add real-artifact, corruption, cross-file-reference, and deterministic glyph-preview regressions before publishing any font or image derivative.",
       "evidence_inputs": [
@@ -2481,8 +2481,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0245",
-      "line": 245,
+      "id": "todo-0246",
+      "line": 246,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Complete the official R4 MSX `DAAD.Z80` interpreter analysis with redundant architecture-aware methods. Its materialized SHA-256 already exactly matches the retained English `daad-msx-msxedi-official` profile; the currently retained public `DMSXIEF3.BIN` and `DMSXISF3.BIN` build assets have different hashes, so the build script proves a convention rather than substituting an original byte identity. Preserve all originals and complete digests; establish load address, entry points, DDB/MDG loading behavior, and the precise relation of every distinct public interpreter sample. Publish only reproducible disassembly/decompilation outputs with tool configuration, byte ranges, and disagreement boundaries; the existing raw-base analysis remains unverified runtime semantics.",
       "evidence_inputs": [
@@ -2502,8 +2502,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0246",
-      "line": 246,
+      "id": "todo-0247",
+      "line": 247,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Reverse and validate the official R4 MSX `YOURGAME.COM` launcher and its relation to `MSXDOS.SYS`, `COMMAND.COM`, `DAAD.Z80`, and `DAAD.MDG`. Establish its MSX-DOS executable/load contract, command-line or default-file behavior, memory/entry assumptions, and error boundaries from native byte analysis plus independent retained evidence. Add real-artifact and malformed-header regressions before identifying it as a functional game launcher.",
       "evidence_inputs": [
@@ -2524,8 +2524,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0247",
-      "line": 247,
+      "id": "todo-0248",
+      "line": 248,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Build a source-250 MSX bundle graph linking the materialized FAT12 members through measured filesystem membership, public-build-script roles, native parser evidence, exact interpreter identity where available, and unresolved runtime relations. Persist the graph in corpus/report/TUI/web data with separate categories for measured, build-script-derived, runtime-observed, and unresolved edges; never infer a semantic link solely from a shared DAAD filename.",
       "evidence_inputs": [
@@ -2548,8 +2548,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0248",
-      "line": 248,
+      "id": "todo-0249",
+      "line": 249,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Audit the complete source-250 official R4 re-unpack materialization as an intentional multi-platform corpus expansion. The current retained ledger has 164 depth-two members. A deterministic first partition found 104 without a native media signature and 39 opaque program images, alongside resource families such as `CH0`, `FNT`, `SDG`, `P3F`, `RSC`, `ACC`, extensionless C64 loaders, and platform package files; `PART1.CH0` is now closed only because its bytes exactly duplicate a validated CHR artifact. Verify every remaining child’s source-250 lineage, complete checksums, container/member relation, platform evidence, parser/rejection state, and report visibility. Divide each family into bounded platform-bundle closure tasks with real bytes and reproducible negative controls; do not treat shared extensions, same names, or source-archive adjacency as a semantic claim.",
       "evidence_inputs": [
@@ -2573,8 +2573,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0252",
-      "line": 252,
+      "id": "todo-0253",
+      "line": 253,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Treat the currently verified MSX-DOS 1DD/2DD 8-/9-sector FAT12 profiles as an expandable evidence set—not a terminal geometry whitelist. Every additional MSX FAT/media geometry must enter retained-sample acquisition, primary-reference research, explicit acceptance contract, malformed-image rejection tests, real-artifact regression, and self-contained regeneration before promotion; no coherent historical geometry may be silently rejected or omitted.",
       "evidence_inputs": [
@@ -2596,8 +2596,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0253",
-      "line": 253,
+      "id": "todo-0254",
+      "line": 254,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Resolve official DAAD R4 source 250’s PCW `PCWSDI.BIN` and `PCWEDI.BIN` interpreter/package structures: establish load model and target semantics using redundant analysis, preserve byte-range evidence, implement native recognition/extraction where applicable, and add real-artifact regressions.",
       "evidence_inputs": [
@@ -2619,8 +2619,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0254",
-      "line": 254,
+      "id": "todo-0255",
+      "line": 255,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Inventory and classify every Atari ST and IBM PC/DOS package/member in official DAAD R4 by platform, executable/load format, interpreter lineage, and DDB/companion relationship; retain the evidence matrix and implement any missing native media support until no R4 target member remains undifferentiated.",
       "evidence_inputs": [
@@ -2642,8 +2642,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0255",
-      "line": 255,
+      "id": "todo-0256",
+      "line": 256,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Convert the source-250 official DAAD R4 bundle into hash-pinned repository-native regeneration entries for its promoted MSX, PCW, Atari ST, and DOS evidence, with all third-party emulators/disassemblers retained only as acquisition or independent validation aids.",
       "evidence_inputs": [
@@ -2664,8 +2664,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0256",
-      "line": 256,
+      "id": "todo-0257",
+      "line": 257,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Close the ADP-to-original C64 *Jabato* evidence loop: retain fixture provenance and hashes, preserve the verified byte-identical `JABATO-C64 1.DDB` to Side A RAM `$3880` and `JABATO-C64 2.DDB` to Side B RAM `$3880` comparisons, and convert every accepted relation into deterministic extraction and regression checks without treating ADP as a physical tape-loader substitute.",
       "evidence_inputs": [
@@ -2683,8 +2683,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0259",
-      "line": 259,
+      "id": "todo-0260",
+      "line": 260,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Define an artifact-level authorization/retention gate for DAAD game downloads that is independent from interpreter authorization and records source terms, rights evidence, download URL, timestamps, and SHA-256.",
       "evidence_inputs": [
@@ -2705,8 +2705,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0260",
-      "line": 260,
+      "id": "todo-0261",
+      "line": 261,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Run Harvester discovery/acquisition across ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS sources; preserve every candidate and outcome in a resumable source ledger.",
       "evidence_inputs": [
@@ -2723,8 +2723,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0261",
-      "line": 261,
+      "id": "todo-0262",
+      "line": 262,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Compare every retained original/extracted game member and executable neighbor against official interpreter hashes and structural runtime evidence; retain every differing or unmatched interpreter candidate as a new immutable variant for separate analysis.",
       "evidence_inputs": [
@@ -2743,8 +2743,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0262",
-      "line": 262,
+      "id": "todo-0263",
+      "line": 263,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Commit accepted game originals under a platform/game/source hierarchy and all safe extracted members under a separate lineage-preserving tree, with original-to-member checksum and parser evidence manifests.",
       "evidence_inputs": [
@@ -2762,8 +2762,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0263",
-      "line": 263,
+      "id": "todo-0264",
+      "line": 264,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Convert accepted real artifacts into regression fixtures/manifests for media inspection, recursive unpacking, DDB validation, interpreter correlation, organization, and static-report output without fabricating detections.",
       "evidence_inputs": [
@@ -2786,8 +2786,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0264",
-      "line": 264,
+      "id": "todo-0265",
+      "line": 265,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Publish platform coverage, failures, unavailable items, rights-restricted records, extraction statuses, and test use in dated audit documents and the report corpus.",
       "evidence_inputs": [
@@ -2806,8 +2806,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0265",
-      "line": 265,
+      "id": "todo-0266",
+      "line": 266,
       "section": "8. All-platform retained game corpus and regression suite",
       "text": "Produce a source-by-source coverage ledger proving which reachable catalogs, queries, pages, and downloads were exhausted; record inaccessible, missing, duplicate, and unresolved historical items as explicit gaps rather than asserting unverifiable universal completeness.",
       "evidence_inputs": [
@@ -2826,8 +2826,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0269",
-      "line": 269,
+      "id": "todo-0270",
+      "line": 270,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Inventory every reachable public DAAD game decompiler, decompiler-like tool, compiler inverse, source recovery project, and format reader; retain complete pinned source/release inputs and document exact platform/version/format scope.",
       "evidence_inputs": [
@@ -2846,8 +2846,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0270",
-      "line": 270,
+      "id": "todo-0271",
+      "line": 271,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Build a modular DAAD game/DDB preservation decompiler, comparable in purpose to UnDAAD but broader and evidence-linked; recover vocabulary, messages, locations, objects, connections, processes, condacts, flags, attributes, graphics/media references, and DSF/SCE-like output with byte-range lineage, confidence, ambiguity, and tool/version metadata.",
       "evidence_inputs": [
@@ -2866,8 +2866,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0271",
-      "line": 271,
+      "id": "todo-0272",
+      "line": 272,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Implement platform-aware profiles for ZX Spectrum, CPC, C64, Plus/4, MSX, PCW, Atari ST, Amiga, and IBM PC/DOS, separating shared DDB semantics from platform loader/media/runtime differences.",
       "evidence_inputs": [
@@ -2886,8 +2886,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0272",
-      "line": 272,
+      "id": "todo-0273",
+      "line": 273,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Replace any single-axis version classification with a multi-axis evidence profile covering DDB structure, compiler lineage, runtime/interpreter lineage, target/load model, media/loader package, graphics/sound companions, encoding/language, derivative/fork family, and game-specific variation.",
       "evidence_inputs": [
@@ -2908,8 +2908,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0273",
-      "line": 273,
+      "id": "todo-0274",
+      "line": 274,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Differentially compare the new decompiler with every retained public implementation/decompiler and independently reproduce disagreements against original bytes, traces, and known game fixtures.",
       "evidence_inputs": [
@@ -2927,8 +2927,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0274",
-      "line": 274,
+      "id": "todo-0275",
+      "line": 275,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Add exhaustive real-artifact regression tests, deterministic output fixtures, source-map/evidence manifests, documentation, and report integration before promoting any recovered interpretation beyond its evidence level.",
       "evidence_inputs": [
@@ -2949,8 +2949,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0275",
-      "line": 275,
+      "id": "todo-0276",
+      "line": 276,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Keep the DAAD game/DDB decompiler explicitly separate from interpreter-binary disassembly/decompilation while linking both evidence layers through runtime version, media lineage, and measured execution behavior.",
       "evidence_inputs": [
@@ -2970,8 +2970,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0276",
-      "line": 276,
+      "id": "todo-0277",
+      "line": 277,
       "section": "9. DAAD game decompiler research and differential implementation",
       "text": "Enforce corpus-complete decompiler coverage: every discovered DAAD-ecosystem artifact must have a manifest, multi-axis profile, decompilation output or explicit blocker record, output hashes, and regression status; newly acquired artifacts automatically join the required coverage set.",
       "evidence_inputs": [
@@ -2991,8 +2991,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0280",
-      "line": 280,
+      "id": "todo-0281",
+      "line": 281,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "Define a lossless, version-neutral intermediate representation for every measured DDB byte range, including header fields, section ordering, padding, reserved bytes, compiler-specific layout choices, load address, and companion/loader provenance.",
       "evidence_inputs": [
@@ -3011,8 +3011,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0281",
-      "line": 281,
+      "id": "todo-0282",
+      "line": 282,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "Implement a compiler for that representation which can emit each verified historical and modern DAAD/derivative target layout without normalizing away source-byte distinctions.",
       "evidence_inputs": [
@@ -3030,8 +3030,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0282",
-      "line": 282,
+      "id": "todo-0283",
+      "line": 283,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "Require `original bytes → decompile → IR → recompile → byte-for-byte comparison` for every retained DDB and every newly acquired DDB candidate; persist input/output SHA-256 values, differing byte ranges, tool versions, target/load model, and deterministic reproducer commands.",
       "evidence_inputs": [
@@ -3049,8 +3049,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0283",
-      "line": 283,
+      "id": "todo-0284",
+      "line": 284,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "When a round trip differs, automatically classify the discrepancy as unknown structure, semantic ambiguity, compiler-layout choice, companion/load-model dependency, or implementation defect; retain the mismatch and iterate until either byte identity is achieved or the exact blocking construct receives a dedicated support loop.",
       "evidence_inputs": [
@@ -3067,8 +3067,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0284",
-      "line": 284,
+      "id": "todo-0285",
+      "line": 285,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "Add higher-order differential checks: decompile/recompile cycles across supported profiles, semantic process/condact traces where executable evidence is safe, independently derived interpreter behavior, and comparisons against retained public tools such as UnDAAD and ADP.",
       "evidence_inputs": [
@@ -3087,8 +3087,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0285",
-      "line": 285,
+      "id": "todo-0286",
+      "line": 286,
       "section": "10. Universal decompile–recompile round-trip verification",
       "text": "Make byte identity, or a documented and actively iterated byte-range blocker, a mandatory promotion gate for every decompiler/compiler profile. No variant may be treated as complete solely because it produces plausible text output.",
       "evidence_inputs": [
@@ -3106,8 +3106,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0289",
-      "line": 289,
+      "id": "todo-0290",
+      "line": 290,
       "section": "11. Future ScummVM DAAD engine",
       "text": "After corpus coverage, native-media support, DDB decompiler/compiler round-trip evidence, and interpreter/runtime profiles are mature, conduct a separate ScummVM feasibility and architecture study for a universal DAAD engine.",
       "evidence_inputs": [
@@ -3128,8 +3128,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0290",
-      "line": 290,
+      "id": "todo-0291",
+      "line": 291,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Research and retain the current ScummVM engine-development documentation, coding standards, comment conventions, build/test requirements, review expectations, merged-engine histories, and comparable parser/VM engine patterns before writing ScummVM-facing code.",
       "evidence_inputs": [
@@ -3148,8 +3148,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0291",
-      "line": 291,
+      "id": "todo-0292",
+      "line": 292,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Map the DAAD preservation intermediate representation, platform load models, interpreter behavior evidence, graphics/audio companions, and detector metadata to ScummVM subsystems without importing uncertain reverse-engineering claims as runtime behavior.",
       "evidence_inputs": [
@@ -3168,8 +3168,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0292",
-      "line": 292,
+      "id": "todo-0293",
+      "line": 293,
       "section": "11. Future ScummVM DAAD engine",
       "text": "Build the eventual engine through upstream-quality tests, detector fixtures, save/load validation, cross-platform execution evidence, reviewable commits, and feedback-driven alignment with current ScummVM project practices.",
       "evidence_inputs": [
@@ -3186,8 +3186,8 @@
       "atomic_delivery_boundary": "single profile, evidence record, validator, or interface slice"
     },
     {
-      "id": "todo-0296",
-      "line": 296,
+      "id": "todo-0297",
+      "line": 297,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Preserve execution order: do not begin native ScummVM engine source implementation until exhaustive all-platform acquisition, format/loader support, game-embedded interpreter analysis, full decompiler/compiler coverage with round-trip evidence, original-runtime differential evidence, and the corpus-completeness audit have passed their explicit gates.",
       "evidence_inputs": [
@@ -3209,8 +3209,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0297",
-      "line": 297,
+      "id": "todo-0298",
+      "line": 298,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Implement the universal DAAD engine directly as a native ScummVM engine, using ScummVM subsystems, coding conventions, detector model, build system, test infrastructure, and review standards from its first production source file; no standalone engine may substitute for this deliverable.",
       "evidence_inputs": [
@@ -3229,8 +3229,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0298",
-      "line": 298,
+      "id": "todo-0299",
+      "line": 299,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Define a platform-neutral behavioral evidence format that records deterministic input scripts, frame/cycle boundaries, DDB/runtime state, flags, locations, object state, messages, graphics, audio events, disk/tape/loader transitions, save states, screenshots, and checksums for every retained executable game path.",
       "evidence_inputs": [
@@ -3249,8 +3249,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0299",
-      "line": 299,
+      "id": "todo-0300",
+      "line": 300,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Run the universal DAAD engine and each corresponding original target runtime under controlled emulators with the same scripted inputs. Compare observable behavior and captured state at every defined checkpoint across all historical and modern DAAD versions, derivatives, platforms, target/load models, and game-specific forks.",
       "evidence_inputs": [
@@ -3269,8 +3269,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0300",
-      "line": 300,
+      "id": "todo-0301",
+      "line": 301,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Treat every behavioral discrepancy—including a single byte, state transition, parser result, timing-sensitive load, graphic cell, text encoding difference, audio event, or save/load divergence—as a retained reproducible defect record. Diagnose, correct, retest, and repeat until equivalence is demonstrated or the exact condition is represented by an active support loop.",
       "evidence_inputs": [
@@ -3289,8 +3289,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0301",
-      "line": 301,
+      "id": "todo-0302",
+      "line": 302,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Execute massive iterative differential testing over the full authorized corpus, including repeated decompile/recompile checks, interpreter comparisons, emulator snapshots, controlled interaction paths, malformed-but-retained structures, and cross-tool disagreement cases. Preserve all scripts, captures, hashes, expected results, and failure deltas.",
       "evidence_inputs": [
@@ -3310,8 +3310,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0302",
-      "line": 302,
+      "id": "todo-0303",
+      "line": 303,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Require a final independent audit of source, tests, corpus manifests, provenance, reverse-engineering claims, security boundaries, build reproducibility, behavioral-equivalence records, and unresolved loops before declaring the universal engine ready for ScummVM-facing work.",
       "evidence_inputs": [
@@ -3331,8 +3331,8 @@
       "atomic_delivery_boundary": "broad gate; split into independently evidenced child deliveries"
     },
     {
-      "id": "todo-0303",
-      "line": 303,
+      "id": "todo-0304",
+      "line": 304,
       "section": "12. Final emulator-equivalence and ScummVM integration gate",
       "text": "Only after the final audit passes, create and maintain a ScummVM fork; integrate the DAAD engine through its current coding, architecture, detector, build, test, documentation, review, and contribution practices. Run the complete equivalence suite again in the fork and iterate on every discrepancy before proposing any upstream-quality integration milestone.",
       "evidence_inputs": [
