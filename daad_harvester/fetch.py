@@ -14,6 +14,7 @@ from daad_harvester.config import settings
 from daad_harvester.db import Database
 from daad_harvester.models import SourceRecord, SourceStatus
 from daad_harvester.daad_logger import LoggerSuite
+from daad_harvester.extract.downloader import Downloader
 
 logger = structlog.get_logger(__name__)
 
@@ -38,6 +39,12 @@ class Fetcher:
         self.download_dir = download_dir or (settings.output_dir / "downloads")
         self.download_dir.mkdir(parents=True, exist_ok=True)
         self.logger_suite = LoggerSuite(settings.logs_dir)
+        self.async_downloader = Downloader(
+            download_dir=self.download_dir,
+            max_concurrent=settings.parallel_workers,
+            user_agents=settings.user_agents,
+            proxies=settings.proxy_list,
+        )
 
     def _get_random_user_agent(self) -> str:
         return random.choice(settings.user_agents)
@@ -47,17 +54,6 @@ class Fetcher:
             return random.choice(settings.proxy_list)
         return None
 
-    # NOTE on scope: _get_proxy() picks randomly, but httpx.AsyncClient (used
-    # in fetch_pending_sources below) binds its `proxy=` at construction time
-    # for the whole client / connection pool -- it can't be swapped per
-    # request without giving up connection reuse. This wires a proxy chosen
-    # ONCE per pipeline run (real fix for "--proxy-list has zero effect",
-    # which was the actual bug: _get_proxy() was defined and never called
-    # anywhere). True per-request rotation would mean building one pooled
-    # client per proxy and round-robining requests across them; worth doing
-    # if a single proxy getting rate-limited/blocked turns out to matter in
-    # practice, but that's a bigger change than this bug warranted.
-
     async def _query_wayback_cdx(self, url: str, client: httpx.AsyncClient) -> Optional[str]:
         """Query Internet Archive CDX API for dead link recovery."""
         cdx_url = f"https://web.archive.org/cdx/search/cdx?url={quote(url)}&output=json&limit=1&filter=statuscode:200"
@@ -66,7 +62,7 @@ class Fetcher:
             resp = await client.get(cdx_url, timeout=settings.request_timeout)
             if resp.status_code == 200:
                 data = resp.json()
-                if len(data) > 1:  # Row 0 is header, Row 1 is data
+                if len(data) > 1:
                     timestamp = data[1][1]
                     original = data[1][2]
                     wayback_url = f"https://web.archive.org/web/{timestamp}id_/{original}"
@@ -80,11 +76,9 @@ class Fetcher:
         """Determines whether streamed response is non-binary web page, JSON error, or HTML."""
         ct_lower = content_type.lower()
 
-        # Direct Content-Type rejection for web/JSON
         if any(ct in ct_lower for ct in REJECTED_CONTENT_TYPES):
             return True
 
-        # Magic byte rejection for raw HTML / JSON
         chunk_start = first_chunk[:128].strip().lower()
         if chunk_start.startswith((b"<!doctype html", b"<html", b"<?php", b"<head", b"{", b"[")):
             return True
@@ -233,14 +227,6 @@ class Fetcher:
                     target_path.unlink(missing_ok=True)
                 logger.warning("download_exception", source_id=source.id, url=url_to_fetch, error=str(exc))
 
-                # Wayback fallback previously only triggered on an explicit
-                # HTTP 404/410 response. In practice, most dead retro-computing
-                # sites don't answer with a clean 404 at all -- the domain has
-                # lapsed, DNS doesn't resolve, or the connection is refused --
-                # which lands here as an exception, not a status code, and
-                # this class of failure never got a wayback attempt. Try it
-                # once we're out of direct retries (exceptions can be
-                # transient, so don't skip the normal retry/backoff first).
                 if not is_wayback and attempt + 1 >= settings.max_retries:
                     logger.warning("source_unreachable_trying_wayback", source_id=source.id, url=url_to_fetch)
                     wayback_url = await self._query_wayback_cdx(source.url, client)

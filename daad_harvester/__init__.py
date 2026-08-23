@@ -1,1 +1,3 @@
-__version__ = "1.0.0"
+"""DAAD Harvester: Scalable, asynchronous enterprise-grade data pipeline for DAAD game preservation."""
+
+__version__ = "2.0.0"
