@@ -8,6 +8,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 import structlog
 
+from daad_harvester.logging import setup_logger
+
 
 DEFAULT_USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -67,7 +69,11 @@ settings = Settings()
 
 
 def setup_logging(log_file: Optional[Path] = None, log_level: str = "INFO", rotate_old: bool = True) -> None:
-    """Configures logging to both stdout and a file using structlog, rotating old log files if present."""
+    """Configures logging to both stdout and a file using structlog, rotating old log
+    files if present, and also configures the Loguru sinks used by newer ETL-layer
+    modules. This is the single entry point cli.py calls so that both the legacy
+    structlog-based modules (Discoverer, Fetcher, Fingerprinter, ...) and the newer
+    Loguru-based modules end up correctly configured from one call."""
     level = getattr(logging, log_level.upper(), logging.INFO)
     handlers: List[logging.Handler] = [logging.StreamHandler(sys.stdout)]
 
@@ -104,3 +110,5 @@ def setup_logging(log_file: Optional[Path] = None, log_level: str = "INFO", rota
         wrapper_class=structlog.stdlib.BoundLogger,
         cache_logger_on_first_use=True,
     )
+
+    setup_logger(log_file=log_file, log_level=log_level)
