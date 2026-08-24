@@ -1,180 +1,173 @@
-"""CLI Interface for DAAD Harvester."""
+"""Enterprise Typer CLI application for DAAD Harvester ETL pipeline."""
 
-import argparse
 import asyncio
 from pathlib import Path
-import structlog
+from typing import List, Optional
+import typer
+from loguru import logger
 
 from daad_harvester import __version__
 from daad_harvester.config import settings, setup_logging
-from daad_harvester.db import Database
+from daad_harvester.load.storage import StorageEngine
+from daad_harvester.unpack import Unpacker
+from daad_harvester.transform.fingerprint import Fingerprinter
+from daad_harvester.load.organize import LibraryBuilder
+from daad_harvester.load.synthesize import Synthesizer
+from daad_harvester.load.report import ReportGenerator, StaticReportExporter
+from daad_harvester.catalog import EvidenceCatalogExporter
 from daad_harvester.discover import Discoverer
 from daad_harvester.fetch import Fetcher
-from daad_harvester.unpack import Unpacker
-from daad_harvester.fingerprint import Fingerprinter
-from daad_harvester.synthesize import Synthesizer
-from daad_harvester.report import ReportGenerator
-from daad_harvester.catalog import EvidenceCatalogExporter
-from daad_harvester.library import LibraryBuilder
-from daad_harvester.report_export import StaticReportExporter
 from daad_harvester.tui import TUIDashboard
 
-logger = structlog.get_logger(__name__)
+
+app = typer.Typer(
+    name="daad-harvester",
+    help="DAAD Engine Game Harvester & Forensic Analysis Pipeline",
+    add_completion=False,
+)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        prog="daad-harvester",
-        description="DAAD Engine Game Harvester & Forensic Analysis Pipeline"
-    )
-    parser.add_argument(
+def version_callback(value: bool) -> None:
+    """Callback function displaying package version."""
+    if value:
+        typer.echo(f"daad-harvester {__version__}")
+        raise typer.Exit()
+
+
+@app.command()
+def main(
+    phase: str = typer.Option(
+        "all",
         "--phase",
-        choices=["discover", "catalog", "fetch", "unpack", "fingerprint", "synthesize", "organize", "report", "all"],
-        default="all",
-        help="Pipeline phase to execute (default: all)"
-    )
-    parser.add_argument(
+        help="Pipeline phase: discover, catalog, fetch, unpack, fingerprint, synthesize, organize, report, all",
+    ),
+    resume: bool = typer.Option(
+        False,
         "--resume",
-        action="store_true",
-        help="Resume pipeline using existing state database"
-    )
-    parser.add_argument(
+        help="Resume pipeline using existing state database",
+    ),
+    parallel: int = typer.Option(
+        settings.parallel_workers,
         "--parallel",
-        type=int,
-        default=settings.parallel_workers,
-        help=f"Parallel download workers (default: {settings.parallel_workers})"
-    )
-    parser.add_argument(
+        help="Parallel execution workers count",
+    ),
+    max_sources: Optional[int] = typer.Option(
+        None,
         "--max-sources",
-        type=int,
-        default=None,
-        help="Maximum pending sources to fetch after priority ordering"
-    )
-    parser.add_argument(
+        help="Maximum pending sources to fetch",
+    ),
+    fetch_source: List[int] = typer.Option(
+        [],
         "--fetch-source",
-        type=int,
-        action="append",
-        default=[],
-        metavar="SOURCE_ID",
-        help="Fetch only a pending source ID; repeatable"
-    )
-    parser.add_argument(
+        help="Fetch only specific pending source ID(s)",
+    ),
+    reunpack_source: List[int] = typer.Option(
+        [],
         "--reunpack-source",
-        type=int,
-        action="append",
-        default=[],
-        metavar="SOURCE_ID",
-        help="Reprocess a retained source root with the current media parsers; repeatable"
-    )
-    parser.add_argument(
+        help="Reprocess specific source ID(s) with current media parsers",
+    ),
+    output_dir: Path = typer.Option(
+        settings.output_dir,
         "--output-dir",
-        type=Path,
-        default=settings.output_dir,
-        help="Output directory for catalog and reports"
-    )
-    parser.add_argument(
+        help="Output directory for catalog and reports",
+    ),
+    proxy_list: Optional[Path] = typer.Option(
+        None,
         "--proxy-list",
-        type=Path,
-        default=None,
-        help="Path to proxy list text file"
-    )
-    parser.add_argument(
+        help="Path to proxy list text file",
+    ),
+    log_file: Path = typer.Option(
+        settings.log_file,
         "--log-file",
-        type=Path,
-        default=settings.log_file,
-        help=f"Path to log file (default: {settings.log_file})"
-    )
-    parser.add_argument(
+        help="Path to structured JSON log file",
+    ),
+    log_level: str = typer.Option(
+        settings.log_level,
         "--log-level",
-        type=str,
-        default=settings.log_level,
-        help=f"Log level (default: {settings.log_level})"
-    )
-    parser.add_argument(
+        help="Log level threshold (DEBUG, INFO, WARNING, ERROR)",
+    ),
+    tui: bool = typer.Option(
+        False,
         "--tui",
-        action="store_true",
-        help="Launch live interactive TUI dashboard display during pipeline execution"
-    )
-    parser.add_argument(
+        help="Launch interactive TUI dashboard during execution",
+    ),
+    version: Optional[bool] = typer.Option(
+        None,
         "--version",
-        action="version",
-        version=f"%(prog)s {__version__}"
-    )
-
-    args = parser.parse_args()
-
-    # Configure paths and settings
-    settings.output_dir = args.output_dir.resolve()
+        callback=version_callback,
+        is_eager=True,
+        help="Show version and exit",
+    ),
+) -> None:
+    """Executes specified pipeline phase or full ETL pipeline."""
+    # Configure global settings
+    settings.output_dir = output_dir.resolve()
     settings.db_path = settings.output_dir / "state.db"
     settings.logs_dir = settings.output_dir / "logs"
-    settings.parallel_workers = args.parallel
-    if args.proxy_list:
-        settings.proxy_list_file = args.proxy_list.resolve()
+    settings.parallel_workers = parallel
+    if proxy_list:
+        settings.proxy_list_file = proxy_list.resolve()
         settings.load_proxies()
-    if args.log_file:
-        settings.log_file = args.log_file.resolve()
-    settings.log_level = args.log_level
+    settings.log_file = log_file.resolve()
+    settings.log_level = log_level
 
-    setup_logging(log_file=settings.log_file, log_level=settings.log_level, rotate_old=True)
-
+    setup_logging(log_file=settings.log_file, log_level=settings.log_level)
     settings.output_dir.mkdir(parents=True, exist_ok=True)
 
-    db = Database(settings.db_path)
-    db.backfill_and_rescan_session()
+    storage = StorageEngine(settings.db_path)
+    storage.init_storage()
+    db = storage.legacy_db
 
-    logger.info("starting_daad_harvester", phase=args.phase, db_path=str(settings.db_path))
+    logger.info(f"Starting DAAD Harvester pipeline (phase={phase}, db_path={settings.db_path})")
 
-    phase = args.phase
-    dashboard = TUIDashboard(db) if args.tui else None
+    dashboard = TUIDashboard(db) if tui else None
 
-    async def run_pipeline():
-        collisions = []
-
+    async def run_pipeline() -> None:
         # Phase 1: Discover
         if phase in ("discover", "all"):
             if dashboard:
                 dashboard.set_active_phase("1. DISCOVER")
-            logger.info("executing_phase_discover")
+            logger.info("Executing Phase: DISCOVER")
             discoverer = Discoverer(db)
             await discoverer.run_all_discovery()
 
-        # Phase 2: Evidence catalog
+        # Phase 2: Evidence Catalog
         if phase in ("catalog", "all"):
             if dashboard:
                 dashboard.set_active_phase("2. CATALOG")
-            logger.info("executing_phase_catalog")
+            logger.info("Executing Phase: CATALOG")
             catalog_path = EvidenceCatalogExporter(db, output_dir=settings.output_dir).write()
-            logger.info("evidence_catalog_written", catalog=str(catalog_path))
+            logger.info(f"Evidence catalog written to {catalog_path}")
 
         # Phase 3: Fetch
         if phase in ("fetch", "all"):
             if dashboard:
                 dashboard.set_active_phase("3. FETCH")
-            logger.info("executing_phase_fetch")
+            logger.info("Executing Phase: FETCH")
             fetcher = Fetcher(db, download_dir=settings.output_dir / "downloads")
             await fetcher.fetch_pending_sources(
-                parallel=args.parallel,
-                max_sources=args.max_sources,
-                source_ids=args.fetch_source or None,
+                parallel=parallel,
+                max_sources=max_sources,
+                source_ids=fetch_source or None,
             )
 
         # Phase 4: Unpack
         if phase in ("unpack", "all"):
             if dashboard:
                 dashboard.set_active_phase("4. UNPACK")
-            logger.info("executing_phase_unpack")
+            logger.info("Executing Phase: UNPACK")
             unpacker = Unpacker(db, extract_dir=settings.output_dir / "extracted")
-            if args.reunpack_source:
-                for source_id in args.reunpack_source:
-                    unpacker.reunpack_retained_source(source_id)
+            if reunpack_source:
+                for src_id in reunpack_source:
+                    unpacker.reunpack_retained_source(src_id)
             else:
-                unpacker.unpack_all_downloaded_sources(parallel=getattr(args, "parallel", settings.parallel_workers))
+                unpacker.unpack_all_downloaded_sources(parallel=parallel)
 
         # Phase 5: Fingerprint
         if phase in ("fingerprint", "all"):
             if dashboard:
                 dashboard.set_active_phase("5. FINGERPRINT")
-            logger.info("executing_phase_fingerprint")
+            logger.info("Executing Phase: FINGERPRINT")
             fingerprinter = Fingerprinter(db)
             fingerprinter.scan_all_artifacts()
 
@@ -182,40 +175,40 @@ def main() -> None:
         if phase in ("synthesize", "all"):
             if dashboard:
                 dashboard.set_active_phase("6. SYNTHESIZE")
-            logger.info("executing_phase_synthesize")
+            logger.info("Executing Phase: SYNTHESIZE")
             synthesizer = Synthesizer(db, output_dir=settings.output_dir)
             json_path, header_path, collisions = synthesizer.synthesize_catalog()
 
             reporter = ReportGenerator(db, output_dir=settings.output_dir)
             report_path = reporter.generate_report(collisions=collisions)
+            logger.info(f"Pipeline synthesis complete: {json_path}, {report_path}")
 
-            logger.info("pipeline_synthesis_completed", catalog=str(json_path), header=str(header_path), report=str(report_path))
-
-        # Phase 7: Classify retained artifacts into a ready-to-use library
+        # Phase 7: Organize Library
         if phase in ("organize", "all"):
             if dashboard:
                 dashboard.set_active_phase("7. ORGANIZE")
-            logger.info("executing_phase_organize")
+            logger.info("Executing Phase: ORGANIZE")
             library_path = LibraryBuilder(db, output_dir=settings.output_dir).build()
-            logger.info("pipeline_completed_successfully", library_manifest=str(library_path))
+            logger.info(f"Library organized at {library_path}")
 
+        # Phase 8: Report Export
         # Static viewer export intentionally runs after organization so its
         # library index contains only materialized relative artifact paths.
         if phase in ("report", "all"):
             if dashboard:
                 dashboard.set_active_phase("8. REPORT EXPORT")
-            logger.info("executing_phase_report")
+            logger.info("Executing Phase: REPORT EXPORT")
             report_data_path = StaticReportExporter(db, output_dir=settings.output_dir).write()
-            logger.info("static_report_data_written", report_data=str(report_data_path))
+            logger.info(f"Static report data exported to {report_data_path}")
 
         if dashboard:
             dashboard.set_active_phase("COMPLETED")
 
-    if args.tui:
+    if tui and dashboard:
         asyncio.run(dashboard.run_live_tui_async(run_pipeline))
     else:
         asyncio.run(run_pipeline())
 
 
 if __name__ == "__main__":
-    main()
+    app()

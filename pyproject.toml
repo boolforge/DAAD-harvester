@@ -50,7 +50,7 @@ dev = [
 ]
 
 [project.scripts]
-daad-harvester = "daad_harvester.cli:main"
+daad-harvester = "daad_harvester.cli:app"
 
 [tool.setuptools.packages.find]
 include = ["daad_harvester*"]

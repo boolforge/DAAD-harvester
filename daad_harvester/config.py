@@ -55,7 +55,7 @@ class Settings(BaseSettings):
     zip_bomb_max_ratio: float = Field(default=100.0, description="Max extracted/compressed file ratio limit")
 
     parallel_workers: int = Field(default=8, description="Number of parallel execution workers")
-    log_file: Path = Field(default=Path("./output/logs/daad_general.log"), description="Path to main log file")
+    log_file: Path = Field(default=Path("./output/logs/daad_harvester.json"), description="Path to main structured JSON log file")
     log_level: str = Field(default="INFO", description="Logging level")
 
     def load_proxies(self) -> None:
