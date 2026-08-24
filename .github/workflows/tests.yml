@@ -53,9 +53,23 @@ jobs:
         run: PYTHONPATH=. python -m pytest tests/ -v
 
       - name: CLI smoke test
-        # Cheap, real end-to-end check of module wiring (imports, argparse
-        # setup) that unit tests alone don't exercise, since they import
-        # submodules directly rather than running `python -m daad_harvester`.
+        # Cheap, real end-to-end check of module wiring (imports, CLI setup)
+        # that unit tests alone don't exercise, since they import submodules
+        # directly rather than running `python -m daad_harvester`.
+        #
+        # The phase invocations below exist because --version/--help alone
+        # previously passed on a PR whose active `--phase unpack` (and
+        # therefore the default `--phase all`) crashed with AttributeError
+        # on every single run: argument parsing and Typer app construction
+        # happen at import time, but a missing method on a class only fails
+        # when that method is actually called. tests/test_cli_integration.py
+        # covers the same phases via typer.testing.CliRunner in-process for
+        # fast local runs; this step additionally exercises the real
+        # `python -m daad_harvester` subprocess/entry-point path, which
+        # in-process testing does not.
         run: |
           python -m daad_harvester --version
           python -m daad_harvester --help
+          for phase in catalog unpack fingerprint synthesize organize report; do
+            python -m daad_harvester --phase "$phase" --output-dir /tmp/daad-ci-smoke
+          done
