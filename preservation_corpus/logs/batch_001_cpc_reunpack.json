@@ -1,0 +1,51 @@
+{
+  "source_log_file": "batch_001_cpc_reunpack.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.487860+00:00",
+  "record_count": 4,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T11:18:49.849924Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "unpack",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:18:49.850170Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_unpack",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:18:49.850529Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 110,
+        "path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth0_48679622_110_Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk",
+        "event": "reunpacking_retained_source",
+        "logger": "daad_harvester.unpack",
+        "level": "info",
+        "timestamp": "2026-08-19T11:18:49.852521Z"
+      }
+    }
+  ]
+}

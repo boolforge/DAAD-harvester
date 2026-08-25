@@ -1,0 +1,56 @@
+{
+  "source_log_file": "daad_games_20260819_111214.log",
+  "format": "loggersuite_banner",
+  "migrated_at": "2026-08-24T18:53:34.582769+00:00",
+  "record_count": 2,
+  "records": [
+    {
+      "session_tag": "20260819_111103",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:11:03.774830",
+      "fields": {
+        "game_id": "art_32",
+        "title": "Chichén Itzá",
+        "platform": "AMIGA",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "PART1.DDB",
+        "file_size": "42804 bytes",
+        "source_url": "https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_d78a30e6_PART1.DDB",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "efaeabc0a3dcc9a0654975632647e4b0e6caa7fcbcbb7a2de2c166e9ca9c62a7",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_111103",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:11:03.885771",
+      "fields": {
+        "game_id": "art_40",
+        "title": "Chichén Itzá",
+        "platform": "AMIGA",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "PART2.DDB",
+        "file_size": "43990 bytes",
+        "source_url": "https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_806a1c74_PART2.DDB",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "efe5be7e82982365699cc78308d382d86262e6f2458b6ea8c09314aa49bcc414",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    }
+  ]
+}

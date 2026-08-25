@@ -1,0 +1,63 @@
+{
+  "source_log_file": "batch_001_synthesize.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.574789+00:00",
+  "record_count": 5,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:39.737954Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "synthesize",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:39.738176Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_synthesize",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:39.738592Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "catalog_entries": 0,
+        "collisions": 0,
+        "event": "synthesize_completed",
+        "logger": "daad_harvester.synthesize",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:39.741991Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "catalog": "/home/ubuntu/DAAD-harvester/preservation_corpus/daad_catalog.json",
+        "header": "/home/ubuntu/DAAD-harvester/preservation_corpus/detection_tables.h",
+        "report": "/home/ubuntu/DAAD-harvester/preservation_corpus/scrape_report.md",
+        "event": "pipeline_synthesis_completed",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:39.746652Z"
+      }
+    }
+  ]
+}

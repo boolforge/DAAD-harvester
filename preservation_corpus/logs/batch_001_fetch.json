@@ -1,0 +1,214 @@
+{
+  "source_log_file": "batch_001_fetch.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.573311+00:00",
+  "record_count": 24,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.541648Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "fetch",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.541882Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_fetch",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.542217Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "count": 5,
+        "parallel": 5,
+        "max_sources": 5,
+        "event": "starting_fetch_phase",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.544242Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 106,
+        "url": "https://plus4world.powweb.com/dl/games/e/eight_feet_under.zip",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.715776Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 110,
+        "url": "https://archive.org/download/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.741657Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 112,
+        "url": "https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.742228Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 121,
+        "url": "https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.742528Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 245,
+        "url": "https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:01.742941Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf \"HTTP/1.1 302 Found\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://archive.org/download/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk \"HTTP/1.1 302 Found\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip \"HTTP/1.1 301 Moved Permanently\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://plus4world.powweb.com/dl/games/e/eight_feet_under.zip \"HTTP/1.1 200 OK\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 106,
+        "target_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/downloads/106_eight_feet_under.zip",
+        "event": "download_success",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:03.726729Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://archive.org/download/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64 \"HTTP/1.1 302 Found\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip \"HTTP/1.1 200 OK\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://dn710609.ca.archive.org/0/items/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version/Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk \"HTTP/1.1 200 OK\""
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://dn721906.ca.archive.org/0/items/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf \"HTTP/1.1 200 OK\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 112,
+        "target_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/downloads/112_ChichenItza.tap.zip",
+        "event": "download_success",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:05.591509Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 110,
+        "target_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/downloads/110_Aventura_Original_La_1989_Aventuras_AD_es_cpm_version.dsk",
+        "event": "download_success",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:06.228049Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://ia902808.us.archive.org/0/items/Jabato_1989_Aventuras_AD_es_cr_ASS/Jabato_1989_Aventuras_AD_es_cr_ASS.d64 \"HTTP/1.1 200 OK\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 121,
+        "target_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/downloads/121_Jabato_1989_Aventuras_AD_es_cr_ASS.d64",
+        "event": "download_success",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:06.953260Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 245,
+        "target_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/downloads/245_Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "event": "download_success",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:07.916369Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "total": 5,
+        "successful": 5,
+        "event": "fetch_phase_completed",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:07.917462Z"
+      }
+    }
+  ]
+}

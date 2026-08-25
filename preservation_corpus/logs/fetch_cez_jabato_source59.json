@@ -1,0 +1,144 @@
+{
+  "source_log_file": "fetch_cez_jabato_source59.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.588057+00:00",
+  "record_count": 14,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:30.619732Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "fetch",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:30.620019Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_fetch",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:30.620418Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "count": 1,
+        "parallel": 1,
+        "max_sources": 1,
+        "event": "starting_fetch_phase",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:30.622607Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "url": "https://computeremuzone.com/download.php?ind=415",
+        "attempt": 1,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:30.827224Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://computeremuzone.com/download.php?ind=415 \"HTTP/1.1 403 Forbidden\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "status_code": 403,
+        "event": "http_download_error",
+        "logger": "daad_harvester.fetch",
+        "level": "warning",
+        "timestamp": "2026-08-19T12:25:33.493699Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "url": "https://computeremuzone.com/download.php?ind=415",
+        "attempt": 2,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:34.572708Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://computeremuzone.com/download.php?ind=415 \"HTTP/1.1 403 Forbidden\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "status_code": 403,
+        "event": "http_download_error",
+        "logger": "daad_harvester.fetch",
+        "level": "warning",
+        "timestamp": "2026-08-19T12:25:36.464848Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "url": "https://computeremuzone.com/download.php?ind=415",
+        "attempt": 3,
+        "event": "downloading_source",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:38.921314Z"
+      }
+    },
+    {
+      "type": "raw_line",
+      "text": "HTTP Request: GET https://computeremuzone.com/download.php?ind=415 \"HTTP/1.1 403 Forbidden\""
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "source_id": 59,
+        "status_code": 403,
+        "event": "http_download_error",
+        "logger": "daad_harvester.fetch",
+        "level": "warning",
+        "timestamp": "2026-08-19T12:25:41.440257Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "total": 1,
+        "successful": 0,
+        "event": "fetch_phase_completed",
+        "logger": "daad_harvester.fetch",
+        "level": "info",
+        "timestamp": "2026-08-19T12:25:41.444050Z"
+      }
+    }
+  ]
+}

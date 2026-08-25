@@ -1,0 +1,152 @@
+{
+  "source_log_file": "daad_games_20260819_112444.log",
+  "format": "loggersuite_banner",
+  "migrated_at": "2026-08-24T18:53:34.583752+00:00",
+  "record_count": 6,
+  "records": [
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.319250",
+      "fields": {
+        "game_id": "art_6",
+        "title": "Chichén Itzá",
+        "platform": "ZX",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "Chichen Itza - Part 1.tap",
+        "file_size": "48166 bytes",
+        "source_url": "https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_c3c04791_Chichen Itza - Part 1.tap",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "7b032a6caa265e901bd45353f2aa7f382dcc80bb6fa88c7e20cb01bfea969f2f",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.492872",
+      "fields": {
+        "game_id": "art_16",
+        "title": "Chichén Itzá",
+        "platform": "ZX",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "CODE.bin",
+        "file_size": "40960 bytes",
+        "source_url": "https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_f60ae20d_CODE.bin",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "1347aeeedada456d70d72205afffc002bb77fd946f317d6e25e1a7edd7eaf61d",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.544098",
+      "fields": {
+        "game_id": "art_20",
+        "title": "Chichén Itzá",
+        "platform": "ZX",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "Chichen Itza - Part 2.tap",
+        "file_size": "48166 bytes",
+        "source_url": "https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_474a3a55_Chichen Itza - Part 2.tap",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "d2982344263f96ade41d8590fe975ba6b6867d7af87ccddfc0417b5db11a8f73",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.583299",
+      "fields": {
+        "game_id": "art_25",
+        "title": "Chichén Itzá",
+        "platform": "ZX",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "CODE.bin",
+        "file_size": "40960 bytes",
+        "source_url": "https://www.worldofspectrum.org//pub/sinclair/games/c/ChichenItza.tap.zip",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth2_05ac0a89_CODE.bin",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "8106ead8245388c32d5c9ec70a86b4753afa063da78448cb50b7ed91bc0a11d4",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.622504",
+      "fields": {
+        "game_id": "art_68",
+        "title": "Chichén Itzá",
+        "platform": "AMIGA",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "PART1.DDB",
+        "file_size": "42804 bytes",
+        "source_url": "https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_d78a30e6_PART1.DDB",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "efaeabc0a3dcc9a0654975632647e4b0e6caa7fcbcbb7a2de2c166e9ca9c62a7",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    },
+    {
+      "session_tag": "20260819_112314",
+      "category": "VERIFIED DAAD DDB",
+      "timestamp": "2026-08-19T11:23:15.743854",
+      "fields": {
+        "game_id": "art_76",
+        "title": "Chichén Itzá",
+        "platform": "AMIGA",
+        "version_guess": "DAAD DDB v2",
+        "language": "unknown",
+        "filename": "PART2.DDB",
+        "file_size": "43990 bytes",
+        "source_url": "https://archive.org/download/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX/Chichen_Itza_1991_Aventuras_AD_ES_cr_QTX.adf",
+        "extracted_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/extracted/depth1_806a1c74_PART2.DDB",
+        "hashes": {
+          "md5_full": "N/A",
+          "md5_5000": "N/A",
+          "sha256": "efe5be7e82982365699cc78308d382d86262e6f2458b6ea8c09314aa49bcc414",
+          "sha1": "N/A",
+          "crc32": "N/A",
+          "xxh64": "N/A"
+        }
+      }
+    }
+  ]
+}

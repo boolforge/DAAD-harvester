@@ -1,0 +1,163 @@
+{
+  "source_log_file": "batch_001_zx_refingerprint.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.576292+00:00",
+  "record_count": 12,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:45.463033Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "fingerprint",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:45.463299Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_fingerprint",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:45.463708Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 68,
+        "filename": "PART1.DDB",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "amiga",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:45.786098Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 76,
+        "filename": "PART2.DDB",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "amiga",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:45.919508Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 83,
+        "filename": "Chichen Itza - Part 1.tap",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.045413Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 86,
+        "filename": "CODE.bin",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.066296Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 87,
+        "filename": "CODE__embedded_002400.ddb",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.075051Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 88,
+        "filename": "Chichen Itza - Part 2.tap",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.085803Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 90,
+        "filename": "CODE.bin",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.100123Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 91,
+        "filename": "CODE__embedded_002400.ddb",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "zx",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.108931Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "total_scanned": 45,
+        "daad_detected": 8,
+        "event": "fingerprint_phase_completed",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:24:46.111806Z"
+      }
+    }
+  ]
+}

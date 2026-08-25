@@ -1,0 +1,17 @@
+{
+  "source_log_file": "daad_general_20260820_195734.log",
+  "format": "loggersuite_banner",
+  "migrated_at": "2026-08-24T18:53:34.587260+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "session_tag": "20260820_194359",
+      "category": "GENERAL ACTIVITY",
+      "timestamp": "2026-08-20T19:44:00.769782",
+      "fields": {
+        "message": "Fingerprint phase complete: 8/57 verified DAAD DDBs",
+        "level": "INFO"
+      }
+    }
+  ]
+}

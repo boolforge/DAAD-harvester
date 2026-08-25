@@ -1,0 +1,50 @@
+{
+  "source_log_file": "batch_001_amiga_reorganize_20260819_111105.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.483485+00:00",
+  "record_count": 4,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T11:10:15.441917Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "organize",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:10:15.442229Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_organize",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:10:15.442755Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "library_manifest": "/home/ubuntu/DAAD-harvester/preservation_corpus/library/manifest.json",
+        "event": "pipeline_completed_successfully",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:10:15.468160Z"
+      }
+    }
+  ]
+}
