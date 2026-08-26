@@ -1,0 +1,185 @@
+{
+  "source_log_file": "daad_discovery_20260819_105701.log",
+  "format": "loggersuite_banner",
+  "migrated_at": "2026-08-24T18:53:34.578669+00:00",
+  "record_count": 16,
+  "records": [
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:08.585907",
+      "fields": {
+        "source_name": "MANUAL VERIFIED SEEDS",
+        "url": "built-in",
+        "items_found": 0,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:08.823185",
+      "fields": {
+        "source_name": "IF ARCHIVE",
+        "url": "ifarchive.org",
+        "items_found": 0,
+        "status": "SKIPPED_UNVERIFIED_INDEX",
+        "details": "No maintained DAAD-specific IF Archive index is currently configured."
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:10.956373",
+      "fields": {
+        "source_name": "COMPUTER EMUZONE",
+        "url": "https://computeremuzone.com/engine/daad?l=en",
+        "items_found": 73,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:11.840212",
+      "fields": {
+        "source_name": "AMINET AMIGA",
+        "url": "https://aminet.net/search?query=daad",
+        "items_found": 3,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:12.294700",
+      "fields": {
+        "source_name": "IFDB",
+        "url": "ifdb.org",
+        "items_found": 0,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:12.979928",
+      "fields": {
+        "source_name": "GITHUB REPOSITORIES",
+        "url": "api.github.com",
+        "items_found": 11,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:13.774074",
+      "fields": {
+        "source_name": "CSDB C64",
+        "url": "https://csdb.dk/search/?search=daad",
+        "items_found": 0,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:13.950755",
+      "fields": {
+        "source_name": "WEB SEARCH FALLBACK",
+        "url": "duckduckgo.com",
+        "items_found": 0,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:14.003815",
+      "fields": {
+        "source_name": "ATARIMANIA ST",
+        "url": "bounded DAAD records",
+        "items_found": 4,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:14.701739",
+      "fields": {
+        "source_name": "GENERATION MSX",
+        "url": "https://www.generation-msx.nl/company/aventuras-ad/292/software/",
+        "items_found": 19,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:14.911634",
+      "fields": {
+        "source_name": "WIKICAAD",
+        "url": "https://wiki.caad.es/api.php?action=query&list=search&srsearch=DAAD&format=json",
+        "items_found": 0,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:15.106287",
+      "fields": {
+        "source_name": "ZXINFO ZXDB",
+        "url": "api.zxinfo.dk",
+        "items_found": 50,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:18.856356",
+      "fields": {
+        "source_name": "PLUS/4 WORLD",
+        "url": "https://plus4world.powweb.com/search/notes/DAAD",
+        "items_found": 45,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:23.887524",
+      "fields": {
+        "source_name": "WORLD OF SPECTRUM",
+        "url": "https://worldofspectrum.org/archive/publishers/Aventuras-AD-SA",
+        "items_found": 21,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:26.366668",
+      "fields": {
+        "source_name": "INTERNET ARCHIVE",
+        "url": "archive.org",
+        "items_found": 11,
+        "status": "OK"
+      }
+    },
+    {
+      "session_tag": "20260819_105508",
+      "category": "DISCOVERY CRAWL",
+      "timestamp": "2026-08-19T10:55:27.726136",
+      "fields": {
+        "source_name": "ITCH.IO",
+        "url": "itch.io",
+        "items_found": 10,
+        "status": "OK"
+      }
+    }
+  ]
+}

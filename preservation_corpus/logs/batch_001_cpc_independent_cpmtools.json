@@ -1,0 +1,6 @@
+{
+  "source_log_file": "batch_001_cpc_independent_cpmtools.log",
+  "format": "raw_transcript",
+  "migrated_at": "2026-08-24T18:53:34.487457+00:00",
+  "text": "# Independent CP/M standard-profile listing attempts\n2026-08-19T11:19:19Z\n## cpcsys\ncpmls: cannot read superblock (Missing address mark.)\n## cpcdata\ncpmls: cannot read superblock (Missing address mark.)\n"
+}

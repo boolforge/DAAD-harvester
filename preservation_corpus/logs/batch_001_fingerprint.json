@@ -1,0 +1,51 @@
+{
+  "source_log_file": "batch_001_fingerprint.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.573895+00:00",
+  "record_count": 4,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:38.289493Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "fingerprint",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:38.289741Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_fingerprint",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:38.290100Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "total_scanned": 27,
+        "daad_detected": 0,
+        "event": "fingerprint_phase_completed",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T10:57:38.626408Z"
+      }
+    }
+  ]
+}

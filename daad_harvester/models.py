@@ -21,6 +21,16 @@ class SourceStatus(str, Enum):
     PARTIALLY_UNPACKED = "partially_unpacked"
     ERROR = "error"
     DEAD = "dead"
+    # The three members below are used by the Pydantic ETL contract layer
+    # (daad_harvester.transform.models.SourceModel) rather than the legacy
+    # unpack pipeline above. They live on this single canonical enum -- not
+    # a second SourceStatus definition in transform/models.py -- so that a
+    # SourceModel built with `from_attributes=True` off a legacy
+    # SourceRecord/database row can never encounter a status value the two
+    # layers disagree about.
+    FETCHED = "fetched"
+    FAILED = "failed"
+    SKIPPED = "skipped"
 
 
 class Platform(str, Enum):

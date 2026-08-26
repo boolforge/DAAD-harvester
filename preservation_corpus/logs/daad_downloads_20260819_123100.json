@@ -1,0 +1,21 @@
+{
+  "source_log_file": "daad_downloads_20260819_123100.log",
+  "format": "loggersuite_banner",
+  "migrated_at": "2026-08-24T18:53:34.579447+00:00",
+  "record_count": 1,
+  "records": [
+    {
+      "session_tag": "20260819_122530",
+      "category": "DOWNLOAD STATUS",
+      "timestamp": "2026-08-19T12:25:41.443793",
+      "fields": {
+        "url": "https://computeremuzone.com/download.php?ind=415",
+        "status": "FAILED_ERROR",
+        "http_code": "N/A",
+        "local_path": "N/A",
+        "wayback_used": "False",
+        "error": "Max retries exceeded"
+      }
+    }
+  ]
+}

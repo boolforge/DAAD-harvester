@@ -1,0 +1,79 @@
+{
+  "source_log_file": "batch_001_amiga_refingerprint_20260819_111257.log",
+  "format": "structlog_console",
+  "migrated_at": "2026-08-24T18:53:34.482712+00:00",
+  "record_count": 6,
+  "records": [
+    {
+      "type": "structlog",
+      "fields": {
+        "reset_sources": 0,
+        "backfilled_artifacts": 0,
+        "cleared_stale_games": 0,
+        "event": "database_backfill_and_rescan_completed",
+        "logger": "daad_harvester.db",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.157342Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "phase": "fingerprint",
+        "db_path": "/home/ubuntu/DAAD-harvester/preservation_corpus/state.db",
+        "event": "starting_daad_harvester",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.157598Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "event": "executing_phase_fingerprint",
+        "logger": "daad_harvester.cli",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.158134Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 50,
+        "filename": "PART1.DDB",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "amiga",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.534985Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "artifact_id": 58,
+        "filename": "PART2.DDB",
+        "ddb_format": "daad-v2-legacy",
+        "platform": "amiga",
+        "interpreter": null,
+        "event": "daad_payload_verified",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.670077Z"
+      }
+    },
+    {
+      "type": "structlog",
+      "fields": {
+        "total_scanned": 42,
+        "daad_detected": 2,
+        "event": "fingerprint_phase_completed",
+        "logger": "daad_harvester.fingerprint",
+        "level": "info",
+        "timestamp": "2026-08-19T11:12:16.777855Z"
+      }
+    }
+  ]
+}

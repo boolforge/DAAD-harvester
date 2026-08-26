@@ -1,12 +1,21 @@
+# Minimum-version constraints for humans reading/editing dependencies. CI and any
+# reproducible install should use requirements-lock.txt (exact pins) instead -- see
+# that file's header for why.
 aiofiles>=23.0.0
 beautifulsoup4>=4.12.0
 httpx>=0.25.0
-pydantic-settings>=2.0.0
-structlog>=23.0.0
-py7zr>=0.20.0; sys_platform != "android"
-rarfile>=4.0
+loguru>=0.7.0
 lxml>=4.9.0
 markdown>=3.7
-zipfile-deflate64>=0.2.0
+pydantic>=2.7.0
+pydantic-settings>=2.0.0
+py7zr>=0.20.0; sys_platform != "android"
+rarfile>=4.0
 rich>=13.0.0
+selectolax>=0.4.0
+sqlalchemy>=2.0.0
+structlog>=23.0.0
+tenacity>=8.2.0
+typer>=0.12.0
 xxhash>=3.0.0
+zipfile-deflate64>=0.2.0
