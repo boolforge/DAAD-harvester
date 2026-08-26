@@ -12,7 +12,17 @@ daad_harvester.cli.main() mutates the module-level `settings` singleton on every
 invocation (output_dir, db_path, log_file, ...). Every test below passes an isolated
 --output-dir under tmp_path specifically to avoid one test's settings bleeding into
 another's, or into the real repository's output/ directory.
+
+Real incident, found the hard way: test_help originally asserted "--phase" in
+result.stdout directly. That passed in every local run but failed consistently on
+GitHub Actions -- Rich (Typer's help renderer) detects it is running inside GitHub
+Actions and renders its help panel with ANSI color codes, which land literally inside
+the option name ("--phase" becomes "\x1b[1;36m-\x1b[0m\x1b[1;36m-phase\x1b[0m"), breaking
+a naive substring check. strip_ansi() below makes every stdout assertion in this file
+robust to that regardless of which environment renders in color.
 """
+import re
+
 import pytest
 from typer.testing import CliRunner
 
@@ -22,17 +32,23 @@ runner = CliRunner()
 
 NETWORK_FREE_PHASES = ["catalog", "unpack", "fingerprint", "synthesize", "organize", "report"]
 
+_ANSI_RE = re.compile(r"\x1b\[[0-9;]*[a-zA-Z]")
+
+
+def strip_ansi(text: str) -> str:
+    return _ANSI_RE.sub("", text)
+
 
 def test_version():
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
-    assert "daad-harvester" in result.stdout
+    assert "daad-harvester" in strip_ansi(result.stdout)
 
 
 def test_help():
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    assert "--phase" in result.stdout
+    assert "--phase" in strip_ansi(result.stdout)
 
 
 @pytest.mark.parametrize("phase", NETWORK_FREE_PHASES)
