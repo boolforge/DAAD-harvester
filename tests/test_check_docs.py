@@ -32,5 +32,23 @@ def test_atomic_remote_delivery_policy_is_discoverable_from_every_required_entry
     assert errors == []
 
 
+def test_relative_links_cover_root_level_agent_and_readme_docs() -> None:
+    """Root-level files (AGENT.md, README.md, ...) are what an agent or a human
+    reads first -- they need the same link protection as everything under docs/,
+    which check_relative_links did not originally provide."""
+    errors: list[str] = []
+
+    checked = check_docs.check_relative_links(errors)
+
+    assert errors == []
+    root_markdown_files = list(check_docs.ROOT.glob("*.md"))
+    assert check_docs.ROOT / "AGENT.md" in root_markdown_files
+    assert check_docs.ROOT / "README.md" in root_markdown_files
+    # A sanity floor, not an exact count: docs/ alone already had hundreds of
+    # links before this change, so this only fails if root-level files stop
+    # being scanned entirely.
+    assert checked > 545
+
+
 def test_full_documentation_integrity_gate_passes() -> None:
     assert check_docs.main() == 0

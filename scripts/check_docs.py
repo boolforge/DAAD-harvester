@@ -126,7 +126,8 @@ AMERICAN_ENGLISH_POLICY_REQUIREMENTS = (
 
 def check_relative_links(errors: list[str]) -> int:
     checked = 0
-    for document in sorted(DOCS.rglob("*.md")):
+    documents = sorted(DOCS.rglob("*.md")) + sorted(ROOT.glob("*.md"))
+    for document in documents:
         text = document.read_text(encoding="utf-8")
         for raw_target in LINK_RE.findall(text):
             target = raw_target.strip("<>").split("#", 1)[0]
