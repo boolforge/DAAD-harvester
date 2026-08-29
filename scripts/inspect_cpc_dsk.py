@@ -27,6 +27,8 @@ def parse_tracks(data: bytes) -> list[dict[str, object]]:
     position = 0x100
     parsed: list[dict[str, object]] = []
     for index in range(tracks * sides):
+        if extended and index >= len(size_table):
+            raise ValueError(f"track {index} missing from truncated extended size table")
         track_size = size_table[index] * 256 if extended else fixed_track_size
         if not track_size:
             continue
