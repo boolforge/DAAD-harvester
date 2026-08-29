@@ -54,7 +54,8 @@ def main() -> int:
     """Report stable file/line findings for obvious authored-language drift."""
 
     findings: list[str] = []
-    for path in tracked_authored_text_paths():
+    paths = tracked_authored_text_paths()
+    for path in paths:
         text = path.read_text(encoding="utf-8", errors="replace")
         for line_number, line in enumerate(text.splitlines(), start=1):
             normalized = line
@@ -66,7 +67,7 @@ def main() -> int:
         print("American English check failed:")
         print("\n".join(f"- {finding}" for finding in findings))
         return 1
-    print(f"American English check passed: {len(tracked_authored_text_paths())} authored text files checked.")
+    print(f"American English check passed: {len(paths)} authored text files checked.")
     return 0
 
 
