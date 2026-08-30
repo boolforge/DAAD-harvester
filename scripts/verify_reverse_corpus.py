@@ -17,6 +17,25 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def safe_relative(path: Path) -> Path | str:
+    """Format `path` for an error message without ever raising.
+
+    Every path here is built as `ROOT / manifest_supplied_string`. Path's `/`
+    operator silently discards the left side when the right side is itself an
+    absolute path (`ROOT / "/etc/passwd"` == `Path("/etc/passwd")`), so a
+    malformed or malicious manifest entry can produce a `path` that isn't
+    actually under ROOT at all. `path.relative_to(ROOT)` raises ValueError in
+    that case -- unacceptable in an error-reporting helper, since it would
+    crash the verifier while it is trying to report a *different* problem
+    (originally found and fixed here: the "hash mismatch" branches called
+    relative_to(ROOT) unconditionally while the "missing file" branches next
+    to them already guarded it, so a mismatched hash on an out-of-root path
+    crashed this script instead of reporting the mismatch)."""
+    if path.is_absolute() and ROOT in path.parents:
+        return path.relative_to(ROOT)
+    return path
+
+
 def load(name: str) -> dict[str, object]:
     return json.loads((MANIFEST_ROOT / name).read_text(encoding="utf-8"))
 
@@ -35,9 +54,9 @@ def verify_originals(errors: list[str]) -> int:
         path = ROOT / str(storage.get("path", ""))
         expected = artifact.get("sha256")
         if not path.is_file():
-            errors.append(f"missing original artifact: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+            errors.append(f"missing original artifact: {safe_relative(path)}")
         elif sha256(path) != expected:
-            errors.append(f"original artifact hash mismatch: {path.relative_to(ROOT)}")
+            errors.append(f"original artifact hash mismatch: {safe_relative(path)}")
     return len(artifacts)
 
 
@@ -60,9 +79,9 @@ def verify_public_sources(errors: list[str]) -> int:
             path = root / str(item.get("path", ""))
             checked += 1
             if not path.is_file():
-                errors.append(f"missing public source file: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+                errors.append(f"missing public source file: {safe_relative(path)}")
             elif sha256(path) != item.get("sha256"):
-                errors.append(f"public source hash mismatch: {path.relative_to(ROOT)}")
+                errors.append(f"public source hash mismatch: {safe_relative(path)}")
     return checked
 
 
@@ -93,9 +112,9 @@ def verify_adp_implementation(errors: list[str]) -> int:
             path = root / str(item.get("path", ""))
             checked += 1
             if not path.is_file():
-                errors.append(f"missing {category} file: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+                errors.append(f"missing {category} file: {safe_relative(path)}")
             elif sha256(path) != item.get("sha256"):
-                errors.append(f"{category} hash mismatch: {path.relative_to(ROOT)}")
+                errors.append(f"{category} hash mismatch: {safe_relative(path)}")
     return checked
 
 
@@ -107,9 +126,9 @@ def verify_adp_verification(errors: list[str]) -> int:
         return 0
     path = ROOT / str(log.get("path", ""))
     if not path.is_file():
-        errors.append(f"missing ADP verification log: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+        errors.append(f"missing ADP verification log: {safe_relative(path)}")
     elif sha256(path) != log.get("sha256"):
-        errors.append(f"ADP verification log hash mismatch: {path.relative_to(ROOT)}")
+        errors.append(f"ADP verification log hash mismatch: {safe_relative(path)}")
     summary = manifest.get("scenario_summary", {})
     if not isinstance(summary, dict) or summary.get("probed") != summary.get("passed", 0) + summary.get("blocked", 0) + summary.get("failed_behavioral_assertions", 0):
         errors.append("ADP verification scenario summary does not reconcile")
@@ -138,18 +157,18 @@ def verify_derived_outputs(errors: list[str]) -> int:
             path = ROOT / str(output.get("path", ""))
             checked += 1
             if not path.is_file():
-                errors.append(f"missing derived output: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+                errors.append(f"missing derived output: {safe_relative(path)}")
             elif sha256(path) != output.get("sha256"):
-                errors.append(f"derived output hash mismatch: {path.relative_to(ROOT)}")
+                errors.append(f"derived output hash mismatch: {safe_relative(path)}")
         for record in run.get("tool_records", []):
             if not isinstance(record, dict):
                 errors.append(f"non-object tool record: {run_path.relative_to(ROOT)}")
                 continue
             path = ROOT / str(record.get("output", ""))
             if not path.is_file():
-                errors.append(f"missing tool record output: {path.relative_to(ROOT) if path.is_absolute() and ROOT in path.parents else path}")
+                errors.append(f"missing tool record output: {safe_relative(path)}")
             elif sha256(path) != record.get("sha256"):
-                errors.append(f"tool record hash mismatch: {path.relative_to(ROOT)}")
+                errors.append(f"tool record hash mismatch: {safe_relative(path)}")
     return checked
 
 
