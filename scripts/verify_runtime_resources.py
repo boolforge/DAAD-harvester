@@ -21,6 +21,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def safe_relative(path: Path) -> Path | str:
+    """Format `path` for an error message without ever raising.
+
+    Unlike the "resources" list a few lines below, which explicitly rejects
+    an absolute `path` value before ever using it, the "captures" loop's
+    `recorded` field has no such check -- a manifest entry there can produce
+    a `path` that escapes ROOT via Path's own `/` override
+    (`MANIFEST.parent / "/etc/passwd"` == `Path("/etc/passwd")`).
+    `path.relative_to(ROOT)` raises ValueError in that case; reproduced and
+    fixed here after finding the identical bug in
+    scripts/verify_reverse_corpus.py and scripts/verify_game_corpus.py."""
+    if ROOT in path.parents:
+        return path.relative_to(ROOT)
+    return path
+
+
 def main() -> int:
     if not MANIFEST.is_file():
         print(f"Runtime-resource verification failed: missing {MANIFEST.relative_to(ROOT)}")
@@ -72,7 +88,7 @@ def main() -> int:
             if not path.is_file():
                 errors.append(f"missing capture {field}: {recorded!r}")
             elif sha256(path) != capture.get(checksum_field):
-                errors.append(f"hash mismatch for capture {field}: {path.relative_to(ROOT)}")
+                errors.append(f"hash mismatch for capture {field}: {safe_relative(path)}")
         if not capture.get("result"):
             errors.append("capture has no measured result")
 
